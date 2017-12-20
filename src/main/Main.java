@@ -7,12 +7,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Main {
 
+	public static final int WIDTH = 512;
+	public static final int HEIGHT = 512;
+	
 	private static final String TITLE = "Guardian";
 	private static final int MENU_STATE_ID = 0;
 	private static final int GAME_STATE_ID = 1;
-	
-	private static final int WIDTH = 512;
-	private static final int HEIGHT = 512;
 	
 	private static final int FRAME_RATE = 60;
 	
