@@ -6,9 +6,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Play extends BasicGameState {
+public class Game extends BasicGameState {
 
-	public Play(int state) {
+	public Game(int state) {
 		
 	}
 	
