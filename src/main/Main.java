@@ -32,8 +32,8 @@ public class Main {
 			}
 		};
 		
-		stateBasedGame.addState(new Menu(MENU_STATE_ID));
-		stateBasedGame.addState(new Game(GAME_STATE_ID));
+		stateBasedGame.addState(new Menu());
+		stateBasedGame.addState(new Game());
 		
 		try {
 			
