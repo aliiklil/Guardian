@@ -43,6 +43,8 @@ public class Game extends BasicGameState {
 	private boolean lookLeft = false;
 	private boolean lookRight = false;
 	
+	private boolean moving = false;
+		
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
@@ -74,27 +76,31 @@ public class Game extends BasicGameState {
 			mapY = mapY + 1;
 			playerCurrentAnimation = playerGoUpAnimation;
 			lookUp = true;
+			moving = true;
 		}
 		
 		if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
 			mapY = mapY - 1;
 			playerCurrentAnimation = playerGoDownAnimation;
 			lookDown = true;
+			moving = true;
 		}
 		
 		if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
 			mapX = mapX + 1;
 			playerCurrentAnimation = playerGoLeftAnimation;
 			lookLeft = true;
+			moving = true;
 		}
 
 		if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
 			mapX = mapX - 1;
 			playerCurrentAnimation = playerGoRightAnimation;
 			lookRight = true;
+			moving = true;
 		}
 		
-		if(!input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+		if(!input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) || !moving) {
 			
 			if(lookUp)
 				playerCurrentAnimation = playerLookUpAnimation;
@@ -114,6 +120,8 @@ public class Game extends BasicGameState {
 			lookRight = false;
 			
 		}
+		
+		moving = false;
 		
 	}
 
