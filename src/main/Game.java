@@ -20,7 +20,9 @@ public class Game extends BasicGameState {
 	
 	private int playerSize = 64;
 	
-	private int playerX = Main.WIDTH / 2 - playerSize / 2;
+	private int playerSpeed = 2;
+	
+	private int playerX = Main.WIDTH / 2 - playerSize / 2 + 16;
 	private int playerY = Main.HEIGHT / 2 - playerSize / 2;
 	
 	private SpriteSheet playerSpriteSheet;
@@ -38,12 +40,21 @@ public class Game extends BasicGameState {
 	private Animation playerGoLeftAnimation;
 	private Animation playerGoRightAnimation;
 
+	private boolean goUp = false;
+	private boolean goDown = false;
+	private boolean goLeft = false;
+	private boolean goRight = false;
+	
 	private boolean lookUp = false;
 	private boolean lookDown = false;
 	private boolean lookLeft = false;
 	private boolean lookRight = false;
 	
-	private boolean moving = false;
+	private boolean runMode = false;
+	
+	// 32 is tile size
+	private final int framesPerTile = 32 / playerSpeed;
+	private int framesPerTileLeft = framesPerTile;
 		
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -72,35 +83,98 @@ public class Game extends BasicGameState {
 
 		Input input = gameContainer.getInput();
 		
-		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
-			mapY = mapY + 1;
+		if(!runMode){
+		
+			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+				
+				  goUp = true;
+				  goDown = false;
+				  goLeft = false;
+				  goRight = false;
+				
+			}
+			
+			if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+
+				  goUp = false;
+				  goDown = true;
+				  goLeft = false;
+				  goRight = false;
+				
+			}
+			
+			if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
+
+				  goUp = false;
+				  goDown = false;
+				  goLeft = true;
+				  goRight = false;
+				
+			}
+	
+			if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
+
+				  goUp = false;
+				  goDown = false;
+				  goLeft = false;
+				  goRight = true;
+				
+			}
+		
+		}
+		
+		
+		
+		
+		
+		
+		if(goUp) {
+			
+			mapY = mapY + playerSpeed;
 			playerCurrentAnimation = playerGoUpAnimation;
 			lookUp = true;
-			moving = true;
+			runMode = true;
+			framesPerTileLeft--;
+			
 		}
 		
-		if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
-			mapY = mapY - 1;
+		if(goDown) {
+				
+			mapY = mapY - playerSpeed;
 			playerCurrentAnimation = playerGoDownAnimation;
 			lookDown = true;
-			moving = true;
+			runMode = true;
+			framesPerTileLeft--;
+			
 		}
 		
-		if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
-			mapX = mapX + 1;
+		if(goLeft) {
+			
+			mapX = mapX + playerSpeed;
 			playerCurrentAnimation = playerGoLeftAnimation;
 			lookLeft = true;
-			moving = true;
-		}
-
-		if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
-			mapX = mapX - 1;
-			playerCurrentAnimation = playerGoRightAnimation;
-			lookRight = true;
-			moving = true;
+			runMode = true;
+			framesPerTileLeft--;
+			
 		}
 		
-		if(!input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) || !moving) {
+		if(goRight) {
+		
+			mapX = mapX - playerSpeed;
+			playerCurrentAnimation = playerGoRightAnimation;
+			lookRight = true;
+			runMode = true;
+			framesPerTileLeft--;
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		if(!input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) || !runMode) {
 			
 			if(lookUp)
 				playerCurrentAnimation = playerLookUpAnimation;
@@ -120,8 +194,24 @@ public class Game extends BasicGameState {
 			lookRight = false;
 			
 		}
-		
-		moving = false;
+				
+		if(framesPerTileLeft <= 0){
+			
+			framesPerTileLeft = framesPerTile;
+			
+			lookUp = goUp;
+			lookDown = goDown;
+			lookLeft = goLeft;
+			lookRight = goRight;
+			
+			goUp = false;
+			goDown = false;
+			goLeft = false;
+			goRight = false;
+			
+			runMode = false;
+			
+		}
 		
 	}
 
