@@ -10,6 +10,8 @@ public class Main {
 	public static final int WIDTH = 512;
 	public static final int HEIGHT = 512;
 	
+	public static final int TILE_SIZE = 32;
+	
 	private static final String TITLE = "Guardian";
 	private static final int MENU_STATE_ID = 0;
 	private static final int GAME_STATE_ID = 1;
@@ -17,6 +19,8 @@ public class Main {
 	private static final int FRAME_RATE = 60;
 	
 	private static final boolean FULL_SCREEN = false;
+	
+	public static AppGameContainer appGameContainer;
 	
 	public static void main(String[] args) {
 		
@@ -37,7 +41,7 @@ public class Main {
 		
 		try {
 			
-			AppGameContainer appGameContainer = new AppGameContainer(stateBasedGame);
+			appGameContainer = new AppGameContainer(stateBasedGame);
 			appGameContainer.setDisplayMode(WIDTH, HEIGHT, FULL_SCREEN);
 			appGameContainer.setTargetFrameRate(FRAME_RATE);
 			appGameContainer.start();
