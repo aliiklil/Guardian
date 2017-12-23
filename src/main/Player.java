@@ -9,7 +9,7 @@ public class Player {
 
 	private int playerSize = 64;
 	
-	private int x = Main.WIDTH / 2 - playerSize / 2 + 16;
+	private int x = Main.WIDTH / 2 - playerSize / 2 + Main.TILE_SIZE / 2;
 	private int y = Main.HEIGHT / 2 - playerSize / 2;
 
 	private int playerSpeed = 2;

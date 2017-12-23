@@ -44,7 +44,9 @@ public class Game extends BasicGameState {
 	}
 	
 	public static Map getCurrentMap() {
+		
 		return currentMap;
+		
 	}
 
 }

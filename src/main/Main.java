@@ -7,8 +7,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Main {
 
-	public static final int WIDTH = 512;
-	public static final int HEIGHT = 512;
+	public static final int WIDTH = 1920;
+	public static final int HEIGHT = 1080;
 	
 	public static final int TILE_SIZE = 32;
 	
@@ -18,7 +18,7 @@ public class Main {
 	
 	private static final int FRAME_RATE = 60;
 	
-	private static final boolean FULL_SCREEN = false;
+	private static final boolean FULL_SCREEN = true;
 	
 	public static AppGameContainer appGameContainer;
 	
