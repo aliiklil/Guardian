@@ -13,8 +13,7 @@ public class Main {
 	public static final int TILE_SIZE = 32;
 	
 	private static final String TITLE = "Guardian";
-	private static final int MENU_STATE_ID = 0;
-	private static final int GAME_STATE_ID = 1;
+	private static final int GAME_STATE_ID = 0;
 	
 	private static final int FRAME_RATE = 60;
 	
@@ -29,14 +28,12 @@ public class Main {
 			@Override
 			public void initStatesList(GameContainer gameContainer) throws SlickException {
 				
-				this.getState(MENU_STATE_ID).init(gameContainer, this);
 				this.getState(GAME_STATE_ID).init(gameContainer, this);
 				this.enterState(GAME_STATE_ID);
 				
 			}
 		};
 		
-		stateBasedGame.addState(new Menu());
 		stateBasedGame.addState(new Game());
 		
 		try {
@@ -44,6 +41,7 @@ public class Main {
 			appGameContainer = new AppGameContainer(stateBasedGame);
 			appGameContainer.setDisplayMode(WIDTH, HEIGHT, FULL_SCREEN);
 			appGameContainer.setTargetFrameRate(FRAME_RATE);
+			appGameContainer.setVSync(true);
 			appGameContainer.start();
 			
 		} catch (SlickException e) {

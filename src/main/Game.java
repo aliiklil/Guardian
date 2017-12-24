@@ -22,7 +22,7 @@ public class Game extends BasicGameState {
 	}
 
 	@Override
-	public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int arg) throws SlickException {
+	public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
 		player.move();
 				
@@ -39,7 +39,7 @@ public class Game extends BasicGameState {
 	@Override
 	public int getID() {
 
-		return 1;
+		return 0;
 		
 	}
 	
