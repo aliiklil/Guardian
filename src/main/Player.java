@@ -129,17 +129,17 @@ public class Player {
 	
 		} else {
 			
+			if(lookUp)
+				playerCurrentAnimation = playerLookUpAnimation;
+			
+			if(lookDown)
+				playerCurrentAnimation = playerLookDownAnimation;	
+			
 			if(lookLeft)
 				playerCurrentAnimation = playerLookLeftAnimation;
 			
 			if(lookRight)
 				playerCurrentAnimation = playerLookRightAnimation;
-	
-			if(lookUp)
-				playerCurrentAnimation = playerLookUpAnimation;
-			
-			if(lookDown)
-				playerCurrentAnimation = playerLookDownAnimation;		
 
 			lookUp = false;
 			lookDown = false;
