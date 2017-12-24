@@ -14,7 +14,7 @@ public class Player {
 
 	private float playerSpeed = 1.5f;
 	
-	private float diagonalPlayerSpeed = ((float) (1/Math.sqrt(Math.pow(playerSpeed, 2) + Math.pow(playerSpeed, 2))) * playerSpeed * playerSpeed);
+	private float diagonalPlayerSpeed = (float) (1/Math.sqrt(Math.pow(playerSpeed, 2) + Math.pow(playerSpeed, 2))) * playerSpeed * playerSpeed;
 	
 	private SpriteSheet playerSpriteSheet = new SpriteSheet("resources/PlayerSpriteSheet.png", 64, 64);
 	
@@ -35,15 +35,12 @@ public class Player {
 	private boolean lookLeft = false;
 	private boolean lookRight = false;
 	
-	private boolean moving = false;
-
 	public Player () throws SlickException {
 
 	}
 	
 	public void move() {
-		
-				
+					
 		Input input = Main.appGameContainer.getInput();
 				
 		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {

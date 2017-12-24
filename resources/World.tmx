@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="2017.12.07" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
  <tileset firstgid="1" source="TileSet.tsx"/>
- <layer name="Kachelebene 1" width="100" height="100">
+ <layer name="Walkable" width="100" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2cSU/DMBBG06Ki/P/fx3YpJ7ZLObEZQURJs3gZ2zPuOzxVKm3i+d7EcayKTdd1G4AVegVjaJGpXMfvWc1+77hXMA6t4ynNwfGqYBxS4zlnn5pqH+anwWc/8TertfkS28tboddYZzlrs0YtF6DDyfE1cVmwxpLn0urCSgYaOL4/SjqReM7Q+KySez0x3B9zXh/96LVW7hJZllxPlLp/LM1fOd1YWpvlcKFxvrGEtBN86HExxZQfi8/b1pzwvC2PZN/2gY7glNS+bS3/7QS1x5TqodS9Qjq3KReaffg+5+W4V8xlNebiF+njWvGSe77yyT6WEBcWvJT2kJq/pLOU2q4c144bx63jbuXzS/scoceScFHDQ04nD45Hx5Pj2fGi5FhLLmo78HUzVcPaeubN8e74cHx2P2/G5iV5LGsu5ryM6/BZz3x/b7fgNDS32GMt9Y4VF2s+cmcoeay53rF0bUj7kEDKrcVrQ8LJkKEk0mvx2vmmOInxEdL3tZ6Naucbi3QO4zktx/FbdmLJR8zvgGrn27KP2LHUzhgf/8diyUlIbb57Tpp8WPMSUpPvnpOPj9T9xJh7iXYnofX47jn5+Mi9n2jRSWw9a1n7fCbnfqJPDbWz1+Yj5HPncI2k1GLdh7ZrJLUOn70Q3/0STesway6OfWjeT7TiR+o6t7CfqN1V6fHuIr/X2u+la3tI9cHvpXX5gPZ8tDbnSWRR0wdz3mkWzFcgRa75jnk0Dt/5LjRfy/OohV6ynC+1yhPTsxb63CoxPUufn7Lv6FNNHDr6dA36VRf0K0AczGW6yPW8Lon0uUvUUup/GdbwIX3uErWUzot5Thes2eaR7FX6Ph3JXqXvAc4P9jn/ctCQQY59Ti21hebQ6v0od20WfbdMy70MAAAAAAAAAAAAAAAAAAAAAAAAAAB1+QJ3H1peQJwAAA==
+   H4sIAAAAAAAACu3Y0Q6CIBgGUHXz/V+5G9vcPykFEaJzcVabKfF9qdg8TdMMAJ1aNq2/xyhystzvs25az2MUpb9vXdTppGS7ju7r4Ujpcb9dw9xz0rnsX1M91Ryb49zv+lzrOf0T15m+OEfqZnu1h/c+3+7VqW3WXfldfbpnpHKNz4mt5zGCs+dNzDt2p4+2HcYe9VGe4RXr7jit5zKCkhyXrQ9dPNPHEt5H/tN9to+7x0mNpdNzfaxBzXFa59CL1jnp4nofd17TYv76ON9JjaysAfL7yDmOtW9fnaCPUemkP57bfoc+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAEi8xT42WQJwAAA==
   </data>
  </layer>
 </map>
