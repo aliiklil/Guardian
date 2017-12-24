@@ -22,6 +22,10 @@ public class Map {
 		
 	}
 
+	public TiledMap getTiledMap() {
+		return tiledMap;
+	}
+
 	public float getX() {
 		
 		return x;

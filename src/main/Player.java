@@ -4,13 +4,17 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class Player {
-
-	private int playerSize = 64;
 	
-	private int x = Main.WIDTH / 2 - playerSize / 2 + Main.TILE_SIZE / 2;
-	private int y = Main.HEIGHT / 2 - playerSize / 2;
+	private final int playerSize = 64;
+
+	private int drawPositionX = Main.WIDTH / 2 - playerSize / 2;
+	private int drawPositionY = Main.HEIGHT / 2 - playerSize / 2;
+				
+	private float collisionX = (drawPositionX + playerSize / 2) - Game.getCurrentMap().getX();
+	private float collisionY = (drawPositionY + playerSize / 2 + playerSize / 4) - Game.getCurrentMap().getY(); 
 
 	private float playerSpeed = 1.5f;
 	
@@ -40,11 +44,23 @@ public class Player {
 	}
 	
 	public void move() {
-					
+								
 		Input input = Main.appGameContainer.getInput();
+		
+		System.out.println("drawPositionX:" + drawPositionX);
+		System.out.println("drawPositionY:" + drawPositionY);
+		
+		System.out.println("mapX:" + Game.getCurrentMap().getX());
+		System.out.println("mapY:" + Game.getCurrentMap().getY());
+		
+		collisionX = (drawPositionX + playerSize / 2) - Game.getCurrentMap().getX();
+		collisionY = (drawPositionY + playerSize / 2 + playerSize / 4) - Game.getCurrentMap().getY(); 
+ 		
+		System.out.println("collisionX:" + collisionX);
+		System.out.println("collisionY:" + collisionY);
 				
-		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
-						
+		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && detectUpCollision()) {
+					
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() + playerSpeed);
 			playerCurrentAnimation = playerGoUpAnimation;
 			
@@ -52,8 +68,8 @@ public class Player {
 			lookDown = false;
 			lookLeft = false;
 			lookRight = false;
-			
-		} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+				
+		} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && detectDownCollision()) {
 				
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() - playerSpeed);
 			playerCurrentAnimation = playerGoDownAnimation;
@@ -63,7 +79,7 @@ public class Player {
 			lookLeft = false;
 			lookRight = false;
 			
-		} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
+		} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && detectLeftCollision()) {
 			
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() + playerSpeed);
 			playerCurrentAnimation = playerGoLeftAnimation;
@@ -73,7 +89,7 @@ public class Player {
 			lookLeft = true;
 			lookRight = false;
 			
-		} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
+		} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && detectRightCollision()) {
 		
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() - playerSpeed);
 			playerCurrentAnimation = playerGoRightAnimation;
@@ -83,7 +99,7 @@ public class Player {
 			lookLeft = false;
 			lookRight = true;
 			
-		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
+		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && detectUpCollision() && detectLeftCollision()) {
 						
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() + diagonalPlayerSpeed);
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() + diagonalPlayerSpeed);
@@ -94,7 +110,7 @@ public class Player {
 			lookLeft = true;
 			lookRight = false;
 			
-		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
+		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && detectUpCollision() && detectRightCollision()) {
 			
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() - diagonalPlayerSpeed);
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() + diagonalPlayerSpeed);
@@ -105,7 +121,7 @@ public class Player {
 			lookLeft = false;
 			lookRight = true;
 			
-		} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT)) {
+		} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && detectDownCollision() && detectLeftCollision()) {
 			
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() + diagonalPlayerSpeed);
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() - diagonalPlayerSpeed);
@@ -116,7 +132,7 @@ public class Player {
 			lookLeft = true;
 			lookRight = false;
 
-		} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT)) {
+		} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && detectDownCollision() && detectRightCollision()) {
 						
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() - diagonalPlayerSpeed);
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() - diagonalPlayerSpeed);
@@ -152,7 +168,68 @@ public class Player {
 	
 	public void render() {
 		
-		playerCurrentAnimation.draw(x, y);
+		playerCurrentAnimation.draw(drawPositionX, drawPositionY);
+		
+		
+		
+	}
+	
+	private boolean detectUpCollision() {
+		
+		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+		
+		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
+		
+		if(tiledMap.getTileId((int) collisionX/Main.TILE_SIZE, (int) (collisionY - Main.TILE_SIZE/2)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	private boolean detectDownCollision() {
+		
+		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+		
+		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
+		
+		if(tiledMap.getTileId((int) collisionX/Main.TILE_SIZE, (int) (collisionY + Main.TILE_SIZE/2)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			return true;
+		} else {
+			return false;
+		}
+		
+		
+	}
+	
+	private boolean detectLeftCollision() {
+		
+		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+		
+		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
+		
+		if(tiledMap.getTileId((int) (collisionX - Main.TILE_SIZE/2)/Main.TILE_SIZE, (int) collisionY/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			return true;
+		} else {
+			return false;
+		}
+		
+		
+	}
+	
+	private boolean detectRightCollision() {
+		
+		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+		
+		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
+		
+		if(tiledMap.getTileId((int) (collisionX + Main.TILE_SIZE/2)/Main.TILE_SIZE, (int) collisionY/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			return true;
+		} else {
+			return false;
+		}
+		
 		
 	}
 	
