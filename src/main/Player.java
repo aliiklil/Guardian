@@ -15,16 +15,16 @@ public class Player {
 	
 	private final int playerAttackSize = 192;
 
-	private int drawPositionX = Main.WIDTH / 2 - playerSize / 2;
-	private int drawPositionY = Main.HEIGHT / 2 - playerSize / 2;
+	private int relativeToScreenX = Main.WIDTH / 2 - playerSize / 2;
+	private int relativeToScreenY = Main.HEIGHT / 2 - playerSize / 2;
 	
 	private int drawAttackPositionX = Main.WIDTH / 2 - playerAttackSize / 2;
 	private int drawAttackPositionY = Main.HEIGHT / 2 - playerAttackSize / 2;
 					
-	private float topLeftX = (drawPositionX + playerSize / 4) - Game.getCurrentMap().getX();
-	private float topLeftY = (drawPositionY + playerSize / 2) - Game.getCurrentMap().getY(); 
+	private float relativeToMapX = (relativeToScreenX + playerSize / 4) - Game.getCurrentMap().getX();
+	private float relativeToMapY = (relativeToScreenY + playerSize / 2) - Game.getCurrentMap().getY(); 
 	
-	private CollisionBox collisionBox = new CollisionBox(topLeftX + 6, topLeftY + 16, playerSize/2 - 12, playerSize/2 - 18);
+	private CollisionBox collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, playerSize/2 - 12, playerSize/2 - 18);
 
 	private float playerSpeed = 1.5f;
 	
@@ -68,7 +68,7 @@ public class Player {
 		
 	}
 	
-	public void render(Graphics g) {
+	public void render() {
 		
 		if(isAttacking) {
 		
@@ -76,7 +76,7 @@ public class Player {
 			
 		} else {
 			
-			currentAnimation.draw(drawPositionX, drawPositionY);
+			currentAnimation.draw(relativeToScreenX, relativeToScreenY);
 			
 		}
 
@@ -140,8 +140,8 @@ public class Player {
 
 	public void move() {
 												
-		collisionBox.setX((drawPositionX + playerSize / 4) - Game.getCurrentMap().getX() + 6);
-		collisionBox.setY((drawPositionY + playerSize / 2) - Game.getCurrentMap().getY() + 16);
+		collisionBox.setX((relativeToScreenX + playerSize / 4) - Game.getCurrentMap().getX() + 6);
+		collisionBox.setY((relativeToScreenY + playerSize / 2) - Game.getCurrentMap().getY() + 16);
 		
 		if(!isAttacking) {
 						

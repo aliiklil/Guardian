@@ -49,9 +49,9 @@ public class Game extends BasicGameState {
 		world.render();
 		
 		for(NPC npc: npcList)
-			npc.render(g);
+			npc.render();
 		
-		player.render(g);
+		player.render();
 
 	}
 	
