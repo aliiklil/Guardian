@@ -25,7 +25,8 @@ public class Game extends BasicGameState {
 	public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
 		player.move();
-				
+		player.attack();
+		
 	}
 
 	@Override
