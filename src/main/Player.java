@@ -30,23 +30,23 @@ public class Player {
 	
 	private float diagonalPlayerSpeed = (float) (1/Math.sqrt(Math.pow(playerSpeed, 2) + Math.pow(playerSpeed, 2))) * playerSpeed * playerSpeed;
 	
-	private SpriteSheet playerSpriteSheet = new SpriteSheet("resources/PlayerSpriteSheet.png", 64, 64);
-	private SpriteSheet playerSlashSpriteSheet = new SpriteSheet("resources/PlayerSpriteSheet.png", 192, 192);
+	private SpriteSheet spriteSheet = new SpriteSheet("resources/HumanSpriteSheet.png", 64, 64);
+	private SpriteSheet overSizeWeaponSpriteSheet = new SpriteSheet("resources/HumanSpriteSheet.png", 192, 192);
 	
-	private Animation lookUpAnimation = new Animation(playerSpriteSheet, 0, 8, 0, 8, true, 100, true);
-	private Animation lookDownAnimation = new Animation(playerSpriteSheet, 0, 10, 0, 10, true, 100, true);
-	private Animation lookLeftAnimation = new Animation(playerSpriteSheet, 0, 9, 0, 9, true, 100, true);
-	private Animation lookRightAnimation = new Animation(playerSpriteSheet, 0, 11, 0, 11, true, 100, true);
+	private Animation lookUpAnimation = new Animation(spriteSheet, 0, 8, 0, 8, true, 100, true);
+	private Animation lookDownAnimation = new Animation(spriteSheet, 0, 10, 0, 10, true, 100, true);
+	private Animation lookLeftAnimation = new Animation(spriteSheet, 0, 9, 0, 9, true, 100, true);
+	private Animation lookRightAnimation = new Animation(spriteSheet, 0, 11, 0, 11, true, 100, true);
 	
-	private Animation goUpAnimation = new Animation(playerSpriteSheet, 1, 8, 8, 8, true, 100, true);
-	private Animation goDownAnimation = new Animation(playerSpriteSheet, 1, 10, 8, 10, true, 100, true);
-	private Animation goLeftAnimation = new Animation(playerSpriteSheet, 1, 9, 8, 9, true, 100, true);
-	private Animation goRightAnimation = new Animation(playerSpriteSheet, 1, 11, 8, 11, true, 100, true);
+	private Animation goUpAnimation = new Animation(spriteSheet, 1, 8, 8, 8, true, 100, true);
+	private Animation goDownAnimation = new Animation(spriteSheet, 1, 10, 8, 10, true, 100, true);
+	private Animation goLeftAnimation = new Animation(spriteSheet, 1, 9, 8, 9, true, 100, true);
+	private Animation goRightAnimation = new Animation(spriteSheet, 1, 11, 8, 11, true, 100, true);
 	
-	private Animation attackUpAnimation = new Animation(playerSlashSpriteSheet, 0, 7, 5, 7, true, 100, true);
-	private Animation attackDownAnimation = new Animation(playerSlashSpriteSheet, 0, 9, 5, 9, true, 100, true);
-	private Animation attackLeftAnimation = new Animation(playerSlashSpriteSheet, 0, 8, 5, 8, true, 100, true);
-	private Animation attackRightAnimation = new Animation(playerSlashSpriteSheet, 0, 10, 5, 10, true, 100, true);
+	private Animation attackUpAnimation = new Animation(overSizeWeaponSpriteSheet, 0, 7, 5, 7, true, 100, true);
+	private Animation attackDownAnimation = new Animation(overSizeWeaponSpriteSheet, 0, 9, 5, 9, true, 100, true);
+	private Animation attackLeftAnimation = new Animation(overSizeWeaponSpriteSheet, 0, 8, 5, 8, true, 100, true);
+	private Animation attackRightAnimation = new Animation(overSizeWeaponSpriteSheet, 0, 10, 5, 10, true, 100, true);
 
 	private Animation currentAnimation = lookUpAnimation;
 		
@@ -59,7 +59,7 @@ public class Player {
 	
 	private boolean isAttacking = false;
 	
-	public Player () throws SlickException {
+	public Player() throws SlickException {
 
 		attackUpAnimation.setLooping(false);
 		attackDownAnimation.setLooping(false);

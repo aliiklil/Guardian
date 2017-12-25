@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -11,6 +13,10 @@ public class Game extends BasicGameState {
 	private static Map world;
 	private static Map currentMap;
 	private static Player player;
+	private static NPC npc1;
+	private static NPC npc2;
+	
+	private static ArrayList<NPC> npcList = new ArrayList<NPC>();
 		
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -18,6 +24,11 @@ public class Game extends BasicGameState {
 		world = new Map("resources/World.tmx");
 		currentMap = world;
 		player = new Player();
+		npc1 = new NPC(200, 300, 200, "resources/OrcSpriteSheet.png");
+		npc2 = new NPC(300, 350, 500, "resources/SkeletonSpriteSheet.png");;
+		
+		npcList.add(npc1);
+		npcList.add(npc2);
 		
 	}
 
@@ -27,12 +38,19 @@ public class Game extends BasicGameState {
 		player.move();
 		player.attack();
 		
+		for(NPC npc: npcList)
+			npc.update();
+		
 	}
 
 	@Override
 	public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
 
 		world.render();
+		
+		for(NPC npc: npcList)
+			npc.render(g);
+		
 		player.render(g);
 
 	}
