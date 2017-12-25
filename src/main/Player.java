@@ -139,8 +139,16 @@ public class Player {
 				Game.getCurrentMap().setX(Game.getCurrentMap().getX() + diagonalPlayerSpeed);
 			}
 			
-			playerCurrentAnimation = playerGoLeftAnimation;
-							
+			if(!isUpCollision() || !isLeftCollision()) {
+			
+				playerCurrentAnimation = playerGoLeftAnimation;
+			
+			} else {
+				
+				playerCurrentAnimation = playerLookLeftAnimation;
+				
+			}
+			
 			lookUp = false;
 			lookDown = false;
 			lookLeft = true;
@@ -156,7 +164,15 @@ public class Player {
 				Game.getCurrentMap().setX(Game.getCurrentMap().getX() - diagonalPlayerSpeed);
 			}
 			
-			playerCurrentAnimation = playerGoRightAnimation;
+			if(!isUpCollision() || !isRightCollision()) {
+			
+				playerCurrentAnimation = playerGoRightAnimation;
+				
+			} else {
+				
+				playerCurrentAnimation = playerLookRightAnimation;
+				
+			}
 			
 			lookUp = false;
 			lookDown = false;
@@ -174,8 +190,16 @@ public class Player {
 				Game.getCurrentMap().setX(Game.getCurrentMap().getX() + diagonalPlayerSpeed);
 			}
 			
-			playerCurrentAnimation = playerGoLeftAnimation;
-						
+			if(!isDownCollision() || !isLeftCollision()) {
+			
+				playerCurrentAnimation = playerGoLeftAnimation;
+
+			} else {
+				
+				playerCurrentAnimation = playerLookLeftAnimation;
+				
+			}
+			
 			lookUp = false;
 			lookDown = false;
 			lookLeft = true;
@@ -191,8 +215,16 @@ public class Player {
 				Game.getCurrentMap().setX(Game.getCurrentMap().getX() - diagonalPlayerSpeed);
 			}
 			
-			playerCurrentAnimation = playerGoRightAnimation;
-						
+			if(!isDownCollision() || !isRightCollision()) {
+			
+				playerCurrentAnimation = playerGoRightAnimation;
+			
+			} else {
+			
+				playerCurrentAnimation = playerLookRightAnimation;
+			
+			}
+			
 			lookUp = false;
 			lookDown = false;
 			lookLeft = false;
@@ -200,17 +232,21 @@ public class Player {
 	
 		} else {
 			
-			if(lookUp)
+			if(lookUp) {
 				playerCurrentAnimation = playerLookUpAnimation;
+			}
 			
-			if(lookDown)
+			if(lookDown) {
 				playerCurrentAnimation = playerLookDownAnimation;	
+			}
 			
-			if(lookLeft)
+			if(lookLeft) {
 				playerCurrentAnimation = playerLookLeftAnimation;
+			}
 			
-			if(lookRight)
+			if(lookRight) {
 				playerCurrentAnimation = playerLookRightAnimation;
+			}
 
 			lookUp = false;
 			lookDown = false;
@@ -233,7 +269,7 @@ public class Player {
 		
 		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
 		
-		if(tiledMap.getTileId((int) collisionBox.getTopLeftX()/Main.TILE_SIZE, (int) collisionBox.getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		if(tiledMap.getTileId((int) collisionBox.getTopLeftX()/Main.TILE_SIZE, (int) (collisionBox.getTopLeftY() - playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) collisionBox.getTopRightX()/Main.TILE_SIZE, (int) (collisionBox.getTopRightY() - playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
 			
 			return false;

@@ -32,6 +32,7 @@ public class Main {
 				this.enterState(GAME_STATE_ID);
 				
 			}
+			
 		};
 		
 		stateBasedGame.addState(new Game());
