@@ -55,45 +55,79 @@ public class Player {
 		collisionBox.setX((drawPositionX + playerSize / 4) - Game.getCurrentMap().getX() + 6);
 		collisionBox.setY((drawPositionY + playerSize / 2) - Game.getCurrentMap().getY() + 16);
 				
-		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !isUpCollision()) {
+		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			
+			if(isUpCollision()) {
 					
-			Game.getCurrentMap().setY(Game.getCurrentMap().getY() + playerSpeed);
-			playerCurrentAnimation = playerGoUpAnimation;
-			
-			lookUp = true;
-			lookDown = false;
-			lookLeft = false;
-			lookRight = false;
+				playerCurrentAnimation = playerLookUpAnimation;
 				
-		} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !isDownCollision()) {
+			} else {
 				
-			Game.getCurrentMap().setY(Game.getCurrentMap().getY() - playerSpeed);
-			playerCurrentAnimation = playerGoDownAnimation;
+				Game.getCurrentMap().setY(Game.getCurrentMap().getY() + playerSpeed);
+				playerCurrentAnimation = playerGoUpAnimation;
 			
-			lookUp = false;
-			lookDown = true;
-			lookLeft = false;
-			lookRight = false;
+				lookUp = true;
+				lookDown = false;
+				lookLeft = false;
+				lookRight = false;
+				
+			}
 			
-		} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !isLeftCollision()) {
+
+		} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+				
 			
-			Game.getCurrentMap().setX(Game.getCurrentMap().getX() + playerSpeed);
-			playerCurrentAnimation = playerGoLeftAnimation;
+			if(isDownCollision()) {
+				
+				playerCurrentAnimation = playerLookDownAnimation;
+				
+			} else {
 			
-			lookUp = false;
-			lookDown = false;
-			lookLeft = true;
-			lookRight = false;
+				Game.getCurrentMap().setY(Game.getCurrentMap().getY() - playerSpeed);
+				playerCurrentAnimation = playerGoDownAnimation;
+				
+				lookUp = false;
+				lookDown = true;
+				lookLeft = false;
+				lookRight = false;
 			
-		} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !isRightCollision()) {
+			}
+			
+		} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			
+			if(isLeftCollision()) {
+				
+				playerCurrentAnimation = playerLookLeftAnimation;
+				
+			} else {
+			
+				Game.getCurrentMap().setX(Game.getCurrentMap().getX() + playerSpeed);
+				playerCurrentAnimation = playerGoLeftAnimation;
+				
+				lookUp = false;
+				lookDown = false;
+				lookLeft = true;
+				lookRight = false;
+			
+			}
+			
+		} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
 		
-			Game.getCurrentMap().setX(Game.getCurrentMap().getX() - playerSpeed);
-			playerCurrentAnimation = playerGoRightAnimation;
+			if(isRightCollision()) {
+				
+				playerCurrentAnimation = playerLookRightAnimation;
+				
+			} else {
 			
-			lookUp = false;
-			lookDown = false;
-			lookLeft = false;
-			lookRight = true;
+				Game.getCurrentMap().setX(Game.getCurrentMap().getX() - playerSpeed);
+				playerCurrentAnimation = playerGoRightAnimation;
+				
+				lookUp = false;
+				lookDown = false;
+				lookLeft = false;
+				lookRight = true;
+			
+			}
 			
 		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !isUpCollision() && !isLeftCollision()) {
 						
