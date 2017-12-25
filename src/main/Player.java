@@ -66,12 +66,12 @@ public class Player {
 				Game.getCurrentMap().setY(Game.getCurrentMap().getY() + playerSpeed);
 				playerCurrentAnimation = playerGoUpAnimation;
 			
-				lookUp = true;
-				lookDown = false;
-				lookLeft = false;
-				lookRight = false;
-				
 			}
+			
+			lookUp = true;
+			lookDown = false;
+			lookLeft = false;
+			lookRight = false;
 			
 
 		} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
@@ -85,13 +85,13 @@ public class Player {
 			
 				Game.getCurrentMap().setY(Game.getCurrentMap().getY() - playerSpeed);
 				playerCurrentAnimation = playerGoDownAnimation;
-				
-				lookUp = false;
-				lookDown = true;
-				lookLeft = false;
-				lookRight = false;
-			
+							
 			}
+			
+			lookUp = false;
+			lookDown = true;
+			lookLeft = false;
+			lookRight = false;
 			
 		} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
 			
@@ -103,13 +103,13 @@ public class Player {
 			
 				Game.getCurrentMap().setX(Game.getCurrentMap().getX() + playerSpeed);
 				playerCurrentAnimation = playerGoLeftAnimation;
-				
-				lookUp = false;
-				lookDown = false;
-				lookLeft = true;
-				lookRight = false;
-			
+
 			}
+					
+			lookUp = false;
+			lookDown = false;
+			lookLeft = true;
+			lookRight = false;
 			
 		} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
 		
@@ -122,12 +122,12 @@ public class Player {
 				Game.getCurrentMap().setX(Game.getCurrentMap().getX() - playerSpeed);
 				playerCurrentAnimation = playerGoRightAnimation;
 				
-				lookUp = false;
-				lookDown = false;
-				lookLeft = false;
-				lookRight = true;
-			
 			}
+			
+			lookUp = false;
+			lookDown = false;
+			lookLeft = false;
+			lookRight = true;
 			
 		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
 			
