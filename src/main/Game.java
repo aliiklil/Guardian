@@ -32,7 +32,7 @@ public class Game extends BasicGameState {
 	public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
 
 		world.render();
-		player.render();
+		player.render(g);
 
 	}
 	

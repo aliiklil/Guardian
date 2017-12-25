@@ -1,10 +1,13 @@
 package main;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
+
+import util.CollisionBox;
 
 public class Player {
 	
@@ -12,9 +15,11 @@ public class Player {
 
 	private int drawPositionX = Main.WIDTH / 2 - playerSize / 2;
 	private int drawPositionY = Main.HEIGHT / 2 - playerSize / 2;
-				
-	private float collisionX = (drawPositionX + playerSize / 2) - Game.getCurrentMap().getX();
-	private float collisionY = (drawPositionY + playerSize / 2 + playerSize / 4) - Game.getCurrentMap().getY(); 
+					
+	private float topLeftX = (drawPositionX + playerSize / 4) - Game.getCurrentMap().getX();
+	private float topLeftY = (drawPositionY + playerSize / 2) - Game.getCurrentMap().getY(); 
+	
+	private CollisionBox collisionBox = new CollisionBox(topLeftX + 6, topLeftY + 16, playerSize/2 - 12, playerSize/2 - 18);
 
 	private float playerSpeed = 1.5f;
 	
@@ -47,19 +52,10 @@ public class Player {
 								
 		Input input = Main.appGameContainer.getInput();
 		
-		System.out.println("drawPositionX:" + drawPositionX);
-		System.out.println("drawPositionY:" + drawPositionY);
-		
-		System.out.println("mapX:" + Game.getCurrentMap().getX());
-		System.out.println("mapY:" + Game.getCurrentMap().getY());
-		
-		collisionX = (drawPositionX + playerSize / 2) - Game.getCurrentMap().getX();
-		collisionY = (drawPositionY + playerSize / 2 + playerSize / 4) - Game.getCurrentMap().getY(); 
- 		
-		System.out.println("collisionX:" + collisionX);
-		System.out.println("collisionY:" + collisionY);
+		collisionBox.setX((drawPositionX + playerSize / 4) - Game.getCurrentMap().getX() + 6);
+		collisionBox.setY((drawPositionY + playerSize / 2) - Game.getCurrentMap().getY() + 16);
 				
-		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && detectUpCollision()) {
+		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !isUpCollision()) {
 					
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() + playerSpeed);
 			playerCurrentAnimation = playerGoUpAnimation;
@@ -69,7 +65,7 @@ public class Player {
 			lookLeft = false;
 			lookRight = false;
 				
-		} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && detectDownCollision()) {
+		} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !isDownCollision()) {
 				
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() - playerSpeed);
 			playerCurrentAnimation = playerGoDownAnimation;
@@ -79,7 +75,7 @@ public class Player {
 			lookLeft = false;
 			lookRight = false;
 			
-		} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && detectLeftCollision()) {
+		} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !isLeftCollision()) {
 			
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() + playerSpeed);
 			playerCurrentAnimation = playerGoLeftAnimation;
@@ -89,7 +85,7 @@ public class Player {
 			lookLeft = true;
 			lookRight = false;
 			
-		} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && detectRightCollision()) {
+		} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !isRightCollision()) {
 		
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() - playerSpeed);
 			playerCurrentAnimation = playerGoRightAnimation;
@@ -99,7 +95,7 @@ public class Player {
 			lookLeft = false;
 			lookRight = true;
 			
-		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && detectUpCollision() && detectLeftCollision()) {
+		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !isUpCollision() && !isLeftCollision()) {
 						
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() + diagonalPlayerSpeed);
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() + diagonalPlayerSpeed);
@@ -110,7 +106,7 @@ public class Player {
 			lookLeft = true;
 			lookRight = false;
 			
-		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && detectUpCollision() && detectRightCollision()) {
+		} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !isUpCollision() && !isRightCollision()) {
 			
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() - diagonalPlayerSpeed);
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() + diagonalPlayerSpeed);
@@ -121,7 +117,7 @@ public class Player {
 			lookLeft = false;
 			lookRight = true;
 			
-		} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && detectDownCollision() && detectLeftCollision()) {
+		} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !isDownCollision() && !isLeftCollision()) {
 			
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() + diagonalPlayerSpeed);
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() - diagonalPlayerSpeed);
@@ -132,7 +128,7 @@ public class Player {
 			lookLeft = true;
 			lookRight = false;
 
-		} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && detectDownCollision() && detectRightCollision()) {
+		} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !isDownCollision() && !isRightCollision()) {
 						
 			Game.getCurrentMap().setX(Game.getCurrentMap().getX() - diagonalPlayerSpeed);
 			Game.getCurrentMap().setY(Game.getCurrentMap().getY() - diagonalPlayerSpeed);
@@ -166,70 +162,87 @@ public class Player {
 							
 	}
 	
-	public void render() {
+	public void render(Graphics g) {
 		
 		playerCurrentAnimation.draw(drawPositionX, drawPositionY);
 		
-		
-		
 	}
 	
-	private boolean detectUpCollision() {
+	private boolean isUpCollision() {
 		
 		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		
 		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
 		
-		if(tiledMap.getTileId((int) collisionX/Main.TILE_SIZE, (int) (collisionY - Main.TILE_SIZE/2)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return true;
-		} else {
+		if(tiledMap.getTileId((int) collisionBox.getTopLeftX()/Main.TILE_SIZE, (int) collisionBox.getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) collisionBox.getTopRightX()/Main.TILE_SIZE, (int) (collisionBox.getTopRightY() - playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+			
 			return false;
+			
+		} else {
+			
+			return true;
+			
 		}
 		
 	}
 	
-	private boolean detectDownCollision() {
+	private boolean isDownCollision() {
 		
 		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		
 		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
 		
-		if(tiledMap.getTileId((int) collisionX/Main.TILE_SIZE, (int) (collisionY + Main.TILE_SIZE/2)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return true;
-		} else {
+		if(tiledMap.getTileId((int) collisionBox.getBottomLeftX()/Main.TILE_SIZE, (int) (collisionBox.getBottomLeftY() + playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) collisionBox.getBottomRightX()/Main.TILE_SIZE, (int) (collisionBox.getBottomRightY() + playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			
 			return false;
+			
+		} else {
+			
+			return true;
+			
 		}
 		
 		
 	}
 	
-	private boolean detectLeftCollision() {
+	private boolean isLeftCollision() {
 		
 		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		
 		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
 		
-		if(tiledMap.getTileId((int) (collisionX - Main.TILE_SIZE/2)/Main.TILE_SIZE, (int) collisionY/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return true;
-		} else {
+		if(tiledMap.getTileId((int) (collisionBox.getTopLeftX() - playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (collisionBox.getBottomLeftX() - playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+			
 			return false;
+			
+		} else {
+			
+			return true;
+			
 		}
 		
 		
 	}
 	
-	private boolean detectRightCollision() {
+	private boolean isRightCollision() {
 		
 		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		
 		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
 		
-		if(tiledMap.getTileId((int) (collisionX + Main.TILE_SIZE/2)/Main.TILE_SIZE, (int) collisionY/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return true;
-		} else {
+		if(tiledMap.getTileId((int) (collisionBox.getTopRightX() + playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (collisionBox.getBottomRightX() + playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			
 			return false;
+			
+		} else {
+			
+			return true;
+			
 		}
-		
 		
 	}
 	
