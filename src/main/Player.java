@@ -136,7 +136,7 @@ public class Player {
 	
 	private void attack() {
 		 		
-		if(input.isKeyDown(Input.KEY_X)) {
+		if(input.isKeyDown(Input.KEY_X) && !isAttacking) {
 						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = attackUpAnimation;
