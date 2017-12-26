@@ -23,8 +23,8 @@ public class Player {
 	private final float relativeToScreenAttackX = Main.WIDTH / 2 - attackSpriteSize / 2;
 	private final float relativeToScreenAttackY = Main.HEIGHT / 2 - attackSpriteSize / 2;
 	
-	private float relativeToMapX = 1024;
-	private float relativeToMapY = 1024;
+	private float relativeToMapX = 256;
+	private float relativeToMapY = 256;
 				
 	private CollisionBox collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, spriteSize/2 - 12, spriteSize/2 - 18);
 	
@@ -74,6 +74,8 @@ public class Player {
 	
 	private final int maxHealth = 200;
 	private int currentHealth = 200;
+	
+	private HealthBar healthBar = new HealthBar(20, Main.HEIGHT - 40, 350, 25, 5, 200);
 	
 	public Player() throws SlickException {
 				
@@ -132,16 +134,13 @@ public class Player {
 			currentAnimation.draw(relativeToScreenX, relativeToScreenY);
 			
 		}
-			
+		
+		g.setColor(Color.white);
 		g.drawString("relativeToMapX:  " + relativeToMapX, 50, 50);
 		g.drawString("relativeToMapY:  " + relativeToMapY, 50, 100);
 		
-		g.setColor(Color.black);
-		g.fillRect(20, Main.HEIGHT - 40, 350, 25);
-		
-		g.setColor(Color.red);
-		g.fillRect(25, Main.HEIGHT - 35, (float) currentHealth/maxHealth * 340, 15);
-			
+		healthBar.render(g);
+							
 	}
 	
 	private void attack() {
@@ -541,6 +540,8 @@ public class Player {
 		if(currentHealth < 0) {
 			currentHealth = 0;
 		}
+		
+		healthBar.setCurrentHealth(currentHealth);
 		
 	}
 	

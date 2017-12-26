@@ -33,6 +33,8 @@ public class NPC {
 	private Animation dieAnimation;
 
 	private Animation currentAnimation;
+	
+	private HealthBar healthBar;
 
 	public NPC(float x, float y, int maxHealth, String spriteSheetPath) throws SlickException {
 		
@@ -59,6 +61,8 @@ public class NPC {
 		
 		collisionBox = new CollisionBox(relativeToMapX + spriteSize/4, relativeToMapY + spriteSize/2, spriteSize/2, spriteSize/2);
 		
+		healthBar = new HealthBar(relativeToScreenX, relativeToScreenY, spriteSize, 5, 1, maxHealth);
+		
 	}
 	
 	public void update() {
@@ -69,24 +73,20 @@ public class NPC {
 		
 		relativeToScreenX = (int) Game.getCurrentMap().getX() + relativeToMapX;		
 		relativeToScreenY = (int) Game.getCurrentMap().getY() + relativeToMapY;
+		
+		healthBar.setX(relativeToScreenX);
+		healthBar.setY(relativeToScreenY);
 																	
 	}
 
 	public void render(Graphics g) {
 		
 		currentAnimation.draw(relativeToScreenX, relativeToScreenY);
-		
-		
+
 		if(currentHealth > 0) {
-			g.setColor(Color.black);
-			g.fillRect(relativeToScreenX, relativeToScreenY, spriteSize, 5);
-			
-			g.setColor(Color.red);
-			g.fillRect(relativeToScreenX, relativeToScreenY, (float) currentHealth/maxHealth * 64, 5);
+			healthBar.render(g);
 		}
 		
-		g.setColor(Color.white);
-						
 	}
 	
 	public void decreaseHealth(int amount) {
@@ -98,6 +98,8 @@ public class NPC {
 		if(currentHealth < 0) {
 			currentHealth = 0;
 		}
+		
+		healthBar.setCurrentHealth(currentHealth);
 		
 	}
 	

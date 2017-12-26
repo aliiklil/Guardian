@@ -1,5 +1,6 @@
 package main;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
@@ -21,6 +22,7 @@ public class Map {
 				
 		tiledMap.render((int) x, (int) y);
 		
+		g.setColor(Color.white);
 		g.drawString("mapX:  " + x, 50, 150);
 		g.drawString("mapY:  " + y, 50, 200);
 		
