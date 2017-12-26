@@ -84,6 +84,8 @@ public class NPC {
 			g.setColor(Color.red);
 			g.fillRect(relativeToScreenX, relativeToScreenY, (float) currentHealth/maxHealth * 64, 5);
 		}
+		
+		g.setColor(Color.white);
 						
 	}
 	

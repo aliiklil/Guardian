@@ -3,11 +3,11 @@ package main;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.tiled.TiledMap;
 
 import util.CollisionBox;
@@ -23,8 +23,8 @@ public class Player {
 	private final float relativeToScreenAttackX = Main.WIDTH / 2 - attackSpriteSize / 2;
 	private final float relativeToScreenAttackY = Main.HEIGHT / 2 - attackSpriteSize / 2;
 	
-	private float relativeToMapX = 256;
-	private float relativeToMapY = 256;
+	private float relativeToMapX = 1024;
+	private float relativeToMapY = 1024;
 				
 	private CollisionBox collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, spriteSize/2 - 12, spriteSize/2 - 18);
 	
@@ -72,6 +72,9 @@ public class Player {
 	
 	private boolean damageDealt = false;
 	
+	private final int maxHealth = 200;
+	private int currentHealth = 200;
+	
 	public Player() throws SlickException {
 				
 		Game.getCurrentMap().setX(relativeToScreenX - relativeToMapX + spriteSize / 4);
@@ -115,6 +118,7 @@ public class Player {
 		move();
 		attack();
 		
+		
 	}
 	
 	public void render(Graphics g) {
@@ -132,6 +136,12 @@ public class Player {
 		g.drawString("relativeToMapX:  " + relativeToMapX, 50, 50);
 		g.drawString("relativeToMapY:  " + relativeToMapY, 50, 100);
 		
+		g.setColor(Color.black);
+		g.fillRect(20, Main.HEIGHT - 40, 350, 25);
+		
+		g.setColor(Color.red);
+		g.fillRect(25, Main.HEIGHT - 35, (float) currentHealth/maxHealth * 340, 15);
+			
 	}
 	
 	private void attack() {
@@ -518,6 +528,18 @@ public class Player {
 			
 			return true;
 			
+		}
+		
+	}
+	
+	public void decreaseHealth(int amount) {
+		
+		if(currentHealth > 0) {
+			currentHealth = currentHealth - amount;
+		}
+		
+		if(currentHealth < 0) {
+			currentHealth = 0;
 		}
 		
 	}
