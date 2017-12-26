@@ -1,6 +1,7 @@
 package main;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -17,7 +18,8 @@ public class NPC {
 	private float relativeToScreenX;
 	private float relativeToScreenY;
 						
-	private int health;
+	private final int maxHealth;
+	private int currentHealth;
 	
 	private CollisionBox collisionBox;
 
@@ -32,7 +34,7 @@ public class NPC {
 
 	private Animation currentAnimation;
 
-	public NPC(float x, float y, int health, String spriteSheetPath) throws SlickException {
+	public NPC(float x, float y, int maxHealth, String spriteSheetPath) throws SlickException {
 		
 		this.relativeToMapX = x - spriteSize / 4;
 		this.relativeToMapY = y - spriteSize / 2;
@@ -40,7 +42,8 @@ public class NPC {
 		this.relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
 		this.relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
 		
-		this.health = health;
+		this.maxHealth = maxHealth;
+		this.currentHealth = maxHealth;
 		
 		this.spriteSheet = new SpriteSheet(spriteSheetPath, 64, 64);
 		
@@ -60,7 +63,7 @@ public class NPC {
 	
 	public void update() {
 				
-		if(health <= 0) {
+		if(currentHealth <= 0) {
 			currentAnimation = dieAnimation;
 		}
 		
@@ -72,12 +75,27 @@ public class NPC {
 	public void render(Graphics g) {
 		
 		currentAnimation.draw(relativeToScreenX, relativeToScreenY);
-				
+		
+		
+		if(currentHealth > 0) {
+			g.setColor(Color.black);
+			g.fillRect(relativeToScreenX, relativeToScreenY, spriteSize, 5);
+			
+			g.setColor(Color.red);
+			g.fillRect(relativeToScreenX, relativeToScreenY, (float) currentHealth/maxHealth * 64, 5);
+		}
+						
 	}
 	
 	public void decreaseHealth(int amount) {
+				
+		if(currentHealth > 0) {
+			currentHealth = currentHealth - amount;
+		}
 		
-		health = health - amount;
+		if(currentHealth < 0) {
+			currentHealth = 0;
+		}
 		
 	}
 	
