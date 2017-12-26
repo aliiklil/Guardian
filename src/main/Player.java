@@ -70,6 +70,8 @@ public class Player {
 	private CollisionBox attackLeftCollisionBox = new CollisionBox(relativeToMapX - 67, relativeToMapY - 16, 68, 36);
 	private CollisionBox attackRightCollisionBox =  new CollisionBox(relativeToMapX + 31, relativeToMapY - 16, 68, 36);
 	
+	private boolean damageDealt = false;
+	
 	public Player() throws SlickException {
 				
 		Game.getCurrentMap().setX(relativeToScreenX - relativeToMapX + spriteSize / 4);
@@ -138,27 +140,23 @@ public class Player {
 						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = attackUpAnimation;
-				attackUpAnimation.start();
-				isAttacking = true;
 			}
 			
 			if(currentAnimation == lookDownAnimation || currentAnimation == goDownAnimation) {
 				currentAnimation = attackDownAnimation;
-				attackDownAnimation.start();
-				isAttacking = true;
 			}
 			
 			if(currentAnimation == lookLeftAnimation || currentAnimation == goLeftAnimation) {
 				currentAnimation = attackLeftAnimation;
-				attackLeftAnimation.start();
-				isAttacking = true;
 			}
 			
 			if(currentAnimation == lookRightAnimation || currentAnimation == goRightAnimation) {
 				currentAnimation = attackRightAnimation;
-				attackRightAnimation.start();
-				isAttacking = true;
 			}
+			
+			currentAnimation.start();
+			isAttacking = true;
+			damageDealt = false;
 			
 		}
 		
@@ -186,54 +184,44 @@ public class Player {
 			isAttacking = false;
 		}
 		
-		if(currentAnimation == attackUpAnimation) {
-			
-			for(NPC npc : npcList) {
-				
-				if(attackUpCollisionBox.intersects(npc.getCollisionBox())) {
-					npc.decreaseHealth(10);
+		if(!damageDealt) {
+		
+			if(currentAnimation == attackUpAnimation && currentAnimation.getFrame() == 3) {
+				for(NPC npc : npcList) {
+					if(attackUpCollisionBox.intersects(npc.getCollisionBox())) {
+						npc.decreaseHealth(10);
+						damageDealt = true;
+					}
 				}
-				
 			}
 			
-		}
-		
-		if(currentAnimation == attackDownAnimation) {
-			
-			for(NPC npc : npcList) {
-				
-				if(attackDownCollisionBox.intersects(npc.getCollisionBox())) {
-					npc.decreaseHealth(10);
+			if(currentAnimation == attackDownAnimation && currentAnimation.getFrame() == 3) {
+				for(NPC npc : npcList) {
+					if(attackDownCollisionBox.intersects(npc.getCollisionBox())) {
+						npc.decreaseHealth(10);
+						damageDealt = true;
+					}
 				}
-				
 			}
 			
-		}
-		
-		if(currentAnimation == attackLeftAnimation) {
-			
-			for(NPC npc : npcList) {
-				
-				if(attackLeftCollisionBox.intersects(npc.getCollisionBox())) {
-					npc.decreaseHealth(10);
-				}
-				
+			if(currentAnimation == attackLeftAnimation && currentAnimation.getFrame() == 3) {
+				for(NPC npc : npcList) {
+					if(attackLeftCollisionBox.intersects(npc.getCollisionBox())) {
+						npc.decreaseHealth(10);
+						damageDealt = true;
+					}
+				}		
 			}
 			
+			if(currentAnimation == attackRightAnimation && currentAnimation.getFrame() == 3) {
+				for(NPC npc : npcList) {
+					if(attackRightCollisionBox.intersects(npc.getCollisionBox())) {
+						npc.decreaseHealth(10);
+						damageDealt = true;
+					}				
+				}			
+			}		
 		}
-		
-		if(currentAnimation == attackRightAnimation) {
-			
-			for(NPC npc : npcList) {
-				
-				if(attackRightCollisionBox.intersects(npc.getCollisionBox())) {
-					npc.decreaseHealth(10);
-				}
-				
-			}
-			
-		}
-		
 	}
 
 	private void move() {
