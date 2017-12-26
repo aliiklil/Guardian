@@ -36,7 +36,7 @@ public class NPC {
 	public NPC(float x, float y, int health, String spriteSheetPath) throws SlickException {
 		
 		this.relativeToMapX = x - spriteSize / 4;
-		this.relativeToMapY = y - spriteSize / 4;
+		this.relativeToMapY = y - spriteSize / 2;
 		
 		this.relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
 		this.relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
@@ -75,7 +75,7 @@ public class NPC {
 	public void render(Graphics g) {
 		
 		currentAnimation.draw(relativeToScreenX, relativeToScreenY);
-		
+				
 	}
 	
 	public void decreaseHealth(int amount) {

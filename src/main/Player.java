@@ -22,8 +22,8 @@ public class Player {
 	private final float relativeToScreenAttackX = Main.WIDTH / 2 - attackSpriteSize / 2;
 	private final float relativeToScreenAttackY = Main.HEIGHT / 2 - attackSpriteSize / 2;
 	
-	private float relativeToMapX = 64;
-	private float relativeToMapY = 64;
+	private float relativeToMapX = 256;
+	private float relativeToMapY = 256;
 				
 	private CollisionBox collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, spriteSize/2 - 12, spriteSize/2 - 18);
 	

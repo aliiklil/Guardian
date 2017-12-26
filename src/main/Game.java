@@ -24,8 +24,8 @@ public class Game extends BasicGameState {
 		world = new Map("resources/World.tmx");
 		currentMap = world;
 		player = new Player();
-		npc1 = new NPC(150, 150, 200, "resources/OrcSpriteSheet.png");
-		npc2 = new NPC(300, 350, 500, "resources/SkeletonSpriteSheet.png");
+		npc1 = new NPC(96, 96, 200, "resources/OrcSpriteSheet.png");
+		npc2 = new NPC(192, 160, 500, "resources/SkeletonSpriteSheet.png");
 		
 		npcList.add(npc1);
 		npcList.add(npc2);
