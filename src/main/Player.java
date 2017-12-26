@@ -375,10 +375,10 @@ public class Player {
 	}
 		
 	private boolean isUpCollision() {
-		
+				
 		for(NPC npc : npcList) {
 			
-			if(collisionBox.intersects(npc.getCollisionBox())) {
+			if(collisionBox.willIntersectUp(npc.getCollisionBox(), playerSpeed)) {
 				return true;
 			}
 			
@@ -401,13 +401,11 @@ public class Player {
 		
 		for(NPC npc : npcList) {
 			
-			if(collisionBox.intersects(npc.getCollisionBox())) {
-				Game.getCurrentMap().setY(Game.getCurrentMap().getY() + playerSpeed);
+			if(collisionBox.willIntersectDown(npc.getCollisionBox(), playerSpeed)) {
 				return true;
 			}
 			
 		}
-			
 				
 		if(tiledMap.getTileId((int) collisionBox.getBottomLeftX()/Main.TILE_SIZE, (int) (collisionBox.getBottomLeftY() + playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) collisionBox.getBottomRightX()/Main.TILE_SIZE, (int) (collisionBox.getBottomRightY() + playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
@@ -427,8 +425,7 @@ public class Player {
 		
 		for(NPC npc : npcList) {
 			
-			if(collisionBox.intersects(npc.getCollisionBox())) {
-				Game.getCurrentMap().setX(Game.getCurrentMap().getX() - playerSpeed);
+			if(collisionBox.willIntersectLeft(npc.getCollisionBox(), playerSpeed)) {
 				return true;
 			}
 			
@@ -452,13 +449,12 @@ public class Player {
 		
 		for(NPC npc : npcList) {
 			
-			if(collisionBox.intersects(npc.getCollisionBox())) {
-				Game.getCurrentMap().setX(Game.getCurrentMap().getX() + playerSpeed);
+			if(collisionBox.willIntersectRight(npc.getCollisionBox(), playerSpeed)) {
 				return true;
 			}
 			
 		}
-			
+		
 		if(tiledMap.getTileId((int) (collisionBox.getTopRightX() + playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) (collisionBox.getBottomRightX() + playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
 			

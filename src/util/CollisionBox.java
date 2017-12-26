@@ -9,6 +9,54 @@ public class CollisionBox extends Rectangle {
 		super(x, y, width, height);
 	}
 	
+	public boolean willIntersectUp(Shape s, float distance) {
+		
+		CollisionBox collisionBox = new CollisionBox(this.getX(), this.getY() - distance, this.getWidth(), this.getHeight());
+		
+		if(collisionBox.intersects(s)){
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	public boolean willIntersectDown(Shape s, float distance) {
+		
+		CollisionBox collisionBox = new CollisionBox(this.getX(), this.getY() + distance, this.getWidth(), this.getHeight());
+		
+		if(collisionBox.intersects(s)){
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	public boolean willIntersectLeft(Shape s, float distance) {
+		
+		CollisionBox collisionBox = new CollisionBox(this.getX() - distance, this.getY(), this.getWidth(), this.getHeight());
+		
+		if(collisionBox.intersects(s)){
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	public boolean willIntersectRight(Shape s, float distance) {
+		
+		CollisionBox collisionBox = new CollisionBox(this.getX() + distance, this.getY(), this.getWidth(), this.getHeight());
+		
+		if(collisionBox.intersects(s)){
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
 	public float getTopLeftX() {
 		return this.getX();
 	}

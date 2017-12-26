@@ -20,7 +20,6 @@ public class NPC {
 	private int health;
 	
 	private CollisionBox collisionBox;
-	private CollisionBox hitBox;
 
 	private SpriteSheet spriteSheet;
 	
@@ -55,8 +54,6 @@ public class NPC {
 		
 		currentAnimation = lookRightAnimation;
 		
-		hitBox = new CollisionBox(relativeToMapX + spriteSize/4, relativeToMapY + spriteSize/4, spriteSize/2, spriteSize/2 + spriteSize / 4);
-		
 		collisionBox = new CollisionBox(relativeToMapX + spriteSize/4, relativeToMapY + spriteSize/2, spriteSize/2, spriteSize/2);
 		
 	}
@@ -69,7 +66,7 @@ public class NPC {
 		
 		relativeToScreenX = (int) Game.getCurrentMap().getX() + relativeToMapX;		
 		relativeToScreenY = (int) Game.getCurrentMap().getY() + relativeToMapY;
-															
+																	
 	}
 
 	public void render(Graphics g) {
