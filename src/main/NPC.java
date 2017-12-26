@@ -20,6 +20,7 @@ public class NPC {
 	private int health;
 	
 	private CollisionBox collisionBox;
+	private CollisionBox hitBox;
 
 	private SpriteSheet spriteSheet;
 	
@@ -32,10 +33,10 @@ public class NPC {
 
 	private Animation currentAnimation;
 
-	public NPC(float relativeToMapX, float relativeToMapY, int health, String spriteSheetPath) throws SlickException {
+	public NPC(float x, float y, int health, String spriteSheetPath) throws SlickException {
 		
-		this.relativeToMapX = relativeToMapX;
-		this.relativeToMapY = relativeToMapY;
+		this.relativeToMapX = x - size / 4;
+		this.relativeToMapY = y - size / 4;
 		
 		this.relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
 		this.relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
@@ -52,10 +53,11 @@ public class NPC {
 		dieAnimation = new Animation(spriteSheet, 0, 20, 5, 20, true, 100, true);
 		dieAnimation.setLooping(false);
 		
-		 currentAnimation = lookRightAnimation;
+		currentAnimation = lookRightAnimation;
 		
-		collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, size/2 - 12, size/2 - 18);
+		hitBox = new CollisionBox(relativeToMapX + size/4, relativeToMapY + size/4, size/2, size/2 + size / 4);
 		
+		collisionBox = new CollisionBox(relativeToMapX + size/4, relativeToMapY + size/2, size/2, size/2);
 		
 	}
 	
@@ -65,15 +67,16 @@ public class NPC {
 			currentAnimation = dieAnimation;
 		}
 		
-		relativeToScreenX = (int) Game.getCurrentMap().getX() + relativeToMapX;
-		
+		relativeToScreenX = (int) Game.getCurrentMap().getX() + relativeToMapX;		
 		relativeToScreenY = (int) Game.getCurrentMap().getY() + relativeToMapY;
-		
+															
 	}
-		
-	public void render() {
+
+	public void render(Graphics g) {
 		
 		currentAnimation.draw(relativeToScreenX, relativeToScreenY);
+		
+		g.draw(collisionBox);
 		
 	}
 	
@@ -81,6 +84,10 @@ public class NPC {
 		
 		health = health - amount;
 		
+	}
+	
+	public CollisionBox getCollisionBox() {
+		return collisionBox;
 	}
 	
 }

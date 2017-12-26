@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -18,13 +20,15 @@ public class Player {
 	private int relativeToScreenX = Main.WIDTH / 2 - playerSize / 2;
 	private int relativeToScreenY = Main.HEIGHT / 2 - playerSize / 2;
 	
-	private int drawAttackPositionX = Main.WIDTH / 2 - playerAttackSize / 2;
-	private int drawAttackPositionY = Main.HEIGHT / 2 - playerAttackSize / 2;
+	private int relativeToScreenAttackX = Main.WIDTH / 2 - playerAttackSize / 2;
+	private int relativeToScreenAttackY = Main.HEIGHT / 2 - playerAttackSize / 2;
 					
-	private float relativeToMapX = (relativeToScreenX + playerSize / 4) - Game.getCurrentMap().getX();
-	private float relativeToMapY = (relativeToScreenY + playerSize / 2) - Game.getCurrentMap().getY(); 
-	
+	private float relativeToMapX = relativeToScreenX + playerSize / 4 - Game.getCurrentMap().getX();
+	private float relativeToMapY = relativeToScreenY + playerSize / 2 - Game.getCurrentMap().getY(); 
+		
 	private CollisionBox collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, playerSize/2 - 12, playerSize/2 - 18);
+	
+	private CollisionBox collisionShowBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, playerSize/2 - 12, playerSize/2 - 18);
 
 	private float playerSpeed = 1.5f;
 	
@@ -59,6 +63,10 @@ public class Player {
 	
 	private boolean isAttacking = false;
 	
+	private int notWalkableLayerIndex;
+	private TiledMap tiledMap;
+	private ArrayList<NPC> npcList;
+	
 	public Player() throws SlickException {
 
 		attackUpAnimation.setLooping(false);
@@ -66,23 +74,40 @@ public class Player {
 		attackLeftAnimation.setLooping(false);
 		attackRightAnimation.setLooping(false);
 		
+		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+		tiledMap = Game.getCurrentMap().getTiledMap();
+		npcList = Game.getNpcList();
+		
 	}
 	
-	public void render() {
+	public void update() {
+		
+		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+		tiledMap = Game.getCurrentMap().getTiledMap();
+		npcList = Game.getNpcList();
+		
+		move();
+		attack();
+		
+	}
+	
+	public void render(Graphics g) {
 		
 		if(isAttacking) {
 		
-			currentAnimation.draw(drawAttackPositionX, drawAttackPositionY);
+			currentAnimation.draw(relativeToScreenAttackX, relativeToScreenAttackY);
 			
 		} else {
 			
 			currentAnimation.draw(relativeToScreenX, relativeToScreenY);
 			
 		}
+		
+		g.draw(collisionShowBox);
 
 	}
 	
-	public void attack() {
+	private void attack() {
 		
 		if(input.isKeyDown(Input.KEY_X)) {
 						
@@ -138,10 +163,13 @@ public class Player {
 		
 	}
 
-	public void move() {
+	private void move() {
+		
+		relativeToMapX = (relativeToScreenX + playerSize / 4) - Game.getCurrentMap().getX();
+		relativeToMapY = (relativeToScreenY + playerSize / 2) - Game.getCurrentMap().getY(); 
 												
-		collisionBox.setX((relativeToScreenX + playerSize / 4) - Game.getCurrentMap().getX() + 6);
-		collisionBox.setY((relativeToScreenY + playerSize / 2) - Game.getCurrentMap().getY() + 16);
+		collisionBox.setX(relativeToMapX + 6);
+		collisionBox.setY(relativeToMapY + 16);
 		
 		if(!isAttacking) {
 						
@@ -347,10 +375,15 @@ public class Player {
 		
 	private boolean isUpCollision() {
 		
-		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
-		
-		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
-		
+		for(NPC npc : npcList) {
+			
+			if(collisionBox.intersects(npc.getCollisionBox())) {
+				Game.getCurrentMap().setY(Game.getCurrentMap().getY() - playerSpeed);
+				return true;
+			}
+			
+		}
+				
 		if(tiledMap.getTileId((int) collisionBox.getTopLeftX()/Main.TILE_SIZE, (int) (collisionBox.getTopLeftY() - playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) collisionBox.getTopRightX()/Main.TILE_SIZE, (int) (collisionBox.getTopRightY() - playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
 			
@@ -366,10 +399,16 @@ public class Player {
 	
 	private boolean isDownCollision() {
 		
-		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
-		
-		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
-		
+		for(NPC npc : npcList) {
+			
+			if(collisionBox.intersects(npc.getCollisionBox())) {
+				Game.getCurrentMap().setY(Game.getCurrentMap().getY() + playerSpeed);
+				return true;
+			}
+			
+		}
+			
+				
 		if(tiledMap.getTileId((int) collisionBox.getBottomLeftX()/Main.TILE_SIZE, (int) (collisionBox.getBottomLeftY() + playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) collisionBox.getBottomRightX()/Main.TILE_SIZE, (int) (collisionBox.getBottomRightY() + playerSpeed)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
 			
@@ -386,10 +425,15 @@ public class Player {
 	
 	private boolean isLeftCollision() {
 		
-		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
-		
-		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
-		
+		for(NPC npc : npcList) {
+			
+			if(collisionBox.intersects(npc.getCollisionBox())) {
+				Game.getCurrentMap().setX(Game.getCurrentMap().getX() - playerSpeed);
+				return true;
+			}
+			
+		}
+					
 		if(tiledMap.getTileId((int) (collisionBox.getTopLeftX() - playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) (collisionBox.getBottomLeftX() - playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
 			
@@ -406,10 +450,15 @@ public class Player {
 	
 	private boolean isRightCollision() {
 		
-		int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
-		
-		TiledMap tiledMap = Game.getCurrentMap().getTiledMap();
-		
+		for(NPC npc : npcList) {
+			
+			if(collisionBox.intersects(npc.getCollisionBox())) {
+				Game.getCurrentMap().setX(Game.getCurrentMap().getX() + playerSpeed);
+				return true;
+			}
+			
+		}
+			
 		if(tiledMap.getTileId((int) (collisionBox.getTopRightX() + playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) (collisionBox.getBottomRightX() + playerSpeed)/Main.TILE_SIZE, (int) collisionBox.getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
 			

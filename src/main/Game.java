@@ -24,8 +24,8 @@ public class Game extends BasicGameState {
 		world = new Map("resources/World.tmx");
 		currentMap = world;
 		player = new Player();
-		npc1 = new NPC(200, 300, 200, "resources/OrcSpriteSheet.png");
-		npc2 = new NPC(300, 350, 500, "resources/SkeletonSpriteSheet.png");;
+		npc1 = new NPC(0, 0, 200, "resources/OrcSpriteSheet.png");
+		npc2 = new NPC(300, 350, 500, "resources/SkeletonSpriteSheet.png");
 		
 		npcList.add(npc1);
 		npcList.add(npc2);
@@ -35,8 +35,7 @@ public class Game extends BasicGameState {
 	@Override
 	public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
-		player.move();
-		player.attack();
+		player.update();
 		
 		for(NPC npc: npcList)
 			npc.update();
@@ -49,9 +48,9 @@ public class Game extends BasicGameState {
 		world.render();
 		
 		for(NPC npc: npcList)
-			npc.render();
+			npc.render(g);
+		player.render(g);
 		
-		player.render();
 
 	}
 	
@@ -66,6 +65,10 @@ public class Game extends BasicGameState {
 		
 		return currentMap;
 		
+	}
+	
+	public static ArrayList<NPC> getNpcList() {
+		return npcList;
 	}
 
 }
