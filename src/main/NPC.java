@@ -85,4 +85,8 @@ public class NPC {
 		return collisionBox;
 	}
 	
+	public float getRelativeToMapY() {
+		return relativeToMapY;
+	}
+	
 }

@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.tiled.TiledMap;
 
 import util.CollisionBox;
@@ -64,6 +65,11 @@ public class Player {
 	private TiledMap tiledMap;
 	private ArrayList<NPC> npcList;
 	
+	private CollisionBox attackUpCollisionBox = new CollisionBox(relativeToMapX - 28, relativeToMapY - 37, 89, 38);
+	private CollisionBox attackDownCollisionBox =  new CollisionBox(relativeToMapX - 28, relativeToMapY + 12, 89, 38);
+	private CollisionBox attackLeftCollisionBox = new CollisionBox(relativeToMapX - 67, relativeToMapY - 16, 68, 36);
+	private CollisionBox attackRightCollisionBox =  new CollisionBox(relativeToMapX + 31, relativeToMapY - 16, 68, 36);
+	
 	public Player() throws SlickException {
 				
 		Game.getCurrentMap().setX(relativeToScreenX - relativeToMapX + spriteSize / 4);
@@ -86,6 +92,24 @@ public class Player {
 		tiledMap = Game.getCurrentMap().getTiledMap();
 		npcList = Game.getNpcList();
 		
+		relativeToMapX = (relativeToScreenX + spriteSize / 4) - Game.getCurrentMap().getX();
+		relativeToMapY = (relativeToScreenY + spriteSize / 2) - Game.getCurrentMap().getY(); 
+												
+		collisionBox.setX(relativeToMapX + 6);
+		collisionBox.setY(relativeToMapY + 16);
+		 		
+		attackUpCollisionBox.setX(relativeToMapX - 28);
+		attackUpCollisionBox.setY(relativeToMapY - 37);
+		
+		attackDownCollisionBox.setX(relativeToMapX - 28);
+		attackDownCollisionBox.setY(relativeToMapY + 12);
+		
+		attackLeftCollisionBox.setX(relativeToMapX - 67);
+		attackLeftCollisionBox.setY(relativeToMapY - 16);
+		
+		attackRightCollisionBox.setX(relativeToMapX + 31);
+		attackRightCollisionBox.setY(relativeToMapY - 16);
+		
 		move();
 		attack();
 		
@@ -105,11 +129,11 @@ public class Player {
 			
 		g.drawString("relativeToMapX:  " + relativeToMapX, 50, 50);
 		g.drawString("relativeToMapY:  " + relativeToMapY, 50, 100);
-
+		
 	}
 	
 	private void attack() {
-		
+		 		
 		if(input.isKeyDown(Input.KEY_X)) {
 						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
@@ -162,16 +186,58 @@ public class Player {
 			isAttacking = false;
 		}
 		
+		if(currentAnimation == attackUpAnimation) {
+			
+			for(NPC npc : npcList) {
+				
+				if(attackUpCollisionBox.intersects(npc.getCollisionBox())) {
+					npc.decreaseHealth(10);
+				}
+				
+			}
+			
+		}
+		
+		if(currentAnimation == attackDownAnimation) {
+			
+			for(NPC npc : npcList) {
+				
+				if(attackDownCollisionBox.intersects(npc.getCollisionBox())) {
+					npc.decreaseHealth(10);
+				}
+				
+			}
+			
+		}
+		
+		if(currentAnimation == attackLeftAnimation) {
+			
+			for(NPC npc : npcList) {
+				
+				if(attackLeftCollisionBox.intersects(npc.getCollisionBox())) {
+					npc.decreaseHealth(10);
+				}
+				
+			}
+			
+		}
+		
+		if(currentAnimation == attackRightAnimation) {
+			
+			for(NPC npc : npcList) {
+				
+				if(attackRightCollisionBox.intersects(npc.getCollisionBox())) {
+					npc.decreaseHealth(10);
+				}
+				
+			}
+			
+		}
+		
 	}
 
 	private void move() {
-		
-		relativeToMapX = (relativeToScreenX + spriteSize / 4) - Game.getCurrentMap().getX();
-		relativeToMapY = (relativeToScreenY + spriteSize / 2) - Game.getCurrentMap().getY(); 
-												
-		collisionBox.setX(relativeToMapX + 6);
-		collisionBox.setY(relativeToMapY + 16);
-		
+				
 		if(!isAttacking) {
 						
 			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
@@ -466,6 +532,10 @@ public class Player {
 			
 		}
 		
+	}
+	
+	public float getRelativeToMapY() {
+		return relativeToMapY;
 	}
 	
 }
