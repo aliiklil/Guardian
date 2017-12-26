@@ -13,23 +13,20 @@ import util.CollisionBox;
 
 public class Player {
 	
-	private final int playerSize = 64;
+	private final int spriteSize = 64;
+	private final int attackSpriteSize = 192;
 	
-	private final int playerAttackSize = 192;
-
-	private int relativeToScreenX = Main.WIDTH / 2 - playerSize / 2;
-	private int relativeToScreenY = Main.HEIGHT / 2 - playerSize / 2;
+	private final float relativeToScreenX = Main.WIDTH / 2 - spriteSize / 2;
+	private final float relativeToScreenY = Main.HEIGHT / 2 - spriteSize / 2;
 	
-	private int relativeToScreenAttackX = Main.WIDTH / 2 - playerAttackSize / 2;
-	private int relativeToScreenAttackY = Main.HEIGHT / 2 - playerAttackSize / 2;
-					
-	private float relativeToMapX = relativeToScreenX + playerSize / 4 - Game.getCurrentMap().getX();
-	private float relativeToMapY = relativeToScreenY + playerSize / 2 - Game.getCurrentMap().getY(); 
-		
-	private CollisionBox collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, playerSize/2 - 12, playerSize/2 - 18);
+	private final float relativeToScreenAttackX = Main.WIDTH / 2 - attackSpriteSize / 2;
+	private final float relativeToScreenAttackY = Main.HEIGHT / 2 - attackSpriteSize / 2;
 	
-	private CollisionBox collisionShowBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, playerSize/2 - 12, playerSize/2 - 18);
-
+	private float relativeToMapX = 64;
+	private float relativeToMapY = 64;
+				
+	private CollisionBox collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, spriteSize/2 - 12, spriteSize/2 - 18);
+	
 	private float playerSpeed = 1.5f;
 	
 	private float diagonalPlayerSpeed = (float) (1/Math.sqrt(Math.pow(playerSpeed, 2) + Math.pow(playerSpeed, 2))) * playerSpeed * playerSpeed;
@@ -68,7 +65,10 @@ public class Player {
 	private ArrayList<NPC> npcList;
 	
 	public Player() throws SlickException {
-
+				
+		Game.getCurrentMap().setX(relativeToScreenX - relativeToMapX + spriteSize / 4);
+		Game.getCurrentMap().setY(relativeToScreenY - relativeToMapY + spriteSize / 2);
+		
 		attackUpAnimation.setLooping(false);
 		attackDownAnimation.setLooping(false);
 		attackLeftAnimation.setLooping(false);
@@ -102,8 +102,9 @@ public class Player {
 			currentAnimation.draw(relativeToScreenX, relativeToScreenY);
 			
 		}
-		
-		g.draw(collisionShowBox);
+			
+		g.drawString("relativeToMapX:  " + relativeToMapX, 50, 50);
+		g.drawString("relativeToMapY:  " + relativeToMapY, 50, 100);
 
 	}
 	
@@ -165,8 +166,8 @@ public class Player {
 
 	private void move() {
 		
-		relativeToMapX = (relativeToScreenX + playerSize / 4) - Game.getCurrentMap().getX();
-		relativeToMapY = (relativeToScreenY + playerSize / 2) - Game.getCurrentMap().getY(); 
+		relativeToMapX = (relativeToScreenX + spriteSize / 4) - Game.getCurrentMap().getX();
+		relativeToMapY = (relativeToScreenY + spriteSize / 2) - Game.getCurrentMap().getY(); 
 												
 		collisionBox.setX(relativeToMapX + 6);
 		collisionBox.setY(relativeToMapY + 16);
@@ -378,7 +379,6 @@ public class Player {
 		for(NPC npc : npcList) {
 			
 			if(collisionBox.intersects(npc.getCollisionBox())) {
-				Game.getCurrentMap().setY(Game.getCurrentMap().getY() - playerSpeed);
 				return true;
 			}
 			

@@ -1,6 +1,7 @@
 package util;
 
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 
 public class CollisionBox extends Rectangle {
 

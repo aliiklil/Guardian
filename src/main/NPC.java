@@ -9,14 +9,14 @@ import util.CollisionBox;
 
 public class NPC {
 	
-	private final int size = 64;
+	private final int spriteSize = 64;
+	
+	private float relativeToMapX;
+	private float relativeToMapY;
 	
 	private float relativeToScreenX;
 	private float relativeToScreenY;
 						
-	private float relativeToMapX;
-	private float relativeToMapY;
-	
 	private int health;
 	
 	private CollisionBox collisionBox;
@@ -35,8 +35,8 @@ public class NPC {
 
 	public NPC(float x, float y, int health, String spriteSheetPath) throws SlickException {
 		
-		this.relativeToMapX = x - size / 4;
-		this.relativeToMapY = y - size / 4;
+		this.relativeToMapX = x - spriteSize / 4;
+		this.relativeToMapY = y - spriteSize / 4;
 		
 		this.relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
 		this.relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
@@ -55,9 +55,9 @@ public class NPC {
 		
 		currentAnimation = lookRightAnimation;
 		
-		hitBox = new CollisionBox(relativeToMapX + size/4, relativeToMapY + size/4, size/2, size/2 + size / 4);
+		hitBox = new CollisionBox(relativeToMapX + spriteSize/4, relativeToMapY + spriteSize/4, spriteSize/2, spriteSize/2 + spriteSize / 4);
 		
-		collisionBox = new CollisionBox(relativeToMapX + size/4, relativeToMapY + size/2, size/2, size/2);
+		collisionBox = new CollisionBox(relativeToMapX + spriteSize/4, relativeToMapY + spriteSize/2, spriteSize/2, spriteSize/2);
 		
 	}
 	
@@ -75,8 +75,6 @@ public class NPC {
 	public void render(Graphics g) {
 		
 		currentAnimation.draw(relativeToScreenX, relativeToScreenY);
-		
-		g.draw(collisionBox);
 		
 	}
 	
