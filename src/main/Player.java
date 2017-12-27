@@ -77,6 +77,13 @@ public class Player {
 	
 	private HealthBar healthBar = new HealthBar(20, Main.HEIGHT - 40, 350, 25, 5, 200);
 	
+	private Animation shootUpAnimation = new Animation(spriteSheet, 0, 16, 11, 16, true, 100, true);
+	private Animation shootDownAnimation = new Animation(spriteSheet, 0, 18, 11, 18, true, 100, true);
+	private Animation shootLeftAnimation = new Animation(spriteSheet, 0, 17, 11, 17, true, 100, true);
+	private Animation shootRightAnimation = new Animation(spriteSheet, 0, 19, 11, 19, true, 100, true);
+	
+	private boolean isShooting = false;
+	
 	public Player() throws SlickException {
 				
 		Game.getCurrentMap().setX(relativeToScreenX - relativeToMapX + spriteSize / 4);
@@ -86,6 +93,11 @@ public class Player {
 		attackDownAnimation.setLooping(false);
 		attackLeftAnimation.setLooping(false);
 		attackRightAnimation.setLooping(false);
+		
+		shootUpAnimation.setLooping(false);
+		shootDownAnimation.setLooping(false);
+		shootLeftAnimation.setLooping(false);
+		shootRightAnimation.setLooping(false);
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
@@ -119,8 +131,8 @@ public class Player {
 		
 		move();
 		attack();
-		
-		
+		shoot();
+	
 	}
 	
 	public void render(Graphics g) {
@@ -141,6 +153,60 @@ public class Player {
 		
 		healthBar.render(g);
 							
+	}
+	
+	private void shoot() {
+ 		
+		
+		if(input.isKeyDown(Input.KEY_Y) && !isShooting) {
+			
+			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
+				currentAnimation = shootUpAnimation;
+			}
+			
+			if(currentAnimation == lookDownAnimation || currentAnimation == goDownAnimation) {
+				currentAnimation = shootDownAnimation;
+			}
+			
+			if(currentAnimation == lookLeftAnimation || currentAnimation == goLeftAnimation) {
+				currentAnimation = shootLeftAnimation;
+			}
+			
+			if(currentAnimation == lookRightAnimation || currentAnimation == goRightAnimation) {
+				currentAnimation = shootRightAnimation;
+			}
+			
+			currentAnimation.start();
+			isShooting = true;
+			damageDealt = false;
+			
+		}
+		
+		if(isShooting && shootUpAnimation.isStopped()) {
+			shootUpAnimation.restart();
+			currentAnimation = lookUpAnimation;
+			isShooting = false;
+		}
+		
+		if(isShooting && shootDownAnimation.isStopped()) {
+			shootDownAnimation.restart();
+			currentAnimation = lookDownAnimation;
+			isShooting = false;
+		}
+		
+		if(isShooting && shootLeftAnimation.isStopped()) {
+			shootLeftAnimation.restart();
+			currentAnimation = lookLeftAnimation;
+			isShooting = false;
+		}
+		
+		if(isShooting && shootRightAnimation.isStopped()) {
+			shootRightAnimation.restart();
+			currentAnimation = lookRightAnimation;
+			isShooting = false;
+		}
+		
+	
 	}
 	
 	private void attack() {
@@ -235,7 +301,7 @@ public class Player {
 
 	private void move() {
 				
-		if(!isAttacking) {
+		if(!isAttacking && !isShooting) {
 						
 			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
 				
