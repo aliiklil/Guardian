@@ -83,6 +83,9 @@ public class Player {
 	private Animation shootRightAnimation = new Animation(spriteSheet, 0, 19, 11, 19, true, 100, true);
 	
 	private boolean isShooting = false;
+	private boolean arrowCreated = false;
+	
+	private int arrowVelocity = 5;
 	
 	public Player() throws SlickException {
 				
@@ -157,27 +160,30 @@ public class Player {
 	
 	private void shoot() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_Y) && !isShooting) {
+		if(input.isKeyDown(Input.KEY_Y) && !isShooting && !isAttacking) {
 			
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = shootUpAnimation;
+				arrowCreated = false;
 			}
 			
 			if(currentAnimation == lookDownAnimation || currentAnimation == goDownAnimation) {
 				currentAnimation = shootDownAnimation;
+				arrowCreated = false;
 			}
 			
 			if(currentAnimation == lookLeftAnimation || currentAnimation == goLeftAnimation) {
 				currentAnimation = shootLeftAnimation;
+				arrowCreated = false;
 			}
 			
 			if(currentAnimation == lookRightAnimation || currentAnimation == goRightAnimation) {
 				currentAnimation = shootRightAnimation;
+				arrowCreated = false;
 			}
 			
 			currentAnimation.start();
 			isShooting = true;
-			damageDealt = false;
 			
 		}
 		
@@ -205,41 +211,43 @@ public class Player {
 			isShooting = false;
 		}
 		
-		if(currentAnimation == shootUpAnimation && currentAnimation.getFrame() == 9) {
+		if(currentAnimation == shootUpAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4, relativeToMapY - 50, 0);
+			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4, relativeToMapY - 50, 0, arrowVelocity);
+			arrowCreated = true;
 			Game.getArrowManager().addArrow(arrow);
 			
 		}
 		
-		if(currentAnimation == shootDownAnimation && currentAnimation.getFrame() == 9) {
+		if(currentAnimation == shootDownAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4, relativeToMapY + 50, 1);
+			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4, relativeToMapY + 50, 1, arrowVelocity);
+			arrowCreated = true;
 			Game.getArrowManager().addArrow(arrow);
 			
 		}
 		
-		if(currentAnimation == shootLeftAnimation && currentAnimation.getFrame() == 9) {
+		if(currentAnimation == shootLeftAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4 - 50, relativeToMapY, 2);
+			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4 - 50, relativeToMapY, 2, arrowVelocity);
+			arrowCreated = true;
 			Game.getArrowManager().addArrow(arrow);
 			
 		}
 		
-		if(currentAnimation == shootRightAnimation && currentAnimation.getFrame() == 9) {
+		if(currentAnimation == shootRightAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4 + 50, relativeToMapY, 3);
+			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4 + 50, relativeToMapY, 3, arrowVelocity);
+			arrowCreated = true;
 			Game.getArrowManager().addArrow(arrow);
 			
 		}
 		
-
-	
 	}
 	
 	private void attack() {
 		 		
-		if(input.isKeyDown(Input.KEY_X) && !isAttacking) {
+		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isShooting) {
 						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = attackUpAnimation;

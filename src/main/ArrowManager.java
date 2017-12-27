@@ -7,12 +7,17 @@ import org.newdawn.slick.Graphics;
 public class ArrowManager {
 
 	private ArrayList<Arrow> arrowList = new ArrayList<Arrow>();
+	private ArrayList<Arrow> removeList = new ArrayList<Arrow>();
 	
 	public void update() {
 		
 		for(Arrow arrow : arrowList) {
 			arrow.update();
 		}
+		
+		arrowList.removeAll(removeList);
+		
+		removeList.clear();
 		
 	}
 
@@ -32,7 +37,7 @@ public class ArrowManager {
 	
 	public void removeArrow(Arrow arrow) {
 		
-		arrowList.remove(arrow);
+		removeList.add(arrow);
 		
 	}
 	

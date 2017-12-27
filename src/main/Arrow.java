@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -21,11 +23,15 @@ public class Arrow {
 	
 	private SpriteSheet spriteSheet = new SpriteSheet("resources/arrow.png", 33, 5);
 	
-	private int velocity = 1;
+	private int velocity;
 	
 	private int direction;
+	
+	private ArrayList<NPC> npcList;
+	
+	private boolean damageDealt = false;
 
-	public Arrow(float x, float y, int direction) throws SlickException {
+	public Arrow(float x, float y, int direction, int velocity) throws SlickException {
 		
 		this.relativeToMapX = x - spriteWidth/2;
 		this.relativeToMapY = y - spriteHeight/2;
@@ -33,16 +39,29 @@ public class Arrow {
 		this.relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
 		this.relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
 		
+		this.velocity = velocity;
 		this.direction = direction;
 		
 		if(direction == 0) {
+			
 			spriteSheet.rotate(90);
+			collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, spriteHeight, spriteWidth);
+			
 		} else if(direction == 1) {
+			
 			spriteSheet.rotate(270);
+			collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, spriteHeight, spriteWidth);
+			
 		} else if(direction == 2) {
+			
 			spriteSheet.rotate(0);
+			collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, spriteWidth, spriteHeight);
+			
 		} else if(direction == 3) {
+			
 			spriteSheet.rotate(180);
+			collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, spriteWidth, spriteHeight);
+			
 		} else {
 			throw(new IllegalArgumentException("Direction must be an integer from 0 to 3"));
 		}
@@ -52,19 +71,47 @@ public class Arrow {
 	public void update() {
 		
 		if(direction == 0) {
+			
 			relativeToMapY = relativeToMapY - velocity;
+			
 		} else if(direction == 1) {
+			
 			relativeToMapY = relativeToMapY + velocity;
+			
 		} else if(direction == 2) {
+			
 			relativeToMapX = relativeToMapX - velocity;
+
 		} else if(direction == 3) {
+			
 			relativeToMapX = relativeToMapX + velocity;
+			
 		} else {
+			
 			throw(new IllegalArgumentException("Direction must be an integer from 0 to 3"));
+			
 		}
 		
 		relativeToScreenX = (int) Game.getCurrentMap().getX() + relativeToMapX;		
 		relativeToScreenY = (int) Game.getCurrentMap().getY() + relativeToMapY;
+		
+		if(!damageDealt) {
+		
+			collisionBox.setX(relativeToMapX);
+			collisionBox.setY(relativeToMapY);
+			
+			npcList = Game.getNpcList();
+			
+			for(NPC npc : npcList) {
+					if(collisionBox.intersects(npc.getCollisionBox())) {
+						npc.decreaseHealth(10);
+						Game.getArrowManager().removeArrow(this);
+						damageDealt = true;
+					}
+			}
+			
+		}
+	
 	}
 	
 	public void render(Graphics g) {
