@@ -441,7 +441,7 @@ public class Player {
 				
 		for(NPC npc : npcList) {
 			
-			if(collisionBox.willIntersectUp(npc.getCollisionBox(), playerSpeed)) {
+			if(collisionBox.willIntersectUp(npc.getCollisionBox(), playerSpeed) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -464,7 +464,7 @@ public class Player {
 		
 		for(NPC npc : npcList) {
 			
-			if(collisionBox.willIntersectDown(npc.getCollisionBox(), playerSpeed)) {
+			if(collisionBox.willIntersectDown(npc.getCollisionBox(), playerSpeed) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -488,7 +488,7 @@ public class Player {
 		
 		for(NPC npc : npcList) {
 			
-			if(collisionBox.willIntersectLeft(npc.getCollisionBox(), playerSpeed)) {
+			if(collisionBox.willIntersectLeft(npc.getCollisionBox(), playerSpeed) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -512,7 +512,7 @@ public class Player {
 		
 		for(NPC npc : npcList) {
 			
-			if(collisionBox.willIntersectRight(npc.getCollisionBox(), playerSpeed)) {
+			if(collisionBox.willIntersectRight(npc.getCollisionBox(), playerSpeed) && npc.isAlive()) {
 				return true;
 			}
 			

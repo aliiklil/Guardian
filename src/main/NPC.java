@@ -35,6 +35,8 @@ public class NPC {
 	private Animation currentAnimation;
 	
 	private HealthBar healthBar;
+	
+	private boolean alive;
 
 	public NPC(float x, float y, int maxHealth, String spriteSheetPath) throws SlickException {
 		
@@ -62,6 +64,8 @@ public class NPC {
 		collisionBox = new CollisionBox(relativeToMapX + spriteSize/4, relativeToMapY + spriteSize/2, spriteSize/2, spriteSize/2);
 		
 		healthBar = new HealthBar(relativeToScreenX, relativeToScreenY, spriteSize, 5, 1, maxHealth);
+		
+		alive = true;
 		
 	}
 	
@@ -95,8 +99,9 @@ public class NPC {
 			currentHealth = currentHealth - amount;
 		}
 		
-		if(currentHealth < 0) {
+		if(currentHealth <= 0) {
 			currentHealth = 0;
+			alive = false;
 		}
 		
 		healthBar.setCurrentHealth(currentHealth);
@@ -109,6 +114,10 @@ public class NPC {
 	
 	public float getRelativeToMapY() {
 		return relativeToMapY;
+	}
+	
+	public boolean isAlive() {
+		return alive;
 	}
 	
 }
