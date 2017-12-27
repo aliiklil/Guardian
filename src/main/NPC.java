@@ -24,6 +24,7 @@ public class NPC {
 	private CollisionBox collisionBox;
 
 	private SpriteSheet spriteSheet;
+	private SpriteSheet bloodSpriteSheet;
 	
 	private Animation lookUpAnimation;
 	private Animation lookDownAnimation;
@@ -37,7 +38,10 @@ public class NPC {
 	private HealthBar healthBar;
 	
 	private boolean alive;
-
+	
+	private Animation bloodAnimation;
+	private boolean drawBlood;
+	
 	public NPC(float x, float y, int maxHealth, String spriteSheetPath) throws SlickException {
 		
 		this.relativeToMapX = x - spriteSize / 4;
@@ -67,6 +71,14 @@ public class NPC {
 		
 		alive = true;
 		
+		bloodSpriteSheet = new SpriteSheet("resources/blood.png", 64, 64);
+		
+		bloodAnimation = new Animation(bloodSpriteSheet, 0, 0, 5, 0, true, 100, true);
+		
+		bloodAnimation.setLooping(false);
+		
+		drawBlood = false;
+		
 	}
 	
 	public void update() {
@@ -91,6 +103,14 @@ public class NPC {
 			healthBar.render(g);
 		}
 		
+		if(drawBlood) {
+			bloodAnimation.draw(relativeToScreenX, relativeToScreenY);
+			if(bloodAnimation.isStopped()) {
+				drawBlood = false;
+				bloodAnimation.restart();
+			}
+		}
+		
 	}
 	
 	public void decreaseHealth(int amount) {
@@ -105,6 +125,8 @@ public class NPC {
 		}
 		
 		healthBar.setCurrentHealth(currentHealth);
+		
+		drawBlood = true;
 		
 	}
 	

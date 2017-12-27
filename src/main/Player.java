@@ -544,9 +544,5 @@ public class Player {
 		healthBar.setCurrentHealth(currentHealth);
 		
 	}
-	
-	public float getRelativeToMapY() {
-		return relativeToMapY;
-	}
-	
+		
 }
