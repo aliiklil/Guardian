@@ -91,7 +91,7 @@ public class NPC {
 		
 		healthBar.setX(relativeToScreenX);
 		healthBar.setY(relativeToScreenY);
-																	
+																			
 	}
 
 	public void render(Graphics g) {

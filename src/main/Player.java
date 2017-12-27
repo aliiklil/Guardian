@@ -105,7 +105,7 @@ public class Player {
 		
 	}
 	
-	public void update() {
+	public void update() throws SlickException {
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
@@ -155,9 +155,8 @@ public class Player {
 							
 	}
 	
-	private void shoot() {
+	private void shoot() throws SlickException {
  		
-		
 		if(input.isKeyDown(Input.KEY_Y) && !isShooting) {
 			
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
@@ -206,6 +205,35 @@ public class Player {
 			isShooting = false;
 		}
 		
+		if(currentAnimation == shootUpAnimation && currentAnimation.getFrame() == 9) {
+
+			Arrow arrow = new Arrow(relativeToMapY - 50, relativeToMapY, 0);
+			Game.getArrowManager().addArrow(arrow);
+			
+		}
+		
+		if(currentAnimation == shootDownAnimation && currentAnimation.getFrame() == 9) {
+
+			Arrow arrow = new Arrow(relativeToMapY + 50, relativeToMapY, 1);
+			Game.getArrowManager().addArrow(arrow);
+			
+		}
+		
+		if(currentAnimation == shootLeftAnimation && currentAnimation.getFrame() == 9) {
+
+			Arrow arrow = new Arrow(relativeToMapX - 50, relativeToMapY, 2);
+			Game.getArrowManager().addArrow(arrow);
+			
+		}
+		
+		if(currentAnimation == shootRightAnimation && currentAnimation.getFrame() == 9) {
+
+			Arrow arrow = new Arrow(relativeToMapX + 50, relativeToMapY, 3);
+			Game.getArrowManager().addArrow(arrow);
+			
+		}
+		
+
 	
 	}
 	
