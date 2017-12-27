@@ -207,28 +207,28 @@ public class Player {
 		
 		if(currentAnimation == shootUpAnimation && currentAnimation.getFrame() == 9) {
 
-			Arrow arrow = new Arrow(relativeToMapY - 50, relativeToMapY, 0);
+			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4, relativeToMapY - 50, 0);
 			Game.getArrowManager().addArrow(arrow);
 			
 		}
 		
 		if(currentAnimation == shootDownAnimation && currentAnimation.getFrame() == 9) {
 
-			Arrow arrow = new Arrow(relativeToMapY + 50, relativeToMapY, 1);
+			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4, relativeToMapY + 50, 1);
 			Game.getArrowManager().addArrow(arrow);
 			
 		}
 		
 		if(currentAnimation == shootLeftAnimation && currentAnimation.getFrame() == 9) {
 
-			Arrow arrow = new Arrow(relativeToMapX - 50, relativeToMapY, 2);
+			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4 - 50, relativeToMapY, 2);
 			Game.getArrowManager().addArrow(arrow);
 			
 		}
 		
 		if(currentAnimation == shootRightAnimation && currentAnimation.getFrame() == 9) {
 
-			Arrow arrow = new Arrow(relativeToMapX + 50, relativeToMapY, 3);
+			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4 + 50, relativeToMapY, 3);
 			Game.getArrowManager().addArrow(arrow);
 			
 		}

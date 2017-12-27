@@ -27,8 +27,8 @@ public class Arrow {
 
 	public Arrow(float x, float y, int direction) throws SlickException {
 		
-		this.relativeToMapX = x - spriteWidth / 4;
-		this.relativeToMapY = y - spriteHeight / 2;
+		this.relativeToMapX = x - spriteWidth/2;
+		this.relativeToMapY = y - spriteHeight/2;
 		
 		this.relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
 		this.relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
@@ -44,7 +44,7 @@ public class Arrow {
 		} else if(direction == 3) {
 			spriteSheet.rotate(180);
 		} else {
-			new IllegalArgumentException("Direction must be an integer from 0 to 4");
+			throw(new IllegalArgumentException("Direction must be an integer from 0 to 3"));
 		}
 		
 	}
@@ -52,15 +52,15 @@ public class Arrow {
 	public void update() {
 		
 		if(direction == 0) {
-			relativeToMapY--;
+			relativeToMapY = relativeToMapY - velocity;
 		} else if(direction == 1) {
-			relativeToMapY++;
+			relativeToMapY = relativeToMapY + velocity;
 		} else if(direction == 2) {
-			relativeToMapX--;
+			relativeToMapX = relativeToMapX - velocity;
 		} else if(direction == 3) {
-			relativeToMapX++;
+			relativeToMapX = relativeToMapX + velocity;
 		} else {
-			new IllegalArgumentException("Direction must be an integer from 0 to 4");
+			throw(new IllegalArgumentException("Direction must be an integer from 0 to 3"));
 		}
 		
 		relativeToScreenX = (int) Game.getCurrentMap().getX() + relativeToMapX;		
