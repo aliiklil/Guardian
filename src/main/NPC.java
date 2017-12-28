@@ -102,7 +102,7 @@ public class NPC {
 			healthBar.render(g);
 		}
 		
-		if(drawBlood) {
+		if(drawBlood && alive) {
 			bloodAnimation.draw(relativeToScreenX, relativeToScreenY);
 			if(bloodAnimation.isStopped()) {
 				drawBlood = false;

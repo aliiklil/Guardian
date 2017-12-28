@@ -103,7 +103,7 @@ public class Arrow {
 			npcList = Game.getNpcList();
 			
 			for(NPC npc : npcList) {
-					if(collisionBox.intersects(npc.getCollisionBox())) {
+					if(collisionBox.intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(10);
 						Game.getArrowManager().removeArrow(this);
 						damageDealt = true;

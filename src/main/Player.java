@@ -299,7 +299,7 @@ public class Player {
 		
 			if(currentAnimation == attackUpAnimation && currentAnimation.getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(attackUpCollisionBox.intersects(npc.getCollisionBox())) {
+					if(attackUpCollisionBox.intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(10);
 						damageDealt = true;
 					}
@@ -308,7 +308,7 @@ public class Player {
 			
 			if(currentAnimation == attackDownAnimation && currentAnimation.getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(attackDownCollisionBox.intersects(npc.getCollisionBox())) {
+					if(attackDownCollisionBox.intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(10);
 						damageDealt = true;
 					}
@@ -317,7 +317,7 @@ public class Player {
 			
 			if(currentAnimation == attackLeftAnimation && currentAnimation.getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(attackLeftCollisionBox.intersects(npc.getCollisionBox())) {
+					if(attackLeftCollisionBox.intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(10);
 						damageDealt = true;
 					}
