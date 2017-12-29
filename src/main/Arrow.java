@@ -21,15 +21,15 @@ public class Arrow {
 	private int spriteWidth = 33;
 	private int spriteHeight = 5;
 	
-	private SpriteSheet spriteSheet = new SpriteSheet("resources/arrow.png", 33, 5);
+	private SpriteSheet spriteSheet = new SpriteSheet("resources/arrow.png", spriteWidth, spriteHeight);
 	
 	private int velocity;
-	
 	private int direction;
 	
 	private ArrayList<NPC> npcList;
-	
-	private boolean damageDealt = false;
+		
+	private int travelledDistance = 0;
+	private final int travelledDistanceRemove = Main.TILE_SIZE * 30;
 
 	public Arrow(float x, float y, int direction, int velocity) throws SlickException {
 		
@@ -95,8 +95,14 @@ public class Arrow {
 		relativeToScreenX = (int) Game.getCurrentMap().getX() + relativeToMapX;		
 		relativeToScreenY = (int) Game.getCurrentMap().getY() + relativeToMapY;
 		
-		if(!damageDealt) {
+		travelledDistance = travelledDistance + velocity;
 		
+		if(travelledDistance > travelledDistanceRemove) {
+			
+			Game.getArrowManager().removeArrow(this);
+			
+		} else {
+			
 			collisionBox.setX(relativeToMapX);
 			collisionBox.setY(relativeToMapY);
 			
@@ -106,12 +112,9 @@ public class Arrow {
 					if(collisionBox.intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(10);
 						Game.getArrowManager().removeArrow(this);
-						damageDealt = true;
 					}
 			}
-			
 		}
-	
 	}
 	
 	public void render(Graphics g) {
