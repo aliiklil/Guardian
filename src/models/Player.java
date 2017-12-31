@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -97,6 +98,9 @@ public class Player {
 	private Animation spellLeftAnimation = new Animation(spriteSheet, 0, 1, 6, 1, true, 100, true);
 	private Animation spellRightAnimation = new Animation(spriteSheet, 0, 3, 6, 3, true, 100, true);
 	
+	private boolean inventoryOpen = false;
+	private Image inventoryImage = new Image("resources/inventory.png");
+	
 	public Player() throws SlickException {
 				
 		Game.getCurrentMap().setX(relativeToScreenX - relativeToMapX + spriteSize / 4);
@@ -151,6 +155,7 @@ public class Player {
 		attack();
 		shoot();
 		spell();
+		openInventory();
 	
 	}
 	
@@ -171,7 +176,28 @@ public class Player {
 		g.drawString("relativeToMapY:  " + relativeToMapY, 50, 100);
 		
 		healthBar.render(g);
+		
+		if(inventoryOpen) {
+			g.drawImage(inventoryImage, 0, 0);
+		}
 							
+	}
+	
+	private void openInventory() throws SlickException {
+
+		if(input.isKeyPressed(Input.KEY_TAB)) {
+			
+			if(!inventoryOpen) {
+				
+				inventoryOpen = true;
+				
+			} else {
+				
+				inventoryOpen = false;
+				
+			}
+		}
+				
 	}
 	
 	private void spell() throws SlickException {
