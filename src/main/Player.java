@@ -72,7 +72,6 @@ public class Player {
 	
 	private boolean damageDealt = false;
 	
-	private final int maxHealth = 200;
 	private int currentHealth = 200;
 	
 	private HealthBar healthBar = new HealthBar(20, Main.HEIGHT - 40, 350, 25, 5, 200);

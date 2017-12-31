@@ -20,51 +20,35 @@ public class Projectile {
 		
 	private Animation animation;
 	
-	private int velocity;
-	private int direction;
+	private final int velocity;
+	private final int direction;
 	
 	private ArrayList<NPC> npcList;
 		
 	private int travelledDistance = 0;
 	private final int travelledDistanceRemove = Main.TILE_SIZE * 30;
+	
+	private final int width;
+	private final int height;
 
 	public Projectile(float x, float y, Animation animation, int direction, int velocity) throws SlickException {
 		
 		this.animation = animation;
+		
+		width = animation.getWidth();
+		height = animation.getHeight();
 						
-		relativeToMapX = x - 32;
-		relativeToMapY = y - 32;
-		
-		if(direction == 0) {
-			
-			relativeToMapY = relativeToMapY - velocity;
-			
-		} else if(direction == 1) {
-			
-			relativeToMapY = relativeToMapY + velocity;
-			
-		} else if(direction == 2) {
-			
-			relativeToMapX = relativeToMapX - velocity;
-
-		} else if(direction == 3) {
-			
-			relativeToMapX = relativeToMapX + velocity;
-			
-		} else {
-			
-			throw(new IllegalArgumentException("Direction must be an integer from 0 to 3"));
-			
-		}
-		
+		relativeToMapX = x - width/2;
+		relativeToMapY = y - height/2;
+				
 		relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
 		relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
 		
 		this.velocity = velocity;
 		this.direction = direction;
 			
-		collisionBox = new CollisionBox(relativeToMapX + 16, relativeToMapY + 16, 16, 16);
-		
+		collisionBox = new CollisionBox(relativeToMapX + width/4, relativeToMapY + height/4, width/4, height/4);
+				
 	}
 
 	public void update() {
