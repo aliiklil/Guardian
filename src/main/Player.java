@@ -635,9 +635,7 @@ public class Player {
 	
 	public void decreaseHealth(int amount) {
 		
-		if(currentHealth > 0) {
-			currentHealth = currentHealth - amount;
-		}
+		currentHealth = currentHealth - amount;
 		
 		if(currentHealth < 0) {
 			currentHealth = 0;

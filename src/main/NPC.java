@@ -102,7 +102,7 @@ public class NPC {
 			healthBar.render(g);
 		}
 		
-		if(drawBlood && alive) {
+		if(drawBlood) {
 			bloodAnimation.draw(relativeToScreenX, relativeToScreenY);
 			if(bloodAnimation.isStopped()) {
 				drawBlood = false;
@@ -113,19 +113,21 @@ public class NPC {
 	}
 	
 	public void decreaseHealth(int amount) {
-				
-		if(currentHealth > 0) {
+		
+		if(alive) {
+			
 			currentHealth = currentHealth - amount;
+			
+			if(currentHealth <= 0) {
+				currentHealth = 0;
+				alive = false;
+			}
+			
+			healthBar.setCurrentHealth(currentHealth);
+			
+			drawBlood = true;
+		
 		}
-		
-		if(currentHealth <= 0) {
-			currentHealth = 0;
-			alive = false;
-		}
-		
-		healthBar.setCurrentHealth(currentHealth);
-		
-		drawBlood = true;
 		
 	}
 	
