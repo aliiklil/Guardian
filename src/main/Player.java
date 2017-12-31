@@ -23,8 +23,8 @@ public class Player {
 	private final float relativeToScreenAttackX = Main.WIDTH / 2 - attackSpriteSize / 2;
 	private final float relativeToScreenAttackY = Main.HEIGHT / 2 - attackSpriteSize / 2;
 	
-	private float relativeToMapX = 256;
-	private float relativeToMapY = 256;
+	private float relativeToMapX = 0;
+	private float relativeToMapY = 0;
 				
 	private CollisionBox collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, spriteSize/2 - 12, spriteSize/2 - 18);
 	
@@ -227,8 +227,8 @@ public class Player {
 		}
 		
 		if(currentAnimation == spellUpAnimation && currentAnimation.getFrame() == 5 && !spellCreated) {
-						
-			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4, relativeToMapY - 50, "resources/fireball.png", 30, 30, 0, spellVelocity);
+									
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 1, 7 , 1, true, 100, true), 0, spellVelocity);
 			spellCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -236,7 +236,7 @@ public class Player {
 		
 		if(currentAnimation == spellDownAnimation && currentAnimation.getFrame() == 5 && !spellCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4, relativeToMapY + 50, "resources/fireball.png", 30, 30, 1, spellVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 3, 7 , 3, true, 100, true), 1, spellVelocity);
 			spellCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -244,7 +244,7 @@ public class Player {
 		
 		if(currentAnimation == spellLeftAnimation && currentAnimation.getFrame() == 5 && !spellCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4 - 50, relativeToMapY, "resources/fireball.png", 30, 30, 2, spellVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 0, 7 , 0, true, 100, true), 2, spellVelocity);
 			spellCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -252,7 +252,7 @@ public class Player {
 		
 		if(currentAnimation == spellRightAnimation && currentAnimation.getFrame() == 5 && !spellCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4 + 50, relativeToMapY, "resources/fireball.png", 30, 30, 3, spellVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 2, 7 , 2, true, 100, true), 3, spellVelocity);
 			spellCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -316,7 +316,7 @@ public class Player {
 		
 		if(currentAnimation == shootUpAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4, relativeToMapY - 50, "resources/arrow.png", 33, 5, 0, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow4directions.png", 64, 64), 1, 0, 1, 0, true, 100, true), 0, arrowVelocity);
 			arrowCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -324,7 +324,7 @@ public class Player {
 		
 		if(currentAnimation == shootDownAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4, relativeToMapY + 50, "resources/arrow.png", 33, 5, 1, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow4directions.png", 64, 64), 3, 0, 3, 0, true, 100, true), 1, arrowVelocity);
 			arrowCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -332,7 +332,7 @@ public class Player {
 		
 		if(currentAnimation == shootLeftAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4 - 50, relativeToMapY, "resources/arrow.png", 33, 5, 2, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow4directions.png", 64, 64), 0, 0, 0, 0, true, 100, true), 2, arrowVelocity);
 			arrowCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -340,7 +340,7 @@ public class Player {
 		
 		if(currentAnimation == shootRightAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4 + 50, relativeToMapY, "resources/arrow.png", 33, 5, 3, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow4directions.png", 64, 64), 2, 0, 2, 0, true, 100, true), 3, arrowVelocity);
 			arrowCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			

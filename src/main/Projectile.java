@@ -2,9 +2,9 @@ package main;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 
 import util.CollisionBox;
 
@@ -18,7 +18,7 @@ public class Projectile {
 	
 	private CollisionBox collisionBox;
 		
-	private SpriteSheet spriteSheet;
+	private Animation animation;
 	
 	private int velocity;
 	private int direction;
@@ -28,42 +28,42 @@ public class Projectile {
 	private int travelledDistance = 0;
 	private final int travelledDistanceRemove = Main.TILE_SIZE * 30;
 
-	public Projectile(float x, float y, String path, int spriteWidth, int spriteHeight, int direction, int velocity) throws SlickException {
+	public Projectile(float x, float y, Animation animation, int direction, int velocity) throws SlickException {
 		
-		spriteSheet = new SpriteSheet(path, spriteWidth, spriteHeight);
-		
-		this.relativeToMapX = x - spriteWidth/2;
-		this.relativeToMapY = y - spriteHeight/2;
-		
-		this.relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
-		this.relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
-		
-		this.velocity = velocity;
-		this.direction = direction;
+		this.animation = animation;
+						
+		relativeToMapX = x - 32;
+		relativeToMapY = y - 32;
 		
 		if(direction == 0) {
 			
-			spriteSheet.rotate(90);
-			collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, spriteHeight, spriteWidth);
+			relativeToMapY = relativeToMapY - velocity;
 			
 		} else if(direction == 1) {
 			
-			spriteSheet.rotate(270);
-			collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, spriteHeight, spriteWidth);
+			relativeToMapY = relativeToMapY + velocity;
 			
 		} else if(direction == 2) {
 			
-			spriteSheet.rotate(0);
-			collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, spriteWidth, spriteHeight);
-			
+			relativeToMapX = relativeToMapX - velocity;
+
 		} else if(direction == 3) {
 			
-			spriteSheet.rotate(180);
-			collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, spriteWidth, spriteHeight);
+			relativeToMapX = relativeToMapX + velocity;
 			
 		} else {
+			
 			throw(new IllegalArgumentException("Direction must be an integer from 0 to 3"));
+			
 		}
+		
+		relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
+		relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
+		
+		this.velocity = velocity;
+		this.direction = direction;
+			
+		collisionBox = new CollisionBox(relativeToMapX + 16, relativeToMapY + 16, 16, 16);
 		
 	}
 
@@ -102,8 +102,8 @@ public class Projectile {
 			
 		} else {
 			
-			collisionBox.setX(relativeToMapX);
-			collisionBox.setY(relativeToMapY);
+			collisionBox.setX(relativeToMapX + 16);
+			collisionBox.setY(relativeToMapY + 16);
 			
 			npcList = Game.getNpcList();
 			
@@ -117,7 +117,7 @@ public class Projectile {
 	}
 	
 	public void render(Graphics g) {
-		spriteSheet.draw(relativeToScreenX, relativeToScreenY);
+		animation.draw(relativeToScreenX, relativeToScreenY);
 	}
 	
 }
