@@ -85,7 +85,16 @@ public class Player {
 	private boolean isShooting = false;
 	private boolean arrowCreated = false;
 	
+	private boolean isSpelling = false;
+	private boolean spellCreated = false;
+	
 	private int arrowVelocity = 5;
+	private int spellVelocity = 5;
+	
+	private Animation spellUpAnimation = new Animation(spriteSheet, 0, 0, 6, 0, true, 100, true);
+	private Animation spellDownAnimation = new Animation(spriteSheet, 0, 2, 6, 2, true, 100, true);
+	private Animation spellLeftAnimation = new Animation(spriteSheet, 0, 1, 6, 1, true, 100, true);
+	private Animation spellRightAnimation = new Animation(spriteSheet, 0, 3, 6, 3, true, 100, true);
 	
 	public Player() throws SlickException {
 				
@@ -101,6 +110,11 @@ public class Player {
 		shootDownAnimation.setLooping(false);
 		shootLeftAnimation.setLooping(false);
 		shootRightAnimation.setLooping(false);
+		
+		spellUpAnimation.setLooping(false);
+		spellDownAnimation.setLooping(false);
+		spellLeftAnimation.setLooping(false);
+		spellRightAnimation.setLooping(false);
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
@@ -135,6 +149,7 @@ public class Player {
 		move();
 		attack();
 		shoot();
+		spell();
 	
 	}
 	
@@ -158,9 +173,97 @@ public class Player {
 							
 	}
 	
+	private void spell() throws SlickException {
+ 		
+		if(input.isKeyDown(Input.KEY_C) && !isShooting && !isAttacking && !isSpelling) {
+			
+			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
+				currentAnimation = spellUpAnimation;
+				spellCreated = false;
+			}
+			
+			if(currentAnimation == lookDownAnimation || currentAnimation == goDownAnimation) {
+				currentAnimation = spellDownAnimation;
+				spellCreated = false;
+			}
+			
+			if(currentAnimation == lookLeftAnimation || currentAnimation == goLeftAnimation) {
+				currentAnimation = spellLeftAnimation;
+				spellCreated = false;
+			}
+			
+			if(currentAnimation == lookRightAnimation || currentAnimation == goRightAnimation) {
+				currentAnimation = spellRightAnimation;
+				spellCreated = false;
+			}
+			
+			currentAnimation.start();
+			isSpelling = true;
+			
+		}
+		
+		if(isSpelling && spellUpAnimation.isStopped()) {
+			spellUpAnimation.restart();
+			currentAnimation = lookUpAnimation;
+			isSpelling = false;
+		}
+		
+		if(isSpelling && spellDownAnimation.isStopped()) {
+			spellDownAnimation.restart();
+			currentAnimation = lookDownAnimation;
+			isSpelling = false;
+		}
+		
+		if(isSpelling && spellLeftAnimation.isStopped()) {
+			spellLeftAnimation.restart();
+			currentAnimation = lookLeftAnimation;
+			isSpelling = false;
+		}
+		
+		if(isSpelling && spellRightAnimation.isStopped()) {
+			spellRightAnimation.restart();
+			currentAnimation = lookRightAnimation;
+			isSpelling = false;
+		}
+		
+		if(currentAnimation == spellUpAnimation && currentAnimation.getFrame() == 5 && !spellCreated) {
+						
+			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4, relativeToMapY - 50, "resources/fireball.png", 30, 30, 0, spellVelocity);
+			spellCreated = true;
+			Game.getProjectileManager().addProjectile(projectile);
+			
+		}
+		
+		if(currentAnimation == spellDownAnimation && currentAnimation.getFrame() == 5 && !spellCreated) {
+
+			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4, relativeToMapY + 50, "resources/fireball.png", 30, 30, 1, spellVelocity);
+			spellCreated = true;
+			Game.getProjectileManager().addProjectile(projectile);
+			
+		}
+		
+		if(currentAnimation == spellLeftAnimation && currentAnimation.getFrame() == 5 && !spellCreated) {
+
+			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4 - 50, relativeToMapY, "resources/fireball.png", 30, 30, 2, spellVelocity);
+			spellCreated = true;
+			Game.getProjectileManager().addProjectile(projectile);
+			
+		}
+		
+		if(currentAnimation == spellRightAnimation && currentAnimation.getFrame() == 5 && !spellCreated) {
+
+			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4 + 50, relativeToMapY, "resources/fireball.png", 30, 30, 3, spellVelocity);
+			spellCreated = true;
+			Game.getProjectileManager().addProjectile(projectile);
+			
+		}
+		
+	}
+	
+	
 	private void shoot() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_Y) && !isShooting && !isAttacking) {
+		if(input.isKeyDown(Input.KEY_Y) && !isShooting && !isAttacking && !isSpelling) {
 			
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = shootUpAnimation;
@@ -213,33 +316,33 @@ public class Player {
 		
 		if(currentAnimation == shootUpAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4, relativeToMapY - 50, 0, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4, relativeToMapY - 50, "resources/arrow.png", 33, 5, 0, arrowVelocity);
 			arrowCreated = true;
-			Game.getArrowManager().addArrow(arrow);
+			Game.getProjectileManager().addProjectile(projectile);
 			
 		}
 		
 		if(currentAnimation == shootDownAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4, relativeToMapY + 50, 1, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4, relativeToMapY + 50, "resources/arrow.png", 33, 5, 1, arrowVelocity);
 			arrowCreated = true;
-			Game.getArrowManager().addArrow(arrow);
+			Game.getProjectileManager().addProjectile(projectile);
 			
 		}
 		
 		if(currentAnimation == shootLeftAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4 - 50, relativeToMapY, 2, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4 - 50, relativeToMapY, "resources/arrow.png", 33, 5, 2, arrowVelocity);
 			arrowCreated = true;
-			Game.getArrowManager().addArrow(arrow);
+			Game.getProjectileManager().addProjectile(projectile);
 			
 		}
 		
 		if(currentAnimation == shootRightAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Arrow arrow = new Arrow(relativeToMapX + spriteSize / 4 + 50, relativeToMapY, 3, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + spriteSize / 4 + 50, relativeToMapY, "resources/arrow.png", 33, 5, 3, arrowVelocity);
 			arrowCreated = true;
-			Game.getArrowManager().addArrow(arrow);
+			Game.getProjectileManager().addProjectile(projectile);
 			
 		}
 		
@@ -247,7 +350,7 @@ public class Player {
 	
 	private void attack() {
 		 		
-		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isShooting) {
+		if(input.isKeyDown(Input.KEY_X) && !isShooting && !isAttacking && !isSpelling) {
 						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = attackUpAnimation;
@@ -337,7 +440,7 @@ public class Player {
 
 	private void move() {
 				
-		if(!isAttacking && !isShooting) {
+		if(!isAttacking && !isShooting && !isSpelling) {
 						
 			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
 				

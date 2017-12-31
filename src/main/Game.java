@@ -18,7 +18,7 @@ public class Game extends BasicGameState {
 	
 	private static ArrayList<NPC> npcList = new ArrayList<NPC>();
 	
-	private static ArrowManager arrowManager = new ArrowManager();
+	private static ProjectileManager projectileManager = new ProjectileManager();
 			
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -42,7 +42,7 @@ public class Game extends BasicGameState {
 		for(NPC npc: npcList)
 			npc.update();
 		
-		arrowManager.update();
+		projectileManager.update();
 
 	}
 
@@ -55,7 +55,7 @@ public class Game extends BasicGameState {
 			npc.render(g);
 		player.render(g);
 		
-		arrowManager.render(g);
+		projectileManager.render(g);
 		
 
 	}
@@ -77,8 +77,8 @@ public class Game extends BasicGameState {
 		return npcList;
 	}
 	
-	public static ArrowManager getArrowManager() {
-		return arrowManager;
+	public static ProjectileManager getProjectileManager() {
+		return projectileManager;
 	}
 
 }

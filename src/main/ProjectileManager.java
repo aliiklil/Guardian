@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
 
-public class ArrowManager {
+public class ProjectileManager {
 
-	private ArrayList<Arrow> arrowList = new ArrayList<Arrow>();
-	private ArrayList<Arrow> removeList = new ArrayList<Arrow>();
+	private ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
+	private ArrayList<Projectile> removeList = new ArrayList<Projectile>();
 	
 	public void update() {
 		
-		for(Arrow arrow : arrowList) {
-			arrow.update();
+		for(Projectile projectile : projectileList) {
+			projectile.update();
 		}
 		
-		arrowList.removeAll(removeList);
+		projectileList.removeAll(removeList);
 		
 		removeList.clear();
 		
@@ -23,21 +23,21 @@ public class ArrowManager {
 
 	public void render(Graphics g) {
 	
-		for(Arrow arrow : arrowList) {
-			arrow.render(g);
+		for(Projectile projectile : projectileList) {
+			projectile.render(g);
 		}
 		
 	}
 	
-	public void addArrow(Arrow arrow) {
+	public void addProjectile(Projectile projectile) {
 		
-		arrowList.add(arrow);
+		projectileList.add(projectile);
 		
 	}
 	
-	public void removeArrow(Arrow arrow) {
+	public void removeProjectile(Projectile projectile) {
 		
-		removeList.add(arrow);
+		removeList.add(projectile);
 		
 	}
 	

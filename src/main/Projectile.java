@@ -8,7 +8,7 @@ import org.newdawn.slick.SpriteSheet;
 
 import util.CollisionBox;
 
-public class Arrow {
+public class Projectile {
 
 	private float relativeToMapX;
 	private float relativeToMapY;
@@ -17,11 +17,8 @@ public class Arrow {
 	private float relativeToScreenY;
 	
 	private CollisionBox collisionBox;
-	
-	private int spriteWidth = 33;
-	private int spriteHeight = 5;
-	
-	private SpriteSheet spriteSheet = new SpriteSheet("resources/arrow.png", spriteWidth, spriteHeight);
+		
+	private SpriteSheet spriteSheet;
 	
 	private int velocity;
 	private int direction;
@@ -31,7 +28,9 @@ public class Arrow {
 	private int travelledDistance = 0;
 	private final int travelledDistanceRemove = Main.TILE_SIZE * 30;
 
-	public Arrow(float x, float y, int direction, int velocity) throws SlickException {
+	public Projectile(float x, float y, String path, int spriteWidth, int spriteHeight, int direction, int velocity) throws SlickException {
+		
+		spriteSheet = new SpriteSheet(path, spriteWidth, spriteHeight);
 		
 		this.relativeToMapX = x - spriteWidth/2;
 		this.relativeToMapY = y - spriteHeight/2;
@@ -99,7 +98,7 @@ public class Arrow {
 		
 		if(travelledDistance > travelledDistanceRemove) {
 			
-			Game.getArrowManager().removeArrow(this);
+			Game.getProjectileManager().removeProjectile(this);
 			
 		} else {
 			
@@ -111,7 +110,7 @@ public class Arrow {
 			for(NPC npc : npcList) {
 					if(collisionBox.intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(10);
-						Game.getArrowManager().removeArrow(this);
+						Game.getProjectileManager().removeProjectile(this);
 					}
 			}
 		}
