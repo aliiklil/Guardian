@@ -1,8 +1,10 @@
-package main;
+package manager;
 
 import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
+
+import models.Projectile;
 
 public class ProjectileManager {
 

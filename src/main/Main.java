@@ -13,6 +13,7 @@ public class Main {
 	public static final int TILE_SIZE = 32;
 	
 	private static final String TITLE = "Guardian";
+
 	private static final int GAME_STATE_ID = 0;
 	
 	private static final int FRAME_RATE = 60;

@@ -8,6 +8,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import manager.ProjectileManager;
+import models.Map;
+import models.NPC;
+import models.Player;
+
 public class Game extends BasicGameState {
 	
 	private static Map world;

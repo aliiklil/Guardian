@@ -1,4 +1,4 @@
-package main;
+package models;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
 
+import main.Game;
+import main.Main;
 import util.CollisionBox;
 
 public class Player {
@@ -175,7 +177,7 @@ public class Player {
 	private void spell() throws SlickException {
  		
 		if(input.isKeyDown(Input.KEY_C) && !isShooting && !isAttacking && !isSpelling) {
-			
+						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = spellUpAnimation;
 				spellCreated = false;

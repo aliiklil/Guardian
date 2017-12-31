@@ -1,4 +1,4 @@
-package main;
+package models;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,8 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import main.Game;
+import main.Main;
 import util.CollisionBox;
 
 public class Projectile {

@@ -1,10 +1,11 @@
-package main;
+package models;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import main.Game;
 import util.CollisionBox;
 
 public class NPC {
