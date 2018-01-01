@@ -80,7 +80,7 @@ public class Inventory {
 			
 			for(Item item : inventoryList) {
 				
-				item.getImage().draw(1492 + i * 78, 313 + j * 78, 2);
+				item.getInventoryAnimation().draw(1492 + i * 78, 313 + j * 78);
 				i++;
 				
 				if(i >= 5) {

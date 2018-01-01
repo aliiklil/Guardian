@@ -1,8 +1,10 @@
 package models;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import main.Game;
 import util.CollisionBox;
@@ -15,20 +17,16 @@ public class Item {
 	private float relativeToScreenX;
 	private float relativeToScreenY;
 			
-	private Image image;
+	private Animation mapAnimation;
+	private Animation inventoryAnimation;
 	
 	private CollisionBox collisionBox;
 	
-	private final int width;
-	private final int height;
-
-	public Item(float x, float y, String path) throws SlickException {
+	public Item(float x, float y, int width, int height, int duration, String path) throws SlickException {
 		
-		image = new Image(path);
-		
-		width = image.getWidth();
-		height = image.getHeight();
-						
+		mapAnimation = new Animation(new SpriteSheet(path, width, height), duration);
+		inventoryAnimation = new Animation(new SpriteSheet(new Image(path).getScaledCopy(2), width * 2 , height * 2), duration);
+								
 		relativeToMapX = x;
 		relativeToMapY = y;
 				
@@ -51,7 +49,7 @@ public class Item {
 	
 	public void render(Graphics g) {
 		
-		image.draw(relativeToScreenX, relativeToScreenY);
+		mapAnimation.draw(relativeToScreenX, relativeToScreenY);
 		
 	}
 	
@@ -59,8 +57,12 @@ public class Item {
 		return collisionBox;
 	}
 	
-	public Image getImage() {
-		return image;
+	public Animation getMapAnimation() {
+		return mapAnimation;
+	}
+	
+	public Animation getInventoryAnimation() {
+		return inventoryAnimation;
 	}
 	
 }

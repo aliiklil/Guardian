@@ -12,17 +12,19 @@ public class ItemManager {
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private ArrayList<Item> removeList = new ArrayList<Item>();
 	
-	private Item potion = new Item(0, 0, "resources/potion.png");
-	private Item bigPotion = new Item(320, 256, "resources/bigpotion.png");
-	private Item helmet = new Item(288, 384, "resources/helmet.png");
+	private Item potion = new Item(128, 256, 32, 32, 100, "resources/potion.png");
+	private Item bigPotion = new Item(320, 256, 32, 32, 100, "resources/bigpotion.png");
+	private Item helmet = new Item(288, 384, 32, 32, 100, "resources/helmet.png");
 	
-	private Item potion1 = new Item(384, 288, "resources/potion.png");
-	private Item bigPotion1 = new Item(384, 256, "resources/bigpotion.png");
-	private Item helmet1 = new Item(640, 480, "resources/helmet.png");
+	private Item potion1 = new Item(384, 288, 32, 32, 100, "resources/potion.png");
+	private Item bigPotion1 = new Item(480, 256, 32, 32, 100, "resources/bigpotion.png");
+	private Item helmet1 = new Item(288, 480, 32, 32, 100, "resources/helmet.png");
 	
-	private Item potion2 = new Item(480, 640, "resources/potion.png");
-	private Item bigPotion2 = new Item(384, 640, "resources/bigpotion.png");
-	private Item helmet2 = new Item(480, 384, "resources/helmet.png");
+	private Item potion2 = new Item(480, 320, 32, 32, 100, "resources/potion.png");
+	private Item bigPotion2 = new Item(320, 640, 32, 32, 100, "resources/bigpotion.png");
+	private Item helmet2 = new Item(416, 384, 32, 32, 100, "resources/helmet.png");
+	
+	private Item gold = new Item(480, 416, 32, 32, 100, "resources/goldcoin.png");
 	
 	public ItemManager() throws SlickException {
 		itemList.add(potion);
@@ -36,6 +38,8 @@ public class ItemManager {
 		itemList.add(potion2);
 		itemList.add(bigPotion2);
 		itemList.add(helmet2);
+		
+		itemList.add(gold);
 	}
 	
 	public void update() {

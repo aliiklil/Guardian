@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -99,7 +98,7 @@ public class Player {
 	private Animation spellRightAnimation = new Animation(spriteSheet, 0, 3, 6, 3, true, 100, true);
 	
 	private Inventory inventory = new Inventory();
-	
+		
 	public Player() throws SlickException {
 				
 		Game.getCurrentMap().setX(relativeToScreenX - relativeToMapX + spriteSize / 4);
