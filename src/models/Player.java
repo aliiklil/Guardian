@@ -205,6 +205,8 @@ public class Player {
 		
 		if(inventoryOpen) {
 		
+			input.clearKeyPressedRecord();
+			
 			if(input.isKeyPressed(Input.KEY_UP) && selectedCellY > 0) {
 				selectedCellY--;
 			}
