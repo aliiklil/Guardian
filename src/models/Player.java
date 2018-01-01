@@ -155,6 +155,7 @@ public class Player {
 		attack();
 		shoot();
 		spell();
+		
 		openInventory();
 	
 	}
@@ -202,7 +203,7 @@ public class Player {
 	
 	private void spell() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_C) && !isShooting && !isAttacking && !isSpelling) {
+		if(input.isKeyDown(Input.KEY_C) && !isShooting && !isAttacking && !isSpelling && !inventoryOpen) {
 						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = spellUpAnimation;
@@ -290,7 +291,7 @@ public class Player {
 	
 	private void shoot() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_Y) && !isShooting && !isAttacking && !isSpelling) {
+		if(input.isKeyDown(Input.KEY_Y) && !isShooting && !isAttacking && !isSpelling && !inventoryOpen) {
 			
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = shootUpAnimation;
@@ -343,7 +344,7 @@ public class Player {
 		
 		if(currentAnimation == shootUpAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow4directions.png", 64, 64), 1, 0, 1, 0, true, 100, true), 0, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 1, 0, 1, 0, true, 100, true), 0, arrowVelocity);
 			arrowCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -351,7 +352,7 @@ public class Player {
 		
 		if(currentAnimation == shootDownAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow4directions.png", 64, 64), 3, 0, 3, 0, true, 100, true), 1, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 3, 0, 3, 0, true, 100, true), 1, arrowVelocity);
 			arrowCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -359,7 +360,7 @@ public class Player {
 		
 		if(currentAnimation == shootLeftAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow4directions.png", 64, 64), 0, 0, 0, 0, true, 100, true), 2, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 0, 0, 0, 0, true, 100, true), 2, arrowVelocity);
 			arrowCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -367,7 +368,7 @@ public class Player {
 		
 		if(currentAnimation == shootRightAnimation && currentAnimation.getFrame() == 9 && !arrowCreated) {
 
-			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow4directions.png", 64, 64), 2, 0, 2, 0, true, 100, true), 3, arrowVelocity);
+			Projectile projectile = new Projectile(relativeToMapX + 16, relativeToMapY, new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 2, 0, 2, 0, true, 100, true), 3, arrowVelocity);
 			arrowCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -377,7 +378,7 @@ public class Player {
 	
 	private void attack() {
 		 		
-		if(input.isKeyDown(Input.KEY_X) && !isShooting && !isAttacking && !isSpelling) {
+		if(input.isKeyDown(Input.KEY_X) && !isShooting && !isAttacking && !isSpelling && !inventoryOpen) {
 						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = attackUpAnimation;
@@ -469,7 +470,7 @@ public class Player {
 				
 		if(!isAttacking && !isShooting && !isSpelling) {
 						
-			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
 				
 				if(isUpCollision()) {
 						
@@ -488,7 +489,7 @@ public class Player {
 				lookRight = false;
 				
 	
-			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
 					
 				
 				if(isDownCollision()) {
@@ -507,7 +508,7 @@ public class Player {
 				lookLeft = false;
 				lookRight = false;
 				
-			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
 				
 				if(isLeftCollision()) {
 					
@@ -525,7 +526,7 @@ public class Player {
 				lookLeft = true;
 				lookRight = false;
 				
-			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
+			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryOpen) {
 			
 				if(isRightCollision()) {
 					
@@ -543,7 +544,7 @@ public class Player {
 				lookLeft = false;
 				lookRight = true;
 				
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
 				
 				if(!isUpCollision()) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + diagonalPlayerSpeed);
@@ -564,7 +565,7 @@ public class Player {
 				lookLeft = true;
 				lookRight = false;
 				
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryOpen) {
 				
 				if(!isUpCollision()) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + diagonalPlayerSpeed);
@@ -589,7 +590,7 @@ public class Player {
 				lookLeft = false;
 				lookRight = true;
 				
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
 				
 				
 				if(!isDownCollision()) {
@@ -615,7 +616,7 @@ public class Player {
 				lookLeft = true;
 				lookRight = false;
 	
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT)) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryOpen) {
 					
 				if(!isDownCollision()) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - diagonalPlayerSpeed);
