@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import manager.ItemManager;
 import manager.ProjectileManager;
 import models.Map;
 import models.NPC;
@@ -23,7 +24,8 @@ public class Game extends BasicGameState {
 	
 	private static ArrayList<NPC> npcList = new ArrayList<NPC>();
 	
-	private static ProjectileManager projectileManager = new ProjectileManager();
+	private static ProjectileManager projectileManager;
+	private static ItemManager itemManager;
 			
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -37,6 +39,9 @@ public class Game extends BasicGameState {
 		npcList.add(npc1);
 		npcList.add(npc2);
 		
+		projectileManager = new ProjectileManager();
+		itemManager = new ItemManager();
+		
 	}
 
 	@Override
@@ -48,6 +53,7 @@ public class Game extends BasicGameState {
 			npc.update();
 		
 		projectileManager.update();
+		itemManager.update();
 
 	}
 
@@ -56,13 +62,15 @@ public class Game extends BasicGameState {
 
 		world.render(g);
 		
+		itemManager.render(g);
+		
 		for(NPC npc: npcList)
 			npc.render(g);
 		player.render(g);
 		
 		projectileManager.render(g);
-		
 
+		
 	}
 	
 	@Override
@@ -86,6 +94,10 @@ public class Game extends BasicGameState {
 		return projectileManager;
 	}
 
+	public static ItemManager getItemManager() {
+		return itemManager;
+	}
+	
 }
 
 

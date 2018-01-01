@@ -104,6 +104,8 @@ public class Player {
 	private int selectedCellX = 0;
 	private int selectedCellY = 0;
 	
+	private int goldAmount = 0;
+	
 	public Player() throws SlickException {
 				
 		Game.getCurrentMap().setX(relativeToScreenX - relativeToMapX + spriteSize / 4);
@@ -160,6 +162,8 @@ public class Player {
 		attack();
 		shoot();
 		spell();
+		
+		pickUpItem();
 
 	}
 	
@@ -184,8 +188,29 @@ public class Player {
 		if(inventoryOpen) {
 			g.drawImage(inventoryImage, 0, 0);
 			g.drawImage(selectedCellImage, 1484 + selectedCellX * 78, 305 + selectedCellY * 78);
+			g.setColor(Color.white);
+			g.drawString("Gold: ", 1733, 239);
+			int length = Integer.toString(goldAmount).length();
+			g.drawString(String.valueOf(goldAmount), 1853 - length * 7, 239);
+
 		}
 							
+	}
+	
+	private void pickUpItem() throws SlickException {
+		
+		ArrayList<Item> itemList = Game.getItemManager().getItemList();
+		
+		for(Item item : itemList) {
+			
+			if(collisionBox.intersects(item.getCollisionBox())) {
+				
+				Game.getItemManager().removeItem(item);
+				
+			}
+			
+		}
+		
 	}
 	
 	private void openInventory() throws SlickException {
