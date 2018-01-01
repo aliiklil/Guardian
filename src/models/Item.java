@@ -19,13 +19,15 @@ public class Item {
 			
 	private Animation mapAnimation;
 	private Animation inventoryAnimation;
+	private Animation descriptionAnimation;
 	
 	private CollisionBox collisionBox;
 	
 	public Item(float x, float y, int width, int height, int duration, String path) throws SlickException {
 		
 		mapAnimation = new Animation(new SpriteSheet(path, width, height), duration);
-		inventoryAnimation = new Animation(new SpriteSheet(new Image(path).getScaledCopy(2), width * 2 , height * 2), duration);
+		inventoryAnimation = new Animation(new SpriteSheet(new Image(path).getScaledCopy(2), width * 2, height * 2), duration);
+		descriptionAnimation = new Animation(new SpriteSheet(new Image(path).getScaledCopy(4), width * 4, height * 4), duration);
 		
 		relativeToMapX = x;
 		relativeToMapY = y;
@@ -64,5 +66,10 @@ public class Item {
 	public Animation getInventoryAnimation() {
 		return inventoryAnimation;
 	}
+	
+	public Animation getDescriptionAnimation() {
+		return descriptionAnimation;
+	}
+	
 	
 }

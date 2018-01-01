@@ -96,6 +96,10 @@ public class Inventory {
 				
 			}
 			
+			if(inventoryList.size() > selectedCellX + selectedCellY * 5) {
+				inventoryList.get(selectedCellX + selectedCellY * 5).getDescriptionAnimation().draw(1126, 836);
+			}
+			
 		}
 							
 	}
