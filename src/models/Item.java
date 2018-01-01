@@ -26,7 +26,7 @@ public class Item {
 		
 		mapAnimation = new Animation(new SpriteSheet(path, width, height), duration);
 		inventoryAnimation = new Animation(new SpriteSheet(new Image(path).getScaledCopy(2), width * 2 , height * 2), duration);
-								
+		
 		relativeToMapX = x;
 		relativeToMapY = y;
 				

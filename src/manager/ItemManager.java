@@ -25,6 +25,8 @@ public class ItemManager {
 	private Item helmet2 = new Item(416, 384, 32, 32, 100, "resources/helmet.png");
 	
 	private Item gold = new Item(480, 416, 32, 32, 100, "resources/goldcoin.png");
+	private Item gold1 = new Item(512, 416, 32, 32, 100, "resources/goldcoin.png");
+	private Item gold2 = new Item(416, 480, 32, 32, 100, "resources/goldcoin.png");
 	
 	public ItemManager() throws SlickException {
 		itemList.add(potion);
@@ -40,6 +42,8 @@ public class ItemManager {
 		itemList.add(helmet2);
 		
 		itemList.add(gold);
+		itemList.add(gold1);
+		itemList.add(gold2);
 	}
 	
 	public void update() {

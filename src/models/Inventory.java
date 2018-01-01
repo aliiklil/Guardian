@@ -18,7 +18,7 @@ public class Inventory {
 	private int selectedCellX = 0;
 	private int selectedCellY = 0;
 	
-	private int goldAmount = 0;
+	private int goldCounter = 0;
 	
 	private Input input = Main.appGameContainer.getInput();
 	
@@ -62,7 +62,7 @@ public class Inventory {
 			}
 		
 		}
-				
+						
 	}
 	
 	public void render(Graphics g) {
@@ -73,7 +73,7 @@ public class Inventory {
 			
 			g.setColor(Color.white);
 			g.drawString("Gold: ", 1733, 239);
-			g.drawString(String.valueOf(goldAmount), 1853 - Integer.toString(goldAmount).length() * 7, 239);
+			g.drawString(String.valueOf(goldCounter), 1853 - Integer.toString(goldCounter).length() * 7, 239);
 			
 			int i = 0;
 			int j = 0;
@@ -108,6 +108,10 @@ public class Inventory {
 	
 	public boolean isInventoryOpen() {
 		return inventoryOpen;
+	}
+	
+	public void incrementGoldCounter() {
+		goldCounter++;
 	}
 	
 }
