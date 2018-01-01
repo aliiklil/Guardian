@@ -100,6 +100,9 @@ public class Player {
 	
 	private boolean inventoryOpen = false;
 	private Image inventoryImage = new Image("resources/inventory.png");
+	private Image selectedCellImage = new Image("resources/inventory_selected_cell.png");
+	private int selectedCellX = 0;
+	private int selectedCellY = 0;
 	
 	public Player() throws SlickException {
 				
@@ -180,6 +183,7 @@ public class Player {
 		
 		if(inventoryOpen) {
 			g.drawImage(inventoryImage, 0, 0);
+			g.drawImage(selectedCellImage, 1484 + selectedCellX * 78, 305 + selectedCellY * 78);
 		}
 							
 	}
@@ -197,6 +201,26 @@ public class Player {
 				inventoryOpen = false;
 				
 			}
+		}
+		
+		if(inventoryOpen) {
+		
+			if(input.isKeyPressed(Input.KEY_UP) && selectedCellY > 0) {
+				selectedCellY--;
+			}
+			
+			if(input.isKeyPressed(Input.KEY_DOWN) && selectedCellY < 5) {
+				selectedCellY++;
+			}
+			
+			if(input.isKeyPressed(Input.KEY_LEFT) && selectedCellX > 0) {
+				selectedCellX--;
+			}
+			
+			if(input.isKeyPressed(Input.KEY_RIGHT) && selectedCellX < 4) {
+				selectedCellX++;
+			}
+		
 		}
 				
 	}
