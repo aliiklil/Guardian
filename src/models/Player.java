@@ -154,13 +154,13 @@ public class Player {
 		attackRightCollisionBox.setX(relativeToMapX + 31);
 		attackRightCollisionBox.setY(relativeToMapY - 16);
 		
+		openInventory();
+		
 		move();
 		attack();
 		shoot();
 		spell();
-		
-		openInventory();
-	
+
 	}
 	
 	public void render(Graphics g) {
@@ -204,8 +204,6 @@ public class Player {
 		}
 		
 		if(inventoryOpen) {
-		
-			input.clearKeyPressedRecord();
 			
 			if(input.isKeyPressed(Input.KEY_UP) && selectedCellY > 0) {
 				selectedCellY--;
@@ -689,6 +687,8 @@ public class Player {
 				lookDown = false;
 				lookLeft = false;
 				lookRight = false;
+				
+				input.clearKeyPressedRecord();
 				
 			}
 		
