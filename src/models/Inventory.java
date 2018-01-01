@@ -23,6 +23,7 @@ public class Inventory {
 	private Input input = Main.appGameContainer.getInput();
 	
 	private ArrayList<Item> inventoryList = new ArrayList<Item>();
+	private ArrayList<Integer> itemCountList = new ArrayList<Integer>();
 	
 	public Inventory() throws SlickException {
 		
@@ -75,17 +76,22 @@ public class Inventory {
 			g.drawString("Gold: ", 1733, 239);
 			g.drawString(String.valueOf(goldCounter), 1853 - Integer.toString(goldCounter).length() * 7, 239);
 			
-			int i = 0;
-			int j = 0;
+			int row = 0;
+			int column = 0;
 			
-			for(Item item : inventoryList) {
+			for(int i = 0; i < inventoryList.size(); i++) {
 				
-				item.getInventoryAnimation().draw(1492 + i * 78, 313 + j * 78);
-				i++;
+				inventoryList.get(i).getInventoryAnimation().draw(1492 + column * 78, 313 + row * 78);
 				
-				if(i >= 5) {
-					i = 0;
-					j++;
+				if(itemCountList.get(i) > 1) {
+					g.drawString(itemCountList.get(i).toString(), 1550 + column * 78, 365 + row * 78);
+				}
+				
+				column++;
+				
+				if(column >= 5) {
+					column = 0;
+					row++;
 				}
 				
 			}
@@ -96,8 +102,16 @@ public class Inventory {
 	
 	public void addItem(Item item) {
 		
-		inventoryList.add(item);
+		for(int i = 0; i < inventoryList.size(); i++) {
+			if(item.getInventoryAnimation().getImage(0).getResourceReference().equals(inventoryList.get(i).getInventoryAnimation().getImage(0).getResourceReference())) {	
+				itemCountList.set(i, itemCountList.get(i) + 1);
+				return;
+			}
+		}
 		
+		itemCountList.add(1);
+		inventoryList.add(item);
+	
 	}
 	
 	public void removeItem(Item item) {
