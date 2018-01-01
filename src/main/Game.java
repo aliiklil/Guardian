@@ -66,10 +66,11 @@ public class Game extends BasicGameState {
 		
 		for(NPC npc: npcList)
 			npc.render(g);
-		player.render(g);
 		
 		projectileManager.render(g);
-
+		
+		player.render(g);
+		
 		
 	}
 	

@@ -98,13 +98,7 @@ public class Player {
 	private Animation spellLeftAnimation = new Animation(spriteSheet, 0, 1, 6, 1, true, 100, true);
 	private Animation spellRightAnimation = new Animation(spriteSheet, 0, 3, 6, 3, true, 100, true);
 	
-	private boolean inventoryOpen = false;
-	private Image inventoryImage = new Image("resources/inventory.png");
-	private Image selectedCellImage = new Image("resources/inventory_selected_cell.png");
-	private int selectedCellX = 0;
-	private int selectedCellY = 0;
-	
-	private int goldAmount = 0;
+	private Inventory inventory = new Inventory();
 	
 	public Player() throws SlickException {
 				
@@ -156,7 +150,7 @@ public class Player {
 		attackRightCollisionBox.setX(relativeToMapX + 31);
 		attackRightCollisionBox.setY(relativeToMapY - 16);
 		
-		openInventory();
+		inventory.update();
 		
 		move();
 		attack();
@@ -185,16 +179,8 @@ public class Player {
 		
 		healthBar.render(g);
 		
-		if(inventoryOpen) {
-			g.drawImage(inventoryImage, 0, 0);
-			g.drawImage(selectedCellImage, 1484 + selectedCellX * 78, 305 + selectedCellY * 78);
-			g.setColor(Color.white);
-			g.drawString("Gold: ", 1733, 239);
-			int length = Integer.toString(goldAmount).length();
-			g.drawString(String.valueOf(goldAmount), 1853 - length * 7, 239);
-
-		}
-							
+		inventory.render(g);
+		
 	}
 	
 	private void pickUpItem() throws SlickException {
@@ -212,47 +198,10 @@ public class Player {
 		}
 		
 	}
-	
-	private void openInventory() throws SlickException {
-
-		if(input.isKeyPressed(Input.KEY_TAB)) {
-			
-			if(!inventoryOpen) {
-				
-				inventoryOpen = true;
-				
-			} else {
-				
-				inventoryOpen = false;
-				
-			}
-		}
 		
-		if(inventoryOpen) {
-			
-			if(input.isKeyPressed(Input.KEY_UP) && selectedCellY > 0) {
-				selectedCellY--;
-			}
-			
-			if(input.isKeyPressed(Input.KEY_DOWN) && selectedCellY < 5) {
-				selectedCellY++;
-			}
-			
-			if(input.isKeyPressed(Input.KEY_LEFT) && selectedCellX > 0) {
-				selectedCellX--;
-			}
-			
-			if(input.isKeyPressed(Input.KEY_RIGHT) && selectedCellX < 4) {
-				selectedCellX++;
-			}
-		
-		}
-				
-	}
-	
 	private void spell() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_C) && !isShooting && !isAttacking && !isSpelling && !inventoryOpen) {
+		if(input.isKeyDown(Input.KEY_C) && !isShooting && !isAttacking && !isSpelling && !inventory.isInventoryOpen()) {
 						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = spellUpAnimation;
@@ -340,7 +289,7 @@ public class Player {
 	
 	private void shoot() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_Y) && !isShooting && !isAttacking && !isSpelling && !inventoryOpen) {
+		if(input.isKeyDown(Input.KEY_Y) && !isShooting && !isAttacking && !isSpelling && !inventory.isInventoryOpen()) {
 			
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = shootUpAnimation;
@@ -427,7 +376,7 @@ public class Player {
 	
 	private void attack() {
 		 		
-		if(input.isKeyDown(Input.KEY_X) && !isShooting && !isAttacking && !isSpelling && !inventoryOpen) {
+		if(input.isKeyDown(Input.KEY_X) && !isShooting && !isAttacking && !isSpelling && !inventory.isInventoryOpen()) {
 						
 			if(currentAnimation == lookUpAnimation || currentAnimation == goUpAnimation) {
 				currentAnimation = attackUpAnimation;
@@ -519,7 +468,7 @@ public class Player {
 				
 		if(!isAttacking && !isShooting && !isSpelling) {
 						
-			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
+			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 				
 				if(isUpCollision()) {
 						
@@ -538,7 +487,7 @@ public class Player {
 				lookRight = false;
 				
 	
-			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 					
 				
 				if(isDownCollision()) {
@@ -557,7 +506,7 @@ public class Player {
 				lookLeft = false;
 				lookRight = false;
 				
-			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
+			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 				
 				if(isLeftCollision()) {
 					
@@ -575,7 +524,7 @@ public class Player {
 				lookLeft = true;
 				lookRight = false;
 				
-			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryOpen) {
+			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
 			
 				if(isRightCollision()) {
 					
@@ -593,7 +542,7 @@ public class Player {
 				lookLeft = false;
 				lookRight = true;
 				
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 				
 				if(!isUpCollision()) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + diagonalPlayerSpeed);
@@ -614,7 +563,7 @@ public class Player {
 				lookLeft = true;
 				lookRight = false;
 				
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryOpen) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
 				
 				if(!isUpCollision()) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + diagonalPlayerSpeed);
@@ -639,7 +588,7 @@ public class Player {
 				lookLeft = false;
 				lookRight = true;
 				
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryOpen) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 				
 				
 				if(!isDownCollision()) {
@@ -665,7 +614,7 @@ public class Player {
 				lookLeft = true;
 				lookRight = false;
 	
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryOpen) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
 					
 				if(!isDownCollision()) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - diagonalPlayerSpeed);
