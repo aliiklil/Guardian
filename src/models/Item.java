@@ -59,4 +59,8 @@ public class Item {
 		return collisionBox;
 	}
 	
+	public Image getImage() {
+		return image;
+	}
+	
 }

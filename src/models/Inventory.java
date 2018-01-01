@@ -70,11 +70,26 @@ public class Inventory {
 		if(inventoryOpen) {
 			g.drawImage(inventoryImage, 0, 0);
 			g.drawImage(selectedCellImage, 1484 + selectedCellX * 78, 305 + selectedCellY * 78);
+			
 			g.setColor(Color.white);
 			g.drawString("Gold: ", 1733, 239);
-			int length = Integer.toString(goldAmount).length();
-			g.drawString(String.valueOf(goldAmount), 1853 - length * 7, 239);
-
+			g.drawString(String.valueOf(goldAmount), 1853 - Integer.toString(goldAmount).length() * 7, 239);
+			
+			int i = 0;
+			int j = 0;
+			
+			for(Item item : inventoryList) {
+				
+				item.getImage().draw(1492 + i * 78, 313 + j * 78, 2);
+				i++;
+				
+				if(i >= 5) {
+					i = 0;
+					j++;
+				}
+				
+			}
+			
 		}
 							
 	}

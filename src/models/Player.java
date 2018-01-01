@@ -192,6 +192,7 @@ public class Player {
 			if(collisionBox.intersects(item.getCollisionBox())) {
 				
 				Game.getItemManager().removeItem(item);
+				inventory.addItem(item);
 				
 			}
 			
