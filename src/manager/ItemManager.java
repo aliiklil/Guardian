@@ -12,21 +12,21 @@ public class ItemManager {
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private ArrayList<Item> removeList = new ArrayList<Item>();
 	
-	private Item potion = new Item(128, 256, 32, 32, 100, "resources/potion.png");
-	private Item bigPotion = new Item(320, 256, 32, 32, 100, "resources/bigpotion.png");
-	private Item helmet = new Item(288, 384, 32, 32, 100, "resources/helmet.png");
+	private Item potion = new Item(128, 256, 32, 32, 100, "resources/potion.png", "Healing Potion");
+	private Item bigPotion = new Item(320, 256, 32, 32, 100, "resources/bigpotion.png", "Big Healing Potion");
+	private Item helmet = new Item(288, 384, 32, 32, 100, "resources/helmet.png", "Helmet");
 	
-	private Item potion1 = new Item(384, 288, 32, 32, 100, "resources/potion.png");
-	private Item bigPotion1 = new Item(480, 256, 32, 32, 100, "resources/bigpotion.png");
-	private Item helmet1 = new Item(288, 480, 32, 32, 100, "resources/helmet.png");
+	private Item potion1 = new Item(384, 288, 32, 32, 100, "resources/potion.png", "Healing Potion");
+	private Item bigPotion1 = new Item(480, 256, 32, 32, 100, "resources/bigpotion.png", "Big Healing Potion");
+	private Item helmet1 = new Item(288, 480, 32, 32, 100, "resources/helmet.png", "Helmet");
 	
-	private Item potion2 = new Item(480, 320, 32, 32, 100, "resources/potion.png");
-	private Item bigPotion2 = new Item(320, 640, 32, 32, 100, "resources/bigpotion.png");
-	private Item helmet2 = new Item(416, 384, 32, 32, 100, "resources/helmet.png");
+	private Item potion2 = new Item(480, 320, 32, 32, 100, "resources/potion.png", "Healing Potion");
+	private Item bigPotion2 = new Item(320, 640, 32, 32, 100, "resources/bigpotion.png", "Big Healing Potion");
+	private Item helmet2 = new Item(416, 384, 32, 32, 100, "resources/helmet.png", "Helmet");
 	
-	private Item gold = new Item(480, 416, 32, 32, 100, "resources/goldcoin.png");
-	private Item gold1 = new Item(512, 416, 32, 32, 100, "resources/goldcoin.png");
-	private Item gold2 = new Item(416, 480, 32, 32, 100, "resources/goldcoin.png");
+	private Item gold = new Item(480, 416, 32, 32, 100, "resources/goldcoin.png", "Gold");
+	private Item gold1 = new Item(512, 416, 32, 32, 100, "resources/goldcoin.png", "Gold");
+	private Item gold2 = new Item(416, 480, 32, 32, 100, "resources/goldcoin.png", "Gold");
 	
 	public ItemManager() throws SlickException {
 		itemList.add(potion);

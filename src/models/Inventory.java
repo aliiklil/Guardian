@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -97,6 +98,10 @@ public class Inventory {
 			}
 			
 			if(inventoryList.size() > selectedCellX + selectedCellY * 5) {
+				
+				String name = inventoryList.get(selectedCellX + selectedCellY * 5).getName();
+				g.drawString(name, Main.WIDTH/2 - (name.length() * 10)/2, 822);
+				
 				inventoryList.get(selectedCellX + selectedCellY * 5).getDescriptionAnimation().draw(1126, 836);
 			}
 			

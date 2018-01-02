@@ -17,13 +17,15 @@ public class Item {
 	private float relativeToScreenX;
 	private float relativeToScreenY;
 			
-	private Animation mapAnimation;
-	private Animation inventoryAnimation;
-	private Animation descriptionAnimation;
+	private final Animation mapAnimation;
+	private final Animation inventoryAnimation;
+	private final Animation descriptionAnimation;
 	
 	private CollisionBox collisionBox;
 	
-	public Item(float x, float y, int width, int height, int duration, String path) throws SlickException {
+	private final String name;
+	
+	public Item(float x, float y, int width, int height, int duration, String path, String name) throws SlickException {
 		
 		mapAnimation = new Animation(new SpriteSheet(path, width, height), duration);
 		inventoryAnimation = new Animation(new SpriteSheet(new Image(path).getScaledCopy(2), width * 2, height * 2), duration);
@@ -36,6 +38,8 @@ public class Item {
 		relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
 		
 		collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, width, height);
+		
+		this.name = name;
 				
 	}
 
@@ -69,6 +73,10 @@ public class Item {
 	
 	public Animation getDescriptionAnimation() {
 		return descriptionAnimation;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	
