@@ -75,7 +75,7 @@ public class Inventory {
 			
 			g.setColor(Color.white);
 			g.drawString("Gold: ", 1733, 239);
-			g.drawString(String.valueOf(goldCounter), 1853 - Integer.toString(goldCounter).length() * 7, 239);
+			g.drawString(String.valueOf(goldCounter), 1853 - Integer.toString(goldCounter).length() * 10, 239);
 			
 			int row = 0;
 			int column = 0;
@@ -100,9 +100,14 @@ public class Inventory {
 			if(inventoryList.size() > selectedCellX + selectedCellY * 5) {
 				
 				String name = inventoryList.get(selectedCellX + selectedCellY * 5).getName();
-				g.drawString(name, Main.WIDTH/2 - (name.length() * 10)/2, 822);
+				g.drawString(name, Main.WIDTH/2 - (name.length() * 10)/2, 818);
+				
+				g.drawString("Value in Gold:", 652, 963);
+				String value = String.valueOf(inventoryList.get(selectedCellX + selectedCellY * 5).getValue());
+				g.drawString(value, 1098 - value.length() * 9, 963);
 				
 				inventoryList.get(selectedCellX + selectedCellY * 5).getDescriptionAnimation().draw(1126, 836);
+				
 			}
 			
 		}

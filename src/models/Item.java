@@ -24,8 +24,9 @@ public class Item {
 	private CollisionBox collisionBox;
 	
 	private final String name;
+	private final int value;
 	
-	public Item(float x, float y, int width, int height, int duration, String path, String name) throws SlickException {
+	public Item(float x, float y, int width, int height, int duration, String path, String name, int value) throws SlickException {
 		
 		mapAnimation = new Animation(new SpriteSheet(path, width, height), duration);
 		inventoryAnimation = new Animation(new SpriteSheet(new Image(path).getScaledCopy(2), width * 2, height * 2), duration);
@@ -40,8 +41,11 @@ public class Item {
 		collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, width, height);
 		
 		this.name = name;
+		this.value = value;
 				
 	}
+
+
 
 	public void update() {
 				
@@ -79,5 +83,8 @@ public class Item {
 		return name;
 	}
 	
+	public int getValue() {
+		return value;
+	}
 	
 }
