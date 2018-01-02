@@ -51,7 +51,7 @@ public class Inventory {
 				selectedCellY--;
 			}
 			
-			if(input.isKeyPressed(Input.KEY_DOWN) && selectedCellY < 5) {
+			if(input.isKeyPressed(Input.KEY_DOWN) && selectedCellY < 5 && inventoryList.size() > selectedCellX + selectedCellY * 5 + 5) {
 				selectedCellY++;
 			}
 			
@@ -59,7 +59,7 @@ public class Inventory {
 				selectedCellX--;
 			}
 			
-			if(input.isKeyPressed(Input.KEY_RIGHT) && selectedCellX < 4) {
+			if(input.isKeyPressed(Input.KEY_RIGHT) && selectedCellX < 4 && inventoryList.size() > selectedCellX + selectedCellY * 5 + 1) {
 				selectedCellX++;
 			}
 		
@@ -75,7 +75,7 @@ public class Inventory {
 			
 			g.setColor(Color.white);
 			g.drawString("Gold: ", 1733, 239);
-			g.drawString(String.valueOf(goldCounter), 1853 - Integer.toString(goldCounter).length() * 10, 239);
+			g.drawString(String.valueOf(goldCounter), 1853 - Integer.toString(goldCounter).length() * 9, 239);
 			
 			int row = 0;
 			int column = 0;
@@ -100,7 +100,7 @@ public class Inventory {
 			if(inventoryList.size() > selectedCellX + selectedCellY * 5) {
 				
 				String name = inventoryList.get(selectedCellX + selectedCellY * 5).getName();
-				g.drawString(name, Main.WIDTH/2 - (name.length() * 10)/2, 818);
+				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
 				
 				g.drawString("Value in Gold:", 652, 963);
 				String value = String.valueOf(inventoryList.get(selectedCellX + selectedCellY * 5).getValue());
