@@ -30,7 +30,7 @@ public class Player {
 				
 	private CollisionBox collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 16, spriteSize/2 - 12, spriteSize/2 - 18);
 	
-	private float playerSpeed = 1.5f;
+	private float playerSpeed = 6f;
 	
 	private float diagonalPlayerSpeed = (float) (1/Math.sqrt(Math.pow(playerSpeed, 2) + Math.pow(playerSpeed, 2))) * playerSpeed * playerSpeed;
 	

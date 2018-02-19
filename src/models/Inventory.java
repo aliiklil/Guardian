@@ -19,6 +19,10 @@ public class Inventory {
 	private int selectedCellX = 0;
 	private int selectedCellY = 0;
 	
+	private final int maxRows = 6;
+	private final int maxColumns = 5;
+	private final int maxCells = 30;
+	
 	private int goldCounter = 0;
 	
 	private Input input = Main.appGameContainer.getInput();
@@ -81,6 +85,10 @@ public class Inventory {
 			int column = 0;
 			
 			for(int i = 0; i < inventoryList.size(); i++) {
+				
+				if(row >= maxRows) {
+					break;
+				}
 				
 				inventoryList.get(i).getInventoryAnimation().draw(1492 + column * 78, 313 + row * 78);
 				
