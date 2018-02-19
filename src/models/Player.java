@@ -193,7 +193,7 @@ public class Player {
 				Game.getItemManager().removeItem(item);
 				inventory.addItem(item);
 				
-				if(item.getMapAnimation().getCurrentFrame().getResourceReference().equals("resources/goldcoin.png")){
+				if(item.getName().equals("Gold")){
 					inventory.incrementGoldCounter();
 				}
 				
