@@ -61,7 +61,6 @@ public class ItemManager {
 		ItemType apple = new ItemType(32, 32, 1, "resources/items/7food/apple.png", "Apple", 5, 7);
 		
 		
-		ItemType gold  = new ItemType(32, 32, 100, "resources/items/8misc/goldcoin.png", "Gold", 1, 8);
 		ItemType bone = new ItemType(32, 32, 1, "resources/items/8misc/bone.png", "Bone", 3, 8);
 		ItemType copperBar = new ItemType(32, 32, 1, "resources/items/8misc/copper_bar.png", "Copper Bar", 80, 8);
 		ItemType ironBar = new ItemType(32, 32, 1, "resources/items/8misc/iron_bar.png", "Iron Bar", 160, 8);
@@ -71,9 +70,9 @@ public class ItemManager {
 		ItemType goldCrown = new ItemType(32, 32, 1, "resources/items/8misc/gold_crown.png", "Gold Crown", 280, 8);
 		ItemType treasure = new ItemType(32, 32, 1, "resources/items/8misc/treasure.png", "Treasure", 280, 8);
 		ItemType multipleSticks = new ItemType(32, 32, 1, "resources/items/8misc/multiple_sticks.png", "Multiple Sticks", 5, 8);
-		ItemType trophy = new ItemType(32, 32, 1, "resources/items/8misc/trophy.png", "Trophy", 5, 250);
+		ItemType trophy = new ItemType(32, 32, 1, "resources/items/8misc/trophy.png", "Trophy", 250, 8);
 		
-		
+		ItemType gold  = new ItemType(32, 32, 100, "resources/items/9gold/goldcoin.png", "Gold", 1, 9);
 		
 		
 		Item helmet1 = new Item(288, 384, helmet);

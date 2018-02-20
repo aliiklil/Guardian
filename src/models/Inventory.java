@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -167,13 +168,23 @@ public class Inventory {
 		
 		itemCountList.add(1);
 		inventoryList.add(item);
-	
+		
+		sortInventory();
+		
 	}
 	
-	public void removeItem(Item item) {
+	private void sortInventory() {
 		
-		inventoryList.add(item);
-		
+		for (int i = 0; i < inventoryList.size() - 1; i++) {
+			int index = i;
+			for (int j = i + 1; j < inventoryList.size(); j++) {
+				if (inventoryList.get(j).getItemType().getInventoryPriority() < inventoryList.get(index).getItemType().getInventoryPriority()) {
+					index = j;
+				}
+			}
+			Collections.swap(inventoryList, index, i);
+			Collections.swap(itemCountList, index, i);
+		}
 	}
 	
 	public boolean isInventoryOpen() {
