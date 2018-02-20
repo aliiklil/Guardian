@@ -17,7 +17,9 @@ public class ItemType {
 	private final String name;
 	private final int value;
 	
-	public ItemType(int spriteWidth, int spriteHeight, int duration, String path, String name, int value) throws SlickException {
+	private final int inventoryPriority;
+	
+	public ItemType(int spriteWidth, int spriteHeight, int duration, String path, String name, int value, int inventoryPriority) throws SlickException {
 		
 		this.spriteWidth = spriteWidth;
 		this.spriteHeight = spriteHeight;
@@ -28,7 +30,7 @@ public class ItemType {
 		
 		this.name = name;
 		this.value = value;
-		
+		this.inventoryPriority = inventoryPriority;
 		
 				
 	}
@@ -59,6 +61,10 @@ public class ItemType {
 	
 	public int getValue() {
 		return value;
+	}
+	
+	public int getInventoryPriority() {
+		return inventoryPriority;
 	}
 	
 }

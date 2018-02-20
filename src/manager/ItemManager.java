@@ -15,48 +15,65 @@ public class ItemManager {
 	
 	public ItemManager() throws SlickException {
 		
-		ItemType helmet = new ItemType(32, 32, 1, "resources/items/helmet.png", "Helmet", 250);
-		ItemType gold  = new ItemType(32, 32, 100, "resources/items/goldcoin.png", "Gold", 1);
-		ItemType apple = new ItemType(32, 32, 1, "resources/items/apple.png", "Apple", 5);
-		ItemType metalArmor = new ItemType(32, 32, 1, "resources/items/metalarmor.png", "Metal Armor", 500);
-		ItemType boots = new ItemType(32, 32, 1, "resources/items/boots.png", "Boots", 100);
-		ItemType woodSword = new ItemType(32, 32, 1, "resources/items/woodsword.png", "Wood Sword", 35);
-		ItemType leatherHelmet = new ItemType(32, 32, 1, "resources/items/leatherhelmet.png", "Leather Helmet", 160);
-		ItemType arrow = new ItemType(32, 32, 1, "resources/items/arrow.png", "Arrow", 10);
-		ItemType bone = new ItemType(32, 32, 1, "resources/items/bone.png", "Bone", 3);
-		ItemType bow = new ItemType(32, 32, 1, "resources/items/bow.png", "Bow", 400);
-		ItemType bread = new ItemType(32, 32, 1, "resources/items/bread.png", "Bread", 20);
-		ItemType carrot = new ItemType(32, 32, 1, "resources/items/carrot.png", "Carrot", 6);
-		ItemType rawChicken = new ItemType(32, 32, 1, "resources/items/raw_chicken.png", "Raw Chicken", 33);
-		ItemType cookedChicken = new ItemType(32, 32, 1, "resources/items/cooked_chicken.png", "Cooked Chicken", 33);
-		ItemType rawFish = new ItemType(32, 32, 1, "resources/items/raw_fish.png", "Raw Fish", 26);
-		ItemType cookedFish = new ItemType(32, 32, 1, "resources/items/cooked_fish.png", "Cooked Fish", 26);
-		ItemType rawMeat = new ItemType(32, 32, 1, "resources/items/raw_meat.png", "Raw Meat", 38);
-		ItemType cookedMeat = new ItemType(32, 32, 1, "resources/items/cooked_meat.png", "Cooked Meat", 38);
-		ItemType rawPork = new ItemType(32, 32, 1, "resources/items/raw_pork.png", "Raw Pork", 29);
-		ItemType cookedPork = new ItemType(2, 32, 1, "resources/items/cooked_pork.png", "Cooked Pork", 29);
-		ItemType copperBar = new ItemType(32, 32, 1, "resources/items/copper_bar.png", "Copper Bar", 80);
-		ItemType ironBar = new ItemType(32, 32, 1, "resources/items/iron_bar.png", "Iron Bar", 160);
-		ItemType goldBar = new ItemType(32, 32, 1, "resources/items/gold_bar.png", "Gold Bar", 250);
-		ItemType feather = new ItemType(32, 32, 1, "resources/items/feather.png", "Feather", 3);
-		ItemType treasureChest = new ItemType(32, 32, 1, "resources/items/treasure_chest.png", "Treasure Chest", 320);
-		ItemType goldCrown = new ItemType(32, 32, 1, "resources/items/gold_crown.png", "Gold Crown", 280);
-		ItemType treasure = new ItemType(32, 32, 1, "resources/items/treasure.png", "Treasure", 280);
-		ItemType verySmallHealingPotion = new ItemType(32, 32, 1,"resources/items/healing_potions/very_small_healing_potion.png", "Very Small Healing Potion", 20);
-		ItemType smallHealingPotion = new ItemType(32, 32, 1, "resources/items/healing_potions/small_healing_potion.png", "Small Healing Potionn", 35);
-		ItemType mediumHealingPotion = new ItemType(32, 32, 1, "resources/items/healing_potions/medium_healing_potion.png", "Medium Healing Potionn", 35);
-		ItemType bigHealingPotion = new ItemType(32, 32, 1, "resources/items/healing_potions/big_healing_potion.png", "Big Healing Potion", 25);
-		ItemType veryBigHealingPotion = new ItemType(32, 32, 1, "resources/items/healing_potions/very_big_healing_potion.png", "Very Big Healing Potion", 10);
-		ItemType verySmallManaPotion = new ItemType(32, 32, 1, "resources/items/mana_potions/very_small_mana_potion.png", "Very Small Mana Potion", 20);
-		ItemType smallManaPotion = new ItemType(32, 32, 1, "resources/items/mana_potions/small_mana_potion.png", "Small Mana Potionn", 35);
-		ItemType mediumManaPotion = new ItemType(32, 32, 1, "resources/items/mana_potions/medium_mana_potion.png", "Medium Mana Potionn", 35);
-		ItemType bigManaPotion = new ItemType(32, 32, 1, "resources/items/mana_potions/big_mana_potion.png", "Big Mana Potion", 25);
-		ItemType veryBigManaPotion = new ItemType(32, 32, 1, "resources/items/mana_potions/very_big_mana_potion.png", "Very Big Mana Potion", 10);
-		ItemType leatherArmor = new ItemType(32, 32, 1, "resources/items/leather_armor.png", "Leather Armor", 180);
-		ItemType multipleSticks = new ItemType(32, 32, 1, "resources/items/multiple_sticks.png", "Multiple Sticks", 5);
-		ItemType stick = new ItemType(32, 32, 1, "resources/items/stick.png", "Stick", 1);
-		ItemType wheat = new ItemType(32, 32, 1, "resources/items/wheat.png", "Wheat", 4);
-			
+		
+		ItemType woodSword = new ItemType(32, 32, 1, "resources/items/1melee/woodsword.png", "Wood Sword", 35, 1);
+		ItemType stick = new ItemType(32, 32, 1, "resources/items/1melee/stick.png", "Stick", 1, 1);
+		
+		
+		ItemType bow = new ItemType(32, 32, 1, "resources/items/2bows/bow.png", "Bow", 400, 2);
+		
+		
+		ItemType arrow = new ItemType(32, 32, 1, "resources/items/3arrows/arrow.png", "Arrow", 10, 3);
+	
+		
+		ItemType helmet = new ItemType(32, 32, 1, "resources/items/4armor/helmet.png", "Helmet", 250, 4);
+		ItemType metalArmor = new ItemType(32, 32, 1, "resources/items/4armor/metalarmor.png", "Metal Armor", 500, 4);
+		ItemType boots = new ItemType(32, 32, 1, "resources/items/4armor/boots.png", "Boots", 100, 4);
+		ItemType leatherHelmet = new ItemType(32, 32, 1, "resources/items/4armor/leatherhelmet.png", "Leather Helmet", 160, 4);
+		ItemType leatherArmor = new ItemType(32, 32, 1, "resources/items/4armor/leather_armor.png", "Leather Armor", 180, 4);
+		
+		
+		ItemType verySmallHealingPotion = new ItemType(32, 32, 1,"resources/items/5healing_potions/very_small_healing_potion.png", "Very Small Healing Potion", 20, 5);
+		ItemType smallHealingPotion = new ItemType(32, 32, 1, "resources/items/5healing_potions/small_healing_potion.png", "Small Healing Potionn", 35, 5);
+		ItemType mediumHealingPotion = new ItemType(32, 32, 1, "resources/items/5healing_potions/medium_healing_potion.png", "Medium Healing Potionn", 35, 5);
+		ItemType bigHealingPotion = new ItemType(32, 32, 1, "resources/items/5healing_potions/big_healing_potion.png", "Big Healing Potion", 25, 5);
+		ItemType veryBigHealingPotion = new ItemType(32, 32, 1, "resources/items/5healing_potions/very_big_healing_potion.png", "Very Big Healing Potion", 10, 5);
+		
+		
+		ItemType verySmallManaPotion = new ItemType(32, 32, 1, "resources/items/6mana_potions/very_small_mana_potion.png", "Very Small Mana Potion", 20, 6);
+		ItemType smallManaPotion = new ItemType(32, 32, 1, "resources/items/6mana_potions/small_mana_potion.png", "Small Mana Potionn", 35, 6);
+		ItemType mediumManaPotion = new ItemType(32, 32, 1, "resources/items/6mana_potions/medium_mana_potion.png", "Medium Mana Potionn", 35, 6);
+		ItemType bigManaPotion = new ItemType(32, 32, 1, "resources/items/6mana_potions/big_mana_potion.png", "Big Mana Potion", 25, 6);
+		ItemType veryBigManaPotion = new ItemType(32, 32, 1, "resources/items/6mana_potions/very_big_mana_potion.png", "Very Big Mana Potion", 10, 6);
+		
+		
+		ItemType bread = new ItemType(32, 32, 1, "resources/items/7food/bread.png", "Bread", 20, 7);
+		ItemType carrot = new ItemType(32, 32, 1, "resources/items/7food/carrot.png", "Carrot", 6, 7);
+		ItemType rawChicken = new ItemType(32, 32, 1, "resources/items/7food/raw_chicken.png", "Raw Chicken", 33, 7);
+		ItemType cookedChicken = new ItemType(32, 32, 1, "resources/items/7food/cooked_chicken.png", "Cooked Chicken", 33, 7);
+		ItemType rawFish = new ItemType(32, 32, 1, "resources/items/7food/raw_fish.png", "Raw Fish", 26, 7);
+		ItemType cookedFish = new ItemType(32, 32, 1, "resources/items/7food/cooked_fish.png", "Cooked Fish", 26, 7);
+		ItemType rawMeat = new ItemType(32, 32, 1, "resources/items/7food/raw_meat.png", "Raw Meat", 38, 7);
+		ItemType cookedMeat = new ItemType(32, 32, 1, "resources/items/7food/cooked_meat.png", "Cooked Meat", 38, 7);
+		ItemType rawPork = new ItemType(32, 32, 1, "resources/items/7food/raw_pork.png", "Raw Pork", 29, 7);
+		ItemType cookedPork = new ItemType(32, 32, 1, "resources/items/7food/cooked_pork.png", "Cooked Pork", 29, 7);
+		ItemType wheat = new ItemType(32, 32, 1, "resources/items/7food/wheat.png", "Wheat", 4, 7);
+		ItemType apple = new ItemType(32, 32, 1, "resources/items/7food/apple.png", "Apple", 5, 7);
+		
+		
+		ItemType gold  = new ItemType(32, 32, 100, "resources/items/8misc/goldcoin.png", "Gold", 1, 8);
+		ItemType bone = new ItemType(32, 32, 1, "resources/items/8misc/bone.png", "Bone", 3, 8);
+		ItemType copperBar = new ItemType(32, 32, 1, "resources/items/8misc/copper_bar.png", "Copper Bar", 80, 8);
+		ItemType ironBar = new ItemType(32, 32, 1, "resources/items/8misc/iron_bar.png", "Iron Bar", 160, 8);
+		ItemType goldBar = new ItemType(32, 32, 1, "resources/items/8misc/gold_bar.png", "Gold Bar", 250, 8);
+		ItemType feather = new ItemType(32, 32, 1, "resources/items/8misc/feather.png", "Feather", 3, 8);
+		ItemType treasureChest = new ItemType(32, 32, 1, "resources/items/8misc/treasure_chest.png", "Treasure Chest", 320, 8);
+		ItemType goldCrown = new ItemType(32, 32, 1, "resources/items/8misc/gold_crown.png", "Gold Crown", 280, 8);
+		ItemType treasure = new ItemType(32, 32, 1, "resources/items/8misc/treasure.png", "Treasure", 280, 8);
+		ItemType multipleSticks = new ItemType(32, 32, 1, "resources/items/8misc/multiple_sticks.png", "Multiple Sticks", 5, 8);
+		ItemType trophy = new ItemType(32, 32, 1, "resources/items/8misc/trophy.png", "Trophy", 5, 250);
+		
+		
 		
 		
 		Item helmet1 = new Item(288, 384, helmet);
@@ -70,7 +87,6 @@ public class ItemManager {
 		Item apple1 = new Item(544, 544, apple);
 		Item apple2 = new Item(672, 544, apple);
 
-		
 		Item metalArmor1 = new Item(608, 640, metalArmor);
 		
 		Item boots1 = new Item(640, 672, boots);
@@ -150,8 +166,11 @@ public class ItemManager {
 		
 		Item wheat1 = new Item(320, 32, wheat);
 		
+		Item trophy1 = new Item(364, 32, trophy);
+	
 		
-
+		
+		
 		itemList.add(helmet1);
 		itemList.add(helmet2);
 		itemList.add(helmet3);
@@ -201,6 +220,7 @@ public class ItemManager {
 		itemList.add(multipleSticks1);
 		itemList.add(stick1);
 		itemList.add(wheat1);
+		itemList.add(trophy1);
 		
 	}
 	
