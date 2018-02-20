@@ -23,6 +23,9 @@ public class Inventory {
 	private final int maxColumns = 5;
 	private final int maxCells = 30;
 	
+	
+	private int scrollOffsetY = 0;
+	
 	private int goldCounter = 0;
 	
 	private Input input = Main.appGameContainer.getInput();
@@ -51,22 +54,46 @@ public class Inventory {
 		
 		if(inventoryOpen) {
 			
-			if(input.isKeyPressed(Input.KEY_UP) && selectedCellY > 0) {
-				selectedCellY--;
+			if(input.isKeyPressed(Input.KEY_UP)) {
+				
+				if(scrollOffsetY > 0 && selectedCellY == 0) {
+					scrollOffsetY--;
+				} 
+
+				if(selectedCellY > 0) {
+					selectedCellY--;
+				}
+				
 			}
 			
-			if(input.isKeyPressed(Input.KEY_DOWN) && selectedCellY < 5 && inventoryList.size() > selectedCellX + selectedCellY * 5 + 5) {
-				selectedCellY++;
+			if(input.isKeyPressed(Input.KEY_DOWN) && inventoryList.size() > selectedCellX + selectedCellY * 5 + 5) {
+				
+				if(selectedCellY >= 5 && inventoryList.size() > maxCells + scrollOffsetY * 5) {
+
+					scrollOffsetY++;
+	
+					if(selectedCellX + (selectedCellY + scrollOffsetY + 1) * maxColumns > inventoryList.size()) {
+						selectedCellX = inventoryList.size() % maxRows;
+					}
+
+				} 
+
+				if(selectedCellY < 5 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffsetY + 1) * maxColumns) {
+					selectedCellY++;
+				}
+				
 			}
 			
 			if(input.isKeyPressed(Input.KEY_LEFT) && selectedCellX > 0) {
 				selectedCellX--;
 			}
 			
-			if(input.isKeyPressed(Input.KEY_RIGHT) && selectedCellX < 4 && inventoryList.size() > selectedCellX + selectedCellY * 5 + 1) {
+			if(input.isKeyPressed(Input.KEY_RIGHT) && selectedCellX < 4 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffsetY) * 5 + 1) {
 				selectedCellX++;
 			}
-		
+
+
+			
 		}
 						
 	}
@@ -84,12 +111,12 @@ public class Inventory {
 			int row = 0;
 			int column = 0;
 			
-			for(int i = 0; i < inventoryList.size(); i++) {
+			for(int i = scrollOffsetY * maxColumns; i < inventoryList.size(); i++) {
 				
 				if(row >= maxRows) {
 					break;
 				}
-				
+
 				inventoryList.get(i).getInventoryAnimation().draw(1492 + column * 78, 313 + row * 78);
 				
 				if(itemCountList.get(i) > 1) {
@@ -105,7 +132,7 @@ public class Inventory {
 				
 			}
 			
-			if(inventoryList.size() > selectedCellX + selectedCellY * 5) {
+			if(!inventoryList.isEmpty()) {
 				
 				String name = inventoryList.get(selectedCellX + selectedCellY * 5).getName();
 				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
