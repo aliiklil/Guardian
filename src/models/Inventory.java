@@ -124,7 +124,7 @@ public class Inventory {
 					break;
 				}
 
-				inventoryList.get(i).getInventoryAnimation().draw(1492 + column * 78, 313 + row * 78);
+				inventoryList.get(i).getItemType().getInventoryAnimation().draw(1492 + column * 78, 313 + row * 78);
 				
 				if(itemCountList.get(i) > 1) {
 					g.drawString(itemCountList.get(i).toString(), 1550 + column * 78, 365 + row * 78);
@@ -141,14 +141,14 @@ public class Inventory {
 			
 			if(!inventoryList.isEmpty()) {
 				
-				String name = inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getName();
+				String name = inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getName();
 				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
 				
 				g.drawString("Value in Gold:", 652, 963);
-				String value = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getValue());
+				String value = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getValue());
 				g.drawString(value, 1098 - value.length() * 9, 963);
 				
-				inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getDescriptionAnimation().draw(1126, 836);
+				inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
 				
 			}
 			
@@ -159,7 +159,7 @@ public class Inventory {
 	public void addItem(Item item) {
 		
 		for(int i = 0; i < inventoryList.size(); i++) {
-			if(item.getInventoryAnimation().getImage(0).getResourceReference().equals(inventoryList.get(i).getInventoryAnimation().getImage(0).getResourceReference())) {	
+			if(item.getItemType().getInventoryAnimation().getImage(0).getResourceReference().equals(inventoryList.get(i).getItemType().getInventoryAnimation().getImage(0).getResourceReference())) {	
 				itemCountList.set(i, itemCountList.get(i) + 1);
 				return;
 			}

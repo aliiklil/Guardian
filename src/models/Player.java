@@ -193,7 +193,7 @@ public class Player {
 				Game.getItemManager().removeItem(item);
 				inventory.addItem(item);
 				
-				if(item.getName().equals("Gold")){
+				if(item.getItemType().getName().equals("Gold")){
 					inventory.incrementGoldCounter();
 				}
 				

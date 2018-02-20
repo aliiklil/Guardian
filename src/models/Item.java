@@ -1,10 +1,7 @@
 package models;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 
 import main.Game;
 import util.CollisionBox;
@@ -16,21 +13,14 @@ public class Item {
 	
 	private float relativeToScreenX;
 	private float relativeToScreenY;
-			
-	private final Animation mapAnimation;
-	private final Animation inventoryAnimation;
-	private final Animation descriptionAnimation;
 	
 	private CollisionBox collisionBox;
+			
+	private final ItemType itemType;
 	
-	private final String name;
-	private final int value;
-	
-	public Item(float x, float y, int width, int height, int duration, String path, String name, int value) throws SlickException {
+	public Item(float x, float y, ItemType itemType) throws SlickException {
 		
-		mapAnimation = new Animation(new SpriteSheet(path, width, height), duration);
-		inventoryAnimation = new Animation(new SpriteSheet(new Image(path).getScaledCopy(2), width * 2, height * 2), duration);
-		descriptionAnimation = new Animation(new SpriteSheet(new Image(path).getScaledCopy(4), width * 4, height * 4), duration);
+		this.itemType = itemType;
 		
 		relativeToMapX = x;
 		relativeToMapY = y;
@@ -38,14 +28,9 @@ public class Item {
 		relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
 		relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
 		
-		collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, width, height);
-		
-		this.name = name;
-		this.value = value;
+		collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, itemType.getSpriteWidth(), itemType.getSpriteHeight());
 				
 	}
-
-
 
 	public void update() {
 				
@@ -59,7 +44,7 @@ public class Item {
 	
 	public void render(Graphics g) {
 		
-		mapAnimation.draw(relativeToScreenX, relativeToScreenY);
+		itemType.getMapAnimation().draw(relativeToScreenX, relativeToScreenY);
 		
 	}
 	
@@ -67,24 +52,8 @@ public class Item {
 		return collisionBox;
 	}
 	
-	public Animation getMapAnimation() {
-		return mapAnimation;
-	}
-	
-	public Animation getInventoryAnimation() {
-		return inventoryAnimation;
-	}
-	
-	public Animation getDescriptionAnimation() {
-		return descriptionAnimation;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public int getValue() {
-		return value;
+	public ItemType getItemType() {
+		return itemType;
 	}
 	
 }
