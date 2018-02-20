@@ -2,7 +2,6 @@ package models;
 
 import java.util.ArrayList;
 
-import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -19,12 +18,11 @@ public class Inventory {
 	private int selectedCellX = 0;
 	private int selectedCellY = 0;
 	
-	private final int maxRows = 6;
-	private final int maxColumns = 5;
-	private final int maxCells = 30;
+	private final int amountRows = 6;
+	private final int amountColumns = 5;
+	private final int amountCells = 30;
 	
-	
-	private int scrollOffsetY = 0;
+	private int scrollOffset = 0;
 	
 	private int goldCounter = 0;
 	
@@ -38,7 +36,61 @@ public class Inventory {
 	}
 	
 	public void update() throws SlickException {
+		
+		openInventory();
+		
+		if(inventoryOpen) {
+			
+			if(input.isKeyPressed(Input.KEY_UP)) {
+				
+				if(scrollOffset > 0 && selectedCellY == 0) {
+					scrollOffset--;
+				} 
 
+				if(selectedCellY > 0) {
+					selectedCellY--;
+				}
+				
+			}
+			
+			if(input.isKeyPressed(Input.KEY_DOWN)) {
+				
+				if(selectedCellY == amountRows - 1 && inventoryList.size() > amountCells + scrollOffset * amountColumns) {
+					
+					if((selectedCellX + (selectedCellY + scrollOffset) * amountColumns + amountColumns + 1) > inventoryList.size()) {
+						
+						if(inventoryList.size() % amountRows == 0) {
+							selectedCellX = amountColumns - 1;
+						} else {
+							selectedCellX = inventoryList.size() % amountColumns - 1;
+						}
+						
+					}
+
+					scrollOffset++;
+	
+				}
+				
+				if(selectedCellY < amountRows - 1 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffset + 1) * amountColumns) {
+					selectedCellY++;
+				}
+
+			}
+			
+			if(input.isKeyPressed(Input.KEY_LEFT) && selectedCellX > 0) {
+				selectedCellX--;
+			}
+			
+			if(input.isKeyPressed(Input.KEY_RIGHT) && selectedCellX < amountColumns - 1 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffset) * amountColumns + 1) {
+				selectedCellX++;
+			}
+			
+		}
+						
+	}
+	
+	private void openInventory() {
+		
 		if(input.isKeyPressed(Input.KEY_TAB)) {
 			
 			if(!inventoryOpen) {
@@ -50,52 +102,7 @@ public class Inventory {
 				inventoryOpen = false;
 				
 			}
-		}
-		
-		if(inventoryOpen) {
-			
-			if(input.isKeyPressed(Input.KEY_UP)) {
-				
-				if(scrollOffsetY > 0 && selectedCellY == 0) {
-					scrollOffsetY--;
-				} 
-
-				if(selectedCellY > 0) {
-					selectedCellY--;
-				}
-				
-			}
-			
-			if(input.isKeyPressed(Input.KEY_DOWN) && inventoryList.size() > selectedCellX + selectedCellY * 5 + 5) {
-				
-				if(selectedCellY >= 5 && inventoryList.size() > maxCells + scrollOffsetY * 5) {
-
-					scrollOffsetY++;
-	
-					if(selectedCellX + (selectedCellY + scrollOffsetY + 1) * maxColumns > inventoryList.size()) {
-						selectedCellX = inventoryList.size() % maxRows;
-					}
-
-				} 
-
-				if(selectedCellY < 5 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffsetY + 1) * maxColumns) {
-					selectedCellY++;
-				}
-				
-			}
-			
-			if(input.isKeyPressed(Input.KEY_LEFT) && selectedCellX > 0) {
-				selectedCellX--;
-			}
-			
-			if(input.isKeyPressed(Input.KEY_RIGHT) && selectedCellX < 4 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffsetY) * 5 + 1) {
-				selectedCellX++;
-			}
-
-
-			
-		}
-						
+		}	
 	}
 	
 	public void render(Graphics g) {
@@ -111,9 +118,9 @@ public class Inventory {
 			int row = 0;
 			int column = 0;
 			
-			for(int i = scrollOffsetY * maxColumns; i < inventoryList.size(); i++) {
+			for(int i = scrollOffset * amountColumns; i < inventoryList.size(); i++) {
 				
-				if(row >= maxRows) {
+				if(row >= amountRows) {
 					break;
 				}
 
@@ -134,14 +141,14 @@ public class Inventory {
 			
 			if(!inventoryList.isEmpty()) {
 				
-				String name = inventoryList.get(selectedCellX + selectedCellY * 5).getName();
+				String name = inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getName();
 				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
 				
 				g.drawString("Value in Gold:", 652, 963);
-				String value = String.valueOf(inventoryList.get(selectedCellX + selectedCellY * 5).getValue());
+				String value = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getValue());
 				g.drawString(value, 1098 - value.length() * 9, 963);
 				
-				inventoryList.get(selectedCellX + selectedCellY * 5).getDescriptionAnimation().draw(1126, 836);
+				inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getDescriptionAnimation().draw(1126, 836);
 				
 			}
 			
