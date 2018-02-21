@@ -71,6 +71,10 @@ public class Game extends BasicGameState {
 		
 		player.render(g);
 		
+		world.renderOverPlayer(g);
+		
+		player.getInventory().render(g);
+		player.getHealthBar().render(g);
 		
 	}
 	

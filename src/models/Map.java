@@ -21,12 +21,22 @@ public class Map {
 	public void render(Graphics g) {
 				
 		tiledMap.render((int) x, (int) y);
-		
 		g.setColor(Color.white);
 		g.drawString("mapX:  " + x, 50, 150);
 		g.drawString("mapY:  " + y, 50, 200);
 		
 	}
+	
+	public void renderOverPlayer(Graphics g) {
+		
+		tiledMap.render((int) x, (int) y, tiledMap.getLayerIndex("OverPlayer"));
+		g.setColor(Color.white);
+		g.drawString("mapX:  " + x, 50, 150);
+		g.drawString("mapY:  " + y, 50, 200);
+		
+	}
+	
+	
 
 	public TiledMap getTiledMap() {
 		return tiledMap;

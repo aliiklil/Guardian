@@ -175,11 +175,7 @@ public class Player {
 		g.setColor(Color.white);
 		g.drawString("relativeToMapX:  " + relativeToMapX, 50, 50);
 		g.drawString("relativeToMapY:  " + relativeToMapY, 50, 100);
-		
-		healthBar.render(g);
-		
-		inventory.render(g);
-		
+				
 	}
 	
 	private void pickUpItem() throws SlickException {
@@ -779,5 +775,14 @@ public class Player {
 		healthBar.setCurrentHealth(currentHealth);
 		
 	}
+	
+	public HealthBar getHealthBar() {
+		return healthBar;
+	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
 		
 }
