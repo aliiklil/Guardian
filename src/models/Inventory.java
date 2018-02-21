@@ -32,6 +32,13 @@ public class Inventory {
 	private ArrayList<Item> inventoryList = new ArrayList<Item>();
 	private ArrayList<Integer> itemCountList = new ArrayList<Integer>();
 	
+	private long timestamp = 0;
+
+	private boolean holdUpKey = false;
+	private boolean holdDownKey = false;
+	private boolean holdLeftKey = false;
+	private boolean holdRightKey = false;
+	
 	public Inventory() throws SlickException {
 		
 	}
@@ -42,25 +49,27 @@ public class Inventory {
 		
 		if(inventoryOpen) {
 			
-			if(input.isKeyPressed(Input.KEY_UP)) {
+			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if(scrollOffset > 0 && selectedCellY == 0) {
 					scrollOffset--;
+					timestamp = System.currentTimeMillis();
 				} 
 
 				if(selectedCellY > 0) {
 					selectedCellY--;
+					timestamp = System.currentTimeMillis();
 				}
 				
 			}
-			
-			if(input.isKeyPressed(Input.KEY_DOWN)) {
+						
+			if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if(selectedCellY == amountRows - 1 && inventoryList.size() > amountCells + scrollOffset * amountColumns) {
 					
 					if((selectedCellX + (selectedCellY + scrollOffset) * amountColumns + amountColumns + 1) > inventoryList.size()) {
 						
-						if(inventoryList.size() % amountRows == 0) {
+						if(inventoryList.size() % amountColumns == 0) {
 							selectedCellX = amountColumns - 1;
 						} else {
 							selectedCellX = inventoryList.size() % amountColumns - 1;
@@ -69,25 +78,69 @@ public class Inventory {
 					}
 
 					scrollOffset++;
-	
+					timestamp = System.currentTimeMillis();
+					
 				}
 				
 				if(selectedCellY < amountRows - 1 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffset + 1) * amountColumns) {
 					selectedCellY++;
+					timestamp = System.currentTimeMillis();
 				}
 
 			}
-			
-			if(input.isKeyPressed(Input.KEY_LEFT) && selectedCellX > 0) {
-				selectedCellX--;
+							
+			if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
+				if(selectedCellX > 0) {
+					selectedCellX--;
+					timestamp = System.currentTimeMillis();
+				}
 			}
 			
-			if(input.isKeyPressed(Input.KEY_RIGHT) && selectedCellX < amountColumns - 1 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffset) * amountColumns + 1) {
-				selectedCellX++;
+			if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
+				if(selectedCellX < amountColumns - 1 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffset) * amountColumns + 1) {
+					selectedCellX++;
+					timestamp = System.currentTimeMillis();
+				}
 			}
 			
-		}
-						
+			
+			
+			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+				if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+					holdUpKey = true;
+					timestamp = System.currentTimeMillis();
+				}
+			} else {
+				holdUpKey = false;
+			}
+			
+			if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+				if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+					holdDownKey = true;
+					timestamp = System.currentTimeMillis();
+				}
+			} else {
+				holdDownKey = false;
+			}
+			
+			if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
+				if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+					holdLeftKey = true;
+					timestamp = System.currentTimeMillis();
+				}
+			} else {
+				holdLeftKey = false;
+			}
+			
+			if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
+				if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+					holdRightKey = true;
+					timestamp = System.currentTimeMillis();
+				}
+			} else {
+				holdRightKey = false;
+			}
+		}				
 	}
 	
 	private void openInventory() {
