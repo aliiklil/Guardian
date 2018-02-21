@@ -3,11 +3,13 @@ package models;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import main.Main;
 
@@ -38,6 +40,12 @@ public class Inventory {
 	private boolean holdDownKey = false;
 	private boolean holdLeftKey = false;
 	private boolean holdRightKey = false;
+		
+	private SpriteSheet arrowUpSpriteSheet = new SpriteSheet("resources/arrowUpImage.png", 44, 44);
+	private SpriteSheet arrowDownSpriteSheet = new SpriteSheet("resources/arrowDownImage.png", 44, 44);
+	
+	private Animation arrowUpAnimation = new Animation(arrowUpSpriteSheet, 0, 0, 1, 0, true, 750, true);
+	private Animation arrowDownAnimation = new Animation(arrowDownSpriteSheet, 0, 0, 1, 0, true, 750, true);
 	
 	public Inventory() throws SlickException {
 		
@@ -88,7 +96,7 @@ public class Inventory {
 				}
 
 			}
-							
+			
 			if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
 				if(selectedCellX > 0) {
 					selectedCellX--;
@@ -102,44 +110,9 @@ public class Inventory {
 					timestamp = System.currentTimeMillis();
 				}
 			}
-			
-			
-			
-			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
-				if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
-					holdUpKey = true;
-					timestamp = System.currentTimeMillis();
-				}
-			} else {
-				holdUpKey = false;
-			}
-			
-			if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
-				if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
-					holdDownKey = true;
-					timestamp = System.currentTimeMillis();
-				}
-			} else {
-				holdDownKey = false;
-			}
-			
-			if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
-				if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
-					holdLeftKey = true;
-					timestamp = System.currentTimeMillis();
-				}
-			} else {
-				holdLeftKey = false;
-			}
-			
-			if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
-				if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
-					holdRightKey = true;
-					timestamp = System.currentTimeMillis();
-				}
-			} else {
-				holdRightKey = false;
-			}
+				
+			checkIfKeyDown();
+
 		}				
 	}
 	
@@ -157,6 +130,46 @@ public class Inventory {
 				
 			}
 		}	
+	}
+	
+	private void checkIfKeyDown() {
+
+		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+				holdUpKey = true;
+				timestamp = System.currentTimeMillis();
+			}
+		} else {
+			holdUpKey = false;
+		}
+		
+		if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+				holdDownKey = true;
+				timestamp = System.currentTimeMillis();
+			}
+		} else {
+			holdDownKey = false;
+		}
+		
+		if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+				holdLeftKey = true;
+				timestamp = System.currentTimeMillis();
+			}
+		} else {
+			holdLeftKey = false;
+		}
+		
+		if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
+			if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+				holdRightKey = true;
+				timestamp = System.currentTimeMillis();
+			}
+		} else {
+			holdRightKey = false;
+		}
+		
 	}
 	
 	public void render(Graphics g) {
@@ -206,8 +219,25 @@ public class Inventory {
 				
 			}
 			
+			drawArrow(g);
+			
 		}
 							
+	}
+	
+	private void drawArrow(Graphics g) {
+		
+		arrowUpAnimation.updateNoDraw();
+		arrowDownAnimation.updateNoDraw();
+		
+		if(scrollOffset > 0) { 
+			arrowUpAnimation.draw(1876, 305);
+		}
+		
+		if(inventoryList.size() > amountCells + scrollOffset * amountColumns) {
+			arrowDownAnimation.draw(1876, 731);
+		}
+		
 	}
 	
 	public void addItem(Item item) {
