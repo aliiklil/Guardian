@@ -15,7 +15,7 @@ public class HealthBar {
 	private final int maxHealth;
 	private int currentHealth;
 	
-	public HealthBar(float x, float y, int width, int height, int outlineThickness, int maxHealth) {
+	public HealthBar(float x, float y, int width, int height, int outlineThickness, int currentHealth, int maxHealth) {
 		
 		this.x = x;
 		this.y = y;
@@ -24,8 +24,8 @@ public class HealthBar {
 		
 		this.outlineThickness = outlineThickness;
 
+		this.currentHealth = currentHealth;
 		this.maxHealth = maxHealth;
-		this.currentHealth = maxHealth;
 		
 	}
 		
@@ -37,6 +37,10 @@ public class HealthBar {
 		g.setColor(Color.red);
 		g.fillRect(x + outlineThickness, y + outlineThickness, (float) currentHealth/maxHealth * (width - outlineThickness * 2), height - outlineThickness * 2);
 					
+	}
+	
+	public int getCurrentHealth() {
+		return currentHealth;
 	}
 	
 	public void setCurrentHealth(int currentHealth) {

@@ -33,8 +33,8 @@ public class Game extends BasicGameState {
 		world = new Map("resources/World.tmx");
 		currentMap = world;
 		player = new Player();
-		npc1 = new NPC(96, 96, 35, "resources/OrcSpriteSheet.png");
-		npc2 = new NPC(192, 160, 30, "resources/SkeletonSpriteSheet.png");
+		npc1 = new NPC(192, 160, 35, 35, "resources/OrcSpriteSheet.png");
+		npc2 = new NPC(256, 160, 25, 30, "resources/SkeletonSpriteSheet.png");
 		
 		npcList.add(npc1);
 		npcList.add(npc2);
@@ -54,7 +54,7 @@ public class Game extends BasicGameState {
 		
 		projectileManager.update();
 		itemManager.update();
-
+		
 	}
 
 	@Override
@@ -64,18 +64,25 @@ public class Game extends BasicGameState {
 		
 		itemManager.render(g);
 		
-		for(NPC npc: npcList)
-			npc.render(g);
-		
 		projectileManager.render(g);
 		
-		player.render(g);
 		
+		if(player.getRelativeToMapY() < npc1.getRelativeToMapY()) {
+			
+			player.render(g);
+			npc1.render(g);
+			
+		} else {
+			
+			npc1.render(g);
+			player.render(g);
+		}
+				
 		world.renderOverPlayer(g);
 		
 		player.getInventory().render(g);
 		player.getHealthBar().render(g);
-		
+
 	}
 	
 	@Override

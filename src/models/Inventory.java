@@ -53,7 +53,13 @@ public class Inventory {
 	
 	public void update() throws SlickException {
 		
-		openInventory();
+		if(input.isKeyPressed(Input.KEY_TAB)) {
+			if(!inventoryOpen) {
+				inventoryOpen = true;
+			} else {
+				inventoryOpen = false;
+			}
+		}	
 		
 		if(inventoryOpen) {
 			
@@ -115,23 +121,7 @@ public class Inventory {
 
 		}				
 	}
-	
-	private void openInventory() {
 		
-		if(input.isKeyPressed(Input.KEY_TAB)) {
-			
-			if(!inventoryOpen) {
-				
-				inventoryOpen = true;
-				
-			} else {
-				
-				inventoryOpen = false;
-				
-			}
-		}	
-	}
-	
 	private void checkIfKeyDown() {
 
 		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
