@@ -27,9 +27,9 @@ public class Map {
 		
 	}
 	
-	public void renderOverPlayer(Graphics g) {
+	public void renderUpperLayer(Graphics g) {
 		
-		tiledMap.render((int) x, (int) y, tiledMap.getLayerIndex("OverPlayer"));
+		tiledMap.render((int) x, (int) y, tiledMap.getLayerIndex("UpperLayer"));
 		g.setColor(Color.white);
 		g.drawString("mapX:  " + x, 50, 150);
 		g.drawString("mapY:  " + y, 50, 200);

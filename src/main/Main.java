@@ -29,7 +29,6 @@ public class Main {
 			@Override
 			public void initStatesList(GameContainer gameContainer) throws SlickException {
 				
-				this.getState(GAME_STATE_ID).init(gameContainer, this);
 				this.enterState(GAME_STATE_ID);
 				
 			}

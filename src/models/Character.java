@@ -1,6 +1,7 @@
 package models;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
@@ -11,7 +12,7 @@ public abstract class Character {
 	private final int spriteSize = 64;
 	private final int overSizeSpriteSize = 192;
 
-	private float movementSpeed = 3f;
+	private float movementSpeed = 2f;
 	private float diagonalMovementSpeed = (float) (1/Math.sqrt(Math.pow(movementSpeed, 2) + Math.pow(movementSpeed, 2))) * movementSpeed * movementSpeed;
 	
 	private float relativeToMapX;
@@ -130,6 +131,10 @@ public abstract class Character {
 		currentAnimation = lookDownAnimation;
 		
 	}
+	
+	public abstract void update() throws SlickException;
+	
+	public abstract void render(Graphics g);
 	
 	public void decreaseHealth(int amount) {
 		
