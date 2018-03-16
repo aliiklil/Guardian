@@ -12,6 +12,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import main.Game;
 import main.Main;
+import manager.CharacterManager;
 import util.CollisionBox;
 
 public class Player extends Character {
@@ -57,7 +58,7 @@ public class Player extends Character {
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
-		npcList = Game.getNpcList();
+		npcList = CharacterManager.getNpcList();
 		
 	}
 	
@@ -65,7 +66,7 @@ public class Player extends Character {
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
-		npcList = Game.getNpcList();
+		npcList = CharacterManager.getNpcList();
 		
 		super.setRelativeToMapX((screenRelativeX + super.getSpriteSize() / 4) - Game.getCurrentMap().getX());
 		super.setRelativeToMapY((screenRelativeY + super.getSpriteSize() / 2) - Game.getCurrentMap().getY()); 

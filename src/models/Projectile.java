@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 
 import main.Game;
 import main.Main;
+import manager.CharacterManager;
 import util.CollisionBox;
 
 public class Projectile {
@@ -90,7 +91,7 @@ public class Projectile {
 			collisionBox.setX(relativeToMapX + 16);
 			collisionBox.setY(relativeToMapY + 16);
 			
-			npcList = Game.getNpcList();
+			npcList = CharacterManager.getNpcList();
 			
 			for(NPC npc : npcList) {
 					if(collisionBox.intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
