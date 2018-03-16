@@ -78,8 +78,18 @@ public class Game extends BasicGameState {
 			Collections.swap(characterDrawOrderList, index, i);
 		}
 		
-		for(Character character : characterDrawOrderList)
-			character.render(g);
+		for(Character character : characterDrawOrderList) {
+			if (!character.isAlive()) {
+				character.render(g);
+			}
+		}
+			
+		for(Character character : characterDrawOrderList) {
+			if (character.isAlive()) {
+				character.render(g);
+			}
+		}
+			
 						
 		world.renderUpperLayer(g);
 		
