@@ -425,8 +425,8 @@ public class Player extends Character {
 				for(NPC npc : npcList) {
 					if(super.getAttackUpCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
-						System.out.println("damageDealt" + damageToDeal);
 						damageDealt = true;
+						npc.setRelativeToMapY(npc.getRelativeToMapY() - damageToDeal/2);
 					}
 				}
 			}
@@ -435,8 +435,8 @@ public class Player extends Character {
 				for(NPC npc : npcList) {
 					if(super.getAttackDownCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
-						System.out.println("damageDealt" + damageToDeal);
 						damageDealt = true;
+						npc.setRelativeToMapY(npc.getRelativeToMapY() + damageToDeal/2);
 					}
 				}
 			}
@@ -445,8 +445,8 @@ public class Player extends Character {
 				for(NPC npc : npcList) {
 					if(super.getAttackLeftCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
-						System.out.println("damageDealt" + damageToDeal);
 						damageDealt = true;
+						npc.setRelativeToMapX(npc.getRelativeToMapX() - damageToDeal/2);
 					}
 				}		
 			}
@@ -455,8 +455,8 @@ public class Player extends Character {
 				for(NPC npc : npcList) {
 					if(super.getAttackRightCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
-						System.out.println("damageDealt" + damageToDeal);
 						damageDealt = true;
+						npc.setRelativeToMapX(npc.getRelativeToMapX() + damageToDeal/2);
 					}				
 				}			
 			}		
