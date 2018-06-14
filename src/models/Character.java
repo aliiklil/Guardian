@@ -51,6 +51,11 @@ public abstract class Character {
 	private Animation attackDownAnimation;
 	private Animation attackLeftAnimation;
 	private Animation attackRightAnimation;
+	
+	private Animation blockUpAnimation;
+	private Animation blockDownAnimation;
+	private Animation blockLeftAnimation;
+	private Animation blockRightAnimation;
 
 	private Animation shootUpAnimation;
 	private Animation shootDownAnimation;
@@ -98,6 +103,11 @@ public abstract class Character {
 		attackDownAnimation = new Animation(overSizeSpriteSheet, 0, 9, 5, 9, true, 100, true);
 		attackLeftAnimation = new Animation(overSizeSpriteSheet, 0, 8, 5, 8, true, 100, true);
 		attackRightAnimation = new Animation(overSizeSpriteSheet, 0, 10, 5, 10, true, 100, true);
+		
+		blockUpAnimation = new Animation(overSizeSpriteSheet, 1, 7, 1, 7, true, 100, true);
+		blockDownAnimation = new Animation(overSizeSpriteSheet, 1, 9, 1, 9, true, 100, true);
+		blockLeftAnimation = new Animation(overSizeSpriteSheet, 6, 8, 6, 8, true, 100, true);
+		blockRightAnimation = new Animation(overSizeSpriteSheet, 6, 10, 6, 10, true, 100, true);
 
 		shootUpAnimation = new Animation(spriteSheet, 0, 16, 11, 16, true, 100, true);
 		shootDownAnimation = new Animation(spriteSheet, 0, 18, 11, 18, true, 100, true);
@@ -115,6 +125,11 @@ public abstract class Character {
 		attackDownAnimation.setLooping(false);
 		attackLeftAnimation.setLooping(false);
 		attackRightAnimation.setLooping(false);
+		
+		blockUpAnimation.setLooping(false);
+		blockDownAnimation.setLooping(false);
+		blockLeftAnimation.setLooping(false);
+		blockRightAnimation.setLooping(false);
 		
 		shootUpAnimation.setLooping(false);
 		shootDownAnimation.setLooping(false);
@@ -338,6 +353,22 @@ public abstract class Character {
 
 	public Animation getAttackRightAnimation() {
 		return attackRightAnimation;
+	}
+	
+	public Animation getBlockUpAnimation() {
+		return blockUpAnimation;
+	}
+
+	public Animation getBlockDownAnimation() {
+		return blockDownAnimation;
+	}
+
+	public Animation getBlockLeftAnimation() {
+		return blockLeftAnimation;
+	}
+
+	public Animation getBlockRightAnimation() {
+		return blockRightAnimation;
 	}
 
 	public Animation getShootUpAnimation() {
