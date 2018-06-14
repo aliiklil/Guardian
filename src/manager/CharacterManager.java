@@ -22,8 +22,8 @@ public class CharacterManager {
 	public CharacterManager() throws SlickException {
 		
 		player = new Player();
-		npc1 = new NPC(192, 160, 35, 35, "resources/OrcSpriteSheet.png");
-		npc2 = new NPC(256, 160, 20, 30, "resources/SkeletonSpriteSheet.png");
+		npc1 = new NPC(192, 160, 100, 100, "resources/OrcSpriteSheet.png");
+		npc2 = new NPC(256, 160, 100, 100, "resources/SkeletonSpriteSheet.png");
 		
 		characterList.add(player);
 		characterList.add(npc1);

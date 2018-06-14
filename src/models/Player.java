@@ -48,6 +48,8 @@ public class Player extends Character {
 	private Inventory inventory = new Inventory();
 	
 	private Bar prepareAttackBar;
+	
+	private int damageToDeal = 0;
 		
 	public Player() throws SlickException {
 		
@@ -96,14 +98,10 @@ public class Player extends Character {
 		
 		updateMove();
 		updateAttack();
-		update2Attack();
 		updateBlock();
 		updateShoot();
 		updateSpell();
 		updatePickUpItem();
-		
-		System.out.println(prepareAttackBar.getCurrentValue());
-		
 		
 	}
 	
@@ -337,100 +335,10 @@ public class Player extends Character {
 		}
 							
 	}
-		
+	
 	private void updateAttack() {
  		
 		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
-						
-			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
-				super.setCurrentAnimation(super.getAttackUpAnimation());
-			}
-			
-			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) {
-				super.setCurrentAnimation(super.getAttackDownAnimation());
-			}
-			
-			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) {
-				super.setCurrentAnimation(super.getAttackLeftAnimation());
-			}
-			
-			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) {
-				super.setCurrentAnimation(super.getAttackRightAnimation());
-			}
-			
-			super.getCurrentAnimation().start();
-			isAttacking = true;
-			damageDealt = false;
-			
-		}
-		
-		if(isAttacking && super.getAttackUpAnimation().isStopped()) {
-			super.getAttackUpAnimation().restart();
-			super.setCurrentAnimation(super.getLookUpAnimation());
-			isAttacking = false;
-		}
-		
-		if(isAttacking && super.getAttackDownAnimation().isStopped()) {
-			super.getAttackDownAnimation().restart();
-			super.setCurrentAnimation(super.getLookDownAnimation());
-			isAttacking = false;
-		}
-		
-		if(isAttacking && super.getAttackLeftAnimation().isStopped()) {
-			super.getAttackLeftAnimation().restart();
-			super.setCurrentAnimation(super.getLookLeftAnimation());
-			isAttacking = false;
-		}
-		
-		if(isAttacking && super.getAttackRightAnimation().isStopped()) {
-			super.getAttackRightAnimation().restart();
-			super.setCurrentAnimation(super.getLookRightAnimation());
-			isAttacking = false;
-		}
-		
-		if(!damageDealt) {
-		
-			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 3) {
-				for(NPC npc : npcList) {
-					if(super.getAttackUpCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
-						npc.decreaseHealth(10);
-						damageDealt = true;
-					}
-				}
-			}
-			
-			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 3) {
-				for(NPC npc : npcList) {
-					if(super.getAttackDownCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
-						npc.decreaseHealth(10);
-						damageDealt = true;
-					}
-				}
-			}
-			
-			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 3) {
-				for(NPC npc : npcList) {
-					if(super.getAttackLeftCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
-						npc.decreaseHealth(10);
-						damageDealt = true;
-					}
-				}		
-			}
-			
-			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 3) {
-				for(NPC npc : npcList) {
-					if(super.getAttackRightCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
-						npc.decreaseHealth(10);
-						damageDealt = true;
-					}				
-				}			
-			}		
-		}
-	}
-	
-	private void update2Attack() {
- 		
-		if(input.isKeyDown(Input.KEY_C) && !isAttacking && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getPrepareAttackUpAnimation());
@@ -457,7 +365,7 @@ public class Player extends Character {
 			prepareAttackBar.setCurrentValue(prepareAttackBar.getCurrentValue() + 1);
 		}
 		
-		if(!input.isKeyDown(Input.KEY_C) && isPreparingAttack) {
+		if(!input.isKeyDown(Input.KEY_X) && isPreparingAttack) {
 					
 			if(super.getCurrentAnimation() == super.getPrepareAttackUpAnimation()) {
 				super.setCurrentAnimation(super.getAttackUpAnimation());
@@ -480,6 +388,7 @@ public class Player extends Character {
 			}
 			
 			super.getCurrentAnimation().start();
+			damageToDeal = 20 + prepareAttackBar.getCurrentValue();
 			prepareAttackBar.setCurrentValue(0);
 			isAttacking = true;
 			damageDealt = false;
@@ -515,7 +424,8 @@ public class Player extends Character {
 			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
 					if(super.getAttackUpCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
-						npc.decreaseHealth(10);
+						npc.decreaseHealth(damageToDeal);
+						System.out.println("damageDealt" + damageToDeal);
 						damageDealt = true;
 					}
 				}
@@ -524,7 +434,8 @@ public class Player extends Character {
 			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
 					if(super.getAttackDownCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
-						npc.decreaseHealth(10);
+						npc.decreaseHealth(damageToDeal);
+						System.out.println("damageDealt" + damageToDeal);
 						damageDealt = true;
 					}
 				}
@@ -533,7 +444,8 @@ public class Player extends Character {
 			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
 					if(super.getAttackLeftCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
-						npc.decreaseHealth(10);
+						npc.decreaseHealth(damageToDeal);
+						System.out.println("damageDealt" + damageToDeal);
 						damageDealt = true;
 					}
 				}		
@@ -542,7 +454,8 @@ public class Player extends Character {
 			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
 					if(super.getAttackRightCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
-						npc.decreaseHealth(10);
+						npc.decreaseHealth(damageToDeal);
+						System.out.println("damageDealt" + damageToDeal);
 						damageDealt = true;
 					}				
 				}			
