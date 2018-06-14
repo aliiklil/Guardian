@@ -468,47 +468,46 @@ public class Player extends Character {
 		
 		if(input.isKeyDown(Input.KEY_Y) && !isAttacking && !isPreparingAttack && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
 			
-			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
+			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				super.setCurrentAnimation(super.getBlockUpAnimation());
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) {
+			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
 				super.setCurrentAnimation(super.getBlockDownAnimation());
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) {
+			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
 				super.setCurrentAnimation(super.getBlockLeftAnimation());
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) {
+			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
 				super.setCurrentAnimation(super.getBlockRightAnimation());
 			}
 			
 			super.getCurrentAnimation().start();
 			isBlocking = true;
-			damageDealt = false;
 			
 		}
 		
-		if(isBlocking && super.getBlockUpAnimation().isStopped()) {
+		if(isBlocking && !input.isKeyDown(Input.KEY_Y) && super.getCurrentAnimation() == super.getBlockUpAnimation()) {
 			super.getBlockUpAnimation().restart();
 			super.setCurrentAnimation(super.getLookUpAnimation());
 			isBlocking = false;
 		}
 		
-		if(isBlocking && super.getBlockDownAnimation().isStopped()) {
+		if(isBlocking && !input.isKeyDown(Input.KEY_Y) && super.getCurrentAnimation() == super.getBlockDownAnimation()) {
 			super.getBlockDownAnimation().restart();
 			super.setCurrentAnimation(super.getLookDownAnimation());
 			isBlocking = false;
 		}
 		
-		if(isBlocking && super.getBlockLeftAnimation().isStopped()) {
+		if(isBlocking && !input.isKeyDown(Input.KEY_Y) && super.getCurrentAnimation() == super.getBlockLeftAnimation()) {
 			super.getBlockLeftAnimation().restart();
 			super.setCurrentAnimation(super.getLookLeftAnimation());
 			isBlocking = false;
 		}
 		
-		if(isBlocking && super.getBlockRightAnimation().isStopped()) {
+		if(isBlocking && !input.isKeyDown(Input.KEY_Y) && super.getCurrentAnimation() == super.getBlockRightAnimation()) {
 			super.getBlockRightAnimation().restart();
 			super.setCurrentAnimation(super.getLookRightAnimation());
 			isBlocking = false;
