@@ -23,7 +23,7 @@ public class CharacterManager {
 		
 		player = new Player();
 		npc1 = new NPC(192, 160, 35, 35, "resources/OrcSpriteSheet.png");
-		npc2 = new NPC(256, 160, 25, 30, "resources/SkeletonSpriteSheet.png");
+		npc2 = new NPC(256, 160, 20, 30, "resources/SkeletonSpriteSheet.png");
 		
 		characterList.add(player);
 		characterList.add(npc1);

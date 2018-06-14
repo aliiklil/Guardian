@@ -20,7 +20,7 @@ public abstract class Character {
 	
 	private boolean alive = true;
 	
-	private HealthBar healthBar;
+	private Bar bar;
 	
 	private SpriteSheet bloodSpriteSheet;
 	private Animation bloodAnimation;
@@ -51,6 +51,11 @@ public abstract class Character {
 	private Animation attackDownAnimation;
 	private Animation attackLeftAnimation;
 	private Animation attackRightAnimation;
+	
+	private Animation prepareAttackUpAnimation;
+	private Animation prepareAttackDownAnimation;
+	private Animation prepareAttackLeftAnimation;
+	private Animation prepareAttackRightAnimation;
 	
 	private Animation blockUpAnimation;
 	private Animation blockDownAnimation;
@@ -99,10 +104,15 @@ public abstract class Character {
 		goLeftAnimation = new Animation(spriteSheet, 1, 9, 8, 9, true, 100, true);
 		goRightAnimation = new Animation(spriteSheet, 1, 11, 8, 11, true, 100, true);
 		
-		attackUpAnimation = new Animation(overSizeSpriteSheet, 0, 7, 5, 7, true, 100, true);
-		attackDownAnimation = new Animation(overSizeSpriteSheet, 0, 9, 5, 9, true, 100, true);
-		attackLeftAnimation = new Animation(overSizeSpriteSheet, 0, 8, 5, 8, true, 100, true);
-		attackRightAnimation = new Animation(overSizeSpriteSheet, 0, 10, 5, 10, true, 100, true);
+		attackUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 5, 7, true, 100, true);
+		attackDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 5, 9, true, 100, true);
+		attackLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 5, 8, true, 100, true);
+		attackRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 5, 10, true, 100, true);
+		
+		prepareAttackUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 2, 7, true, 100, true);
+		prepareAttackDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 2, 9, true, 100, true);
+		prepareAttackLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 2, 8, true, 100, true);
+		prepareAttackRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 2, 10, true, 100, true);
 		
 		blockUpAnimation = new Animation(overSizeSpriteSheet, 1, 7, 1, 7, true, 100, true);
 		blockDownAnimation = new Animation(overSizeSpriteSheet, 1, 9, 1, 9, true, 100, true);
@@ -155,10 +165,10 @@ public abstract class Character {
 		
 		if(alive) {
 			
-			healthBar.setCurrentHealth(getHealthBar().getCurrentHealth() - amount);
+			bar.setCurrentValue(bar.getCurrentValue() - amount);
 			
-			if(healthBar.getCurrentHealth() <= 0) {
-				healthBar.setCurrentHealth(0);
+			if(bar.getCurrentValue() <= 0) {
+				bar.setCurrentValue(0);
 				currentAnimation = dieAnimation;
 				alive = false;
 			}
@@ -219,12 +229,12 @@ public abstract class Character {
 		this.alive = alive;
 	}
 	
-	public HealthBar getHealthBar() {
-		return healthBar;
+	public Bar getBar() {
+		return bar;
 	}
 	
-	public void setHealthBar(HealthBar healthBar) {
-		this.healthBar = healthBar;
+	public void setBar(Bar bar) {
+		this.bar = bar;
 	}
 	
 	public Animation getBloodAnimation() {
@@ -353,6 +363,22 @@ public abstract class Character {
 
 	public Animation getAttackRightAnimation() {
 		return attackRightAnimation;
+	}
+	
+	public Animation getPrepareAttackUpAnimation() {
+		return prepareAttackUpAnimation;
+	}
+
+	public Animation getPrepareAttackDownAnimation() {
+		return prepareAttackDownAnimation;
+	}
+
+	public Animation getPrepareAttackLeftAnimation() {
+		return prepareAttackLeftAnimation;
+	}
+
+	public Animation getPrepareAttackRightAnimation() {
+		return prepareAttackRightAnimation;
 	}
 	
 	public Animation getBlockUpAnimation() {

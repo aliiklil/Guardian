@@ -1,5 +1,6 @@
 package models;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
@@ -17,7 +18,7 @@ public class NPC extends Character {
 		
 		super.setCharacterCollisionBox(new CollisionBox(super.getRelativeToMapX(),  super.getRelativeToMapY(), super.getSpriteSize()/2, super.getSpriteSize()/2));
 		
-		super.setHealthBar(new HealthBar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, currentHealth, maxHealth));
+		super.setBar(new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, currentHealth, maxHealth, Color.red));
 		
 		this.screenRelativeX = Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getSpriteSize() / 4;
 		this.screenRelativeY = Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getSpriteSize() / 2;
@@ -29,8 +30,8 @@ public class NPC extends Character {
 		screenRelativeX = (int) Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getSpriteSize() / 4;		
 		screenRelativeY = (int) Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getSpriteSize() / 2;
 		
-		super.getHealthBar().setX(screenRelativeX);
-		super.getHealthBar().setY(screenRelativeY);
+		super.getBar().setX(screenRelativeX);
+		super.getBar().setY(screenRelativeY);
 																			
 	}
 
@@ -38,8 +39,8 @@ public class NPC extends Character {
 		
 		super.getCurrentAnimation().draw(screenRelativeX, screenRelativeY);
 
-		if(super.getHealthBar().getCurrentHealth() > 0) {
-			super.getHealthBar().render(g);
+		if(super.getBar().getCurrentValue() > 0) {
+			super.getBar().render(g);
 		}
 		
 		if(super.isDrawBlood()) {

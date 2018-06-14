@@ -37,6 +37,7 @@ public class Player extends Character {
 	private boolean damageDealt = false;
 	
 	private boolean isAttacking = false;
+	private boolean isPreparingAttack = false;
 	private boolean isBlocking = false;
 	private boolean isShooting = false;
 	private boolean isSpelling = false;
@@ -45,6 +46,8 @@ public class Player extends Character {
 	private boolean spellCreated = false;
 		
 	private Inventory inventory = new Inventory();
+	
+	private Bar prepareAttackBar;
 		
 	public Player() throws SlickException {
 		
@@ -52,7 +55,9 @@ public class Player extends Character {
 				
 		super.setEnvironmentCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 16, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 18));
 		
-		super.setHealthBar(new HealthBar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200));
+		super.setBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
+		
+		prepareAttackBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
 		
 		Game.getCurrentMap().setX(screenRelativeX - super.getRelativeToMapX() + super.getSpriteSize() / 4);
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
@@ -91,16 +96,20 @@ public class Player extends Character {
 		
 		updateMove();
 		updateAttack();
+		update2Attack();
 		updateBlock();
 		updateShoot();
 		updateSpell();
 		updatePickUpItem();
-
+		
+		System.out.println(prepareAttackBar.getCurrentValue());
+		
+		
 	}
 	
 	public void render(Graphics g) {
 		
-		if(isAttacking || isBlocking) {
+		if(isAttacking || isBlocking || isPreparingAttack) {
 		
 			super.getCurrentAnimation().draw(screenRelativeOverSizeX, screenRelativeOverSizeY);
 			
@@ -117,12 +126,15 @@ public class Player extends Character {
 		g.setColor(Color.white);
 		g.drawString("relativeToMapX:  " + super.getRelativeToMapX(), 50, 50);
 		g.drawString("relativeToMapY:  " + super.getRelativeToMapY(), 50, 100);
-				
+		
+		if(isPreparingAttack) {
+			prepareAttackBar.render(g);
+		}
 	}
 	
 	private void updateMove() {
 		
-		if(!isAttacking && !isBlocking && !isShooting && !isSpelling) {
+		if(!isAttacking && !isPreparingAttack && !isBlocking && !isShooting && !isSpelling) {
 						
 			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 				
@@ -416,9 +428,132 @@ public class Player extends Character {
 		}
 	}
 	
+	private void update2Attack() {
+ 		
+		if(input.isKeyDown(Input.KEY_C) && !isAttacking && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
+						
+			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
+				super.setCurrentAnimation(super.getPrepareAttackUpAnimation());
+			}
+			
+			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) {
+				super.setCurrentAnimation(super.getPrepareAttackDownAnimation());
+			}
+			
+			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) {
+				super.setCurrentAnimation(super.getPrepareAttackLeftAnimation());
+			}
+			
+			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) {
+				super.setCurrentAnimation(super.getPrepareAttackRightAnimation());
+			}
+			
+			super.getCurrentAnimation().start();
+			isPreparingAttack = true;
+			
+		}
+		
+		if(isPreparingAttack && prepareAttackBar.getCurrentValue() < prepareAttackBar.getMaxValue()) {
+			prepareAttackBar.setCurrentValue(prepareAttackBar.getCurrentValue() + 1);
+		}
+		
+		if(!input.isKeyDown(Input.KEY_C) && isPreparingAttack) {
+					
+			if(super.getCurrentAnimation() == super.getPrepareAttackUpAnimation()) {
+				super.setCurrentAnimation(super.getAttackUpAnimation());
+				isPreparingAttack = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getPrepareAttackDownAnimation()) {
+				super.setCurrentAnimation(super.getAttackDownAnimation());
+				isPreparingAttack = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getPrepareAttackLeftAnimation()) {
+				super.setCurrentAnimation(super.getAttackLeftAnimation());
+				isPreparingAttack = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getPrepareAttackRightAnimation()) {
+				super.setCurrentAnimation(super.getAttackRightAnimation());
+				isPreparingAttack = false;
+			}
+			
+			super.getCurrentAnimation().start();
+			prepareAttackBar.setCurrentValue(0);
+			isAttacking = true;
+			damageDealt = false;
+		
+		}
+		
+		if(isAttacking && super.getAttackUpAnimation().isStopped()) {
+			super.getAttackUpAnimation().restart();
+			super.setCurrentAnimation(super.getLookUpAnimation());
+			isAttacking = false;
+		}
+		
+		if(isAttacking && super.getAttackDownAnimation().isStopped()) {
+			super.getAttackDownAnimation().restart();
+			super.setCurrentAnimation(super.getLookDownAnimation());
+			isAttacking = false;
+		}
+		
+		if(isAttacking && super.getAttackLeftAnimation().isStopped()) {
+			super.getAttackLeftAnimation().restart();
+			super.setCurrentAnimation(super.getLookLeftAnimation());
+			isAttacking = false;
+		}
+		
+		if(isAttacking && super.getAttackRightAnimation().isStopped()) {
+			super.getAttackRightAnimation().restart();
+			super.setCurrentAnimation(super.getLookRightAnimation());
+			isAttacking = false;
+		}
+		
+		if(!damageDealt) {
+		
+			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+				for(NPC npc : npcList) {
+					if(super.getAttackUpCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
+						npc.decreaseHealth(10);
+						damageDealt = true;
+					}
+				}
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+				for(NPC npc : npcList) {
+					if(super.getAttackDownCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
+						npc.decreaseHealth(10);
+						damageDealt = true;
+					}
+				}
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+				for(NPC npc : npcList) {
+					if(super.getAttackLeftCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
+						npc.decreaseHealth(10);
+						damageDealt = true;
+					}
+				}		
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+				for(NPC npc : npcList) {
+					if(super.getAttackRightCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
+						npc.decreaseHealth(10);
+						damageDealt = true;
+					}				
+				}			
+			}		
+			
+		}
+	}
+	
 	private void updateBlock() {
 		
-		if(input.isKeyDown(Input.KEY_Y) && !isAttacking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_Y) && !isAttacking && !isPreparingAttack && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
 			
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getBlockUpAnimation());
@@ -471,7 +606,7 @@ public class Player extends Character {
 	
 	private void updateShoot() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
 			
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getShootUpAnimation());
@@ -558,7 +693,7 @@ public class Player extends Character {
 
 	private void updateSpell() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getSpellUpAnimation());
