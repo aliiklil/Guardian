@@ -39,7 +39,7 @@ public class Player extends Character {
 	private boolean isAttacking = false;
 	private boolean isPreparingAttack = false;
 	private boolean isBlocking = false;
-	private boolean isShooting = false;
+	private boolean isPreparingShot = false;
 	private boolean isSpelling = false;
 	
 	private boolean arrowCreated = false;
@@ -48,6 +48,7 @@ public class Player extends Character {
 	private Inventory inventory = new Inventory();
 	
 	private Bar prepareAttackBar;
+	private Bar prepareShotBar;
 	
 	private int damageToDeal = 0;
 		
@@ -60,6 +61,7 @@ public class Player extends Character {
 		super.setBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
 		
 		prepareAttackBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
+		prepareShotBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
 		
 		Game.getCurrentMap().setX(screenRelativeX - super.getRelativeToMapX() + super.getSpriteSize() / 4);
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
@@ -128,11 +130,15 @@ public class Player extends Character {
 		if(isPreparingAttack) {
 			prepareAttackBar.render(g);
 		}
+		
+		if(isPreparingShot && super.getCurrentAnimation().getFrame() == 8) {
+			prepareShotBar.render(g);
+		}
 	}
 	
 	private void updateMove() {
 		
-		if(!isAttacking && !isPreparingAttack && !isBlocking && !isShooting && !isSpelling) {
+		if(!isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isSpelling) {
 						
 			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 				
@@ -338,7 +344,7 @@ public class Player extends Character {
 	
 	private void updateAttack() {
  		
-		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isBlocking && !isPreparingShot && !isSpelling && !inventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getPrepareAttackUpAnimation());
@@ -466,7 +472,7 @@ public class Player extends Character {
 	
 	private void updateBlock() {
 		
-		if(input.isKeyDown(Input.KEY_Y) && !isAttacking && !isPreparingAttack && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_Y) && !isAttacking && !isPreparingAttack && !isPreparingShot && !isSpelling && !inventory.isInventoryOpen()) {
 			
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				super.setCurrentAnimation(super.getBlockUpAnimation());
@@ -518,7 +524,7 @@ public class Player extends Character {
 	
 	private void updateShoot() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isSpelling && !inventory.isInventoryOpen()) {
 			
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getShootUpAnimation());
@@ -541,71 +547,68 @@ public class Player extends Character {
 			}
 			
 			super.getCurrentAnimation().start();
-			isShooting = true;
+			isPreparingShot = true;
 			
 		}
 		
-		if(isShooting && super.getShootUpAnimation().isStopped()) {
-			super.getShootUpAnimation().restart();
-			super.setCurrentAnimation(super.getLookUpAnimation());
-			isShooting = false;
+		if(isPreparingShot && prepareShotBar.getCurrentValue() < prepareShotBar.getMaxValue() && super.getCurrentAnimation().getFrame() == 8) {
+			prepareShotBar.setCurrentValue(prepareShotBar.getCurrentValue() + 1);
 		}
 		
-		if(isShooting && super.getShootDownAnimation().isStopped()) {
-			super.getShootDownAnimation().restart();
-			super.setCurrentAnimation(super.getLookDownAnimation());
-			isShooting = false;
-		}
 		
-		if(isShooting && super.getShootLeftAnimation().isStopped()) {
-			super.getShootLeftAnimation().restart();
-			super.setCurrentAnimation(super.getLookLeftAnimation());
-			isShooting = false;
-		}
+		if(!input.isKeyDown(Input.KEY_A) && isPreparingShot && super.getCurrentAnimation().isStopped() && !arrowCreated) {
 		
-		if(isShooting && super.getShootRightAnimation().isStopped()) {
-			super.getShootRightAnimation().restart();
-			super.setCurrentAnimation(super.getLookRightAnimation());
-			isShooting = false;
-		}
-		
-		if(super.getCurrentAnimation() == super.getShootUpAnimation() && super.getCurrentAnimation().getFrame() == 9 && !arrowCreated) {
-
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 1, 0, 1, 0, true, 100, true), 0);
-			arrowCreated = true;
-			Game.getProjectileManager().addProjectile(projectile);
+			if(super.getCurrentAnimation() == super.getShootUpAnimation()) {
+				super.getShootUpAnimation().restart();
+				super.setCurrentAnimation(super.getLookUpAnimation());
+				isPreparingShot = false;
+				prepareShotBar.setCurrentValue(0);
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 1, 0, 1, 0, true, 100, true), 0);
+				arrowCreated = true;
+				Game.getProjectileManager().addProjectile(projectile);
+			}
 			
-		}
-		
-		if(super.getCurrentAnimation() == super.getShootDownAnimation() && super.getCurrentAnimation().getFrame() == 9 && !arrowCreated) {
-
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 3, 0, 3, 0, true, 100, true), 1);
-			arrowCreated = true;
-			Game.getProjectileManager().addProjectile(projectile);
+			if(super.getCurrentAnimation() == super.getShootDownAnimation()) {
+				super.getShootDownAnimation().restart();
+				super.setCurrentAnimation(super.getLookDownAnimation());
+				isPreparingShot = false;
+				prepareShotBar.setCurrentValue(0);
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 3, 0, 3, 0, true, 100, true), 1);
+				arrowCreated = true;
+				Game.getProjectileManager().addProjectile(projectile);
+			}
 			
-		}
-		
-		if(super.getCurrentAnimation() == super.getShootLeftAnimation() && super.getCurrentAnimation().getFrame() == 9 && !arrowCreated) {
-
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 0, 0, 0, 0, true, 100, true), 2);
-			arrowCreated = true;
-			Game.getProjectileManager().addProjectile(projectile);
+			if(super.getCurrentAnimation() == super.getShootLeftAnimation()) {
+				super.getShootLeftAnimation().restart();
+				super.setCurrentAnimation(super.getLookLeftAnimation());
+				isPreparingShot = false;
+				prepareShotBar.setCurrentValue(0);
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 0, 0, 0, 0, true, 100, true), 2);
+				arrowCreated = true;
+				Game.getProjectileManager().addProjectile(projectile);
+			}
 			
-		}
+			if(super.getCurrentAnimation() == super.getShootRightAnimation()) {
+				super.getShootRightAnimation().restart();
+				super.setCurrentAnimation(super.getLookRightAnimation());
+				isPreparingShot = false;
+				prepareShotBar.setCurrentValue(0);
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 2, 0, 2, 0, true, 100, true), 3);
+				arrowCreated = true;
+				Game.getProjectileManager().addProjectile(projectile);
+			}
 		
-		if(super.getCurrentAnimation() == super.getShootRightAnimation() && super.getCurrentAnimation().getFrame() == 9 && !arrowCreated) {
-
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 2, 0, 2, 0, true, 100, true), 3);
-			arrowCreated = true;
-			Game.getProjectileManager().addProjectile(projectile);
-			
 		}
-		
+				
 	}
 
 	private void updateSpell() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isBlocking && !isShooting && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isSpelling && !inventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getSpellUpAnimation());

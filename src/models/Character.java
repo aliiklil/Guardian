@@ -119,10 +119,10 @@ public abstract class Character {
 		blockLeftAnimation = new Animation(overSizeSpriteSheet, 6, 8, 6, 8, true, 100, true);
 		blockRightAnimation = new Animation(overSizeSpriteSheet, 6, 10, 6, 10, true, 100, true);
 
-		shootUpAnimation = new Animation(spriteSheet, 0, 16, 11, 16, true, 100, true);
-		shootDownAnimation = new Animation(spriteSheet, 0, 18, 11, 18, true, 100, true);
-		shootLeftAnimation = new Animation(spriteSheet, 0, 17, 11, 17, true, 100, true);
-		shootRightAnimation = new Animation(spriteSheet, 0, 19, 11, 19, true, 100, true);
+		shootUpAnimation = new Animation(spriteSheet, 0, 16, 8, 16, true, 100, true);
+		shootDownAnimation = new Animation(spriteSheet, 0, 18, 8, 18, true, 100, true);
+		shootLeftAnimation = new Animation(spriteSheet, 0, 17, 8, 17, true, 100, true);
+		shootRightAnimation = new Animation(spriteSheet, 0, 19, 8, 19, true, 100, true);
 		
 		spellUpAnimation = new Animation(spriteSheet, 0, 0, 6, 0, true, 100, true);
 		spellDownAnimation = new Animation(spriteSheet, 0, 2, 6, 2, true, 100, true);
