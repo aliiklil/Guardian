@@ -40,7 +40,7 @@ public class Player extends Character {
 	private boolean isPreparingAttack = false;
 	private boolean isBlocking = false;
 	private boolean isPreparingShot = false;
-	private boolean isSpelling = false;
+	private boolean isPreparingSpell = false;
 	
 	private boolean arrowCreated = false;
 	private boolean spellCreated = false;
@@ -49,6 +49,7 @@ public class Player extends Character {
 	
 	private Bar prepareAttackBar;
 	private Bar prepareShotBar;
+	private Bar prepareSpellBar;
 	
 	private int damageToDeal = 0;
 		
@@ -62,6 +63,7 @@ public class Player extends Character {
 		
 		prepareAttackBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
 		prepareShotBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
+		prepareSpellBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
 		
 		Game.getCurrentMap().setX(screenRelativeX - super.getRelativeToMapX() + super.getSpriteSize() / 4);
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
@@ -134,11 +136,15 @@ public class Player extends Character {
 		if(isPreparingShot && super.getCurrentAnimation().isStopped()) {
 			prepareShotBar.render(g);
 		}
+		
+		if(isPreparingSpell && super.getCurrentAnimation().isStopped()) {
+			prepareSpellBar.render(g);
+		}
 	}
 	
 	private void updateMove() {
 		
-		if(!isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isSpelling) {
+		if(!isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isPreparingSpell) {
 						
 			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 				
@@ -344,7 +350,7 @@ public class Player extends Character {
 	
 	private void updateAttack() {
  		
-		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isBlocking && !isPreparingShot && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isBlocking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getPrepareAttackUpAnimation());
@@ -472,7 +478,7 @@ public class Player extends Character {
 	
 	private void updateBlock() {
 		
-		if(input.isKeyDown(Input.KEY_Y) && !isAttacking && !isPreparingAttack && !isPreparingShot && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_Y) && !isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
 			
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				super.setCurrentAnimation(super.getBlockUpAnimation());
@@ -524,7 +530,7 @@ public class Player extends Character {
 	
 	private void updateShoot() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
 			
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getShootUpAnimation());
@@ -551,7 +557,7 @@ public class Player extends Character {
 			
 		}
 		
-		if(isPreparingShot && prepareShotBar.getCurrentValue() < prepareShotBar.getMaxValue() && super.getCurrentAnimation().getFrame() == 8) {
+		if(isPreparingShot && prepareShotBar.getCurrentValue() < prepareShotBar.getMaxValue() && super.getCurrentAnimation().isStopped()) {
 			prepareShotBar.setCurrentValue(prepareShotBar.getCurrentValue() + 1);
 		}
 		
@@ -607,7 +613,7 @@ public class Player extends Character {
 
 	private void updateSpell() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isSpelling && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 				super.setCurrentAnimation(super.getSpellUpAnimation());
@@ -630,66 +636,63 @@ public class Player extends Character {
 			}
 			
 			super.getCurrentAnimation().start();
-			isSpelling = true;
+			isPreparingSpell = true;
 			
 		}
 		
-		if(isSpelling && super.getSpellUpAnimation().isStopped()) {
-			super.getSpellUpAnimation().restart();
-			super.setCurrentAnimation(super.getLookUpAnimation());
-			isSpelling = false;
+		if(isPreparingSpell && prepareSpellBar.getCurrentValue() < prepareSpellBar.getMaxValue() && super.getCurrentAnimation().isStopped()) {
+			prepareSpellBar.setCurrentValue(prepareSpellBar.getCurrentValue() + 1);
 		}
 		
-		if(isSpelling && super.getSpellDownAnimation().isStopped()) {
-			super.getSpellDownAnimation().restart();
-			super.setCurrentAnimation(super.getLookDownAnimation());
-			isSpelling = false;
-		}
+		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
 		
-		if(isSpelling && super.getSpellLeftAnimation().isStopped()) {
-			super.getSpellLeftAnimation().restart();
-			super.setCurrentAnimation(super.getLookLeftAnimation());
-			isSpelling = false;
-		}
-		
-		if(isSpelling && super.getSpellRightAnimation().isStopped()) {
-			super.getSpellRightAnimation().restart();
-			super.setCurrentAnimation(super.getLookRightAnimation());
-			isSpelling = false;
-		}
-		
-		if(super.getCurrentAnimation() == super.getSpellUpAnimation() && super.getCurrentAnimation().getFrame() == 5 && !spellCreated) {
-									
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 1, 7 , 1, true, 100, true), 0, 20, 5);
-			spellCreated = true;
-			Game.getProjectileManager().addProjectile(projectile);
+			int damageToDeal = 20 + prepareSpellBar.getCurrentValue();
+			int spellVelocity = 7 + prepareSpellBar.getCurrentValue()/10;
+			prepareSpellBar.setCurrentValue(0);
 			
-		}
-		
-		if(super.getCurrentAnimation() == super.getSpellDownAnimation() && super.getCurrentAnimation().getFrame() == 5 && !spellCreated) {
-
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 3, 7 , 3, true, 100, true), 1, 20, 5);
-			spellCreated = true;
-			Game.getProjectileManager().addProjectile(projectile);
+			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
+				super.getSpellUpAnimation().restart();
+				super.setCurrentAnimation(super.getLookUpAnimation());
+				isPreparingSpell = false;
+								
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 1, 7 , 1, true, 100, true), 0, damageToDeal, spellVelocity);
+				spellCreated = true;
+				Game.getProjectileManager().addProjectile(projectile);
+				
+			}
 			
-		}
-		
-		if(super.getCurrentAnimation() == super.getSpellLeftAnimation() && super.getCurrentAnimation().getFrame() == 5 && !spellCreated) {
-
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 0, 7 , 0, true, 100, true), 2, 20, 5);
-			spellCreated = true;
-			Game.getProjectileManager().addProjectile(projectile);
+			if(super.getCurrentAnimation() == super.getSpellDownAnimation()) {
+				super.getSpellDownAnimation().restart();
+				super.setCurrentAnimation(super.getLookDownAnimation());
+				isPreparingSpell = false;
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 3, 7 , 3, true, 100, true), 1, damageToDeal, spellVelocity);
+				spellCreated = true;
+				Game.getProjectileManager().addProjectile(projectile);
+			}
 			
-		}
-		
-		if(super.getCurrentAnimation() == super.getSpellRightAnimation() && super.getCurrentAnimation().getFrame() == 5 && !spellCreated) {
-
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 2, 7 , 2, true, 100, true), 3, 20, 5);
-			spellCreated = true;
-			Game.getProjectileManager().addProjectile(projectile);
+			if(super.getCurrentAnimation() == super.getSpellLeftAnimation()) {
+				super.getSpellLeftAnimation().restart();
+				super.setCurrentAnimation(super.getLookLeftAnimation());
+				isPreparingSpell = false;
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 0, 7 , 0, true, 100, true), 2, damageToDeal, spellVelocity);
+				spellCreated = true;
+				Game.getProjectileManager().addProjectile(projectile);
+			}
 			
-		}
+			if(super.getCurrentAnimation() == super.getSpellRightAnimation()) {
+				super.getSpellRightAnimation().restart();
+				super.setCurrentAnimation(super.getLookRightAnimation());
+				isPreparingSpell = false;
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 2, 7 , 2, true, 100, true), 3, damageToDeal, spellVelocity);
+				spellCreated = true;
+				Game.getProjectileManager().addProjectile(projectile);
+			}
 		
+		}
+				
 	}
 	
 	private void updatePickUpItem() throws SlickException {
