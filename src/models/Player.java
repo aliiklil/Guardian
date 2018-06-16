@@ -133,11 +133,11 @@ public class Player extends Character {
 			prepareAttackBar.render(g);
 		}
 		
-		if(isPreparingShot && super.getCurrentAnimation().isStopped()) {
+		if(isPreparingShot && super.getCurrentAnimation().getFrame() == 8) {
 			prepareShotBar.render(g);
 		}
 		
-		if(isPreparingSpell && super.getCurrentAnimation().isStopped()) {
+		if(isPreparingSpell && super.getCurrentAnimation().getFrame() == 6) {
 			prepareSpellBar.render(g);
 		}
 	}
@@ -352,19 +352,19 @@ public class Player extends Character {
  		
 		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isBlocking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
 						
-			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
+			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				super.setCurrentAnimation(super.getPrepareAttackUpAnimation());
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) {
+			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
 				super.setCurrentAnimation(super.getPrepareAttackDownAnimation());
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) {
+			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
 				super.setCurrentAnimation(super.getPrepareAttackLeftAnimation());
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) {
+			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
 				super.setCurrentAnimation(super.getPrepareAttackRightAnimation());
 			}
 			
@@ -530,25 +530,53 @@ public class Player extends Character {
 	
 	private void updateShoot() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingSpell && !inventory.isInventoryOpen()) {
 			
-			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
-				super.setCurrentAnimation(super.getShootUpAnimation());
+			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
+				if(isPreparingShot && super.getCurrentAnimation() != super.getShootUpAnimation()) {
+					int frameIndex = super.getCurrentAnimation().getFrame();
+					super.getCurrentAnimation().restart();
+					super.setCurrentAnimation(super.getShootUpAnimation());
+					super.getCurrentAnimation().setCurrentFrame(frameIndex);
+				} else {
+					super.setCurrentAnimation(super.getShootUpAnimation());
+				}
 				arrowCreated = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) {
-				super.setCurrentAnimation(super.getShootDownAnimation());
+			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
+				if(isPreparingShot && super.getCurrentAnimation() != super.getShootDownAnimation()) {
+					int frameIndex = super.getCurrentAnimation().getFrame();
+					super.getCurrentAnimation().restart();
+					super.setCurrentAnimation(super.getShootDownAnimation());
+					super.getCurrentAnimation().setCurrentFrame(frameIndex);
+				} else {
+					super.setCurrentAnimation(super.getShootDownAnimation());
+				}
 				arrowCreated = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) {
-				super.setCurrentAnimation(super.getShootLeftAnimation());
+			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
+				if(isPreparingShot && super.getCurrentAnimation() != super.getShootLeftAnimation()) {
+					int frameIndex = super.getCurrentAnimation().getFrame();
+					super.getCurrentAnimation().restart();
+					super.setCurrentAnimation(super.getShootLeftAnimation());
+					super.getCurrentAnimation().setCurrentFrame(frameIndex);
+				} else {
+					super.setCurrentAnimation(super.getShootLeftAnimation());
+				}
 				arrowCreated = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) {
-				super.setCurrentAnimation(super.getShootRightAnimation());
+			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
+				if(isPreparingShot && super.getCurrentAnimation() != super.getShootRightAnimation()) {
+					int frameIndex = super.getCurrentAnimation().getFrame();
+					super.getCurrentAnimation().restart();
+					super.setCurrentAnimation(super.getShootRightAnimation());
+					super.getCurrentAnimation().setCurrentFrame(frameIndex);
+				} else {
+					super.setCurrentAnimation(super.getShootRightAnimation());
+				}
 				arrowCreated = false;
 			}
 			
@@ -557,7 +585,7 @@ public class Player extends Character {
 			
 		}
 		
-		if(isPreparingShot && prepareShotBar.getCurrentValue() < prepareShotBar.getMaxValue() && super.getCurrentAnimation().isStopped()) {
+		if(isPreparingShot && prepareShotBar.getCurrentValue() < prepareShotBar.getMaxValue() && super.getCurrentAnimation().getFrame() == 8) {
 			prepareShotBar.setCurrentValue(prepareShotBar.getCurrentValue() + 1);
 		}
 		
@@ -613,26 +641,54 @@ public class Player extends Character {
 
 	private void updateSpell() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !inventory.isInventoryOpen()) {
 						
-			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
-				super.setCurrentAnimation(super.getSpellUpAnimation());
-				spellCreated = false;
+			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()|| input.isKeyDown(Input.KEY_UP)) {				
+				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
+					int frameIndex = super.getCurrentAnimation().getFrame();
+					super.getCurrentAnimation().restart();
+					super.setCurrentAnimation(super.getSpellUpAnimation());
+					super.getCurrentAnimation().setCurrentFrame(frameIndex);
+				} else {
+					super.setCurrentAnimation(super.getSpellUpAnimation());
+				}
+				spellCreated = false;			
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) {
-				super.setCurrentAnimation(super.getSpellDownAnimation());
-				spellCreated = false;
+			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()|| input.isKeyDown(Input.KEY_DOWN)) {
+				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellDownAnimation()) {
+					int frameIndex = super.getCurrentAnimation().getFrame();
+					super.getCurrentAnimation().restart();
+					super.setCurrentAnimation(super.getSpellDownAnimation());
+					super.getCurrentAnimation().setCurrentFrame(frameIndex);
+				} else {
+					super.setCurrentAnimation(super.getSpellDownAnimation());
+				}
+				spellCreated = false;			
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) {
-				super.setCurrentAnimation(super.getSpellLeftAnimation());
-				spellCreated = false;
+			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()|| input.isKeyDown(Input.KEY_LEFT)) {
+				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellLeftAnimation()) {
+					int frameIndex = super.getCurrentAnimation().getFrame();
+					super.getCurrentAnimation().restart();
+					super.setCurrentAnimation(super.getSpellLeftAnimation());
+					super.getCurrentAnimation().setCurrentFrame(frameIndex);
+				} else {
+					super.setCurrentAnimation(super.getSpellLeftAnimation());
+				}
+				spellCreated = false;			
 			}
 			
-			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) {
-				super.setCurrentAnimation(super.getSpellRightAnimation());
-				spellCreated = false;
+			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()|| input.isKeyDown(Input.KEY_RIGHT)) {
+				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellRightAnimation()) {
+					int frameIndex = super.getCurrentAnimation().getFrame();
+					super.getCurrentAnimation().restart();
+					super.setCurrentAnimation(super.getSpellRightAnimation());
+					super.getCurrentAnimation().setCurrentFrame(frameIndex);
+				} else {
+					super.setCurrentAnimation(super.getSpellRightAnimation());
+				}
+				spellCreated = false;			
 			}
 			
 			super.getCurrentAnimation().start();
@@ -640,7 +696,7 @@ public class Player extends Character {
 			
 		}
 		
-		if(isPreparingSpell && prepareSpellBar.getCurrentValue() < prepareSpellBar.getMaxValue() && super.getCurrentAnimation().isStopped()) {
+		if(isPreparingSpell && prepareSpellBar.getCurrentValue() < prepareSpellBar.getMaxValue() && super.getCurrentAnimation().getFrame() == 6) {
 			prepareSpellBar.setCurrentValue(prepareSpellBar.getCurrentValue() + 1);
 		}
 		
