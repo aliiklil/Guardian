@@ -23,7 +23,7 @@ public class Projectile {
 		
 	private Animation animation;
 	
-	private final int velocity = 5;
+	private final int velocity;
 	private final int direction;
 	
 	private ArrayList<NPC> npcList;
@@ -34,7 +34,9 @@ public class Projectile {
 	private final int width;
 	private final int height;
 	
-	public Projectile(float x, float y, Animation animation, int direction) throws SlickException {
+	private int damage;
+	
+	public Projectile(float x, float y, Animation animation, int direction, int damage, int velocity) throws SlickException {
 		
 		this.animation = animation;
 		
@@ -48,7 +50,11 @@ public class Projectile {
 		relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;
 
 		this.direction = direction;
+		
+		this.damage = damage;
 			
+		this.velocity = velocity;
+		
 		collisionBox = new CollisionBox(relativeToMapX + width/4, relativeToMapY + height/4, width/4, height/4);
 				
 	}
@@ -95,7 +101,7 @@ public class Projectile {
 			
 			for(NPC npc : npcList) {
 					if(collisionBox.intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
-						npc.decreaseHealth(10);
+						npc.decreaseHealth(damage);
 						Game.getProjectileManager().removeProjectile(this);
 					}
 			}

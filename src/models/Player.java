@@ -131,7 +131,7 @@ public class Player extends Character {
 			prepareAttackBar.render(g);
 		}
 		
-		if(isPreparingShot && super.getCurrentAnimation().getFrame() == 8) {
+		if(isPreparingShot && super.getCurrentAnimation().isStopped()) {
 			prepareShotBar.render(g);
 		}
 	}
@@ -555,16 +555,18 @@ public class Player extends Character {
 			prepareShotBar.setCurrentValue(prepareShotBar.getCurrentValue() + 1);
 		}
 		
-		
 		if(!input.isKeyDown(Input.KEY_A) && isPreparingShot && super.getCurrentAnimation().isStopped() && !arrowCreated) {
 		
+			int damageToDeal = 20 + prepareShotBar.getCurrentValue();
+			int arrowVelocity = 7 + prepareShotBar.getCurrentValue()/10;
+			prepareShotBar.setCurrentValue(0);
+			
 			if(super.getCurrentAnimation() == super.getShootUpAnimation()) {
 				super.getShootUpAnimation().restart();
 				super.setCurrentAnimation(super.getLookUpAnimation());
 				isPreparingShot = false;
-				prepareShotBar.setCurrentValue(0);
-				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 1, 0, 1, 0, true, 100, true), 0);
+
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 1, 0, 1, 0, true, 100, true), 0, damageToDeal, arrowVelocity);
 				arrowCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -573,9 +575,8 @@ public class Player extends Character {
 				super.getShootDownAnimation().restart();
 				super.setCurrentAnimation(super.getLookDownAnimation());
 				isPreparingShot = false;
-				prepareShotBar.setCurrentValue(0);
-				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 3, 0, 3, 0, true, 100, true), 1);
+								
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 3, 0, 3, 0, true, 100, true), 1, damageToDeal, arrowVelocity);
 				arrowCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -584,9 +585,8 @@ public class Player extends Character {
 				super.getShootLeftAnimation().restart();
 				super.setCurrentAnimation(super.getLookLeftAnimation());
 				isPreparingShot = false;
-				prepareShotBar.setCurrentValue(0);
 				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 0, 0, 0, 0, true, 100, true), 2);
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 0, 0, 0, 0, true, 100, true), 2, damageToDeal, arrowVelocity);
 				arrowCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -595,9 +595,8 @@ public class Player extends Character {
 				super.getShootRightAnimation().restart();
 				super.setCurrentAnimation(super.getLookRightAnimation());
 				isPreparingShot = false;
-				prepareShotBar.setCurrentValue(0);
-				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 2, 0, 2, 0, true, 100, true), 3);
+
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 2, 0, 2, 0, true, 100, true), 3, damageToDeal, arrowVelocity);
 				arrowCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -661,7 +660,7 @@ public class Player extends Character {
 		
 		if(super.getCurrentAnimation() == super.getSpellUpAnimation() && super.getCurrentAnimation().getFrame() == 5 && !spellCreated) {
 									
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 1, 7 , 1, true, 100, true), 0);
+			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 1, 7 , 1, true, 100, true), 0, 20, 5);
 			spellCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -669,7 +668,7 @@ public class Player extends Character {
 		
 		if(super.getCurrentAnimation() == super.getSpellDownAnimation() && super.getCurrentAnimation().getFrame() == 5 && !spellCreated) {
 
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 3, 7 , 3, true, 100, true), 1);
+			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 3, 7 , 3, true, 100, true), 1, 20, 5);
 			spellCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -677,7 +676,7 @@ public class Player extends Character {
 		
 		if(super.getCurrentAnimation() == super.getSpellLeftAnimation() && super.getCurrentAnimation().getFrame() == 5 && !spellCreated) {
 
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 0, 7 , 0, true, 100, true), 2);
+			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 0, 7 , 0, true, 100, true), 2, 20, 5);
 			spellCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
@@ -685,7 +684,7 @@ public class Player extends Character {
 		
 		if(super.getCurrentAnimation() == super.getSpellRightAnimation() && super.getCurrentAnimation().getFrame() == 5 && !spellCreated) {
 
-			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 2, 7 , 2, true, 100, true), 3);
+			Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 2, 7 , 2, true, 100, true), 3, 20, 5);
 			spellCreated = true;
 			Game.getProjectileManager().addProjectile(projectile);
 			
