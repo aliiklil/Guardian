@@ -55,12 +55,10 @@ public class Player extends Character {
 		
 	public Player() throws SlickException {
 		
-		super(0, 0, "resources/HumanSpriteSheet.png");
+		super(64, 0, "resources/HumanSpriteSheet.png");
 				
-		super.setEnvironmentCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 16, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 18));
-		
-		super.setCharacterCollisionBox(new CollisionBox(super.getRelativeToMapX(),  super.getRelativeToMapY(), super.getSpriteSize()/2, super.getSpriteSize()/2));
-		
+		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
+				
 		super.setBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
 		
 		prepareAttackBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
@@ -87,11 +85,8 @@ public class Player extends Character {
 		super.setRelativeToMapX((screenRelativeX + super.getSpriteSize() / 4) - Game.getCurrentMap().getX());
 		super.setRelativeToMapY((screenRelativeY + super.getSpriteSize() / 2) - Game.getCurrentMap().getY()); 
 												
-		super.getEnvironmentCollisionBox().setX(super.getRelativeToMapX() + 6);
-		super.getEnvironmentCollisionBox().setY(super.getRelativeToMapY() + 16);
-		 	
-		super.getCharacterCollisionBox().setX(super.getRelativeToMapX());
-		super.getCharacterCollisionBox().setY(super.getRelativeToMapY());
+		super.getCollisionBox().setX(super.getRelativeToMapX() + 6);
+		super.getCollisionBox().setY(super.getRelativeToMapY() + 10);
 		
 		super.getAttackUpCollisionBox().setX(super.getRelativeToMapX() - 28);
 		super.getAttackUpCollisionBox().setY(super.getRelativeToMapY() - 37);
@@ -442,7 +437,7 @@ public class Player extends Character {
 		
 			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(super.getAttackUpCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
+					if(super.getAttackUpCollisionBox().intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						npc.setRelativeToMapY(npc.getRelativeToMapY() - damageToDeal/2);
@@ -452,7 +447,7 @@ public class Player extends Character {
 			
 			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(super.getAttackDownCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
+					if(super.getAttackDownCollisionBox().intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						npc.setRelativeToMapY(npc.getRelativeToMapY() + damageToDeal/2);
@@ -462,7 +457,7 @@ public class Player extends Character {
 			
 			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(super.getAttackLeftCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
+					if(super.getAttackLeftCollisionBox().intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						npc.setRelativeToMapX(npc.getRelativeToMapX() - damageToDeal/2);
@@ -472,7 +467,7 @@ public class Player extends Character {
 			
 			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(super.getAttackRightCollisionBox().intersects(npc.getCharacterCollisionBox()) && npc.isAlive()) {
+					if(super.getAttackRightCollisionBox().intersects(npc.getCollisionBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						npc.setRelativeToMapX(npc.getRelativeToMapX() + damageToDeal/2);
@@ -764,7 +759,7 @@ public class Player extends Character {
 		
 		for(Item item : itemList) {
 			
-			if(super.getEnvironmentCollisionBox().intersects(item.getCollisionBox())) {
+			if(super.getCollisionBox().intersects(item.getCollisionBox())) {
 				
 				Game.getItemManager().removeItem(item);
 				inventory.addItem(item);
@@ -783,14 +778,14 @@ public class Player extends Character {
 				
 		for(NPC npc : npcList) {
 			
-			if(super.getCharacterCollisionBox().willIntersectUp(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
 				return true;
 			}
 			
 		}
 				
-		if(tiledMap.getTileId((int) super.getEnvironmentCollisionBox().getTopLeftX()/Main.TILE_SIZE, (int) (super.getEnvironmentCollisionBox().getTopLeftY() - super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) super.getEnvironmentCollisionBox().getTopRightX()/Main.TILE_SIZE, (int) (super.getEnvironmentCollisionBox().getTopRightY() - super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+		if(tiledMap.getTileId((int) super.getCollisionBox().getTopLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) super.getCollisionBox().getTopRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
 			
 			return false;
 			
@@ -806,14 +801,14 @@ public class Player extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCharacterCollisionBox().willIntersectDown(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
 				return true;
 			}
 			
 		}
 				
-		if(tiledMap.getTileId((int) super.getEnvironmentCollisionBox().getBottomLeftX()/Main.TILE_SIZE, (int) (super.getEnvironmentCollisionBox().getBottomLeftY() + super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) super.getEnvironmentCollisionBox().getBottomRightX()/Main.TILE_SIZE, (int) (super.getEnvironmentCollisionBox().getBottomRightY() + super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+		if(tiledMap.getTileId((int) super.getCollisionBox().getBottomLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) super.getCollisionBox().getBottomRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
 			
 			return false;
 			
@@ -830,14 +825,14 @@ public class Player extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCharacterCollisionBox().willIntersectLeft(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
 				return true;
 			}
 			
 		}
 					
-		if(tiledMap.getTileId((int) (super.getEnvironmentCollisionBox().getTopLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getEnvironmentCollisionBox().getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (super.getEnvironmentCollisionBox().getBottomLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getEnvironmentCollisionBox().getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
 			
 			return false;
 			
@@ -854,14 +849,14 @@ public class Player extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCharacterCollisionBox().willIntersectRight(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
 				return true;
 			}
 			
 		}
 		
-		if(tiledMap.getTileId((int) (super.getEnvironmentCollisionBox().getTopRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getEnvironmentCollisionBox().getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (super.getEnvironmentCollisionBox().getBottomRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getEnvironmentCollisionBox().getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
 			
 			return false;
 			

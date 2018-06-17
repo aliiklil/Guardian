@@ -34,8 +34,7 @@ public abstract class Character {
 	private Animation bloodAnimation;
 	private boolean drawBlood;
 	
-	private CollisionBox environmentCollisionBox;
-	private CollisionBox characterCollisionBox;
+	private CollisionBox collisionBox;
 
 	private CollisionBox attackUpCollisionBox;
 	private CollisionBox attackDownCollisionBox;
@@ -293,22 +292,14 @@ public abstract class Character {
 		this.drawBlood = drawBlood;
 	}
 
-	public CollisionBox getEnvironmentCollisionBox() {
-		return environmentCollisionBox;
+	public CollisionBox getCollisionBox() {
+		return collisionBox;
 	}
 
-	public void setEnvironmentCollisionBox(CollisionBox environmentCollisionBox) {
-		this.environmentCollisionBox = environmentCollisionBox;
+	public void setCollisionBox(CollisionBox collisionBox) {
+		this.collisionBox = collisionBox;
 	}
-	
-	public CollisionBox getCharacterCollisionBox() {
-		return characterCollisionBox;
-	}
-	
-	public void setCharacterCollisionBox(CollisionBox characterCollisionBox) {
-		this.characterCollisionBox = characterCollisionBox;
-	}
-	
+		
 	public CollisionBox getAttackUpCollisionBox() {
 		return attackUpCollisionBox;
 	}

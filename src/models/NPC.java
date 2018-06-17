@@ -37,9 +37,9 @@ public class NPC extends Character {
 	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath) throws SlickException {
 
 		super(relativeToMapX, relativeToMapY, spriteSheetPath);
-
-		super.setCharacterCollisionBox(new CollisionBox(super.getRelativeToMapX(),  super.getRelativeToMapY(), super.getSpriteSize()/2, super.getSpriteSize()/2));
-
+		
+		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
+		
 		super.setBar(new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, currentHealth, maxHealth, Color.red));
 
 		this.screenRelativeX = Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getSpriteSize() / 4;
@@ -62,8 +62,8 @@ public class NPC extends Character {
 		super.getBar().setX(screenRelativeX);
 		super.getBar().setY(screenRelativeY);
 		
-		super.getCharacterCollisionBox().setX(super.getRelativeToMapX());
-		super.getCharacterCollisionBox().setY(super.getRelativeToMapY());
+		super.getCollisionBox().setX(super.getRelativeToMapX() + 6);
+		super.getCollisionBox().setY(super.getRelativeToMapY() + 10);
 		
 		if(isAlive()) {
 			//updateAttackPlayer();
