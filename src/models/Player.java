@@ -55,9 +55,11 @@ public class Player extends Character {
 		
 	public Player() throws SlickException {
 		
-		super(0, 64, "resources/HumanSpriteSheet.png");
+		super(0, 0, "resources/HumanSpriteSheet.png");
 				
 		super.setEnvironmentCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 16, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 18));
+		
+		super.setCharacterCollisionBox(new CollisionBox(super.getRelativeToMapX(),  super.getRelativeToMapY(), super.getSpriteSize()/2, super.getSpriteSize()/2));
 		
 		super.setBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
 		
@@ -76,6 +78,8 @@ public class Player extends Character {
 	
 	public void update() throws SlickException {
 		
+		super.update();
+		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
 		npcList = CharacterManager.getNpcList();
@@ -85,7 +89,10 @@ public class Player extends Character {
 												
 		super.getEnvironmentCollisionBox().setX(super.getRelativeToMapX() + 6);
 		super.getEnvironmentCollisionBox().setY(super.getRelativeToMapY() + 16);
-		 		
+		 	
+		super.getCharacterCollisionBox().setX(super.getRelativeToMapX());
+		super.getCharacterCollisionBox().setY(super.getRelativeToMapY());
+		
 		super.getAttackUpCollisionBox().setX(super.getRelativeToMapX() - 28);
 		super.getAttackUpCollisionBox().setY(super.getRelativeToMapY() - 37);
 		
@@ -126,8 +133,8 @@ public class Player extends Character {
 		}
 		
 		g.setColor(Color.white);
-		g.drawString("relativeToMapX:  " + super.getRelativeToMapX(), 50, 50);
-		g.drawString("relativeToMapY:  " + super.getRelativeToMapY(), 50, 100);
+		g.drawString("centerX:  " + super.getCenterXTile(), 50, 50);
+		g.drawString("centerY:  " + super.getCenterYTile(), 50, 100);
 		
 		if(isPreparingAttack) {
 			prepareAttackBar.render(g);
@@ -776,7 +783,7 @@ public class Player extends Character {
 				
 		for(NPC npc : npcList) {
 			
-			if(super.getEnvironmentCollisionBox().willIntersectUp(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+			if(super.getCharacterCollisionBox().willIntersectUp(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -799,7 +806,7 @@ public class Player extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getEnvironmentCollisionBox().willIntersectDown(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+			if(super.getCharacterCollisionBox().willIntersectDown(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -823,7 +830,7 @@ public class Player extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getEnvironmentCollisionBox().willIntersectLeft(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+			if(super.getCharacterCollisionBox().willIntersectLeft(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -847,7 +854,7 @@ public class Player extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getEnvironmentCollisionBox().willIntersectRight(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+			if(super.getCharacterCollisionBox().willIntersectRight(npc.getCharacterCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
 				return true;
 			}
 			

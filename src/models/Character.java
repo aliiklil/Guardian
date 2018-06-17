@@ -5,6 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import main.Main;
 import util.CollisionBox;
 
 public abstract class Character {
@@ -12,11 +13,18 @@ public abstract class Character {
 	private final int spriteSize = 64;
 	private final int overSizeSpriteSize = 192;
 
-	private float movementSpeed = 3f;
+	private float movementSpeed = 2f;
+	
 	private float diagonalMovementSpeed = (float) (1/Math.sqrt(Math.pow(movementSpeed, 2) + Math.pow(movementSpeed, 2))) * movementSpeed * movementSpeed;
 	
 	private float relativeToMapX;
 	private float relativeToMapY;
+	
+	private float centerX;
+	private float centerY;
+	
+	private int centerXTile;
+	private int centerYTile;
 	
 	private boolean alive = true;
 	
@@ -155,9 +163,21 @@ public abstract class Character {
 		
 		currentAnimation = lookDownAnimation;
 		
+		centerX = relativeToMapX - Main.TILE_SIZE/2;
+		centerY = relativeToMapY - Main.TILE_SIZE/2;
+		
+		centerXTile = (int) (centerX / Main.TILE_SIZE);
+		centerYTile = (int) (centerY / Main.TILE_SIZE);
+		
 	}
 	
-	public abstract void update() throws SlickException;
+	public void update() throws SlickException {
+		centerX = relativeToMapX + Main.TILE_SIZE/2;
+		centerY = relativeToMapY + Main.TILE_SIZE/2;
+		
+		centerXTile = (int) (centerX / Main.TILE_SIZE);
+		centerYTile = (int) (centerY / Main.TILE_SIZE);
+	}
 	
 	public abstract void render(Graphics g);
 	
@@ -219,6 +239,30 @@ public abstract class Character {
 	
 	public void setRelativeToMapY(float relativeToMapY) {
 		this.relativeToMapY = relativeToMapY;
+	}
+	
+	public float getCenterX() {
+		return centerX;
+	}
+
+	public float getCenterY() {
+		return centerY;
+	}
+	
+	public void setCenterX(float centerX) {
+		this.centerX = centerX;
+	}
+
+	public void setCenterY(float centerY) {
+		this.centerY = centerY;
+	}
+	
+	public int getCenterXTile() {
+		return centerXTile;
+	}
+
+	public int getCenterYTile() {
+		return centerYTile;
 	}
 	
 	public boolean isAlive() {
