@@ -58,6 +58,7 @@ public class Player extends Character {
 		super(64, 0, "resources/HumanSpriteSheet.png");
 				
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
+		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize()/2, super.getSpriteSize()/2));
 				
 		super.setBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
 		
@@ -87,6 +88,9 @@ public class Player extends Character {
 												
 		super.getCollisionBox().setX(super.getRelativeToMapX() + 6);
 		super.getCollisionBox().setY(super.getRelativeToMapY() + 10);
+		
+		super.getHitBox().setX(super.getRelativeToMapX());
+		super.getHitBox().setY(super.getRelativeToMapY() - 10);
 		
 		super.getAttackUpCollisionBox().setX(super.getRelativeToMapX() - 28);
 		super.getAttackUpCollisionBox().setY(super.getRelativeToMapY() - 37);
@@ -437,7 +441,7 @@ public class Player extends Character {
 		
 			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(super.getAttackUpCollisionBox().intersects(npc.getCollisionBox()) && npc.isAlive()) {
+					if(super.getAttackUpCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						npc.setRelativeToMapY(npc.getRelativeToMapY() - damageToDeal/2);
@@ -447,7 +451,7 @@ public class Player extends Character {
 			
 			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(super.getAttackDownCollisionBox().intersects(npc.getCollisionBox()) && npc.isAlive()) {
+					if(super.getAttackDownCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						npc.setRelativeToMapY(npc.getRelativeToMapY() + damageToDeal/2);
@@ -457,7 +461,7 @@ public class Player extends Character {
 			
 			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(super.getAttackLeftCollisionBox().intersects(npc.getCollisionBox()) && npc.isAlive()) {
+					if(super.getAttackLeftCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						npc.setRelativeToMapX(npc.getRelativeToMapX() - damageToDeal/2);
@@ -467,7 +471,7 @@ public class Player extends Character {
 			
 			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 				for(NPC npc : npcList) {
-					if(super.getAttackRightCollisionBox().intersects(npc.getCollisionBox()) && npc.isAlive()) {
+					if(super.getAttackRightCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						npc.setRelativeToMapX(npc.getRelativeToMapX() + damageToDeal/2);

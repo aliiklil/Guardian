@@ -39,6 +39,7 @@ public class NPC extends Character {
 		super(relativeToMapX, relativeToMapY, spriteSheetPath);
 		
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
+		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize()/2, super.getSpriteSize()/2));
 		
 		super.setBar(new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, currentHealth, maxHealth, Color.red));
 
@@ -64,6 +65,9 @@ public class NPC extends Character {
 		
 		super.getCollisionBox().setX(super.getRelativeToMapX() + 6);
 		super.getCollisionBox().setY(super.getRelativeToMapY() + 10);
+		
+		super.getHitBox().setX(super.getRelativeToMapX());
+		super.getHitBox().setY(super.getRelativeToMapY() - 10);
 		
 		if(isAlive()) {
 			//updateAttackPlayer();

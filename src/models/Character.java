@@ -35,7 +35,8 @@ public abstract class Character {
 	private boolean drawBlood;
 	
 	private CollisionBox collisionBox;
-
+	private CollisionBox hitBox;
+	
 	private CollisionBox attackUpCollisionBox;
 	private CollisionBox attackDownCollisionBox;
 	private CollisionBox attackLeftCollisionBox;
@@ -298,6 +299,14 @@ public abstract class Character {
 
 	public void setCollisionBox(CollisionBox collisionBox) {
 		this.collisionBox = collisionBox;
+	}
+	
+	public CollisionBox getHitBox() {
+		return hitBox;
+	}
+	
+	public void setHitBox(CollisionBox hitBox) {
+		this.hitBox = hitBox;
 	}
 		
 	public CollisionBox getAttackUpCollisionBox() {
