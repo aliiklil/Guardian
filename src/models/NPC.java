@@ -1,11 +1,16 @@
 package models;
 
+import java.util.List;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import main.Game;
+import main.Main;
 import util.CollisionBox;
+import pathfinding.Node;
+import pathfinding.AStar;
 
 public class NPC extends Character {
 
@@ -35,9 +40,44 @@ public class NPC extends Character {
 		
 		super.getCharacterCollisionBox().setX(super.getRelativeToMapX());
 		super.getCharacterCollisionBox().setY(super.getRelativeToMapY());
-		 		
+		
+		
+		Node initialNode = new Node(5, 13);
+        Node finalNode = new Node(6, 14);
+        
+        int rows = Game.getCurrentMap().getTiledMap().getHeight();
+        int cols = Game.getCurrentMap().getTiledMap().getWidth();
+                
+        AStar aStar = new AStar(rows, cols, initialNode, finalNode);
+        
+        int[][] blocksArray = new int[rows * cols][2];
+        
+        int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+        
+        int k = 0;
+        
+        for(int i = 0; i < rows; i++) {
+        	for(int j = 0; j < cols; j++) {
+        		if(Game.getCurrentMap().getTiledMap().getTileId(j, i, notWalkableLayerIndex) != 0) {
+        			blocksArray[k][0] = i;
+        			blocksArray[k][1] = j;
+        			k++;
+        		}
+        	}
+        }
+                        
+        aStar.setBlocks(blocksArray);
+        
+        List<Node> path = aStar.findPath();
+                
+        for (Node node : path) {
+        	
+            System.out.println(node);
+            
+        }
+         		
 	}
-
+	
 	public void render(Graphics g) {
 		
 		super.getCurrentAnimation().draw(screenRelativeX, screenRelativeY);
