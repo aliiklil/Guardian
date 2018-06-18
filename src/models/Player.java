@@ -55,7 +55,7 @@ public class Player extends Character {
 		
 	public Player() throws SlickException {
 		
-		super(64, 0, "resources/HumanSpriteSheet.png");
+		super(224, 64, "resources/HumanSpriteSheet.png");
 				
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize()/2, super.getSpriteSize()/2));

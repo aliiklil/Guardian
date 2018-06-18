@@ -13,7 +13,7 @@ public abstract class Character {
 	private final int spriteSize = 64;
 	private final int overSizeSpriteSize = 192;
 
-	private float movementSpeed = 2f;
+	private float movementSpeed = 3f;
 	
 	private float diagonalMovementSpeed = (float) (1/Math.sqrt(Math.pow(movementSpeed, 2) + Math.pow(movementSpeed, 2))) * movementSpeed * movementSpeed;
 	

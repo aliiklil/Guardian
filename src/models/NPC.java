@@ -1,13 +1,13 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.tiled.TiledMap;
 
 import main.Game;
 import main.Main;
@@ -31,8 +31,22 @@ public class NPC extends Character {
 	
 	private Player player = CharacterManager.getPlayer();
 	
-	private float lastPlayerPosX;
-	private float lastPlayerPosY;
+	private float lastPlayerCenterXTile;
+	private float lastPlayerCenterYTile;
+	
+	private int notWalkableLayerIndex;
+	private TiledMap tiledMap;
+	private ArrayList<NPC> npcList;
+	
+	private boolean goUp;
+	private boolean goDown;
+	private boolean goLeft;
+	private boolean goRight;
+	
+	private boolean goUpLeft;
+	private boolean goUpRight;
+	private boolean goDownLeft;
+	private boolean goDownRight;
 
 	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath) throws SlickException {
 
@@ -48,8 +62,22 @@ public class NPC extends Character {
 		
 		aggressionCircle = new Circle(super.getCenterX(), super.getCenterY(), aggressionCircleRadius);
 		
-		lastPlayerPosX = player.getRelativeToMapX();
-		lastPlayerPosY = player.getRelativeToMapY();
+		lastPlayerCenterXTile = player.getCenterXTile();
+		lastPlayerCenterYTile = player.getCenterYTile();
+		
+		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+		tiledMap = Game.getCurrentMap().getTiledMap();
+		npcList = CharacterManager.getNpcList();
+		
+		goUp = false;
+		goDown = false;
+		goLeft = false;
+		goRight = false;
+		
+		goUpLeft = false;
+		goUpRight = false;
+		goDownLeft = false;
+		goDownRight = false;
 		
 	}
 
@@ -70,13 +98,13 @@ public class NPC extends Character {
 		super.getHitBox().setY(super.getRelativeToMapY() - 10);
 		
 		if(isAlive()) {
-			//updateAttackPlayer();
+			updateAttackPlayer();
 		}
          		
 	}
 	
 	public void updateAttackPlayer() {
-		
+				
 		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
 			
 			isGoingToPlayer = true;
@@ -84,100 +112,202 @@ public class NPC extends Character {
 						
 		}
 		
-		if(isGoingToPlayer && (player.getRelativeToMapX() != lastPlayerPosX || player.getRelativeToMapY() != lastPlayerPosY)) {
+		if(isGoingToPlayer && (player.getCenterXTile() != lastPlayerCenterXTile || player.getCenterYTile() != lastPlayerCenterYTile)) {
 			pathCalculationNeeded = true;
-			lastPlayerPosX = player.getRelativeToMapX();
-			lastPlayerPosY = player.getRelativeToMapY();
+			lastPlayerCenterXTile = player.getCenterXTile();
+			lastPlayerCenterYTile = player.getCenterYTile();
 		}
 		
 		if(pathCalculationNeeded) {
 			path = findPath();
 			pathCalculationNeeded = false;
 			
+			for(Node node : path) {
+				System.out.println(node.toString());
+			}
+			
 			path.remove(0);
-			System.out.println("New PAth calc");
+		}
+		
+		if(isGoingToPlayer && !path.isEmpty() && path != null && (goUpLeft || goUpRight || goDownLeft || goDownRight || goUp || goDown || goLeft || goRight)) {
+		
+			if(super.getCenterY() != super.getCenterYTile() * 32 + 16 && super.getCenterYTile() * 32 + 13 < super.getCenterY() && super.getCenterY() < super.getCenterYTile() * 32 + 19) {
+				super.setCenterY(super.getCenterYTile() * 32 + 16);
+			}
+			
+			if(super.getCenterX() != super.getCenterXTile() * 32 + 16 && super.getCenterXTile() * 32 + 13 < super.getCenterX() && super.getCenterX() < super.getCenterXTile() * 32 + 19) {
+				super.setCenterX(super.getCenterXTile() * 32 + 16);
+			}
+		
+		}
+		
+		if(isGoingToPlayer && !path.isEmpty() && path != null && super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && (super.getCenterX()+16) % 32 == 0 && (super.getCenterY()+16) % 32 == 0) {
+			path.remove(0);
+			
+			goUp = false;
+			goDown = false;
+			goLeft = false;
+			goRight = false;
+			
+			goUpLeft = false;
+			goUpRight = false;
+			goDownLeft = false;
+			goDownRight = false;
 		}
 		
 		if(isGoingToPlayer && !path.isEmpty() && path != null) {
-			System.out.println("getCenterYTile" + getCenterYTile());
-			System.out.println("getCenterXTile" + getCenterXTile());
-			System.out.println("row" + path.get(0).getRow());
-			System.out.println("col" + path.get(0).getCol());
-			if(super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol()) {		
+
+			if(goUp || (super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && !isUpCollision())) {		
 				super.setRelativeToMapY(super.getRelativeToMapY() - super.getMovementSpeed());
 				super.setCurrentAnimation(super.getGoUpAnimation());
+				goUp = true;
+				goDown = false;
+				goLeft = false;
+				goRight = false;
+				
+				goUpLeft = false;
+				goUpRight = false;
+				goDownLeft = false;
+				goDownRight = false;
 			}
 			
-			if(super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol()) {
+			if(goDown || (super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && !isDownCollision())) {	
 				super.setRelativeToMapY(super.getRelativeToMapY() + super.getMovementSpeed());
 				super.setCurrentAnimation(super.getGoDownAnimation());
+				goUp = false;
+				goDown = true;
+				goLeft = false;
+				goRight = false;
+				
+				goUpLeft = false;
+				goUpRight = false;
+				goDownLeft = false;
+				goDownRight = false;
 			}
 						
-			if(super.getCenterXTile() > path.get(0).getCol() && super.getCenterYTile() == path.get(0).getRow()) {
+			if(goLeft || (super.getCenterXTile() > path.get(0).getCol() && super.getCenterYTile() == path.get(0).getRow() && !isLeftCollision())) {	
 				super.setRelativeToMapX(super.getRelativeToMapX() - super.getMovementSpeed());
 				super.setCurrentAnimation(super.getGoLeftAnimation());
+				goUp = false;
+				goDown = false;
+				goLeft = true;
+				goRight = false;
+				
+				goUpLeft = false;
+				goUpRight = false;
+				goDownLeft = false;
+				goDownRight = false;
 			}
 			
-			if(super.getCenterXTile() < path.get(0).getCol() && super.getCenterYTile() == path.get(0).getRow()) {
+			if(goRight || (super.getCenterXTile() < path.get(0).getCol() && super.getCenterYTile() == path.get(0).getRow() && !isRightCollision())) {	
 				super.setRelativeToMapX(super.getRelativeToMapX() + super.getMovementSpeed());
 				super.setCurrentAnimation(super.getGoRightAnimation());
+				goUp = false;
+				goDown = false;
+				goLeft = false;
+				goRight = true;
+				
+				goUpLeft = false;
+				goUpRight = false;
+				goDownLeft = false;
+				goDownRight = false;
 			}
 			
-			if(super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() > path.get(0).getCol()) {
+			
+			if(goUpLeft || (super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() > path.get(0).getCol() && !isUpCollision() && !isLeftCollision())) {		
 				super.setRelativeToMapY(super.getRelativeToMapY() - super.getDiagonalMovementSpeed());
 				super.setRelativeToMapX(super.getRelativeToMapX() - super.getDiagonalMovementSpeed());
 				super.setCurrentAnimation(super.getGoLeftAnimation());
+				goUp = false;
+				goDown = false;
+				goLeft = false;
+				goRight = false;
+				
+				goUpLeft = true;
+				goUpRight = false;
+				goDownLeft = false;
+				goDownRight = false;
 			}
 			
-			if(super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() < path.get(0).getCol()) {
+			if(goUpRight || (super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() < path.get(0).getCol() && !isUpCollision() && !isRightCollision())) {		
 				super.setRelativeToMapY(super.getRelativeToMapY() - super.getDiagonalMovementSpeed());
 				super.setRelativeToMapX(super.getRelativeToMapX() + super.getDiagonalMovementSpeed());
 				super.setCurrentAnimation(super.getGoRightAnimation());
+				goUp = false;
+				goDown = false;
+				goLeft = false;
+				goRight = false;
+				
+				goUpLeft = false;
+				goUpRight = true;
+				goDownLeft = false;
+				goDownRight = false;
 			}
 			
-			if(super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() > path.get(0).getCol()) {
+			if(goDownLeft || (super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() > path.get(0).getCol() && !isDownCollision() && !isLeftCollision())) {		
 				super.setRelativeToMapY(super.getRelativeToMapY() + super.getDiagonalMovementSpeed());
 				super.setRelativeToMapX(super.getRelativeToMapX() - super.getDiagonalMovementSpeed());
 				super.setCurrentAnimation(super.getGoLeftAnimation());
+				goUp = false;
+				goDown = false;
+				goLeft = false;
+				goRight = false;
+				
+				goUpLeft = false;
+				goUpRight = false;
+				goDownLeft = true;
+				goDownRight = false;
 			}
 			
-			if(super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() < path.get(0).getCol()) {
+			if(goDownRight || (super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() < path.get(0).getCol() && !isDownCollision() && !isRightCollision())) {		
 				super.setRelativeToMapY(super.getRelativeToMapY() + super.getDiagonalMovementSpeed());
 				super.setRelativeToMapX(super.getRelativeToMapX() + super.getDiagonalMovementSpeed());
 				super.setCurrentAnimation(super.getGoRightAnimation());
-			}
-
-			if(super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol()) {
-				path.remove(0);
+				goUp = false;
+				goDown = false;
+				goLeft = false;
+				goRight = false;
+				
+				goUpLeft = false;
+				goUpRight = false;
+				goDownLeft = false;
+				goDownRight = true;
 			}
 						
-			if(path.size() == 0) {
-				if(super.getCurrentAnimation() == super.getGoUpAnimation()) {
-					super.setCurrentAnimation(super.getLookUpAnimation());
-				}
-				
-				if(super.getCurrentAnimation() == super.getGoDownAnimation()) {
-					super.setCurrentAnimation(super.getLookDownAnimation());
-				}
-				
-				if(super.getCurrentAnimation() == super.getGoLeftAnimation()) {
-					super.setCurrentAnimation(super.getLookLeftAnimation());
-				}
-				
-				if(super.getCurrentAnimation() == super.getGoRightAnimation()) {
-					super.setCurrentAnimation(super.getLookRightAnimation());
-				}
-				
+		}
+		
+		if(path.size() == 0) {
+			
+			if(super.getCurrentAnimation() == super.getGoUpAnimation()) {
+				super.setCurrentAnimation(super.getLookUpAnimation());
+			}
+			
+			if(super.getCurrentAnimation() == super.getGoDownAnimation()) {
+				super.setCurrentAnimation(super.getLookDownAnimation());
+			}
+			
+			if(super.getCurrentAnimation() == super.getGoLeftAnimation()) {
+				super.setCurrentAnimation(super.getLookLeftAnimation());
+			}
+			
+			if(super.getCurrentAnimation() == super.getGoRightAnimation()) {
+				super.setCurrentAnimation(super.getLookRightAnimation());
 			}
 			
 		}
-			
+		
+		System.out.println("------");
+		System.out.println("getCenterX " + getCenterX());
+		System.out.println("getCenterY " + getCenterY());
+		System.out.println("getCenterXTile " + getCenterXTile());
+		System.out.println("getCenterYTile " + getCenterYTile());
+		
 	}
 	
 	private List<Node> findPath() {
 		
 		Node initialNode = new Node(super.getCenterYTile(), super.getCenterXTile());
-        Node finalNode = new Node(player.getCenterYTile(), player.getCenterXTile());
+        Node finalNode = new Node(8, 5);
         
         int rows = Game.getCurrentMap().getTiledMap().getHeight();
         int cols = Game.getCurrentMap().getTiledMap().getWidth();
@@ -218,6 +348,124 @@ public class NPC extends Character {
 			super.drawBlood(screenRelativeX, screenRelativeY);
 		}
 				
+	}
+	
+	private boolean isUpCollision() {
+		
+		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), super.getMovementSpeed())) {
+			return true;
+		}
+		
+		npcList.remove(this);
+		
+		for(NPC npc : npcList) {
+			
+			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+				return true;
+			}
+			
+		}
+				
+		if(tiledMap.getTileId((int) super.getCollisionBox().getTopLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) super.getCollisionBox().getTopRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+			
+			return false;
+			
+		} else {
+			
+			return true;
+			
+		}
+		
+	}
+	
+	private boolean isDownCollision() {
+		
+		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), super.getMovementSpeed())) {
+			return true;
+		}
+		
+		npcList.remove(this);
+		
+		for(NPC npc : npcList) {
+			
+			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+				return true;
+			}
+			
+		}
+				
+		if(tiledMap.getTileId((int) super.getCollisionBox().getBottomLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) super.getCollisionBox().getBottomRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			
+			return false;
+			
+		} else {
+			
+			return true;
+			
+		}
+		
+		
+	}
+	
+	private boolean isLeftCollision() {
+		
+		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), super.getMovementSpeed())) {
+			return true;
+		}
+		
+		npcList.remove(this);
+		
+		for(NPC npc : npcList) {
+			
+			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+				return true;
+			}
+			
+		}
+					
+		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+			
+			return false;
+			
+		} else {
+			
+			return true;
+			
+		}
+		
+		
+	}
+	
+	private boolean isRightCollision() {
+		
+		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), super.getMovementSpeed())) {
+			return true;
+		}
+		
+		npcList.remove(this);
+		
+		for(NPC npc : npcList) {
+			
+			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), super.getMovementSpeed()) && npc.isAlive()) {
+				return true;
+			}
+			
+		}
+		
+		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			
+			return false;
+			
+		} else {
+			
+			return true;
+			
+		}
+		
 	}
 					
 }

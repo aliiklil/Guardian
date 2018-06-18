@@ -3,12 +3,12 @@
  <tileset firstgid="1" source="TileSet.tsx"/>
  <layer name="Walkable" width="100" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3YyxJDMBgGUMx4/1fuxkL/cckFIXMWZ7pA8X2VSMdhGEYAeKlp0fo6elGS5fqYedH6PnpR+/vWxT2d5Gyfdj51VN/DlpwOt/Y/G8PMOXmZTgfbto6rnYP4zz1lvIr7bXUh47b91TwfXNfH2T6tr/OLcnKLz8XZXL23zXtXeVdHc8ternGd2Po+epD63MS8Y3epfRjf7unQmvD6DHPMq+9pfS89qMlxWvrQxTN9xDVe5D/dZ/u4+jx759JpWh9zcOd5WufwFq1z0kV+H1eOaTF/faR3ckdW3gHK+yj5Hu++7+oEffRKJ+9j3fYd+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGr8AJCJD1BAnAAA
+   H4sIAAAAAAAACu3YQRKCMBAEQKCK/3/ZiwddQRISWMQ+dHkABGYkIY7DMIxcyhRkXw+f/WRfAzr5J8bC/nm2HDM/Zd/HXbT+vnVxTCc126eVTx2197CkpsOl/bfGMHNOXabTl21Lx7XOQbznXjJexf2WupBxbn8tzwf9+tjaJ/s6f1FNbvG52Jqr17Z579rf1be5ZS3XuE7Mvo87KH1uYt6xu9I+jG/HdGhN2D/DGvPL92Tfyx205Dg9+9DFOX3ENV7kP91z++h9nrVz6bSsjzk48jzZOVxFdk66qO+j55gW89dHeSdHZOUdYH8fe77Hu++1OkEfd6WT67Fu+x36AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWjwASgvlKkCcAAA=
   </data>
  </layer>
  <layer name="NotWalkable" width="100" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3YWU7DMBQFUKNIUZfBTtj/HpgWwCS+mVzxY4wTnCZOU3qOdJXWnaL38tyqIbA13bFPAGAF9ro2auvaZccpr6XelJoOPXdOXy6ThOSYuiokJMeQrZ+ypa5xs7It+rEMddwW/dieQ3tyar18PfYJNNKFul70rU/kzCxx/bfuyXXMTcxtzF3MfePPO4b0+t9CT8Zq/hDzGPMU8xzzMvOztqQLv/eivB+1e9WSxmr+FvMe8xHzuV+4WPnkVlTqxdBje632pnOq+VRj8+H7ex27xu/fJ2Fdee37gXW+7QoJ4fAZqalv3hN+KvVg6Hbpfu6vGuezwm/pbEx9TmltqNalfWuO//SfyFhta+t+iL5w26wMG9ur0vXWv8OoV9OzWmZjPrOxviVnAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAODUfAHJ2EtWQJwAAA==
+   H4sIAAAAAAAACu3YWW7CMBQFUFeRIpbRnXT/e+i0gE7qdyej/rjBSZ3BIcA50lXATNF7eQYRAgCsrzn2CZyp0ro2neOY11JuTE37njunL9dJQnJM3WQSkmPorJ+ypa5xs7It+rEMddwW/dieqT05tV6+H/sEKmlCWS/a2idyYZa4/mv35DbmLuY+5iHmsfLnHUN6/W+hJ0M1f4p5jnmJeY15m/lZW9KEw72o24/SvWpJQzX/iPmM+Yr53i9crXxyK8r1ou+xvVp70yXVfKyh+fD9vY5d5fdvk7Cubu3bnnV+7TIJYfqMlNS32xP+yvWg73buftd/Ne7OCofS2Rj7nNxaX61z+9Yc5/SfyFBtS+s+RZu5bVb6De1V6Xrt32GUK+lZKbMxn9lY35IzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHBqfgD4Il66QJwAAA==
   </data>
  </layer>
  <layer name="UpperLayer" width="100" height="100">
