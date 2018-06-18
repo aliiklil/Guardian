@@ -782,7 +782,7 @@ public class Player extends Character {
 				
 		for(NPC npc : npcList) {
 			
-			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), super.getMovementSpeed()*2) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -805,7 +805,7 @@ public class Player extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), super.getMovementSpeed()*2) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -829,7 +829,7 @@ public class Player extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), super.getMovementSpeed()*2) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -853,7 +853,7 @@ public class Player extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), super.getMovementSpeed()*2) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
 			

@@ -79,6 +79,9 @@ public class NPC extends Character {
 		goDownLeft = false;
 		goDownRight = false;
 		
+		super.setMovementSpeed(2f);
+		super.setDiagonalMovementSpeed(1f);
+		
 	}
 
 	public void update() throws SlickException {
@@ -106,10 +109,8 @@ public class NPC extends Character {
 	public void updateAttackPlayer() {
 				
 		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
-			
 			isGoingToPlayer = true;
-			pathCalculationNeeded = true;
-						
+			pathCalculationNeeded = true;	
 		}
 		
 		if(isGoingToPlayer && (player.getCenterXTile() != lastPlayerCenterXTile || player.getCenterYTile() != lastPlayerCenterYTile)) {
@@ -121,19 +122,9 @@ public class NPC extends Character {
 		if(pathCalculationNeeded && (super.getCenterX()+16) % 32 == 0 && (super.getCenterY()+16) % 32 == 0) {
 			path = findPath();
 			pathCalculationNeeded = false;
-			
-			for(Node node : path) {
-				System.out.println(node.toString());
-			}
 			path.remove(path.size() - 1);
 		}
-		
-		if((float)(super.getCenterX()+16) % 32 == 0.5 && (float) (super.getCenterY()+16) % 32 == 0.5) {
-			super.setRelativeToMapY(super.getRelativeToMapY() - 0.5f);
-			super.setRelativeToMapX(super.getRelativeToMapX() - 0.5f);
-			System.out.println("Correction");
-		}
-		
+				
 		if(isGoingToPlayer && path != null && !path.isEmpty() && super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && (super.getCenterX()+16) % 32 == 0 && (super.getCenterY()+16) % 32 == 0) {
 			path.remove(0);
 			
@@ -150,8 +141,6 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 					
-					super.setRelativeToMapX(super.getCenterXTile() * 32);
-					super.setRelativeToMapY(super.getCenterYTile() * 32);
 				}
 				
 				if(!goDown && super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol()) {	
@@ -165,8 +154,6 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 					
-					super.setRelativeToMapX(super.getCenterXTile() * 32);
-					super.setRelativeToMapY(super.getCenterYTile() * 32);
 				}
 							
 				if(!goLeft && super.getCenterXTile() > path.get(0).getCol() && super.getCenterYTile() == path.get(0).getRow()) {	
@@ -180,8 +167,6 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 					
-					super.setRelativeToMapX(super.getCenterXTile() * 32);
-					super.setRelativeToMapY(super.getCenterYTile() * 32);
 				}
 				
 				if(!goRight && super.getCenterXTile() < path.get(0).getCol() && super.getCenterYTile() == path.get(0).getRow()) {	
@@ -195,8 +180,6 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 
-					super.setRelativeToMapX(super.getCenterXTile() * 32);
-					super.setRelativeToMapY(super.getCenterYTile() * 32);
 				}
 				
 				if(!goUpLeft && super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() > path.get(0).getCol()) {		
@@ -209,9 +192,7 @@ public class NPC extends Character {
 					goUpRight = false;
 					goDownLeft = false;
 					goDownRight = false;
-					
-					super.setRelativeToMapX(super.getCenterXTile() * 32);
-					super.setRelativeToMapY(super.getCenterYTile() * 32);
+
 				}
 				
 				if(!goUpRight && super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() < path.get(0).getCol()) {		
@@ -225,8 +206,6 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 				
-					super.setRelativeToMapX(super.getCenterXTile() * 32);
-					super.setRelativeToMapY(super.getCenterYTile() * 32);
 				}
 				
 				if(!goDownLeft && super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() > path.get(0).getCol()) {		
@@ -240,8 +219,6 @@ public class NPC extends Character {
 					goDownLeft = true;
 					goDownRight = false;
 					
-					super.setRelativeToMapX(super.getCenterXTile() * 32);
-					super.setRelativeToMapY(super.getCenterYTile() * 32);
 				}
 				
 				if(!goDownRight && super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() < path.get(0).getCol()) {		
@@ -255,8 +232,6 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = true;
 
-					super.setRelativeToMapX(super.getCenterXTile() * 32);
-					super.setRelativeToMapY(super.getCenterYTile() * 32);
 				}
 			
 			} else {
@@ -342,14 +317,6 @@ public class NPC extends Character {
 			
 		}
 		
-		System.out.println("------");
-		System.out.println("getRelativeToMapX " + getRelativeToMapX());
-		System.out.println("getRelativeToMapY " + getRelativeToMapY());
-		System.out.println("getCenterX " + getCenterX());
-		System.out.println("getCenterY " + getCenterY());
-		System.out.println("getCenterXTile " + getCenterXTile());
-		System.out.println("getCenterYTile " + getCenterYTile());
-		
 	}
 	
 	private List<Node> findPath() {
@@ -400,7 +367,7 @@ public class NPC extends Character {
 	
 	private boolean isUpCollision() {
 		
-		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), super.getMovementSpeed()*2)) {
+		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
 			return true;
 		}
 		
@@ -408,7 +375,7 @@ public class NPC extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), super.getMovementSpeed()*2) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -429,7 +396,7 @@ public class NPC extends Character {
 	
 	private boolean isDownCollision() {
 		
-		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), super.getMovementSpeed()*2)) {
+		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
 			return true;
 		}
 		
@@ -437,7 +404,7 @@ public class NPC extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), super.getMovementSpeed()*2) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -459,7 +426,7 @@ public class NPC extends Character {
 	
 	private boolean isLeftCollision() {
 		
-		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), super.getMovementSpeed()*2)) {
+		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
 			return true;
 		}
 		
@@ -467,7 +434,7 @@ public class NPC extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), super.getMovementSpeed()*2) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
 			
@@ -489,7 +456,7 @@ public class NPC extends Character {
 	
 	private boolean isRightCollision() {
 		
-		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), super.getMovementSpeed()*2)) {
+		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
 			return true;
 		}
 		
@@ -497,7 +464,7 @@ public class NPC extends Character {
 		
 		for(NPC npc : npcList) {
 			
-			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), super.getMovementSpeed()*2) && npc.isAlive()) {
+			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
 			

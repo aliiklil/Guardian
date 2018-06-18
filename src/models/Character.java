@@ -221,8 +221,16 @@ public abstract class Character {
 		return movementSpeed;
 	}
 	
+	public void setMovementSpeed(float movementSpeed) {
+		this.movementSpeed = movementSpeed;
+	}
+	
 	public float getDiagonalMovementSpeed() {
 		return diagonalMovementSpeed;
+	}
+	
+	public void setDiagonalMovementSpeed(float diagonalMovementSpeed) {
+		this.diagonalMovementSpeed = diagonalMovementSpeed;
 	}
 	
 	public float getRelativeToMapX() {

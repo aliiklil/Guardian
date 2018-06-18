@@ -91,10 +91,10 @@ public class AStar {
         int lowerRow = row + 1;
         if (lowerRow < getSearchArea().length) {
             if (col - 1 >= 0 && (!getSearchArea()[row][col - 1].isBlock() && !getSearchArea()[row + 1][col].isBlock())) {
-               // checkNode(currentNode, col - 1, lowerRow, getDiagonalCost());
+            	checkNode(currentNode, col - 1, lowerRow, getDiagonalCost());
             }
             if (col + 1 < getSearchArea()[0].length && (!getSearchArea()[row][col + 1].isBlock() && !getSearchArea()[row + 1][col].isBlock())) {
-                //checkNode(currentNode, col + 1, lowerRow, getDiagonalCost());
+            	checkNode(currentNode, col + 1, lowerRow, getDiagonalCost());
             }
             checkNode(currentNode, col, lowerRow, getHvCost());
         }
@@ -118,10 +118,10 @@ public class AStar {
         int upperRow = row - 1;
         if (upperRow >= 0) {
             if (col - 1 >= 0 && (!getSearchArea()[row][col - 1].isBlock() && !getSearchArea()[row - 1][col].isBlock())) {
-               // checkNode(currentNode, col - 1, upperRow, getDiagonalCost());
+            	checkNode(currentNode, col - 1, upperRow, getDiagonalCost());
             }
             if (col + 1 < getSearchArea()[0].length && (!getSearchArea()[row][col + 1].isBlock() && !getSearchArea()[row - 1][col].isBlock())) {
-               // checkNode(currentNode, col + 1, upperRow, getDiagonalCost());
+            	checkNode(currentNode, col + 1, upperRow, getDiagonalCost());
             }
             checkNode(currentNode, col, upperRow, getHvCost());
         }
