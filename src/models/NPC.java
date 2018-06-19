@@ -52,6 +52,8 @@ public class NPC extends Character {
 	private boolean goDownRight;
 	
 	private boolean isAttacking;
+	
+	private boolean damageDealt = false;
 
 	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath) throws SlickException {
 
@@ -60,7 +62,7 @@ public class NPC extends Character {
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize()/2, super.getSpriteSize()/2));
 		
-		super.setBar(new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, currentHealth, maxHealth, Color.red));
+		super.setHealthBar(new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, currentHealth, maxHealth, Color.red));
 
 		this.screenRelativeX = Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getSpriteSize() / 4;
 		this.screenRelativeY = Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getSpriteSize() / 2;
@@ -90,36 +92,55 @@ public class NPC extends Character {
 		super.setMovementSpeed(2f);
 		super.setDiagonalMovementSpeed(1f);
 		
+		setAttackUpCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() - 37, 89, 38));
+		setAttackDownCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() + 12, 89, 38));
+		setAttackLeftCollisionBox(new CollisionBox(getRelativeToMapX() - 67, getRelativeToMapY() - 16, 68, 36));
+		setAttackRightCollisionBox(new CollisionBox(getRelativeToMapX() + 31, getRelativeToMapY() - 16, 68, 36));
+		
 	}
 
 	public void update() throws SlickException {
 		
 		super.update();
 		
-		screenRelativeX = (int) Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getSpriteSize() / 4;		
-		screenRelativeY = (int) Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getSpriteSize() / 2;
+		screenRelativeX = (int) Game.getCurrentMap().getX() + getRelativeToMapX() - getSpriteSize() / 4;		
+		screenRelativeY = (int) Game.getCurrentMap().getY() + getRelativeToMapY()  - getSpriteSize() / 2;
 
-		screenRelativeOverSizeX = Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getOverSizeSpriteSize() / 2 + 16;
-		screenRelativeOverSizeY = Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getOverSizeSpriteSize() / 2;
+		screenRelativeOverSizeX = Game.getCurrentMap().getX() + getRelativeToMapX() - getOverSizeSpriteSize() / 2 + 16;
+		screenRelativeOverSizeY = Game.getCurrentMap().getY() + getRelativeToMapY()  - getOverSizeSpriteSize() / 2;
 		
-		super.getBar().setX(screenRelativeX);
-		super.getBar().setY(screenRelativeY);
+		getHealthBar().setX(screenRelativeX);
+		getHealthBar().setY(screenRelativeY);
 		
-		super.getCollisionBox().setX(super.getRelativeToMapX() + 6);
-		super.getCollisionBox().setY(super.getRelativeToMapY() + 10);
+		getCollisionBox().setX(getRelativeToMapX() + 6);
+		getCollisionBox().setY(getRelativeToMapY() + 10);
 		
-		super.getHitBox().setX(super.getRelativeToMapX());
-		super.getHitBox().setY(super.getRelativeToMapY() - 10);
+		getHitBox().setX(getRelativeToMapX());
+		getHitBox().setY(getRelativeToMapY() - 10);
 		
 		if(isAlive()) {
-			updateAttackPlayer();
+			goToPlayer();
+			attackPlayer();
 		}
+				
+		super.getAttackUpCollisionBox().setX(super.getRelativeToMapX() - 28);
+		super.getAttackUpCollisionBox().setY(super.getRelativeToMapY() - 37);
+		
+		super.getAttackDownCollisionBox().setX(super.getRelativeToMapX() - 28);
+		super.getAttackDownCollisionBox().setY(super.getRelativeToMapY() + 12);
+		
+		super.getAttackLeftCollisionBox().setX(super.getRelativeToMapX() - 67);
+		super.getAttackLeftCollisionBox().setY(super.getRelativeToMapY() - 16);
+		
+		super.getAttackRightCollisionBox().setX(super.getRelativeToMapX() + 31);
+		super.getAttackRightCollisionBox().setY(super.getRelativeToMapY() - 16);
+
          		
 	}
 	
 	public void render(Graphics g) {
 		
-		if(isAttacking) {
+		if(isAttacking && isAlive()) {
 			
 			super.getCurrentAnimation().draw(screenRelativeOverSizeX, screenRelativeOverSizeY);
 			
@@ -129,17 +150,17 @@ public class NPC extends Character {
 			
 		}
 		
-		if(super.getBar().getCurrentValue() > 0) {
-			super.getBar().render(g);
+		if(super.getHealthBar().getCurrentValue() > 0) {
+			super.getHealthBar().render(g);
 		}
 		
 		if(super.isDrawBlood()) {
 			super.drawBlood(screenRelativeX, screenRelativeY);
 		}
-				
+					
 	}
 	
-	public void updateAttackPlayer() {
+	private void goToPlayer() {
 				
 		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
 			isGoingToPlayer = true;
@@ -358,30 +379,102 @@ public class NPC extends Character {
 			
 		}
 		
-		if(isGoingToPlayer && path.isEmpty()) {
+	}
+	
+	private void attackPlayer() {
+		
+		if(isGoingToPlayer && path.isEmpty() && player.isAlive()) {
 			if(super.getCurrentAnimation() == super.getLookUpAnimation()) {
 				super.setCurrentAnimation(super.getAttackUpAnimation());
 				isAttacking = true;
+				damageDealt = false;
 			}
 			
 			if(super.getCurrentAnimation() == super.getLookDownAnimation()) {
 				super.setCurrentAnimation(super.getAttackDownAnimation());
 				isAttacking = true;
+				damageDealt = false;
 			}
 			
 			if(super.getCurrentAnimation() == super.getLookLeftAnimation()) {
 				super.setCurrentAnimation(super.getAttackLeftAnimation());
 				isAttacking = true;
+				damageDealt = false;
 			}
 			
 			if(super.getCurrentAnimation() == super.getLookRightAnimation()) {
 				super.setCurrentAnimation(super.getAttackRightAnimation());
 				isAttacking = true;
+				damageDealt = false;
 			}
 			
 			if(isAttacking && super.getCurrentAnimation().isStopped()) {
 				super.getCurrentAnimation().restart();
+				damageDealt = false;
 			}
+		}
+		
+		if(!damageDealt) {
+			
+			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+					if(super.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+						player.decreaseHealth(10);
+						damageDealt = true;
+						player.setRelativeToMapY(player.getRelativeToMapY() - 10/2);
+				}
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+					if(super.getAttackDownCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+						player.decreaseHealth(10);
+						damageDealt = true;
+						player.setRelativeToMapY(player.getRelativeToMapY() + 10/2);
+					}
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+				System.out.println("A");
+					if(super.getAttackLeftCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+						System.out.println("B");
+						player.decreaseHealth(10);
+						damageDealt = true;
+						player.setRelativeToMapX(player.getRelativeToMapX() - 10/2);
+
+				}		
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+					if(super.getAttackRightCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+						player.decreaseHealth(10);
+						damageDealt = true;
+						player.setRelativeToMapX(player.getRelativeToMapX() + 10/2);
+					}						
+			}		
+			
+		}
+		
+		if(!player.isAlive()) {
+			
+			if(super.getCurrentAnimation() == super.getAttackUpAnimation()) {
+				super.setCurrentAnimation(super.getLookUpAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackDownAnimation()) {
+				super.setCurrentAnimation(super.getLookDownAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackLeftAnimation()) {
+				super.setCurrentAnimation(super.getLookLeftAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackRightAnimation()) {
+				super.setCurrentAnimation(super.getLookRightAnimation());
+				isAttacking = false;
+			}
+			
 		}
 		
 	}

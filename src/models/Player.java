@@ -60,7 +60,7 @@ public class Player extends Character {
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize()/2, super.getSpriteSize()/2));
 				
-		super.setBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
+		super.setHealthBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
 		
 		prepareAttackBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
 		prepareShotBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
@@ -72,6 +72,11 @@ public class Player extends Character {
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
 		npcList = CharacterManager.getNpcList();
+		
+		setAttackUpCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() - 37, 89, 38));
+		setAttackDownCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() + 12, 89, 38));
+		setAttackLeftCollisionBox(new CollisionBox(getRelativeToMapX() - 67, getRelativeToMapY() - 16, 68, 36));
+		setAttackRightCollisionBox(new CollisionBox(getRelativeToMapX() + 31, getRelativeToMapY() - 16, 68, 36));
 		
 	}
 	
@@ -130,11 +135,7 @@ public class Player extends Character {
 		if(super.isDrawBlood()) {
 			super.drawBlood(screenRelativeX, screenRelativeY);
 		}
-		
-		g.setColor(Color.white);
-		g.drawString("centerX:  " + super.getCenterXTile(), 50, 50);
-		g.drawString("centerY:  " + super.getCenterYTile(), 50, 100);
-		
+				
 		if(isPreparingAttack) {
 			prepareAttackBar.render(g);
 		}
@@ -146,6 +147,7 @@ public class Player extends Character {
 		if(isPreparingSpell && super.getCurrentAnimation().getFrame() == 6) {
 			prepareSpellBar.render(g);
 		}
+		
 	}
 	
 	private void updateMove() {

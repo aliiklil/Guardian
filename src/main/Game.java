@@ -53,7 +53,7 @@ public class Game extends BasicGameState {
 		world.renderUpperLayer(g);
 		
 		CharacterManager.getPlayer().getInventory().render(g);
-		CharacterManager.getPlayer().getBar().render(g);
+		CharacterManager.getPlayer().getHealthBar().render(g);
 		
 	}
 	

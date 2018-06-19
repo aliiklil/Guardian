@@ -28,7 +28,7 @@ public abstract class Character {
 	
 	private boolean alive = true;
 	
-	private Bar bar;
+	private Bar healthBar;
 	
 	private SpriteSheet bloodSpriteSheet;
 	private Animation bloodAnimation;
@@ -93,12 +93,7 @@ public abstract class Character {
 		bloodAnimation = new Animation(bloodSpriteSheet, 0, 0, 5, 0, true, 100, true);
 		bloodAnimation.setLooping(false);
 		drawBlood = false;
-		
-		attackUpCollisionBox = new CollisionBox(relativeToMapX - 28, relativeToMapY - 37, 89, 38);
-		attackDownCollisionBox =  new CollisionBox(relativeToMapX - 28, relativeToMapY + 12, 89, 38);
-		attackLeftCollisionBox = new CollisionBox(relativeToMapX - 67, relativeToMapY - 16, 68, 36);
-		attackRightCollisionBox =  new CollisionBox(relativeToMapX + 31, relativeToMapY - 16, 68, 36);
-		
+				
 		spriteSheet = new SpriteSheet(spriteSheetPath, 64, 64);
 		overSizeSpriteSheet = new SpriteSheet(spriteSheetPath, 192, 192);
 		
@@ -185,10 +180,10 @@ public abstract class Character {
 		
 		if(alive) {
 			
-			bar.setCurrentValue(bar.getCurrentValue() - amount);
+			healthBar.setCurrentValue(healthBar.getCurrentValue() - amount);
 			
-			if(bar.getCurrentValue() <= 0) {
-				bar.setCurrentValue(0);
+			if(healthBar.getCurrentValue() <= 0) {
+				healthBar.setCurrentValue(0);
 				currentAnimation = dieAnimation;
 				alive = false;
 			}
@@ -281,12 +276,12 @@ public abstract class Character {
 		this.alive = alive;
 	}
 	
-	public Bar getBar() {
-		return bar;
+	public Bar getHealthBar() {
+		return healthBar;
 	}
 	
-	public void setBar(Bar bar) {
-		this.bar = bar;
+	public void setHealthBar(Bar healthBar) {
+		this.healthBar = healthBar;
 	}
 	
 	public Animation getBloodAnimation() {
@@ -343,6 +338,10 @@ public abstract class Character {
 
 	public CollisionBox getAttackRightCollisionBox() {
 		return attackRightCollisionBox;
+	}
+
+	public void setAttackRightCollisionBox(CollisionBox attackRightCollisionBox) {
+		this.attackRightCollisionBox = attackRightCollisionBox;
 	}
 
 	public SpriteSheet getSpriteSheet() {
