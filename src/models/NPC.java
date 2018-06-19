@@ -21,6 +21,9 @@ public class NPC extends Character {
 	private float screenRelativeX;
 	private float screenRelativeY;
 	
+	private float screenRelativeOverSizeX = Main.WIDTH / 2 - super.getOverSizeSpriteSize() / 2;
+	private float screenRelativeOverSizeY = Main.HEIGHT / 2 - super.getOverSizeSpriteSize() / 2;
+	
 	private Circle aggressionCircle;
 	private int aggressionCircleRadius = 320;
 	
@@ -47,6 +50,8 @@ public class NPC extends Character {
 	private boolean goUpRight;
 	private boolean goDownLeft;
 	private boolean goDownRight;
+	
+	private boolean isAttacking;
 
 	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath) throws SlickException {
 
@@ -59,6 +64,9 @@ public class NPC extends Character {
 
 		this.screenRelativeX = Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getSpriteSize() / 4;
 		this.screenRelativeY = Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getSpriteSize() / 2;
+
+		screenRelativeOverSizeX = Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getOverSizeSpriteSize() / 2 + 16;
+		screenRelativeOverSizeY = Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getOverSizeSpriteSize() / 2;
 		
 		aggressionCircle = new Circle(super.getCenterX(), super.getCenterY(), aggressionCircleRadius);
 		
@@ -91,6 +99,9 @@ public class NPC extends Character {
 		screenRelativeX = (int) Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getSpriteSize() / 4;		
 		screenRelativeY = (int) Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getSpriteSize() / 2;
 
+		screenRelativeOverSizeX = Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getOverSizeSpriteSize() / 2 + 16;
+		screenRelativeOverSizeY = Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getOverSizeSpriteSize() / 2;
+		
 		super.getBar().setX(screenRelativeX);
 		super.getBar().setY(screenRelativeY);
 		
@@ -104,6 +115,28 @@ public class NPC extends Character {
 			updateAttackPlayer();
 		}
          		
+	}
+	
+	public void render(Graphics g) {
+		
+		if(isAttacking) {
+			
+			super.getCurrentAnimation().draw(screenRelativeOverSizeX, screenRelativeOverSizeY);
+			
+		} else {
+			
+			super.getCurrentAnimation().draw(screenRelativeX, screenRelativeY);
+			
+		}
+		
+		if(super.getBar().getCurrentValue() > 0) {
+			super.getBar().render(g);
+		}
+		
+		if(super.isDrawBlood()) {
+			super.drawBlood(screenRelativeX, screenRelativeY);
+		}
+				
 	}
 	
 	public void updateAttackPlayer() {
@@ -141,6 +174,7 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 					
+					isAttacking = false;
 				}
 				
 				if(!goDown && super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol()) {	
@@ -154,6 +188,7 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 					
+					isAttacking = false;
 				}
 							
 				if(!goLeft && super.getCenterXTile() > path.get(0).getCol() && super.getCenterYTile() == path.get(0).getRow()) {	
@@ -167,6 +202,7 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 					
+					isAttacking = false;
 				}
 				
 				if(!goRight && super.getCenterXTile() < path.get(0).getCol() && super.getCenterYTile() == path.get(0).getRow()) {	
@@ -180,6 +216,7 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 
+					isAttacking = false;
 				}
 				
 				if(!goUpLeft && super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() > path.get(0).getCol()) {		
@@ -193,6 +230,7 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 
+					isAttacking = false;
 				}
 				
 				if(!goUpRight && super.getCenterYTile() > path.get(0).getRow() && super.getCenterXTile() < path.get(0).getCol()) {		
@@ -206,6 +244,7 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = false;
 				
+					isAttacking = false;
 				}
 				
 				if(!goDownLeft && super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() > path.get(0).getCol()) {		
@@ -219,6 +258,7 @@ public class NPC extends Character {
 					goDownLeft = true;
 					goDownRight = false;
 					
+					isAttacking = false;
 				}
 				
 				if(!goDownRight && super.getCenterYTile() < path.get(0).getRow() && super.getCenterXTile() < path.get(0).getCol()) {		
@@ -232,6 +272,7 @@ public class NPC extends Character {
 					goDownLeft = false;
 					goDownRight = true;
 
+					isAttacking = false;
 				}
 			
 			} else {
@@ -317,6 +358,32 @@ public class NPC extends Character {
 			
 		}
 		
+		if(isGoingToPlayer && path.isEmpty()) {
+			if(super.getCurrentAnimation() == super.getLookUpAnimation()) {
+				super.setCurrentAnimation(super.getAttackUpAnimation());
+				isAttacking = true;
+			}
+			
+			if(super.getCurrentAnimation() == super.getLookDownAnimation()) {
+				super.setCurrentAnimation(super.getAttackDownAnimation());
+				isAttacking = true;
+			}
+			
+			if(super.getCurrentAnimation() == super.getLookLeftAnimation()) {
+				super.setCurrentAnimation(super.getAttackLeftAnimation());
+				isAttacking = true;
+			}
+			
+			if(super.getCurrentAnimation() == super.getLookRightAnimation()) {
+				super.setCurrentAnimation(super.getAttackRightAnimation());
+				isAttacking = true;
+			}
+			
+			if(isAttacking && super.getCurrentAnimation().isStopped()) {
+				super.getCurrentAnimation().restart();
+			}
+		}
+		
 	}
 	
 	private List<Node> findPath() {
@@ -350,21 +417,7 @@ public class NPC extends Character {
         return aStar.findPath();
                		
 	}
-	
-	public void render(Graphics g) {
 		
-		super.getCurrentAnimation().draw(screenRelativeX, screenRelativeY);
-
-		if(super.getBar().getCurrentValue() > 0) {
-			super.getBar().render(g);
-		}
-		
-		if(super.isDrawBlood()) {
-			super.drawBlood(screenRelativeX, screenRelativeY);
-		}
-				
-	}
-	
 	private boolean isUpCollision() {
 		
 		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
