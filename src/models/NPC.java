@@ -432,7 +432,6 @@ public class NPC extends Character {
 					if(super.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(10);
 						damageDealt = true;
-						//player.setRelativeToMapY(player.getRelativeToMapY() - Main.TILE_SIZE * 2);
 				}
 			}
 			
@@ -440,7 +439,6 @@ public class NPC extends Character {
 					if(super.getAttackDownCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(10);
 						damageDealt = true;
-						//player.setRelativeToMapY(player.getRelativeToMapY() + Main.TILE_SIZE * 2);
 					}
 			}
 			
@@ -448,7 +446,6 @@ public class NPC extends Character {
 					if(super.getAttackLeftCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(10);
 						damageDealt = true;
-						//player.setRelativeToMapX(player.getRelativeToMapX() - Main.TILE_SIZE * 2);
 				}		
 			}
 			
@@ -456,7 +453,6 @@ public class NPC extends Character {
 					if(super.getAttackRightCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(10);
 						damageDealt = true;
-						//player.setRelativeToMapX(player.getRelativeToMapX() + Main.TILE_SIZE * 2);
 					}						
 			}		
 			

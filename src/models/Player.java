@@ -447,17 +447,17 @@ public class Player extends Character {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						
-						if(0 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 33) {
+						if(0 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 33) {
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 2);
 							npc.setPathCalculationNeeded(true);
 						} 
 						
-						if(34 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 66) {
+						if(34 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 66) {
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 3);
 							npc.setPathCalculationNeeded(true);
 						} 
 						
-						if(67 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 100) {
+						if(67 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 100) {
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 4);
 							npc.setPathCalculationNeeded(true);
 						} 
@@ -472,17 +472,17 @@ public class Player extends Character {
 					if(super.getAttackDownCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(0 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 33) {
+						if(0 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 33) {
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 2);
 							npc.setPathCalculationNeeded(true);
 						} 
 						
-						if(34 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 66) {
+						if(34 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 66) {
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 3);
 							npc.setPathCalculationNeeded(true);
 						} 
 						
-						if(67 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 100) {
+						if(67 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 100) {
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 4);
 							npc.setPathCalculationNeeded(true);
 						} 
@@ -497,17 +497,17 @@ public class Player extends Character {
 					if(super.getAttackLeftCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(0 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 33) {
+						if(0 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 33) {
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 2);
 							npc.setPathCalculationNeeded(true);
 						} 
 					
-						if(34 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 66) {
+						if(34 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 66) {
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 3);
 							npc.setPathCalculationNeeded(true);
 						} 
 						
-						if(67 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 100) {
+						if(67 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 100) {
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 4);
 							npc.setPathCalculationNeeded(true);
 						} 
@@ -522,17 +522,17 @@ public class Player extends Character {
 					if(super.getAttackRightCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(0 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 33) {
+						if(0 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 33) {
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 2);
 							npc.setPathCalculationNeeded(true);
 						} 
 						
-						if(34 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 66) {
+						if(34 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 66) {
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 3);
 							npc.setPathCalculationNeeded(true);
 						} 
 						
-						if(67 < prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() < 100) {
+						if(67 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 100) {
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 4);
 							npc.setPathCalculationNeeded(true);
 						} 
