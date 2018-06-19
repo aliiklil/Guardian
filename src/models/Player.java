@@ -877,5 +877,10 @@ public class Player extends Character {
 	public Inventory getInventory() {
 		return inventory;
 	}
+	
+	public boolean isBlocking() {
+		return isBlocking;
+	}
+
 
 }

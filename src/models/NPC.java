@@ -414,7 +414,7 @@ public class NPC extends Character {
 			}
 		}
 		
-		if(!damageDealt) {
+		if(!damageDealt && !player.isBlocking()) {
 			
 			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 					if(super.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
