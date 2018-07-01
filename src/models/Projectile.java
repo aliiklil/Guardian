@@ -102,6 +102,7 @@ public class Projectile {
 			for(NPC npc : npcList) {
 					if(collisionBox.intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damage);
+						npc.setGoingToPlayer(true);
 						Game.getProjectileManager().removeProjectile(this);
 					}
 			}

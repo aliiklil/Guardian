@@ -696,6 +696,9 @@ public class NPC extends Character {
 	public void setPathCalculationNeeded(boolean pathCalculationNeeded) {
 		this.pathCalculationNeeded = pathCalculationNeeded;
 	}
-
-					
+	
+	public void setGoingToPlayer(boolean isGoingToPlayer) {
+		this.isGoingToPlayer = isGoingToPlayer;
+	}
+	
 }
