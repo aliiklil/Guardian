@@ -137,15 +137,15 @@ public class Player extends Character {
 			super.drawBlood(screenRelativeX, screenRelativeY);
 		}
 				
-		if(isPreparingAttack && isAlive()) {
+		if(isPreparingAttack && isAlive() && prepareAttackBar.getCurrentValue() > 10) {
 			prepareAttackBar.render(g);
 		}
 		
-		if(isPreparingShot && super.getCurrentAnimation().getFrame() == 8 && isAlive()) {
+		if(isPreparingShot && super.getCurrentAnimation().getFrame() == 8 && isAlive() && prepareShotBar.getCurrentValue() > 10) {
 			prepareShotBar.render(g);
 		}
 		
-		if(isPreparingSpell && super.getCurrentAnimation().getFrame() == 6 && isAlive()) {
+		if(isPreparingSpell && super.getCurrentAnimation().getFrame() == 6 && isAlive() && prepareSpellBar.getCurrentValue() > 10) {
 			prepareSpellBar.render(g);
 		}
 		
