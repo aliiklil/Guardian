@@ -412,6 +412,7 @@ public class Player extends Character {
 			damageToDeal = 20 + prepareAttackBar.getCurrentValue();
 			isAttacking = true;
 			damageDealt = false;
+			prepareAttackBar.setCurrentValue(0);
 		
 		}
 		
