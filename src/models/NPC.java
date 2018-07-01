@@ -51,6 +51,8 @@ public class NPC extends Character {
 	private boolean goDownLeft;
 	private boolean goDownRight;
 	
+	private boolean isMoving;
+	
 	private boolean isAttacking;
 	
 	private boolean damageDealt = false;
@@ -89,6 +91,8 @@ public class NPC extends Character {
 		goDownLeft = false;
 		goDownRight = false;
 		
+		isMoving = false;
+		
 		super.setMovementSpeed(2f);
 		super.setDiagonalMovementSpeed(1f);
 		
@@ -118,10 +122,8 @@ public class NPC extends Character {
 		getHitBox().setX(getRelativeToMapX());
 		getHitBox().setY(getRelativeToMapY() - 10);
 		
-		if(isAlive()) {
-			updateGoToPlayer();
-			//updateAttackPlayer();
-		}
+		goToPlayer();
+		attackPlayer();
 				
 		super.getAttackUpCollisionBox().setX(super.getRelativeToMapX() - 28);
 		super.getAttackUpCollisionBox().setY(super.getRelativeToMapY() - 37);
@@ -159,8 +161,8 @@ public class NPC extends Character {
 					
 	}
 	
-	private void updateGoToPlayer() {
-				
+	private void goToPlayer() {
+		
 		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
 			isGoingToPlayer = true;
 			pathCalculationNeeded = true;	
@@ -175,6 +177,7 @@ public class NPC extends Character {
 		if(pathCalculationNeeded && (super.getCenterX()+16) % 32 == 0 && (super.getCenterY()+16) % 32 == 0) {
 			path = findPath();
 			pathCalculationNeeded = false;
+
 		}
 				
 		if(isGoingToPlayer && path != null && !path.isEmpty() && super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && (super.getCenterX()+16) % 32 == 0 && (super.getCenterY()+16) % 32 == 0) {
@@ -388,10 +391,10 @@ public class NPC extends Character {
 		
 	}
 	
-	private void updateAttackPlayer() {
+	private void attackPlayer() {
 		
 		if(isGoingToPlayer && player.isAlive()) {
-			if(isInAttackRange()) {
+			if((path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile() || isTouchingPlayer()))) {
 				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 					super.setCurrentAnimation(super.getAttackUpAnimation());
 					isAttacking = true;
@@ -421,8 +424,6 @@ public class NPC extends Character {
 					isAttacking = true;
 					damageDealt = false;
 				}
-				
-				isGoingToPlayer = false;
 			}
 		}
 		
@@ -430,28 +431,28 @@ public class NPC extends Character {
 			
 			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 					if(super.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(10);
+						player.decreaseHealth(1);
 						damageDealt = true;
 				}
 			}
 			
 			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 					if(super.getAttackDownCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(10);
+						player.decreaseHealth(1);
 						damageDealt = true;
 					}
 			}
 			
 			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 					if(super.getAttackLeftCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(10);
+						player.decreaseHealth(1);
 						damageDealt = true;
 				}		
 			}
 			
 			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 3) {
 					if(super.getAttackRightCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(10);
+						player.decreaseHealth(1);
 						damageDealt = true;
 					}						
 			}		
@@ -548,7 +549,7 @@ public class NPC extends Character {
         } else {
         	path.remove(path.size() - 1);
         }
-                
+            
         return path;
                		
 	}
@@ -671,28 +672,10 @@ public class NPC extends Character {
 		
 	}
 	
-	private boolean isInAttackRange() {
-		
-		if(super.getAttackUpCollisionBox().intersects((player.getCollisionBox()))) {
-			return true;
-		}
-		
-		if(super.getAttackDownCollisionBox().intersects((player.getCollisionBox()))) {
-			return true;
-		}
-		
-		if(super.getAttackLeftCollisionBox().intersects((player.getCollisionBox()))) {
-			return true;
-		}
-		
-		if(super.getAttackRightCollisionBox().intersects((player.getCollisionBox()))) {
-			return true;
-		}
-		
-		return false;
-		
+	private boolean isCollidingWithPlayer() {
+		return (super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5) || super.getCollisionBox().willIntersectDown(player.getCollisionBox(), 5) || super.getCollisionBox().willIntersectLeft(player.getCollisionBox(), 5) || super.getCollisionBox().willIntersectRight(player.getCollisionBox(), 5));
 	}
-	
+		
 	public void setPathCalculationNeeded(boolean pathCalculationNeeded) {
 		this.pathCalculationNeeded = pathCalculationNeeded;
 	}
@@ -701,4 +684,27 @@ public class NPC extends Character {
 		this.isGoingToPlayer = isGoingToPlayer;
 	}
 	
+	
+private boolean isTouchingPlayer() {
+		
+		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		if(super.getCollisionBox().willIntersectDown(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		if(super.getCollisionBox().willIntersectLeft(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		if(super.getCollisionBox().willIntersectRight(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		return false;
+		
+	}
+
 }
