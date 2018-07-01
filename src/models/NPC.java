@@ -119,8 +119,8 @@ public class NPC extends Character {
 		getHitBox().setY(getRelativeToMapY() - 10);
 		
 		if(isAlive()) {
-			goToPlayer();
-			attackPlayer();
+			updateGoToPlayer();
+			//updateAttackPlayer();
 		}
 				
 		super.getAttackUpCollisionBox().setX(super.getRelativeToMapX() - 28);
@@ -134,8 +134,7 @@ public class NPC extends Character {
 		
 		super.getAttackRightCollisionBox().setX(super.getRelativeToMapX() + 31);
 		super.getAttackRightCollisionBox().setY(super.getRelativeToMapY() - 16);
-
-         		
+	
 	}
 	
 	public void render(Graphics g) {
@@ -160,7 +159,7 @@ public class NPC extends Character {
 					
 	}
 	
-	private void goToPlayer() {
+	private void updateGoToPlayer() {
 				
 		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
 			isGoingToPlayer = true;
@@ -176,7 +175,6 @@ public class NPC extends Character {
 		if(pathCalculationNeeded && (super.getCenterX()+16) % 32 == 0 && (super.getCenterY()+16) % 32 == 0) {
 			path = findPath();
 			pathCalculationNeeded = false;
-			path.remove(path.size() - 1);
 		}
 				
 		if(isGoingToPlayer && path != null && !path.isEmpty() && super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && (super.getCenterX()+16) % 32 == 0 && (super.getCenterY()+16) % 32 == 0) {
@@ -390,10 +388,10 @@ public class NPC extends Character {
 		
 	}
 	
-	private void attackPlayer() {
+	private void updateAttackPlayer() {
 		
 		if(isGoingToPlayer && player.isAlive()) {
-			if((path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile() || isTouchingPlayer()))) {
+			if(isInAttackRange()) {
 				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
 					super.setCurrentAnimation(super.getAttackUpAnimation());
 					isAttacking = true;
@@ -423,6 +421,8 @@ public class NPC extends Character {
 					isAttacking = true;
 					damageDealt = false;
 				}
+				
+				isGoingToPlayer = false;
 			}
 		}
 		
@@ -512,7 +512,44 @@ public class NPC extends Character {
                         
         aStar.setBlocks(blocksArray);
         
-        return aStar.findPath();
+        List<Node> path = aStar.findPath();
+        
+        Node lastNode = path.get(path.size() - 1);
+        Node foreLastNode = path.get(path.size() - 2);
+        
+        if(foreLastNode.getRow() + 1 == lastNode.getRow() && foreLastNode.getCol() + 1 == lastNode.getCol()) {
+        	path.remove(path.size() - 1);
+        	if(Game.getCurrentMap().getTiledMap().getTileId(foreLastNode.getCol(), foreLastNode.getRow() + 1, notWalkableLayerIndex) != 0) {
+        		path.add(new Node(foreLastNode.getRow(), foreLastNode.getCol() + 1));
+        	} else {
+        		path.add(new Node(foreLastNode.getRow() + 1, foreLastNode.getCol()));
+        	}
+        } else if(foreLastNode.getRow() + 1 == lastNode.getRow() && foreLastNode.getCol() - 1 == lastNode.getCol()) {
+        	path.remove(path.size() - 1);
+        	if(Game.getCurrentMap().getTiledMap().getTileId(foreLastNode.getCol(), foreLastNode.getRow() + 1, notWalkableLayerIndex) != 0) {
+        		path.add(new Node(foreLastNode.getRow(), foreLastNode.getCol() - 1));
+        	} else {
+        		path.add(new Node(foreLastNode.getRow() + 1, foreLastNode.getCol()));
+        	}
+        } else if(foreLastNode.getRow() - 1 == lastNode.getRow() && foreLastNode.getCol() - 1 == lastNode.getCol()) {
+        	path.remove(path.size() - 1);
+        	if(Game.getCurrentMap().getTiledMap().getTileId(foreLastNode.getCol(), foreLastNode.getRow() - 1, notWalkableLayerIndex) != 0) {
+        		path.add(new Node(foreLastNode.getRow(), foreLastNode.getCol() - 1));
+        	} else {
+        		path.add(new Node(foreLastNode.getRow() - 1, foreLastNode.getCol()));
+        	}
+        } else  if(foreLastNode.getRow() - 1 == lastNode.getRow() && foreLastNode.getCol() + 1 == lastNode.getCol()) {
+        	path.remove(path.size() - 1);
+        	if(Game.getCurrentMap().getTiledMap().getTileId(foreLastNode.getCol(), foreLastNode.getRow() - 1, notWalkableLayerIndex) != 0) {
+        		path.add(new Node(foreLastNode.getRow(), foreLastNode.getCol() + 1));
+        	} else {
+        		path.add(new Node(foreLastNode.getRow() - 1, foreLastNode.getCol()));
+        	}
+        } else {
+        	path.remove(path.size() - 1);
+        }
+                
+        return path;
                		
 	}
 		
@@ -634,21 +671,21 @@ public class NPC extends Character {
 		
 	}
 	
-	private boolean isTouchingPlayer() {
+	private boolean isInAttackRange() {
 		
-		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
+		if(super.getAttackUpCollisionBox().intersects((player.getCollisionBox()))) {
 			return true;
 		}
 		
-		if(super.getCollisionBox().willIntersectDown(player.getCollisionBox(), 5)) {
+		if(super.getAttackDownCollisionBox().intersects((player.getCollisionBox()))) {
 			return true;
 		}
 		
-		if(super.getCollisionBox().willIntersectLeft(player.getCollisionBox(), 5)) {
+		if(super.getAttackLeftCollisionBox().intersects((player.getCollisionBox()))) {
 			return true;
 		}
 		
-		if(super.getCollisionBox().willIntersectRight(player.getCollisionBox(), 5)) {
+		if(super.getAttackRightCollisionBox().intersects((player.getCollisionBox()))) {
 			return true;
 		}
 		
