@@ -368,19 +368,19 @@ public class NPC extends Character {
 		
 		if(path != null && path.isEmpty()) {
 			
-			if(super.getCurrentAnimation() == super.getGoUpAnimation()) {
+			if(super.getCenterXTile() == player.getCenterXTile() && super.getCenterYTile() - 1 == player.getCenterYTile()) {
 				super.setCurrentAnimation(super.getLookUpAnimation());
 			}
 			
-			if(super.getCurrentAnimation() == super.getGoDownAnimation()) {
+			if(super.getCenterXTile() == player.getCenterXTile() && super.getCenterYTile() + 1 == player.getCenterYTile()) {
 				super.setCurrentAnimation(super.getLookDownAnimation());
 			}
 			
-			if(super.getCurrentAnimation() == super.getGoLeftAnimation()) {
+			if(super.getCenterXTile() - 1 == player.getCenterXTile() && super.getCenterYTile() == player.getCenterYTile()) {
 				super.setCurrentAnimation(super.getLookLeftAnimation());
 			}
 			
-			if(super.getCurrentAnimation() == super.getGoRightAnimation()) {
+			if(super.getCenterXTile() + 1 == player.getCenterXTile() && super.getCenterYTile() == player.getCenterYTile()) {
 				super.setCurrentAnimation(super.getLookRightAnimation());
 			}
 			
