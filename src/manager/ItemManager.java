@@ -80,13 +80,13 @@ public class ItemManager {
 		Item helmet3 = new Item(416, 384, helmet);
 
 		Item gold1 = new Item(480, 416, gold);
-		Item gold2 = new Item(512, 416, gold);
+		Item gold2 = new Item(704, 416, gold);
 		Item gold3 = new Item(416, 480, gold);
 
 		Item apple1 = new Item(544, 544, apple);
 		Item apple2 = new Item(672, 544, apple);
 
-		Item metalArmor1 = new Item(608, 640, metalArmor);
+		Item metalArmor1 = new Item(640, 640, metalArmor);
 		
 		Item boots1 = new Item(640, 672, boots);
 
@@ -98,10 +98,10 @@ public class ItemManager {
 	
 		Item bone1 = new Item(800, 320, bone);
 		Item bone2 = new Item(832, 320, bone);
-		Item bone3 = new Item(864, 1472, bone);
+		Item bone3 = new Item(864, 640, bone);
 		Item bone4 = new Item(896, 384, bone);
 
-		Item bow1 = new Item(960, 256, bow);
+		Item bow1 = new Item(512, 256, bow);
 		
 		Item bread1 = new Item(864, 320, bread);
 
