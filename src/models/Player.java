@@ -452,21 +452,21 @@ public class Player extends Character {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						
-						if(0 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 33) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 2);
-							npc.setPathCalculationNeeded(true);
-						} 
-						
-						if(34 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 66) {
+						if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 3, notWalkableLayerIndex) == 0) {
+							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 3);
-							npc.setPathCalculationNeeded(true);
-						} 
+							
+						} else if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 2, notWalkableLayerIndex) == 0) {
+							
+							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 2);
+							
+						} else if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() -  1, notWalkableLayerIndex) == 0) {
+							
+							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 1);
+							
+						}
 						
-						if(67 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 100) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 4);
-							npc.setPathCalculationNeeded(true);
-						} 
-						
+						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}
 				}
@@ -477,21 +477,23 @@ public class Player extends Character {
 					if(super.getAttackDownCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(0 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 33) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 2);
-							npc.setPathCalculationNeeded(true);
-						} 
-						
-						if(34 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 66) {
+
+						if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 3, notWalkableLayerIndex) == 0) {
+							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 3);
-							npc.setPathCalculationNeeded(true);
-						} 
+							
+						} else if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 2, notWalkableLayerIndex) == 0) {
+							
+							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 2);
+							
+						} else if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 1, notWalkableLayerIndex) == 0) {
+							
+							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 1);
+							
+						}
 						
-						if(67 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 100) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 4);
-							npc.setPathCalculationNeeded(true);
-						} 
 						
+						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}
 				}
@@ -502,21 +504,22 @@ public class Player extends Character {
 					if(super.getAttackLeftCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(0 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 33) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 2);
-							npc.setPathCalculationNeeded(true);
-						} 
-					
-						if(34 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 66) {
+
+						if(tiledMap.getTileId(npc.getCenterXTile() - 3, npc.getCenterYTile() , notWalkableLayerIndex) == 0) {
+							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 3);
-							npc.setPathCalculationNeeded(true);
-						} 
+							
+						} else if(tiledMap.getTileId(npc.getCenterXTile() - 2, npc.getCenterYTile(), notWalkableLayerIndex) == 0) {
+							
+							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 2);
+							
+						} else if(tiledMap.getTileId(npc.getCenterXTile() - 1, npc.getCenterYTile(), notWalkableLayerIndex) == 0) {
+							
+							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 1);
+							
+						}
 						
-						if(67 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 100) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 4);
-							npc.setPathCalculationNeeded(true);
-						} 
-						
+						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}
 				}		
@@ -527,21 +530,22 @@ public class Player extends Character {
 					if(super.getAttackRightCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(0 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 33) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 2);
-							npc.setPathCalculationNeeded(true);
-						} 
 						
-						if(34 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 66) {
+						if(tiledMap.getTileId(npc.getCenterXTile() + 3, npc.getCenterYTile() , notWalkableLayerIndex) == 0) {
+							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 3);
-							npc.setPathCalculationNeeded(true);
-						} 
+							
+						} else if(tiledMap.getTileId(npc.getCenterXTile() + 2, npc.getCenterYTile(), notWalkableLayerIndex) == 0) {
+							
+							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 2);
+							
+						} else if(tiledMap.getTileId(npc.getCenterXTile() + 1, npc.getCenterYTile(), notWalkableLayerIndex) == 0) {
+							
+							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 1);
+							
+						}
 						
-						if(67 <= prepareAttackBar.getCurrentValue() && prepareAttackBar.getCurrentValue() <= 100) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 4);
-							npc.setPathCalculationNeeded(true);
-						} 
-						
+						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}				
 				}			
