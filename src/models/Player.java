@@ -16,92 +16,92 @@ import manager.CharacterManager;
 import util.CollisionBox;
 
 public class Player extends Character {
-		
+
 	private final float screenRelativeX = Main.WIDTH / 2 - super.getSpriteSize() / 2;
 	private final float screenRelativeY = Main.HEIGHT / 2 - super.getSpriteSize() / 2;
-	
+
 	private final float screenRelativeOverSizeX = Main.WIDTH / 2 - super.getOverSizeSpriteSize() / 2;
 	private final float screenRelativeOverSizeY = Main.HEIGHT / 2 - super.getOverSizeSpriteSize() / 2;
-		
+
 	private boolean lookUp = false;
 	private boolean lookDown = false;
 	private boolean lookLeft = false;
 	private boolean lookRight = false;
-	
+
 	private Input input = Main.appGameContainer.getInput();
-	
+
 	private ArrayList<NPC> npcList;
-		
+
 	private boolean damageDealt = false;
-	
+
 	private boolean isAttacking = false;
 	private boolean isPreparingAttack = false;
 	private boolean isPreparingShot = false;
 	private boolean isPreparingSpell = false;
-	
+
 	private boolean arrowCreated = false;
 	private boolean spellCreated = false;
-		
+
 	private Inventory inventory = new Inventory();
-	
+
 	private Bar prepareAttackBar;
 	private Bar prepareShotBar;
 	private Bar prepareSpellBar;
-	
+
 	private int damageToDeal = 0;
-			
+
 	public Player() throws SlickException {
-		
+
 		super(224, 64, "resources/HumanSpriteSheet.png");
-				
-		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
-		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize()/2, super.getSpriteSize()/2));
-				
+
+		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize() / 2 - 12, super.getSpriteSize() / 2 - 12));
+		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize() / 2, super.getSpriteSize() / 2));
+
 		super.setHealthBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
-		
+
 		prepareAttackBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
 		prepareShotBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
 		prepareSpellBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
-		
+
 		Game.getCurrentMap().setX(screenRelativeX - super.getRelativeToMapX() + super.getSpriteSize() / 4);
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
-		
+
 		npcList = CharacterManager.getNpcList();
-		
+
 		setAttackUpCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() - 37, 89, 38));
 		setAttackDownCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() + 12, 89, 38));
 		setAttackLeftCollisionBox(new CollisionBox(getRelativeToMapX() - 67, getRelativeToMapY() - 16, 68, 36));
 		setAttackRightCollisionBox(new CollisionBox(getRelativeToMapX() + 31, getRelativeToMapY() - 16, 68, 36));
-		
+
 	}
-	
+
 	public void update() throws SlickException {
-		
+
 		super.update();
-			
+
 		npcList = CharacterManager.getNpcList();
-		
+
 		super.setRelativeToMapX((screenRelativeX + super.getSpriteSize() / 4) - Game.getCurrentMap().getX());
-		super.setRelativeToMapY((screenRelativeY + super.getSpriteSize() / 2) - Game.getCurrentMap().getY()); 
-												
+		super.setRelativeToMapY((screenRelativeY + super.getSpriteSize() / 2) - Game.getCurrentMap().getY());
+
 		super.getCollisionBox().setX(super.getRelativeToMapX() + 6);
 		super.getCollisionBox().setY(super.getRelativeToMapY() + 10);
-		
+
 		super.getHitBox().setX(super.getRelativeToMapX());
 		super.getHitBox().setY(super.getRelativeToMapY() - 10);
-		
+
 		super.getAttackUpCollisionBox().setX(super.getRelativeToMapX() - 28);
 		super.getAttackUpCollisionBox().setY(super.getRelativeToMapY() - 37);
-		
+
 		super.getAttackDownCollisionBox().setX(super.getRelativeToMapX() - 28);
 		super.getAttackDownCollisionBox().setY(super.getRelativeToMapY() + 12);
-		
+
 		super.getAttackLeftCollisionBox().setX(super.getRelativeToMapX() - 67);
 		super.getAttackLeftCollisionBox().setY(super.getRelativeToMapY() - 16);
-		
+
 		super.getAttackRightCollisionBox().setX(super.getRelativeToMapX() + 31);
 		super.getAttackRightCollisionBox().setY(super.getRelativeToMapY() - 16);
-		
+
 		if(isAlive()) {
 			inventory.update();
 			updateMove();
@@ -110,245 +110,242 @@ public class Player extends Character {
 			updateSpell();
 			updatePickUpItem();
 		}
-		
+
 	}
-	
+
 	public void render(Graphics g) {
-		
+
 		if((isAttacking || isPreparingAttack) && isAlive()) {
-		
+
 			super.getCurrentAnimation().draw(screenRelativeOverSizeX, screenRelativeOverSizeY);
-			
+
 		} else {
-			
+
 			super.getCurrentAnimation().draw(screenRelativeX, screenRelativeY);
-			
+
 		}
-		
+
 		if(super.isDrawBlood()) {
 			super.drawBlood(screenRelativeX, screenRelativeY);
 		}
-				
+
 		if(isPreparingAttack && isAlive() && prepareAttackBar.getCurrentValue() > 10) {
 			prepareAttackBar.render(g);
 		}
-		
+
 		if(isPreparingShot && super.getCurrentAnimation().getFrame() == 8 && isAlive() && prepareShotBar.getCurrentValue() > 10) {
 			prepareShotBar.render(g);
 		}
-		
+
 		if(isPreparingSpell && super.getCurrentAnimation().getFrame() == 6 && isAlive() && prepareSpellBar.getCurrentValue() > 10) {
 			prepareSpellBar.render(g);
 		}
-		
+
 	}
-	
+
 	private void updateMove() {
-		
+
 		if(!isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell) {
-						
+
 			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
-				
-				if(isUpCollision()) {
-						
+
+				if(isUpCollision(super.getMovementSpeed())) {
+
 					super.setCurrentAnimation(super.getLookUpAnimation());
-					
+
 				} else {
-					
+
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getMovementSpeed());
 					super.setCurrentAnimation(super.getGoUpAnimation());
-				
+
 				}
-				
+
 				lookUp = true;
 				lookDown = false;
 				lookLeft = false;
 				lookRight = false;
-				
-	
+
 			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
-					
-				
-				if(isDownCollision()) {
-					
+
+				if(isDownCollision(super.getMovementSpeed())) {
+
 					super.setCurrentAnimation(super.getLookDownAnimation());
-					
+
 				} else {
-				
+
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getMovementSpeed());
 					super.setCurrentAnimation(super.getGoDownAnimation());
-								
+
 				}
-				
+
 				lookUp = false;
 				lookDown = true;
 				lookLeft = false;
 				lookRight = false;
-				
+
 			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
-				
-				if(isLeftCollision()) {
-					
+
+				if(isLeftCollision(super.getMovementSpeed())) {
+
 					super.setCurrentAnimation(super.getLookLeftAnimation());
-					
+
 				} else {
-				
+
 					Game.getCurrentMap().setX(Game.getCurrentMap().getX() + super.getMovementSpeed());
 					super.setCurrentAnimation(super.getGoLeftAnimation());
-	
+
 				}
-						
+
 				lookUp = false;
 				lookDown = false;
 				lookLeft = true;
 				lookRight = false;
-				
+
 			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
-			
-				if(isRightCollision()) {
-					
+
+				if(isRightCollision(super.getMovementSpeed())) {
+
 					super.setCurrentAnimation(super.getLookRightAnimation());
-					
+
 				} else {
-				
+
 					Game.getCurrentMap().setX(Game.getCurrentMap().getX() - super.getMovementSpeed());
 					super.setCurrentAnimation(super.getGoRightAnimation());
-					
+
 				}
-				
+
 				lookUp = false;
 				lookDown = false;
 				lookLeft = false;
 				lookRight = true;
-				
+
 			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
-				
-				if(!isUpCollision()) {
+
+				if(!isUpCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getDiagonalMovementSpeed());
 				}
-				
-				if(!isLeftCollision()) {
+
+				if(!isLeftCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setX(Game.getCurrentMap().getX() + super.getDiagonalMovementSpeed());
 				}
-				
-				if(!isUpCollision() || !isLeftCollision()) {
+
+				if(!isUpCollision(super.getMovementSpeed()) || !isLeftCollision(super.getMovementSpeed())) {
 					super.setCurrentAnimation(super.getGoLeftAnimation());
 				} else {
 					super.setCurrentAnimation(super.getLookLeftAnimation());
 				}
-		
+
 				lookUp = false;
 				lookDown = false;
 				lookLeft = true;
 				lookRight = false;
-				
+
 			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
-				
-				if(!isUpCollision()) {
+
+				if(!isUpCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getDiagonalMovementSpeed());
 				}
-				
-				if(!isRightCollision()) {
+
+				if(!isRightCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setX(Game.getCurrentMap().getX() - super.getDiagonalMovementSpeed());
 				}
-				
-				if(!isUpCollision() || !isRightCollision()) {
-				
+
+				if(!isUpCollision(super.getMovementSpeed()) || !isRightCollision(super.getMovementSpeed())) {
+
 					super.setCurrentAnimation(super.getGoRightAnimation());
-					
+
 				} else {
-					
+
 					super.setCurrentAnimation(super.getLookRightAnimation());
-					
+
 				}
-				
+
 				lookUp = false;
 				lookDown = false;
 				lookLeft = false;
 				lookRight = true;
-				
+
 			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
-				
-				
-				if(!isDownCollision()) {
+
+				if(!isDownCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getDiagonalMovementSpeed());
-				} 
-				
-				if(!isLeftCollision()) {
+				}
+
+				if(!isLeftCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setX(Game.getCurrentMap().getX() + super.getDiagonalMovementSpeed());
 				}
-				
-				if(!isDownCollision() || !isLeftCollision()) {
-				
+
+				if(!isDownCollision(super.getMovementSpeed()) || !isLeftCollision(super.getMovementSpeed())) {
+
 					super.setCurrentAnimation(super.getGoLeftAnimation());
-	
+
 				} else {
-					
+
 					super.setCurrentAnimation(super.getLookLeftAnimation());
-					
+
 				}
-				
+
 				lookUp = false;
 				lookDown = false;
 				lookLeft = true;
 				lookRight = false;
-	
+
 			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
-					
-				if(!isDownCollision()) {
+
+				if(!isDownCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getDiagonalMovementSpeed());
-				} 
-				
-				if(!isRightCollision()) {
+				}
+
+				if(!isRightCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setX(Game.getCurrentMap().getX() - super.getDiagonalMovementSpeed());
 				}
-				
-				if(!isDownCollision() || !isRightCollision()) {
-				
+
+				if(!isDownCollision(super.getMovementSpeed()) || !isRightCollision(super.getMovementSpeed())) {
+
 					super.setCurrentAnimation(super.getGoRightAnimation());
-				
+
 				} else {
-				
+
 					super.setCurrentAnimation(super.getLookRightAnimation());
-				
+
 				}
-				
+
 				lookUp = false;
 				lookDown = false;
 				lookLeft = false;
 				lookRight = true;
-		
+
 			} else {
-				
+
 				if(lookUp) {
 					super.setCurrentAnimation(super.getLookUpAnimation());
 				}
-				
+
 				if(lookDown) {
-					super.setCurrentAnimation(super.getLookDownAnimation());	
+					super.setCurrentAnimation(super.getLookDownAnimation());
 				}
-				
+
 				if(lookLeft) {
 					super.setCurrentAnimation(super.getLookLeftAnimation());
 				}
-				
+
 				if(lookRight) {
 					super.setCurrentAnimation(super.getLookRightAnimation());
 				}
-	
+
 				lookUp = false;
 				lookDown = false;
 				lookLeft = false;
 				lookRight = false;
-				
+
 				input.clearKeyPressedRecord();
-				
+
 			}
-		
+
 		}
-							
+
 	}
-	
+
 	private void updateAttack() {
  		
 		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
@@ -439,21 +436,21 @@ public class Player extends Character {
 					if(super.getAttackUpCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						
-						if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 3, Game.getNotWalkableLayerIndex()) == 0) {
-							
+
+						if(!npc.isUpCollision(Main.TILE_SIZE * 3) && !npc.isUpCollision(Main.TILE_SIZE * 2) && !npc.isUpCollision(Main.TILE_SIZE * 1)) {
+
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 3);
 							
-						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 2, Game.getNotWalkableLayerIndex()) == 0) {
+						} else if(!npc.isUpCollision(Main.TILE_SIZE * 2) && !npc.isUpCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 2);
 							
-						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() -  1, Game.getNotWalkableLayerIndex()) == 0) {
+						} else if(!npc.isUpCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 1);
 							
 						}
-						
+					
 						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}
@@ -466,20 +463,19 @@ public class Player extends Character {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
-						if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 3, Game.getNotWalkableLayerIndex()) == 0) {
+						if(!npc.isDownCollision(Main.TILE_SIZE * 3) && !npc.isDownCollision(Main.TILE_SIZE * 2) && !npc.isDownCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 3);
 							
-						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 2, Game.getNotWalkableLayerIndex()) == 0) {
+						} else if(!npc.isDownCollision(Main.TILE_SIZE * 2) && !npc.isDownCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 2);
 							
-						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 1, Game.getNotWalkableLayerIndex()) == 0) {
+						} else if(!npc.isDownCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 1);
 							
 						}
-						
 						
 						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
@@ -493,20 +489,20 @@ public class Player extends Character {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
-						if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 3, npc.getCenterYTile() , Game.getNotWalkableLayerIndex()) == 0) {
+						if(!npc.isLeftCollision(Main.TILE_SIZE * 3) && !npc.isLeftCollision(Main.TILE_SIZE * 2) && !npc.isLeftCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 3);
 							
-						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
+						} else if(!npc.isLeftCollision(Main.TILE_SIZE * 2) && !npc.isLeftCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 2);
 							
-						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 1, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
+						} else if(!npc.isLeftCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 1);
 							
 						}
-						
+					
 						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}
@@ -518,16 +514,16 @@ public class Player extends Character {
 					if(super.getAttackRightCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						
-						if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 3, npc.getCenterYTile() , Game.getNotWalkableLayerIndex()) == 0) {
+					
+						if(!npc.isRightCollision(Main.TILE_SIZE * 3) && !npc.isRightCollision(Main.TILE_SIZE * 2) && !npc.isRightCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 3);
 							
-						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
+						} else if(!npc.isRightCollision(Main.TILE_SIZE * 2) && !npc.isRightCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 2);
 							
-						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 1, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
+						} else if(!npc.isRightCollision(Main.TILE_SIZE * 1)) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 1);
 							
@@ -538,14 +534,13 @@ public class Player extends Character {
 					}				
 				}			
 			}		
-			
 		}
 	}
-	
+
 	private void updateShoot() throws SlickException {
- 		
+
 		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventory.isInventoryOpen()) {
-			
+
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				if(isPreparingShot && super.getCurrentAnimation() != super.getShootUpAnimation()) {
 					int frameIndex = super.getCurrentAnimation().getFrame();
@@ -557,7 +552,7 @@ public class Player extends Character {
 				}
 				arrowCreated = false;
 			}
-			
+
 			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
 				if(isPreparingShot && super.getCurrentAnimation() != super.getShootDownAnimation()) {
 					int frameIndex = super.getCurrentAnimation().getFrame();
@@ -569,7 +564,7 @@ public class Player extends Character {
 				}
 				arrowCreated = false;
 			}
-			
+
 			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
 				if(isPreparingShot && super.getCurrentAnimation() != super.getShootLeftAnimation()) {
 					int frameIndex = super.getCurrentAnimation().getFrame();
@@ -581,7 +576,7 @@ public class Player extends Character {
 				}
 				arrowCreated = false;
 			}
-			
+
 			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
 				if(isPreparingShot && super.getCurrentAnimation() != super.getShootRightAnimation()) {
 					int frameIndex = super.getCurrentAnimation().getFrame();
@@ -593,22 +588,22 @@ public class Player extends Character {
 				}
 				arrowCreated = false;
 			}
-			
+
 			super.getCurrentAnimation().start();
 			isPreparingShot = true;
-			
+
 		}
-		
+
 		if(isPreparingShot && prepareShotBar.getCurrentValue() < prepareShotBar.getMaxValue() && super.getCurrentAnimation().getFrame() == 8) {
 			prepareShotBar.setCurrentValue(prepareShotBar.getCurrentValue() + 1);
 		}
-		
+
 		if(!input.isKeyDown(Input.KEY_A) && isPreparingShot && super.getCurrentAnimation().isStopped() && !arrowCreated) {
-		
+
 			int damageToDeal = 20 + prepareShotBar.getCurrentValue();
-			int arrowVelocity = 7 + prepareShotBar.getCurrentValue()/10;
+			int arrowVelocity = 7 + prepareShotBar.getCurrentValue() / 10;
 			prepareShotBar.setCurrentValue(0);
-			
+
 			if(super.getCurrentAnimation() == super.getShootUpAnimation()) {
 				super.getShootUpAnimation().restart();
 				super.setCurrentAnimation(super.getLookUpAnimation());
@@ -618,27 +613,27 @@ public class Player extends Character {
 				arrowCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
-			
+
 			if(super.getCurrentAnimation() == super.getShootDownAnimation()) {
 				super.getShootDownAnimation().restart();
 				super.setCurrentAnimation(super.getLookDownAnimation());
 				isPreparingShot = false;
-								
+
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 3, 0, 3, 0, true, 100, true), 1, damageToDeal, arrowVelocity);
 				arrowCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
-			
+
 			if(super.getCurrentAnimation() == super.getShootLeftAnimation()) {
 				super.getShootLeftAnimation().restart();
 				super.setCurrentAnimation(super.getLookLeftAnimation());
 				isPreparingShot = false;
-				
+
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/arrow.png", 64, 64), 0, 0, 0, 0, true, 100, true), 2, damageToDeal, arrowVelocity);
 				arrowCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
-			
+
 			if(super.getCurrentAnimation() == super.getShootRightAnimation()) {
 				super.getShootRightAnimation().restart();
 				super.setCurrentAnimation(super.getLookRightAnimation());
@@ -648,16 +643,16 @@ public class Player extends Character {
 				arrowCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
-		
+
 		}
-				
+
 	}
 
 	private void updateSpell() throws SlickException {
- 		
+
 		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventory.isInventoryOpen()) {
-						
-			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()|| input.isKeyDown(Input.KEY_UP)) {				
+
+			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
 					int frameIndex = super.getCurrentAnimation().getFrame();
 					super.getCurrentAnimation().restart();
@@ -666,10 +661,10 @@ public class Player extends Character {
 				} else {
 					super.setCurrentAnimation(super.getSpellUpAnimation());
 				}
-				spellCreated = false;			
+				spellCreated = false;
 			}
-			
-			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()|| input.isKeyDown(Input.KEY_DOWN)) {
+
+			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
 				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellDownAnimation()) {
 					int frameIndex = super.getCurrentAnimation().getFrame();
 					super.getCurrentAnimation().restart();
@@ -678,10 +673,10 @@ public class Player extends Character {
 				} else {
 					super.setCurrentAnimation(super.getSpellDownAnimation());
 				}
-				spellCreated = false;			
+				spellCreated = false;
 			}
-			
-			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()|| input.isKeyDown(Input.KEY_LEFT)) {
+
+			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
 				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellLeftAnimation()) {
 					int frameIndex = super.getCurrentAnimation().getFrame();
 					super.getCurrentAnimation().restart();
@@ -690,10 +685,10 @@ public class Player extends Character {
 				} else {
 					super.setCurrentAnimation(super.getSpellLeftAnimation());
 				}
-				spellCreated = false;			
+				spellCreated = false;
 			}
-			
-			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()|| input.isKeyDown(Input.KEY_RIGHT)) {
+
+			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
 				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellRightAnimation()) {
 					int frameIndex = super.getCurrentAnimation().getFrame();
 					super.getCurrentAnimation().restart();
@@ -702,186 +697,180 @@ public class Player extends Character {
 				} else {
 					super.setCurrentAnimation(super.getSpellRightAnimation());
 				}
-				spellCreated = false;			
+				spellCreated = false;
 			}
-			
+
 			super.getCurrentAnimation().start();
 			isPreparingSpell = true;
-			
+
 		}
-		
+
 		if(isPreparingSpell && prepareSpellBar.getCurrentValue() < prepareSpellBar.getMaxValue() && super.getCurrentAnimation().getFrame() == 6) {
 			prepareSpellBar.setCurrentValue(prepareSpellBar.getCurrentValue() + 1);
 		}
-		
+
 		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
-		
+
 			int damageToDeal = 20 + prepareSpellBar.getCurrentValue();
-			int spellVelocity = 7 + prepareSpellBar.getCurrentValue()/10;
+			int spellVelocity = 7 + prepareSpellBar.getCurrentValue() / 10;
 			prepareSpellBar.setCurrentValue(0);
-			
+
 			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
 				super.getSpellUpAnimation().restart();
 				super.setCurrentAnimation(super.getLookUpAnimation());
 				isPreparingSpell = false;
-								
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 1, 7 , 1, true, 100, true), 0, damageToDeal, spellVelocity);
+
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 1, 7, 1, true, 100, true), 0, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
-				
+
 			}
-			
+
 			if(super.getCurrentAnimation() == super.getSpellDownAnimation()) {
 				super.getSpellDownAnimation().restart();
 				super.setCurrentAnimation(super.getLookDownAnimation());
 				isPreparingSpell = false;
-				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 3, 7 , 3, true, 100, true), 1, damageToDeal, spellVelocity);
+
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 3, 7, 3, true, 100, true), 1, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
-			
+
 			if(super.getCurrentAnimation() == super.getSpellLeftAnimation()) {
 				super.getSpellLeftAnimation().restart();
 				super.setCurrentAnimation(super.getLookLeftAnimation());
 				isPreparingSpell = false;
-				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 0, 7 , 0, true, 100, true), 2, damageToDeal, spellVelocity);
+
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 0, 7, 0, true, 100, true), 2, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
-			
+
 			if(super.getCurrentAnimation() == super.getSpellRightAnimation()) {
 				super.getSpellRightAnimation().restart();
 				super.setCurrentAnimation(super.getLookRightAnimation());
 				isPreparingSpell = false;
-				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 2, 7 , 2, true, 100, true), 3, damageToDeal, spellVelocity);
+
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/fireball1.png", 64, 64), 0, 2, 7, 2, true, 100, true), 3, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
-		
+
 		}
-				
-	}
-	
-	private void updatePickUpItem() throws SlickException {
-		
-		ArrayList<Item> itemList = Game.getItemManager().getItemList();
-		
-		for(Item item : itemList) {
-			
-			if(super.getCollisionBox().intersects(item.getCollisionBox())) {
-				
-				Game.getItemManager().removeItem(item);
-				inventory.addItem(item);
-				
-				if(item.getItemType().getName().equals("Gold")){
-					inventory.incrementGoldCounter();
-				}
-				
-			}
-			
-		}
-		
+
 	}
 
-	private boolean isUpCollision() {
-				
-		for(NPC npc : npcList) {
-			
+	private void updatePickUpItem() throws SlickException {
+
+		ArrayList<Item> itemList = Game.getItemManager().getItemList();
+
+		for (Item item : itemList) {
+
+			if(super.getCollisionBox().intersects(item.getCollisionBox())) {
+
+				Game.getItemManager().removeItem(item);
+				inventory.addItem(item);
+
+				if(item.getItemType().getName().equals("Gold")) {
+					inventory.incrementGoldCounter();
+				}
+
+			}
+
+		}
+
+	}
+
+	private boolean isUpCollision(float distance) {
+
+		for (NPC npc : npcList) {
+
 			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
-			
+
 		}
-				
-		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - super.getMovementSpeed())/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 &&
-			Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - super.getMovementSpeed())/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {	
-			
+
+		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
+
 			return false;
-			
+
 		} else {
-			
+
 			return true;
-			
+
 		}
-		
+
 	}
-	
-	private boolean isDownCollision() {
-		
-		for(NPC npc : npcList) {
-			
+
+	private boolean isDownCollision(float distance) {
+
+		for (NPC npc : npcList) {
+
 			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
-			
+
 		}
-				
-		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + super.getMovementSpeed())/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 &&
-			Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + super.getMovementSpeed())/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
-			
+
+		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
+
 			return false;
-			
+
 		} else {
-			
+
 			return true;
-			
+
 		}
-		
-		
+
 	}
-	
-	private boolean isLeftCollision() {
-		
-		for(NPC npc : npcList) {
-			
+
+	private boolean isLeftCollision(float distance) {
+
+		for (NPC npc : npcList) {
+
 			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
-			
+
 		}
-					
-		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY()/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 &&
-			Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY()/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {	
-			
+
+		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
+
 			return false;
-			
+
 		} else {
-			
+
 			return true;
-			
+
 		}
-		
-		
+
 	}
-	
-	private boolean isRightCollision() {
-		
-		for(NPC npc : npcList) {
-			
+
+	private boolean isRightCollision(float distance) {
+
+		for (NPC npc : npcList) {
+
 			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
-			
+
 		}
-		
-		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY()/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 &&
-			Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY()/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
-			
+
+		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
+
 			return false;
-			
+
 		} else {
-			
+
 			return true;
-			
+
 		}
-		
+
 	}
 
 	public Inventory getInventory() {
 		return inventory;
 	}
-	
+
 }
