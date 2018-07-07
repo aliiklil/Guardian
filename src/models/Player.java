@@ -39,6 +39,7 @@ public class Player extends Character {
 	private boolean isAttacking = false;
 	private boolean isPreparingAttack = false;
 	private boolean isBlocking = false;
+	private boolean isBlockingCoolDownActive = false;
 	private boolean isPreparingShot = false;
 	private boolean isPreparingSpell = false;
 	
@@ -52,6 +53,8 @@ public class Player extends Character {
 	private Bar prepareSpellBar;
 	
 	private int damageToDeal = 0;
+	
+	private int blockCoolDownDuration = 2000;
 		
 	public Player() throws SlickException {
 		
@@ -571,6 +574,36 @@ public class Player extends Character {
 			
 		}
 		
+		if(isBlocking && super.getCurrentAnimation().isStopped()) {
+			
+			if(super.getCurrentAnimation() == super.getBlockUpAnimation()) {
+				super.getBlockUpAnimation().restart();
+				super.setCurrentAnimation(super.getLookUpAnimation());
+				isBlocking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getBlockDownAnimation()) {
+				super.getBlockDownAnimation().restart();
+				super.setCurrentAnimation(super.getLookDownAnimation());
+				isBlocking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getBlockLeftAnimation()) {
+				super.getBlockLeftAnimation().restart();
+				super.setCurrentAnimation(super.getLookLeftAnimation());
+				isBlocking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getBlockRightAnimation()) {
+				super.getBlockRightAnimation().restart();
+				super.setCurrentAnimation(super.getLookRightAnimation());
+				isBlocking = false;
+			}
+			
+		}
+		
+		/*
+		
 		if(isBlocking && !input.isKeyDown(Input.KEY_Y) && super.getCurrentAnimation() == super.getBlockUpAnimation()) {
 			super.getBlockUpAnimation().restart();
 			super.setCurrentAnimation(super.getLookUpAnimation());
@@ -594,7 +627,7 @@ public class Player extends Character {
 			super.setCurrentAnimation(super.getLookRightAnimation());
 			isBlocking = false;
 		}
-		
+		*/
 		
 	}
 	
@@ -943,6 +976,5 @@ public class Player extends Character {
 	public boolean isBlocking() {
 		return isBlocking;
 	}
-
 
 }

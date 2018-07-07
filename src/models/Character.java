@@ -83,6 +83,8 @@ public abstract class Character {
 	private Animation dieAnimation;
 	
 	private Animation currentAnimation;
+	
+	private int blockDuration = 500;
 		
 	public Character(float relativeToMapX, float relativeToMapY, String spriteSheetPath) throws SlickException {
 		
@@ -117,10 +119,10 @@ public abstract class Character {
 		prepareAttackLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 2, 8, true, 100, true);
 		prepareAttackRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 2, 10, true, 100, true);
 		
-		blockUpAnimation = new Animation(overSizeSpriteSheet, 1, 7, 1, 7, true, 100, true);
-		blockDownAnimation = new Animation(overSizeSpriteSheet, 1, 9, 1, 9, true, 100, true);
-		blockLeftAnimation = new Animation(overSizeSpriteSheet, 6, 8, 6, 8, true, 100, true);
-		blockRightAnimation = new Animation(overSizeSpriteSheet, 6, 10, 6, 10, true, 100, true);
+		blockUpAnimation = new Animation(overSizeSpriteSheet, 1, 7, 1, 7, true, blockDuration, true);
+		blockDownAnimation = new Animation(overSizeSpriteSheet, 1, 9, 1, 9, true, blockDuration, true);
+		blockLeftAnimation = new Animation(overSizeSpriteSheet, 6, 8, 6, 8, true, blockDuration, true);
+		blockRightAnimation = new Animation(overSizeSpriteSheet, 6, 10, 6, 10, true, blockDuration, true);
 
 		shootUpAnimation = new Animation(spriteSheet, 0, 16, 8, 16, true, 100, true);
 		shootDownAnimation = new Animation(spriteSheet, 0, 18, 8, 18, true, 100, true);
