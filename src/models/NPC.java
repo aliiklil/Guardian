@@ -315,7 +315,7 @@ public class NPC extends Character {
 	
 		}
 		
-		if(isGoingToPlayer && path != null && !path.isEmpty()) {
+		if(isGoingToPlayer && path != null && !path.isEmpty() && !isAttacking) {
 			
 			if(goUp && !isUpCollision()) {		
 				super.setRelativeToMapY(super.getRelativeToMapY() - super.getMovementSpeed());
@@ -396,26 +396,29 @@ public class NPC extends Character {
 	private void attackPlayer() {
 		
 		if(isGoingToPlayer && player.isAlive()) {
-			if((path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile() || isTouchingPlayer()))) {
-				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) {
+			if(path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) || isTouchingPlayer()
+					|| super.getAttackUpCollisionBox().intersects(player.getHitBox()) || super.getAttackDownCollisionBox().intersects(player.getHitBox()) 
+					|| super.getAttackLeftCollisionBox().intersects(player.getHitBox()) || super.getAttackRightCollisionBox().intersects(player.getHitBox())) {
+				
+				if((super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) && super.getAttackUpCollisionBox().intersects(player.getHitBox())) {
 					super.setCurrentAnimation(super.getAttackUpAnimation());
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) {
+				if((super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) && super.getAttackDownCollisionBox().intersects(player.getHitBox())) {
 					super.setCurrentAnimation(super.getAttackDownAnimation());
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) {
+				if((super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) && super.getAttackLeftCollisionBox().intersects(player.getHitBox())) {
 					super.setCurrentAnimation(super.getAttackLeftAnimation());
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) {
+				if((super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) && super.getAttackRightCollisionBox().intersects(player.getHitBox())) {
 					super.setCurrentAnimation(super.getAttackRightAnimation());
 					isAttacking = true;
 					damageDealt = false;
@@ -431,28 +434,28 @@ public class NPC extends Character {
 		
 		if(!damageDealt) {
 			
-			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(1);
 						damageDealt = true;
 				}
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackDownCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(1);
 						damageDealt = true;
 					}
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackLeftCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(1);
 						damageDealt = true;
 				}		
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 3) {
+			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackRightCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(1);
 						damageDealt = true;
@@ -461,30 +464,35 @@ public class NPC extends Character {
 			
 		}
 		
-		if(!player.isAlive()) {
+		if(!player.isAlive() || (!super.getAttackUpCollisionBox().intersects(player.getHitBox()) && !super.getAttackDownCollisionBox().intersects(player.getHitBox()) 
+				&& !super.getAttackLeftCollisionBox().intersects(player.getHitBox()) && !super.getAttackRightCollisionBox().intersects(player.getHitBox()))) {
 			
 			if(super.getCurrentAnimation() == super.getAttackUpAnimation()) {
+				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookUpAnimation());
 				isAttacking = false;
 			}
 			
 			if(super.getCurrentAnimation() == super.getAttackDownAnimation()) {
+				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookDownAnimation());
 				isAttacking = false;
 			}
 			
 			if(super.getCurrentAnimation() == super.getAttackLeftAnimation()) {
+				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookLeftAnimation());
 				isAttacking = false;
 			}
 			
 			if(super.getCurrentAnimation() == super.getAttackRightAnimation()) {
+				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookRightAnimation());
 				isAttacking = false;
 			}
 			
 		}
-		
+				
 	}
 	
 	private List<Node> findPath() {
