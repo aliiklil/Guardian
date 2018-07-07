@@ -122,8 +122,10 @@ public class NPC extends Character {
 		getHitBox().setX(getRelativeToMapX());
 		getHitBox().setY(getRelativeToMapY() - 10);
 		
-		goToPlayer();
-		attackPlayer();
+		if(isAlive()) {
+			goToPlayer();
+			attackPlayer();
+		}
 				
 		super.getAttackUpCollisionBox().setX(super.getRelativeToMapX() - 28);
 		super.getAttackUpCollisionBox().setY(super.getRelativeToMapY() - 37);
