@@ -54,8 +54,8 @@ public class Game extends BasicGameState {
 		world.render(g);
 
 		itemManager.render(g);
-		projectileManager.render(g);
 		characterManager.render(g);
+		projectileManager.render(g);
 
 		world.renderUpperLayer(g);
 

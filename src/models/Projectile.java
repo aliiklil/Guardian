@@ -105,11 +105,7 @@ public class Projectile {
 						
 						if(direction == 0) {
 						
-							if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 3, Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 3);
-								
-							} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 2, Game.getNotWalkableLayerIndex()) == 0) {
+							if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 2, Game.getNotWalkableLayerIndex()) == 0) {
 								
 								npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 2);
 								
@@ -121,11 +117,7 @@ public class Projectile {
 					
 						} else if(direction == 1) {
 							
-							if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 3, Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 3);
-								
-							} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 2, Game.getNotWalkableLayerIndex()) == 0) {
+							if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 2, Game.getNotWalkableLayerIndex()) == 0) {
 								
 								npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 2);
 								
@@ -137,11 +129,7 @@ public class Projectile {
 							
 						} else if(direction == 2) {
 							
-							if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 3, npc.getCenterYTile() , Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 3);
-								
-							} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
+							if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
 								
 								npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 2);
 								
@@ -153,11 +141,7 @@ public class Projectile {
 							
 						} else if(direction == 3) {
 							
-							if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 3, npc.getCenterYTile() , Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 3);
-								
-							} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
+							if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
 								
 								npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 2);
 								
