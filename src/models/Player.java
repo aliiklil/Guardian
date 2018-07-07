@@ -38,8 +38,6 @@ public class Player extends Character {
 	
 	private boolean isAttacking = false;
 	private boolean isPreparingAttack = false;
-	private boolean isBlocking = false;
-	private boolean isBlockingCoolDownActive = false;
 	private boolean isPreparingShot = false;
 	private boolean isPreparingSpell = false;
 	
@@ -53,10 +51,7 @@ public class Player extends Character {
 	private Bar prepareSpellBar;
 	
 	private int damageToDeal = 0;
-	
-	private int blockCoolDownDuration = 500;
-	private long blockCoolDownStartTime;
-		
+			
 	public Player() throws SlickException {
 		
 		super(224, 64, "resources/HumanSpriteSheet.png");
@@ -117,7 +112,6 @@ public class Player extends Character {
 			inventory.update();
 			updateMove();
 			updateAttack();
-			updateBlock();
 			updateShoot();
 			updateSpell();
 			updatePickUpItem();
@@ -127,7 +121,7 @@ public class Player extends Character {
 	
 	public void render(Graphics g) {
 		
-		if((isAttacking || isBlocking || isPreparingAttack) && isAlive()) {
+		if((isAttacking || isPreparingAttack) && isAlive()) {
 		
 			super.getCurrentAnimation().draw(screenRelativeOverSizeX, screenRelativeOverSizeY);
 			
@@ -157,7 +151,7 @@ public class Player extends Character {
 	
 	private void updateMove() {
 		
-		if(!isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !isPreparingSpell) {
+		if(!isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell) {
 						
 			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 				
@@ -363,7 +357,7 @@ public class Player extends Character {
 	
 	private void updateAttack() {
  		
-		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isBlocking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				super.setCurrentAnimation(super.getPrepareAttackUpAnimation());
@@ -554,96 +548,9 @@ public class Player extends Character {
 		}
 	}
 	
-	private void updateBlock() {
-
-		if(input.isKeyDown(Input.KEY_Y) && !isBlockingCoolDownActive && !isAttacking && !isBlocking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
-	
-			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
-				super.setCurrentAnimation(super.getBlockUpAnimation());
-			}
-			
-			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
-				super.setCurrentAnimation(super.getBlockDownAnimation());
-			}
-			
-			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
-				super.setCurrentAnimation(super.getBlockLeftAnimation());
-			}
-			
-			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
-				super.setCurrentAnimation(super.getBlockRightAnimation());
-			}
-			
-			super.getCurrentAnimation().start();
-			isBlocking = true;
-			
-		}
-		
-		if(isBlocking && super.getCurrentAnimation().isStopped()) {
-			
-			if(super.getCurrentAnimation() == super.getBlockUpAnimation()) {
-				super.getBlockUpAnimation().restart();
-				super.setCurrentAnimation(super.getLookUpAnimation());
-			}
-			
-			if(super.getCurrentAnimation() == super.getBlockDownAnimation()) {
-				super.getBlockDownAnimation().restart();
-				super.setCurrentAnimation(super.getLookDownAnimation());
-			}
-			
-			if(super.getCurrentAnimation() == super.getBlockLeftAnimation()) {
-				super.getBlockLeftAnimation().restart();
-				super.setCurrentAnimation(super.getLookLeftAnimation());
-			}
-			
-			if(super.getCurrentAnimation() == super.getBlockRightAnimation()) {
-				super.getBlockRightAnimation().restart();
-				super.setCurrentAnimation(super.getLookRightAnimation());
-			}
-			
-			isBlocking = false;
-			isBlockingCoolDownActive = true;
-			blockCoolDownStartTime = System.currentTimeMillis();
-			
-		}
-		
-		if(!input.isKeyDown(Input.KEY_Y) && System.currentTimeMillis() - blockCoolDownStartTime >= blockCoolDownDuration) {
-			isBlockingCoolDownActive = false;
-		}
-
-		
-		/*
-		
-		if(isBlocking && !input.isKeyDown(Input.KEY_Y) && super.getCurrentAnimation() == super.getBlockUpAnimation()) {
-			super.getBlockUpAnimation().restart();
-			super.setCurrentAnimation(super.getLookUpAnimation());
-			isBlocking = false;
-		}
-		
-		if(isBlocking && !input.isKeyDown(Input.KEY_Y) && super.getCurrentAnimation() == super.getBlockDownAnimation()) {
-			super.getBlockDownAnimation().restart();
-			super.setCurrentAnimation(super.getLookDownAnimation());
-			isBlocking = false;
-		}
-		
-		if(isBlocking && !input.isKeyDown(Input.KEY_Y) && super.getCurrentAnimation() == super.getBlockLeftAnimation()) {
-			super.getBlockLeftAnimation().restart();
-			super.setCurrentAnimation(super.getLookLeftAnimation());
-			isBlocking = false;
-		}
-		
-		if(isBlocking && !input.isKeyDown(Input.KEY_Y) && super.getCurrentAnimation() == super.getBlockRightAnimation()) {
-			super.getBlockRightAnimation().restart();
-			super.setCurrentAnimation(super.getLookRightAnimation());
-			isBlocking = false;
-		}
-		*/
-		
-	}
-	
 	private void updateShoot() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingSpell && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventory.isInventoryOpen()) {
 			
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				if(isPreparingShot && super.getCurrentAnimation() != super.getShootUpAnimation()) {
@@ -754,7 +661,7 @@ public class Player extends Character {
 
 	private void updateSpell() throws SlickException {
  		
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isBlocking && !isPreparingShot && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()|| input.isKeyDown(Input.KEY_UP)) {				
 				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
@@ -983,8 +890,4 @@ public class Player extends Character {
 		return inventory;
 	}
 	
-	public boolean isBlocking() {
-		return isBlocking;
-	}
-
 }

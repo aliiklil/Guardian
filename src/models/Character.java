@@ -65,11 +65,6 @@ public abstract class Character {
 	private Animation prepareAttackLeftAnimation;
 	private Animation prepareAttackRightAnimation;
 	
-	private Animation blockUpAnimation;
-	private Animation blockDownAnimation;
-	private Animation blockLeftAnimation;
-	private Animation blockRightAnimation;
-
 	private Animation shootUpAnimation;
 	private Animation shootDownAnimation;
 	private Animation shootLeftAnimation;
@@ -83,8 +78,6 @@ public abstract class Character {
 	private Animation dieAnimation;
 	
 	private Animation currentAnimation;
-	
-	private int blockDuration = 500;
 		
 	public Character(float relativeToMapX, float relativeToMapY, String spriteSheetPath) throws SlickException {
 		
@@ -92,7 +85,7 @@ public abstract class Character {
 		this.relativeToMapY = relativeToMapY;
 				
 		bloodSpriteSheet = new SpriteSheet("resources/blood.png", 64, 64);
-		bloodAnimation = new Animation(bloodSpriteSheet, 0, 0, 5, 0, true, 100, true);
+		bloodAnimation = new Animation(bloodSpriteSheet, 0, 0, 7, 0, true, 50, true);
 		bloodAnimation.setLooping(false);
 		drawBlood = false;
 				
@@ -118,11 +111,6 @@ public abstract class Character {
 		prepareAttackDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 2, 9, true, 100, true);
 		prepareAttackLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 2, 8, true, 100, true);
 		prepareAttackRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 2, 10, true, 100, true);
-		
-		blockUpAnimation = new Animation(overSizeSpriteSheet, 1, 7, 1, 7, true, blockDuration, true);
-		blockDownAnimation = new Animation(overSizeSpriteSheet, 1, 9, 1, 9, true, blockDuration, true);
-		blockLeftAnimation = new Animation(overSizeSpriteSheet, 6, 8, 6, 8, true, blockDuration, true);
-		blockRightAnimation = new Animation(overSizeSpriteSheet, 6, 10, 6, 10, true, blockDuration, true);
 
 		shootUpAnimation = new Animation(spriteSheet, 0, 16, 8, 16, true, 100, true);
 		shootDownAnimation = new Animation(spriteSheet, 0, 18, 8, 18, true, 100, true);
@@ -140,11 +128,6 @@ public abstract class Character {
 		attackDownAnimation.setLooping(false);
 		attackLeftAnimation.setLooping(false);
 		attackRightAnimation.setLooping(false);
-		
-		blockUpAnimation.setLooping(false);
-		blockDownAnimation.setLooping(false);
-		blockLeftAnimation.setLooping(false);
-		blockRightAnimation.setLooping(false);
 		
 		shootUpAnimation.setLooping(false);
 		shootDownAnimation.setLooping(false);
@@ -434,22 +417,6 @@ public abstract class Character {
 		return prepareAttackRightAnimation;
 	}
 	
-	public Animation getBlockUpAnimation() {
-		return blockUpAnimation;
-	}
-
-	public Animation getBlockDownAnimation() {
-		return blockDownAnimation;
-	}
-
-	public Animation getBlockLeftAnimation() {
-		return blockLeftAnimation;
-	}
-
-	public Animation getBlockRightAnimation() {
-		return blockRightAnimation;
-	}
-
 	public Animation getShootUpAnimation() {
 		return shootUpAnimation;
 	}
