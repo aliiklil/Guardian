@@ -30,8 +30,6 @@ public class Player extends Character {
 	
 	private Input input = Main.appGameContainer.getInput();
 	
-	private int notWalkableLayerIndex;
-	private TiledMap tiledMap;
 	private ArrayList<NPC> npcList;
 		
 	private boolean damageDealt = false;
@@ -68,8 +66,6 @@ public class Player extends Character {
 		Game.getCurrentMap().setX(screenRelativeX - super.getRelativeToMapX() + super.getSpriteSize() / 4);
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
 		
-		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
-		tiledMap = Game.getCurrentMap().getTiledMap();
 		npcList = CharacterManager.getNpcList();
 		
 		setAttackUpCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() - 37, 89, 38));
@@ -82,9 +78,7 @@ public class Player extends Character {
 	public void update() throws SlickException {
 		
 		super.update();
-		
-		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
-		tiledMap = Game.getCurrentMap().getTiledMap();
+			
 		npcList = CharacterManager.getNpcList();
 		
 		super.setRelativeToMapX((screenRelativeX + super.getSpriteSize() / 4) - Game.getCurrentMap().getX());
@@ -446,15 +440,15 @@ public class Player extends Character {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						
-						if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 3, notWalkableLayerIndex) == 0) {
+						if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 3, Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 3);
 							
-						} else if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 2, notWalkableLayerIndex) == 0) {
+						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 2, Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 2);
 							
-						} else if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() -  1, notWalkableLayerIndex) == 0) {
+						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() -  1, Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 1);
 							
@@ -472,15 +466,15 @@ public class Player extends Character {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
-						if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 3, notWalkableLayerIndex) == 0) {
+						if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 3, Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 3);
 							
-						} else if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 2, notWalkableLayerIndex) == 0) {
+						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 2, Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 2);
 							
-						} else if(tiledMap.getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 1, notWalkableLayerIndex) == 0) {
+						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 1, Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 1);
 							
@@ -499,15 +493,15 @@ public class Player extends Character {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
-						if(tiledMap.getTileId(npc.getCenterXTile() - 3, npc.getCenterYTile() , notWalkableLayerIndex) == 0) {
+						if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 3, npc.getCenterYTile() , Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 3);
 							
-						} else if(tiledMap.getTileId(npc.getCenterXTile() - 2, npc.getCenterYTile(), notWalkableLayerIndex) == 0) {
+						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 2);
 							
-						} else if(tiledMap.getTileId(npc.getCenterXTile() - 1, npc.getCenterYTile(), notWalkableLayerIndex) == 0) {
+						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 1, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 1);
 							
@@ -525,15 +519,15 @@ public class Player extends Character {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						
-						if(tiledMap.getTileId(npc.getCenterXTile() + 3, npc.getCenterYTile() , notWalkableLayerIndex) == 0) {
+						if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 3, npc.getCenterYTile() , Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 3);
 							
-						} else if(tiledMap.getTileId(npc.getCenterXTile() + 2, npc.getCenterYTile(), notWalkableLayerIndex) == 0) {
+						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 2);
 							
-						} else if(tiledMap.getTileId(npc.getCenterXTile() + 1, npc.getCenterYTile(), notWalkableLayerIndex) == 0) {
+						} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 1, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
 							
 							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 1);
 							
@@ -802,8 +796,8 @@ public class Player extends Character {
 			
 		}
 				
-		if(tiledMap.getTileId((int) super.getCollisionBox().getTopLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) super.getCollisionBox().getTopRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - super.getMovementSpeed())/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 &&
+			Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - super.getMovementSpeed())/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {	
 			
 			return false;
 			
@@ -825,8 +819,8 @@ public class Player extends Character {
 			
 		}
 				
-		if(tiledMap.getTileId((int) super.getCollisionBox().getBottomLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) super.getCollisionBox().getBottomRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + super.getMovementSpeed())/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + super.getMovementSpeed())/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 &&
+			Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + super.getMovementSpeed())/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
 			
 			return false;
 			
@@ -849,8 +843,8 @@ public class Player extends Character {
 			
 		}
 					
-		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY()/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 &&
+			Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomLeftX() - super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY()/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {	
 			
 			return false;
 			
@@ -873,8 +867,8 @@ public class Player extends Character {
 			
 		}
 		
-		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY()/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 &&
+			Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomRightX() + super.getMovementSpeed())/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY()/Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
 			
 			return false;
 			
