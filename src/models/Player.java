@@ -54,7 +54,8 @@ public class Player extends Character {
 	
 	private int damageToDeal = 0;
 	
-	private int blockCoolDownDuration = 2000;
+	private int blockCoolDownDuration = 500;
+	private long blockCoolDownStartTime;
 		
 	public Player() throws SlickException {
 		
@@ -550,9 +551,9 @@ public class Player extends Character {
 	}
 	
 	private void updateBlock() {
-		
-		if(input.isKeyDown(Input.KEY_Y) && !isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
-			
+
+		if(input.isKeyDown(Input.KEY_Y) && !isBlockingCoolDownActive && !isAttacking && !isBlocking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
+	
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				super.setCurrentAnimation(super.getBlockUpAnimation());
 			}
@@ -579,28 +580,33 @@ public class Player extends Character {
 			if(super.getCurrentAnimation() == super.getBlockUpAnimation()) {
 				super.getBlockUpAnimation().restart();
 				super.setCurrentAnimation(super.getLookUpAnimation());
-				isBlocking = false;
 			}
 			
 			if(super.getCurrentAnimation() == super.getBlockDownAnimation()) {
 				super.getBlockDownAnimation().restart();
 				super.setCurrentAnimation(super.getLookDownAnimation());
-				isBlocking = false;
 			}
 			
 			if(super.getCurrentAnimation() == super.getBlockLeftAnimation()) {
 				super.getBlockLeftAnimation().restart();
 				super.setCurrentAnimation(super.getLookLeftAnimation());
-				isBlocking = false;
 			}
 			
 			if(super.getCurrentAnimation() == super.getBlockRightAnimation()) {
 				super.getBlockRightAnimation().restart();
 				super.setCurrentAnimation(super.getLookRightAnimation());
-				isBlocking = false;
 			}
 			
+			isBlocking = false;
+			isBlockingCoolDownActive = true;
+			blockCoolDownStartTime = System.currentTimeMillis();
+			
 		}
+		
+		if(!input.isKeyDown(Input.KEY_Y) && System.currentTimeMillis() - blockCoolDownStartTime >= blockCoolDownDuration) {
+			isBlockingCoolDownActive = false;
+		}
+
 		
 		/*
 		
