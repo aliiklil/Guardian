@@ -768,9 +768,10 @@ public class Player extends Character {
 
 				Game.getItemManager().removeItem(item);
 				inventory.addItem(item);
-
+				lootingAndVendorInventory.addItem(item);
+				
 				if(item.getItemType().getName().equals("Gold")) {
-					inventory.incrementGoldCounter();
+					lootingAndVendorInventory.incrementGoldCounter();
 				}
 
 			}

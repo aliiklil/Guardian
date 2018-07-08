@@ -73,14 +73,6 @@ public class LootingAndVendorInventory {
 			}
 		}		
 		
-		/*if(input.isKeyPressed(Input.KEY_TAB)) {
-			if(!inventoryOpen) {
-				inventoryOpen = true;
-			} else {
-				inventoryOpen = false;
-			}
-		}*/	
-		
 		if(inventoryOpen) {
 			
 			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
