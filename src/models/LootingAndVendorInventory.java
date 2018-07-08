@@ -10,14 +10,16 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.tiled.TiledMap;
 
+import main.Game;
 import main.Main;
 import manager.CharacterManager;
 
-public class Inventory {
+public class LootingAndVendorInventory {
 
 	private boolean inventoryOpen = false;
-	private Image inventoryImage = new Image("resources/inventory.png");
+	private Image inventoryImage = new Image("resources/looting_and_vendor_inventory.png");
 	private Image selectedCellImage = new Image("resources/inventory_selected_cell.png");
 	private int selectedCellX = 0;
 	private int selectedCellY = 0;
@@ -26,7 +28,8 @@ public class Inventory {
 	private final int amountColumns = 5;
 	private final int amountCells = 30;
 	
-	private int scrollOffset = 0;
+	private int leftScrollOffset = 0;
+	private int rightScrollOffset = 0;
 	
 	private int goldCounter = 0;
 	
@@ -49,29 +52,41 @@ public class Inventory {
 	private Animation arrowDownAnimation = new Animation(arrowDownSpriteSheet, 0, 0, 1, 0, true, 750, true);
 	
 	private Player player;
+	private TiledMap tiledMap;
+	private int chestLayerIndex;
 	
-	public Inventory() throws SlickException {
+	public LootingAndVendorInventory() throws SlickException {
 		
 	}
 	
 	public void update() throws SlickException {
 		
 		player = CharacterManager.getPlayer();
+		tiledMap = Game.getTiledMap();
+		chestLayerIndex = Game.getChestLayerIndex();
 		
-		if(input.isKeyPressed(Input.KEY_TAB) && !player.getLootingAndVendorInventory().isInventoryOpen()) {
+		if(player.getCurrentAnimation() == player.getLookUpAnimation() && input.isKeyPressed(Input.KEY_Y) && !player.getInventory().isInventoryOpen() && tiledMap.getTileId(player.getCenterXTile(), player.getCenterYTile() - 1, chestLayerIndex) != 0) {
 			if(!inventoryOpen) {
 				inventoryOpen = true;
 			} else {
 				inventoryOpen = false;
 			}
-		}	
+		}		
+		
+		/*if(input.isKeyPressed(Input.KEY_TAB)) {
+			if(!inventoryOpen) {
+				inventoryOpen = true;
+			} else {
+				inventoryOpen = false;
+			}
+		}*/	
 		
 		if(inventoryOpen) {
 			
 			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
 				
-				if(scrollOffset > 0 && selectedCellY == 0) {
-					scrollOffset--;
+				if(rightScrollOffset > 0 && selectedCellY == 0) {
+					rightScrollOffset--;
 					timestamp = System.currentTimeMillis();
 				} 
 
@@ -84,9 +99,9 @@ public class Inventory {
 						
 			if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
 				
-				if(selectedCellY == amountRows - 1 && inventoryList.size() > amountCells + scrollOffset * amountColumns) {
+				if(selectedCellY == amountRows - 1 && inventoryList.size() > amountCells + rightScrollOffset * amountColumns) {
 					
-					if((selectedCellX + (selectedCellY + scrollOffset) * amountColumns + amountColumns + 1) > inventoryList.size()) {
+					if((selectedCellX + (selectedCellY + rightScrollOffset) * amountColumns + amountColumns + 1) > inventoryList.size()) {
 						
 						if(inventoryList.size() % amountColumns == 0) {
 							selectedCellX = amountColumns - 1;
@@ -96,12 +111,12 @@ public class Inventory {
 						
 					}
 
-					scrollOffset++;
+					rightScrollOffset++;
 					timestamp = System.currentTimeMillis();
 					
 				}
 				
-				if(selectedCellY < amountRows - 1 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffset + 1) * amountColumns) {
+				if(selectedCellY < amountRows - 1 && inventoryList.size() > selectedCellX + (selectedCellY + rightScrollOffset + 1) * amountColumns) {
 					selectedCellY++;
 					timestamp = System.currentTimeMillis();
 				}
@@ -116,7 +131,7 @@ public class Inventory {
 			}
 			
 			if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
-				if(selectedCellX < amountColumns - 1 && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffset) * amountColumns + 1) {
+				if(selectedCellX < amountColumns - 1 && inventoryList.size() > selectedCellX + (selectedCellY + rightScrollOffset) * amountColumns + 1) {
 					selectedCellX++;
 					timestamp = System.currentTimeMillis();
 				}
@@ -180,7 +195,7 @@ public class Inventory {
 			int row = 0;
 			int column = 0;
 			
-			for(int i = scrollOffset * amountColumns; i < inventoryList.size(); i++) {
+			for(int i = rightScrollOffset * amountColumns; i < inventoryList.size(); i++) {
 				
 				if(row >= amountRows) {
 					break;
@@ -203,14 +218,14 @@ public class Inventory {
 			
 			if(!inventoryList.isEmpty()) {
 				
-				String name = inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getName();
+				String name = inventoryList.get(selectedCellX + (selectedCellY + rightScrollOffset) * amountColumns).getItemType().getName();
 				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
 				
 				g.drawString("Value in Gold:", 652, 963);
-				String value = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getValue());
+				String value = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + rightScrollOffset) * amountColumns).getItemType().getValue());
 				g.drawString(value, 1098 - value.length() * 9, 963);
 				
-				inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
+				inventoryList.get(selectedCellX + (selectedCellY + rightScrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
 				
 			}
 			
@@ -225,11 +240,11 @@ public class Inventory {
 		arrowUpAnimation.updateNoDraw();
 		arrowDownAnimation.updateNoDraw();
 		
-		if(scrollOffset > 0) { 
+		if(rightScrollOffset > 0) { 
 			arrowUpAnimation.draw(1876, 305);
 		}
 		
-		if(inventoryList.size() > amountCells + scrollOffset * amountColumns) {
+		if(inventoryList.size() > amountCells + rightScrollOffset * amountColumns) {
 			arrowDownAnimation.draw(1876, 731);
 		}
 		

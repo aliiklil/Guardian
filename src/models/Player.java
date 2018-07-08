@@ -43,6 +43,7 @@ public class Player extends Character {
 	private boolean spellCreated = false;
 
 	private Inventory inventory = new Inventory();
+	private LootingAndVendorInventory lootingAndVendorInventory = new LootingAndVendorInventory();
 
 	private Bar prepareAttackBar;
 	private Bar prepareShotBar;
@@ -72,7 +73,7 @@ public class Player extends Character {
 		setAttackDownCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() + 12, 89, 38));
 		setAttackLeftCollisionBox(new CollisionBox(getRelativeToMapX() - 67, getRelativeToMapY() - 16, 68, 36));
 		setAttackRightCollisionBox(new CollisionBox(getRelativeToMapX() + 31, getRelativeToMapY() - 16, 68, 36));
-
+		
 	}
 
 	public void update() throws SlickException {
@@ -104,6 +105,7 @@ public class Player extends Character {
 
 		if(isAlive()) {
 			inventory.update();
+			lootingAndVendorInventory.update();
 			updateMove();
 			updateAttack();
 			updateShoot();
@@ -145,9 +147,9 @@ public class Player extends Character {
 
 	private void updateMove() {
 
-		if(!isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell) {
+		if(!isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell ) {
 
-			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
+			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 				if(isUpCollision(super.getMovementSpeed())) {
 
@@ -165,7 +167,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 				if(isDownCollision(super.getMovementSpeed())) {
 
@@ -183,7 +185,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 				if(isLeftCollision(super.getMovementSpeed())) {
 
@@ -201,7 +203,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 				if(isRightCollision(super.getMovementSpeed())) {
 
@@ -219,7 +221,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = true;
 
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getDiagonalMovementSpeed());
@@ -240,7 +242,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getDiagonalMovementSpeed());
@@ -265,7 +267,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = true;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getDiagonalMovementSpeed());
@@ -290,7 +292,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getDiagonalMovementSpeed());
@@ -348,7 +350,7 @@ public class Player extends Character {
 
 	private void updateAttack() {
  		
-		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				super.setCurrentAnimation(super.getPrepareAttackUpAnimation());
@@ -535,7 +537,7 @@ public class Player extends Character {
 
 	private void updateShoot() throws SlickException {
 
-		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				if(isPreparingShot && super.getCurrentAnimation() != super.getShootUpAnimation()) {
@@ -646,7 +648,7 @@ public class Player extends Character {
 
 	private void updateSpell() throws SlickException {
 
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
 
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
@@ -855,6 +857,10 @@ public class Player extends Character {
 
 	public Inventory getInventory() {
 		return inventory;
+	}
+	
+	public LootingAndVendorInventory getLootingAndVendorInventory() {
+		return lootingAndVendorInventory;
 	}
 
 }
