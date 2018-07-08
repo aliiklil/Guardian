@@ -451,7 +451,6 @@ public class Player extends Character {
 							
 						}
 					
-						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}
 				}
@@ -477,7 +476,6 @@ public class Player extends Character {
 							
 						}
 						
-						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}
 				}
@@ -503,7 +501,6 @@ public class Player extends Character {
 							
 						}
 					
-						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}
 				}		
@@ -529,7 +526,6 @@ public class Player extends Character {
 							
 						}
 						
-						npc.setPathCalculationNeeded(true);
 						prepareAttackBar.setCurrentValue(0);
 					}				
 				}			

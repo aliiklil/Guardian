@@ -14,19 +14,19 @@ public class CharacterManager {
 
 	private static ArrayList<Character> characterList = new ArrayList<Character>();
 	
-	private static Character player;
+	private static Player player;
 
-	private static Character npc1;
-	private static Character npc2;
+	private static NPC npc1;
+	private static NPC npc2;
 	
 	public CharacterManager() throws SlickException {
 		
 		player = new Player();
-		//npc1 = new NPC(640, 960, 100, 100, "resources/OrcSpriteSheet.png");
-		npc2 = new NPC(640, 64, 500, 500, "resources/SkeletonSpriteSheet.png");
+		npc1 = new NPC(640, 128, 100, 100, "resources/OrcSpriteSheet.png", true);
+		npc2 = new NPC(640, 64, 500, 500, "resources/SkeletonSpriteSheet.png", true);
 		
 		characterList.add(player);
-		//characterList.add(npc1);
+		characterList.add(npc1);
 		characterList.add(npc2);
 		
 	}
@@ -75,7 +75,7 @@ public class CharacterManager {
 				npcList.add((NPC) character);
 			}
 		}
-		
+
 		return npcList;
 	}
 	

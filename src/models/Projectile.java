@@ -157,7 +157,6 @@ public class Projectile {
 							
 						}
 						
-						npc.setPathCalculationNeeded(true);
 						npc.setGoingToPlayer(true);
 						Game.getProjectileManager().removeProjectile(this);
 					}
