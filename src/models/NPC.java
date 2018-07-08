@@ -442,28 +442,28 @@ public class NPC extends Character {
 			
 			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(1);
+						player.decreaseHealth(10);
 						damageDealt = true;
 				}
 			}
 			
 			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackDownCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(1);
+						player.decreaseHealth(10);
 						damageDealt = true;
 					}
 			}
 			
 			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackLeftCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(1);
+						player.decreaseHealth(10);
 						damageDealt = true;
 				}		
 			}
 			
 			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackRightCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(1);
+						player.decreaseHealth(10);
 						damageDealt = true;
 					}						
 			}		
@@ -513,13 +513,14 @@ public class NPC extends Character {
         
         int[][] blocksArray = new int[rows * cols][2];
         
-        int notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+        int notWalkableLayerIndex = Game.getNotWalkableLayerIndex();
+        int chestLayerIndex = Game.getChestLayerIndex();
         
         int k = 0;
         
         for(int i = 0; i < rows; i++) {
         	for(int j = 0; j < cols; j++) {
-        		if(Game.getCurrentMap().getTiledMap().getTileId(j, i, notWalkableLayerIndex) != 0) {
+        		if(Game.getCurrentMap().getTiledMap().getTileId(j, i, notWalkableLayerIndex) != 0 || Game.getCurrentMap().getTiledMap().getTileId(j, i, chestLayerIndex) != 0) {
         			blocksArray[k][0] = i;
         			blocksArray[k][1] = j;
         			k++;

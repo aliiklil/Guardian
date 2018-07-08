@@ -18,6 +18,7 @@ public class Game extends BasicGameState {
 	private static Map currentMap;
 
 	private static int notWalkableLayerIndex;
+	private static int chestLayerIndex;
 	private static TiledMap tiledMap;
 
 	private static CharacterManager characterManager;
@@ -31,6 +32,7 @@ public class Game extends BasicGameState {
 		currentMap = world;
 
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+		chestLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("Chest");
 		tiledMap = Game.getCurrentMap().getTiledMap();
 
 		characterManager = new CharacterManager();
@@ -79,6 +81,10 @@ public class Game extends BasicGameState {
 
 	public static int getNotWalkableLayerIndex() {
 		return notWalkableLayerIndex;
+	}
+
+	public static int getChestLayerIndex() {
+		return chestLayerIndex;
 	}
 
 	public static TiledMap getTiledMap() {
