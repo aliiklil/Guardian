@@ -13,6 +13,7 @@ import manager.ItemManager;
 import manager.ItemTypeManager;
 import manager.ProjectileManager;
 import models.Map;
+import models.Player;
 
 public class Game extends BasicGameState {
 
@@ -71,6 +72,7 @@ public class Game extends BasicGameState {
 
 		CharacterManager.getPlayer().getInventory().render(g);
 		CharacterManager.getPlayer().getHealthBar().render(g);
+		CharacterManager.getPlayer().getNewItemWindow().render(g);
 
 	}
 
@@ -114,6 +116,5 @@ public class Game extends BasicGameState {
 	public static ChestManager getChestManager() {
 		return chestManager;
 	}
-
 
 }

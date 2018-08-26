@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -50,7 +51,9 @@ public class Player extends Character {
 	private Bar prepareSpellBar;
 
 	private int damageToDeal = 0;
-
+	
+	private NewItemWindow newItemWindow = new NewItemWindow();
+	
 	public Player() throws SlickException {
 
 		super(224, 64, "resources/HumanSpriteSheet.png");
@@ -77,7 +80,7 @@ public class Player extends Character {
 	}
 
 	public void update() throws SlickException {
-
+		
 		super.update();
 
 		npcList = CharacterManager.getNpcList();
@@ -105,6 +108,7 @@ public class Player extends Character {
 
 		if(isAlive()) {
 			inventory.update();
+			newItemWindow.update();
 			updateMove();
 			updateAttack();
 			updateShoot();
@@ -142,7 +146,7 @@ public class Player extends Character {
 		if(isPreparingSpell && super.getCurrentAnimation().getFrame() == 6 && isAlive() && prepareSpellBar.getCurrentValue() > 10) {
 			prepareSpellBar.render(g);
 		}
-
+		
 	}
 
 	private void updateMove() {
@@ -765,6 +769,7 @@ public class Player extends Character {
 
 				Game.getItemManager().removeItem(item);
 				inventory.addItem(item);
+				newItemWindow.showWindow(item);
 				
 				if(item.getItemType().getName().equals("Gold")) {
 					inventory.incrementGoldCounter();
@@ -788,6 +793,7 @@ public class Player extends Character {
 					chest.getAnimation().start();
 					inventory.addItem(chest.getItem());
 					chest.setOpened(true);
+					newItemWindow.showWindow(chest.getItem());
 				}
 			
 			}
@@ -870,6 +876,10 @@ public class Player extends Character {
 
 	public Inventory getInventory() {
 		return inventory;
+	}
+
+	public NewItemWindow getNewItemWindow() {
+		return newItemWindow;
 	}
 	
 }
