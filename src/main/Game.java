@@ -8,7 +8,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import manager.CharacterManager;
+import manager.ChestManager;
 import manager.ItemManager;
+import manager.ItemTypeManager;
 import manager.ProjectileManager;
 import models.Map;
 
@@ -23,7 +25,9 @@ public class Game extends BasicGameState {
 
 	private static CharacterManager characterManager;
 	private static ProjectileManager projectileManager;
+	private static ItemTypeManager itemTypeManager;
 	private static ItemManager itemManager;
+	private static ChestManager chestManager;
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -37,7 +41,9 @@ public class Game extends BasicGameState {
 
 		characterManager = new CharacterManager();
 		projectileManager = new ProjectileManager();
+		itemTypeManager = new ItemTypeManager();
 		itemManager = new ItemManager();
+		chestManager = new ChestManager();
 
 	}
 
@@ -47,14 +53,16 @@ public class Game extends BasicGameState {
 		characterManager.update();
 		projectileManager.update();
 		itemManager.update();
-
+		chestManager.update();
+		
 	}
 
 	@Override
 	public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
 
 		world.render(g);
-
+		chestManager.render(g);
+		
 		itemManager.render(g);
 		characterManager.render(g);
 		projectileManager.render(g);
@@ -62,7 +70,6 @@ public class Game extends BasicGameState {
 		world.renderUpperLayer(g);
 
 		CharacterManager.getPlayer().getInventory().render(g);
-		CharacterManager.getPlayer().getLootingAndVendorInventory().render(g);
 		CharacterManager.getPlayer().getHealthBar().render(g);
 
 	}
@@ -96,8 +103,17 @@ public class Game extends BasicGameState {
 		return projectileManager;
 	}
 
+	public static ItemTypeManager getItemTypeManager() {
+		return itemTypeManager;
+	}
+	
 	public static ItemManager getItemManager() {
 		return itemManager;
 	}
+	
+	public static ChestManager getChestManager() {
+		return chestManager;
+	}
+
 
 }

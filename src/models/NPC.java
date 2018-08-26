@@ -520,7 +520,7 @@ public class NPC extends Character {
         
         for(int i = 0; i < rows; i++) {
         	for(int j = 0; j < cols; j++) {
-        		if(Game.getCurrentMap().getTiledMap().getTileId(j, i, notWalkableLayerIndex) != 0 || Game.getCurrentMap().getTiledMap().getTileId(j, i, chestLayerIndex) != 0) {
+        		if(Game.getCurrentMap().getTiledMap().getTileId(j, i, notWalkableLayerIndex) != 0) {
         			blocksArray[k][0] = i;
         			blocksArray[k][1] = j;
         			k++;

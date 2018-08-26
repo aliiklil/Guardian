@@ -13,6 +13,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import main.Game;
 import main.Main;
 import manager.CharacterManager;
+import manager.ChestManager;
 import util.CollisionBox;
 
 public class Player extends Character {
@@ -43,7 +44,6 @@ public class Player extends Character {
 	private boolean spellCreated = false;
 
 	private Inventory inventory = new Inventory();
-	private LootingAndVendorInventory lootingAndVendorInventory = new LootingAndVendorInventory();
 
 	private Bar prepareAttackBar;
 	private Bar prepareShotBar;
@@ -105,12 +105,12 @@ public class Player extends Character {
 
 		if(isAlive()) {
 			inventory.update();
-			lootingAndVendorInventory.update();
 			updateMove();
 			updateAttack();
 			updateShoot();
 			updateSpell();
 			updatePickUpItem();
+			updateOpenChest();
 		}
 
 	}
@@ -149,7 +149,7 @@ public class Player extends Character {
 
 		if(!isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell ) {
 
-			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 
 				if(isUpCollision(super.getMovementSpeed())) {
 
@@ -167,8 +167,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
-
+			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 				if(isDownCollision(super.getMovementSpeed())) {
 
 					super.setCurrentAnimation(super.getLookDownAnimation());
@@ -185,7 +184,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 
 				if(isLeftCollision(super.getMovementSpeed())) {
 
@@ -203,7 +202,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
 
 				if(isRightCollision(super.getMovementSpeed())) {
 
@@ -221,7 +220,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = true;
 
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getDiagonalMovementSpeed());
@@ -242,7 +241,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getDiagonalMovementSpeed());
@@ -267,7 +266,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = true;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getDiagonalMovementSpeed());
@@ -292,7 +291,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
 					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getDiagonalMovementSpeed());
@@ -340,8 +339,6 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = false;
 
-				input.clearKeyPressedRecord();
-
 			}
 
 		}
@@ -350,7 +347,7 @@ public class Player extends Character {
 
 	private void updateAttack() {
  		
-		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventory.isInventoryOpen()) {
 						
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				super.setCurrentAnimation(super.getPrepareAttackUpAnimation());
@@ -537,7 +534,7 @@ public class Player extends Character {
 
 	private void updateShoot() throws SlickException {
 
-		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventory.isInventoryOpen()) {
 
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				if(isPreparingShot && super.getCurrentAnimation() != super.getShootUpAnimation()) {
@@ -648,7 +645,7 @@ public class Player extends Character {
 
 	private void updateSpell() throws SlickException {
 
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventory.isInventoryOpen() && !lootingAndVendorInventory.isInventoryOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventory.isInventoryOpen()) {
 
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
@@ -768,16 +765,33 @@ public class Player extends Character {
 
 				Game.getItemManager().removeItem(item);
 				inventory.addItem(item);
-				lootingAndVendorInventory.addItem(item);
 				
 				if(item.getItemType().getName().equals("Gold")) {
-					lootingAndVendorInventory.incrementGoldCounter();
+					inventory.incrementGoldCounter();
 				}
 
 			}
 
 		}
 
+	}
+	
+	private void updateOpenChest() throws SlickException {
+
+		if(input.isKeyPressed(Input.KEY_Y) && getCurrentAnimation() == getLookUpAnimation() && !inventory.isInventoryOpen()) {
+		
+			ArrayList<Chest> chestList = ChestManager.getChestList();
+			
+			for (Chest chest : chestList) {
+			
+				if(super.getCollisionBox().willIntersectUp(chest.getCollisionBox(), 5)) {
+					chest.getAnimation().start();
+				}
+			
+			}
+		
+		}
+		
 	}
 
 	private boolean isUpCollision(float distance) {
@@ -790,8 +804,7 @@ public class Player extends Character {
 
 		}
 
-		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 
-		&& Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - distance) / Main.TILE_SIZE, Game.getChestLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - distance) / Main.TILE_SIZE, Game.getChestLayerIndex()) == 0) {
+		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 ) {
 			return false;
 		} else {
 			return true;
@@ -809,8 +822,7 @@ public class Player extends Character {
 
 		}
 
-		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0
-		&& Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + distance) / Main.TILE_SIZE, Game.getChestLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + distance) / Main.TILE_SIZE, Game.getChestLayerIndex()) == 0) {
+		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
 			return false;
 		} else {
 			return true;
@@ -828,8 +840,7 @@ public class Player extends Character {
 
 		}
 
-		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0
-		&& Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY() / Main.TILE_SIZE, Game.getChestLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY() / Main.TILE_SIZE, Game.getChestLayerIndex()) == 0) {
+		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
 			return false;
 		} else {
 			return true;
@@ -847,8 +858,7 @@ public class Player extends Character {
 
 		}
 
-		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0
-		&& Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY() / Main.TILE_SIZE, Game.getChestLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY() / Main.TILE_SIZE, Game.getChestLayerIndex()) == 0) {
+		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
 			return false;
 		} else {
 			return true;
@@ -860,8 +870,4 @@ public class Player extends Character {
 		return inventory;
 	}
 	
-	public LootingAndVendorInventory getLootingAndVendorInventory() {
-		return lootingAndVendorInventory;
-	}
-
 }

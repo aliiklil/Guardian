@@ -58,7 +58,7 @@ public class Inventory {
 		
 		player = CharacterManager.getPlayer();
 		
-		if(input.isKeyPressed(Input.KEY_TAB) && !player.getLootingAndVendorInventory().isInventoryOpen()) {
+		if(input.isKeyPressed(Input.KEY_TAB)) {
 			if(!inventoryOpen) {
 				inventoryOpen = true;
 			} else {
