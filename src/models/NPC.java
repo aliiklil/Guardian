@@ -470,7 +470,7 @@ public class NPC extends Character {
 			
 		}
 		
-		if(!player.isAlive() || !super.getAttackUpCollisionBox().intersects(player.getHitBox()) || !super.getAttackDownCollisionBox().intersects(player.getHitBox()) 
+		if(!super.getAttackUpCollisionBox().intersects(player.getHitBox()) || !super.getAttackDownCollisionBox().intersects(player.getHitBox()) 
 				|| !super.getAttackLeftCollisionBox().intersects(player.getHitBox()) || !super.getAttackRightCollisionBox().intersects(player.getHitBox())) {
 			
 			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && !super.getAttackUpCollisionBox().intersects(player.getHitBox())) {
@@ -498,7 +498,35 @@ public class NPC extends Character {
 			}
 			
 		}
-				
+		
+		if(!player.isAlive()) {
+			
+			if(super.getCurrentAnimation() == super.getAttackUpAnimation()) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookUpAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackDownAnimation()) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookDownAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackLeftAnimation()) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookLeftAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getAttackRightAnimation()) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookRightAnimation());
+				isAttacking = false;
+			}
+			
+		}
+						
 	}
 	
 	private List<Node> findPath() {
