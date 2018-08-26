@@ -784,8 +784,10 @@ public class Player extends Character {
 			
 			for (Chest chest : chestList) {
 			
-				if(super.getCollisionBox().willIntersectUp(chest.getCollisionBox(), 5)) {
+				if(super.getCollisionBox().willIntersectUp(chest.getCollisionBox(), 5) && !chest.isOpened()) {
 					chest.getAnimation().start();
+					inventory.addItem(chest.getItem());
+					chest.setOpened(true);
 				}
 			
 			}

@@ -5,21 +5,25 @@ import java.util.ArrayList;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import main.Game;
 import models.Chest;
+import models.Item;
 
 public class ChestManager {
 
 	private static ArrayList<Chest> chestList = new ArrayList<Chest>();
-		
-	private static Chest chest1;
-	private static Chest chest2;
-	private static Chest chest3;
+	
+	private ItemTypeManager itemTypeManager = Game.getItemTypeManager();	
 	
 	public ChestManager() throws SlickException {
 		
-		chest1 = new Chest(5, 2, null);
-		chest2 = new Chest(3, 5, null);
-		chest3 = new Chest(7, 8, null);
+		Item boots1 = new Item(0, 0, itemTypeManager.boots);
+		Item bone1 = new Item(0, 0, itemTypeManager.bone);
+		Item rawFish1 = new Item(0, 0, itemTypeManager.rawFish);
+		
+		Chest chest1 = new Chest(5, 2, boots1);
+		Chest chest2 = new Chest(3, 5, bone1);
+		Chest chest3 = new Chest(7, 8, rawFish1);
 		
 		chestList.add(chest1);
 		chestList.add(chest2);

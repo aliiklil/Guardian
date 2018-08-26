@@ -4,7 +4,6 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.geom.Shape;
 
 import main.Game;
 import util.CollisionBox;
@@ -24,6 +23,8 @@ public class Chest {
 	private SpriteSheet spriteSheet;
 	
 	private Animation animation;
+	
+	private boolean opened = false;
 	
 	public Chest(int tileX, int tileY, Item item) throws SlickException {
 		
@@ -61,6 +62,18 @@ public class Chest {
 
 	public Animation getAnimation() {
 		return animation;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public boolean isOpened() {
+		return opened;
+	}
+
+	public void setOpened(boolean opened) {
+		this.opened = opened;
 	}
 	
 }
