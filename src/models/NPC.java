@@ -775,8 +775,10 @@ public class NPC extends Character {
 				setCurrentAnimation(getDieAnimation());
 				setAlive(false);
 				
-				CharacterManager.getPlayer().getInventory().addItem(itemDrop);
-				CharacterManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
+				if(itemDrop != null) {
+					CharacterManager.getPlayer().getInventory().addItem(itemDrop);
+					CharacterManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
+				}
 			}
 						
 			setDrawBlood(true);
