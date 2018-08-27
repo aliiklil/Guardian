@@ -40,9 +40,9 @@ public class Game extends BasicGameState {
 		chestLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("Chest");
 		tiledMap = Game.getCurrentMap().getTiledMap();
 
+		itemTypeManager = new ItemTypeManager();
 		characterManager = new CharacterManager();
 		projectileManager = new ProjectileManager();
-		itemTypeManager = new ItemTypeManager();
 		itemManager = new ItemManager();
 		chestManager = new ChestManager();
 

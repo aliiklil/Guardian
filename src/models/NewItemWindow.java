@@ -1,6 +1,5 @@
 package models;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -13,7 +12,9 @@ public class NewItemWindow {
 
 	private Image image = new Image("resources/new_item_picked_up.png");
 	private boolean active = false;
+	
 	private long startTime;
+	private int duration = 1500;
 	
 	private Item currentItem;
 	
@@ -31,7 +32,7 @@ public class NewItemWindow {
 	
 	public void update() throws SlickException {
 		
-		if(System.currentTimeMillis() - startTime >= 3000 || CharacterManager.getPlayer().getInventory().isInventoryOpen()) {
+		if(System.currentTimeMillis() - startTime >= duration || CharacterManager.getPlayer().getInventory().isInventoryOpen()) {
 			active = false;
 		}
 		

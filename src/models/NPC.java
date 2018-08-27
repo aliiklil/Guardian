@@ -51,8 +51,10 @@ public class NPC extends Character {
 	private boolean damageDealt = false;
 	
 	private boolean canAttackPlayer;
+	
+	private Item itemDrop;
 
-	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean canAttackPlayer) throws SlickException {
+	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean canAttackPlayer, Item itemDrop) throws SlickException {
 
 		super(relativeToMapX, relativeToMapY, spriteSheetPath);
 		
@@ -91,6 +93,8 @@ public class NPC extends Character {
 		setAttackRightCollisionBox(new CollisionBox(getRelativeToMapX() + 31, getRelativeToMapY() - 16, 68, 36));
 		
 		this.canAttackPlayer = canAttackPlayer;
+		
+		this.itemDrop = itemDrop;
 		
 	}
 
@@ -542,7 +546,6 @@ public class NPC extends Character {
         int[][] blocksArray = new int[rows * cols][2];
         
         int notWalkableLayerIndex = Game.getNotWalkableLayerIndex();
-        int chestLayerIndex = Game.getChestLayerIndex();
         
         int k = 0;
         
@@ -758,6 +761,27 @@ public class NPC extends Character {
 		}
 		
 		return false;
+		
+	}
+	
+	public void decreaseHealth(int amount) {
+		
+		if(isAlive()) {
+			
+			getHealthBar().setCurrentValue(getHealthBar().getCurrentValue() - amount);
+			
+			if(getHealthBar().getCurrentValue() <= 0) {
+				getHealthBar().setCurrentValue(0);
+				setCurrentAnimation(getDieAnimation());
+				setAlive(false);
+				
+				CharacterManager.getPlayer().getInventory().addItem(itemDrop);
+				CharacterManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
+			}
+						
+			setDrawBlood(true);
+		
+		}
 		
 	}
 

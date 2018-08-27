@@ -873,6 +873,24 @@ public class Player extends Character {
 		}
 
 	}
+	
+	public void decreaseHealth(int amount) {
+		
+		if(isAlive()) {
+			
+			getHealthBar().setCurrentValue(getHealthBar().getCurrentValue() - amount);
+			
+			if(getHealthBar().getCurrentValue() <= 0) {
+				getHealthBar().setCurrentValue(0);
+				setCurrentAnimation(getDieAnimation());
+				setAlive(false);
+			}
+						
+			setDrawBlood(true);
+		
+		}
+		
+	}
 
 	public Inventory getInventory() {
 		return inventory;

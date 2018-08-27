@@ -161,23 +161,7 @@ public abstract class Character {
 	
 	public abstract void render(Graphics g);
 	
-	public void decreaseHealth(int amount) {
-		
-		if(alive) {
-			
-			healthBar.setCurrentValue(healthBar.getCurrentValue() - amount);
-			
-			if(healthBar.getCurrentValue() <= 0) {
-				healthBar.setCurrentValue(0);
-				currentAnimation = dieAnimation;
-				alive = false;
-			}
-						
-			drawBlood = true;
-		
-		}
-		
-	}
+	public abstract void decreaseHealth(int amount);
 	
 	public void drawBlood(float screenRelativeX, float screenRelativeY) {
 		
