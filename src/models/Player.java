@@ -19,11 +19,8 @@ import util.CollisionBox;
 
 public class Player extends Character {
 
-	private final float screenRelativeX = Main.WIDTH / 2 - super.getSpriteSize() / 2;
-	private final float screenRelativeY = Main.HEIGHT / 2 - super.getSpriteSize() / 2;
-
-	private final float screenRelativeOverSizeX = Main.WIDTH / 2 - super.getOverSizeSpriteSize() / 2;
-	private final float screenRelativeOverSizeY = Main.HEIGHT / 2 - super.getOverSizeSpriteSize() / 2;
+	private float screenRelativeX = Main.WIDTH / 2 - super.getSpriteSize() / 2;
+	private float screenRelativeY = Main.HEIGHT / 2 - super.getSpriteSize() / 2;
 
 	private boolean lookUp = false;
 	private boolean lookDown = false;
@@ -63,9 +60,9 @@ public class Player extends Character {
 
 		super.setHealthBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
 
-		prepareAttackBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
-		prepareShotBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
-		prepareSpellBar = new Bar(screenRelativeX, screenRelativeY, 64, 5, 1, 0, 100, Color.cyan);
+		prepareAttackBar = new Bar(getRelativeToMapX() + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
+		prepareShotBar = new Bar(getRelativeToMapX()  + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
+		prepareSpellBar = new Bar(getRelativeToMapX()  + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
 
 		Game.getCurrentMap().setX(screenRelativeX - super.getRelativeToMapX() + super.getSpriteSize() / 4);
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
@@ -82,6 +79,15 @@ public class Player extends Character {
 	public void update() throws SlickException {
 		
 		super.update();
+		
+		prepareAttackBar.setX(getRelativeToMapX() + Game.getCurrentMap().getX() - 16);
+		prepareAttackBar.setY(getRelativeToMapY() + Game.getCurrentMap().getY() - 32);
+		
+		prepareShotBar.setX(getRelativeToMapX() + Game.getCurrentMap().getX() - 16);
+		prepareShotBar.setY(getRelativeToMapY() + Game.getCurrentMap().getY() - 32);
+		
+		prepareSpellBar.setX(getRelativeToMapX() + Game.getCurrentMap().getX() - 16);
+		prepareSpellBar.setY(getRelativeToMapY() + Game.getCurrentMap().getY() - 32);
 
 		npcList = CharacterManager.getNpcList();
 
@@ -123,7 +129,7 @@ public class Player extends Character {
 
 		if((isAttacking || isPreparingAttack) && isAlive()) {
 
-			super.getCurrentAnimation().draw(screenRelativeOverSizeX, screenRelativeOverSizeY);
+			super.getCurrentAnimation().draw(screenRelativeX - 64, screenRelativeY - 64);
 
 		} else {
 
@@ -161,7 +167,12 @@ public class Player extends Character {
 
 				} else {
 
-					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getMovementSpeed());
+					if(screenRelativeY > 440) {
+						screenRelativeY = screenRelativeY - getMovementSpeed();
+					} else {
+						Game.getCurrentMap().setY(Game.getCurrentMap().getY() + getMovementSpeed());
+					}
+					
 					super.setCurrentAnimation(super.getGoUpAnimation());
 
 				}
@@ -178,7 +189,12 @@ public class Player extends Character {
 
 				} else {
 
-					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getMovementSpeed());
+					if(screenRelativeY < 576) {
+						screenRelativeY = screenRelativeY + getMovementSpeed();
+					} else {
+						Game.getCurrentMap().setY(Game.getCurrentMap().getY() - getMovementSpeed());
+					}
+					
 					super.setCurrentAnimation(super.getGoDownAnimation());
 
 				}
@@ -196,7 +212,12 @@ public class Player extends Character {
 
 				} else {
 
-					Game.getCurrentMap().setX(Game.getCurrentMap().getX() + super.getMovementSpeed());
+					if(screenRelativeX > 860) {
+						screenRelativeX = screenRelativeX - getMovementSpeed();
+					} else {
+						Game.getCurrentMap().setX(Game.getCurrentMap().getX() + getMovementSpeed());
+					}
+					
 					super.setCurrentAnimation(super.getGoLeftAnimation());
 
 				}
@@ -214,7 +235,12 @@ public class Player extends Character {
 
 				} else {
 
-					Game.getCurrentMap().setX(Game.getCurrentMap().getX() - super.getMovementSpeed());
+					if(screenRelativeX < 996) {
+						screenRelativeX = screenRelativeX + getMovementSpeed();
+					} else {
+						Game.getCurrentMap().setX(Game.getCurrentMap().getX() - getMovementSpeed());
+					}
+					
 					super.setCurrentAnimation(super.getGoRightAnimation());
 
 				}
@@ -227,11 +253,23 @@ public class Player extends Character {
 			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
-					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getDiagonalMovementSpeed());
+					
+					if(screenRelativeY > 440) {
+						screenRelativeY = screenRelativeY - getDiagonalMovementSpeed();
+					} else {
+						Game.getCurrentMap().setY(Game.getCurrentMap().getY() + getDiagonalMovementSpeed());
+					}
+
 				}
 
 				if(!isLeftCollision(super.getMovementSpeed())) {
-					Game.getCurrentMap().setX(Game.getCurrentMap().getX() + super.getDiagonalMovementSpeed());
+					
+					if(screenRelativeX > 860) {
+						screenRelativeX = screenRelativeX - getDiagonalMovementSpeed();
+					} else {
+						Game.getCurrentMap().setX(Game.getCurrentMap().getX() + getDiagonalMovementSpeed());
+					}
+
 				}
 
 				if(!isUpCollision(super.getMovementSpeed()) || !isLeftCollision(super.getMovementSpeed())) {
@@ -248,11 +286,19 @@ public class Player extends Character {
 			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
-					Game.getCurrentMap().setY(Game.getCurrentMap().getY() + super.getDiagonalMovementSpeed());
+					if(screenRelativeY > 440) {
+						screenRelativeY = screenRelativeY - getDiagonalMovementSpeed();
+					} else {
+						Game.getCurrentMap().setY(Game.getCurrentMap().getY() + getDiagonalMovementSpeed());
+					}
 				}
 
 				if(!isRightCollision(super.getMovementSpeed())) {
-					Game.getCurrentMap().setX(Game.getCurrentMap().getX() - super.getDiagonalMovementSpeed());
+					if(screenRelativeX < 996) {
+						screenRelativeX = screenRelativeX + getDiagonalMovementSpeed();
+					} else {
+						Game.getCurrentMap().setX(Game.getCurrentMap().getX() - getDiagonalMovementSpeed());
+					}
 				}
 
 				if(!isUpCollision(super.getMovementSpeed()) || !isRightCollision(super.getMovementSpeed())) {
@@ -273,11 +319,19 @@ public class Player extends Character {
 			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventory.isInventoryOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
-					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getDiagonalMovementSpeed());
+					if(screenRelativeY < 576) {
+						screenRelativeY = screenRelativeY + getDiagonalMovementSpeed();
+					} else {
+						Game.getCurrentMap().setY(Game.getCurrentMap().getY() - getDiagonalMovementSpeed());
+					}
 				}
 
 				if(!isLeftCollision(super.getMovementSpeed())) {
-					Game.getCurrentMap().setX(Game.getCurrentMap().getX() + super.getDiagonalMovementSpeed());
+					if(screenRelativeX > 860) {
+						screenRelativeX = screenRelativeX - getDiagonalMovementSpeed();
+					} else {
+						Game.getCurrentMap().setX(Game.getCurrentMap().getX() + getDiagonalMovementSpeed());
+					}
 				}
 
 				if(!isDownCollision(super.getMovementSpeed()) || !isLeftCollision(super.getMovementSpeed())) {
@@ -298,11 +352,19 @@ public class Player extends Character {
 			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventory.isInventoryOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
-					Game.getCurrentMap().setY(Game.getCurrentMap().getY() - super.getDiagonalMovementSpeed());
+					if(screenRelativeY < 576) {
+						screenRelativeY = screenRelativeY + getDiagonalMovementSpeed();
+					} else {
+						Game.getCurrentMap().setY(Game.getCurrentMap().getY() - getDiagonalMovementSpeed());
+					}
 				}
 
 				if(!isRightCollision(super.getMovementSpeed())) {
-					Game.getCurrentMap().setX(Game.getCurrentMap().getX() - super.getDiagonalMovementSpeed());
+					if(screenRelativeX < 996) {
+						screenRelativeX = screenRelativeX + getDiagonalMovementSpeed();
+					} else {
+						Game.getCurrentMap().setX(Game.getCurrentMap().getX() - getDiagonalMovementSpeed());
+					}
 				}
 
 				if(!isDownCollision(super.getMovementSpeed()) || !isRightCollision(super.getMovementSpeed())) {
