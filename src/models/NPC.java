@@ -53,6 +53,8 @@ public class NPC extends Character {
 	private boolean canAttackPlayer;
 	
 	private Item itemDrop;
+	
+	int m = 0;
 
 	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean canAttackPlayer, Item itemDrop) throws SlickException {
 
@@ -163,8 +165,10 @@ public class NPC extends Character {
 		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
 			isGoingToPlayer = true;
 		}
-		
-		path = findPath();
+	
+		if(isGoingToPlayer) {
+			path = findPath();
+		}
 		
 		if(isGoingToPlayer && path != null && !path.isEmpty() && super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && (super.getCenterX()+16) % 32 == 0 && (super.getCenterY()+16) % 32 == 0) {
 			path.remove(0);
