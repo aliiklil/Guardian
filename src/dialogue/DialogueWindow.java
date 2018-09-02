@@ -129,7 +129,7 @@ public class DialogueWindow {
 			} else {
 				Color fontColor;
 				if(!currentSpeaker.equals("Hero")) {
-					fontColor = Color.orange;
+					fontColor = Color.yellow;
 				} else {
 					fontColor = Color.white;
 				}

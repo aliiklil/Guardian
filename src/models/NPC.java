@@ -58,7 +58,7 @@ public class NPC extends Character {
 
 	private ArrayList<Dialogue> startingDialogues = new ArrayList<Dialogue>();
 	
-	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop) throws SlickException {
+	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues) throws SlickException {
 
 		super(relativeToMapX, relativeToMapY, spriteSheetPath);
 		
@@ -100,28 +100,8 @@ public class NPC extends Character {
 		
 		this.itemDrop = itemDrop;
 		
-		startingDialogues.add(new Dialogue());
-		startingDialogues.get(0).addSentence("Who are you?", "Hero");
-		startingDialogues.get(0).addSentence("My name is Halrok. Im trying to find my shield.", "Halrok");
-		startingDialogues.get(0).addSentence("I lost it when I got attacked by bandits.", "Halrok");
-		
-		startingDialogues.get(0).addChildDialogue(new Dialogue());
-		startingDialogues.get(0).getChildDialogues().get(0).addSentence("I can help you. Where did the ambush take place?", "Hero");
-		startingDialogues.get(0).getChildDialogues().get(0).addSentence("It was just south from here.", "Halrok");
-		startingDialogues.get(0).getChildDialogues().get(0).addSentence("If you bring it to me, I can give you 300 gold.", "Halrok");
-		
-		startingDialogues.get(0).addChildDialogue(new Dialogue());
-		startingDialogues.get(0).getChildDialogues().get(1).addSentence("I'm sorry, I can't help you.", "Hero");
-		startingDialogues.get(0).getChildDialogues().get(1).addSentence("No problem, I will find the shield myself.", "Halrok");
-		
-		startingDialogues.add(new Dialogue());
-		startingDialogues.get(1).addSentence("Where can I find the city?", "Hero");
-		startingDialogues.get(1).addSentence("Just go north east and stay on the road.", "Halrok");
-		startingDialogues.get(1).addSentence("But take care, there are a lot of bandits robbing people.", "Halrok");
-		startingDialogues.get(1).addSentence("Isn't the city guard patroling around these city?	", "Hero");
-		startingDialogues.get(1).addSentence("No, they have a lot of stuff to do inside the city.", "Halrok");
-		startingDialogues.get(1).addSentence("They don't take a step outside the city anymore.", "Halrok");
-		startingDialogues.get(1).addSentence("Too dangerous.", "Halrok");
+		this.startingDialogues = startingDialogues;
+
 		
 	}
 

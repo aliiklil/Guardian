@@ -19,24 +19,21 @@ public class CharacterManager {
 	
 	private static Player player;
 
-	private static NPC npc1;
-	private static NPC npc2;
+	private static NPC ogus;
+	private static NPC halrok;
 	
 	private ItemTypeManager itemTypeManager = Game.getItemTypeManager();	
 	
 	public CharacterManager() throws SlickException {
 		
 		player = new Player();
-		
-		ArrayList<Sentence> dialogue = new ArrayList<Sentence>();
-		
-		
-		npc1 = new NPC(256, 128, 200, 200, "resources/OrcSpriteSheet.png", false, new Item(0, 0, itemTypeManager.boots));
-		npc2 = new NPC(640, 768, 300, 300, "resources/SkeletonSpriteSheet.png", false, null);
+			
+		ogus = new NPC(256, 128, 200, 200, "resources/OrcSpriteSheet.png", false, new Item(0, 0, itemTypeManager.boots), DialogueManager.ogusDialogues);
+		halrok = new NPC(640, 768, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues);
 
 		characterList.add(player);
-		characterList.add(npc1);
-		characterList.add(npc2);
+		characterList.add(ogus);
+		characterList.add(halrok);
 		
 	}
 	

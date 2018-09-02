@@ -9,6 +9,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import manager.CharacterManager;
 import manager.ChestManager;
+import manager.DialogueManager;
 import manager.ItemManager;
 import manager.ItemTypeManager;
 import manager.ProjectileManager;
@@ -29,6 +30,7 @@ public class Game extends BasicGameState {
 	private static ItemTypeManager itemTypeManager;
 	private static ItemManager itemManager;
 	private static ChestManager chestManager;
+	private static DialogueManager dialogueManager;
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -45,6 +47,7 @@ public class Game extends BasicGameState {
 		projectileManager = new ProjectileManager();
 		itemManager = new ItemManager();
 		chestManager = new ChestManager();
+		dialogueManager = new DialogueManager();
 
 	}
 

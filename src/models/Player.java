@@ -892,7 +892,7 @@ public class Player extends Character {
 			
 			for (NPC npc : npcList) {
 			
-				if(super.getCollisionBox().willIntersectAnyDirection(npc.getCollisionBox(), 5) && !npc.isHostileToPlayer()) {
+				if(super.getCollisionBox().willIntersectAnyDirection(npc.getCollisionBox(), 5) && !npc.isHostileToPlayer() && npc.getStartingDialogues() != null) {
 
 					if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5)) {
 						setCurrentAnimation(getLookUpAnimation());
