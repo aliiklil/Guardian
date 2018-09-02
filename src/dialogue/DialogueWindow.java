@@ -39,11 +39,8 @@ public class DialogueWindow {
 	public void showWindow(ArrayList<Dialogue> startingDialogues) {
 		
 		active = true;
-		
 		this.startingDialogues = startingDialogues;
-		
 		currentDialogues = startingDialogues;
-		
 		
 	}
 	
@@ -51,45 +48,53 @@ public class DialogueWindow {
 		
 		if(active) {
 			
-			if(input.isKeyPressed(Input.KEY_UP) && selectedOption > 0) {
-				selectedOption--;
-			}
-			
-			if(input.isKeyPressed(Input.KEY_DOWN)) {
-				if(selectedOption < currentDialogues.size() && currentDialogues == startingDialogues) {
-					selectedOption++;
+			if(sentenceCount == 0) {
+				if(input.isKeyPressed(Input.KEY_UP) && selectedOption > 0) {
+					selectedOption--;
 				}
 				
-				if (selectedOption < currentDialogues.size() - 1 && currentDialogues != startingDialogues) {
-					selectedOption++;
+				if(input.isKeyPressed(Input.KEY_DOWN)) {
+					if(selectedOption < currentDialogues.size() && currentDialogues == startingDialogues) {
+						selectedOption++;
+					}
+					
+					if (selectedOption < currentDialogues.size() - 1 && currentDialogues != startingDialogues) {
+						selectedOption++;
+					}
 				}
 			}
 			
-			if(CharacterManager.getPlayer().isYPressed() && selectedOption != currentDialogues.size() && sentenceCount < currentDialogues.get(selectedOption).getSentences().size() - 1) {
+			if(CharacterManager.getPlayer().isYPressed()) {
 				
-				sentenceCount++;
-				
-				currentSentence = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText();
-				currentSpeaker = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getSpeakerName();
-
-			} else if(CharacterManager.getPlayer().isYPressed() && selectedOption != currentDialogues.size() && sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && currentDialogues.get(selectedOption).getChildDialogues().size() != 0) {
-				
-				currentDialogues = currentDialogues.get(selectedOption).getChildDialogues();
-				sentenceCount = 0;
-				selectedOption = 0;
-				
-			} else if(CharacterManager.getPlayer().isYPressed() &&  selectedOption != currentDialogues.size() && sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && currentDialogues.get(selectedOption).getChildDialogues().size() == 0) {
-				
-				currentDialogues = startingDialogues;
-				selectedOption = 0;
-				sentenceCount = 0;
-				
-			}
+				if(selectedOption != currentDialogues.size()) {
 			
-			if(CharacterManager.getPlayer().isYPressed() && selectedOption == currentDialogues.size() && currentDialogues == startingDialogues) {
-				active = false;
-				selectedOption = 0;
-				sentenceCount = 0;
+					if(sentenceCount < currentDialogues.get(selectedOption).getSentences().size() - 1) {
+						
+						sentenceCount++;
+						
+						currentSentence = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText();
+						currentSpeaker = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getSpeakerName();
+		
+					} else if(sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && currentDialogues.get(selectedOption).hasChildDialogues()) {
+						
+						currentDialogues = currentDialogues.get(selectedOption).getChildDialogues();
+						sentenceCount = 0;
+						selectedOption = 0;
+						
+					} else if(sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && !currentDialogues.get(selectedOption).hasChildDialogues()) {
+						
+						currentDialogues = startingDialogues;
+						selectedOption = 0;
+						sentenceCount = 0;
+						
+					} 
+					
+				} else if(selectedOption == currentDialogues.size() && currentDialogues == startingDialogues) {
+					active = false;
+					selectedOption = 0;
+					sentenceCount = 0;
+				}
+			
 			}
 			
 		}		
@@ -101,12 +106,10 @@ public class DialogueWindow {
 		if(active) {
 			g.drawImage(image, 0, 0);
 			
-			Color fontColor;
-			
 			if(sentenceCount == 0) {
 			
 				for(int i = 0; i <= currentDialogues.size(); i++) {
-					
+					Color fontColor;
 					if(i == selectedOption) {
 						fontColor = Color.white;
 					} else {
@@ -124,9 +127,14 @@ public class DialogueWindow {
 				}	
 				
 			} else {
-				
-				ttf.drawString(492, 763, currentSpeaker, Color.white);
-				ttf.drawString(492, 793, currentSentence, Color.white);
+				Color fontColor;
+				if(!currentSpeaker.equals("Hero")) {
+					fontColor = Color.orange;
+				} else {
+					fontColor = Color.white;
+				}
+				ttf.drawString(Main.WIDTH/2 - ttf.getWidth(currentSpeaker)/2, 763, currentSpeaker, fontColor);
+				ttf.drawString(492, 808, currentSentence, fontColor);
 				
 			}
 		}

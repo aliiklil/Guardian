@@ -22,5 +22,9 @@ public class Dialogue {
 	public void addChildDialogue(Dialogue childDialogue) {
 		childDialogues.add(childDialogue);
 	}
+	
+	public boolean hasChildDialogues() {
+		return childDialogues.size() > 0;
+	}
 
 }
