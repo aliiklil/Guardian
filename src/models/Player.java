@@ -11,6 +11,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
 
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
+
+import dialogue.DialogueWindow;
 import main.Game;
 import main.Main;
 import manager.CharacterManager;
@@ -51,6 +54,10 @@ public class Player extends Character {
 	
 	private NewItemWindow newItemWindow = new NewItemWindow();
 	
+	private DialogueWindow dialogueWindow = new DialogueWindow();
+	
+	private boolean yPressed = false;
+		
 	public Player() throws SlickException {
 
 		super(224, 64, "resources/HumanSpriteSheet.png");
@@ -112,17 +119,30 @@ public class Player extends Character {
 		super.getAttackRightCollisionBox().setX(super.getRelativeToMapX() + 31);
 		super.getAttackRightCollisionBox().setY(super.getRelativeToMapY() - 16);
 
+		if(input.isKeyPressed(input.KEY_Y)) {
+			yPressed = true;
+		}
+		
 		if(isAlive()) {
 			inventory.update();
 			newItemWindow.update();
-			updateMove();
-			updateAttack();
-			updateShoot();
-			updateSpell();
-			updatePickUpItem();
-			updateOpenChest();
+			updateDialogue();
+			dialogueWindow.update();
+			
+			if(!dialogueWindow.isActive()) {
+				updateMove();
+				updateAttack();
+				updateShoot();
+				updateSpell();
+				updatePickUpItem();
+				updateOpenChest();	
+				
+			}
 		}
+		
+		yPressed = false;
 
+		input.clearKeyPressedRecord();
 	}
 
 	public void render(Graphics g) {
@@ -845,7 +865,7 @@ public class Player extends Character {
 	
 	private void updateOpenChest() throws SlickException {
 
-		if(input.isKeyPressed(Input.KEY_Y) && getCurrentAnimation() == getLookUpAnimation() && !inventory.isInventoryOpen()) {
+		if(yPressed && getCurrentAnimation() == getLookUpAnimation() && !inventory.isInventoryOpen()) {
 		
 			ArrayList<Chest> chestList = ChestManager.getChestList();
 			
@@ -856,6 +876,46 @@ public class Player extends Character {
 					inventory.addItem(chest.getItem());
 					chest.setOpened(true);
 					newItemWindow.showWindow(chest.getItem());
+				}
+			
+			}
+		
+		}
+		
+	}
+	
+	private void updateDialogue() throws SlickException {
+
+		if(yPressed && !dialogueWindow.isActive()) {
+
+			ArrayList<NPC> npcList = CharacterManager.getNpcList();
+			
+			for (NPC npc : npcList) {
+			
+				if(super.getCollisionBox().willIntersectAnyDirection(npc.getCollisionBox(), 5) && !npc.isHostileToPlayer()) {
+
+					if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5)) {
+						setCurrentAnimation(getLookUpAnimation());
+						npc.setCurrentAnimation(npc.getLookDownAnimation());
+					}
+					
+					if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), 5)) {
+						setCurrentAnimation(getLookDownAnimation());
+						npc.setCurrentAnimation(npc.getLookUpAnimation());
+					}
+					
+					if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), 5)) {
+						setCurrentAnimation(getLookLeftAnimation());
+						npc.setCurrentAnimation(npc.getLookRightAnimation());
+					}
+					
+					if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), 5)) {
+						setCurrentAnimation(getLookRightAnimation());
+						npc.setCurrentAnimation(npc.getLookLeftAnimation());
+					}
+					
+					dialogueWindow.showWindow(npc.getStartingDialogues());
+					yPressed = false;
 				}
 			
 			}
@@ -961,5 +1021,15 @@ public class Player extends Character {
 	public NewItemWindow getNewItemWindow() {
 		return newItemWindow;
 	}
+	
+	public DialogueWindow getDialogueWindow() {
+		return dialogueWindow;
+	}
+
+	public boolean isYPressed() {
+		return yPressed;
+	}
+
+	
 	
 }

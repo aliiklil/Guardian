@@ -9,6 +9,16 @@ public class CollisionBox extends Rectangle {
 		super(x, y, width, height);
 	}
 	
+	public boolean willIntersectAnyDirection(Shape s, float distance) {
+		
+		if(willIntersectUp(s, distance) ||  willIntersectDown(s, distance) ||  willIntersectLeft(s, distance) ||  willIntersectRight(s, distance)) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
 	public boolean willIntersectUp(Shape s, float distance) {
 		
 		CollisionBox collisionBox = new CollisionBox(this.getX(), this.getY() - distance, this.getWidth(), this.getHeight());

@@ -6,6 +6,7 @@ import java.util.Collections;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import dialogue.Sentence;
 import main.Game;
 import models.Character;
 import models.Item;
@@ -26,8 +27,12 @@ public class CharacterManager {
 	public CharacterManager() throws SlickException {
 		
 		player = new Player();
-		npc1 = new NPC(640, 128, 200, 200, "resources/OrcSpriteSheet.png", true, new Item(0, 0, itemTypeManager.boots));
-		npc2 = new NPC(640, 64, 300, 300, "resources/SkeletonSpriteSheet.png", true, null);
+		
+		ArrayList<Sentence> dialogue = new ArrayList<Sentence>();
+		
+		
+		npc1 = new NPC(256, 128, 200, 200, "resources/OrcSpriteSheet.png", false, new Item(0, 0, itemTypeManager.boots));
+		npc2 = new NPC(640, 768, 300, 300, "resources/SkeletonSpriteSheet.png", false, null);
 
 		characterList.add(player);
 		characterList.add(npc1);

@@ -58,7 +58,7 @@ public class Inventory {
 		
 		player = CharacterManager.getPlayer();
 		
-		if(input.isKeyPressed(Input.KEY_TAB)) {
+		if(input.isKeyPressed(Input.KEY_TAB) && !player.getDialogueWindow().isActive()) {
 			if(!inventoryOpen) {
 				inventoryOpen = true;
 			} else {

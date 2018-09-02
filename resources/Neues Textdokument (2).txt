@@ -1,0 +1,37 @@
+-Hero: Who are you?
+	Orc: My name is Halrok. Im trying to find my shield.
+	Orc: I lost it when I got attacked by bandits.
+
+	-Hero: I can help you. Where did the ambush take place?
+		Orc: It was just south from here.
+		Orc: If you bring it to me, I can give you 300 gold.
+
+	-Hero: I'm sorry, I can't help you.
+		Orc: No problem, I will find the shield myself.
+
+-Hero: Where can I find the city?
+	Orc: Just go north east and stay on the road.
+	Orc: But take care, there are a lot of bandits robbing people.
+	Hero: Isn't the city guard patroling around these city?	
+	Orc: No, they have a lot of stuff to do inside the city.
+	Orc: They don't take a step outside the city anymore.
+	Orc: Too dangerous. (Active last option)
+
+-Hero: Where can I sell my loot?
+	Orc: There is a merchant close to here in the north.
+	Orc: You can also go to the city.
+	Hero: Does the city let unknown people in easily?
+	Orc: No. You must look like someone who has money.
+	Orc: They don't need more beggars in the city.
+	Orc: They have enough already.
+
+-Hero: Who is the leader of the city guards?
+	Orc: Currently Ragnar is leading them.
+	Orc: But if you are not a city guard yourself, you will not be able to meet him.
+	Hero: Why is that?
+	Orc: I think, they fear that someone might try to assassinate him.
+
+-End
+
+
+
