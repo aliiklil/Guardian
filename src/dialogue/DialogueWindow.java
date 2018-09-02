@@ -34,6 +34,11 @@ public class DialogueWindow {
 	
 	private final int MAX_CHAR_AMOUNT_PER_LINE = 62;
 	
+	private String currentlyDisplayedText;
+	private final int TIME_FOR_NEXT_CHARACTER = 20;
+	private long timeLastCharacterWasAdded;
+	private int addedCharactersCounter;
+	
 	public DialogueWindow() throws SlickException {
 		
 	}
@@ -81,7 +86,13 @@ public class DialogueWindow {
 			
 			if(CharacterManager.getPlayer().isYPressed()) {
 				
-				if(selectedOption != currentDialogues.size()) {
+				if(sentenceCount > 0 && currentlyDisplayedText.length() != currentSentence.length()) {
+					
+					currentlyDisplayedText = currentSentence;
+					addedCharactersCounter = currentSentence.length();
+					timeLastCharacterWasAdded = System.currentTimeMillis();
+					
+				} else if(selectedOption != currentDialogues.size()) {
 			
 					if(sentenceCount < currentDialogues.get(selectedOption).getSentences().size() - 1) {
 						
@@ -90,6 +101,10 @@ public class DialogueWindow {
 						currentSentence = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText();
 						currentSpeaker = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getSpeakerName();
 		
+						timeLastCharacterWasAdded = System.currentTimeMillis();
+						addedCharactersCounter = 0;
+						currentlyDisplayedText = "";
+						
 					} else if(sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && currentDialogues.get(selectedOption).hasChildDialogues()) {
 						
 						currentDialogues = currentDialogues.get(selectedOption).getChildDialogues();
@@ -150,14 +165,24 @@ public class DialogueWindow {
 				}
 				ttf.drawString(Main.WIDTH/2 - ttf.getWidth(currentSpeaker)/2, 763, currentSpeaker, fontColor);
 								
-
-				String[] wrappedLines = new String[(int) Math.ceil((double)currentSentence.length()/MAX_CHAR_AMOUNT_PER_LINE)];
+				
+				
+				if(System.currentTimeMillis() - timeLastCharacterWasAdded > TIME_FOR_NEXT_CHARACTER && addedCharactersCounter < currentSentence.length()) {
+					currentlyDisplayedText = currentlyDisplayedText + currentSentence.substring(addedCharactersCounter, addedCharactersCounter + 1);
+					timeLastCharacterWasAdded = System.currentTimeMillis();
+					addedCharactersCounter++;
+				}
+				
+				
+				
+				
+				String[] wrappedLines = new String[(int) Math.ceil((double)currentlyDisplayedText.length()/MAX_CHAR_AMOUNT_PER_LINE)];
 				
 				for(int i = 0; i < wrappedLines.length; i++) {
-					if((currentSentence.length() >= (i+1)*62)) {
-						wrappedLines[i] = currentSentence.substring(i * 62, (i+1)*62);
+					if((currentlyDisplayedText.length() >= (i+1)*62)) {
+						wrappedLines[i] = currentlyDisplayedText.substring(i * 62, (i+1)*62);
 					} else {
-						wrappedLines[i] = currentSentence.substring(i * 62, currentSentence.length());
+						wrappedLines[i] = currentlyDisplayedText.substring(i * 62, currentlyDisplayedText.length());
 					}
 				}
 				
@@ -170,8 +195,6 @@ public class DialogueWindow {
 				for(int i = 0; i < wrappedLines.length; i++) {
 					ttf.drawString(495, 808 + i * 30, wrappedLines[i], fontColor);
 				}
-				
-				
 				
 			}
 		}
