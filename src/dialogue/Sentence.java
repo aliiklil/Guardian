@@ -2,16 +2,16 @@ package dialogue;
 
 public class Sentence {
 
-	private String sentence;
+	private String text;
 	private String speakerName;
 	
-	public Sentence(String sentence, String speakerName) {
-		this.sentence = sentence;
+	public Sentence(String text, String speakerName) {
+		this.text = text;
 		this.speakerName = speakerName;
 	}
 	
-	public String getSentence() {
-		return sentence;
+	public String getText() {
+		return text;
 	}
 	
 	public String getSpeakerName() {

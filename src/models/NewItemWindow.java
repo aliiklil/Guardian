@@ -32,7 +32,7 @@ public class NewItemWindow {
 	
 	public void update() throws SlickException {
 		
-		if(System.currentTimeMillis() - startTime >= duration || CharacterManager.getPlayer().getInventory().isInventoryOpen()) {
+		if(System.currentTimeMillis() - startTime >= duration || CharacterManager.getPlayer().getInventory().isInventoryOpen() || CharacterManager.getPlayer().getDialogueWindow().isActive()) {
 			active = false;
 		}
 		

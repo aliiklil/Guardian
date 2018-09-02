@@ -17,7 +17,8 @@ public class DialogueWindow {
 
 	private Image image = new Image("resources/dialogue_window.png");
 	private boolean active = false;
-	private ArrayList<Dialogue> dialogues;
+	private ArrayList<Dialogue> startingDialogues;
+	private ArrayList<Dialogue> currentDialogues;
 	
 	private Font font = new Font(Font.MONOSPACED, Font.BOLD, 25);
 	private TrueTypeFont ttf = new TrueTypeFont(font, true);
@@ -26,14 +27,22 @@ public class DialogueWindow {
 	
 	private Input input = Main.appGameContainer.getInput();
 	
+	private int sentenceCount = 0;
+	
+	private String currentSentence;
+	private String currentSpeaker;
+	
 	public DialogueWindow() throws SlickException {
 		
 	}
 	
-	public void showWindow(ArrayList<Dialogue> dialogues) {
+	public void showWindow(ArrayList<Dialogue> startingDialogues) {
 		
 		active = true;
-		this.dialogues = dialogues;
+		
+		this.startingDialogues = startingDialogues;
+		
+		currentDialogues = startingDialogues;
 		
 		
 	}
@@ -46,17 +55,45 @@ public class DialogueWindow {
 				selectedOption--;
 			}
 			
-			if(input.isKeyPressed(Input.KEY_DOWN) && selectedOption < dialogues.size()) {
-				selectedOption++;
-			}
-
-			if(CharacterManager.getPlayer().isYPressed() && selectedOption == dialogues.size()) {
-				active = false;
-				selectedOption = 0;
+			if(input.isKeyPressed(Input.KEY_DOWN)) {
+				if(selectedOption < currentDialogues.size() && currentDialogues == startingDialogues) {
+					selectedOption++;
+				}
+				
+				if (selectedOption < currentDialogues.size() - 1 && currentDialogues != startingDialogues) {
+					selectedOption++;
+				}
 			}
 			
-		}
-		
+			if(CharacterManager.getPlayer().isYPressed() && selectedOption != currentDialogues.size() && sentenceCount < currentDialogues.get(selectedOption).getSentences().size() - 1) {
+				
+				sentenceCount++;
+				
+				currentSentence = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText();
+				currentSpeaker = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getSpeakerName();
+
+			} else if(CharacterManager.getPlayer().isYPressed() && selectedOption != currentDialogues.size() && sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && currentDialogues.get(selectedOption).getChildDialogues().size() != 0) {
+				
+				currentDialogues = currentDialogues.get(selectedOption).getChildDialogues();
+				sentenceCount = 0;
+				selectedOption = 0;
+				
+			} else if(CharacterManager.getPlayer().isYPressed() &&  selectedOption != currentDialogues.size() && sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && currentDialogues.get(selectedOption).getChildDialogues().size() == 0) {
+				
+				currentDialogues = startingDialogues;
+				selectedOption = 0;
+				sentenceCount = 0;
+				
+			}
+			
+			if(CharacterManager.getPlayer().isYPressed() && selectedOption == currentDialogues.size() && currentDialogues == startingDialogues) {
+				active = false;
+				selectedOption = 0;
+				sentenceCount = 0;
+			}
+			
+		}		
+
 		
 	}
 	
@@ -65,22 +102,33 @@ public class DialogueWindow {
 			g.drawImage(image, 0, 0);
 			
 			Color fontColor;
-			for(int i = 0; i <= dialogues.size(); i++) {
-				
-				if(i == selectedOption) {
-					fontColor = Color.white;
-				} else {
-					fontColor = Color.gray;
-				}
-				
-				if(i == dialogues.size()) {
-					ttf.drawString(492, 763 + i * 30, "End", fontColor);
-				} else {
-					ttf.drawString(492, 763 + i * 30, dialogues.get(i).getSentences().get(0).getSentence(), fontColor);
-				}
-				
-			}	
 			
+			if(sentenceCount == 0) {
+			
+				for(int i = 0; i <= currentDialogues.size(); i++) {
+					
+					if(i == selectedOption) {
+						fontColor = Color.white;
+					} else {
+						fontColor = Color.gray;
+					}
+					
+					if(i == currentDialogues.size() && currentDialogues == startingDialogues) {
+						ttf.drawString(492, 763 + i * 30, "End", fontColor);
+					} 
+					
+					if(i < currentDialogues.size())  {
+						ttf.drawString(492, 763 + i * 30, currentDialogues.get(i).getSentences().get(0).getText(), fontColor);
+					}
+					
+				}	
+				
+			} else {
+				
+				ttf.drawString(492, 763, currentSpeaker, Color.white);
+				ttf.drawString(492, 793, currentSentence, Color.white);
+				
+			}
 		}
 	}
 
