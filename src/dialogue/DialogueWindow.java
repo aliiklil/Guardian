@@ -32,6 +32,8 @@ public class DialogueWindow {
 	private String currentSentence;
 	private String currentSpeaker;
 	
+	private final int MAX_CHAR_AMOUNT_PER_LINE = 62;
+	
 	public DialogueWindow() throws SlickException {
 		
 	}
@@ -130,11 +132,11 @@ public class DialogueWindow {
 					}
 					
 					if(i == currentDialogues.size() && currentDialogues == startingDialogues) {
-						ttf.drawString(492, 763 + i * 30, "End", fontColor);
+						ttf.drawString(495, 763 + i * 30, "End", fontColor);
 					} 
 					
 					if(i < currentDialogues.size())  {
-						ttf.drawString(492, 763 + i * 30, currentDialogues.get(i).getSentences().get(0).getText(), fontColor);
+						ttf.drawString(495, 763 + i * 30, currentDialogues.get(i).getSentences().get(0).getText(), fontColor);
 					}
 					
 				}	
@@ -147,7 +149,29 @@ public class DialogueWindow {
 					fontColor = Color.white;
 				}
 				ttf.drawString(Main.WIDTH/2 - ttf.getWidth(currentSpeaker)/2, 763, currentSpeaker, fontColor);
-				ttf.drawString(492, 808, currentSentence, fontColor);
+								
+
+				String[] wrappedLines = new String[(int) Math.ceil((double)currentSentence.length()/MAX_CHAR_AMOUNT_PER_LINE)];
+				
+				for(int i = 0; i < wrappedLines.length; i++) {
+					if((currentSentence.length() >= (i+1)*62)) {
+						wrappedLines[i] = currentSentence.substring(i * 62, (i+1)*62);
+					} else {
+						wrappedLines[i] = currentSentence.substring(i * 62, currentSentence.length());
+					}
+				}
+				
+				for(int i = 0; i < wrappedLines.length; i++) {
+					if(wrappedLines[i].substring(0, 1).equals(" ")) {
+						wrappedLines[i] = wrappedLines[i].substring(1);
+					}
+				}
+
+				for(int i = 0; i < wrappedLines.length; i++) {
+					ttf.drawString(495, 808 + i * 30, wrappedLines[i], fontColor);
+				}
+				
+				
 				
 			}
 		}

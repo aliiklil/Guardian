@@ -10,7 +10,7 @@ public class DialogueManager {
 	public static ArrayList<Dialogue> halrokDialogues = new ArrayList<Dialogue>();
 	
 	public DialogueManager() {
-		 
+
 		ogusDialogues.add(new Dialogue());
 		ogusDialogues.get(0).addSentence("Who are you?", "Hero");
 		ogusDialogues.get(0).addSentence("My name is Ogus. Im trying to find my shield.", "Ogus");
@@ -53,11 +53,10 @@ public class DialogueManager {
 		ogusDialogues.get(3).addChildDialogue(new Dialogue());
 		ogusDialogues.get(3).getChildDialogues().get(0).addSentence("I need to give him an important message.", "Hero");
 		ogusDialogues.get(3).getChildDialogues().get(0).addSentence("What is the message about?", "Ogus");
-		
 		ogusDialogues.get(3).getChildDialogues().get(0).addChildDialogue(new Dialogue());
-		ogusDialogues.get(3).getChildDialogues().get(0).getChildDialogues().get(0).addSentence("It's a message from the king. His army needs to move to the capital to defend it from an invasion.", "Hero");
+		ogusDialogues.get(3).getChildDialogues().get(0).getChildDialogues().get(0).addSentence("The kings army needs to move to the capital to defend it.", "Hero");
 		ogusDialogues.get(3).getChildDialogues().get(0).getChildDialogues().get(0).addSentence("Why? Who is going to attack?", "Ogus");
-		ogusDialogues.get(3).getChildDialogues().get(0).getChildDialogues().get(0).addSentence("There is a army of skeletons coming from the north killing everything they encounter.", "Hero");
+		ogusDialogues.get(3).getChildDialogues().get(0).getChildDialogues().get(0).addSentence("There is a army of skeletons coming from the north killing    everything they encounter.", "Hero");
 		ogusDialogues.get(3).getChildDialogues().get(0).getChildDialogues().get(0).addSentence("If that is true, I hope your message reaches the king as fast as possible.", "Ogus");
 		
 		ogusDialogues.get(3).getChildDialogues().get(0).addChildDialogue(new Dialogue());
