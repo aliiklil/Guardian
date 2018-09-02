@@ -47,19 +47,32 @@ public class DialogueWindow {
 	public void update() throws SlickException {
 		
 		if(active) {
-			
 			if(sentenceCount == 0) {
-				if(input.isKeyPressed(Input.KEY_UP) && selectedOption > 0) {
-					selectedOption--;
-				}
-				
-				if(input.isKeyPressed(Input.KEY_DOWN)) {
-					if(selectedOption < currentDialogues.size() && currentDialogues == startingDialogues) {
-						selectedOption++;
+				if(input.isKeyPressed(Input.KEY_UP)) {
+					if(selectedOption > 0) {
+						selectedOption--;
+					} else if(selectedOption == 0) {
+						if(currentDialogues == startingDialogues) {
+							selectedOption = currentDialogues.size();
+						} else {
+							selectedOption = currentDialogues.size() - 1;
+						}
 					}
-					
-					if (selectedOption < currentDialogues.size() - 1 && currentDialogues != startingDialogues) {
-						selectedOption++;
+				}
+								
+				if(input.isKeyPressed(Input.KEY_DOWN)) {
+					if(currentDialogues == startingDialogues) {
+						if(selectedOption < currentDialogues.size()) {
+							selectedOption++;
+						} else if(selectedOption == currentDialogues.size()) {
+							selectedOption = 0;
+						}
+					} else {
+						if (selectedOption < currentDialogues.size() - 1) {
+							selectedOption++;
+						} else if(selectedOption == currentDialogues.size() - 1) {
+							selectedOption = 0;
+						}
 					}
 				}
 			}
