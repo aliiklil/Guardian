@@ -46,14 +46,23 @@ public class DialogueWindow {
 	public void showWindow(ArrayList<Dialogue> startingDialogues) {
 		
 		active = true;
-		this.startingDialogues = startingDialogues;
+			this.startingDialogues = startingDialogues;
 		currentDialogues = startingDialogues;
 		
 	}
 	
 	public void update() throws SlickException {
 		
+		
+		
 		if(active) {
+			
+			for(Dialogue dialogue : startingDialogues) {
+				
+				System.out.println(dialogue.isSelectable());
+				
+			}
+			
 			if(sentenceCount == 0) {
 				if(input.isKeyPressed(Input.KEY_UP)) {
 					if(selectedOption > 0) {
@@ -113,6 +122,10 @@ public class DialogueWindow {
 						
 					} else if(sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && !currentDialogues.get(selectedOption).hasChildDialogues()) {
 						
+						if(!startingDialogues.isEmpty()) {
+							startingDialogues.remove(selectedOption);
+						}
+											
 						currentDialogues = startingDialogues;
 						selectedOption = 0;
 						sentenceCount = 0;
