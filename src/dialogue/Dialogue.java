@@ -5,10 +5,9 @@ import java.util.ArrayList;
 public class Dialogue {
 
 	private ArrayList<Sentence> sentences = new ArrayList<Sentence>();
-	private ArrayList<Dialogue> childDialogues = new ArrayList<Dialogue>();
-	
-	private boolean selectable = true;
-	
+	private ArrayList<Dialogue> childDialogues = new ArrayList<Dialogue>(); //Dialogues, which can be selected after this dialogue is finished
+	private ArrayList<Dialogue> newStartingDialogues = new ArrayList<Dialogue>(); //Dialogues, which can be selected in the starting selection, after this dialogue is finished
+		
 	public ArrayList<Sentence> getSentences() {
 		return sentences;
 	}
@@ -28,13 +27,17 @@ public class Dialogue {
 	public boolean hasChildDialogues() {
 		return childDialogues.size() > 0;
 	}
-
-	public boolean isSelectable() {
-		return selectable;
+	
+	public ArrayList<Dialogue> getNewStartingDialogues() {
+		return newStartingDialogues;
 	}
-
-	public void setSelectable(boolean selectable) {
-		this.selectable = selectable;
+	
+	public void addNewStartingDialogue(Dialogue newStartingDialogue) {
+		newStartingDialogues.add(newStartingDialogue);
+	}
+	
+	public boolean hasNewStartingDialogues() {
+		return newStartingDialogues.size() > 0;
 	}
 
 }

@@ -38,10 +38,26 @@ public class DialogueManager {
 		ogusDialogues.get(2).addSentence("Where can I sell my loot?", "Hero");
 		ogusDialogues.get(2).addSentence("There is a merchant close to here in the north.", "Ogus");
 		ogusDialogues.get(2).addSentence("You can also go to the city.", "Ogus");
-		ogusDialogues.get(2).addSentence("Does the city let unknown people in easily?", "Hero");
-		ogusDialogues.get(2).addSentence("No. You must look like someone who has money. They don't need more beggars in the city. They have enough already.", "Ogus");
 		
+		ogusDialogues.get(2).addNewStartingDialogue(new Dialogue());
+		ogusDialogues.get(2).getNewStartingDialogues().get(0).addSentence("What is the merchant selling?", "Hero");
+		ogusDialogues.get(2).getNewStartingDialogues().get(0).addSentence("He is selling everything from weapons to potions.", "Ogus");
+
+		ogusDialogues.get(2).addNewStartingDialogue(new Dialogue());
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).addSentence("Does the city let unknown people in easily?", "Hero");
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).addSentence("No. You must look like someone who has money. They don't need more beggars in the city. They have enough already.", "Ogus");
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).addSentence("What do you want to do in the city?", "Ogus");
 		
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).addChildDialogue(new Dialogue());
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).getChildDialogues().get(0).addSentence("I need to sell my stuff.", "Hero");
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).getChildDialogues().get(0).addSentence("Take care. The merchants know how to bargain.", "Ogus");
+		
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).addChildDialogue(new Dialogue());
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).getChildDialogues().get(1).addSentence("I need rest.", "Hero");
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).getChildDialogues().get(1).addSentence("There is a good hotel, where you can sleep for a few gold.", "Ogus");
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).getChildDialogues().get(1).addSentence("Take care. Someone might try to steal it while you are asleep.", "Ogus");
+		ogusDialogues.get(2).getNewStartingDialogues().get(1).getChildDialogues().get(1).addSentence("Thanks, I will.", "Hero");
+			
 		ogusDialogues.add(new Dialogue());
 		ogusDialogues.get(3).addSentence("Who is the leader of the city guards?", "Hero");
 		ogusDialogues.get(3).addSentence("Currently Ragnar is leading them.", "Ogus");

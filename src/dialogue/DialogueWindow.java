@@ -23,7 +23,8 @@ public class DialogueWindow {
 	private Font font = new Font(Font.MONOSPACED, Font.BOLD, 25);
 	private TrueTypeFont ttf = new TrueTypeFont(font, true);
 	
-	private int selectedOption = 0;
+	private int selectedOption;
+	private int selectedStartingOption;
 	
 	private Input input = Main.appGameContainer.getInput();
 	
@@ -46,7 +47,7 @@ public class DialogueWindow {
 	public void showWindow(ArrayList<Dialogue> startingDialogues) {
 		
 		active = true;
-			this.startingDialogues = startingDialogues;
+		this.startingDialogues = startingDialogues;
 		currentDialogues = startingDialogues;
 		
 	}
@@ -56,12 +57,6 @@ public class DialogueWindow {
 		
 		
 		if(active) {
-			
-			for(Dialogue dialogue : startingDialogues) {
-				
-				System.out.println(dialogue.isSelectable());
-				
-			}
 			
 			if(sentenceCount == 0) {
 				if(input.isKeyPressed(Input.KEY_UP)) {
@@ -114,6 +109,10 @@ public class DialogueWindow {
 						addedCharactersCounter = 0;
 						currentlyDisplayedText = "";
 						
+						if(currentDialogues == startingDialogues) {
+							selectedStartingOption = selectedOption;
+						}
+						
 					} else if(sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && currentDialogues.get(selectedOption).hasChildDialogues()) {
 						
 						currentDialogues = currentDialogues.get(selectedOption).getChildDialogues();
@@ -122,8 +121,16 @@ public class DialogueWindow {
 						
 					} else if(sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && !currentDialogues.get(selectedOption).hasChildDialogues()) {
 						
+						if(currentDialogues.get(selectedOption).hasNewStartingDialogues()) {
+
+							for(Dialogue dialogue : currentDialogues.get(selectedOption).getNewStartingDialogues()) {
+								startingDialogues.add(dialogue);
+							}
+							
+						}
+						
 						if(!startingDialogues.isEmpty()) {
-							startingDialogues.remove(selectedOption);
+							startingDialogues.remove(selectedStartingOption);
 						}
 											
 						currentDialogues = startingDialogues;
