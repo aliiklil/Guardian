@@ -18,10 +18,54 @@ public class ItemManager {
 	
 	public ItemManager() throws SlickException {
 			
+						
+		Item dagger = new Item(480, 416, itemTypeManager.dagger);
+		Item longspear = new Item(480, 416, itemTypeManager.longspear);
+		Item dragonspear = new Item(480, 416, itemTypeManager.dragonspear);
+		Item goldspear = new Item(480, 416, itemTypeManager.goldspear);
+		Item longsword = new Item(480, 416, itemTypeManager.longsword);
+		Item mace = new Item(480, 416, itemTypeManager.mace);
+		Item rapier = new Item(480, 416, itemTypeManager.rapier);
+		Item sabre = new Item(480, 416, itemTypeManager.sabre);
+		Item shield = new Item(480, 416, itemTypeManager.shield);
+		Item shortspear = new Item(480, 416, itemTypeManager.shortspear);
+		Item stick = new Item(480, 416, itemTypeManager.stick);
+		
+		Item bow = new Item(480, 416, itemTypeManager.bow);
+		Item longbow = new Item(480, 416, itemTypeManager.longbow);
+		Item recurvedbow = new Item(480, 416, itemTypeManager.recurvedbow);
+		
+		Item chainhat = new Item(480, 416, itemTypeManager.chainhat);
+		Item chainhelmet = new Item(480, 416, itemTypeManager.chainhelmet);
+		Item clothhoods = new Item(480, 416, itemTypeManager.clothhoods);
+		Item goldenhelmet = new Item(480, 416, itemTypeManager.goldenhelmet);
+		Item leathercap = new Item(480, 416, itemTypeManager.leathercap);
+		Item metalhelmet = new Item(480, 416, itemTypeManager.metalhelmet);
+		
+		Item brownshirt = new Item(480, 416, itemTypeManager.brownshirt);
+		Item lilashirt = new Item(480, 416, itemTypeManager.lilashirt);
+		Item redshirt = new Item(480, 416, itemTypeManager.redshirt);
+		Item leatherchest = new Item(480, 416, itemTypeManager.leatherchest);
+		Item chainchest = new Item(480, 416, itemTypeManager.chainchest);
+		Item metalchest = new Item(480, 416, itemTypeManager.metalchest);
+		Item goldenchest = new Item(480, 416, itemTypeManager.goldenchest);
+
+		Item leathergloves = new Item(480, 416, itemTypeManager.leathergloves);
+		Item metalgloves = new Item(480, 416, itemTypeManager.metalgloves);
+		Item goldengloves = new Item(480, 416, itemTypeManager.goldengloves);
+		
+		Item pants = new Item(480, 416, itemTypeManager.pants);
+		Item skirt = new Item(480, 416, itemTypeManager.skirt);
+		Item metallegarmor = new Item(480, 416, itemTypeManager.metallegarmor);
+		Item goldenlegarmor = new Item(480, 416, itemTypeManager.goldenlegarmor);
+				
+		Item boots = new Item(480, 416, itemTypeManager.boots);
+		Item leatherboots = new Item(480, 416, itemTypeManager.leatherboots);
+		Item metalboots = new Item(480, 416, itemTypeManager.metalboots);
+		Item goldenboots = new Item(480, 416, itemTypeManager.goldenboots);
 		
 		
-
-
+		
 		Item gold1 = new Item(480, 416, itemTypeManager.gold);
 		Item gold2 = new Item(704, 416, itemTypeManager.gold);
 		Item gold3 = new Item(416, 480, itemTypeManager.gold);
@@ -99,8 +143,57 @@ public class ItemManager {
 		
 		Item wheat1 = new Item(320, 32, itemTypeManager.wheat);
 		
+		
 		Item trophy1 = new Item(364, 32, itemTypeManager.trophy);
+
+		itemList.add(dagger);
+		itemList.add(longspear);
+		itemList.add(dragonspear);
+		itemList.add(goldspear);
+		itemList.add(longsword);
+		itemList.add(mace);
+		itemList.add(rapier);
+		itemList.add(sabre);
+		itemList.add(shield);
+		itemList.add(shortspear);
+		itemList.add(stick);
+		
+		
+		itemList.add(bow);
+		itemList.add(longbow);
+		itemList.add(recurvedbow);
+		
+		
+		itemList.add(chainhat);
+		itemList.add(chainhelmet);
+		itemList.add(clothhoods);
+		itemList.add(goldenhelmet);
+		itemList.add(leathercap);
+		itemList.add(metalhelmet);
+		
 	
+		itemList.add(brownshirt);
+		itemList.add(lilashirt);
+		itemList.add(redshirt);
+		itemList.add(leatherchest);
+		itemList.add(chainchest);
+		itemList.add(metalchest);
+		itemList.add(goldenchest);
+		
+		itemList.add(leathergloves);
+		itemList.add(metalgloves);
+		itemList.add(goldengloves);
+		
+		itemList.add(pants);
+		itemList.add(skirt);
+		itemList.add(metallegarmor);
+		itemList.add(goldenlegarmor);
+				
+		itemList.add(boots);
+		itemList.add(leatherboots);
+		itemList.add(metalboots);
+		itemList.add(goldenboots);
+		
 		itemList.add(gold1);
 		itemList.add(gold2);
 		itemList.add(gold3);

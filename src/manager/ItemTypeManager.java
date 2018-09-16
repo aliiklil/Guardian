@@ -27,7 +27,7 @@ public class ItemTypeManager {
 	public ItemType chainhat = new ItemType(32, 32, 1, "resources/items/4helmets/chainhat.png", "Chain Hat", 100, 3);
 	public ItemType chainhelmet = new ItemType(32, 32, 1, "resources/items/4helmets/chainhelmet.png", "Chain Helmet", 150, 3);
 	public ItemType clothhoods = new ItemType(32, 32, 1, "resources/items/4helmets/clothhood.png", "Cloth Hood", 20, 3);
-	public ItemType goldhelmet = new ItemType(32, 32, 1, "resources/items/4helmets/goldhelmet.png", "Gold Helmet", 300, 3);
+	public ItemType goldenhelmet = new ItemType(32, 32, 1, "resources/items/4helmets/goldenhelmet.png", "Gold Helmet", 300, 3);
 	public ItemType leathercap = new ItemType(32, 32, 1, "resources/items/4helmets/leathercap.png", "Leather Cap", 50, 3);
 	public ItemType metalhelmet = new ItemType(32, 32, 1, "resources/items/4helmets/metalhelmet.png", "Metal Helmet", 200, 3);
 
