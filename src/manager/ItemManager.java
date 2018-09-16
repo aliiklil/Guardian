@@ -20,9 +20,7 @@ public class ItemManager {
 			
 		
 		
-		Item helmet1 = new Item(288, 384, itemTypeManager.helmet);
-		Item helmet2 = new Item(288, 480, itemTypeManager.helmet);
-		Item helmet3 = new Item(416, 384, itemTypeManager.helmet);
+
 
 		Item gold1 = new Item(480, 416, itemTypeManager.gold);
 		Item gold2 = new Item(704, 416, itemTypeManager.gold);
@@ -31,13 +29,7 @@ public class ItemManager {
 		Item apple1 = new Item(544, 544, itemTypeManager.apple);
 		Item apple2 = new Item(672, 544, itemTypeManager.apple);
 
-		Item metalArmor1 = new Item(640, 640, itemTypeManager.metalArmor);
-		
-		Item boots1 = new Item(640, 672, itemTypeManager.boots);
 
-		Item woodSword1 = new Item(640, 480, itemTypeManager.woodSword);
-				
-		Item leatherHelmet1 = new Item(672, 480, itemTypeManager.leatherHelmet);
 
 		Item arrow1 = new Item(768, 480, itemTypeManager.arrow);
 	
@@ -46,7 +38,6 @@ public class ItemManager {
 		Item bone3 = new Item(864, 640, itemTypeManager.bone);
 		Item bone4 = new Item(896, 384, itemTypeManager.bone);
 
-		Item bow1 = new Item(512, 256, itemTypeManager.bow);
 		
 		Item bread1 = new Item(864, 320, itemTypeManager.bread);
 
@@ -102,34 +93,24 @@ public class ItemManager {
 		
 		Item veryBigManaPotion1 = new Item(64, 0, itemTypeManager.veryBigManaPotion);
 		
-		Item leatherArmor1 = new Item(128, 0, itemTypeManager.leatherArmor);
 		
 		Item multipleSticks1 = new Item(256, 0, itemTypeManager.multipleSticks);
 		
-		Item stick1 = new Item(320, 0, itemTypeManager.stick);
 		
 		Item wheat1 = new Item(320, 32, itemTypeManager.wheat);
 		
 		Item trophy1 = new Item(364, 32, itemTypeManager.trophy);
 	
-		itemList.add(helmet1);
-		itemList.add(helmet2);
-		itemList.add(helmet3);
 		itemList.add(gold1);
 		itemList.add(gold2);
 		itemList.add(gold3);
 		itemList.add(apple1);
 		itemList.add(apple2);
-		itemList.add(metalArmor1);
-		itemList.add(boots1);
-		itemList.add(woodSword1);
-		itemList.add(leatherHelmet1);
 		itemList.add(arrow1);
 		itemList.add(bone1);
 		itemList.add(bone2);
 		itemList.add(bone3);
 		itemList.add(bone4);
-		itemList.add(bow1);
 		itemList.add(bread1);
 		itemList.add(carrot1);
 		itemList.add(rawChicken1);
@@ -157,9 +138,7 @@ public class ItemManager {
 		itemList.add(mediumManaPotion1);
 		itemList.add(bigManaPotion1);
 		itemList.add(veryBigManaPotion1);
-		itemList.add(leatherArmor1);
 		itemList.add(multipleSticks1);
-		itemList.add(stick1);
 		itemList.add(wheat1);
 		itemList.add(trophy1);
 		

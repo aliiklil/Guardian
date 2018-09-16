@@ -17,7 +17,7 @@ public class ChestManager {
 	
 	public ChestManager() throws SlickException {
 		
-		Item boots1 = new Item(0, 0, itemTypeManager.boots);
+		Item boots1 = new Item(0, 0, itemTypeManager.bone);
 		Item bone1 = new Item(0, 0, itemTypeManager.bone);
 		Item rawFish1 = new Item(0, 0, itemTypeManager.rawFish);
 		
