@@ -35,8 +35,16 @@ public class ItemManager {
 		Item longbow = new Item(480, 416, itemTypeManager.longbow);
 		Item recurvedbow = new Item(480, 416, itemTypeManager.recurvedbow);
 		
+		Item firespell = new Item(480, 416, itemTypeManager.firespell);
+		Item firespell2 = new Item(480, 416, itemTypeManager.firespell);
+		Item icespell = new Item(480, 416, itemTypeManager.icespell);
+		Item icespell2 = new Item(480, 416, itemTypeManager.icespell);
+		
 		Item chainhat = new Item(480, 416, itemTypeManager.chainhat);
+		Item chainhat2 = new Item(480, 416, itemTypeManager.chainhat);
+		Item chainhat3 = new Item(480, 416, itemTypeManager.chainhat);
 		Item chainhelmet = new Item(480, 416, itemTypeManager.chainhelmet);
+		Item chainhelmet2 = new Item(480, 416, itemTypeManager.chainhelmet);
 		Item clothhoods = new Item(480, 416, itemTypeManager.clothhoods);
 		Item goldenhelmet = new Item(480, 416, itemTypeManager.goldenhelmet);
 		Item leathercap = new Item(480, 416, itemTypeManager.leathercap);
@@ -163,9 +171,16 @@ public class ItemManager {
 		itemList.add(longbow);
 		itemList.add(recurvedbow);
 		
+		itemList.add(firespell);
+		itemList.add(firespell2);
+		itemList.add(icespell);
+		itemList.add(icespell2);
 		
 		itemList.add(chainhat);
+		itemList.add(chainhat2);
+		itemList.add(chainhat3);
 		itemList.add(chainhelmet);
+		itemList.add(chainhelmet2);
 		itemList.add(clothhoods);
 		itemList.add(goldenhelmet);
 		itemList.add(leathercap);

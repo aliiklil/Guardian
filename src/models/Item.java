@@ -18,6 +18,8 @@ public class Item {
 			
 	private final ItemType itemType;
 	
+	private boolean isEquipped;
+	
 	public Item(float x, float y, ItemType itemType) throws SlickException {
 		
 		this.itemType = itemType;
@@ -30,6 +32,8 @@ public class Item {
 		
 		collisionBox = new CollisionBox(relativeToMapX, relativeToMapY, itemType.getSpriteWidth(), itemType.getSpriteHeight());
 				
+		isEquipped = false;
+		
 	}
 
 	public void update() {
@@ -54,6 +58,14 @@ public class Item {
 	
 	public ItemType getItemType() {
 		return itemType;
+	}
+
+	public boolean isEquipped() {
+		return isEquipped;
+	}
+
+	public void setEquipped(boolean isEquipped) {
+		this.isEquipped = isEquipped;
 	}
 	
 }

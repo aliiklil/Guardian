@@ -19,7 +19,11 @@ public class ItemType {
 	
 	private final int inventoryPriority;
 	
-	public ItemType(int spriteWidth, int spriteHeight, int duration, String path, String name, int value, int inventoryPriority) throws SlickException {
+	private final boolean equippable;
+	
+	private final String itemCategory; 
+	
+	public ItemType(int spriteWidth, int spriteHeight, int duration, String path, String name, int value, int inventoryPriority, boolean equippable, String itemCategory) throws SlickException {
 		
 		this.spriteWidth = spriteWidth;
 		this.spriteHeight = spriteHeight;
@@ -31,10 +35,14 @@ public class ItemType {
 		this.name = name;
 		this.value = value;
 		this.inventoryPriority = inventoryPriority;
+		this.equippable = equippable;
+		this.itemCategory = itemCategory;
 		
 				
 	}
 	
+
+
 	public int getSpriteWidth() {
 		return spriteWidth;
 	}
@@ -65,6 +73,14 @@ public class ItemType {
 	
 	public int getInventoryPriority() {
 		return inventoryPriority;
+	}
+	
+	public boolean isEquippable() {
+		return equippable;
+	}
+	
+	public String getItemCategory() {
+		return itemCategory;
 	}
 	
 }

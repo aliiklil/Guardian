@@ -19,6 +19,7 @@ public class Inventory {
 	private boolean inventoryOpen = false;
 	private Image inventoryImage = new Image("resources/inventory.png");
 	private Image selectedCellImage = new Image("resources/inventory_selected_cell.png");
+	private Image equippedItemImage = new Image("resources/inventory_equipped_item.png");
 	private int selectedCellX = 0;
 	private int selectedCellY = 0;
 	
@@ -67,6 +68,24 @@ public class Inventory {
 		}	
 		
 		if(inventoryOpen) {
+			
+			if(player.isYPressed()) {
+				if(inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).getItemType().isEquippable()) {
+					if(inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).isEquipped()) {
+						inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).setEquipped(false);
+					} else {
+					
+						for(Item item : inventoryList) {
+							if(item.isEquipped() && item.getItemType().getItemCategory().equals(inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).getItemType().getItemCategory())) {
+								item.setEquipped(false);
+							}							
+						}
+						
+						inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).setEquipped(true);
+						
+					}
+				} 
+			}
 			
 			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
 				
@@ -192,6 +211,11 @@ public class Inventory {
 					g.drawString(itemCountList.get(i).toString(), 1550 + column * 78, 365 + row * 78);
 				}
 				
+				if(inventoryList.get(i).isEquipped()) {
+					g.drawImage(equippedItemImage, 1484 + column * 78, 305 + row * 78);
+								
+				}
+						
 				column++;
 				
 				if(column >= 5) {
@@ -199,6 +223,46 @@ public class Inventory {
 					row++;
 				}
 				
+			}
+			
+			for(Item item : inventoryList) {
+				if(item.isEquipped()) {
+					if(item.getItemType().getItemCategory().equals("melee")) {
+						item.getItemType().getInventoryAnimation().draw(52, 313);
+					}
+					
+					if(item.getItemType().getItemCategory().equals("bow")) {
+						item.getItemType().getInventoryAnimation().draw(130, 313);
+					}
+					
+					if(item.getItemType().getItemCategory().equals("spell")) {
+						item.getItemType().getInventoryAnimation().draw(208, 313);
+					}
+					
+					if(item.getItemType().getItemCategory().equals("helmet")) {
+						item.getItemType().getInventoryAnimation().draw(130, 469);
+					}
+					
+					if(item.getItemType().getItemCategory().equals("torso")) {
+						item.getItemType().getInventoryAnimation().draw(130, 547);
+					}
+					
+					if(item.getItemType().getItemCategory().equals("hands")) {
+						item.getItemType().getInventoryAnimation().draw(52, 547);
+					}
+					
+					if(item.getItemType().getItemCategory().equals("hands")) {
+						item.getItemType().getInventoryAnimation().draw(208, 547);
+					}
+					
+					if(item.getItemType().getItemCategory().equals("legarmor")) {
+						item.getItemType().getInventoryAnimation().draw(130, 625);
+					}
+					
+					if(item.getItemType().getItemCategory().equals("boots")) {
+						item.getItemType().getInventoryAnimation().draw(130, 703);
+					}
+				}
 			}
 			
 			if(!inventoryList.isEmpty()) {
