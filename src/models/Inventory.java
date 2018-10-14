@@ -70,19 +70,94 @@ public class Inventory {
 		if(inventoryOpen) {
 			
 			if(player.isYPressed()) {
-				if(inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).getItemType().isEquippable()) {
-					if(inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).isEquipped()) {
-						inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).setEquipped(false);
-					} else {
-					
-						for(Item item : inventoryList) {
-							if(item.isEquipped() && item.getItemType().getItemCategory().equals(inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).getItemType().getItemCategory())) {
-								item.setEquipped(false);
-							}							
+				
+				Item itemToEquip = inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX);
+				
+				if(itemToEquip.getItemType().isEquippable()) {
+					if(itemToEquip.isEquipped()) {
+						itemToEquip.setEquipped(false);
+						
+						if(itemToEquip.getItemType().getItemCategory().equals("melee_slay") || itemToEquip.getItemType().getItemCategory().equals("melee_thrust")) {
+							player.setEquippedMelee(null);
+							player.setCurrentMeleeAnimation(null);
+						} else if(itemToEquip.getItemType().getItemCategory().equals("bow")) {
+							player.setEquippedBow(null);
+							player.setCurrentBowAnimation(null);
+						} else if(itemToEquip.getItemType().getItemCategory().equals("spell")) {
+							player.setEquippedSpell(null);
+							player.setCurrentSpellAnimation(null);
+						} else if(itemToEquip.getItemType().getItemCategory().equals("head")) {
+							player.setEquippedHead(null);
+							player.setCurrentHeadAnimation(null);
+						} else if(itemToEquip.getItemType().getItemCategory().equals("chest")) {
+							player.setEquippedTorso(null);
+							player.setCurrentChestAnimation(null);
+						} else if(itemToEquip.getItemType().getItemCategory().equals("hands")) {
+							player.setEquippedHands(null);
+							player.setCurrentHandsAnimation(null);
+						} else if(itemToEquip.getItemType().getItemCategory().equals("legs")) {
+							player.setEquippedLegs(null);
+							player.setCurrentLegsAnimation(null);
+						} else if(itemToEquip.getItemType().getItemCategory().equals("feet")) {
+							player.setEquippedBoots(null);
+							player.setCurrentFeetAnimation(null);
 						}
 						
-						inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX).setEquipped(true);
+						if(player.getCurrentAnimation() == player.getLookUpAnimation()) {
+							player.setAnimationsToLookUp();
+						} else  if(player.getCurrentAnimation() == player.getLookDownAnimation()) {
+							player.setAnimationsToLookDown();
+						} else if(player.getCurrentAnimation() == player.getLookLeftAnimation()) {
+							player.setAnimationsToLookLeft();
+						} else if(player.getCurrentAnimation() == player.getLookRightAnimation()) {
+							player.setAnimationsToLookRight();
+						}
 						
+						
+					} else {
+						for(Item item : inventoryList) {
+							if(item.isEquipped() && item.getItemType().getItemCategory().equals(itemToEquip.getItemType().getItemCategory())) {
+								item.setEquipped(false);
+							}							
+							
+							if(item.isEquipped() && (item.getItemType().getItemCategory().equals("melee_slay") && itemToEquip.getItemType().getItemCategory().equals("melee_thrust") 
+												 || item.getItemType().getItemCategory().equals("melee_thrust") && itemToEquip.getItemType().getItemCategory().equals("melee_slay"))) {
+							
+								item.setEquipped(false);
+								
+							}
+						}
+						
+						itemToEquip.setEquipped(true);
+						
+						if(itemToEquip.getItemType().getItemCategory().equals("melee_slay") || itemToEquip.getItemType().getItemCategory().equals("melee_thrust")) {
+							player.setEquippedMelee(itemToEquip.getItemType());
+						} else if(itemToEquip.getItemType().getItemCategory().equals("bow")) {
+							player.setEquippedBow(itemToEquip.getItemType());
+						} else if(itemToEquip.getItemType().getItemCategory().equals("spell")) {
+							player.setEquippedSpell(itemToEquip.getItemType());
+						} else if(itemToEquip.getItemType().getItemCategory().equals("head")) {
+							player.setEquippedHead(itemToEquip.getItemType());
+						} else if(itemToEquip.getItemType().getItemCategory().equals("chest")) {
+							player.setEquippedTorso(itemToEquip.getItemType());
+						} else if(itemToEquip.getItemType().getItemCategory().equals("hands")) {
+							player.setEquippedHands(itemToEquip.getItemType());
+						} else if(itemToEquip.getItemType().getItemCategory().equals("legs")) {
+							player.setEquippedLegs(itemToEquip.getItemType());
+						} else if(itemToEquip.getItemType().getItemCategory().equals("feet")) {
+							player.setEquippedBoots(itemToEquip.getItemType());
+						}
+						
+						if(player.getCurrentAnimation() == player.getLookUpAnimation()) {
+							player.setAnimationsToLookUp();
+						} else  if(player.getCurrentAnimation() == player.getLookDownAnimation()) {
+							player.setAnimationsToLookDown();
+						} else if(player.getCurrentAnimation() == player.getLookLeftAnimation()) {
+							player.setAnimationsToLookLeft();
+						} else if(player.getCurrentAnimation() == player.getLookRightAnimation()) {
+							player.setAnimationsToLookRight();
+						}
+											
 					}
 				} 
 			}
@@ -227,7 +302,7 @@ public class Inventory {
 			
 			for(Item item : inventoryList) {
 				if(item.isEquipped()) {
-					if(item.getItemType().getItemCategory().equals("melee")) {
+					if(item.getItemType().getItemCategory().equals("melee_slay") || item.getItemType().getItemCategory().equals("melee_thrust")) {
 						item.getItemType().getInventoryAnimation().draw(52, 313);
 					}
 					
@@ -239,11 +314,11 @@ public class Inventory {
 						item.getItemType().getInventoryAnimation().draw(208, 313);
 					}
 					
-					if(item.getItemType().getItemCategory().equals("helmet")) {
+					if(item.getItemType().getItemCategory().equals("head")) {
 						item.getItemType().getInventoryAnimation().draw(130, 469);
 					}
 					
-					if(item.getItemType().getItemCategory().equals("torso")) {
+					if(item.getItemType().getItemCategory().equals("chest")) {
 						item.getItemType().getInventoryAnimation().draw(130, 547);
 					}
 					
@@ -255,11 +330,11 @@ public class Inventory {
 						item.getItemType().getInventoryAnimation().draw(208, 547);
 					}
 					
-					if(item.getItemType().getItemCategory().equals("legarmor")) {
+					if(item.getItemType().getItemCategory().equals("legs")) {
 						item.getItemType().getInventoryAnimation().draw(130, 625);
 					}
 					
-					if(item.getItemType().getItemCategory().equals("boots")) {
+					if(item.getItemType().getItemCategory().equals("feet")) {
 						item.getItemType().getInventoryAnimation().draw(130, 703);
 					}
 				}
@@ -336,5 +411,11 @@ public class Inventory {
 	public void incrementGoldCounter() {
 		goldCounter++;
 	}
+
+	public ArrayList<Item> getInventoryList() {
+		return inventoryList;
+	}
+	
+	
 	
 }

@@ -55,15 +55,25 @@ public abstract class Character {
 	private Animation goLeftAnimation;
 	private Animation goRightAnimation;
 	
-	private Animation attackUpAnimation;
-	private Animation attackDownAnimation;
-	private Animation attackLeftAnimation;
-	private Animation attackRightAnimation;
+	private Animation slayUpAnimation;
+	private Animation slayDownAnimation;
+	private Animation slayLeftAnimation;
+	private Animation slayRightAnimation;
 	
-	private Animation prepareAttackUpAnimation;
-	private Animation prepareAttackDownAnimation;
-	private Animation prepareAttackLeftAnimation;
-	private Animation prepareAttackRightAnimation;
+	private Animation prepareSlayUpAnimation;
+	private Animation prepareSlayDownAnimation;
+	private Animation prepareSlayLeftAnimation;
+	private Animation prepareSlayRightAnimation;
+	
+	private Animation thrustUpAnimation;
+	private Animation thrustDownAnimation;
+	private Animation thrustLeftAnimation;
+	private Animation thrustRightAnimation;
+	
+	private Animation prepareThrustUpAnimation;
+	private Animation prepareThrustDownAnimation;
+	private Animation prepareThrustLeftAnimation;
+	private Animation prepareThrustRightAnimation;
 	
 	private Animation shootUpAnimation;
 	private Animation shootDownAnimation;
@@ -92,42 +102,58 @@ public abstract class Character {
 		spriteSheet = new SpriteSheet(spriteSheetPath, 64, 64);
 		overSizeSpriteSheet = new SpriteSheet(spriteSheetPath, 192, 192);
 		
-		lookUpAnimation = new Animation(spriteSheet, 0, 8, 0, 8, true, 100, true);
-		lookDownAnimation = new Animation(spriteSheet, 0, 10, 0, 10, true, 100, true);
-		lookLeftAnimation = new Animation(spriteSheet, 0, 9, 0, 9, true, 100, true);
-		lookRightAnimation = new Animation(spriteSheet, 0, 11, 0, 11, true, 100, true);
+		lookUpAnimation = new Animation(spriteSheet, 0, 8, 0, 8, true, 100, false);
+		lookDownAnimation = new Animation(spriteSheet, 0, 10, 0, 10, true, 100, false);
+		lookLeftAnimation = new Animation(spriteSheet, 0, 9, 0, 9, true, 100, false);
+		lookRightAnimation = new Animation(spriteSheet, 0, 11, 0, 11, true, 100, false);
 		
-		goUpAnimation = new Animation(spriteSheet, 1, 8, 8, 8, true, 100, true);
-		goDownAnimation = new Animation(spriteSheet, 1, 10, 8, 10, true, 100, true);
-		goLeftAnimation = new Animation(spriteSheet, 1, 9, 8, 9, true, 100, true);
-		goRightAnimation = new Animation(spriteSheet, 1, 11, 8, 11, true, 100, true);
+		goUpAnimation = new Animation(spriteSheet, 1, 8, 8, 8, true, 100, false);
+		goDownAnimation = new Animation(spriteSheet, 1, 10, 8, 10, true, 100, false);
+		goLeftAnimation = new Animation(spriteSheet, 1, 9, 8, 9, true, 100, false);
+		goRightAnimation = new Animation(spriteSheet, 1, 11, 8, 11, true, 100, false);
 		
-		attackUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 5, 7, true, 100, true);
-		attackDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 5, 9, true, 100, true);
-		attackLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 5, 8, true, 100, true);
-		attackRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 5, 10, true, 100, true);
+		slayUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 5, 7, true, 100, false);
+		slayDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 5, 9, true, 100, false);
+		slayLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 5, 8, true, 100, false);
+		slayRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 5, 10, true, 100, false);
 		
-		prepareAttackUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 2, 7, true, 100, true);
-		prepareAttackDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 2, 9, true, 100, true);
-		prepareAttackLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 2, 8, true, 100, true);
-		prepareAttackRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 2, 10, true, 100, true);
+		prepareSlayUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 2, 7, true, 100, false);
+		prepareSlayDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 2, 9, true, 100, false);
+		prepareSlayLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 2, 8, true, 100, false);
+		prepareSlayRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 2, 10, true, 100, false);
 
-		shootUpAnimation = new Animation(spriteSheet, 0, 16, 8, 16, true, 100, true);
-		shootDownAnimation = new Animation(spriteSheet, 0, 18, 8, 18, true, 100, true);
-		shootLeftAnimation = new Animation(spriteSheet, 0, 17, 8, 17, true, 100, true);
-		shootRightAnimation = new Animation(spriteSheet, 0, 19, 8, 19, true, 100, true);
+		thrustUpAnimation = new Animation(overSizeSpriteSheet, 3, 11, 7, 11, true, 100, false);
+		thrustDownAnimation = new Animation(overSizeSpriteSheet, 3, 13, 7, 13, true, 100, false);
+		thrustLeftAnimation = new Animation(overSizeSpriteSheet, 3, 12, 7, 12, true, 100, false);
+		thrustRightAnimation = new Animation(overSizeSpriteSheet, 3, 14, 7, 14, true, 100, false);
 		
-		spellUpAnimation = new Animation(spriteSheet, 0, 0, 6, 0, true, 100, true);
-		spellDownAnimation = new Animation(spriteSheet, 0, 2, 6, 2, true, 100, true);
-		spellLeftAnimation = new Animation(spriteSheet, 0, 1, 6, 1, true, 100, true);
-		spellRightAnimation = new Animation(spriteSheet, 0, 3, 6, 3, true, 100, true);
-		
-		dieAnimation = new Animation(spriteSheet, 0, 20, 5, 20, true, 100, true);
+		prepareThrustUpAnimation = new Animation(overSizeSpriteSheet, 3, 11, 3, 11, true, 100, false);
+		prepareThrustDownAnimation = new Animation(overSizeSpriteSheet, 3, 13, 3, 13, true, 100, false);
+		prepareThrustLeftAnimation = new Animation(overSizeSpriteSheet, 3, 12, 3, 12, true, 100, false);
+		prepareThrustRightAnimation = new Animation(overSizeSpriteSheet, 3, 14, 3, 14, true, 100, false);
 
-		attackUpAnimation.setLooping(false);
-		attackDownAnimation.setLooping(false);
-		attackLeftAnimation.setLooping(false);
-		attackRightAnimation.setLooping(false);
+		shootUpAnimation = new Animation(spriteSheet, 0, 16, 8, 16, true, 100, false);
+		shootDownAnimation = new Animation(spriteSheet, 0, 18, 8, 18, true, 100, false);
+		shootLeftAnimation = new Animation(spriteSheet, 0, 17, 8, 17, true, 100, false);
+		shootRightAnimation = new Animation(spriteSheet, 0, 19, 8, 19, true, 100, false);
+		
+		spellUpAnimation = new Animation(spriteSheet, 0, 0, 6, 0, true, 100, false);
+		spellDownAnimation = new Animation(spriteSheet, 0, 2, 6, 2, true, 100, false);
+		spellLeftAnimation = new Animation(spriteSheet, 0, 1, 6, 1, true, 100, false);
+		spellRightAnimation = new Animation(spriteSheet, 0, 3, 6, 3, true, 100, false);
+		
+		dieAnimation = new Animation(spriteSheet, 0, 20, 5, 20, true, 100, false);
+
+		
+		slayUpAnimation.setLooping(false);
+		slayDownAnimation.setLooping(false);
+		slayLeftAnimation.setLooping(false);
+		slayRightAnimation.setLooping(false);
+		
+		thrustUpAnimation.setLooping(false);
+		thrustDownAnimation.setLooping(false);
+		thrustLeftAnimation.setLooping(false);
+		thrustRightAnimation.setLooping(false);
 		
 		shootUpAnimation.setLooping(false);
 		shootDownAnimation.setLooping(false);
@@ -148,6 +174,48 @@ public abstract class Character {
 		
 		centerXTile = (int) (centerX / Main.TILE_SIZE);
 		centerYTile = (int) (centerY / Main.TILE_SIZE);
+		
+		lookUpAnimation.setAutoUpdate(true);
+		lookDownAnimation.setAutoUpdate(true);
+		lookLeftAnimation.setAutoUpdate(true);
+		lookRightAnimation.setAutoUpdate(true);
+		
+		goUpAnimation.setAutoUpdate(true);
+		goDownAnimation.setAutoUpdate(true);
+		goLeftAnimation.setAutoUpdate(true);
+		goRightAnimation.setAutoUpdate(true);
+		
+		slayUpAnimation.setAutoUpdate(true);
+		slayDownAnimation.setAutoUpdate(true);
+		slayLeftAnimation.setAutoUpdate(true);
+		slayRightAnimation.setAutoUpdate(true);
+		
+		prepareSlayUpAnimation.setAutoUpdate(true);
+		prepareSlayDownAnimation.setAutoUpdate(true);
+		prepareSlayLeftAnimation.setAutoUpdate(true);
+		prepareSlayRightAnimation.setAutoUpdate(true);
+
+		thrustUpAnimation.setAutoUpdate(true);
+		thrustDownAnimation.setAutoUpdate(true);
+		thrustLeftAnimation.setAutoUpdate(true);
+		thrustRightAnimation.setAutoUpdate(true);
+		
+		prepareThrustUpAnimation.setAutoUpdate(true);
+		prepareThrustDownAnimation.setAutoUpdate(true);
+		prepareThrustLeftAnimation.setAutoUpdate(true);
+		prepareThrustRightAnimation.setAutoUpdate(true);
+
+		shootUpAnimation.setAutoUpdate(true);
+		shootDownAnimation.setAutoUpdate(true);
+		shootLeftAnimation.setAutoUpdate(true);
+		shootRightAnimation.setAutoUpdate(true);
+		
+		spellUpAnimation.setAutoUpdate(true);
+		spellDownAnimation.setAutoUpdate(true);
+		spellLeftAnimation.setAutoUpdate(true);
+		spellRightAnimation.setAutoUpdate(true);
+		
+		dieAnimation.setAutoUpdate(true);
 		
 	}
 	
@@ -369,37 +437,70 @@ public abstract class Character {
 		return goRightAnimation;
 	}
 
-	public Animation getAttackUpAnimation() {
-		return attackUpAnimation;
+	public Animation getSlayUpAnimation() {
+		return slayUpAnimation;
 	}
 
-	public Animation getAttackDownAnimation() {
-		return attackDownAnimation;
+	public Animation getSlayDownAnimation() {
+		return slayDownAnimation;
 	}
 
-	public Animation getAttackLeftAnimation() {
-		return attackLeftAnimation;
+	public Animation getSlayLeftAnimation() {
+		return slayLeftAnimation;
 	}
 
-	public Animation getAttackRightAnimation() {
-		return attackRightAnimation;
-	}
-	
-	public Animation getPrepareAttackUpAnimation() {
-		return prepareAttackUpAnimation;
+	public Animation getSlayRightAnimation() {
+		return slayRightAnimation;
 	}
 
-	public Animation getPrepareAttackDownAnimation() {
-		return prepareAttackDownAnimation;
+	public Animation getPrepareSlayUpAnimation() {
+		return prepareSlayUpAnimation;
 	}
 
-	public Animation getPrepareAttackLeftAnimation() {
-		return prepareAttackLeftAnimation;
+	public Animation getPrepareSlayDownAnimation() {
+		return prepareSlayDownAnimation;
 	}
 
-	public Animation getPrepareAttackRightAnimation() {
-		return prepareAttackRightAnimation;
+	public Animation getPrepareSlayLeftAnimation() {
+		return prepareSlayLeftAnimation;
 	}
+
+	public Animation getPrepareSlayRightAnimation() {
+		return prepareSlayRightAnimation;
+	}
+
+	public Animation getThrustUpAnimation() {
+		return thrustUpAnimation;
+	}
+
+	public Animation getThrustDownAnimation() {
+		return thrustDownAnimation;
+	}
+
+	public Animation getThrustLeftAnimation() {
+		return thrustLeftAnimation;
+	}
+
+	public Animation getThrustRightAnimation() {
+		return thrustRightAnimation;
+	}
+
+	public Animation getPrepareThrustUpAnimation() {
+		return prepareThrustUpAnimation;
+	}
+
+	public Animation getPrepareThrustDownAnimation() {
+		return prepareThrustDownAnimation;
+	}
+
+	public Animation getPrepareThrustLeftAnimation() {
+		return prepareThrustLeftAnimation;
+	}
+
+	public Animation getPrepareThrustRightAnimation() {
+		return prepareThrustRightAnimation;
+	}
+
 	
 	public Animation getShootUpAnimation() {
 		return shootUpAnimation;

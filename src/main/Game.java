@@ -14,7 +14,6 @@ import manager.ItemManager;
 import manager.ItemTypeManager;
 import manager.ProjectileManager;
 import models.Map;
-import models.Player;
 
 public class Game extends BasicGameState {
 

@@ -28,8 +28,8 @@ public class CharacterManager {
 		
 		player = new Player();
 			
-		ogus = new NPC(256, 128, 200, 200, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues);
-		halrok = new NPC(640, 768, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues);
+		ogus = new NPC(256, 128, 200, 200, "resources/OrcSpriteSheet.png", true, null, DialogueManager.ogusDialogues);
+		halrok = new NPC(640, 768, 300, 300, "resources/SkeletonSpriteSheet.png", true, null, DialogueManager.halrokDialogues);
 
 		characterList.add(player);
 		characterList.add(ogus);

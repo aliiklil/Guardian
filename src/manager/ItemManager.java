@@ -7,7 +7,6 @@ import org.newdawn.slick.SlickException;
 
 import main.Game;
 import models.Item;
-import models.ItemType;
 
 public class ItemManager {
 	
@@ -27,7 +26,6 @@ public class ItemManager {
 		Item mace = new Item(480, 416, itemTypeManager.mace);
 		Item rapier = new Item(480, 416, itemTypeManager.rapier);
 		Item sabre = new Item(480, 416, itemTypeManager.sabre);
-		Item shield = new Item(480, 416, itemTypeManager.shield);
 		Item shortspear = new Item(480, 416, itemTypeManager.shortspear);
 		Item stick = new Item(480, 416, itemTypeManager.stick);
 		
@@ -45,27 +43,23 @@ public class ItemManager {
 		Item chainhat3 = new Item(480, 416, itemTypeManager.chainhat);
 		Item chainhelmet = new Item(480, 416, itemTypeManager.chainhelmet);
 		Item chainhelmet2 = new Item(480, 416, itemTypeManager.chainhelmet);
-		Item clothhoods = new Item(480, 416, itemTypeManager.clothhoods);
+		Item clothhood = new Item(480, 416, itemTypeManager.clothhood);
 		Item goldenhelmet = new Item(480, 416, itemTypeManager.goldenhelmet);
 		Item leathercap = new Item(480, 416, itemTypeManager.leathercap);
 		Item metalhelmet = new Item(480, 416, itemTypeManager.metalhelmet);
 		
-		Item brownshirt = new Item(480, 416, itemTypeManager.brownshirt);
-		Item lilashirt = new Item(480, 416, itemTypeManager.lilashirt);
-		Item redshirt = new Item(480, 416, itemTypeManager.redshirt);
+		Item shirt = new Item(480, 416, itemTypeManager.shirt);
 		Item leatherchest = new Item(480, 416, itemTypeManager.leatherchest);
 		Item chainchest = new Item(480, 416, itemTypeManager.chainchest);
 		Item metalchest = new Item(480, 416, itemTypeManager.metalchest);
 		Item goldenchest = new Item(480, 416, itemTypeManager.goldenchest);
 
-		Item leathergloves = new Item(480, 416, itemTypeManager.leathergloves);
 		Item metalgloves = new Item(480, 416, itemTypeManager.metalgloves);
 		Item goldengloves = new Item(480, 416, itemTypeManager.goldengloves);
 		
-		Item pants = new Item(480, 416, itemTypeManager.pants);
 		Item skirt = new Item(480, 416, itemTypeManager.skirt);
-		Item metallegarmor = new Item(480, 416, itemTypeManager.metallegarmor);
-		Item goldenlegarmor = new Item(480, 416, itemTypeManager.goldenlegarmor);
+		Item metalgreaves = new Item(480, 416, itemTypeManager.metalgreaves);
+		Item goldengreaves = new Item(480, 416, itemTypeManager.goldengreaves);
 				
 		Item boots = new Item(480, 416, itemTypeManager.boots);
 		Item leatherboots = new Item(480, 416, itemTypeManager.leatherboots);
@@ -162,7 +156,6 @@ public class ItemManager {
 		itemList.add(mace);
 		itemList.add(rapier);
 		itemList.add(sabre);
-		itemList.add(shield);
 		itemList.add(shortspear);
 		itemList.add(stick);
 		
@@ -181,28 +174,23 @@ public class ItemManager {
 		itemList.add(chainhat3);
 		itemList.add(chainhelmet);
 		itemList.add(chainhelmet2);
-		itemList.add(clothhoods);
+		itemList.add(clothhood);
 		itemList.add(goldenhelmet);
 		itemList.add(leathercap);
 		itemList.add(metalhelmet);
 		
-	
-		itemList.add(brownshirt);
-		itemList.add(lilashirt);
-		itemList.add(redshirt);
+		itemList.add(shirt);
 		itemList.add(leatherchest);
 		itemList.add(chainchest);
 		itemList.add(metalchest);
 		itemList.add(goldenchest);
 		
-		itemList.add(leathergloves);
 		itemList.add(metalgloves);
 		itemList.add(goldengloves);
 		
-		itemList.add(pants);
 		itemList.add(skirt);
-		itemList.add(metallegarmor);
-		itemList.add(goldenlegarmor);
+		itemList.add(metalgreaves);
+		itemList.add(goldengreaves);
 				
 		itemList.add(boots);
 		itemList.add(leatherboots);

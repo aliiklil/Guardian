@@ -10,7 +10,6 @@ import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.tiled.TiledMap;
 
 import dialogue.Dialogue;
-import dialogue.Sentence;
 import main.Game;
 import main.Main;
 import manager.CharacterManager;
@@ -420,25 +419,25 @@ public class NPC extends Character {
 					|| super.getAttackLeftCollisionBox().intersects(player.getHitBox()) || super.getAttackRightCollisionBox().intersects(player.getHitBox())) {
 				
 				if((super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) && super.getAttackUpCollisionBox().intersects(player.getHitBox())) {
-					super.setCurrentAnimation(super.getAttackUpAnimation());
+					super.setCurrentAnimation(super.getSlayUpAnimation());
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
 				if((super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) && super.getAttackDownCollisionBox().intersects(player.getHitBox())) {
-					super.setCurrentAnimation(super.getAttackDownAnimation());
+					super.setCurrentAnimation(super.getSlayDownAnimation());
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
 				if((super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) && super.getAttackLeftCollisionBox().intersects(player.getHitBox())) {
-					super.setCurrentAnimation(super.getAttackLeftAnimation());
+					super.setCurrentAnimation(super.getSlayLeftAnimation());
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
 				if((super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) && super.getAttackRightCollisionBox().intersects(player.getHitBox())) {
-					super.setCurrentAnimation(super.getAttackRightAnimation());
+					super.setCurrentAnimation(super.getSlayRightAnimation());
 					isAttacking = true;
 					damageDealt = false;
 				}
@@ -453,28 +452,28 @@ public class NPC extends Character {
 		
 		if(!damageDealt) {
 			
-			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && super.getCurrentAnimation().getFrame() == 1) {
+			if(super.getCurrentAnimation() == super.getSlayUpAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(10);
 						damageDealt = true;
 				}
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && super.getCurrentAnimation().getFrame() == 1) {
+			if(super.getCurrentAnimation() == super.getSlayDownAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackDownCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(10);
 						damageDealt = true;
 					}
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && super.getCurrentAnimation().getFrame() == 1) {
+			if(super.getCurrentAnimation() == super.getSlayLeftAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackLeftCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(10);
 						damageDealt = true;
 				}		
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && super.getCurrentAnimation().getFrame() == 1) {
+			if(super.getCurrentAnimation() == super.getSlayRightAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackRightCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(10);
 						damageDealt = true;
@@ -486,25 +485,25 @@ public class NPC extends Character {
 		if(!super.getAttackUpCollisionBox().intersects(player.getHitBox()) || !super.getAttackDownCollisionBox().intersects(player.getHitBox()) 
 				|| !super.getAttackLeftCollisionBox().intersects(player.getHitBox()) || !super.getAttackRightCollisionBox().intersects(player.getHitBox())) {
 			
-			if(super.getCurrentAnimation() == super.getAttackUpAnimation() && !super.getAttackUpCollisionBox().intersects(player.getHitBox())) {
+			if(super.getCurrentAnimation() == super.getSlayUpAnimation() && !super.getAttackUpCollisionBox().intersects(player.getHitBox())) {
 				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookUpAnimation());
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackDownAnimation() && !super.getAttackDownCollisionBox().intersects(player.getHitBox())) {
+			if(super.getCurrentAnimation() == super.getSlayDownAnimation() && !super.getAttackDownCollisionBox().intersects(player.getHitBox())) {
 				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookDownAnimation());
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackLeftAnimation() && !super.getAttackLeftCollisionBox().intersects(player.getHitBox())) {
+			if(super.getCurrentAnimation() == super.getSlayLeftAnimation() && !super.getAttackLeftCollisionBox().intersects(player.getHitBox())) {
 				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookLeftAnimation());
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackRightAnimation() && !super.getAttackRightCollisionBox().intersects(player.getHitBox())) {
+			if(super.getCurrentAnimation() == super.getSlayRightAnimation() && !super.getAttackRightCollisionBox().intersects(player.getHitBox())) {
 				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookRightAnimation());
 				isAttacking = false;
@@ -514,25 +513,25 @@ public class NPC extends Character {
 		
 		if(!player.isAlive()) {
 			
-			if(super.getCurrentAnimation() == super.getAttackUpAnimation()) {
+			if(super.getCurrentAnimation() == super.getSlayUpAnimation()) {
 				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookUpAnimation());
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackDownAnimation()) {
+			if(super.getCurrentAnimation() == super.getSlayDownAnimation()) {
 				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookDownAnimation());
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackLeftAnimation()) {
+			if(super.getCurrentAnimation() == super.getSlayLeftAnimation()) {
 				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookLeftAnimation());
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getAttackRightAnimation()) {
+			if(super.getCurrentAnimation() == super.getSlayRightAnimation()) {
 				super.getCurrentAnimation().restart();
 				super.setCurrentAnimation(super.getLookRightAnimation());
 				isAttacking = false;
