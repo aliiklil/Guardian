@@ -73,7 +73,30 @@ public class Player extends Character {
 	private ItemType equippedLegs;
 	private ItemType equippedHands;
 	private ItemType equippedBoots;
+	
+	private int level = 0;
+	private int experience = 0;
+	private int nextLevelExperience = 500;
+	private int learningPoints = 0;
+	
+	private int strength = 10;
+	private int dexterity = 10;
+	private int magicKnowledge = 10;
+	
+	private int healthPoints = 50;
+	private int mana = 20;
+	
+	private int swordSkill = 10;
+	private int spearSkill = 10;
+	private int bowSkill = 10;
+	private int spellSkill = 10;
 
+	private boolean pickLocks = false;
+	private boolean takeFurs = false;
+	private boolean takeTrophies = false;
+	private boolean hpRegeneration = false;
+	private boolean manaRegeneration = false;
+	
 	public Player() throws SlickException {
 
 		super(224, 64, "resources/player_sprites/player_base.png");
@@ -2591,6 +2614,78 @@ public class Player extends Character {
 
 	public void setCurrentFeetAnimation(Animation currentFeetAnimation) {
 		this.currentFeetAnimation = currentFeetAnimation;
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public int getNextLevelExperience() {
+		return nextLevelExperience;
+	}
+
+	public int getLearningPoints() {
+		return learningPoints;
+	}
+	
+	public int getStrength() {
+		return strength;
+	}
+	
+	public int getDexterity() {
+		return dexterity;
+	}
+
+	public int getMagicKnowledge() {
+		return magicKnowledge;
+	}
+
+	public int getHealthPoints() {
+		return healthPoints;
+	}
+
+	public int getMana() {
+		return mana;
+	}
+
+	public int getSwordSkill() {
+		return swordSkill;
+	}
+
+	public int getSpearSkill() {
+		return spearSkill;
+	}
+
+	public int getBowSkill() {
+		return bowSkill;
+	}
+
+	public int getSpellSkill() {
+		return spellSkill;
+	}
+
+	public boolean isPickLocks() {
+		return pickLocks;
+	}
+
+	public boolean isTakeFurs() {
+		return takeFurs;
+	}
+
+	public boolean isTakeTrophies() {
+		return takeTrophies;
+	}
+
+	public boolean isHpRegeneration() {
+		return hpRegeneration;
+	}
+
+	public boolean isManaRegeneration() {
+		return manaRegeneration;
 	}
 	
 }

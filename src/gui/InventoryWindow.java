@@ -265,11 +265,14 @@ public class InventoryWindow {
 	
 	public void render(Graphics g) {
 				
-		if(windowOpen) {
+		if(windowOpen) {			
 			g.drawImage(inventoryImage, 0, 0);
 			g.drawImage(selectedCellImage, 1484 + selectedCellX * 78, 305 + selectedCellY * 78);
 			
 			g.setColor(Color.white);
+			
+			drawPlayerStats(g);
+			
 			g.drawString("Gold: ", 1733, 239);
 			g.drawString(String.valueOf(goldCounter), 1853 - Integer.toString(goldCounter).length() * 9, 239);
 			
@@ -359,6 +362,83 @@ public class InventoryWindow {
 			
 		}
 							
+	}
+	
+	private void drawPlayerStats(Graphics g) {
+		
+		g.drawString("Level: ", 299, 317);
+		g.drawString("Experience: ", 299, 337);
+		g.drawString("Next Level: ", 299, 357);
+		g.drawString("Learning Points: ", 299, 377);
+		
+		g.drawString("Strength: ", 299, 417);
+		g.drawString("Dexterity: ", 299, 437);
+		g.drawString("Magic Knowledge: ", 299, 457);
+		
+		g.drawString("Health Points: ", 299, 497);
+		g.drawString("Mana: ", 299, 517);
+		
+		g.drawString("Sword Skill: ", 299, 557);
+		g.drawString("Spear Skill: ", 299, 577);
+		g.drawString("Bow Skill: ", 299, 597);
+		g.drawString("Spell Skill: ", 299, 617);
+		
+		g.drawString("Pick Locks: ", 299, 657);
+		g.drawString("Take Furs: ", 299, 677);
+		g.drawString("Take Trophies: ", 299, 697);
+		g.drawString("HP Regeneration: ", 299, 717);
+		g.drawString("Mana Regeneration: ", 299, 737);
+		
+		
+		
+		g.drawString(String.valueOf(player.getLevel()), 471, 317);
+		g.drawString(String.valueOf(player.getExperience()), 471, 337);
+		g.drawString(String.valueOf(player.getNextLevelExperience()), 471, 357);
+		g.drawString(String.valueOf(player.getLearningPoints()), 471, 377);
+		
+		g.drawString(String.valueOf(player.getStrength()), 471, 417);
+		g.drawString(String.valueOf(player.getDexterity()), 471, 437);
+		g.drawString(String.valueOf(player.getMagicKnowledge()), 471, 457);
+		
+		g.drawString(String.valueOf(player.getHealthPoints()), 471, 497);
+		g.drawString(String.valueOf(player.getMana()), 471, 517);
+		
+		g.drawString(String.valueOf(player.getSwordSkill()) + "%", 471, 557);
+		g.drawString(String.valueOf(player.getSpearSkill()) + "%", 471, 577);
+		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 597);
+		g.drawString(String.valueOf(player.getSpellSkill()) + "%", 471, 617);
+		
+		
+		if(player.isPickLocks()) {
+			g.drawString("Learned", 471, 657);
+		} else {
+			g.drawString("-", 471, 657);
+		}
+		
+		if(player.isTakeFurs()) {
+			g.drawString("Learned", 471, 677);
+		} else {
+			g.drawString("-", 471, 677);
+		}
+		
+		if(player.isTakeTrophies()) {
+			g.drawString("Learned", 471, 697);
+		} else {
+			g.drawString("-", 471, 697);
+		}
+		
+		if(player.isHpRegeneration()) {
+			g.drawString("Learned", 471, 717);
+		} else {
+			g.drawString("-", 471, 717);
+		}
+		
+		if(player.isManaRegeneration()) {
+			g.drawString("Learned", 471, 737);
+		} else {
+			g.drawString("-", 471, 737);
+		}
+				
 	}
 	
 	private void drawArrow(Graphics g) {
