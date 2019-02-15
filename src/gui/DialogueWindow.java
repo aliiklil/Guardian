@@ -1,4 +1,4 @@
-package dialogue;
+package gui;
 
 import java.awt.Font;
 import java.util.ArrayList;
@@ -10,13 +10,14 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 
+import dialogue.Dialogue;
 import main.Main;
 import manager.CharacterManager;
 
 public class DialogueWindow {
 
 	private Image image = new Image("resources/dialogue_window.png");
-	private boolean active = false;
+	private boolean windowOpen = false;
 	private ArrayList<Dialogue> startingDialogues;
 	private ArrayList<Dialogue> currentDialogues;
 	
@@ -46,7 +47,7 @@ public class DialogueWindow {
 	
 	public void showWindow(ArrayList<Dialogue> startingDialogues) {
 		
-		active = true;
+		windowOpen = true;
 		this.startingDialogues = startingDialogues;
 		currentDialogues = startingDialogues;
 		
@@ -54,9 +55,7 @@ public class DialogueWindow {
 	
 	public void update() throws SlickException {
 		
-		
-		
-		if(active) {
+		if(windowOpen) {
 			
 			if(sentenceCount == 0) {
 				if(input.isKeyPressed(Input.KEY_UP)) {
@@ -140,7 +139,7 @@ public class DialogueWindow {
 					} 
 					
 				} else if(selectedOption == currentDialogues.size() && currentDialogues == startingDialogues) {
-					active = false;
+					windowOpen = false;
 					selectedOption = 0;
 					sentenceCount = 0;
 				}
@@ -153,7 +152,7 @@ public class DialogueWindow {
 	}
 	
 	public void render(Graphics g) {
-		if(active) {
+		if(windowOpen) {
 			g.drawImage(image, 0, 0);
 			
 			if(sentenceCount == 0) {
@@ -220,7 +219,7 @@ public class DialogueWindow {
 		}
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean isWindowOpen() {
+		return windowOpen;
 	}
 }

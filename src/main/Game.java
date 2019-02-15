@@ -72,11 +72,12 @@ public class Game extends BasicGameState {
 
 		world.renderUpperLayer(g);
 
-		CharacterManager.getPlayer().getInventory().render(g);
+		CharacterManager.getPlayer().getInventoryWindow().render(g);
 		CharacterManager.getPlayer().getHealthBar().render(g);
 		CharacterManager.getPlayer().getNewItemWindow().render(g);
 		CharacterManager.getPlayer().getDialogueWindow().render(g);
-
+		CharacterManager.getPlayer().getStatsWindow().render(g);
+		
 	}
 
 	@Override

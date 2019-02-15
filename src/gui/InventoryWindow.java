@@ -1,4 +1,4 @@
-package models;
+package gui;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,10 +13,12 @@ import org.newdawn.slick.SpriteSheet;
 
 import main.Main;
 import manager.CharacterManager;
+import models.Item;
+import models.Player;
 
-public class Inventory {
+public class InventoryWindow {
 
-	private boolean inventoryOpen = false;
+	private boolean windowOpen = false;
 	private Image inventoryImage = new Image("resources/inventory.png");
 	private Image selectedCellImage = new Image("resources/inventory_selected_cell.png");
 	private Image equippedItemImage = new Image("resources/inventory_equipped_item.png");
@@ -51,7 +53,7 @@ public class Inventory {
 	
 	private Player player;
 	
-	public Inventory() throws SlickException {
+	public InventoryWindow() throws SlickException {
 		
 	}
 	
@@ -59,15 +61,15 @@ public class Inventory {
 		
 		player = CharacterManager.getPlayer();
 		
-		if(input.isKeyPressed(Input.KEY_TAB) && !player.getDialogueWindow().isActive()) {
-			if(!inventoryOpen) {
-				inventoryOpen = true;
+		if(input.isKeyPressed(Input.KEY_TAB) && !player.getDialogueWindow().isWindowOpen()) {
+			if(!windowOpen) {
+				windowOpen = true;
 			} else {
-				inventoryOpen = false;
+				windowOpen = false;
 			}
 		}	
 		
-		if(inventoryOpen) {
+		if(windowOpen) {
 			
 			if(player.isYPressed()) {
 				
@@ -263,7 +265,7 @@ public class Inventory {
 	
 	public void render(Graphics g) {
 				
-		if(inventoryOpen) {
+		if(windowOpen) {
 			g.drawImage(inventoryImage, 0, 0);
 			g.drawImage(selectedCellImage, 1484 + selectedCellX * 78, 305 + selectedCellY * 78);
 			
@@ -404,8 +406,8 @@ public class Inventory {
 		}
 	}
 	
-	public boolean isInventoryOpen() {
-		return inventoryOpen;
+	public boolean isWindowOpen() {
+		return windowOpen;
 	}
 	
 	public void incrementGoldCounter() {

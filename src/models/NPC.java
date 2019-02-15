@@ -784,7 +784,7 @@ public class NPC extends Character {
 				setAlive(false);
 				
 				if(itemDrop != null) {
-					CharacterManager.getPlayer().getInventory().addItem(itemDrop);
+					CharacterManager.getPlayer().getInventoryWindow().addItem(itemDrop);
 					CharacterManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
 				}
 			}
