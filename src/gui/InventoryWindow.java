@@ -71,7 +71,7 @@ public class InventoryWindow {
 		
 		if(windowOpen) {
 			
-			if(player.isYPressed()) {
+			if(player.isYPressed() && inventoryList.size() > 0) {
 				
 				Item itemToEquip = inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX);
 				

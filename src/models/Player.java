@@ -17,7 +17,6 @@ import main.Game;
 import main.Main;
 import manager.CharacterManager;
 import manager.ChestManager;
-import manager.ItemTypeManager;
 import util.CollisionBox;
 
 public class Player extends Character {
@@ -294,7 +293,7 @@ public class Player extends Character {
 
 		if(!isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell) {
 
-			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen()) {
+			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 
 				if(isUpCollision(super.getMovementSpeed())) {
 
@@ -317,7 +316,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 				if(isDownCollision(super.getMovementSpeed())) {
 
 					setAnimationsToLookDown();
@@ -339,7 +338,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 
 				if(isLeftCollision(super.getMovementSpeed())) {
 
@@ -362,7 +361,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 
 				if(isRightCollision(super.getMovementSpeed())) {
 
@@ -385,7 +384,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = true;
 
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
 
@@ -418,7 +417,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
 					if(screenRelativeY > 440) {
@@ -447,7 +446,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = true;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
 					if(screenRelativeY < 576) {
@@ -476,7 +475,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
 					if(screenRelativeY < 576) {
@@ -536,7 +535,7 @@ public class Player extends Character {
 
 	private void updateAttack() {
 
-		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventoryWindow.isWindowOpen() && equippedMelee != null) {
+		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventoryWindow.isWindowOpen() && equippedMelee != null && !statsWindow.isWindowOpen()) {
 
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				setAnimationsToPrepareAttackUp();
@@ -723,7 +722,7 @@ public class Player extends Character {
 
 	private void updateShoot() throws SlickException {
 
-		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventoryWindow.isWindowOpen() & equippedBow != null) {
+		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventoryWindow.isWindowOpen() & equippedBow != null && !statsWindow.isWindowOpen()) {
 
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				if(isPreparingShot && super.getCurrentAnimation() != super.getShootUpAnimation()) {
@@ -834,7 +833,7 @@ public class Player extends Character {
 
 	private void updateSpell() throws SlickException {
 
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !statsWindow.isWindowOpen()) {
 
 			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 				if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
@@ -968,7 +967,7 @@ public class Player extends Character {
 
 	private void updateOpenChest() throws SlickException {
 
-		if(yPressed && getCurrentAnimation() == getLookUpAnimation() && !inventoryWindow.isWindowOpen()) {
+		if(yPressed && getCurrentAnimation() == getLookUpAnimation() && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 
 			ArrayList<Chest> chestList = ChestManager.getChestList();
 
@@ -989,7 +988,7 @@ public class Player extends Character {
 
 	private void updateDialogue() throws SlickException {
 
-		if(yPressed && !dialogueWindow.isWindowOpen()) {
+		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !statsWindow.isWindowOpen()) {
 
 			ArrayList<NPC> npcList = CharacterManager.getNpcList();
 
