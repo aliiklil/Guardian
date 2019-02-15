@@ -24,7 +24,7 @@ public class StatsWindow {
 		
 		player = CharacterManager.getPlayer();
 		
-		if(input.isKeyPressed(Input.KEY_C) && !player.getDialogueWindow().isWindowOpen()) {
+		if(input.isKeyPressed(Input.KEY_C) && !player.getDialogueWindow().isWindowOpen() && !player.getInventoryWindow().isWindowOpen()) {
 			if(!windowOpen) {
 				windowOpen = true;
 			} else {
