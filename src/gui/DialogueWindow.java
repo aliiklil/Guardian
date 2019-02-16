@@ -54,7 +54,7 @@ public class DialogueWindow {
 	}
 	
 	public void update() throws SlickException {
-		
+				
 		if(windowOpen) {
 			
 			if(sentenceCount == 0) {
@@ -127,12 +127,18 @@ public class DialogueWindow {
 							}
 							
 						}
+												
+						if(!startingDialogues.get(selectedStartingOption).isForLearning()
+								|| startingDialogues.get(selectedStartingOption).getChildDialogues().get(selectedOption).getSentences().get(0).getText().equals("Back")) {
+							currentDialogues = startingDialogues;
+						}
 						
-						if(!startingDialogues.isEmpty()) {
+						if(!startingDialogues.isEmpty() && !startingDialogues.get(selectedStartingOption).isPermanent()) {
 							startingDialogues.remove(selectedStartingOption);
 						}
-											
-						currentDialogues = startingDialogues;
+						
+						
+						
 						selectedOption = 0;
 						sentenceCount = 0;
 						
