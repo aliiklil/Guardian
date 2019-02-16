@@ -787,8 +787,7 @@ public class NPC extends Character {
 				setCurrentAnimation(getDieAnimation());
 				setAlive(false);
 				
-				player.setExperience(player.getExperience() + experienceForPlayer);
-				player.getCenteredText().showText("Experience + " + experienceForPlayer);
+				player.addExperience(experienceForPlayer);
 								
 				if(itemDrop != null) {
 					CharacterManager.getPlayer().getInventoryWindow().addItem(itemDrop);

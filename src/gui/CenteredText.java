@@ -17,16 +17,22 @@ public class CenteredText {
 	private int duration = 2000;
 	
 	private String text;
+	
+	private int x;
+	private int y;
 		
 	public CenteredText() throws SlickException {
 		
 	}
 	
-	public void showText(String text) {
+	public void showText(String text, int x, int y) {
 		
 		isDisplayed = true;
 		startTime = System.currentTimeMillis();
 		this.text = text;
+		
+		this.x = x;
+		this.y = y;
 		
 	}
 	
@@ -41,7 +47,7 @@ public class CenteredText {
 	public void render(Graphics g) {
 		if(isDisplayed) {
 			g.setColor(Color.white);
-			g.drawString(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+			g.drawString(text, x, y);
 		}
 	}
 	

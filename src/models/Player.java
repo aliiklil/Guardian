@@ -53,7 +53,8 @@ public class Player extends Character {
 
 	private NewItemWindow newItemWindow = new NewItemWindow();
 	private DialogueWindow dialogueWindow = new DialogueWindow();
-	private CenteredText centeredText = new CenteredText();
+	private CenteredText expGainedText = new CenteredText();
+	private CenteredText levelUpText = new CenteredText();
 
 	private boolean yPressed = false;
 
@@ -75,7 +76,7 @@ public class Player extends Character {
 	private ItemType equippedHands;
 	private ItemType equippedBoots;
 	
-	private int[] levelBorders = {100, 500, 1000, 2000, 5000, 10000};
+	private int[] levelBorders = {100, 500, 1000, 2000, 5000, 10000, 20000};
 	
 	private int level = 0;
 	private int experience = 0;
@@ -170,7 +171,8 @@ public class Player extends Character {
 			newItemWindow.update();
 			updateDialogue();
 			dialogueWindow.update();
-			centeredText.update();
+			expGainedText.update();
+			levelUpText.update();
 
 			if(!dialogueWindow.isWindowOpen()) {
 				updateMove();
@@ -2628,12 +2630,19 @@ public class Player extends Character {
 		return experience;
 	}
 	
-	public void setExperience(int experience) {
-		this.experience = experience;
+	public void addExperience(int experienceToAdd) {
+		experience = experience + experienceToAdd;
+		
+		String text = "Experience + " + experienceToAdd;
+		expGainedText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+	
 		if(experience >= levelBorders[level]) {
 			level++;
 			learningPoints = learningPoints + 10;
 			nextLevelExperience = levelBorders[level];
+			
+			text = "LEVEL UP";
+			levelUpText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2 - 20);
 		}
 	}
 	
@@ -2701,8 +2710,12 @@ public class Player extends Character {
 		return manaRegeneration;
 	}
 	
-	public CenteredText getCenteredText() {
-		return centeredText;
+	public CenteredText getExpGainedText() {
+		return expGainedText;
+	}
+	
+	public CenteredText getLevelUpText() {
+		return levelUpText;
 	}
 	
 }
