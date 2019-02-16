@@ -57,7 +57,9 @@ public class NPC extends Character {
 
 	private ArrayList<Dialogue> startingDialogues = new ArrayList<Dialogue>();
 	
-	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues) throws SlickException {
+	private int experienceForPlayer;
+	
+	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer) throws SlickException {
 
 		super(relativeToMapX, relativeToMapY, spriteSheetPath);
 		
@@ -100,6 +102,8 @@ public class NPC extends Character {
 		this.itemDrop = itemDrop;
 		
 		this.startingDialogues = startingDialogues;
+		
+		this.experienceForPlayer = experienceForPlayer;
 
 		
 	}
@@ -783,6 +787,9 @@ public class NPC extends Character {
 				setCurrentAnimation(getDieAnimation());
 				setAlive(false);
 				
+				player.setExperience(player.getExperience() + experienceForPlayer);
+				player.getCenteredText().showText("Experience + " + experienceForPlayer);
+								
 				if(itemDrop != null) {
 					CharacterManager.getPlayer().getInventoryWindow().addItem(itemDrop);
 					CharacterManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
@@ -801,6 +808,10 @@ public class NPC extends Character {
 
 	public ArrayList<Dialogue> getStartingDialogues() {
 		return startingDialogues;
+	}
+	
+	public int getExperienceForPlayer() {
+		return experienceForPlayer;
 	}
 
 }

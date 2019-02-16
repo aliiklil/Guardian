@@ -10,6 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
 import gui.DialogueWindow;
+import gui.CenteredText;
 import gui.InventoryWindow;
 import gui.NewItemWindow;
 import main.Game;
@@ -51,8 +52,8 @@ public class Player extends Character {
 	private int damageToDeal = 0;
 
 	private NewItemWindow newItemWindow = new NewItemWindow();
-
 	private DialogueWindow dialogueWindow = new DialogueWindow();
+	private CenteredText centeredText = new CenteredText();
 
 	private boolean yPressed = false;
 
@@ -74,9 +75,11 @@ public class Player extends Character {
 	private ItemType equippedHands;
 	private ItemType equippedBoots;
 	
+	private int[] levelBorders = {100, 500, 1000, 2000, 5000, 10000};
+	
 	private int level = 0;
 	private int experience = 0;
-	private int nextLevelExperience = 500;
+	private int nextLevelExperience = levelBorders[level];
 	private int learningPoints = 0;
 	
 	private int strength = 10;
@@ -96,7 +99,7 @@ public class Player extends Character {
 	private boolean takeTrophies = false;
 	private boolean hpRegeneration = false;
 	private boolean manaRegeneration = false;
-	
+			
 	public Player() throws SlickException {
 
 		super(224, 64, "resources/player_sprites/player_base.png");
@@ -167,6 +170,7 @@ public class Player extends Character {
 			newItemWindow.update();
 			updateDialogue();
 			dialogueWindow.update();
+			centeredText.update();
 
 			if(!dialogueWindow.isWindowOpen()) {
 				updateMove();
@@ -306,7 +310,7 @@ public class Player extends Character {
 		if(isPreparingSpell && super.getCurrentAnimation().getFrame() == 6 && isAlive() && prepareSpellBar.getCurrentValue() > 10) {
 			prepareSpellBar.render(g);
 		}
-
+		
 	}
 
 	private void updateMove() {
@@ -2623,7 +2627,16 @@ public class Player extends Character {
 	public int getExperience() {
 		return experience;
 	}
-
+	
+	public void setExperience(int experience) {
+		this.experience = experience;
+		if(experience >= levelBorders[level]) {
+			level++;
+			learningPoints = learningPoints + 10;
+			nextLevelExperience = levelBorders[level];
+		}
+	}
+	
 	public int getNextLevelExperience() {
 		return nextLevelExperience;
 	}
@@ -2686,6 +2699,10 @@ public class Player extends Character {
 
 	public boolean isManaRegeneration() {
 		return manaRegeneration;
+	}
+	
+	public CenteredText getCenteredText() {
+		return centeredText;
 	}
 	
 }
