@@ -100,7 +100,7 @@ public class DialogueManager {
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(0).addSentence("Strength + 5 (Costs 5LP)", "Hero");
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(0).addSentence("You are a fast learner.", "Ogus");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(0).addSentence("", "Ogus");
 
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(1).addSentence("Dexterity + 5 (Costs 5LP)", "Hero");

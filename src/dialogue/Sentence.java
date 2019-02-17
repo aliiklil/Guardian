@@ -14,6 +14,11 @@ public class Sentence {
 		return text;
 	}
 	
+	public void setText(String text) {
+		this.text = text;
+	}
+	
+	
 	public String getSpeakerName() {
 		return speakerName;
 	}

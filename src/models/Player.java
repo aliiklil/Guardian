@@ -53,7 +53,7 @@ public class Player extends Character {
 
 	private NewItemWindow newItemWindow = new NewItemWindow();
 	private DialogueWindow dialogueWindow = new DialogueWindow();
-	private CenteredText expGainedText = new CenteredText();
+	private CenteredText centeredText = new CenteredText();
 	private CenteredText levelUpText = new CenteredText();
 
 	private boolean yPressed = false;
@@ -171,7 +171,7 @@ public class Player extends Character {
 			newItemWindow.update();
 			updateDialogue();
 			dialogueWindow.update();
-			expGainedText.update();
+			centeredText.update();
 			levelUpText.update();
 
 			if(!dialogueWindow.isWindowOpen()) {
@@ -2634,7 +2634,7 @@ public class Player extends Character {
 		experience = experience + experienceToAdd;
 		
 		String text = "Experience + " + experienceToAdd;
-		expGainedText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+		centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 	
 		if(experience >= levelBorders[level]) {
 			level++;
@@ -2710,12 +2710,72 @@ public class Player extends Character {
 		return manaRegeneration;
 	}
 	
-	public CenteredText getExpGainedText() {
-		return expGainedText;
+	public CenteredText getCenteredText() {
+		return centeredText;
 	}
 	
 	public CenteredText getLevelUpText() {
 		return levelUpText;
+	}
+
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
+
+	public void setDexterity(int dexterity) {
+		this.dexterity = dexterity;
+	}
+
+	public void setMagicKnowledge(int magicKnowledge) {
+		this.magicKnowledge = magicKnowledge;
+	}
+
+	public void setHealthPoints(int healthPoints) {
+		this.healthPoints = healthPoints;
+	}
+
+	public void setMana(int mana) {
+		this.mana = mana;
+	}
+
+	public void setSwordSkill(int swordSkill) {
+		this.swordSkill = swordSkill;
+	}
+
+	public void setSpearSkill(int spearSkill) {
+		this.spearSkill = spearSkill;
+	}
+
+	public void setBowSkill(int bowSkill) {
+		this.bowSkill = bowSkill;
+	}
+
+	public void setSpellSkill(int spellSkill) {
+		this.spellSkill = spellSkill;
+	}
+
+	public void setPickLocks(boolean pickLocks) {
+		this.pickLocks = pickLocks;
+	}
+
+	public void setTakeFurs(boolean takeFurs) {
+		this.takeFurs = takeFurs;
+	}
+
+	public void setTakeTrophies(boolean takeTrophies) {
+		this.takeTrophies = takeTrophies;
+	}
+
+	public void setHpRegeneration(boolean hpRegeneration) {
+		this.hpRegeneration = hpRegeneration;
+	}
+
+	public void setManaRegeneration(boolean manaRegeneration) {
+		this.manaRegeneration = manaRegeneration;
+	}
+
+	public void setLearningPoints(int learningPoints) {
+		this.learningPoints = learningPoints;
 	}
 	
 }

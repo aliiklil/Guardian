@@ -86,7 +86,7 @@ public class CharacterManager {
 	}
 	
 	public static Player getPlayer() {
-		return (Player) player;
+		return player;
 	}
 	
 }

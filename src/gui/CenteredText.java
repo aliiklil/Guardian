@@ -38,7 +38,7 @@ public class CenteredText {
 	
 	public void update() throws SlickException {
 		
-		if(System.currentTimeMillis() - startTime >= duration || CharacterManager.getPlayer().getInventoryWindow().isWindowOpen() || CharacterManager.getPlayer().getDialogueWindow().isWindowOpen()) {
+		if(System.currentTimeMillis() - startTime >= duration) {
 			isDisplayed = false;
 		}
 		
