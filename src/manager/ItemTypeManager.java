@@ -18,9 +18,11 @@ public class ItemTypeManager {
 	public ItemType dragonspear = new ItemType(1, "resources/items/1melee/dragonspear.png", "Dragonspear", 500, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/dragonspear.png");
 	public ItemType goldspear = new ItemType(1, "resources/items/1melee/goldenspear.png", "Golden Spear", 400, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/goldspear.png");
 	
-	public ItemType bow = new ItemType(1, "resources/items/2bows/bow.png", "Bow", 50, 1, true, "bow", "resources/player_sprites/weapons/bows/bow.png");
-	public ItemType longbow = new ItemType(1, "resources/items/2bows/longbow.png", "Long Bow", 200, 1, true, "bow", "resources/player_sprites/weapons/bows/longbow.png");
-	public ItemType recurvedbow = new ItemType(1, "resources/items/2bows/recurvedbow.png", "Recurved Bow", 400, 1, true, "bow", "resources/player_sprites/weapons/bows/recurvedbow.png");
+	public ItemType bow = new ItemType(1, "resources/items/2bows/bow.png", "Bow", 50, 2, true, "bow", "resources/player_sprites/weapons/bows/bow.png");
+	public ItemType longbow = new ItemType(1, "resources/items/2bows/longbow.png", "Long Bow", 200, 2, true, "bow", "resources/player_sprites/weapons/bows/longbow.png");
+	public ItemType recurvedbow = new ItemType(1, "resources/items/2bows/recurvedbow.png", "Recurved Bow", 400, 2, true, "bow", "resources/player_sprites/weapons/bows/recurvedbow.png");
+	
+	public ItemType arrow = new ItemType(1, "resources/items/3arrows/arrow.png", "Arrow", 10, 3, false, "arrow", "resources/player_sprites/empty_sprite_sheet.png");
 	
 	public ItemType firespell = new ItemType(1, "resources/items/4spells/firespell.png", "Fire Spell", 400, 4, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 	public ItemType icespell = new ItemType(1, "resources/items/4spells/icespell.png", "Ice Spell", 800, 4, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
@@ -49,8 +51,6 @@ public class ItemTypeManager {
 	public ItemType leatherboots = new ItemType(1, "resources/items/9boots/leatherboots.png", "Leather Boots", 200, 9, true, "feet", "resources/player_sprites/feet/leatherboots.png");
 	public ItemType metalboots = new ItemType(1, "resources/items/9boots/metalboots.png", "Metal Boots", 500, 9, true, "feet", "resources/player_sprites/feet/metalboots.png");
 	public ItemType goldenboots = new ItemType(1, "resources/items/9boots/goldenboots.png", "Golden Boots", 700, 9, true, "feet", "resources/player_sprites/feet/goldenboots.png");
-	
-	public ItemType arrow = new ItemType(1, "resources/items/3arrows/arrow.png", "Arrow", 10, 3, false, "arrow", "resources/player_sprites/empty_sprite_sheet.png");
 	
 	public ItemType verySmallHealingPotion = new ItemType(1,"resources/items/10healing_potions/very_small_healing_potion.png", "Very Small Healing Potion", 20, 10, false, "healingpotion", "resources/player_sprites/empty_sprite_sheet.png");
 	public ItemType smallHealingPotion = new ItemType(1, "resources/items/10healing_potions/small_healing_potion.png", "Small Healing Potionn", 35, 10, false, "healingpotion", "resources/player_sprites/empty_sprite_sheet.png");

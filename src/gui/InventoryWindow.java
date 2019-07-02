@@ -474,6 +474,7 @@ public class InventoryWindow {
 	
 	private void sortInventory() {
 		
+		//Sort after inventory priority
 		for (int i = 0; i < inventoryList.size() - 1; i++) {
 			int index = i;
 			for (int j = i + 1; j < inventoryList.size(); j++) {
@@ -484,6 +485,21 @@ public class InventoryWindow {
 			Collections.swap(inventoryList, index, i);
 			Collections.swap(itemCountList, index, i);
 		}
+		
+		//Sort after value in gold if inventory priority is the same
+		for (int i = 0; i < inventoryList.size() - 1; i++) {
+			int index = i;
+			for (int j = i + 1; j < inventoryList.size(); j++) {
+				if (inventoryList.get(j).getItemType().getInventoryPriority() == inventoryList.get(index).getItemType().getInventoryPriority() && inventoryList.get(j).getItemType().getValue() > inventoryList.get(index).getItemType().getValue()) {
+					index = j;
+				}
+			}
+			Collections.swap(inventoryList, index, i);
+			Collections.swap(itemCountList, index, i);
+		}
+		
+		
+		
 	}
 	
 	public boolean isWindowOpen() {
