@@ -1,5 +1,3 @@
-.)Items in inventory should be sorted after their value
-
 .)After player learns a skill, it should not be displayed anymore in diaglogue options
 
 .)Implement trading
