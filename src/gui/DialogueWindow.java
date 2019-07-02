@@ -162,6 +162,14 @@ public class DialogueWindow {
 		
 		Player player = CharacterManager.getPlayer();
 		
+		//If player wants to learn somethings, which he already has learned
+		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().contains("(Learned already)")) {
+			currentDialogues.get(selectedOption).getSentences().get(1).setText("You have already learned it.");
+		}
+		
+		
+		
+		
 		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Strength + 5 (Costs 5LP)")) {
 			if(player.getLearningPoints() >= 5) {
 				player.setStrength(player.getStrength() + 5);
@@ -272,6 +280,7 @@ public class DialogueWindow {
 		
 		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Pick Locks (Costs 10LP)")) {
 			if(player.getLearningPoints() >= 10) {
+				currentDialogues.get(selectedOption).getSentences().get(0).setText("Pick Locks (Learned already)");
 				player.setPickLocks(true);
 				player.setLearningPoints(player.getLearningPoints() - 10);
 				String text = "Learned: Pick Locks";
@@ -284,6 +293,7 @@ public class DialogueWindow {
 		
 		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Take Furs (Costs 10LP)")) {
 			if(player.getLearningPoints() >= 10) {
+				currentDialogues.get(selectedOption).getSentences().get(0).setText("Take Furs (Learned already)");
 				player.setTakeFurs(true);
 				player.setLearningPoints(player.getLearningPoints() - 10);
 				String text = "Learned: Take Furs";
@@ -296,6 +306,7 @@ public class DialogueWindow {
 		
 		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Take Trophies (Costs 10LP)")) {
 			if(player.getLearningPoints() >= 10) {
+				currentDialogues.get(selectedOption).getSentences().get(0).setText("Take Trophies (Learned already)");
 				player.setTakeTrophies(true);
 				player.setLearningPoints(player.getLearningPoints() - 10);
 				String text = "Learned: Take Trophies";
@@ -308,6 +319,7 @@ public class DialogueWindow {
 		
 		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("HP Regeneration (Costs 10LP)")) {
 			if(player.getLearningPoints() >= 10) {
+				currentDialogues.get(selectedOption).getSentences().get(0).setText("HP Regeneration (Learned already)");
 				player.setHpRegeneration(true);
 				player.setLearningPoints(player.getLearningPoints() - 10);
 				String text = "Learned: HP Regeneration";
@@ -320,7 +332,8 @@ public class DialogueWindow {
 		
 		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Mana Regeneration (Costs 10LP)")) {
 			if(player.getLearningPoints() >= 10) {
-				player.setManaRegeneration(true);;
+				currentDialogues.get(selectedOption).getSentences().get(0).setText("Mana Regeneration (Learned already)");
+				player.setManaRegeneration(true);
 				player.setLearningPoints(player.getLearningPoints() - 10);
 				String text = "Learned: Mana Regeneration";
 				player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
@@ -329,6 +342,7 @@ public class DialogueWindow {
 				currentDialogues.get(selectedOption).getSentences().get(1).setText("You don't have enough experience. Come back later.");
 			}
 		}
+			
 				
 	}
 	
