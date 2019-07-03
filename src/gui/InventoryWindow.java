@@ -381,6 +381,15 @@ public class InventoryWindow {
 					String damage = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDamage());
 					g.drawString(damage, 1098 - damage.length() * 9, 923);
 				}
+				
+				
+				
+				//Display protection if the item has protection
+				if(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection() > 0) {
+					g.drawString("Protection:", 652, 943);
+					String protection = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection());
+					g.drawString(protection, 1098 - protection.length() * 9, 943);
+				}
 
 	
 				
