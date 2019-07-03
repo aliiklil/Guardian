@@ -69,7 +69,15 @@ public class ItemType {
 	
 	private Animation dieAnimation;
 	
-	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath) throws SlickException {
+	//strength etc. needed to equip item
+	private int minStrength = 0;
+	private int minDexterity = 0;
+	private int minMagicKnowledge = 0;
+	
+	//only needed for weapons
+	private int damage = 0;
+	
+	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath, int minStrength, int minDexterity, int minMagicKnowledge, int damage) throws SlickException {
 		
 		mapAnimation = new Animation(new SpriteSheet(itemImagePath, spriteWidth, spriteHeight), duration);
 		inventoryAnimation = new Animation(new SpriteSheet(new Image(itemImagePath).getScaledCopy(2), spriteWidth * 2, spriteHeight * 2), duration);
@@ -148,7 +156,13 @@ public class ItemType {
 		spellRightAnimation.setLooping(false);
 		
 		dieAnimation.setLooping(false);
+		
+		this.minStrength = minStrength;
+		this.minDexterity = minDexterity;
+		this.minMagicKnowledge = minMagicKnowledge;
 	
+		this.damage = damage;
+		
 	}
 	
 	public int getSpriteWidth() {
@@ -322,5 +336,37 @@ public class ItemType {
 	public Animation getDieAnimation() {
 		return dieAnimation;
 	}
-	
+
+	public int getMinStrength() {
+		return minStrength;
+	}
+
+	public void setMinStrength(int minStrength) {
+		this.minStrength = minStrength;
+	}
+
+	public int getMinDexterity() {
+		return minDexterity;
+	}
+
+	public void setMinDexterity(int minDexterity) {
+		this.minDexterity = minDexterity;
+	}
+
+	public int getMinMagicKnowledge() {
+		return minMagicKnowledge;
+	}
+
+	public void setMinMagicKnowledge(int minMagicKnowledge) {
+		this.minMagicKnowledge = minMagicKnowledge;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
 }
