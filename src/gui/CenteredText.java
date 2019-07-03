@@ -14,7 +14,7 @@ public class CenteredText {
 	private boolean isDisplayed = false;
 	
 	private long startTime;
-	private int duration = 2000;
+	private int duration = 2500;
 	
 	private String text;
 	

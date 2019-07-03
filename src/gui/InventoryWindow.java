@@ -116,51 +116,77 @@ public class InventoryWindow {
 						}
 						
 						
-					} else if (player.getStrength() >= itemToEquip.getItemType().getMinStrength() && player.getDexterity() >= itemToEquip.getItemType().getMinDexterity() && player.getMagicKnowledge() >= itemToEquip.getItemType().getMinMagicKnowledge()){
-						for(Item item : inventoryList) {
-							if(item.isEquipped() && item.getItemType().getItemCategory().equals(itemToEquip.getItemType().getItemCategory())) {
-								item.setEquipped(false);
-							}							
+					} else {
+						if (player.getStrength() >= itemToEquip.getItemType().getMinStrength() && player.getDexterity() >= itemToEquip.getItemType().getMinDexterity() && player.getMagicKnowledge() >= itemToEquip.getItemType().getMinMagicKnowledge()) {
+							for(Item item : inventoryList) {
+								if(item.isEquipped() && item.getItemType().getItemCategory().equals(itemToEquip.getItemType().getItemCategory())) {
+									item.setEquipped(false);
+								}							
+								
+								if(item.isEquipped() && (item.getItemType().getItemCategory().equals("melee_slay") && itemToEquip.getItemType().getItemCategory().equals("melee_thrust") 
+													 || item.getItemType().getItemCategory().equals("melee_thrust") && itemToEquip.getItemType().getItemCategory().equals("melee_slay"))) {
+								
+									item.setEquipped(false);
+									
+								}
+							}
 							
-							if(item.isEquipped() && (item.getItemType().getItemCategory().equals("melee_slay") && itemToEquip.getItemType().getItemCategory().equals("melee_thrust") 
-												 || item.getItemType().getItemCategory().equals("melee_thrust") && itemToEquip.getItemType().getItemCategory().equals("melee_slay"))) {
+							itemToEquip.setEquipped(true);
 							
-								item.setEquipped(false);
+							if(itemToEquip.getItemType().getItemCategory().equals("melee_slay") || itemToEquip.getItemType().getItemCategory().equals("melee_thrust")) {
+								player.setEquippedMelee(itemToEquip.getItemType());
+							} else if(itemToEquip.getItemType().getItemCategory().equals("bow")) {
+								player.setEquippedBow(itemToEquip.getItemType());
+							} else if(itemToEquip.getItemType().getItemCategory().equals("spell")) {
+								player.setEquippedSpell(itemToEquip.getItemType());
+							} else if(itemToEquip.getItemType().getItemCategory().equals("head")) {
+								player.setEquippedHead(itemToEquip.getItemType());
+							} else if(itemToEquip.getItemType().getItemCategory().equals("chest")) {
+								player.setEquippedTorso(itemToEquip.getItemType());
+							} else if(itemToEquip.getItemType().getItemCategory().equals("hands")) {
+								player.setEquippedHands(itemToEquip.getItemType());
+							} else if(itemToEquip.getItemType().getItemCategory().equals("legs")) {
+								player.setEquippedLegs(itemToEquip.getItemType());
+							} else if(itemToEquip.getItemType().getItemCategory().equals("feet")) {
+								player.setEquippedBoots(itemToEquip.getItemType());
+							}
+							
+							if(player.getCurrentAnimation() == player.getLookUpAnimation()) {
+								player.setAnimationsToLookUp();
+							} else  if(player.getCurrentAnimation() == player.getLookDownAnimation()) {
+								player.setAnimationsToLookDown();
+							} else if(player.getCurrentAnimation() == player.getLookLeftAnimation()) {
+								player.setAnimationsToLookLeft();
+							} else if(player.getCurrentAnimation() == player.getLookRightAnimation()) {
+								player.setAnimationsToLookRight();
+							}
+						} else {
+							
+							if(player.getStrength() < itemToEquip.getItemType().getMinStrength()) {
+								
+								String text = "You need " + (itemToEquip.getItemType().getMinStrength() - player.getStrength()) + " more strength points";
+								player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 								
 							}
+							
+							
+							if(player.getDexterity() < itemToEquip.getItemType().getMinDexterity()) {
+								
+								String text = "You need " + (itemToEquip.getItemType().getMinDexterity() - player.getDexterity()) + " more dexterity points";
+								player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+								
+							}
+							
+							if(player.getMagicKnowledge() < itemToEquip.getItemType().getMinMagicKnowledge()) {
+								
+								String text = "You need " + (itemToEquip.getItemType().getMinMagicKnowledge() - player.getMagicKnowledge()) + " more magic knowledge points";
+								player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+								
+							}
+							
+							
 						}
-						
-						itemToEquip.setEquipped(true);
-						
-						if(itemToEquip.getItemType().getItemCategory().equals("melee_slay") || itemToEquip.getItemType().getItemCategory().equals("melee_thrust")) {
-							player.setEquippedMelee(itemToEquip.getItemType());
-						} else if(itemToEquip.getItemType().getItemCategory().equals("bow")) {
-							player.setEquippedBow(itemToEquip.getItemType());
-						} else if(itemToEquip.getItemType().getItemCategory().equals("spell")) {
-							player.setEquippedSpell(itemToEquip.getItemType());
-						} else if(itemToEquip.getItemType().getItemCategory().equals("head")) {
-							player.setEquippedHead(itemToEquip.getItemType());
-						} else if(itemToEquip.getItemType().getItemCategory().equals("chest")) {
-							player.setEquippedTorso(itemToEquip.getItemType());
-						} else if(itemToEquip.getItemType().getItemCategory().equals("hands")) {
-							player.setEquippedHands(itemToEquip.getItemType());
-						} else if(itemToEquip.getItemType().getItemCategory().equals("legs")) {
-							player.setEquippedLegs(itemToEquip.getItemType());
-						} else if(itemToEquip.getItemType().getItemCategory().equals("feet")) {
-							player.setEquippedBoots(itemToEquip.getItemType());
-						}
-						
-						if(player.getCurrentAnimation() == player.getLookUpAnimation()) {
-							player.setAnimationsToLookUp();
-						} else  if(player.getCurrentAnimation() == player.getLookDownAnimation()) {
-							player.setAnimationsToLookDown();
-						} else if(player.getCurrentAnimation() == player.getLookLeftAnimation()) {
-							player.setAnimationsToLookLeft();
-						} else if(player.getCurrentAnimation() == player.getLookRightAnimation()) {
-							player.setAnimationsToLookRight();
-						}
-											
-					}
+					} 
 				} 
 			}
 			
