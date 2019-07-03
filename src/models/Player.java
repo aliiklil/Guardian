@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
@@ -129,7 +130,7 @@ public class Player extends Character {
 	public void update() throws SlickException {
 
 		super.update();
-
+		System.out.println("damageToDeal" + damageToDeal);
 		prepareAttackBar.setX(getRelativeToMapX() + Game.getCurrentMap().getX() - 16);
 		prepareAttackBar.setY(getRelativeToMapY() + Game.getCurrentMap().getY() - 32);
 
@@ -611,7 +612,16 @@ public class Player extends Character {
 			}
 
 			startAllAnimations();
-			damageToDeal = 20 + prepareAttackBar.getCurrentValue();
+			damageToDeal = (equippedMelee.getDamage() + strength) * prepareAttackBar.getCurrentValue()/100;
+			
+			if(equippedMelee.getItemCategory().equals("melee_slay") && swordSkill > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 10;
+			}
+			
+			if(equippedMelee.getItemCategory().equals("melee_thrust") && spearSkill > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 10;
+			}
+			
 			isAttacking = true;
 			damageDealt = false;
 			prepareAttackBar.setCurrentValue(0);
@@ -809,7 +819,11 @@ public class Player extends Character {
 
 		if(!input.isKeyDown(Input.KEY_A) && isPreparingShot && super.getCurrentAnimation().isStopped() && !arrowCreated) {
 
-			int damageToDeal = 20 + prepareShotBar.getCurrentValue();
+			damageToDeal = (equippedBow.getDamage() + dexterity) * prepareAttackBar.getCurrentValue()/100;
+			if(bowSkill > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 10;
+			}
+			
 			int arrowVelocity = 7 + prepareShotBar.getCurrentValue() / 10;
 			prepareShotBar.setCurrentValue(0);
 
@@ -920,7 +934,11 @@ public class Player extends Character {
 
 		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
 
-			int damageToDeal = 20 + prepareSpellBar.getCurrentValue();
+			damageToDeal = (equippedSpell.getDamage() + magicKnowledge) * prepareAttackBar.getCurrentValue()/100;
+			if(spellSkill > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 10;
+			}
+			
 			int spellVelocity = 7 + prepareSpellBar.getCurrentValue() / 10;
 			prepareSpellBar.setCurrentValue(0);
 
