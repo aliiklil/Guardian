@@ -387,7 +387,7 @@ public class InventoryWindow {
 				//Display protection if the item has protection
 				if(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection() > 0) {
 					g.drawString("Protection:", 652, 943);
-					String protection = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection());
+					String protection = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection()) + "%";
 					g.drawString(protection, 1098 - protection.length() * 9, 943);
 				}
 
@@ -433,6 +433,8 @@ public class InventoryWindow {
 		g.drawString("Mana Regeneration: ", 299, 737);
 		
 		
+		g.drawString("Armor Protection: ", 299, 777);
+		
 		
 		g.drawString(String.valueOf(player.getLevel()), 471, 317);
 		g.drawString(String.valueOf(player.getExperience()), 471, 337);
@@ -450,8 +452,7 @@ public class InventoryWindow {
 		g.drawString(String.valueOf(player.getSpearSkill()) + "%", 471, 577);
 		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 597);
 		g.drawString(String.valueOf(player.getSpellSkill()) + "%", 471, 617);
-		
-		
+				
 		if(player.isPickLocks()) {
 			g.drawString("Learned", 471, 657);
 		} else {
@@ -481,6 +482,35 @@ public class InventoryWindow {
 		} else {
 			g.drawString("-", 471, 737);
 		}
+		
+		
+		
+		
+		//Compute armor protection of player
+		int summedProtection = 0;
+		
+		if(player.getEquippedHead() != null) {
+			summedProtection += player.getEquippedHead().getProtection();
+		}
+		
+		if(player.getEquippedTorso() != null) {
+			summedProtection += player.getEquippedTorso().getProtection();
+		}
+		
+		if(player.getEquippedLegs() != null) {
+			summedProtection += player.getEquippedLegs().getProtection();
+		}
+		
+		if(player.getEquippedHands() != null) {
+			summedProtection += player.getEquippedHands().getProtection();
+		}
+		
+		if(player.getEquippedBoots() != null) {
+			summedProtection += player.getEquippedBoots().getProtection();
+		}
+		
+		
+		g.drawString(String.valueOf(summedProtection + "%"), 471, 777);
 				
 	}
 	

@@ -2777,5 +2777,25 @@ public class Player extends Character {
 	public void setLearningPoints(int learningPoints) {
 		this.learningPoints = learningPoints;
 	}
-	
+
+	public ItemType getEquippedHead() {
+		return equippedHead;
+	}
+
+	public ItemType getEquippedTorso() {
+		return equippedTorso;
+	}
+
+	public ItemType getEquippedLegs() {
+		return equippedLegs;
+	}
+
+	public ItemType getEquippedHands() {
+		return equippedHands;
+	}
+
+	public ItemType getEquippedBoots() {
+		return equippedBoots;
+	}
+		
 }
