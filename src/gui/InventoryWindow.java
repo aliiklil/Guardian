@@ -116,7 +116,7 @@ public class InventoryWindow {
 						}
 						
 						
-					} else {
+					} else if (player.getStrength() >= itemToEquip.getItemType().getMinStrength() && player.getDexterity() >= itemToEquip.getItemType().getMinDexterity() && player.getMagicKnowledge() >= itemToEquip.getItemType().getMinMagicKnowledge()){
 						for(Item item : inventoryList) {
 							if(item.isEquipped() && item.getItemType().getItemCategory().equals(itemToEquip.getItemType().getItemCategory())) {
 								item.setEquipped(false);
