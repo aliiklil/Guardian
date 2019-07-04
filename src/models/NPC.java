@@ -469,9 +469,7 @@ public class NPC extends Character {
 			}
 			
 			damageToDeal = (int) (damageToDeal * (1 - player.getArmorProtection()/100.0));
-			
-			System.out.println("npcdmg " + damageToDeal);
-			
+						
 			if(super.getCurrentAnimation() == super.getSlayUpAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);

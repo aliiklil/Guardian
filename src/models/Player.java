@@ -132,7 +132,6 @@ public class Player extends Character {
 	public void update() throws SlickException {
 
 		super.update();
-		//System.out.println("damageToDeal" + damageToDeal);
 		prepareAttackBar.setX(getRelativeToMapX() + Game.getCurrentMap().getX() - 16);
 		prepareAttackBar.setY(getRelativeToMapY() + Game.getCurrentMap().getY() - 32);
 
@@ -943,7 +942,6 @@ public class Player extends Character {
 			}
 			
 			int spellVelocity = 4 + prepareSpellBar.getCurrentValue()/10 + spellSkill/10 * 2;
-			System.out.println("damageToDeal " + damageToDeal);
 			
 			prepareSpellBar.setCurrentValue(0);
 
