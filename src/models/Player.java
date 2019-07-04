@@ -104,6 +104,10 @@ public class Player extends Character {
 	private boolean manaRegeneration = false;
 	
 	private int armorProtection;
+	
+	private Bar manaBar;
+	
+	
 
 	public Player() throws SlickException {
 
@@ -114,6 +118,8 @@ public class Player extends Character {
 
 		super.setHealthBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.red));
 
+		manaBar = new Bar(Main.WIDTH - 20 - 350, Main.HEIGHT - 40, 350, 25, 5, 200, 200, Color.blue);
+		
 		prepareAttackBar = new Bar(getRelativeToMapX() + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
 		prepareShotBar = new Bar(getRelativeToMapX() + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
 		prepareSpellBar = new Bar(getRelativeToMapX() + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
@@ -2867,5 +2873,11 @@ public class Player extends Character {
 	public void setArmorProtection(int armorProtection) {
 		this.armorProtection = armorProtection;
 	}
+
+	public Bar getManaBar() {
+		return manaBar;
+	}
+	
+	
 		
 }

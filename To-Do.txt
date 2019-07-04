@@ -1,5 +1,3 @@
-.)Arrows should be equipped and removed when shooting
-
 .)Potions and food should be consumable
 
 .)Mana should go down when casting a spell

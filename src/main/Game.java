@@ -74,6 +74,7 @@ public class Game extends BasicGameState {
 
 		CharacterManager.getPlayer().getInventoryWindow().render(g);
 		CharacterManager.getPlayer().getHealthBar().render(g);
+		CharacterManager.getPlayer().getManaBar().render(g);
 		CharacterManager.getPlayer().getNewItemWindow().render(g);
 		CharacterManager.getPlayer().getDialogueWindow().render(g);
 		CharacterManager.getPlayer().getCenteredText().render(g);
