@@ -589,6 +589,12 @@ public class InventoryWindow {
 	public ArrayList<Item> getInventoryList() {
 		return inventoryList;
 	}
+
+	public ArrayList<Integer> getItemCountList() {
+		return itemCountList;
+	}
+	
+	
 	
 	
 	

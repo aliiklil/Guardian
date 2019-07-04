@@ -78,6 +78,8 @@ public class ItemManager {
 
 
 		Item arrow1 = new Item(768, 480, itemTypeManager.arrow);
+		Item arrow2 = new Item(768, 544, itemTypeManager.arrow);
+		Item arrow3 = new Item(768, 608, itemTypeManager.arrow);
 	
 		Item bone1 = new Item(800, 320, itemTypeManager.bone);
 		Item bone2 = new Item(832, 320, itemTypeManager.bone);
@@ -197,12 +199,16 @@ public class ItemManager {
 		itemList.add(metalboots);
 		itemList.add(goldenboots);
 		
+		itemList.add(arrow1);
+		itemList.add(arrow2);
+		itemList.add(arrow3);
+		
+		
 		itemList.add(gold1);
 		itemList.add(gold2);
 		itemList.add(gold3);
 		itemList.add(apple1);
 		itemList.add(apple2);
-		itemList.add(arrow1);
 		itemList.add(bone1);
 		itemList.add(bone2);
 		itemList.add(bone3);

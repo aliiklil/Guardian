@@ -18,6 +18,7 @@ import main.Game;
 import main.Main;
 import manager.CharacterManager;
 import manager.ChestManager;
+import manager.ItemTypeManager;
 import util.CollisionBox;
 
 public class Player extends Character {
@@ -758,60 +759,78 @@ public class Player extends Character {
 	}
 
 	private void updateShoot() throws SlickException {
+		
+		boolean arrowExists = false;
 
+		for(Item item : inventoryWindow.getInventoryList()) {
+			if(item.getItemType().equals(Game.getItemTypeManager().arrow)) {
+				arrowExists = true;
+				break;
+			}
+		}
+				
 		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventoryWindow.isWindowOpen() & equippedBow != null) {
 
-			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
-				if(isPreparingShot && super.getCurrentAnimation() != super.getShootUpAnimation()) {
-					int frameIndex = super.getCurrentAnimation().getFrame();
-					restartAllAnimations();
-					setAnimationsToShootUp();
-					setAllAnimationsToFrame(frameIndex);
-				} else {
-					setAnimationsToShootUp();
+			if(!arrowExists) {
+				
+				String text = "No arrows to shoot";
+				centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+				
+			} else {
+											
+				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
+					if(isPreparingShot && super.getCurrentAnimation() != super.getShootUpAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToShootUp();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToShootUp();
+					}
+					arrowCreated = false;
 				}
-				arrowCreated = false;
-			}
-
-			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
-				if(isPreparingShot && super.getCurrentAnimation() != super.getShootDownAnimation()) {
-					int frameIndex = super.getCurrentAnimation().getFrame();
-					restartAllAnimations();
-					setAnimationsToShootDown();
-					setAllAnimationsToFrame(frameIndex);
-				} else {
-					setAnimationsToShootDown();
+	
+				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
+					if(isPreparingShot && super.getCurrentAnimation() != super.getShootDownAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToShootDown();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToShootDown();
+					}
+					arrowCreated = false;
 				}
-				arrowCreated = false;
-			}
-
-			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
-				if(isPreparingShot && super.getCurrentAnimation() != super.getShootLeftAnimation()) {
-					int frameIndex = super.getCurrentAnimation().getFrame();
-					restartAllAnimations();
-					setAnimationsToShootLeft();
-					setAllAnimationsToFrame(frameIndex);
-				} else {
-					setAnimationsToShootLeft();
+	
+				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
+					if(isPreparingShot && super.getCurrentAnimation() != super.getShootLeftAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToShootLeft();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToShootLeft();
+					}
+					arrowCreated = false;
 				}
-				arrowCreated = false;
-			}
-
-			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
-				if(isPreparingShot && super.getCurrentAnimation() != super.getShootRightAnimation()) {
-					int frameIndex = super.getCurrentAnimation().getFrame();
-					restartAllAnimations();
-					setAnimationsToShootRight();
-					setAllAnimationsToFrame(frameIndex);
-				} else {
-					setAnimationsToShootRight();
+	
+				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
+					if(isPreparingShot && super.getCurrentAnimation() != super.getShootRightAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToShootRight();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToShootRight();
+					}
+					arrowCreated = false;
 				}
-				arrowCreated = false;
+	
+				startAllAnimations();
+				isPreparingShot = true;
+				
 			}
-
-			startAllAnimations();
-			isPreparingShot = true;
-
+			
 		}
 
 		if(isPreparingShot && prepareShotBar.getCurrentValue() < prepareShotBar.getMaxValue() && super.getCurrentAnimation().getFrame() == 8) {
@@ -828,6 +847,28 @@ public class Player extends Character {
 			
 			int arrowVelocity = 4 + prepareShotBar.getCurrentValue()/10 + bowSkill/10 * 2;
 			prepareShotBar.setCurrentValue(0);
+			
+			
+			//Delete arrow from inventory, or decrement arrowCount
+			for(int i = 0; i < inventoryWindow.getInventoryList().size(); i++) {
+				if(inventoryWindow.getInventoryList().get(i).getItemType().equals(Game.getItemTypeManager().arrow)) {
+					
+					int arrowCount = inventoryWindow.getItemCountList().get(i);
+					
+					if(arrowCount > 1) {
+						inventoryWindow.getItemCountList().set(i, arrowCount - 1);
+						System.out.println("AAAA");
+					}
+					
+					if(arrowCount == 1) {
+						inventoryWindow.getInventoryList().remove(i);
+					}
+					
+					break;
+				}
+			}
+			
+			
 
 			if(super.getCurrentAnimation() == super.getShootUpAnimation()) {
 				restartAllAnimations();
