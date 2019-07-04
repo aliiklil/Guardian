@@ -130,7 +130,7 @@ public class Player extends Character {
 	public void update() throws SlickException {
 
 		super.update();
-		System.out.println("damageToDeal" + damageToDeal);
+		//System.out.println("damageToDeal" + damageToDeal);
 		prepareAttackBar.setX(getRelativeToMapX() + Game.getCurrentMap().getX() - 16);
 		prepareAttackBar.setY(getRelativeToMapY() + Game.getCurrentMap().getY() - 32);
 
@@ -612,16 +612,16 @@ public class Player extends Character {
 			}
 
 			startAllAnimations();
-			damageToDeal = (equippedMelee.getDamage() + strength) * prepareAttackBar.getCurrentValue()/100;
-			
-			if(equippedMelee.getItemCategory().equals("melee_slay") && swordSkill > new Random().nextDouble()) {
-				damageToDeal = damageToDeal * 10;
+			damageToDeal = equippedMelee.getDamage() + strength + (int) ((equippedMelee.getDamage() + strength) * prepareAttackBar.getCurrentValue()/100.0) * 2;
+
+			if(equippedMelee.getItemCategory().equals("melee_slay") && swordSkill/100.0 > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 5;
 			}
 			
-			if(equippedMelee.getItemCategory().equals("melee_thrust") && spearSkill > new Random().nextDouble()) {
-				damageToDeal = damageToDeal * 10;
+			if(equippedMelee.getItemCategory().equals("melee_thrust") && spearSkill/100.0 > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 5;
 			}
-			
+
 			isAttacking = true;
 			damageDealt = false;
 			prepareAttackBar.setCurrentValue(0);
@@ -819,12 +819,13 @@ public class Player extends Character {
 
 		if(!input.isKeyDown(Input.KEY_A) && isPreparingShot && super.getCurrentAnimation().isStopped() && !arrowCreated) {
 
-			damageToDeal = (equippedBow.getDamage() + dexterity) * prepareAttackBar.getCurrentValue()/100;
-			if(bowSkill > new Random().nextDouble()) {
-				damageToDeal = damageToDeal * 10;
+			damageToDeal = equippedBow.getDamage() + dexterity + (int) ((equippedBow.getDamage() + dexterity) * prepareShotBar.getCurrentValue()/100.0) * 2;
+
+			if(bowSkill/100.0 > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 5;
 			}
 			
-			int arrowVelocity = 7 + prepareShotBar.getCurrentValue() / 10;
+			int arrowVelocity = 4 + prepareShotBar.getCurrentValue()/10 + bowSkill/10 * 2;
 			prepareShotBar.setCurrentValue(0);
 
 			if(super.getCurrentAnimation() == super.getShootUpAnimation()) {
@@ -933,13 +934,15 @@ public class Player extends Character {
 		}
 
 		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
-
-			damageToDeal = (equippedSpell.getDamage() + magicKnowledge) * prepareAttackBar.getCurrentValue()/100;
-			if(spellSkill > new Random().nextDouble()) {
-				damageToDeal = damageToDeal * 10;
+			
+			damageToDeal = equippedSpell.getDamage() + magicKnowledge + (int) ((equippedSpell.getDamage() + magicKnowledge) * prepareSpellBar.getCurrentValue()/100.0) * 2;
+			if(spellSkill/100.0 > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 5;
 			}
 			
-			int spellVelocity = 7 + prepareSpellBar.getCurrentValue() / 10;
+			int spellVelocity = 4 + prepareSpellBar.getCurrentValue()/10 + spellSkill/10 * 2;
+			System.out.println("damageToDeal " + damageToDeal);
+			
 			prepareSpellBar.setCurrentValue(0);
 
 			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {

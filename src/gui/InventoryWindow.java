@@ -376,8 +376,7 @@ public class InventoryWindow {
 				String name = inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getName();
 				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
 				
-				System.out.println(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinStrength());
-				
+
 				
 				
 				//Display minStrength, minDexterity, minMagicKnowledge if there is a requirement
