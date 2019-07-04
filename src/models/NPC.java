@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -59,7 +60,10 @@ public class NPC extends Character {
 	
 	private int experienceForPlayer;
 	
-	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer) throws SlickException {
+	private int damageOutput;
+	private double critChance;
+	
+	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer, int damageOutput, double critChance) throws SlickException {
 
 		super(relativeToMapX, relativeToMapY, spriteSheetPath);
 		
@@ -104,7 +108,9 @@ public class NPC extends Character {
 		this.startingDialogues = startingDialogues;
 		
 		this.experienceForPlayer = experienceForPlayer;
-
+		
+		this.damageOutput = damageOutput;
+		this.critChance = critChance;
 		
 	}
 
@@ -456,30 +462,40 @@ public class NPC extends Character {
 		
 		if(!damageDealt) {
 			
+			int damageToDeal = damageOutput;
+			
+			if(critChance > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 5;
+			}
+			
+			damageToDeal = (int) (damageToDeal * (1 - player.getArmorProtection()/100.0));
+			
+			System.out.println("npcdmg " + damageToDeal);
+			
 			if(super.getCurrentAnimation() == super.getSlayUpAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(10);
+						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 				}
 			}
 			
 			if(super.getCurrentAnimation() == super.getSlayDownAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackDownCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(10);
+						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 					}
 			}
 			
 			if(super.getCurrentAnimation() == super.getSlayLeftAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackLeftCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(10);
+						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 				}		
 			}
 			
 			if(super.getCurrentAnimation() == super.getSlayRightAnimation() && super.getCurrentAnimation().getFrame() == 1) {
 					if(super.getAttackRightCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
-						player.decreaseHealth(10);
+						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 					}						
 			}		

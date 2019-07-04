@@ -115,6 +115,8 @@ public class InventoryWindow {
 							player.setAnimationsToLookRight();
 						}
 						
+						//Decrease armorProtection value of value by protection of the item, which is now unequipped
+						player.setArmorProtection(player.getArmorProtection() - itemToEquip.getItemType().getProtection());
 						
 					} else {
 						if (player.getStrength() >= itemToEquip.getItemType().getMinStrength() && player.getDexterity() >= itemToEquip.getItemType().getMinDexterity() && player.getMagicKnowledge() >= itemToEquip.getItemType().getMinMagicKnowledge()) {
@@ -160,6 +162,9 @@ public class InventoryWindow {
 							} else if(player.getCurrentAnimation() == player.getLookRightAnimation()) {
 								player.setAnimationsToLookRight();
 							}
+							
+							player.setArmorProtection(player.getArmorProtection() + itemToEquip.getItemType().getProtection());
+							
 						} else {
 							
 							if(player.getStrength() < itemToEquip.getItemType().getMinStrength()) {
@@ -508,34 +513,7 @@ public class InventoryWindow {
 			g.drawString("-", 471, 737);
 		}
 		
-		
-		
-		
-		//Compute armor protection of player
-		int summedProtection = 0;
-		
-		if(player.getEquippedHead() != null) {
-			summedProtection += player.getEquippedHead().getProtection();
-		}
-		
-		if(player.getEquippedTorso() != null) {
-			summedProtection += player.getEquippedTorso().getProtection();
-		}
-		
-		if(player.getEquippedLegs() != null) {
-			summedProtection += player.getEquippedLegs().getProtection();
-		}
-		
-		if(player.getEquippedHands() != null) {
-			summedProtection += player.getEquippedHands().getProtection();
-		}
-		
-		if(player.getEquippedBoots() != null) {
-			summedProtection += player.getEquippedBoots().getProtection();
-		}
-		
-		
-		g.drawString(String.valueOf(summedProtection + "%"), 471, 777);
+		g.drawString(String.valueOf(player.getArmorProtection() + "%"), 471, 777);
 				
 	}
 	
@@ -567,7 +545,7 @@ public class InventoryWindow {
 		inventoryList.add(item);
 		
 		sortInventory();
-		
+			
 	}
 	
 	private void sortInventory() {

@@ -101,7 +101,9 @@ public class Player extends Character {
 	private boolean takeTrophies = false;
 	private boolean hpRegeneration = false;
 	private boolean manaRegeneration = false;
-			
+	
+	private int armorProtection;
+
 	public Player() throws SlickException {
 
 		super(224, 64, "resources/player_sprites/player_base.png");
@@ -2817,6 +2819,14 @@ public class Player extends Character {
 
 	public ItemType getEquippedBoots() {
 		return equippedBoots;
+	}
+	
+	public int getArmorProtection() {
+		return armorProtection;
+	}
+
+	public void setArmorProtection(int armorProtection) {
+		this.armorProtection = armorProtection;
 	}
 		
 }
