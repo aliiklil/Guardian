@@ -1,5 +1,5 @@
 .)Potions and food should be consumable
 
-.)Mana should go down when casting a spell
-
 .)Implement trading
+
+.)When pressing A, S, X even though nothing is equipped, show centered text
