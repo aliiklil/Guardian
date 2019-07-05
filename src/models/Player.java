@@ -89,8 +89,8 @@ public class Player extends Character {
 	private int dexterity = 10;
 	private int magicKnowledge = 10;
 	
-	private int healthPoints = 50;
-	private int mana = 20;
+	private int healthPoints = 200;
+	private int mana = 100;
 	
 	private int swordSkill = 10;
 	private int spearSkill = 10;

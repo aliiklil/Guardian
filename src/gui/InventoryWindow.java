@@ -73,34 +73,34 @@ public class InventoryWindow {
 			
 			if(player.isYPressed() && inventoryList.size() > 0) {
 				
-				Item itemToEquip = inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX);
+				Item selectedItem = inventoryList.get((selectedCellY + scrollOffset) * amountColumns + selectedCellX);
 				
-				if(itemToEquip.getItemType().isEquippable()) {
-					if(itemToEquip.isEquipped()) {
-						itemToEquip.setEquipped(false);
+				if(selectedItem.getItemType().isEquippable()) {
+					if(selectedItem.isEquipped()) {
+						selectedItem.setEquipped(false);
 						
-						if(itemToEquip.getItemType().getItemCategory().equals("melee_slay") || itemToEquip.getItemType().getItemCategory().equals("melee_thrust")) {
+						if(selectedItem.getItemType().getItemCategory().equals("melee_slay") || selectedItem.getItemType().getItemCategory().equals("melee_thrust")) {
 							player.setEquippedMelee(null);
 							player.setCurrentMeleeAnimation(null);
-						} else if(itemToEquip.getItemType().getItemCategory().equals("bow")) {
+						} else if(selectedItem.getItemType().getItemCategory().equals("bow")) {
 							player.setEquippedBow(null);
 							player.setCurrentBowAnimation(null);
-						} else if(itemToEquip.getItemType().getItemCategory().equals("spell")) {
+						} else if(selectedItem.getItemType().getItemCategory().equals("spell")) {
 							player.setEquippedSpell(null);
 							player.setCurrentSpellAnimation(null);
-						} else if(itemToEquip.getItemType().getItemCategory().equals("head")) {
+						} else if(selectedItem.getItemType().getItemCategory().equals("head")) {
 							player.setEquippedHead(null);
 							player.setCurrentHeadAnimation(null);
-						} else if(itemToEquip.getItemType().getItemCategory().equals("chest")) {
+						} else if(selectedItem.getItemType().getItemCategory().equals("chest")) {
 							player.setEquippedTorso(null);
 							player.setCurrentChestAnimation(null);
-						} else if(itemToEquip.getItemType().getItemCategory().equals("hands")) {
+						} else if(selectedItem.getItemType().getItemCategory().equals("hands")) {
 							player.setEquippedHands(null);
 							player.setCurrentHandsAnimation(null);
-						} else if(itemToEquip.getItemType().getItemCategory().equals("legs")) {
+						} else if(selectedItem.getItemType().getItemCategory().equals("legs")) {
 							player.setEquippedLegs(null);
 							player.setCurrentLegsAnimation(null);
-						} else if(itemToEquip.getItemType().getItemCategory().equals("feet")) {
+						} else if(selectedItem.getItemType().getItemCategory().equals("feet")) {
 							player.setEquippedBoots(null);
 							player.setCurrentFeetAnimation(null);
 						}
@@ -116,41 +116,41 @@ public class InventoryWindow {
 						}
 						
 						//Decrease armorProtection value of value by protection of the item, which is now unequipped
-						player.setArmorProtection(player.getArmorProtection() - itemToEquip.getItemType().getProtection());
+						player.setArmorProtection(player.getArmorProtection() - selectedItem.getItemType().getProtection());
 						
 					} else {
-						if (player.getStrength() >= itemToEquip.getItemType().getMinStrength() && player.getDexterity() >= itemToEquip.getItemType().getMinDexterity() && player.getMagicKnowledge() >= itemToEquip.getItemType().getMinMagicKnowledge()) {
+						if (player.getStrength() >= selectedItem.getItemType().getMinStrength() && player.getDexterity() >= selectedItem.getItemType().getMinDexterity() && player.getMagicKnowledge() >= selectedItem.getItemType().getMinMagicKnowledge()) {
 							for(Item item : inventoryList) {
-								if(item.isEquipped() && item.getItemType().getItemCategory().equals(itemToEquip.getItemType().getItemCategory())) {
+								if(item.isEquipped() && item.getItemType().getItemCategory().equals(selectedItem.getItemType().getItemCategory())) {
 									item.setEquipped(false);
 								}							
 								
-								if(item.isEquipped() && (item.getItemType().getItemCategory().equals("melee_slay") && itemToEquip.getItemType().getItemCategory().equals("melee_thrust") 
-													 || item.getItemType().getItemCategory().equals("melee_thrust") && itemToEquip.getItemType().getItemCategory().equals("melee_slay"))) {
+								if(item.isEquipped() && (item.getItemType().getItemCategory().equals("melee_slay") && selectedItem.getItemType().getItemCategory().equals("melee_thrust") 
+													 || item.getItemType().getItemCategory().equals("melee_thrust") && selectedItem.getItemType().getItemCategory().equals("melee_slay"))) {
 								
 									item.setEquipped(false);
 									
 								}
 							}
 							
-							itemToEquip.setEquipped(true);
+							selectedItem.setEquipped(true);
 							
-							if(itemToEquip.getItemType().getItemCategory().equals("melee_slay") || itemToEquip.getItemType().getItemCategory().equals("melee_thrust")) {
-								player.setEquippedMelee(itemToEquip.getItemType());
-							} else if(itemToEquip.getItemType().getItemCategory().equals("bow")) {
-								player.setEquippedBow(itemToEquip.getItemType());
-							} else if(itemToEquip.getItemType().getItemCategory().equals("spell")) {
-								player.setEquippedSpell(itemToEquip.getItemType());
-							} else if(itemToEquip.getItemType().getItemCategory().equals("head")) {
-								player.setEquippedHead(itemToEquip.getItemType());
-							} else if(itemToEquip.getItemType().getItemCategory().equals("chest")) {
-								player.setEquippedTorso(itemToEquip.getItemType());
-							} else if(itemToEquip.getItemType().getItemCategory().equals("hands")) {
-								player.setEquippedHands(itemToEquip.getItemType());
-							} else if(itemToEquip.getItemType().getItemCategory().equals("legs")) {
-								player.setEquippedLegs(itemToEquip.getItemType());
-							} else if(itemToEquip.getItemType().getItemCategory().equals("feet")) {
-								player.setEquippedBoots(itemToEquip.getItemType());
+							if(selectedItem.getItemType().getItemCategory().equals("melee_slay") || selectedItem.getItemType().getItemCategory().equals("melee_thrust")) {
+								player.setEquippedMelee(selectedItem.getItemType());
+							} else if(selectedItem.getItemType().getItemCategory().equals("bow")) {
+								player.setEquippedBow(selectedItem.getItemType());
+							} else if(selectedItem.getItemType().getItemCategory().equals("spell")) {
+								player.setEquippedSpell(selectedItem.getItemType());
+							} else if(selectedItem.getItemType().getItemCategory().equals("head")) {
+								player.setEquippedHead(selectedItem.getItemType());
+							} else if(selectedItem.getItemType().getItemCategory().equals("chest")) {
+								player.setEquippedTorso(selectedItem.getItemType());
+							} else if(selectedItem.getItemType().getItemCategory().equals("hands")) {
+								player.setEquippedHands(selectedItem.getItemType());
+							} else if(selectedItem.getItemType().getItemCategory().equals("legs")) {
+								player.setEquippedLegs(selectedItem.getItemType());
+							} else if(selectedItem.getItemType().getItemCategory().equals("feet")) {
+								player.setEquippedBoots(selectedItem.getItemType());
 							}
 							
 							if(player.getCurrentAnimation() == player.getLookUpAnimation()) {
@@ -163,28 +163,28 @@ public class InventoryWindow {
 								player.setAnimationsToLookRight();
 							}
 							
-							player.setArmorProtection(player.getArmorProtection() + itemToEquip.getItemType().getProtection());
+							player.setArmorProtection(player.getArmorProtection() + selectedItem.getItemType().getProtection());
 							
 						} else {
 							
-							if(player.getStrength() < itemToEquip.getItemType().getMinStrength()) {
+							if(player.getStrength() < selectedItem.getItemType().getMinStrength()) {
 								
-								String text = "You need " + (itemToEquip.getItemType().getMinStrength() - player.getStrength()) + " more strength points";
+								String text = "You need " + (selectedItem.getItemType().getMinStrength() - player.getStrength()) + " more strength points";
 								player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 								
 							}
 							
 							
-							if(player.getDexterity() < itemToEquip.getItemType().getMinDexterity()) {
+							if(player.getDexterity() < selectedItem.getItemType().getMinDexterity()) {
 								
-								String text = "You need " + (itemToEquip.getItemType().getMinDexterity() - player.getDexterity()) + " more dexterity points";
+								String text = "You need " + (selectedItem.getItemType().getMinDexterity() - player.getDexterity()) + " more dexterity points";
 								player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 								
 							}
 							
-							if(player.getMagicKnowledge() < itemToEquip.getItemType().getMinMagicKnowledge()) {
+							if(player.getMagicKnowledge() < selectedItem.getItemType().getMinMagicKnowledge()) {
 								
-								String text = "You need " + (itemToEquip.getItemType().getMinMagicKnowledge() - player.getMagicKnowledge()) + " more magic knowledge points";
+								String text = "You need " + (selectedItem.getItemType().getMinMagicKnowledge() - player.getMagicKnowledge()) + " more magic knowledge points";
 								player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 								
 							}
@@ -192,7 +192,20 @@ public class InventoryWindow {
 							
 						}
 					} 
-				} 
+				}
+				
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			}
 			
 			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
@@ -433,6 +446,20 @@ public class InventoryWindow {
 					g.drawString("Protection:", 652, 943);
 					String protection = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection()) + "%";
 					g.drawString(protection, 1098 - protection.length() * 9, 943);
+				}
+				
+				
+				
+				if(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getHealthBoost() > 0) {
+					g.drawString("Health Boost:", 652, 943);
+					String healthBoost = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getHealthBoost());
+					g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 943);
+				}
+				
+				if(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaBoost() > 0) {
+					g.drawString("Mana Boost:", 652, 943);
+					String manaBoost = String.valueOf(inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaBoost());
+					g.drawString(manaBoost, 1098 - manaBoost.length() * 9, 943);
 				}
 
 
