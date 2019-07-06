@@ -53,7 +53,11 @@ public class Bar {
 	}
 	
 	public void setCurrentValue(int currentValue) {
-		this.currentValue = currentValue;
+		if(currentValue > maxValue) {
+			this.currentValue = maxValue;
+		} else {
+			this.currentValue = currentValue;
+		}
 	}
 
 	public void setX(float x) {

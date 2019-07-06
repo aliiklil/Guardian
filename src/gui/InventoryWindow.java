@@ -193,19 +193,31 @@ public class InventoryWindow {
 						}
 					} 
 				}
-				
-				
-				
 
 				
+				//If player consumes item, which gives health
+				if(selectedItem.getItemType().getHealthBoost() > 0) {
+
+					player.getHealthBar().setCurrentValue(player.getHealthBar().getCurrentValue() + selectedItem.getItemType().getHealthBoost());
+					removeSelectedItem();
+					
+					String text = "Health Points + " + selectedItem.getItemType().getHealthBoost();
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+				}
 				
 				
-				
-				
-				
-				
-				
-				
+				//If player consumes item, which gives mana
+				if(selectedItem.getItemType().getManaBoost() > 0) {
+
+					player.getManaBar().setCurrentValue(player.getManaBar().getCurrentValue() + selectedItem.getItemType().getManaBoost());
+					removeSelectedItem();
+					
+					String text = "Mana Points + " + selectedItem.getItemType().getManaBoost();
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+				}
+	
 			}
 			
 			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
@@ -586,6 +598,19 @@ public class InventoryWindow {
 		
 		sortInventory();
 			
+	}
+	
+	public void removeSelectedItem() {
+
+		int index = selectedCellX + (selectedCellY + scrollOffset) * amountColumns;
+		
+		if(itemCountList.get(index) > 1) {
+			itemCountList.set(index, itemCountList.get(index) - 1);
+		} else {
+			inventoryList.remove(index);
+			itemCountList.remove(index);
+		}
+		
 	}
 	
 	private void sortInventory() {
