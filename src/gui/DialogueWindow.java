@@ -102,8 +102,7 @@ public class DialogueWindow {
 					if(sentenceCount < currentDialogues.get(selectedOption).getSentences().size() - 1) {
 						
 						checkIfPlayerLearns(currentDialogues.get(selectedOption));
-						checkIfPlayerTrades(currentDialogues.get(selectedOption));
-						
+
 						sentenceCount++;
 						
 						currentSentence = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText();
@@ -116,6 +115,8 @@ public class DialogueWindow {
 						if(currentDialogues == startingDialogues) {
 							selectedStartingOption = selectedOption;
 						}
+						
+						checkIfPlayerTrades(currentDialogues.get(selectedOption));
 						
 					} else if(sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && currentDialogues.get(selectedOption).hasChildDialogues()) {
 						
@@ -160,7 +161,21 @@ public class DialogueWindow {
 	}
 	
 	private void checkIfPlayerTrades(Dialogue currentDialogue) {
-	System.out.println("AAAAAAAAAA");
+		
+		
+		if(currentDialogue.getSentences().get(0).getText().equals("Show me your goods.") && sentenceCount == 1) {
+			
+			Player player = CharacterManager.getPlayer();
+			player.getTradingWindow().setWindowOpen(true);
+			
+			
+			windowOpen = false;
+			sentenceCount = 0;
+			
+			
+			
+		}
+		
 	}
 	
 	private void checkIfPlayerLearns(Dialogue currentDialogue) {
@@ -422,4 +437,9 @@ public class DialogueWindow {
 	public boolean isWindowOpen() {
 		return windowOpen;
 	}
+
+	public void setWindowOpen(boolean windowOpen) {
+		this.windowOpen = windowOpen;
+	}
+	
 }

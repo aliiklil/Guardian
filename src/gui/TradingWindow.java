@@ -54,33 +54,26 @@ public class TradingWindow {
 		
 		player = CharacterManager.getPlayer();
 		
-		if(input.isKeyPressed(Input.KEY_TAB) && !player.getDialogueWindow().isWindowOpen()) {
-			if(!windowOpen) {
-				windowOpen = true;
-			} else {
-				windowOpen = false;
-			}
-		}	
-		
-		if(windowOpen) {
+		if(windowOpen && input.isKeyPressed(Input.KEY_ESCAPE)) {
 			
-			
+			windowOpen = false;
+			CharacterManager.getPlayer().getDialogueWindow().setWindowOpen(true);
 	
+		}
+			
+		if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
+			
+			if(scrollOffset > 0 && selectedCellY == 0) {
+				scrollOffset--;
+				timestamp = System.currentTimeMillis();
+			} 
+
+			if(selectedCellY > 0) {
+				selectedCellY--;
+				timestamp = System.currentTimeMillis();
 			}
 			
-			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
-				
-				if(scrollOffset > 0 && selectedCellY == 0) {
-					scrollOffset--;
-					timestamp = System.currentTimeMillis();
-				} 
-
-				if(selectedCellY > 0) {
-					selectedCellY--;
-					timestamp = System.currentTimeMillis();
-				}
-				
-			}
+		}
 						
 
 
@@ -109,5 +102,9 @@ public class TradingWindow {
 	public boolean isWindowOpen() {
 		return windowOpen;
 	}
-	
+
+	public void setWindowOpen(boolean windowOpen) {
+		this.windowOpen = windowOpen;
+	}
+
 }

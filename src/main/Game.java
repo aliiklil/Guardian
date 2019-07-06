@@ -79,7 +79,7 @@ public class Game extends BasicGameState {
 		CharacterManager.getPlayer().getDialogueWindow().render(g);
 		CharacterManager.getPlayer().getCenteredText().render(g);
 		CharacterManager.getPlayer().getLevelUpText().render(g);
-		
+		CharacterManager.getPlayer().getTradingWindow().render(g);
 	}
 
 	@Override

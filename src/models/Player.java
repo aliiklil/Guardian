@@ -14,6 +14,7 @@ import gui.DialogueWindow;
 import gui.CenteredText;
 import gui.InventoryWindow;
 import gui.NewItemWindow;
+import gui.TradingWindow;
 import main.Game;
 import main.Main;
 import manager.CharacterManager;
@@ -46,6 +47,7 @@ public class Player extends Character {
 	private boolean spellCreated = false;
 
 	private InventoryWindow inventoryWindow = new InventoryWindow();
+	private TradingWindow tradingWindow = new TradingWindow();
 
 	private Bar prepareAttackBar;
 	private Bar prepareShotBar;
@@ -182,6 +184,7 @@ public class Player extends Character {
 			dialogueWindow.update();
 			centeredText.update();
 			levelUpText.update();
+			tradingWindow.update();
 
 			if(!dialogueWindow.isWindowOpen()) {
 				updateMove();
@@ -2900,7 +2903,9 @@ public class Player extends Character {
 	public Bar getManaBar() {
 		return manaBar;
 	}
-	
-	
-		
+
+	public TradingWindow getTradingWindow() {
+		return tradingWindow;
+	}
+
 }
