@@ -30,8 +30,6 @@ public class TradingWindow {
 	
 	private int scrollOffset = 0;
 	
-	private int goldCounter = 0;
-	
 	private Input input = Main.appGameContainer.getInput();
 
 	private long timestamp = 0;
@@ -102,7 +100,7 @@ public class TradingWindow {
 			g.setColor(Color.white);
 			
 			g.drawString("Gold: ", 1733, 239);
-			g.drawString(String.valueOf(goldCounter), 1853 - Integer.toString(goldCounter).length() * 9, 239);
+			g.drawString(String.valueOf(player.getInventoryWindow().getGoldCounter()), 1853 - Integer.toString(player.getInventoryWindow().getGoldCounter()).length() * 9, 239);
 			
 			int row = 0;
 			int column = 0;
@@ -131,46 +129,6 @@ public class TradingWindow {
 					row++;
 				}
 				
-			}
-			
-			for(Item item : playerInventoryList) {
-				if(item.isEquipped()) {
-					if(item.getItemType().getItemCategory().equals("melee_slay") || item.getItemType().getItemCategory().equals("melee_thrust")) {
-						item.getItemType().getInventoryAnimation().draw(52, 313);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("bow")) {
-						item.getItemType().getInventoryAnimation().draw(130, 313);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("spell")) {
-						item.getItemType().getInventoryAnimation().draw(208, 313);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("head")) {
-						item.getItemType().getInventoryAnimation().draw(130, 469);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("chest")) {
-						item.getItemType().getInventoryAnimation().draw(130, 547);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("hands")) {
-						item.getItemType().getInventoryAnimation().draw(52, 547);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("hands")) {
-						item.getItemType().getInventoryAnimation().draw(208, 547);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("legs")) {
-						item.getItemType().getInventoryAnimation().draw(130, 625);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("feet")) {
-						item.getItemType().getInventoryAnimation().draw(130, 703);
-					}
-				}
 			}
 			
 			if(!playerInventoryList.isEmpty()) {

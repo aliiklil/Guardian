@@ -658,9 +658,9 @@ public class InventoryWindow {
 	public ArrayList<Integer> getItemCountList() {
 		return itemCountList;
 	}
-	
-	
-	
-	
-	
+
+	public int getGoldCounter() {
+		return goldCounter;
+	}
+		
 }
