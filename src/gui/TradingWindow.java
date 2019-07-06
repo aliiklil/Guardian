@@ -84,11 +84,90 @@ public class TradingWindow {
 			}
 			
 		}
-						
+					
+		if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
+			
+			if(selectedCellY == amountRows - 1 && playerInventoryList.size() > amountCells + scrollOffset * amountColumns) {
+				
+				if((selectedCellX + (selectedCellY + scrollOffset) * amountColumns + amountColumns + 1) > playerInventoryList.size()) {
+					
+					if(playerInventoryList.size() % amountColumns == 0) {
+						selectedCellX = amountColumns - 1;
+					} else {
+						selectedCellX = playerInventoryList.size() % amountColumns - 1;
+					}
+					
+				}
 
+				scrollOffset++;
+				timestamp = System.currentTimeMillis();
+				
+			}
+			
+			if(selectedCellY < amountRows - 1 && playerInventoryList.size() > selectedCellX + (selectedCellY + scrollOffset + 1) * amountColumns) {
+				selectedCellY++;
+				timestamp = System.currentTimeMillis();
+			}
 
-	}				
+		}
+		
+		if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
+			if(selectedCellX > 0) {
+				selectedCellX--;
+				timestamp = System.currentTimeMillis();
+			}
+		}
+		
+		if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
+			if(selectedCellX < amountColumns - 1 && playerInventoryList.size() > selectedCellX + (selectedCellY + scrollOffset) * amountColumns + 1) {
+				selectedCellX++;
+				timestamp = System.currentTimeMillis();
+			}
+		}
+			
+		checkIfKeyDown();
+
+	}		
 	
+	private void checkIfKeyDown() {
+
+		if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+				holdUpKey = true;
+				timestamp = System.currentTimeMillis();
+			}
+		} else {
+			holdUpKey = false;
+		}
+		
+		if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+				holdDownKey = true;
+				timestamp = System.currentTimeMillis();
+			}
+		} else {
+			holdDownKey = false;
+		}
+		
+		if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT)) {
+			if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+				holdLeftKey = true;
+				timestamp = System.currentTimeMillis();
+			}
+		} else {
+			holdLeftKey = false;
+		}
+		
+		if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT)) {
+			if(System.currentTimeMillis() - timestamp > 300 && timestamp != 0) {
+				holdRightKey = true;
+				timestamp = System.currentTimeMillis();
+			}
+		} else {
+			holdRightKey = false;
+		}
+		
+	}
 		
 	
 	public void render(Graphics g) {
