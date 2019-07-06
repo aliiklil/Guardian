@@ -1,5 +1,9 @@
-.)Potions and food should be consumable
-
 .)Implement trading
 
-.)When pressing A, S, X even though nothing is equipped, show centered text
+.)Implement quest system
+
+.)Create different hitbox for every melee weapon
+
+.)Implement pick locking skills (0%, 25%, 50%, 75%, 100%)
+
+.)Give player starting cloths

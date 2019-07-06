@@ -102,6 +102,7 @@ public class DialogueWindow {
 					if(sentenceCount < currentDialogues.get(selectedOption).getSentences().size() - 1) {
 						
 						checkIfPlayerLearns(currentDialogues.get(selectedOption));
+						checkIfPlayerTrades(currentDialogues.get(selectedOption));
 						
 						sentenceCount++;
 						
@@ -156,6 +157,10 @@ public class DialogueWindow {
 			
 		}		
 		
+	}
+	
+	private void checkIfPlayerTrades(Dialogue currentDialogue) {
+	System.out.println("AAAAAAAAAA");
 	}
 	
 	private void checkIfPlayerLearns(Dialogue currentDialogue) {

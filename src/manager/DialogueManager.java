@@ -137,6 +137,10 @@ public class DialogueManager {
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(9).addSentence("Back", "Hero");
 		
+		ogusDialogues.add(new Dialogue());
+		ogusDialogues.get(5).setPermanent(true);
+		ogusDialogues.get(5).addSentence("Show me your goods.", "Hero");
+		ogusDialogues.get(5).addSentence("Sure", "Ogus");
 		
 		halrokDialogues.add(new Dialogue());
 		halrokDialogues.get(0).addSentence("Who are you?", "Hero");
