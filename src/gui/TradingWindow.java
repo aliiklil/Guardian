@@ -292,12 +292,28 @@ public class TradingWindow {
 				
 			}
 			
-			//drawArrow(g);
+			drawArrow(g);
 			
 		}
 							
 	}
 		
+	
+	private void drawArrow(Graphics g) {
+		
+		arrowUpAnimation.updateNoDraw();
+		arrowDownAnimation.updateNoDraw();
+		
+		if(scrollOffset > 0) { 
+			arrowUpAnimation.draw(1876, 305);
+		}
+		
+		if(playerInventoryList.size() > amountCells + scrollOffset * amountColumns) {
+			arrowDownAnimation.draw(1876, 731);
+		}
+		
+	}
+	
 	public boolean isWindowOpen() {
 		return windowOpen;
 	}
