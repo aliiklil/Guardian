@@ -32,8 +32,8 @@ public class TradingWindow {
 	private int npcScrollOffset = 0;
 	
 	//If cursor is in player or npc inventory
-	private boolean playerInventoryActive = true; 
-	private boolean npcInventoryActive = false;
+	private boolean playerInventoryActive = false; 
+	private boolean npcInventoryActive = true;
 	
 	private final int amountRows = 6;
 	private final int amountColumns = 5;
@@ -80,19 +80,6 @@ public class TradingWindow {
 			CharacterManager.getPlayer().getDialogueWindow().setWindowOpen(true);
 	
 		}
-		
-		System.out.println("playerInventoryActive " + playerInventoryActive);
-		System.out.println("npcInventoryActive " + npcInventoryActive);
-		
-		System.out.println("playerSelectedCellX " + playerSelectedCellX);
-		System.out.println("playerSelectedCellY " + playerSelectedCellY);
-		
-		System.out.println("npcSelectedCellX " + npcSelectedCellX);
-		System.out.println("npcSelectedCellY " + npcSelectedCellY);
-		
-		
-		
-		
 		
 		//Player inventory controls
 		if(playerInventoryActive) {
@@ -143,14 +130,12 @@ public class TradingWindow {
 					npcInventoryActive = true;
 					playerInventoryActive = false;
 					
-					
 					npcSelectedCellY = playerSelectedCellY;
 					npcSelectedCellX = 4;
 					
 					if(npc != null && npc.getInventoryList().size() < npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns - 1) {
-						npcSelectedCellY = npc.getInventoryList().size() / amountColumns; //2
-						npcSelectedCellX = npc.getInventoryList().size() % amountColumns - 1; //1
-						//size = 12
+						npcSelectedCellY = npc.getInventoryList().size() / amountColumns;
+						npcSelectedCellX = npc.getInventoryList().size() % amountColumns - 1;
 					}
 					
 					
@@ -237,11 +222,10 @@ public class TradingWindow {
 					
 					
 					playerSelectedCellY = npcSelectedCellY;
+					playerSelectedCellX = 0;
 					
 					if(playerInventoryList.size() < playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns - 1) {
-						playerSelectedCellY = playerInventoryList.size() / amountColumns; //2
-						playerSelectedCellX = playerInventoryList.size() % amountColumns - 1; //1
-						//size = 12
+						playerSelectedCellY = playerInventoryList.size() / amountColumns;
 					}
 					
 					timestamp = System.currentTimeMillis();
@@ -315,93 +299,10 @@ public class TradingWindow {
 			drawPlayerInventory(g);
 			drawNPCInventory(g);
 
-			if(!playerInventoryList.isEmpty()) {
-				
-				String name = playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getName();
-				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
-				
-
-				if(!playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getItemCategory().equals("spell")) {
-				
-					//Display minStrength if there is a requirement
-					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinStrength() > 0) {
-						g.drawString("Needed Strength:", 652, 943);
-						String minStrength = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinStrength());
-						g.drawString(minStrength, 1098 - minStrength.length() * 9, 943);
-					}
-				
-					//Display minDexterity if there is a requirement
-					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinDexterity() > 0) {
-						g.drawString("Needed Dexterity:", 652, 943);
-						String minDexterity = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinDexterity());
-						g.drawString(minDexterity, 1098 - minDexterity.length() * 9, 943);
-					}
-	
-					//Display damage if the item has damage
-					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage() > 0) {
-						g.drawString("Damage:", 652, 923);
-						String damage = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage());
-						g.drawString(damage, 1098 - damage.length() * 9, 923);
-					}
-				
-				} else {
-				
-					//Display magicKnowledge if there is a requirement
-					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge() > 0) {
-						g.drawString("Needed Magic Knowledge:", 652, 923);
-						String minMagicKnowledge = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge());
-						g.drawString(minMagicKnowledge, 1098 - minMagicKnowledge.length() * 9, 923);
-					}
-					
-					//Display mana cost if there is
-					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaCost() > 0) {
-						g.drawString("Mana Cost:", 652, 943);
-						String manaCost = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaCost());
-						g.drawString(manaCost, 1098 - manaCost.length() * 9, 943);
-					}
-					
-					//Display damage if the item has damage
-					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage() > 0) {
-						g.drawString("Damage:", 652, 903);
-						String damage = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage());
-						g.drawString(damage, 1098 - damage.length() * 9, 903);
-					}
-				
-				}
-				
-				
-				//Display protection if the item has protection
-				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getProtection() > 0) {
-					g.drawString("Protection:", 652, 943);
-					String protection = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getProtection()) + "%";
-					g.drawString(protection, 1098 - protection.length() * 9, 943);
-				}
-				
-				
-				//Display health boost if the item has
-				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getHealthBoost() > 0) {
-					g.drawString("Health Boost:", 652, 943);
-					String healthBoost = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getHealthBoost());
-					g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 943);
-				}
-				
-				//Display mana boost if the item has
-				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaBoost() > 0) {
-					g.drawString("Mana Boost:", 652, 943);
-					String manaBoost = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaBoost());
-					g.drawString(manaBoost, 1098 - manaBoost.length() * 9, 943);
-				}
-
-				g.drawString("Value in Gold:", 652, 963);
-				String value = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getValue());
-				g.drawString(value, 1098 - value.length() * 9, 963);
-				
-				playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
-				
-			}
+			drawItemDescription(g);
 			
 			drawArrow(g);
-			
+
 		}
 							
 	}
@@ -486,6 +387,183 @@ public class TradingWindow {
 			}
 			
 		}
+		
+	}
+	
+	private void drawItemDescription(Graphics g) {
+		
+		//Draw item description if cursor is on the on the right side (npc inventory)
+		if(playerInventoryActive && !playerInventoryList.isEmpty()) {
+			
+			String name = playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getName();
+			g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
+			
+			if(!playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getItemCategory().equals("spell")) {
+			
+				//Display minStrength if there is a requirement
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinStrength() > 0) {
+					g.drawString("Needed Strength:", 652, 943);
+					String minStrength = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinStrength());
+					g.drawString(minStrength, 1098 - minStrength.length() * 9, 943);
+				}
+			
+				//Display minDexterity if there is a requirement
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinDexterity() > 0) {
+					g.drawString("Needed Dexterity:", 652, 943);
+					String minDexterity = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinDexterity());
+					g.drawString(minDexterity, 1098 - minDexterity.length() * 9, 943);
+				}
+	
+				//Display damage if the item has damage
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage() > 0) {
+					g.drawString("Damage:", 652, 923);
+					String damage = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage());
+					g.drawString(damage, 1098 - damage.length() * 9, 923);
+				}
+			
+			} else {
+			
+				//Display magicKnowledge if there is a requirement
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge() > 0) {
+					g.drawString("Needed Magic Knowledge:", 652, 923);
+					String minMagicKnowledge = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge());
+					g.drawString(minMagicKnowledge, 1098 - minMagicKnowledge.length() * 9, 923);
+				}
+				
+				//Display mana cost if there is
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaCost() > 0) {
+					g.drawString("Mana Cost:", 652, 943);
+					String manaCost = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaCost());
+					g.drawString(manaCost, 1098 - manaCost.length() * 9, 943);
+				}
+				
+				//Display damage if the item has damage
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage() > 0) {
+					g.drawString("Damage:", 652, 903);
+					String damage = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage());
+					g.drawString(damage, 1098 - damage.length() * 9, 903);
+				}
+			
+			}
+			
+			
+			//Display protection if the item has protection
+			if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getProtection() > 0) {
+				g.drawString("Protection:", 652, 943);
+				String protection = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getProtection()) + "%";
+				g.drawString(protection, 1098 - protection.length() * 9, 943);
+			}
+			
+			
+			//Display health boost if the item has
+			if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getHealthBoost() > 0) {
+				g.drawString("Health Boost:", 652, 943);
+				String healthBoost = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getHealthBoost());
+				g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 943);
+			}
+			
+			//Display mana boost if the item has
+			if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaBoost() > 0) {
+				g.drawString("Mana Boost:", 652, 943);
+				String manaBoost = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaBoost());
+				g.drawString(manaBoost, 1098 - manaBoost.length() * 9, 943);
+			}
+	
+			g.drawString("Value in Gold:", 652, 963);
+			String value = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getValue());
+			g.drawString(value, 1098 - value.length() * 9, 963);
+			
+			playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
+			
+		}
+		
+		
+		//Draw item description if cursor is on the on the left side (npc inventory)
+		if(npcInventoryActive && !npc.getInventoryList().isEmpty()) {
+			
+			String name = npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getName();
+			g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
+			
+
+			if(!npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getItemCategory().equals("spell")) {
+			
+				//Display minStrength if there is a requirement
+				if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinStrength() > 0) {
+					g.drawString("Needed Strength:", 652, 943);
+					String minStrength = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinStrength());
+					g.drawString(minStrength, 1098 - minStrength.length() * 9, 943);
+				}
+			
+				//Display minDexterity if there is a requirement
+				if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinDexterity() > 0) {
+					g.drawString("Needed Dexterity:", 652, 943);
+					String minDexterity = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinDexterity());
+					g.drawString(minDexterity, 1098 - minDexterity.length() * 9, 943);
+				}
+
+				//Display damage if the item has damage
+				if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getDamage() > 0) {
+					g.drawString("Damage:", 652, 923);
+					String damage = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getDamage());
+					g.drawString(damage, 1098 - damage.length() * 9, 923);
+				}
+			
+			} else {
+			
+				//Display magicKnowledge if there is a requirement
+				if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge() > 0) {
+					g.drawString("Needed Magic Knowledge:", 652, 923);
+					String minMagicKnowledge = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge());
+					g.drawString(minMagicKnowledge, 1098 - minMagicKnowledge.length() * 9, 923);
+				}
+				
+				//Display mana cost if there is
+				if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getManaCost() > 0) {
+					g.drawString("Mana Cost:", 652, 943);
+					String manaCost = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getManaCost());
+					g.drawString(manaCost, 1098 - manaCost.length() * 9, 943);
+				}
+				
+				//Display damage if the item has damage
+				if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getDamage() > 0) {
+					g.drawString("Damage:", 652, 903);
+					String damage = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getDamage());
+					g.drawString(damage, 1098 - damage.length() * 9, 903);
+				}
+			
+			}
+			
+			//Display protection if the item has protection
+			if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getProtection() > 0) {
+				g.drawString("Protection:", 652, 943);
+				String protection = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getProtection()) + "%";
+				g.drawString(protection, 1098 - protection.length() * 9, 943);
+			}
+			
+			//Display health boost if the item has
+			if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getHealthBoost() > 0) {
+				g.drawString("Health Boost:", 652, 943);
+				String healthBoost = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getHealthBoost());
+				g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 943);
+			}
+			
+			//Display mana boost if the item has
+			if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getManaBoost() > 0) {
+				g.drawString("Mana Boost:", 652, 943);
+				String manaBoost = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getManaBoost());
+				g.drawString(manaBoost, 1098 - manaBoost.length() * 9, 943);
+			}
+
+			g.drawString("Value in Gold:", 652, 963);
+			String value = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getValue());
+			g.drawString(value, 1098 - value.length() * 9, 963);
+			
+			npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
+			
+		}
+		
+		
+		
 		
 	}
 		
