@@ -30,7 +30,25 @@ public class CharacterManager {
 			
 		ogus = new NPC(256, 128, 200, 200, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1);
 		halrok = new NPC(640, 768, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3);
-
+		ogus.addItem(new Item(0, 0, itemTypeManager.dagger));
+		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
+		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
+		ogus.addItem(new Item(0, 0, itemTypeManager.arrow));
+		ogus.addItem(new Item(0, 0, itemTypeManager.chainhat));
+		ogus.addItem(new Item(0, 0, itemTypeManager.shortspear));
+		ogus.addItem(new Item(0, 0, itemTypeManager.chainhelmet));
+		ogus.addItem(new Item(0, 0, itemTypeManager.copperBar));
+		ogus.addItem(new Item(0, 0, itemTypeManager.goldspear));
+		ogus.addItem(new Item(0, 0, itemTypeManager.goldenboots));
+		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHealingPotion));
+		ogus.addItem(new Item(0, 0, itemTypeManager.goldspear));
+		ogus.addItem(new Item(0, 0, itemTypeManager.goldenboots));
+		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHealingPotion));
+		ogus.addItem(new Item(0, 0, itemTypeManager.clothhood));
+		ogus.addItem(new Item(0, 0, itemTypeManager.copperBar));
+		ogus.addItem(new Item(0, 0, itemTypeManager.goldenhelmet));
+		
+		
 		characterList.add(player);
 		characterList.add(ogus);
 		characterList.add(halrok);

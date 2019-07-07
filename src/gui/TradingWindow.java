@@ -13,6 +13,7 @@ import org.newdawn.slick.SpriteSheet;
 import main.Main;
 import manager.CharacterManager;
 import models.Item;
+import models.NPC;
 import models.Player;
 
 public class TradingWindow {
@@ -21,14 +22,22 @@ public class TradingWindow {
 	private Image inventoryImage = new Image("resources/trading_window.png");
 	private Image selectedCellImage = new Image("resources/inventory_selected_cell.png");
 	private Image equippedItemImage = new Image("resources/inventory_equipped_item.png");
-	private int selectedCellX = 0;
-	private int selectedCellY = 0;
+	
+	private int playerSelectedCellX = 0;
+	private int playerSelectedCellY = 0;
+	private int playerScrollOffset = 0;
+	
+	private int npcSelectedCellX = 0;
+	private int npcSelectedCellY = 0;
+	private int npcScrollOffset = 0;
+	
+	//If cursor is in player or npc inventory
+	private boolean playerInventoryActive = true; 
+	private boolean npcInventoryActive = false;
 	
 	private final int amountRows = 6;
 	private final int amountColumns = 5;
 	private final int amountCells = 30;
-	
-	private int scrollOffset = 0;
 	
 	private Input input = Main.appGameContainer.getInput();
 
@@ -46,6 +55,8 @@ public class TradingWindow {
 	private Animation arrowDownAnimation = new Animation(arrowDownSpriteSheet, 0, 0, 1, 0, true, 750, true);
 	
 	private Player player;
+	
+	private NPC npc; //NPC which the player is currently trading with or last NPC the player traded with
 	
 	private ArrayList<Item> playerInventoryList;
 	private ArrayList<Integer> playerItemCountList;
@@ -73,13 +84,13 @@ public class TradingWindow {
 			
 		if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
 			
-			if(scrollOffset > 0 && selectedCellY == 0) {
-				scrollOffset--;
+			if(playerScrollOffset > 0 && playerSelectedCellY == 0) {
+				playerScrollOffset--;
 				timestamp = System.currentTimeMillis();
 			} 
 
-			if(selectedCellY > 0) {
-				selectedCellY--;
+			if(playerSelectedCellY > 0) {
+				playerSelectedCellY--;
 				timestamp = System.currentTimeMillis();
 			}
 			
@@ -87,40 +98,40 @@ public class TradingWindow {
 					
 		if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
 			
-			if(selectedCellY == amountRows - 1 && playerInventoryList.size() > amountCells + scrollOffset * amountColumns) {
+			if(playerSelectedCellY == amountRows - 1 && playerInventoryList.size() > amountCells + playerScrollOffset * amountColumns) {
 				
-				if((selectedCellX + (selectedCellY + scrollOffset) * amountColumns + amountColumns + 1) > playerInventoryList.size()) {
+				if((playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns + amountColumns + 1) > playerInventoryList.size()) {
 					
 					if(playerInventoryList.size() % amountColumns == 0) {
-						selectedCellX = amountColumns - 1;
+						playerSelectedCellX = amountColumns - 1;
 					} else {
-						selectedCellX = playerInventoryList.size() % amountColumns - 1;
+						playerSelectedCellX = playerInventoryList.size() % amountColumns - 1;
 					}
 					
 				}
 
-				scrollOffset++;
+				playerScrollOffset++;
 				timestamp = System.currentTimeMillis();
 				
 			}
 			
-			if(selectedCellY < amountRows - 1 && playerInventoryList.size() > selectedCellX + (selectedCellY + scrollOffset + 1) * amountColumns) {
-				selectedCellY++;
+			if(playerSelectedCellY < amountRows - 1 && playerInventoryList.size() > playerSelectedCellX + (playerSelectedCellY + playerScrollOffset + 1) * amountColumns) {
+				playerSelectedCellY++;
 				timestamp = System.currentTimeMillis();
 			}
 
 		}
 		
 		if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
-			if(selectedCellX > 0) {
-				selectedCellX--;
+			if(playerSelectedCellX > 0) {
+				playerSelectedCellX--;
 				timestamp = System.currentTimeMillis();
 			}
 		}
 		
 		if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
-			if(selectedCellX < amountColumns - 1 && playerInventoryList.size() > selectedCellX + (selectedCellY + scrollOffset) * amountColumns + 1) {
-				selectedCellX++;
+			if(playerSelectedCellX < amountColumns - 1 && playerInventoryList.size() > playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns + 1) {
+				playerSelectedCellX++;
 				timestamp = System.currentTimeMillis();
 			}
 		}
@@ -172,9 +183,11 @@ public class TradingWindow {
 	
 	public void render(Graphics g) {
 		
-		if(windowOpen) {			
+		if(windowOpen) {
+			
+			//Draw inventory of player
 			g.drawImage(inventoryImage, 0, 0);
-			g.drawImage(selectedCellImage, 1484 + selectedCellX * 78, 305 + selectedCellY * 78);
+			g.drawImage(selectedCellImage, 1484 + playerSelectedCellX * 78, 305 + playerSelectedCellY * 78);
 			
 			g.setColor(Color.white);
 			
@@ -184,7 +197,7 @@ public class TradingWindow {
 			int row = 0;
 			int column = 0;
 			
-			for(int i = scrollOffset * amountColumns; i < playerInventoryList.size(); i++) {
+			for(int i = playerScrollOffset * amountColumns; i < playerInventoryList.size(); i++) {
 				
 				if(row >= amountRows) {
 					break;
@@ -210,52 +223,112 @@ public class TradingWindow {
 				
 			}
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			//Draw inventory of NPC		
+			row = 0;
+			column = 0;
+			
+			for(int i = npcScrollOffset * amountColumns; i < npc.getInventoryList().size(); i++) {
+				
+				if(row >= amountRows) {
+					break;
+				}
+
+				npc.getInventoryList().get(i).getItemType().getInventoryAnimation().draw(52 + column * 78, 313 + row * 78);
+				
+				if(npc.getItemCountList().get(i) > 1) {
+					g.drawString(npc.getItemCountList().get(i).toString(), 108 + column * 78, 365 + row * 78);
+				}
+				
+				if(npc.getInventoryList().get(i).isEquipped()) {
+					g.drawImage(equippedItemImage, 42 + column * 78, 305 + row * 78);
+								
+				}
+						
+				column++;
+				
+				if(column >= 5) {
+					column = 0;
+					row++;
+				}
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			if(!playerInventoryList.isEmpty()) {
 				
-				String name = playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getName();
+				String name = playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getName();
 				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
 				
 
-				if(!playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getItemCategory().equals("spell")) {
+				if(!playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getItemCategory().equals("spell")) {
 				
-					//Display minStrength, minDexterity if there is a requirement
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinStrength() > 0) {
+					//Display minStrength if there is a requirement
+					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinStrength() > 0) {
 						g.drawString("Needed Strength:", 652, 943);
-						String minStrength = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinStrength());
+						String minStrength = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinStrength());
 						g.drawString(minStrength, 1098 - minStrength.length() * 9, 943);
 					}
 				
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinDexterity() > 0) {
+					//Display minDexterity if there is a requirement
+					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinDexterity() > 0) {
 						g.drawString("Needed Dexterity:", 652, 943);
-						String minDexterity = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinDexterity());
+						String minDexterity = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinDexterity());
 						g.drawString(minDexterity, 1098 - minDexterity.length() * 9, 943);
 					}
 	
 					//Display damage if the item has damage
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDamage() > 0) {
+					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage() > 0) {
 						g.drawString("Damage:", 652, 923);
-						String damage = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDamage());
+						String damage = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage());
 						g.drawString(damage, 1098 - damage.length() * 9, 923);
 					}
 				
 				} else {
 				
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinMagicKnowledge() > 0) {
+					//Display magicKnowledge if there is a requirement
+					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge() > 0) {
 						g.drawString("Needed Magic Knowledge:", 652, 923);
-						String minMagicKnowledge = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinMagicKnowledge());
+						String minMagicKnowledge = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge());
 						g.drawString(minMagicKnowledge, 1098 - minMagicKnowledge.length() * 9, 923);
 					}
 					
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaCost() > 0) {
+					//Display mana cost if there is
+					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaCost() > 0) {
 						g.drawString("Mana Cost:", 652, 943);
-						String manaCost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaCost());
+						String manaCost = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaCost());
 						g.drawString(manaCost, 1098 - manaCost.length() * 9, 943);
 					}
 					
 					//Display damage if the item has damage
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDamage() > 0) {
+					if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage() > 0) {
 						g.drawString("Damage:", 652, 903);
-						String damage = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDamage());
+						String damage = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDamage());
 						g.drawString(damage, 1098 - damage.length() * 9, 903);
 					}
 				
@@ -263,32 +336,32 @@ public class TradingWindow {
 				
 				
 				//Display protection if the item has protection
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection() > 0) {
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getProtection() > 0) {
 					g.drawString("Protection:", 652, 943);
-					String protection = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection()) + "%";
+					String protection = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getProtection()) + "%";
 					g.drawString(protection, 1098 - protection.length() * 9, 943);
 				}
 				
 				
-				
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getHealthBoost() > 0) {
+				//Display health boost if the item has
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getHealthBoost() > 0) {
 					g.drawString("Health Boost:", 652, 943);
-					String healthBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getHealthBoost());
+					String healthBoost = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getHealthBoost());
 					g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 943);
 				}
 				
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaBoost() > 0) {
+				//Display mana boost if the item has
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaBoost() > 0) {
 					g.drawString("Mana Boost:", 652, 943);
-					String manaBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaBoost());
+					String manaBoost = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getManaBoost());
 					g.drawString(manaBoost, 1098 - manaBoost.length() * 9, 943);
 				}
 
-
 				g.drawString("Value in Gold:", 652, 963);
-				String value = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getValue());
+				String value = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getValue());
 				g.drawString(value, 1098 - value.length() * 9, 963);
 				
-				playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
+				playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
 				
 			}
 			
@@ -304,11 +377,11 @@ public class TradingWindow {
 		arrowUpAnimation.updateNoDraw();
 		arrowDownAnimation.updateNoDraw();
 		
-		if(scrollOffset > 0) { 
+		if(playerScrollOffset > 0) { 
 			arrowUpAnimation.draw(1876, 305);
 		}
 		
-		if(playerInventoryList.size() > amountCells + scrollOffset * amountColumns) {
+		if(playerInventoryList.size() > amountCells + playerScrollOffset * amountColumns) {
 			arrowDownAnimation.draw(1876, 731);
 		}
 		
@@ -322,4 +395,8 @@ public class TradingWindow {
 		this.windowOpen = windowOpen;
 	}
 
+	public void setNpc(NPC npc) {
+		this.npc = npc;
+	}
+	
 }

@@ -1137,6 +1137,7 @@ public class Player extends Character {
 					}
 
 					dialogueWindow.showWindow(npc.getStartingDialogues());
+					tradingWindow.setNpc(npc);
 					yPressed = false;
 				}
 
