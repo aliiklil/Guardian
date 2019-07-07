@@ -138,18 +138,30 @@ public class TradingWindow {
 			}
 			
 			if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
+				
+				if(playerSelectedCellX == 0 && playerInventoryActive) {
+					npcInventoryActive = true;
+					playerInventoryActive = false;
+					
+					
+					npcSelectedCellY = playerSelectedCellY;
+					npcSelectedCellX = 4;
+					
+					if(npc != null && npc.getInventoryList().size() < npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns - 1) {
+						npcSelectedCellY = npc.getInventoryList().size() / amountColumns; //2
+						npcSelectedCellX = npc.getInventoryList().size() % amountColumns - 1; //1
+						//size = 12
+					}
+					
+					
+					timestamp = System.currentTimeMillis();
+				}
+				
 				if(playerSelectedCellX > 0) {
 					playerSelectedCellX--;
 					timestamp = System.currentTimeMillis();
 				}
-				
-				if(playerSelectedCellX == 0 && playerInventoryActive) {
-					
-					npcInventoryActive = true;
-					playerInventoryActive = false;
-					
-				}
-				
+		
 			}
 			
 			if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
@@ -219,11 +231,20 @@ public class TradingWindow {
 			
 			if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
 				
-				if(npcSelectedCellX == 4 && npcInventoryActive) {
-					
+				if((npcSelectedCellX == 4 || npc != null && npcSelectedCellX == npc.getInventoryList().size() % amountColumns - 1 && npcSelectedCellY == npc.getInventoryList().size() / amountColumns)  && npcInventoryActive) {
 					npcInventoryActive = false;
 					playerInventoryActive = true;
 					
+					
+					playerSelectedCellY = npcSelectedCellY;
+					
+					if(playerInventoryList.size() < playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns - 1) {
+						playerSelectedCellY = playerInventoryList.size() / amountColumns; //2
+						playerSelectedCellX = playerInventoryList.size() % amountColumns - 1; //1
+						//size = 12
+					}
+					
+					timestamp = System.currentTimeMillis();
 				}
 				
 				if(npcSelectedCellX < amountColumns - 1 && npc != null && npc.getInventoryList().size() > npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns + 1) {
