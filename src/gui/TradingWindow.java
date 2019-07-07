@@ -68,7 +68,6 @@ public class TradingWindow {
 	
 	public void update() throws SlickException {
 		
-		
 		player = CharacterManager.getPlayer();
 		
 		playerInventoryList = player.getInventoryWindow().getInventoryList();
@@ -81,62 +80,169 @@ public class TradingWindow {
 			CharacterManager.getPlayer().getDialogueWindow().setWindowOpen(true);
 	
 		}
+		
+		System.out.println("playerInventoryActive " + playerInventoryActive);
+		System.out.println("npcInventoryActive " + npcInventoryActive);
+		
+		System.out.println("playerSelectedCellX " + playerSelectedCellX);
+		System.out.println("playerSelectedCellY " + playerSelectedCellY);
+		
+		System.out.println("npcSelectedCellX " + npcSelectedCellX);
+		System.out.println("npcSelectedCellY " + npcSelectedCellY);
+		
+		
+		
+		
+		
+		//Player inventory controls
+		if(playerInventoryActive) {
 			
-		if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
-			
-			if(playerScrollOffset > 0 && playerSelectedCellY == 0) {
-				playerScrollOffset--;
-				timestamp = System.currentTimeMillis();
-			} 
-
-			if(playerSelectedCellY > 0) {
-				playerSelectedCellY--;
-				timestamp = System.currentTimeMillis();
-			}
-			
-		}
-					
-		if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
-			
-			if(playerSelectedCellY == amountRows - 1 && playerInventoryList.size() > amountCells + playerScrollOffset * amountColumns) {
+			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
 				
-				if((playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns + amountColumns + 1) > playerInventoryList.size()) {
+				if(playerScrollOffset > 0 && playerSelectedCellY == 0) {
+					playerScrollOffset--;
+					timestamp = System.currentTimeMillis();
+				} 
+	
+				if(playerSelectedCellY > 0) {
+					playerSelectedCellY--;
+					timestamp = System.currentTimeMillis();
+				}
+				
+			}
+						
+			if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
+				
+				if(playerSelectedCellY == amountRows - 1 && playerInventoryList.size() > amountCells + playerScrollOffset * amountColumns) {
 					
-					if(playerInventoryList.size() % amountColumns == 0) {
-						playerSelectedCellX = amountColumns - 1;
-					} else {
-						playerSelectedCellX = playerInventoryList.size() % amountColumns - 1;
+					if((playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns + amountColumns + 1) > playerInventoryList.size()) {
+						
+						if(playerInventoryList.size() % amountColumns == 0) {
+							playerSelectedCellX = amountColumns - 1;
+						} else {
+							playerSelectedCellX = playerInventoryList.size() % amountColumns - 1;
+						}
+						
 					}
+	
+					playerScrollOffset++;
+					timestamp = System.currentTimeMillis();
 					
 				}
-
-				playerScrollOffset++;
-				timestamp = System.currentTimeMillis();
+				
+				if(playerSelectedCellY < amountRows - 1 && playerInventoryList.size() > playerSelectedCellX + (playerSelectedCellY + playerScrollOffset + 1) * amountColumns) {
+					playerSelectedCellY++;
+					timestamp = System.currentTimeMillis();
+				}
+	
+			}
+			
+			if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
+				if(playerSelectedCellX > 0) {
+					playerSelectedCellX--;
+					timestamp = System.currentTimeMillis();
+				}
+				
+				if(playerSelectedCellX == 0 && playerInventoryActive) {
+					
+					npcInventoryActive = true;
+					playerInventoryActive = false;
+					
+				}
 				
 			}
 			
-			if(playerSelectedCellY < amountRows - 1 && playerInventoryList.size() > playerSelectedCellX + (playerSelectedCellY + playerScrollOffset + 1) * amountColumns) {
-				playerSelectedCellY++;
-				timestamp = System.currentTimeMillis();
+			if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
+				if(playerSelectedCellX < amountColumns - 1 && playerInventoryList.size() > playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns + 1) {
+					playerSelectedCellX++;
+					timestamp = System.currentTimeMillis();
+				}
 			}
-
-		}
-		
-		if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
-			if(playerSelectedCellX > 0) {
-				playerSelectedCellX--;
-				timestamp = System.currentTimeMillis();
-			}
-		}
-		
-		if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
-			if(playerSelectedCellX < amountColumns - 1 && playerInventoryList.size() > playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns + 1) {
-				playerSelectedCellX++;
-				timestamp = System.currentTimeMillis();
-			}
-		}
+				
+			checkIfKeyDown();
 			
-		checkIfKeyDown();
+		
+		}
+		
+		
+		
+		if(npcInventoryActive) {
+		
+			//NPC inventory controls
+			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
+				
+				if(npcScrollOffset > 0 && npcSelectedCellY == 0) {
+					npcScrollOffset--;
+					timestamp = System.currentTimeMillis();
+				} 
+	
+				if(npcSelectedCellY > 0) {
+					npcSelectedCellY--;
+					timestamp = System.currentTimeMillis();
+				}
+				
+			}
+						
+			if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
+				
+				if(npcSelectedCellY == amountRows - 1 && npc.getInventoryList().size() > amountCells + npcScrollOffset * amountColumns) {
+					
+					if((npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns + amountColumns + 1) > npc.getInventoryList().size()) {
+						
+						if(npc.getInventoryList().size() % amountColumns == 0) {
+							npcSelectedCellX = amountColumns - 1;
+						} else {
+							npcSelectedCellX = npc.getInventoryList().size() % amountColumns - 1;
+						}
+						
+					}
+	
+					npcScrollOffset++;
+					timestamp = System.currentTimeMillis();
+					
+				}
+				
+				if(npcSelectedCellY < amountRows - 1 && npc != null && npc.getInventoryList().size() > npcSelectedCellX + (npcSelectedCellY + npcScrollOffset + 1) * amountColumns) {
+					npcSelectedCellY++;
+					timestamp = System.currentTimeMillis();
+				}
+	
+			}
+			
+			if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
+				if(npcSelectedCellX > 0) {
+					npcSelectedCellX--;
+					timestamp = System.currentTimeMillis();
+				}
+				
+			}
+			
+			if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
+				
+				if(npcSelectedCellX == 4 && npcInventoryActive) {
+					
+					npcInventoryActive = false;
+					playerInventoryActive = true;
+					
+				}
+				
+				if(npcSelectedCellX < amountColumns - 1 && npc != null && npc.getInventoryList().size() > npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns + 1) {
+					npcSelectedCellX++;
+					timestamp = System.currentTimeMillis();
+				}
+	
+			}
+				
+			checkIfKeyDown();
+			
+		
+		}
+		
+		
+		
+		
+		
+		
 
 	}		
 	
@@ -185,101 +291,9 @@ public class TradingWindow {
 		
 		if(windowOpen) {
 			
-			//Draw inventory of player
-			g.drawImage(inventoryImage, 0, 0);
-			g.drawImage(selectedCellImage, 1484 + playerSelectedCellX * 78, 305 + playerSelectedCellY * 78);
-			
-			g.setColor(Color.white);
-			
-			g.drawString("Gold: ", 1733, 239);
-			g.drawString(String.valueOf(player.getInventoryWindow().getGoldCounter()), 1853 - Integer.toString(player.getInventoryWindow().getGoldCounter()).length() * 9, 239);
-			
-			int row = 0;
-			int column = 0;
-			
-			for(int i = playerScrollOffset * amountColumns; i < playerInventoryList.size(); i++) {
-				
-				if(row >= amountRows) {
-					break;
-				}
+			drawPlayerInventory(g);
+			drawNPCInventory(g);
 
-				playerInventoryList.get(i).getItemType().getInventoryAnimation().draw(1492 + column * 78, 313 + row * 78);
-				
-				if(playerItemCountList.get(i) > 1) {
-					g.drawString(playerItemCountList.get(i).toString(), 1550 + column * 78, 365 + row * 78);
-				}
-				
-				if(playerInventoryList.get(i).isEquipped()) {
-					g.drawImage(equippedItemImage, 1484 + column * 78, 305 + row * 78);
-								
-				}
-						
-				column++;
-				
-				if(column >= 5) {
-					column = 0;
-					row++;
-				}
-				
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			//Draw inventory of NPC		
-			row = 0;
-			column = 0;
-			
-			for(int i = npcScrollOffset * amountColumns; i < npc.getInventoryList().size(); i++) {
-				
-				if(row >= amountRows) {
-					break;
-				}
-
-				npc.getInventoryList().get(i).getItemType().getInventoryAnimation().draw(52 + column * 78, 313 + row * 78);
-				
-				if(npc.getItemCountList().get(i) > 1) {
-					g.drawString(npc.getItemCountList().get(i).toString(), 108 + column * 78, 365 + row * 78);
-				}
-				
-				if(npc.getInventoryList().get(i).isEquipped()) {
-					g.drawImage(equippedItemImage, 42 + column * 78, 305 + row * 78);
-								
-				}
-						
-				column++;
-				
-				if(column >= 5) {
-					column = 0;
-					row++;
-				}
-				
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			if(!playerInventoryList.isEmpty()) {
 				
 				String name = playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getName();
@@ -369,6 +383,89 @@ public class TradingWindow {
 			
 		}
 							
+	}
+	
+	private void drawPlayerInventory(Graphics g) {
+		
+		//Draw inventory of player
+		g.drawImage(inventoryImage, 0, 0);
+		
+		if(playerInventoryActive) {
+			g.drawImage(selectedCellImage, 1484 + playerSelectedCellX * 78, 305 + playerSelectedCellY * 78);	
+		}
+		
+		g.setColor(Color.white);
+		
+		g.drawString("Gold: ", 1733, 239);
+		g.drawString(String.valueOf(player.getInventoryWindow().getGoldCounter()), 1853 - Integer.toString(player.getInventoryWindow().getGoldCounter()).length() * 9, 239);
+		
+		int row = 0;
+		int column = 0;
+		
+		for(int i = playerScrollOffset * amountColumns; i < playerInventoryList.size(); i++) {
+			
+			if(row >= amountRows) {
+				break;
+			}
+
+			playerInventoryList.get(i).getItemType().getInventoryAnimation().draw(1492 + column * 78, 313 + row * 78);
+			
+			if(playerItemCountList.get(i) > 1) {
+				g.drawString(playerItemCountList.get(i).toString(), 1550 + column * 78, 365 + row * 78);
+			}
+			
+			if(playerInventoryList.get(i).isEquipped()) {
+				g.drawImage(equippedItemImage, 1484 + column * 78, 305 + row * 78);
+							
+			}
+					
+			column++;
+			
+			if(column >= 5) {
+				column = 0;
+				row++;
+			}
+			
+		}
+		
+	}
+	
+	private void drawNPCInventory(Graphics g) {
+		
+		if(npcInventoryActive) {
+			g.drawImage(selectedCellImage, 44 + npcSelectedCellX * 78, 305 + npcSelectedCellY * 78);	
+		}
+		
+		//Draw inventory of NPC		
+		int row = 0;
+		int column = 0;
+		
+		for(int i = npcScrollOffset * amountColumns; i < npc.getInventoryList().size(); i++) {
+			
+			if(row >= amountRows) {
+				break;
+			}
+
+			npc.getInventoryList().get(i).getItemType().getInventoryAnimation().draw(52 + column * 78, 313 + row * 78);
+			
+			if(npc.getItemCountList().get(i) > 1) {
+				g.drawString(npc.getItemCountList().get(i).toString(), 108 + column * 78, 365 + row * 78);
+			}
+			
+			if(npc.getInventoryList().get(i).isEquipped()) {
+				g.drawImage(equippedItemImage, 42 + column * 78, 305 + row * 78);
+							
+			}
+					
+			column++;
+			
+			if(column >= 5) {
+				column = 0;
+				row++;
+			}
+			
+		}
+		
 	}
 		
 	
