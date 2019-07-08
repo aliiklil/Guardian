@@ -85,7 +85,7 @@ public class TradingWindow {
 						
 			}
 			
-			if(playerInventoryActive && player.isYPressed() && playerInventoryList.size() > 0) {
+			if(playerInventoryActive && player.isYPressed() && playerInventoryList.size() > 0 && playerInventoryList.size() > (playerSelectedCellY + playerScrollOffset) * amountColumns + playerSelectedCellX) {
 				
 				Item selectedItem = playerInventoryList.get((playerSelectedCellY + playerScrollOffset) * amountColumns + playerSelectedCellX);
 				
@@ -97,6 +97,8 @@ public class TradingWindow {
 						player.getInventoryWindow().addItem(new Item(0, 0, Game.getItemTypeManager().gold));
 						player.getInventoryWindow().incrementGoldCounter();
 					}
+					
+					npc.addItem(selectedItem);
 				
 				}
 				
@@ -332,7 +334,8 @@ public class TradingWindow {
 
 			drawItemDescription(g);
 			
-			drawArrow(g);
+			drawArrowForPlayerInventory(g);
+			drawArrowForNPCInventory(g);
 
 		}
 							
@@ -595,7 +598,7 @@ public class TradingWindow {
 		
 	}
 
-	private void drawArrow(Graphics g) {
+	private void drawArrowForPlayerInventory(Graphics g) {
 		
 		arrowUpAnimation.updateNoDraw();
 		arrowDownAnimation.updateNoDraw();
@@ -606,6 +609,21 @@ public class TradingWindow {
 		
 		if(playerInventoryList.size() > amountCells + playerScrollOffset * amountColumns) {
 			arrowDownAnimation.draw(1876, 731);
+		}
+		
+	}
+	
+	private void drawArrowForNPCInventory(Graphics g) {
+		
+		arrowUpAnimation.updateNoDraw();
+		arrowDownAnimation.updateNoDraw();
+		
+		if(npcScrollOffset > 0) { 
+			arrowUpAnimation.draw(0, 305);
+		}
+		
+		if(npc.getInventoryList().size() > amountCells + npcScrollOffset * amountColumns) {
+			arrowDownAnimation.draw(0, 731);
 		}
 		
 	}
