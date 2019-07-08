@@ -16,6 +16,7 @@ public class ItemType {
 	
 	private final String name;
 	private final int value;
+	private final int buyValue; //Price of the item when buying it from a merchant. Buy value is always 4 times as much as normal value
 	
 	private final int inventoryPriority;
 	
@@ -95,6 +96,7 @@ public class ItemType {
 		
 		this.name = name;
 		this.value = value;
+		this.buyValue = value * 4;
 		this.inventoryPriority = inventoryPriority;
 		this.equippable = equippable;
 		this.itemCategory = itemCategory;

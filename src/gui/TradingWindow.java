@@ -10,8 +10,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import main.Game;
 import main.Main;
 import manager.CharacterManager;
+import manager.ItemTypeManager;
 import models.Item;
 import models.NPC;
 import models.Player;
@@ -74,11 +76,35 @@ public class TradingWindow {
 		playerItemCountList = player.getInventoryWindow().getItemCountList();
 		
 				
-		if(windowOpen && input.isKeyPressed(Input.KEY_ESCAPE)) {
+		if(windowOpen) {
 			
-			windowOpen = false;
-			CharacterManager.getPlayer().getDialogueWindow().setWindowOpen(true);
+			if(input.isKeyPressed(Input.KEY_ESCAPE)) {
+				
+				windowOpen = false;
+				CharacterManager.getPlayer().getDialogueWindow().setWindowOpen(true);
+						
+			}
+			
+			if(playerInventoryActive && player.isYPressed() && playerInventoryList.size() > 0) {
+				
+				Item selectedItem = playerInventoryList.get((playerSelectedCellY + playerScrollOffset) * amountColumns + playerSelectedCellX);
+				removeSelectedPlayerItem();
+				
+				for(int i = 0; i < selectedItem.getItemType().getValue(); i++) {
+					player.getInventoryWindow().addItem(new Item(0, 0, Game.getItemTypeManager().gold));
+					player.getInventoryWindow().incrementGoldCounter();
+				}
+				
+			}
+			
+			if(npcInventoryActive && player.isYPressed() && npc.getInventoryList().size() > 0) {
+				
+				Item selectedItem = npc.getInventoryList().get((npcSelectedCellY + npcScrollOffset) * amountColumns + npcSelectedCellX);
+				removeSelectedNPCItem();
+				
+			}
 	
+
 		}
 		
 		//Player inventory controls
@@ -333,7 +359,7 @@ public class TradingWindow {
 			playerInventoryList.get(i).getItemType().getInventoryAnimation().draw(1492 + column * 78, 313 + row * 78);
 			
 			if(playerItemCountList.get(i) > 1) {
-				g.drawString(playerItemCountList.get(i).toString(), 1550 + column * 78, 365 + row * 78);
+				g.drawString(playerItemCountList.get(i).toString(), 1560 + column * 78 - Integer.toString(playerItemCountList.get(i)).length() * 9, 365 + row * 78);
 			}
 			
 			if(playerInventoryList.get(i).isEquipped()) {
@@ -393,7 +419,7 @@ public class TradingWindow {
 	private void drawItemDescription(Graphics g) {
 		
 		//Draw item description if cursor is on the on the right side (npc inventory)
-		if(playerInventoryActive && !playerInventoryList.isEmpty()) {
+		if(playerInventoryActive && !playerInventoryList.isEmpty() && playerInventoryList.size() > playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns) {
 			
 			String name = playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getName();
 			g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
@@ -479,7 +505,7 @@ public class TradingWindow {
 		
 		
 		//Draw item description if cursor is on the on the left side (npc inventory)
-		if(npcInventoryActive && !npc.getInventoryList().isEmpty()) {
+		if(npcInventoryActive && !npc.getInventoryList().isEmpty() && npc.getInventoryList().size() > npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns) {
 			
 			String name = npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getName();
 			g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
@@ -562,12 +588,8 @@ public class TradingWindow {
 			
 		}
 		
-		
-		
-		
 	}
-		
-	
+
 	private void drawArrow(Graphics g) {
 		
 		arrowUpAnimation.updateNoDraw();
@@ -579,6 +601,58 @@ public class TradingWindow {
 		
 		if(playerInventoryList.size() > amountCells + playerScrollOffset * amountColumns) {
 			arrowDownAnimation.draw(1876, 731);
+		}
+		
+	}
+	
+	public void removeSelectedPlayerItem() {
+
+		int index = playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns;
+		
+		if(playerItemCountList.get(index) > 1) {
+			playerItemCountList.set(index, playerItemCountList.get(index) - 1);
+		} else {
+			playerInventoryList.remove(index);
+			playerItemCountList.remove(index);
+		}
+		
+		if(playerInventoryList.size() == playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns) {
+			
+			if(playerSelectedCellX > 0) {
+				playerSelectedCellX = playerSelectedCellX - 1;
+			} else if(playerSelectedCellX == 0) {
+				if(playerSelectedCellY > 0) {
+					playerSelectedCellY = playerSelectedCellY - 1;
+					playerSelectedCellX = 4;
+				}
+			}
+
+		}
+	
+	}
+	
+	public void removeSelectedNPCItem() {
+		
+		int index = npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns;
+		
+		if(npc.getItemCountList().get(index) > 1) {
+			npc.getItemCountList().set(index, npc.getItemCountList().get(index) - 1);
+		} else {
+			npc.getInventoryList().remove(index);
+			npc.getItemCountList().remove(index);
+		}
+		
+		if(npc.getInventoryList().size() == npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns) {
+			
+			if(npcSelectedCellX > 0) {
+				npcSelectedCellX = npcSelectedCellX - 1;
+			} else if(npcSelectedCellX == 0) {
+				if(npcSelectedCellY > 0) {
+					npcSelectedCellY = npcSelectedCellY - 1;
+					npcSelectedCellX = 4;
+				}
+			}
+
 		}
 		
 	}

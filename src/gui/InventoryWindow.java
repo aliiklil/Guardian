@@ -344,7 +344,7 @@ public class InventoryWindow {
 				inventoryList.get(i).getItemType().getInventoryAnimation().draw(1492 + column * 78, 313 + row * 78);
 				
 				if(itemCountList.get(i) > 1) {
-					g.drawString(itemCountList.get(i).toString(), 1550 + column * 78, 365 + row * 78);
+					g.drawString(itemCountList.get(i).toString(), 1560 + column * 78 - Integer.toString(itemCountList.get(i)).length() * 9, 365 + row * 78);
 				}
 				
 				if(inventoryList.get(i).isEquipped()) {
@@ -401,7 +401,7 @@ public class InventoryWindow {
 				}
 			}
 			
-			if(!inventoryList.isEmpty()) {
+			if(!inventoryList.isEmpty() && inventoryList.size() > selectedCellX + (selectedCellY + scrollOffset) * amountColumns) {
 				
 				String name = inventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getName();
 				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
@@ -609,6 +609,19 @@ public class InventoryWindow {
 		} else {
 			inventoryList.remove(index);
 			itemCountList.remove(index);
+		}
+		
+		if(inventoryList.size() == selectedCellX + (selectedCellY + scrollOffset) * amountColumns) {
+			
+			if(selectedCellX > 0) {
+				selectedCellX = selectedCellX - 1;
+			} else if(selectedCellX == 0) {
+				if(selectedCellY > 0) {
+					selectedCellY = selectedCellY - 1;
+					selectedCellX = 4;
+				}
+			}
+
 		}
 		
 	}
