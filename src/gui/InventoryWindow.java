@@ -14,6 +14,7 @@ import org.newdawn.slick.SpriteSheet;
 import main.Main;
 import manager.CharacterManager;
 import models.Item;
+import models.ItemType;
 import models.Player;
 
 public class InventoryWindow {
@@ -626,6 +627,40 @@ public class InventoryWindow {
 		
 	}
 	
+	public void removeItem(ItemType itemType) {
+
+		for(int i = 0; i < inventoryList.size(); i++) {
+			
+			if(inventoryList.get(i).getItemType() == itemType) {
+				
+				if(itemCountList.get(i) > 1) {
+					itemCountList.set(i, itemCountList.get(i) - 1);
+				}
+				
+				if(itemCountList.get(i) == 1) {
+					inventoryList.remove(i);
+					itemCountList.remove(i);
+				}
+
+			}
+			
+		}
+		
+		if(inventoryList.size() == selectedCellX + (selectedCellY + scrollOffset) * amountColumns) {
+			
+			if(selectedCellX > 0) {
+				selectedCellX = selectedCellX - 1;
+			} else if(selectedCellX == 0) {
+				if(selectedCellY > 0) {
+					selectedCellY = selectedCellY - 1;
+					selectedCellX = 4;
+				}
+			}
+
+		}
+		
+	}
+	
 	private void sortInventory() {
 		
 		//Sort after inventory priority
@@ -662,6 +697,10 @@ public class InventoryWindow {
 	
 	public void incrementGoldCounter() {
 		goldCounter++;
+	}
+	
+	public void decrementGoldCounter() {
+		goldCounter--;
 	}
 
 	public ArrayList<Item> getInventoryList() {

@@ -211,6 +211,10 @@ public class ItemType {
 		return value;
 	}
 	
+	public int getBuyValue() {
+		return buyValue;
+	}
+	
 	public int getInventoryPriority() {
 		return inventoryPriority;
 	}

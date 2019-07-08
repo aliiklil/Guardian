@@ -63,6 +63,7 @@ public class TradingWindow {
 	private ArrayList<Item> playerInventoryList;
 	private ArrayList<Integer> playerItemCountList;
 	
+	private boolean cursorMoved = false; //Needed otherwise the centeredText, which says "You need ... gold" will be displayed immediately when opening the trading window
 	
 	public TradingWindow() throws SlickException {	
 
@@ -107,7 +108,25 @@ public class TradingWindow {
 			if(npcInventoryActive && player.isYPressed() && npc.getInventoryList().size() > 0) {
 				
 				Item selectedItem = npc.getInventoryList().get((npcSelectedCellY + npcScrollOffset) * amountColumns + npcSelectedCellX);
-				removeSelectedNPCItem();
+				
+				
+				if(player.getInventoryWindow().getGoldCounter() >= selectedItem.getItemType().getBuyValue()) {
+					removeSelectedNPCItem();
+					player.getInventoryWindow().addItem(selectedItem);
+					
+					for(int i = 0; i < selectedItem.getItemType().getBuyValue(); i++) {
+						player.getInventoryWindow().removeItem(Game.getItemTypeManager().gold);
+						player.getInventoryWindow().decrementGoldCounter();
+					}
+					
+				} else {
+					
+					if(System.currentTimeMillis() - timestamp > 100) {
+						String text = "You need " + selectedItem.getItemType().getBuyValue() + " gold";
+						player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					}
+					
+				}
 				
 			}
 	
@@ -589,7 +608,7 @@ public class TradingWindow {
 			}
 
 			g.drawString("Value in Gold:", 652, 963);
-			String value = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getValue());
+			String value = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getBuyValue());
 			g.drawString(value, 1098 - value.length() * 9, 963);
 			
 			npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
@@ -691,5 +710,9 @@ public class TradingWindow {
 	public void setNpc(NPC npc) {
 		this.npc = npc;
 	}
-	
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
+
 }

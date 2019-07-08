@@ -167,7 +167,7 @@ public class DialogueWindow {
 			
 			Player player = CharacterManager.getPlayer();
 			player.getTradingWindow().setWindowOpen(true);
-			
+			player.getTradingWindow().setTimestamp(System.currentTimeMillis());
 			
 			windowOpen = false;
 			sentenceCount = 0;
