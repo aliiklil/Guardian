@@ -79,7 +79,7 @@ public class TradingWindow {
 				
 		if(windowOpen) {
 			
-			if(input.isKeyPressed(Input.KEY_ESCAPE)) {
+			if(player.isEscapePressed()) {
 				
 				windowOpen = false;
 				CharacterManager.getPlayer().getDialogueWindow().setWindowOpen(true);

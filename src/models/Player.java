@@ -61,6 +61,7 @@ public class Player extends Character {
 	private CenteredText levelUpText = new CenteredText();
 
 	private boolean yPressed = false;
+	private boolean escapePressed = false;
 
 	private Animation currentMeleeAnimation;
 	private Animation currentBowAnimation;
@@ -176,6 +177,10 @@ public class Player extends Character {
 		if(input.isKeyPressed(Input.KEY_Y)) {
 			yPressed = true;
 		}
+		
+		if(input.isKeyPressed(Input.KEY_ESCAPE)) {
+			escapePressed = true;
+		}
 
 		if(isAlive()) {
 			inventoryWindow.update();
@@ -198,6 +203,8 @@ public class Player extends Character {
 		}
 
 		yPressed = false;
+		escapePressed = false;
+
 
 		if(currentMeleeAnimation != null) {
 			currentMeleeAnimation.setCurrentFrame(getCurrentAnimation().getFrame());
@@ -2651,6 +2658,10 @@ public class Player extends Character {
 
 	public boolean isYPressed() {
 		return yPressed;
+	}
+
+	public boolean isEscapePressed() {
+		return escapePressed;
 	}
 
 	public void setEquippedMelee(ItemType equippedMelee) {

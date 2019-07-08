@@ -70,6 +70,9 @@ public class InventoryWindow {
 			}
 		}	
 		
+		if(player.isEscapePressed() && windowOpen) {
+			windowOpen = false;
+		}
 
 		
 		if(windowOpen) {
