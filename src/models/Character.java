@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -88,7 +91,10 @@ public abstract class Character {
 	private Animation dieAnimation;
 	
 	private Animation currentAnimation;
-		
+	
+	private ArrayList<Item> inventoryList = new ArrayList<Item>();
+	private ArrayList<Integer> itemCountList = new ArrayList<Integer>();
+	
 	public Character(float relativeToMapX, float relativeToMapY, String spriteSheetPath) throws SlickException {
 		
 		this.relativeToMapX = relativeToMapX;
@@ -239,6 +245,50 @@ public abstract class Character {
 			bloodAnimation.restart();
 		}
 		
+	}
+	
+	public void addItem(Item item) {
+		
+		for(int i = 0; i < inventoryList.size(); i++) {
+			if(item.getItemType().getInventoryAnimation().getImage(0).getResourceReference().equals(inventoryList.get(i).getItemType().getInventoryAnimation().getImage(0).getResourceReference())) {	
+				itemCountList.set(i, itemCountList.get(i) + 1);
+				return;
+			}
+		}
+		
+		itemCountList.add(1);
+		inventoryList.add(item);
+		
+		sortInventory();
+			
+	}
+	
+	private void sortInventory() {
+		
+		//Sort after inventory priority
+		for (int i = 0; i < inventoryList.size() - 1; i++) {
+			int index = i;
+			for (int j = i + 1; j < inventoryList.size(); j++) {
+				if (inventoryList.get(j).getItemType().getInventoryPriority() < inventoryList.get(index).getItemType().getInventoryPriority()) {
+					index = j;
+				}
+			}
+			Collections.swap(inventoryList, index, i);
+			Collections.swap(itemCountList, index, i);
+		}
+		
+		//Sort after value in gold if inventory priority is the same
+		for (int i = 0; i < inventoryList.size() - 1; i++) {
+			int index = i;
+			for (int j = i + 1; j < inventoryList.size(); j++) {
+				if (inventoryList.get(j).getItemType().getInventoryPriority() == inventoryList.get(index).getItemType().getInventoryPriority() && inventoryList.get(j).getItemType().getValue() > inventoryList.get(index).getItemType().getValue()) {
+					index = j;
+				}
+			}
+			Collections.swap(inventoryList, index, i);
+			Collections.swap(itemCountList, index, i);
+		}
+			
 	}
 
 	public int getSpriteSize() {
@@ -538,4 +588,12 @@ public abstract class Character {
 		return dieAnimation;
 	}
 	
+	public ArrayList<Item> getInventoryList() {
+		return inventoryList;
+	}
+
+	public ArrayList<Integer> getItemCountList() {
+		return itemCountList;
+	}
+		
 }

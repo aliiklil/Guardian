@@ -1,5 +1,3 @@
-.)Implement trading
-
 .)Implement quest system
 
 .)Create different hitbox for every melee weapon

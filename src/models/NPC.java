@@ -64,9 +64,6 @@ public class NPC extends Character {
 	private int damageOutput;
 	private double critChance;
 	
-	private ArrayList<Item> inventoryList = new ArrayList<Item>();
-	private ArrayList<Integer> itemCountList = new ArrayList<Integer>();
-	
 	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer, int damageOutput, double critChance) throws SlickException {
 
 		super(relativeToMapX, relativeToMapY, spriteSheetPath);
@@ -831,56 +828,6 @@ public class NPC extends Character {
 		return experienceForPlayer;
 	}
 
-	public ArrayList<Item> getInventoryList() {
-		return inventoryList;
-	}
 
-	public ArrayList<Integer> getItemCountList() {
-		return itemCountList;
-	}
-	
-	public void addItem(Item item) {
-		
-		for(int i = 0; i < inventoryList.size(); i++) {
-			if(item.getItemType().getInventoryAnimation().getImage(0).getResourceReference().equals(inventoryList.get(i).getItemType().getInventoryAnimation().getImage(0).getResourceReference())) {	
-				itemCountList.set(i, itemCountList.get(i) + 1);
-				return;
-			}
-		}
-		
-		itemCountList.add(1);
-		inventoryList.add(item);
-		
-		sortInventory();
-			
-	}
-	
-	private void sortInventory() {
-		
-		//Sort after inventory priority
-		for (int i = 0; i < inventoryList.size() - 1; i++) {
-			int index = i;
-			for (int j = i + 1; j < inventoryList.size(); j++) {
-				if (inventoryList.get(j).getItemType().getInventoryPriority() < inventoryList.get(index).getItemType().getInventoryPriority()) {
-					index = j;
-				}
-			}
-			Collections.swap(inventoryList, index, i);
-			Collections.swap(itemCountList, index, i);
-		}
-		
-		//Sort after value in gold if inventory priority is the same
-		for (int i = 0; i < inventoryList.size() - 1; i++) {
-			int index = i;
-			for (int j = i + 1; j < inventoryList.size(); j++) {
-				if (inventoryList.get(j).getItemType().getInventoryPriority() == inventoryList.get(index).getItemType().getInventoryPriority() && inventoryList.get(j).getItemType().getValue() > inventoryList.get(index).getItemType().getValue()) {
-					index = j;
-				}
-			}
-			Collections.swap(inventoryList, index, i);
-			Collections.swap(itemCountList, index, i);
-		}
-			
-	}
 	
 }

@@ -110,8 +110,6 @@ public class Player extends Character {
 	
 	private Bar manaBar;
 	
-	
-
 	public Player() throws SlickException {
 
 		super(224, 64, "resources/player_sprites/player_base.png");
@@ -778,7 +776,7 @@ public class Player extends Character {
 		
 		boolean arrowExists = false;
 
-		for(Item item : inventoryWindow.getInventoryList()) {
+		for(Item item : getInventoryList()) {
 			if(item.getItemType().equals(Game.getItemTypeManager().arrow)) {
 				arrowExists = true;
 				break;
@@ -866,18 +864,18 @@ public class Player extends Character {
 			
 			
 			//Delete arrow from inventory, or decrement arrowCount
-			for(int i = 0; i < inventoryWindow.getInventoryList().size(); i++) {
-				if(inventoryWindow.getInventoryList().get(i).getItemType().equals(Game.getItemTypeManager().arrow)) {
+			for(int i = 0; i < getInventoryList().size(); i++) {
+				if(getInventoryList().get(i).getItemType().equals(Game.getItemTypeManager().arrow)) {
 					
-					int arrowCount = inventoryWindow.getItemCountList().get(i);
+					int arrowCount = getItemCountList().get(i);
 					
 					if(arrowCount > 1) {
-						inventoryWindow.getItemCountList().set(i, arrowCount - 1);
+						getItemCountList().set(i, arrowCount - 1);
 						System.out.println("AAAA");
 					}
 					
 					if(arrowCount == 1) {
-						inventoryWindow.getInventoryList().remove(i);
+						getInventoryList().remove(i);
 					}
 					
 					break;

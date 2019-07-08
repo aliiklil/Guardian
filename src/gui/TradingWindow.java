@@ -73,8 +73,8 @@ public class TradingWindow {
 		
 		player = CharacterManager.getPlayer();
 		
-		playerInventoryList = player.getInventoryWindow().getInventoryList();
-		playerItemCountList = player.getInventoryWindow().getItemCountList();
+		playerInventoryList = player.getInventoryList();
+		playerItemCountList = player.getItemCountList();
 		
 				
 		if(windowOpen) {
