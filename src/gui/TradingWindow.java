@@ -88,11 +88,16 @@ public class TradingWindow {
 			if(playerInventoryActive && player.isYPressed() && playerInventoryList.size() > 0) {
 				
 				Item selectedItem = playerInventoryList.get((playerSelectedCellY + playerScrollOffset) * amountColumns + playerSelectedCellX);
-				removeSelectedPlayerItem();
 				
-				for(int i = 0; i < selectedItem.getItemType().getValue(); i++) {
-					player.getInventoryWindow().addItem(new Item(0, 0, Game.getItemTypeManager().gold));
-					player.getInventoryWindow().incrementGoldCounter();
+				if(!selectedItem.getItemType().getItemCategory().equals("gold")) {
+				
+					removeSelectedPlayerItem();
+					
+					for(int i = 0; i < selectedItem.getItemType().getValue(); i++) {
+						player.getInventoryWindow().addItem(new Item(0, 0, Game.getItemTypeManager().gold));
+						player.getInventoryWindow().incrementGoldCounter();
+					}
+				
 				}
 				
 			}
