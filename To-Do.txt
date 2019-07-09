@@ -3,5 +3,3 @@
 .)Create different hitbox for every melee weapon
 
 .)Implement pick locking skills (0%, 25%, 50%, 75%, 100%)
-
-.)Give player starting cloths
