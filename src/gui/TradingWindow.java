@@ -92,6 +92,37 @@ public class TradingWindow {
 				
 				if(!selectedItem.getItemType().getItemCategory().equals("gold")) {
 				
+					if(selectedItem.isEquipped()) {
+						selectedItem.setEquipped(false);
+						
+						if(selectedItem.getItemType().getItemCategory().equals("melee_slay") || selectedItem.getItemType().getItemCategory().equals("melee_thrust")) {
+							player.setEquippedMelee(null);
+							player.setCurrentMeleeAnimation(null);
+						} else if(selectedItem.getItemType().getItemCategory().equals("bow")) {
+							player.setEquippedBow(null);
+							player.setCurrentBowAnimation(null);
+						} else if(selectedItem.getItemType().getItemCategory().equals("spell")) {
+							player.setEquippedSpell(null);
+							player.setCurrentSpellAnimation(null);
+						} else if(selectedItem.getItemType().getItemCategory().equals("head")) {
+							player.setEquippedHead(null);
+							player.setCurrentHeadAnimation(null);
+						} else if(selectedItem.getItemType().getItemCategory().equals("chest")) {
+							player.setEquippedTorso(null);
+							player.setCurrentChestAnimation(null);
+						} else if(selectedItem.getItemType().getItemCategory().equals("hands")) {
+							player.setEquippedHands(null);
+							player.setCurrentHandsAnimation(null);
+						} else if(selectedItem.getItemType().getItemCategory().equals("legs")) {
+							player.setEquippedLegs(null);
+							player.setCurrentLegsAnimation(null);
+						} else if(selectedItem.getItemType().getItemCategory().equals("feet")) {
+							player.setEquippedBoots(null);
+							player.setCurrentFeetAnimation(null);
+						}
+						
+					}
+					
 					removeSelectedPlayerItem();
 					
 					for(int i = 0; i < selectedItem.getItemType().getValue(); i++) {
