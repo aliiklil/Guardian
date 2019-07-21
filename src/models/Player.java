@@ -672,7 +672,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayUpAnimation() || super.getCurrentAnimation() == super.getThrustUpAnimation())) {
 				for (NPC npc : npcList) {
-					if(super.getAttackUpCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
+					if(super.getAttackUpCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() && npc.isHostileToPlayer()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
@@ -697,7 +697,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayDownAnimation() || super.getCurrentAnimation() == super.getThrustDownAnimation())) {
 				for (NPC npc : npcList) {
-					if(super.getAttackDownCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
+					if(super.getAttackDownCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() && npc.isHostileToPlayer()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
@@ -722,7 +722,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayLeftAnimation() || super.getCurrentAnimation() == super.getThrustLeftAnimation())) {
 				for (NPC npc : npcList) {
-					if(super.getAttackLeftCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
+					if(super.getAttackLeftCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() && npc.isHostileToPlayer()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
@@ -747,7 +747,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayRightAnimation() || super.getCurrentAnimation() == super.getThrustRightAnimation())) {
 				for (NPC npc : npcList) {
-					if(super.getAttackRightCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
+					if(super.getAttackRightCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() && npc.isHostileToPlayer()) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
@@ -871,7 +871,6 @@ public class Player extends Character {
 					
 					if(arrowCount > 1) {
 						getItemCountList().set(i, arrowCount - 1);
-						System.out.println("AAAA");
 					}
 					
 					if(arrowCount == 1) {
