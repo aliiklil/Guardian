@@ -1,5 +1,3 @@
-.)Make NPCs, which are friendly, not attackable
-
 .)Create different hitbox for every melee weapon
 
 .)Implement quest system
