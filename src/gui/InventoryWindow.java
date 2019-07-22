@@ -507,19 +507,18 @@ public class InventoryWindow {
 		g.drawString("Health Points: ", 299, 497);
 		g.drawString("Mana: ", 299, 517);
 		
-		g.drawString("Sword Skill: ", 299, 557);
-		g.drawString("Spear Skill: ", 299, 577);
-		g.drawString("Bow Skill: ", 299, 597);
-		g.drawString("Spell Skill: ", 299, 617);
+		g.drawString("Melee Skill: ", 299, 557);
+		g.drawString("Bow Skill: ", 299, 577);
+		g.drawString("Spell Skill: ", 299, 597);
 		
-		g.drawString("Pick Locks: ", 299, 657);
-		g.drawString("Take Furs: ", 299, 677);
-		g.drawString("Take Trophies: ", 299, 697);
-		g.drawString("HP Regeneration: ", 299, 717);
-		g.drawString("Mana Regeneration: ", 299, 737);
+		g.drawString("Pick Locks: ", 299, 637);
+		g.drawString("Take Furs: ", 299, 657);
+		g.drawString("Take Trophies: ", 299, 677);
+		g.drawString("HP Regeneration: ", 299, 697);
+		g.drawString("Mana Regeneration: ", 299, 717);
 		
 		
-		g.drawString("Armor Protection: ", 299, 777);
+		g.drawString("Armor Protection: ", 299, 757);
 		
 		
 		g.drawString(String.valueOf(player.getLevel()), 471, 317);
@@ -534,42 +533,41 @@ public class InventoryWindow {
 		g.drawString(String.valueOf(player.getHealthPoints()), 471, 497);
 		g.drawString(String.valueOf(player.getMana()), 471, 517);
 		
-		g.drawString(String.valueOf(player.getSwordSkill()) + "%", 471, 557);
-		g.drawString(String.valueOf(player.getSpearSkill()) + "%", 471, 577);
-		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 597);
-		g.drawString(String.valueOf(player.getSpellSkill()) + "%", 471, 617);
+		g.drawString(String.valueOf(player.getMeleeSkill()) + "%", 471, 557);
+		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 577);
+		g.drawString(String.valueOf(player.getSpellSkill()) + "%", 471, 597);
 				
 		if(player.isPickLocks()) {
+			g.drawString("Learned", 471, 637);
+		} else {
+			g.drawString("-", 471, 637);
+		}
+		
+		if(player.isTakeFurs()) {
 			g.drawString("Learned", 471, 657);
 		} else {
 			g.drawString("-", 471, 657);
 		}
 		
-		if(player.isTakeFurs()) {
+		if(player.isTakeTrophies()) {
 			g.drawString("Learned", 471, 677);
 		} else {
 			g.drawString("-", 471, 677);
 		}
 		
-		if(player.isTakeTrophies()) {
+		if(player.isHpRegeneration()) {
 			g.drawString("Learned", 471, 697);
 		} else {
 			g.drawString("-", 471, 697);
 		}
 		
-		if(player.isHpRegeneration()) {
+		if(player.isManaRegeneration()) {
 			g.drawString("Learned", 471, 717);
 		} else {
 			g.drawString("-", 471, 717);
 		}
 		
-		if(player.isManaRegeneration()) {
-			g.drawString("Learned", 471, 737);
-		} else {
-			g.drawString("-", 471, 737);
-		}
-		
-		g.drawString(String.valueOf(player.getArmorProtection() + "%"), 471, 777);
+		g.drawString(String.valueOf(player.getArmorProtection() + "%"), 471, 757);
 				
 	}
 	

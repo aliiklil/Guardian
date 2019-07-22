@@ -250,30 +250,18 @@ public class DialogueWindow {
 			}
 		}
 
-		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Sword Skill + 5 (Costs 5LP)")) {
+		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Melee Skill + 5 (Costs 5LP)")) {
 			if(player.getLearningPoints() >= 5) {
-				player.setSwordSkill(player.getSwordSkill() + 5);
+				player.setMeleeSkill(player.getMeleeSkill() + 5);
 				player.setLearningPoints(player.getLearningPoints() - 5);
-				String text = "Sword Skill + 5";
+				String text = "Melee Skill + 5";
 				player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 				currentDialogues.get(selectedOption).getSentences().get(1).setText("You are a fast learner.");
 			} else {
 				currentDialogues.get(selectedOption).getSentences().get(1).setText("You don't have enough experience. Come back later.");
 			}
 		}
-		
-		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Spear Skill + 5 (Costs 5LP)")) {
-			if(player.getLearningPoints() >= 5) {
-				player.setSpearSkill(player.getSpearSkill() + 5);
-				player.setLearningPoints(player.getLearningPoints() - 5);
-				String text = "Spear Skill + 5";
-				player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
-				currentDialogues.get(selectedOption).getSentences().get(1).setText("You are a fast learner.");
-			} else {
-				currentDialogues.get(selectedOption).getSentences().get(1).setText("You don't have enough experience. Come back later.");
-			}
-		}
-		
+				
 		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Bow Skill + 5 (Costs 5LP)")) {
 			if(player.getLearningPoints() >= 5) {
 				player.setBowSkill(player.getBowSkill() + 5);

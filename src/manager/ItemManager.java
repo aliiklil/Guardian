@@ -17,17 +17,24 @@ public class ItemManager {
 	
 	public ItemManager() throws SlickException {
 			
+		
+		Item stick = new Item(480, 416, itemTypeManager.stick);
 						
 		Item dagger = new Item(480, 416, itemTypeManager.dagger);
+		Item mace = new Item(480, 416, itemTypeManager.mace);
+		Item longsword = new Item(480, 416, itemTypeManager.longsword);
+		Item redironsword = new Item(480, 416, itemTypeManager.redironsword);
+		Item diamondsword = new Item(480, 416, itemTypeManager.diamondsword);
+		Item blacksword = new Item(480, 416, itemTypeManager.blacksword);
+		
+		
+		Item rapier = new Item(480, 416, itemTypeManager.rapier);
+		Item sabre = new Item(480, 416, itemTypeManager.sabre);
+		
+		Item shortspear = new Item(480, 416, itemTypeManager.shortspear);
 		Item longspear = new Item(480, 416, itemTypeManager.longspear);
 		Item dragonspear = new Item(480, 416, itemTypeManager.dragonspear);
 		Item goldspear = new Item(480, 416, itemTypeManager.goldspear);
-		Item longsword = new Item(480, 416, itemTypeManager.longsword);
-		Item mace = new Item(480, 416, itemTypeManager.mace);
-		Item rapier = new Item(480, 416, itemTypeManager.rapier);
-		Item sabre = new Item(480, 416, itemTypeManager.sabre);
-		Item shortspear = new Item(480, 416, itemTypeManager.shortspear);
-		Item stick = new Item(480, 416, itemTypeManager.stick);
 		
 		Item bow = new Item(480, 416, itemTypeManager.bow);
 		Item longbow = new Item(480, 416, itemTypeManager.longbow);
@@ -159,16 +166,21 @@ public class ItemManager {
 		
 		Item trophy1 = new Item(364, 32, itemTypeManager.trophy);
 
+		itemList.add(stick);
 		itemList.add(dagger);
+		itemList.add(mace);
+		itemList.add(longsword);
+		itemList.add(redironsword);
+		itemList.add(diamondsword);
+		itemList.add(blacksword);
+
+		itemList.add(rapier);
+		itemList.add(sabre);
+		
+		itemList.add(shortspear);
 		itemList.add(longspear);
 		itemList.add(dragonspear);
 		itemList.add(goldspear);
-		itemList.add(longsword);
-		itemList.add(mace);
-		itemList.add(rapier);
-		itemList.add(sabre);
-		itemList.add(shortspear);
-		itemList.add(stick);
 		
 		
 		itemList.add(bow);

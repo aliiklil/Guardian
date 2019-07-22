@@ -10,6 +10,9 @@ public class ItemTypeManager {
 	public ItemType dagger = new ItemType(1, "resources/items/1melee/dagger.png", "Dagger", 50, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/dagger.png", 20, 0, 0, 25, 0, 0, 0, 0);
 	public ItemType mace = new ItemType(1, "resources/items/1melee/mace.png", "Mace", 100, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mace.png", 30, 0, 0, 35, 0, 0, 0, 0);
 	public ItemType longsword = new ItemType(1, "resources/items/1melee/longsword.png", "Longsword", 300, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/longsword.png", 40, 0, 0, 75, 0, 0, 0, 0);
+	public ItemType redironsword = new ItemType(1, "resources/items/1melee/redironsword.png", "Red Iron Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/redironsword.png", 50, 0, 0, 90, 0, 0, 0, 0);
+	public ItemType diamondsword = new ItemType(1, "resources/items/1melee/diamondsword.png", "Diamon Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/diamondsword.png", 60, 0, 0, 110, 0, 0, 0, 0);
+	public ItemType blacksword = new ItemType(1, "resources/items/1melee/blacksword.png", "Black Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/blacksword.png", 75, 0, 0, 140, 0, 0, 0, 0);
 
 	public ItemType sabre = new ItemType(1, "resources/items/1melee/sabre.png", "Sabre", 200, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/sabre.png", 0, 20, 0, 35, 0, 0, 0, 0);
 	public ItemType rapier = new ItemType(1, "resources/items/1melee/rapier.png", "Rapier", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/rapier.png", 0, 40, 0, 55, 0, 0, 0, 0);

@@ -88,15 +88,14 @@ public class Player extends Character {
 	private int nextLevelExperience = levelBorders[level];
 	private int learningPoints = 0;
 	
-	private int strength = 10;
-	private int dexterity = 10;
+	private int strength = 200;
+	private int dexterity = 200;
 	private int magicKnowledge = 10;
 	
 	private int healthPoints = 200;
 	private int mana = 100;
 	
-	private int swordSkill = 10;
-	private int spearSkill = 10;
+	private int meleeSkill = 10;
 	private int bowSkill = 10;
 	private int spellSkill = 10;
 
@@ -636,14 +635,10 @@ public class Player extends Character {
 			startAllAnimations();
 			damageToDeal = equippedMelee.getDamage() + strength + (int) ((equippedMelee.getDamage() + strength) * prepareAttackBar.getCurrentValue()/100.0) * 2;
 
-			if(equippedMelee.getItemCategory().equals("melee_slay") && swordSkill/100.0 > new Random().nextDouble()) {
+			if((equippedMelee.getItemCategory().equals("melee_slay") || equippedMelee.getItemCategory().equals("melee_thrust")) && meleeSkill/100.0 > new Random().nextDouble()) {
 				damageToDeal = damageToDeal * 5;
 			}
 			
-			if(equippedMelee.getItemCategory().equals("melee_thrust") && spearSkill/100.0 > new Random().nextDouble()) {
-				damageToDeal = damageToDeal * 5;
-			}
-
 			isAttacking = true;
 			damageDealt = false;
 			prepareAttackBar.setCurrentValue(0);
@@ -2797,12 +2792,8 @@ public class Player extends Character {
 		return mana;
 	}
 
-	public int getSwordSkill() {
-		return swordSkill;
-	}
-
-	public int getSpearSkill() {
-		return spearSkill;
+	public int getMeleeSkill() {
+		return meleeSkill;
 	}
 
 	public int getBowSkill() {
@@ -2861,12 +2852,8 @@ public class Player extends Character {
 		this.mana = mana;
 	}
 
-	public void setSwordSkill(int swordSkill) {
-		this.swordSkill = swordSkill;
-	}
-
-	public void setSpearSkill(int spearSkill) {
-		this.spearSkill = spearSkill;
+	public void setMeleeSkill(int meleeSkill) {
+		this.meleeSkill = meleeSkill;
 	}
 
 	public void setBowSkill(int bowSkill) {

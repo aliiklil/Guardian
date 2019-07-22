@@ -119,23 +119,19 @@ public class DialogueManager {
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(4).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(5).addSentence("Sword Skill + 5 (Costs 5LP)", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(5).addSentence("Melee Skill + 5 (Costs 5LP)", "Hero");
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(5).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(6).addSentence("Spear Skill + 5 (Costs 5LP)", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(6).addSentence("Bow Skill + 5 (Costs 5LP)", "Hero");
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(6).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(7).addSentence("Bow Skill + 5 (Costs 5LP)", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(7).addSentence("Spell Skill + 5 (Costs 5LP)", "Hero");
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(7).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(8).addSentence("Spell Skill + 5 (Costs 5LP)", "Hero");
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(8).addSentence("You are a fast learner.", "Ogus");
-		
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(9).addSentence("Back", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(8).addSentence("Back", "Hero");
 		
 		ogusDialogues.add(new Dialogue());
 		ogusDialogues.get(5).setPermanent(true);
