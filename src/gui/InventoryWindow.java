@@ -123,10 +123,7 @@ public class InventoryWindow {
 						} else if(player.getCurrentAnimation() == player.getLookRightAnimation()) {
 							player.setAnimationsToLookRight();
 						}
-						
-						//Decrease armorProtection value of value by protection of the item, which is now unequipped
-						player.setArmorProtection(player.getArmorProtection() - selectedItem.getItemType().getProtection());
-						
+												
 					} else {
 						if (player.getStrength() >= selectedItem.getItemType().getMinStrength() && player.getDexterity() >= selectedItem.getItemType().getMinDexterity() && player.getMagicKnowledge() >= selectedItem.getItemType().getMinMagicKnowledge()) {
 							for(Item item : playerInventoryList) {
@@ -171,8 +168,6 @@ public class InventoryWindow {
 							} else if(player.getCurrentAnimation() == player.getLookRightAnimation()) {
 								player.setAnimationsToLookRight();
 							}
-							
-							player.setArmorProtection(player.getArmorProtection() + selectedItem.getItemType().getProtection());
 							
 						} else {
 							

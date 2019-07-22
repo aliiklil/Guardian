@@ -235,6 +235,12 @@ public class Player extends Character {
 		if(currentFeetAnimation != null) {
 			currentFeetAnimation.setCurrentFrame(getCurrentAnimation().getFrame());
 		}
+		
+		
+		
+		computeArmorProtection();
+		
+		
 
 	}
 
@@ -2639,6 +2645,20 @@ public class Player extends Character {
 
 		}
 
+	}
+	
+	public void computeArmorProtection() {
+		
+		armorProtection = 0;
+		
+		for(Item i : getInventoryList()) {
+			
+			if(i.isEquipped()) {
+				armorProtection = armorProtection + i.getItemType().getProtection();
+			}
+			
+		}
+		
 	}
 
 	public InventoryWindow getInventoryWindow() {
