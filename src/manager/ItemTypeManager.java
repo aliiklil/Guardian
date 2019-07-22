@@ -28,40 +28,40 @@ public class ItemTypeManager {
 	public ItemType firespell = new ItemType(1, "resources/items/4spells/firespell.png", "Fire Spell", 150, 4, true, "spell", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 10, 25, 0, 5, 0, 0);
 	public ItemType icespell = new ItemType(1, "resources/items/4spells/icespell.png", "Ice Spell", 200, 4, true, "spell", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 20, 45, 0, 20, 0, 0);
 
-	public ItemType clothhood = new ItemType(1, "resources/items/5helmets/clothhood.png", "Cloth Hood", 20, 5, true, "head", "resources/player_sprites/head/clothhood.png", 0, 0, 0, 0, 3, 0, 0, 0);
-	public ItemType leathercap = new ItemType(1, "resources/items/5helmets/leathercap.png", "Leather Cap", 50, 5, true, "head", "resources/player_sprites/head/leathercap.png", 0, 0, 0, 0, 5, 0, 0, 0);
-	public ItemType chainhat = new ItemType(1, "resources/items/5helmets/chainhat.png", "Chain Hat", 100, 5, true, "head", "resources/player_sprites/head/chainhat.png", 0, 0, 0, 0, 10, 0, 0, 0);
-	public ItemType chainhelmet = new ItemType(1, "resources/items/5helmets/chainhelmet.png", "Chain Helmet", 150, 5, true, "head", "resources/player_sprites/head/chainhelmet.png", 0, 0, 0, 0, 15, 0, 0, 0);
-	public ItemType metalhelmet = new ItemType(1, "resources/items/5helmets/metalhelmet.png", "Metal Helmet", 200, 5, true, "head", "resources/player_sprites/head/metalhelmet.png", 0, 0, 0, 0, 20, 0, 0, 0);
-	public ItemType goldenhelmet = new ItemType(1, "resources/items/5helmets/goldenhelmet.png", "Gold Helmet", 300, 5, true, "head", "resources/player_sprites/head/goldenhelmet.png", 0, 0, 0, 0, 25, 0, 0, 0);
-	public ItemType redironhelmet = new ItemType(1, "resources/items/5helmets/redironhelmet.png", "Red Iron Helmet", 400, 5, true, "head", "resources/player_sprites/head/redironhelmet.png", 0, 0, 0, 0, 30, 0, 0, 0);
-	public ItemType diamondhelmet = new ItemType(1, "resources/items/5helmets/diamondhelmet.png", "Diamond Helmet", 500, 5, true, "head", "resources/player_sprites/head/diamondhelmet.png", 0, 0, 0, 0, 35, 0, 0, 0);
+	public ItemType clothhood = new ItemType(1, "resources/items/5helmets/clothhood.png", "Cloth Hood", 20, 5, true, "head", "resources/player_sprites/head/clothhood.png", 0, 0, 0, 0, 2, 0, 0, 0);
+	public ItemType leathercap = new ItemType(1, "resources/items/5helmets/leathercap.png", "Leather Cap", 50, 5, true, "head", "resources/player_sprites/head/leathercap.png", 0, 0, 0, 0, 4, 0, 0, 0);
+	public ItemType chainhat = new ItemType(1, "resources/items/5helmets/chainhat.png", "Chain Hat", 100, 5, true, "head", "resources/player_sprites/head/chainhat.png", 0, 0, 0, 0, 6, 0, 0, 0);
+	public ItemType chainhelmet = new ItemType(1, "resources/items/5helmets/chainhelmet.png", "Chain Helmet", 150, 5, true, "head", "resources/player_sprites/head/chainhelmet.png", 0, 0, 0, 0, 8, 0, 0, 0);
+	public ItemType metalhelmet = new ItemType(1, "resources/items/5helmets/metalhelmet.png", "Metal Helmet", 200, 5, true, "head", "resources/player_sprites/head/metalhelmet.png", 0, 0, 0, 0, 10, 0, 0, 0);
+	public ItemType goldenhelmet = new ItemType(1, "resources/items/5helmets/goldenhelmet.png", "Gold Helmet", 300, 5, true, "head", "resources/player_sprites/head/goldenhelmet.png", 0, 0, 0, 0, 12, 0, 0, 0);
+	public ItemType redironhelmet = new ItemType(1, "resources/items/5helmets/redironhelmet.png", "Red Iron Helmet", 400, 5, true, "head", "resources/player_sprites/head/redironhelmet.png", 0, 0, 0, 0, 14, 0, 0, 0);
+	public ItemType diamondhelmet = new ItemType(1, "resources/items/5helmets/diamondhelmet.png", "Diamond Helmet", 500, 5, true, "head", "resources/player_sprites/head/diamondhelmet.png", 0, 0, 0, 0, 16, 0, 0, 0);
 
-	public ItemType shirt = new ItemType(1, "resources/items/6torso/shirt.png", "Shirt", 10, 6, true, "chest", "resources/player_sprites/chest/shirt.png", 0, 0, 0, 0, 5, 0, 0, 0);
-	public ItemType leatherchest = new ItemType(1, "resources/items/6torso/leatherchest.png", "Leather Chest", 300, 6, true, "chest", "resources/player_sprites/chest/leatherchest.png", 0, 0, 0, 0, 10, 0, 0, 0);
-	public ItemType chainchest = new ItemType(1, "resources/items/6torso/chainchest.png", "Chain Chest", 500, 6, true, "chest", "resources/player_sprites/chest/chainchest.png", 0, 0, 0, 0, 15, 0, 0, 0);
-	public ItemType metalchest = new ItemType(1, "resources/items/6torso/metalchest.png", "Metal Chest", 700, 6, true, "chest", "resources/player_sprites/chest/metalchest.png", 0, 0, 0, 0, 20, 0, 0, 0);
-	public ItemType goldenchest = new ItemType(1, "resources/items/6torso/goldenchest.png", "Golden Chest", 1400, 6, true, "chest", "resources/player_sprites/chest/goldenchest.png", 0, 0, 0, 0, 25, 0, 0, 0);
-	public ItemType redironchest = new ItemType(1, "resources/items/6torso/redironchest.png", "Red Iron Chest", 1800, 6, true, "chest", "resources/player_sprites/chest/redironchest.png", 0, 0, 0, 0, 30, 0, 0, 0);
-	public ItemType diamondchest = new ItemType(1, "resources/items/6torso/diamondchest.png", "Diamond Chest", 2500, 6, true, "chest", "resources/player_sprites/chest/diamondchest.png", 0, 0, 0, 0, 35, 0, 0, 0);
+	public ItemType shirt = new ItemType(1, "resources/items/6torso/shirt.png", "Shirt", 10, 6, true, "chest", "resources/player_sprites/chest/shirt.png", 0, 0, 0, 0, 3, 0, 0, 0);
+	public ItemType leatherchest = new ItemType(1, "resources/items/6torso/leatherchest.png", "Leather Chest", 300, 6, true, "chest", "resources/player_sprites/chest/leatherchest.png", 0, 0, 0, 0, 6, 0, 0, 0);
+	public ItemType chainchest = new ItemType(1, "resources/items/6torso/chainchest.png", "Chain Chest", 500, 6, true, "chest", "resources/player_sprites/chest/chainchest.png", 0, 0, 0, 0, 9, 0, 0, 0);
+	public ItemType metalchest = new ItemType(1, "resources/items/6torso/metalchest.png", "Metal Chest", 700, 6, true, "chest", "resources/player_sprites/chest/metalchest.png", 0, 0, 0, 0, 12, 0, 0, 0);
+	public ItemType goldenchest = new ItemType(1, "resources/items/6torso/goldenchest.png", "Golden Chest", 1400, 6, true, "chest", "resources/player_sprites/chest/goldenchest.png", 0, 0, 0, 0, 15, 0, 0, 0);
+	public ItemType redironchest = new ItemType(1, "resources/items/6torso/redironchest.png", "Red Iron Chest", 1800, 6, true, "chest", "resources/player_sprites/chest/redironchest.png", 0, 0, 0, 0, 18, 0, 0, 0);
+	public ItemType diamondchest = new ItemType(1, "resources/items/6torso/diamondchest.png", "Diamond Chest", 2500, 6, true, "chest", "resources/player_sprites/chest/diamondchest.png", 0, 0, 0, 0, 21, 0, 0, 0);
 
-	public ItemType metalgloves = new ItemType(1, "resources/items/7hands/metalgloves.png", "Metal Gloves", 600, 7, true, "hands", "resources/player_sprites/hands/metalgloves.png", 0, 0, 0, 0, 5, 0, 0, 0);
-	public ItemType goldengloves = new ItemType(1, "resources/items/7hands/goldengloves.png", "Golden Gloves", 900, 7, true, "hands", "resources/player_sprites/hands/goldengloves.png", 0, 0, 0, 0, 10, 0, 0, 0);
-	public ItemType redirongloves = new ItemType(1, "resources/items/7hands/redirongloves.png", "Red Iron Gloves", 1200, 7, true, "hands", "resources/player_sprites/hands/redirongloves.png", 0, 0, 0, 0, 15, 0, 0, 0);
-	public ItemType diamondgloves = new ItemType(1, "resources/items/7hands/diamondgloves.png", "Diamond Gloves", 1600, 7, true, "hands", "resources/player_sprites/hands/diamondgloves.png", 0, 0, 0, 0, 20, 0, 0, 0);
+	public ItemType metalgloves = new ItemType(1, "resources/items/7hands/metalgloves.png", "Metal Gloves", 600, 7, true, "hands", "resources/player_sprites/hands/metalgloves.png", 0, 0, 0, 0, 2, 0, 0, 0);
+	public ItemType goldengloves = new ItemType(1, "resources/items/7hands/goldengloves.png", "Golden Gloves", 900, 7, true, "hands", "resources/player_sprites/hands/goldengloves.png", 0, 0, 0, 0, 4, 0, 0, 0);
+	public ItemType redirongloves = new ItemType(1, "resources/items/7hands/redirongloves.png", "Red Iron Gloves", 1200, 7, true, "hands", "resources/player_sprites/hands/redirongloves.png", 0, 0, 0, 0, 6, 0, 0, 0);
+	public ItemType diamondgloves = new ItemType(1, "resources/items/7hands/diamondgloves.png", "Diamond Gloves", 1600, 7, true, "hands", "resources/player_sprites/hands/diamondgloves.png", 0, 0, 0, 0, 8, 0, 0, 0);
 
-	public ItemType skirt = new ItemType(1, "resources/items/8legarmor/skirt.png", "Skirt", 100, 8, true, "legs", "resources/player_sprites/legs/skirt.png", 0, 0, 0, 0, 5, 0, 0, 0);
-	public ItemType metalgreaves = new ItemType(1, "resources/items/8legarmor/metallegarmor.png", "Metal Greaves", 300, 8, true, "legs", "resources/player_sprites/legs/metalgreaves.png", 0, 0, 0, 0, 10, 0, 0, 0);
-	public ItemType goldengreaves = new ItemType(1, "resources/items/8legarmor/goldenlegarmor.png", "Golden Greaves", 1200, 8, true, "legs", "resources/player_sprites/legs/goldengreaves.png", 0, 0, 0, 0, 15, 0, 0, 0);
-	public ItemType redirongreaves = new ItemType(1, "resources/items/8legarmor/redironlegarmor.png", "Red Iron Greaves", 1800, 8, true, "legs", "resources/player_sprites/legs/redirongreaves.png", 0, 0, 0, 0, 20, 0, 0, 0);
-	public ItemType diamondgreaves = new ItemType(1, "resources/items/8legarmor/diamondlegarmor.png", "Diamond Greaves", 2200, 8, true, "legs", "resources/player_sprites/legs/diamondgreaves.png", 0, 0, 0, 0, 25, 0, 0, 0);
+	public ItemType skirt = new ItemType(1, "resources/items/8legarmor/skirt.png", "Skirt", 100, 8, true, "legs", "resources/player_sprites/legs/skirt.png", 0, 0, 0, 0, 3, 0, 0, 0);
+	public ItemType metalgreaves = new ItemType(1, "resources/items/8legarmor/metallegarmor.png", "Metal Greaves", 300, 8, true, "legs", "resources/player_sprites/legs/metalgreaves.png", 0, 0, 0, 0, 6, 0, 0, 0);
+	public ItemType goldengreaves = new ItemType(1, "resources/items/8legarmor/goldenlegarmor.png", "Golden Greaves", 1200, 8, true, "legs", "resources/player_sprites/legs/goldengreaves.png", 0, 0, 0, 0, 9, 0, 0, 0);
+	public ItemType redirongreaves = new ItemType(1, "resources/items/8legarmor/redironlegarmor.png", "Red Iron Greaves", 1800, 8, true, "legs", "resources/player_sprites/legs/redirongreaves.png", 0, 0, 0, 0, 12, 0, 0, 0);
+	public ItemType diamondgreaves = new ItemType(1, "resources/items/8legarmor/diamondlegarmor.png", "Diamond Greaves", 2200, 8, true, "legs", "resources/player_sprites/legs/diamondgreaves.png", 0, 0, 0, 0, 15, 0, 0, 0);
 
-	public ItemType boots = new ItemType(1, "resources/items/9boots/boots.png", "Boots", 100, 9, true, "feet", "resources/player_sprites/feet/boots.png", 0, 0, 0, 0, 3, 0, 0, 0);
-	public ItemType leatherboots = new ItemType(1, "resources/items/9boots/leatherboots.png", "Leather Boots", 200, 9, true, "feet", "resources/player_sprites/feet/leatherboots.png", 0, 0, 0, 0, 5, 0, 0, 0);
-	public ItemType metalboots = new ItemType(1, "resources/items/9boots/metalboots.png", "Metal Boots", 500, 9, true, "feet", "resources/player_sprites/feet/metalboots.png", 0, 0, 0, 0, 10, 0, 0, 0);
-	public ItemType goldenboots = new ItemType(1, "resources/items/9boots/goldenboots.png", "Golden Boots", 700, 9, true, "feet", "resources/player_sprites/feet/goldenboots.png", 0, 0, 0, 0, 15, 0, 0, 0);
-	public ItemType redironboots = new ItemType(1, "resources/items/9boots/redironboots.png", "Red Iron Boots", 1100, 9, true, "feet", "resources/player_sprites/feet/redironboots.png", 0, 0, 0, 0, 20, 0, 0, 0);
-	public ItemType diamondboots = new ItemType(1, "resources/items/9boots/diamondboots.png", "Diamond Boots", 1500, 9, true, "feet", "resources/player_sprites/feet/diamondboots.png", 0, 0, 0, 0, 25, 0, 0, 0);
+	public ItemType boots = new ItemType(1, "resources/items/9boots/boots.png", "Boots", 100, 9, true, "feet", "resources/player_sprites/feet/boots.png", 0, 0, 0, 0, 2, 0, 0, 0);
+	public ItemType leatherboots = new ItemType(1, "resources/items/9boots/leatherboots.png", "Leather Boots", 200, 9, true, "feet", "resources/player_sprites/feet/leatherboots.png", 0, 0, 0, 0, 4, 0, 0, 0);
+	public ItemType metalboots = new ItemType(1, "resources/items/9boots/metalboots.png", "Metal Boots", 500, 9, true, "feet", "resources/player_sprites/feet/metalboots.png", 0, 0, 0, 0, 6, 0, 0, 0);
+	public ItemType goldenboots = new ItemType(1, "resources/items/9boots/goldenboots.png", "Golden Boots", 700, 9, true, "feet", "resources/player_sprites/feet/goldenboots.png", 0, 0, 0, 0, 8, 0, 0, 0);
+	public ItemType redironboots = new ItemType(1, "resources/items/9boots/redironboots.png", "Red Iron Boots", 1100, 9, true, "feet", "resources/player_sprites/feet/redironboots.png", 0, 0, 0, 0, 10, 0, 0, 0);
+	public ItemType diamondboots = new ItemType(1, "resources/items/9boots/diamondboots.png", "Diamond Boots", 1500, 9, true, "feet", "resources/player_sprites/feet/diamondboots.png", 0, 0, 0, 0, 12, 0, 0, 0);
 
 	public ItemType verySmallHealingPotion = new ItemType(1, "resources/items/10healing_potions/very_small_healing_potion.png", "Very Small Healing Potion", 20, 10, false, "healingpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
 	public ItemType smallHealingPotion = new ItemType(1, "resources/items/10healing_potions/small_healing_potion.png", "Small Healing Potionn", 35, 10, false, "healingpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 50, 0);
