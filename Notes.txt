@@ -9,3 +9,5 @@
 .)Add black armor (black knight)
 
 .)Maybe make player have his weapon out while walking
+
+.)Implement HP and Mana Regeneration

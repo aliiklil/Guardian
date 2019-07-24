@@ -307,6 +307,48 @@ public class DialogueWindow {
 			}
 		}
 		
+		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Alchemy + 1 (Costs 10LP)")) {
+					
+					if(player.getAlchemySkill() < 3) {
+					
+						if(player.getLearningPoints() >= 10) {
+							player.setAlchemySkill(player.getAlchemySkill() + 1);
+							player.setLearningPoints(player.getLearningPoints() - 10);
+							String text = "Alchemy + 1";
+							player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+							currentDialogues.get(selectedOption).getSentences().get(1).setText("You are a fast learner.");
+						} else {
+							currentDialogues.get(selectedOption).getSentences().get(1).setText("You don't have enough experience. Come back later.");
+						}
+					
+					} else {
+						
+						currentDialogues.get(selectedOption).getSentences().get(1).setText("You have already mastered alchemy.");
+						
+					}
+				}
+		
+		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Blacksmithing + 1 (Costs 10LP)")) {
+			
+			if(player.getBlacksmithingSkill() < 3) {
+			
+				if(player.getLearningPoints() >= 10) {
+					player.setBlacksmithingSkill(player.getBlacksmithingSkill() + 1);
+					player.setLearningPoints(player.getLearningPoints() - 10);
+					String text = "Blacksmithing + 1";
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					currentDialogues.get(selectedOption).getSentences().get(1).setText("You are a fast learner.");
+				} else {
+					currentDialogues.get(selectedOption).getSentences().get(1).setText("You don't have enough experience. Come back later.");
+				}
+			
+			} else {
+				
+				currentDialogues.get(selectedOption).getSentences().get(1).setText("You have already mastered blacksmithing.");
+				
+			}
+		}
+		
 		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Take Furs (Costs 10LP)")) {
 			if(player.getLearningPoints() >= 10) {
 				currentDialogues.get(selectedOption).getSentences().get(0).setText("Take Furs (Learned already)");

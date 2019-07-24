@@ -86,7 +86,7 @@ public class Player extends Character {
 	private int level = 0;
 	private int experience = 0;
 	private int nextLevelExperience = levelBorders[level];
-	private int learningPoints = 0;
+	private int learningPoints = 100;
 	
 	private int strength = 200;
 	private int dexterity = 200;
