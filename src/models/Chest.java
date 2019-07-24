@@ -26,10 +26,14 @@ public class Chest {
 	
 	private boolean opened = false;
 	
-	public Chest(int tileX, int tileY, Item item) throws SlickException {
+	private int chestLevel; //Can be level 0, 1, 2 or 3 chest
+	
+	public Chest(int tileX, int tileY, Item item, int chestLevel) throws SlickException {
 		
 		this.tileX = tileX;
 		this.tileY = tileY;
+		
+		this.chestLevel = chestLevel;
 		
 		this.item = item;
 		
@@ -38,7 +42,17 @@ public class Chest {
 		
 		collisionBox = new CollisionBox(tileX * 32, tileY * 32, 32, 32);
 		
-		spriteSheet = new SpriteSheet("resources/chest.png", 32, 32);
+		
+		if(chestLevel == 0) {
+			spriteSheet = new SpriteSheet("resources/chest0.png", 32, 32);
+		} else if(chestLevel == 1) {
+			spriteSheet = new SpriteSheet("resources/chest1.png", 32, 32);
+		} if(chestLevel == 2) {
+			spriteSheet = new SpriteSheet("resources/chest2.png", 32, 32);
+		} if(chestLevel == 3) {
+			spriteSheet = new SpriteSheet("resources/chest3.png", 32, 32);
+		}
+		
 		animation = new Animation(spriteSheet, 0, 0, 4, 0, true, 100, true);
 		animation.stop();
 		animation.setLooping(false);
@@ -74,6 +88,14 @@ public class Chest {
 
 	public void setOpened(boolean opened) {
 		this.opened = opened;
+	}
+
+	public int getChestLevel() {
+		return chestLevel;
+	}
+
+	public void setChestLevel(int chestLevel) {
+		this.chestLevel = chestLevel;
 	}
 	
 }
