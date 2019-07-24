@@ -1,5 +1,0 @@
-.)Create different hitbox for every melee weapon
-
-.)Implement quest system
-
-.)Implement pick locking skills (0%, 25%, 50%, 75%, 100%)

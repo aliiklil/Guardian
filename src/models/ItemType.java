@@ -5,6 +5,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import util.CollisionBox;
+
 public class ItemType {
 
 	private final int spriteWidth = 32;
@@ -87,6 +89,24 @@ public class ItemType {
 	//Only needed for food, potions etc.
 	private int healthBoost = 0;
 	private int manaBoost = 0;
+	
+	//Only needed for weapons
+	private CollisionBox attackUpCollisionBox;
+	private CollisionBox attackDownCollisionBox;
+	private CollisionBox attackLeftCollisionBox;
+	private CollisionBox attackRightCollisionBox;
+
+	private int attackUpOffsetX;
+	private int attackUpOffsetY;
+	
+	private int attackDownOffsetX;
+	private int attackDownOffsetY;
+	
+	private int attackLeftOffsetX;
+	private int attackLeftOffsetY;
+	
+	private int attackRightOffsetX;
+	private int attackRightOffsetY;
 	
 	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath, int minStrength, int minDexterity, int minMagicKnowledge, int damage, int protection, int manaCost, int healthBoost, int manaBoost) throws SlickException {
 		
@@ -390,5 +410,103 @@ public class ItemType {
 	public int getManaBoost() {
 		return manaBoost;
 	}
+
+	public CollisionBox getAttackUpCollisionBox() {
+		return attackUpCollisionBox;
+	}
+
+	public void setAttackUpCollisionBox(CollisionBox attackUpCollisionBox) {
+		this.attackUpCollisionBox = attackUpCollisionBox;
+	}
+
+	public CollisionBox getAttackDownCollisionBox() {
+		return attackDownCollisionBox;
+	}
+
+	public void setAttackDownCollisionBox(CollisionBox attackDownCollisionBox) {
+		this.attackDownCollisionBox = attackDownCollisionBox;
+	}
+
+	public CollisionBox getAttackLeftCollisionBox() {
+		return attackLeftCollisionBox;
+	}
+
+	public void setAttackLeftCollisionBox(CollisionBox attackLeftCollisionBox) {
+		this.attackLeftCollisionBox = attackLeftCollisionBox;
+	}
+
+	public CollisionBox getAttackRightCollisionBox() {
+		return attackRightCollisionBox;
+	}
+
+	public void setAttackRightCollisionBox(CollisionBox attackRightCollisionBox) {
+		this.attackRightCollisionBox = attackRightCollisionBox;
+	}
+
+	public int getAttackUpOffsetX() {
+		return attackUpOffsetX;
+	}
+
+	public void setAttackUpOffsetX(int attackUpOffsetX) {
+		this.attackUpOffsetX = attackUpOffsetX;
+	}
+
+	public int getAttackUpOffsetY() {
+		return attackUpOffsetY;
+	}
+
+	public void setAttackUpOffsetY(int attackUpOffsetY) {
+		this.attackUpOffsetY = attackUpOffsetY;
+	}
+
+	public int getAttackDownOffsetX() {
+		return attackDownOffsetX;
+	}
+
+	public void setAttackDownOffsetX(int attackDownOffsetX) {
+		this.attackDownOffsetX = attackDownOffsetX;
+	}
+
+	public int getAttackDownOffsetY() {
+		return attackDownOffsetY;
+	}
+
+	public void setAttackDownOffsetY(int attackDownOffsetY) {
+		this.attackDownOffsetY = attackDownOffsetY;
+	}
+
+	public int getAttackLeftOffsetX() {
+		return attackLeftOffsetX;
+	}
+
+	public void setAttackLeftOffsetX(int attackLeftOffsetX) {
+		this.attackLeftOffsetX = attackLeftOffsetX;
+	}
+
+	public int getAttackLeftOffsetY() {
+		return attackLeftOffsetY;
+	}
+
+	public void setAttackLeftOffsetY(int attackLeftOffsetY) {
+		this.attackLeftOffsetY = attackLeftOffsetY;
+	}
+
+	public int getAttackRightOffsetX() {
+		return attackRightOffsetX;
+	}
+
+	public void setAttackRightOffsetX(int attackRightOffsetX) {
+		this.attackRightOffsetX = attackRightOffsetX;
+	}
+
+	public int getAttackRightOffsetY() {
+		return attackRightOffsetY;
+	}
+
+	public void setAttackRightOffsetY(int attackRightOffsetY) {
+		this.attackRightOffsetY = attackRightOffsetY;
+	}
+	
+	
 	
 }

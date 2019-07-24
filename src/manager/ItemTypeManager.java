@@ -3,10 +3,11 @@ package manager;
 import org.newdawn.slick.SlickException;
 
 import models.ItemType;
+import util.CollisionBox;
 
 public class ItemTypeManager {
 
-	public ItemType stick = new ItemType(1, "resources/items/1melee/stick.png", "Stick", 20, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/stick.png", 10, 0, 0, 15, 0, 0, 0, 0);
+	public ItemType stick = new ItemType(1, "resources/items/1melee/stick.png", "Stick", 20, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/stick.png", 10, 0, 0, 15, 0, 0, 0, 0);	
 	public ItemType dagger = new ItemType(1, "resources/items/1melee/dagger.png", "Dagger", 50, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/dagger.png", 20, 0, 0, 25, 0, 0, 0, 0);
 	public ItemType mace = new ItemType(1, "resources/items/1melee/mace.png", "Mace", 100, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mace.png", 30, 0, 0, 35, 0, 0, 0, 0);
 	public ItemType longsword = new ItemType(1, "resources/items/1melee/longsword.png", "Longsword", 300, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/longsword.png", 40, 0, 0, 75, 0, 0, 0, 0);
@@ -105,7 +106,258 @@ public class ItemTypeManager {
 	public ItemType gold = new ItemType(100, "resources/items/14gold/goldcoin.png", "Gold", 1, 14, false, "gold", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 
 	public ItemTypeManager() throws SlickException {
+		
+		stick.setAttackUpCollisionBox(new CollisionBox(0, 0, 80, 29));
+		stick.setAttackDownCollisionBox(new CollisionBox(0, 0, 80, 29));
+		stick.setAttackLeftCollisionBox(new CollisionBox(0, 0, 20, 36));
+		stick.setAttackRightCollisionBox(new CollisionBox(0, 0, 20, 36));
+		
+		stick.setAttackUpOffsetX(-23);
+		stick.setAttackUpOffsetY(-28);
+		
+		stick.setAttackDownOffsetX(-23);
+		stick.setAttackDownOffsetY(+12);
+		
+		stick.setAttackLeftOffsetX(-19);
+		stick.setAttackLeftOffsetY(-16);
+		
+		stick.setAttackRightOffsetX(+31);
+		stick.setAttackRightOffsetY(-16);
+		
+		
+		
+		dagger.setAttackUpCollisionBox(new CollisionBox(0, 0, 46, 17));
+		dagger.setAttackDownCollisionBox(new CollisionBox(0, 0, 46, 17));
+		dagger.setAttackLeftCollisionBox(new CollisionBox(0, 0, 18, 36));
+		dagger.setAttackRightCollisionBox(new CollisionBox(0, 0, 18, 36));
+		
+		dagger.setAttackUpOffsetX(-7);
+		dagger.setAttackUpOffsetY(-16);
+		
+		dagger.setAttackDownOffsetX(-12);
+		dagger.setAttackDownOffsetY(+6);
+		
+		dagger.setAttackLeftOffsetX(-17);
+		dagger.setAttackLeftOffsetY(-16);
+		
+		dagger.setAttackRightOffsetX(+31);
+		dagger.setAttackRightOffsetY(-16);
+		
+		
+		
+		mace.setAttackUpCollisionBox(new CollisionBox(0, 0, 80, 29));
+		mace.setAttackDownCollisionBox(new CollisionBox(0, 0, 80, 29));
+		mace.setAttackLeftCollisionBox(new CollisionBox(0, 0, 31, 36));
+		mace.setAttackRightCollisionBox(new CollisionBox(0, 0, 31, 36));
+		
+		mace.setAttackUpOffsetX(-23);
+		mace.setAttackUpOffsetY(-28);
+		
+		mace.setAttackDownOffsetX(-23);
+		mace.setAttackDownOffsetY(+12);
+		
+		mace.setAttackLeftOffsetX(-30);
+		mace.setAttackLeftOffsetY(-16);
+		
+		mace.setAttackRightOffsetX(+31);
+		mace.setAttackRightOffsetY(-16);
+		
+		
+		
+		longsword.setAttackUpCollisionBox(new CollisionBox(0, 0, 89, 45));
+		longsword.setAttackDownCollisionBox(new CollisionBox(0, 0, 89, 45));
+		longsword.setAttackLeftCollisionBox(new CollisionBox(0, 0, 68, 36));
+		longsword.setAttackRightCollisionBox(new CollisionBox(0, 0, 68, 36));
 
+		longsword.setAttackUpOffsetX(-28);
+		longsword.setAttackUpOffsetY(-37);
+		
+		longsword.setAttackDownOffsetX(-28);
+		longsword.setAttackDownOffsetY(+12);
+		
+		longsword.setAttackLeftOffsetX(-67);
+		longsword.setAttackLeftOffsetY(-16);
+		
+		longsword.setAttackRightOffsetX(+31);
+		longsword.setAttackRightOffsetY(-16);
+
+		
+		
+		redironsword.setAttackUpCollisionBox(new CollisionBox(0, 0, 89, 45));
+		redironsword.setAttackDownCollisionBox(new CollisionBox(0, 0, 89, 45));
+		redironsword.setAttackLeftCollisionBox(new CollisionBox(0, 0, 68, 36));
+		redironsword.setAttackRightCollisionBox(new CollisionBox(0, 0, 68, 36));
+		
+		redironsword.setAttackUpOffsetX(-28);
+		redironsword.setAttackUpOffsetY(-37);
+		
+		redironsword.setAttackDownOffsetX(-28);
+		redironsword.setAttackDownOffsetY(+12);
+		
+		redironsword.setAttackLeftOffsetX(-67);
+		redironsword.setAttackLeftOffsetY(-16);
+		
+		redironsword.setAttackRightOffsetX(+31);
+		redironsword.setAttackRightOffsetY(-16);	
+		
+		
+		
+		
+		diamondsword.setAttackUpCollisionBox(new CollisionBox(0, 0, 89, 45));
+		diamondsword.setAttackDownCollisionBox(new CollisionBox(0, 0, 89, 45));
+		diamondsword.setAttackLeftCollisionBox(new CollisionBox(0, 0, 68, 36));
+		diamondsword.setAttackRightCollisionBox(new CollisionBox(0, 0, 68, 36));
+		
+		diamondsword.setAttackUpOffsetX(-28);
+		diamondsword.setAttackUpOffsetY(-37);
+		
+		diamondsword.setAttackDownOffsetX(-28);
+		diamondsword.setAttackDownOffsetY(+12);
+		
+		diamondsword.setAttackLeftOffsetX(-67);
+		diamondsword.setAttackLeftOffsetY(-16);
+		
+		diamondsword.setAttackRightOffsetX(+31);
+		diamondsword.setAttackRightOffsetY(-16);	
+		
+		
+		
+		
+		blacksword.setAttackUpCollisionBox(new CollisionBox(0, 0, 89, 45));
+		blacksword.setAttackDownCollisionBox(new CollisionBox(0, 0, 89, 45));
+		blacksword.setAttackLeftCollisionBox(new CollisionBox(0, 0, 68, 36));
+		blacksword.setAttackRightCollisionBox(new CollisionBox(0, 0, 68, 36));
+		
+		blacksword.setAttackUpOffsetX(-28);
+		blacksword.setAttackUpOffsetY(-37);
+		
+		blacksword.setAttackDownOffsetX(-28);
+		blacksword.setAttackDownOffsetY(+12);
+		
+		blacksword.setAttackLeftOffsetX(-67);
+		blacksword.setAttackLeftOffsetY(-16);
+		
+		blacksword.setAttackRightOffsetX(+31);
+		blacksword.setAttackRightOffsetY(-16);
+		
+		
+		
+		
+		sabre.setAttackUpCollisionBox(new CollisionBox(0, 0, 85, 29));
+		sabre.setAttackDownCollisionBox(new CollisionBox(0, 0, 85, 29));
+		sabre.setAttackLeftCollisionBox(new CollisionBox(0, 0, 31, 36));
+		sabre.setAttackRightCollisionBox(new CollisionBox(0, 0, 31, 36));
+		
+		sabre.setAttackUpOffsetX(-23);
+		sabre.setAttackUpOffsetY(-32);
+		
+		sabre.setAttackDownOffsetX(-23);
+		sabre.setAttackDownOffsetY(+12);
+		
+		sabre.setAttackLeftOffsetX(-30);
+		sabre.setAttackLeftOffsetY(-16);
+		
+		sabre.setAttackRightOffsetX(+31);
+		sabre.setAttackRightOffsetY(-16);
+		
+		
+		
+		
+		rapier.setAttackUpCollisionBox(new CollisionBox(0, 0, 89, 45));
+		rapier.setAttackDownCollisionBox(new CollisionBox(0, 0, 89, 45));
+		rapier.setAttackLeftCollisionBox(new CollisionBox(0, 0, 68, 36));
+		rapier.setAttackRightCollisionBox(new CollisionBox(0, 0, 68, 36));
+		
+		rapier.setAttackUpOffsetX(-28);
+		rapier.setAttackUpOffsetY(-37);
+		
+		rapier.setAttackDownOffsetX(-28);
+		rapier.setAttackDownOffsetY(+12);
+		
+		rapier.setAttackLeftOffsetX(-67);
+		rapier.setAttackLeftOffsetY(-16);
+		
+		rapier.setAttackRightOffsetX(+31);
+		rapier.setAttackRightOffsetY(-16);	
+
+		
+		
+		shortspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 5, 36));
+		shortspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 5, 36));
+		shortspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 20, 5));
+		shortspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 20, 5));
+		
+		shortspear.setAttackUpOffsetX(+20);
+		shortspear.setAttackUpOffsetY(-35);
+		
+		shortspear.setAttackDownOffsetX(+13);
+		shortspear.setAttackDownOffsetY(+12);
+		
+		shortspear.setAttackLeftOffsetX(-19);
+		shortspear.setAttackLeftOffsetY(+11);
+		
+		shortspear.setAttackRightOffsetX(+31);
+		shortspear.setAttackRightOffsetY(+11);	
+		
+		
+		
+		longspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 5, 73));
+		longspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 5, 73));
+		longspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 59, 5));
+		longspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 59, 5));
+		
+		longspear.setAttackUpOffsetX(+22);
+		longspear.setAttackUpOffsetY(-72);
+		
+		longspear.setAttackDownOffsetX(+14);
+		longspear.setAttackDownOffsetY(+12);
+		
+		longspear.setAttackLeftOffsetX(-58);
+		longspear.setAttackLeftOffsetY(+11);
+		
+		longspear.setAttackRightOffsetX(+31);
+		longspear.setAttackRightOffsetY(+11);	
+		
+		
+		
+		dragonspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 11, 78));
+		dragonspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 11, 78));
+		dragonspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 65, 11));
+		dragonspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 65, 11));
+		
+		dragonspear.setAttackUpOffsetX(+20);
+		dragonspear.setAttackUpOffsetY(-77);
+		
+		dragonspear.setAttackDownOffsetX(+11);
+		dragonspear.setAttackDownOffsetY(+12);
+		
+		dragonspear.setAttackLeftOffsetX(-64);
+		dragonspear.setAttackLeftOffsetY(+8);
+		
+		dragonspear.setAttackRightOffsetX(+31);
+		dragonspear.setAttackRightOffsetY(+8);	
+		
+		
+		
+		goldspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 19, 78));
+		goldspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 19, 78));
+		goldspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 65, 19));
+		goldspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 65, 19));
+		
+		goldspear.setAttackUpOffsetX(+20);
+		goldspear.setAttackUpOffsetY(-77);
+		
+		goldspear.setAttackDownOffsetX(+11);
+		goldspear.setAttackDownOffsetY(+12);
+		
+		goldspear.setAttackLeftOffsetX(-64);
+		goldspear.setAttackLeftOffsetY(+8);
+		
+		goldspear.setAttackRightOffsetX(+31);
+		goldspear.setAttackRightOffsetY(+8);	
+		
+
+		
 	}
 
 }

@@ -40,11 +40,6 @@ public abstract class Character {
 	private CollisionBox collisionBox;
 	private CollisionBox hitBox;
 	
-	private CollisionBox attackUpCollisionBox;
-	private CollisionBox attackDownCollisionBox;
-	private CollisionBox attackLeftCollisionBox;
-	private CollisionBox attackRightCollisionBox;	
-
 	private SpriteSheet spriteSheet;
 	private SpriteSheet overSizeSpriteSheet;
 	
@@ -399,38 +394,6 @@ public abstract class Character {
 		this.hitBox = hitBox;
 	}
 		
-	public CollisionBox getAttackUpCollisionBox() {
-		return attackUpCollisionBox;
-	}
-
-	public void setAttackUpCollisionBox(CollisionBox attackUpCollisionBox) {
-		this.attackUpCollisionBox = attackUpCollisionBox;
-	}
-
-	public CollisionBox getAttackDownCollisionBox() {
-		return attackDownCollisionBox;
-	}
-
-	public void setAttackDownCollisionBox(CollisionBox attackDownCollisionBox) {
-		this.attackDownCollisionBox = attackDownCollisionBox;
-	}
-
-	public CollisionBox getAttackLeftCollisionBox() {
-		return attackLeftCollisionBox;
-	}
-
-	public void setAttackLeftCollisionBox(CollisionBox attackLeftCollisionBox) {
-		this.attackLeftCollisionBox = attackLeftCollisionBox;
-	}
-
-	public CollisionBox getAttackRightCollisionBox() {
-		return attackRightCollisionBox;
-	}
-
-	public void setAttackRightCollisionBox(CollisionBox attackRightCollisionBox) {
-		this.attackRightCollisionBox = attackRightCollisionBox;
-	}
-
 	public SpriteSheet getSpriteSheet() {
 		return spriteSheet;
 	}

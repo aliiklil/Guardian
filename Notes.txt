@@ -1,0 +1,15 @@
+.)Create different hitbox for every melee weapon
+
+.)Implement quest system
+
+.)Implement pick locking skills (0%, 25%, 50%, 75%, 100%)
+
+.)Alchemy
+
+.)Forgery
+
+.)Armor should be for the full body
+
+.)Add black armor (black knight)
+
+.)Maybe make player have his weapon out while walking

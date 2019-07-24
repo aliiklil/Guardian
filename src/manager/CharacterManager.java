@@ -10,6 +10,7 @@ import dialogue.Sentence;
 import main.Game;
 import models.Character;
 import models.Item;
+import models.ItemType;
 import models.NPC;
 import models.Player;
 
@@ -54,8 +55,7 @@ public class CharacterManager {
 		player.setCurrentFeetAnimation(boots.getItemType().getLookDownAnimation());
 
 			
-		ogus = new NPC(256, 128, 200, 200, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1);
-		halrok = new NPC(640, 768, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3);
+		ogus = new NPC(256, 128, 50000, 50000, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1);
 		ogus.addItem(new Item(0, 0, itemTypeManager.dagger));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
@@ -73,6 +73,12 @@ public class CharacterManager {
 		ogus.addItem(new Item(0, 0, itemTypeManager.clothhood));
 		ogus.addItem(new Item(0, 0, itemTypeManager.copperBar));
 		ogus.addItem(new Item(0, 0, itemTypeManager.goldenhelmet));
+		ogus.setEquippedMelee(itemTypeManager.goldspear);
+		
+		
+		
+		halrok = new NPC(640, 768, 50000, 500000, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3);
+		halrok.setEquippedMelee(itemTypeManager.longsword);
 		
 		
 		characterList.add(player);

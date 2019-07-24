@@ -129,11 +129,6 @@ public class Player extends Character {
 
 		npcList = CharacterManager.getNpcList();
 
-		setAttackUpCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() - 37, 89, 38));
-		setAttackDownCollisionBox(new CollisionBox(getRelativeToMapX() - 28, getRelativeToMapY() + 12, 89, 38));
-		setAttackLeftCollisionBox(new CollisionBox(getRelativeToMapX() - 67, getRelativeToMapY() - 16, 68, 36));
-		setAttackRightCollisionBox(new CollisionBox(getRelativeToMapX() + 31, getRelativeToMapY() - 16, 68, 36));
-
 	}
 
 	public void update() throws SlickException {
@@ -159,17 +154,22 @@ public class Player extends Character {
 		super.getHitBox().setX(super.getRelativeToMapX());
 		super.getHitBox().setY(super.getRelativeToMapY() - 10);
 
-		super.getAttackUpCollisionBox().setX(super.getRelativeToMapX() - 28);
-		super.getAttackUpCollisionBox().setY(super.getRelativeToMapY() - 37);
-
-		super.getAttackDownCollisionBox().setX(super.getRelativeToMapX() - 28);
-		super.getAttackDownCollisionBox().setY(super.getRelativeToMapY() + 12);
-
-		super.getAttackLeftCollisionBox().setX(super.getRelativeToMapX() - 67);
-		super.getAttackLeftCollisionBox().setY(super.getRelativeToMapY() - 16);
-
-		super.getAttackRightCollisionBox().setX(super.getRelativeToMapX() + 31);
-		super.getAttackRightCollisionBox().setY(super.getRelativeToMapY() - 16);
+		
+		if(equippedMelee != null) {
+			
+			equippedMelee.getAttackUpCollisionBox().setX(super.getRelativeToMapX() + equippedMelee.getAttackUpOffsetX());
+			equippedMelee.getAttackUpCollisionBox().setY(super.getRelativeToMapY() + equippedMelee.getAttackUpOffsetY());
+	
+			equippedMelee.getAttackDownCollisionBox().setX(super.getRelativeToMapX() + equippedMelee.getAttackDownOffsetX());
+			equippedMelee.getAttackDownCollisionBox().setY(super.getRelativeToMapY() + equippedMelee.getAttackDownOffsetY());
+	
+			equippedMelee.getAttackLeftCollisionBox().setX(super.getRelativeToMapX() + equippedMelee.getAttackLeftOffsetX());
+			equippedMelee.getAttackLeftCollisionBox().setY(super.getRelativeToMapY() + equippedMelee.getAttackLeftOffsetY());
+	
+			equippedMelee.getAttackRightCollisionBox().setX(super.getRelativeToMapX() + equippedMelee.getAttackRightOffsetX());
+			equippedMelee.getAttackRightCollisionBox().setY(super.getRelativeToMapY() + equippedMelee.getAttackRightOffsetY());
+			
+		}
 
 		if(input.isKeyPressed(Input.KEY_Y)) {
 			yPressed = true;
@@ -673,7 +673,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayUpAnimation() || super.getCurrentAnimation() == super.getThrustUpAnimation())) {
 				for (NPC npc : npcList) {
-					if(super.getAttackUpCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() /*&& npc.isHostileToPlayer()*/) {
+					if(equippedMelee.getAttackUpCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() /*&& npc.isHostileToPlayer()*/) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
@@ -698,7 +698,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayDownAnimation() || super.getCurrentAnimation() == super.getThrustDownAnimation())) {
 				for (NPC npc : npcList) {
-					if(super.getAttackDownCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() /*&& npc.isHostileToPlayer()*/) {
+					if(equippedMelee.getAttackDownCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() /*&& npc.isHostileToPlayer()*/) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
@@ -723,7 +723,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayLeftAnimation() || super.getCurrentAnimation() == super.getThrustLeftAnimation())) {
 				for (NPC npc : npcList) {
-					if(super.getAttackLeftCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() /*&& npc.isHostileToPlayer()*/) {
+					if(equippedMelee.getAttackLeftCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() /*&& npc.isHostileToPlayer()*/) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
@@ -748,7 +748,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayRightAnimation() || super.getCurrentAnimation() == super.getThrustRightAnimation())) {
 				for (NPC npc : npcList) {
-					if(super.getAttackRightCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() /*&& npc.isHostileToPlayer()*/) {
+					if(equippedMelee.getAttackRightCollisionBox().intersects(npc.getHitBox()) && npc.isAlive() /*&& npc.isHostileToPlayer()*/) {
 						npc.decreaseHealth(damageToDeal);
 						damageDealt = true;
 
