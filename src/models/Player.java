@@ -90,7 +90,7 @@ public class Player extends Character {
 	
 	private int strength = 200;
 	private int dexterity = 200;
-	private int magicKnowledge = 10;
+	private int wisdom = 10;
 	
 	private int healthPoints = 200;
 	private int mana = 100;
@@ -99,7 +99,10 @@ public class Player extends Character {
 	private int bowSkill = 10;
 	private int spellSkill = 10;
 
-	private boolean pickLocks = false;
+	private int lockPickingSkill = 0;
+	private int alchemySkill = 0;
+	private int blacksmithingSkill = 0;
+	
 	private boolean takeFurs = false;
 	private boolean takeTrophies = false;
 	private boolean hpRegeneration = false;
@@ -253,16 +256,16 @@ public class Player extends Character {
 				currentHeadAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
 			}
 
-			if(currentChestAnimation != null) {
-				currentChestAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
-			}
-
 			if(currentHandsAnimation != null) {
 				currentHandsAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
 			}
 
 			if(currentLegsAnimation != null) {
 				currentLegsAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
+			}
+			
+			if(currentChestAnimation != null) {
+				currentChestAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
 			}
 
 			if(currentFeetAnimation != null) {
@@ -289,16 +292,16 @@ public class Player extends Character {
 				currentHeadAnimation.draw(screenRelativeX, screenRelativeY);
 			}
 
-			if(currentChestAnimation != null) {
-				currentChestAnimation.draw(screenRelativeX, screenRelativeY);
-			}
-
 			if(currentHandsAnimation != null) {
 				currentHandsAnimation.draw(screenRelativeX, screenRelativeY);
 			}
 
 			if(currentLegsAnimation != null) {
 				currentLegsAnimation.draw(screenRelativeX, screenRelativeY);
+			}
+			
+			if(currentChestAnimation != null) {
+				currentChestAnimation.draw(screenRelativeX, screenRelativeY);
 			}
 
 			if(currentFeetAnimation != null) {
@@ -1011,7 +1014,7 @@ public class Player extends Character {
 
 		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
 			
-			damageToDeal = equippedSpell.getDamage() + magicKnowledge + (int) ((equippedSpell.getDamage() + magicKnowledge) * prepareSpellBar.getCurrentValue()/100.0) * 2;
+			damageToDeal = equippedSpell.getDamage() + wisdom + (int) ((equippedSpell.getDamage() + wisdom) * prepareSpellBar.getCurrentValue()/100.0) * 2;
 			if(spellSkill/100.0 > new Random().nextDouble()) {
 				damageToDeal = damageToDeal * 5;
 			}
@@ -2780,8 +2783,8 @@ public class Player extends Character {
 		return dexterity;
 	}
 
-	public int getMagicKnowledge() {
-		return magicKnowledge;
+	public int getWisdom() {
+		return wisdom;
 	}
 
 	public int getHealthPoints() {
@@ -2802,10 +2805,6 @@ public class Player extends Character {
 
 	public int getSpellSkill() {
 		return spellSkill;
-	}
-
-	public boolean isPickLocks() {
-		return pickLocks;
 	}
 
 	public boolean isTakeFurs() {
@@ -2840,8 +2839,8 @@ public class Player extends Character {
 		this.dexterity = dexterity;
 	}
 
-	public void setMagicKnowledge(int magicKnowledge) {
-		this.magicKnowledge = magicKnowledge;
+	public void setWisdom(int wisdom) {
+		this.wisdom = wisdom;
 	}
 
 	public void setHealthPoints(int healthPoints) {
@@ -2862,10 +2861,6 @@ public class Player extends Character {
 
 	public void setSpellSkill(int spellSkill) {
 		this.spellSkill = spellSkill;
-	}
-
-	public void setPickLocks(boolean pickLocks) {
-		this.pickLocks = pickLocks;
 	}
 
 	public void setTakeFurs(boolean takeFurs) {
@@ -2924,4 +2919,28 @@ public class Player extends Character {
 		return tradingWindow;
 	}
 
+	public int getLockPickingSkill() {
+		return lockPickingSkill;
+	}
+
+	public void setLockPickingSkill(int lockPickingSkill) {
+		this.lockPickingSkill = lockPickingSkill;
+	}
+
+	public int getAlchemySkill() {
+		return alchemySkill;
+	}
+
+	public void setAlchemySkill(int alchemySkill) {
+		this.alchemySkill = alchemySkill;
+	}
+
+	public int getBlacksmithingSkill() {
+		return blacksmithingSkill;
+	}
+
+	public void setBlacksmithingSkill(int blacksmithingSkill) {
+		this.blacksmithingSkill = blacksmithingSkill;
+	}
+	
 }

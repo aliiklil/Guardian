@@ -214,11 +214,11 @@ public class DialogueWindow {
 			}
 		}
 		
-		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Magic Knowledge + 5 (Costs 5LP)")) {
+		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Wisdom + 5 (Costs 5LP)")) {
 			if(player.getLearningPoints() >= 5) {
-				player.setMagicKnowledge(player.getMagicKnowledge() + 5);
+				player.setWisdom(player.getWisdom() + 5);
 				player.setLearningPoints(player.getLearningPoints() - 5);
-				String text = "Magic Knowledge + 5";
+				String text = "Wisdom + 5";
 				player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 				currentDialogues.get(selectedOption).getSentences().get(1).setText("You are a fast learner.");
 			} else {
@@ -286,16 +286,24 @@ public class DialogueWindow {
 			}
 		}
 		
-		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Pick Locks (Costs 10LP)")) {
-			if(player.getLearningPoints() >= 10) {
-				currentDialogues.get(selectedOption).getSentences().get(0).setText("Pick Locks (Learned already)");
-				player.setPickLocks(true);
-				player.setLearningPoints(player.getLearningPoints() - 10);
-				String text = "Learned: Pick Locks";
-				player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
-				currentDialogues.get(selectedOption).getSentences().get(1).setText("You are a fast learner.");
+		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Lockpicking + 1 (Costs 10LP)")) {
+			
+			if(player.getLockPickingSkill() < 3) {
+			
+				if(player.getLearningPoints() >= 10) {
+					player.setLockPickingSkill(player.getLockPickingSkill() + 1);
+					player.setLearningPoints(player.getLearningPoints() - 10);
+					String text = "Lockpicking + 1";
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					currentDialogues.get(selectedOption).getSentences().get(1).setText("You are a fast learner.");
+				} else {
+					currentDialogues.get(selectedOption).getSentences().get(1).setText("You don't have enough experience. Come back later.");
+				}
+			
 			} else {
-				currentDialogues.get(selectedOption).getSentences().get(1).setText("You don't have enough experience. Come back later.");
+				
+				currentDialogues.get(selectedOption).getSentences().get(1).setText("You have already mastered lockpicking.");
+				
 			}
 		}
 		

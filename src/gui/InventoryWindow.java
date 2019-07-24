@@ -125,7 +125,7 @@ public class InventoryWindow {
 						}
 												
 					} else {
-						if (player.getStrength() >= selectedItem.getItemType().getMinStrength() && player.getDexterity() >= selectedItem.getItemType().getMinDexterity() && player.getMagicKnowledge() >= selectedItem.getItemType().getMinMagicKnowledge()) {
+						if (player.getStrength() >= selectedItem.getItemType().getMinStrength() && player.getDexterity() >= selectedItem.getItemType().getMinDexterity() && player.getWisdom() >= selectedItem.getItemType().getMinWisdom()) {
 							for(Item item : playerInventoryList) {
 								if(item.isEquipped() && item.getItemType().getItemCategory().equals(selectedItem.getItemType().getItemCategory())) {
 									item.setEquipped(false);
@@ -186,9 +186,9 @@ public class InventoryWindow {
 								
 							}
 							
-							if(player.getMagicKnowledge() < selectedItem.getItemType().getMinMagicKnowledge()) {
+							if(player.getWisdom() < selectedItem.getItemType().getMinWisdom()) {
 								
-								String text = "You need " + (selectedItem.getItemType().getMinMagicKnowledge() - player.getMagicKnowledge()) + " more magic knowledge points";
+								String text = "You need " + (selectedItem.getItemType().getMinWisdom() - player.getWisdom()) + " more wisdom points";
 								player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 								
 							}
@@ -435,9 +435,9 @@ public class InventoryWindow {
 				
 				} else {
 				
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinMagicKnowledge() > 0) {
-						g.drawString("Needed Magic Knowledge:", 652, 923);
-						String minMagicKnowledge = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinMagicKnowledge());
+					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinWisdom() > 0) {
+						g.drawString("Needed Wisdom:", 652, 923);
+						String minMagicKnowledge = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinWisdom());
 						g.drawString(minMagicKnowledge, 1098 - minMagicKnowledge.length() * 9, 923);
 					}
 					
@@ -502,7 +502,7 @@ public class InventoryWindow {
 		
 		g.drawString("Strength: ", 299, 417);
 		g.drawString("Dexterity: ", 299, 437);
-		g.drawString("Magic Knowledge: ", 299, 457);
+		g.drawString("Wisdom: ", 299, 457);
 		
 		g.drawString("Health Points: ", 299, 497);
 		g.drawString("Mana: ", 299, 517);
@@ -511,14 +511,17 @@ public class InventoryWindow {
 		g.drawString("Bow Skill: ", 299, 577);
 		g.drawString("Spell Skill: ", 299, 597);
 		
-		g.drawString("Pick Locks: ", 299, 637);
-		g.drawString("Take Furs: ", 299, 657);
-		g.drawString("Take Trophies: ", 299, 677);
-		g.drawString("HP Regeneration: ", 299, 697);
-		g.drawString("Mana Regeneration: ", 299, 717);
+		g.drawString("Lockpicking: ", 299, 637);
+		g.drawString("Alchemy: ", 299, 657);
+		g.drawString("Blacksmithing: ", 299, 677);
+		
+		g.drawString("Take Furs: ", 299, 717);
+		g.drawString("Take Trophies: ", 299, 737);
+		g.drawString("HP Regeneration: ", 299, 757);
+		g.drawString("Mana Regeneration: ", 299, 777);
 		
 		
-		g.drawString("Armor Protection: ", 299, 757);
+		g.drawString("Armor Protection: ", 299, 817);
 		
 		
 		g.drawString(String.valueOf(player.getLevel()), 471, 317);
@@ -528,7 +531,7 @@ public class InventoryWindow {
 		
 		g.drawString(String.valueOf(player.getStrength()), 471, 417);
 		g.drawString(String.valueOf(player.getDexterity()), 471, 437);
-		g.drawString(String.valueOf(player.getMagicKnowledge()), 471, 457);
+		g.drawString(String.valueOf(player.getWisdom()), 471, 457);
 		
 		g.drawString(String.valueOf(player.getHealthPoints()), 471, 497);
 		g.drawString(String.valueOf(player.getMana()), 471, 517);
@@ -537,37 +540,38 @@ public class InventoryWindow {
 		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 577);
 		g.drawString(String.valueOf(player.getSpellSkill()) + "%", 471, 597);
 				
-		if(player.isPickLocks()) {
-			g.drawString("Learned", 471, 637);
-		} else {
-			g.drawString("-", 471, 637);
-		}
+		g.drawString(String.valueOf(player.getLockPickingSkill()) + " / 3", 471, 637);
+		g.drawString(String.valueOf(player.getAlchemySkill()) + " / 3", 471, 657);
+		g.drawString(String.valueOf(player.getBlacksmithingSkill()) + " / 3", 471, 677);
+		
+		
+		
 		
 		if(player.isTakeFurs()) {
-			g.drawString("Learned", 471, 657);
-		} else {
-			g.drawString("-", 471, 657);
-		}
-		
-		if(player.isTakeTrophies()) {
-			g.drawString("Learned", 471, 677);
-		} else {
-			g.drawString("-", 471, 677);
-		}
-		
-		if(player.isHpRegeneration()) {
-			g.drawString("Learned", 471, 697);
-		} else {
-			g.drawString("-", 471, 697);
-		}
-		
-		if(player.isManaRegeneration()) {
 			g.drawString("Learned", 471, 717);
 		} else {
 			g.drawString("-", 471, 717);
 		}
 		
-		g.drawString(String.valueOf(player.getArmorProtection() + "%"), 471, 757);
+		if(player.isTakeTrophies()) {
+			g.drawString("Learned", 471, 737);
+		} else {
+			g.drawString("-", 471, 737);
+		}
+		
+		if(player.isHpRegeneration()) {
+			g.drawString("Learned", 471, 757);
+		} else {
+			g.drawString("-", 471, 757);
+		}
+		
+		if(player.isManaRegeneration()) {
+			g.drawString("Learned", 471, 777);
+		} else {
+			g.drawString("-", 471, 777);
+		}
+		
+		g.drawString(String.valueOf(player.getArmorProtection() + "%"), 471, 817);
 				
 	}
 	

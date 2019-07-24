@@ -75,7 +75,7 @@ public class ItemType {
 	//Strength etc. needed to equip item, only used for weapons
 	private int minStrength = 0;
 	private int minDexterity = 0;
-	private int minMagicKnowledge = 0;
+	private int minWisdom = 0;
 	
 	//Only needed for weapons
 	private int damage = 0;
@@ -191,7 +191,7 @@ public class ItemType {
 		
 		this.minStrength = minStrength;
 		this.minDexterity = minDexterity;
-		this.minMagicKnowledge = minMagicKnowledge;
+		this.minWisdom = minWisdom;
 	
 		this.damage = damage;
 		this.protection = protection;
@@ -387,8 +387,8 @@ public class ItemType {
 		return minDexterity;
 	}
 
-	public int getMinMagicKnowledge() {
-		return minMagicKnowledge;
+	public int getMinWisdom() {
+		return minWisdom;
 	}
 
 	public int getDamage() {

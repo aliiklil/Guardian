@@ -508,9 +508,9 @@ public class TradingWindow {
 			} else {
 			
 				//Display magicKnowledge if there is a requirement
-				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge() > 0) {
+				if(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinWisdom() > 0) {
 					g.drawString("Needed Magic Knowledge:", 652, 923);
-					String minMagicKnowledge = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge());
+					String minMagicKnowledge = String.valueOf(playerInventoryList.get(playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns).getItemType().getMinWisdom());
 					g.drawString(minMagicKnowledge, 1098 - minMagicKnowledge.length() * 9, 923);
 				}
 				
@@ -595,9 +595,9 @@ public class TradingWindow {
 			} else {
 			
 				//Display magicKnowledge if there is a requirement
-				if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge() > 0) {
+				if(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinWisdom() > 0) {
 					g.drawString("Needed Magic Knowledge:", 652, 923);
-					String minMagicKnowledge = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinMagicKnowledge());
+					String minMagicKnowledge = String.valueOf(npc.getInventoryList().get(npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns).getItemType().getMinWisdom());
 					g.drawString(minMagicKnowledge, 1098 - minMagicKnowledge.length() * 9, 923);
 				}
 				
