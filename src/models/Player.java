@@ -1102,10 +1102,20 @@ public class Player extends Character {
 			for (Chest chest : chestList) {
 
 				if(super.getCollisionBox().willIntersectUp(chest.getCollisionBox(), 5) && !chest.isOpened()) {
-					chest.getAnimation().start();
-					inventoryWindow.addItem(chest.getItem());
-					chest.setOpened(true);
-					newItemWindow.showWindow(chest.getItem());
+					
+					if(lockPickingSkill >= chest.getChestLevel()) {
+					
+						chest.getAnimation().start();
+						inventoryWindow.addItem(chest.getItem());
+						chest.setOpened(true);
+						newItemWindow.showWindow(chest.getItem());
+					
+					} else {
+						
+						String text = "Lockpicking skill is too low";
+						centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+						
+					}
 				}
 
 			}
