@@ -15,6 +15,7 @@ public class DialogueManager {
 		
 		anvilDialogues.add(new Dialogue());
 		anvilDialogues.get(0).addSentence("Forge Longsword (Iron Bar, Stick)", "Hero");
+		anvilDialogues.get(0).setPermanent(true);
 		
 
 		ogusDialogues.add(new Dialogue());

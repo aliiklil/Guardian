@@ -26,6 +26,10 @@ public class Anvil {
 	private Animation animation;
 	
 	private ArrayList<Dialogue> startingDialogues = new ArrayList<Dialogue>();
+	
+	private long lastTimeAnvilUsed;
+	
+	private int hotAnvilDuration = 120; // In seconds 
 
 	public Anvil(int tileX, int tileY, ArrayList<Dialogue> startingDialogues) throws SlickException {
 		
@@ -52,6 +56,11 @@ public class Anvil {
 		relativeToScreenX = Game.getCurrentMap().getX() + tileX * 32;
 		relativeToScreenY = Game.getCurrentMap().getY() + tileY * 32;
 		
+		if(System.currentTimeMillis() > lastTimeAnvilUsed + hotAnvilDuration * 1000) {
+			spriteSheet = new SpriteSheet("resources/anvil.png", 64, 32);
+			animation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
+		}
+		
 	}
 	
 	public void render(Graphics g) {
@@ -70,4 +79,11 @@ public class Anvil {
 		return startingDialogues;
 	}
 	
+	public void makeAnvilHot() throws SlickException {
+		
+		SpriteSheet spriteSheet = new SpriteSheet("resources/hotanvil.png", 64, 32);
+		animation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
+		lastTimeAnvilUsed = System.currentTimeMillis();
+	}
+
 }

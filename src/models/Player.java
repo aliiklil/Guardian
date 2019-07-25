@@ -1190,21 +1190,25 @@ public class Player extends Character {
 					if(super.getCollisionBox().willIntersectUp(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookUpAnimation()) {
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
+						anvil.makeAnvilHot();
 					}
 
 					if(super.getCollisionBox().willIntersectDown(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookDownAnimation()) {
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
+						anvil.makeAnvilHot();
 					}
 
 					if(super.getCollisionBox().willIntersectLeft(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookLeftAnimation()) {
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
+						anvil.makeAnvilHot();
 					}
 
 					if(super.getCollisionBox().willIntersectRight(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookRightAnimation()) {
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
+						anvil.makeAnvilHot();
 					}
 
 
