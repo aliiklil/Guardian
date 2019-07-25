@@ -138,10 +138,8 @@ public class DialogueWindow {
 							
 						}
 	
-						startingDialogues.get(selectedStartingOption).getChildDialogues();
-						
-						if(startingDialogues.get(selectedStartingOption).getChildDialogues().get(selectedOption).getSentences().get(0).getText().equals("Back")
-								|| !startingDialogues.get(selectedStartingOption).isForLearning()
+
+						if(!startingDialogues.get(selectedStartingOption).isForLearning() || startingDialogues.get(selectedStartingOption).getChildDialogues().get(selectedOption).getSentences().get(0).getText().equals("Back")
 								) {
 							currentDialogues = startingDialogues;
 						}
@@ -153,7 +151,7 @@ public class DialogueWindow {
 						selectedOption = 0;
 						sentenceCount = 0;
 						
-					} 
+					}
 					
 				} else if(selectedOption == currentDialogues.size() && currentDialogues == startingDialogues) {
 					windowOpen = false;
