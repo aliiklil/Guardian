@@ -7,6 +7,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import manager.AnvilManager;
 import manager.CharacterManager;
 import manager.ChestManager;
 import manager.DialogueManager;
@@ -28,8 +29,10 @@ public class Game extends BasicGameState {
 	private static ProjectileManager projectileManager;
 	private static ItemTypeManager itemTypeManager;
 	private static ItemManager itemManager;
-	private static ChestManager chestManager;
 	private static DialogueManager dialogueManager;
+	
+	private static ChestManager chestManager;
+	private static AnvilManager anvilManager;
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -45,9 +48,11 @@ public class Game extends BasicGameState {
 		characterManager = new CharacterManager();
 		projectileManager = new ProjectileManager();
 		itemManager = new ItemManager();
-		chestManager = new ChestManager();
 		dialogueManager = new DialogueManager();
-
+		
+		chestManager = new ChestManager();
+		anvilManager = new AnvilManager();
+		
 	}
 
 	@Override
@@ -56,7 +61,9 @@ public class Game extends BasicGameState {
 		characterManager.update();
 		projectileManager.update();
 		itemManager.update();
+		
 		chestManager.update();
+		anvilManager.update();
 		
 	}
 
@@ -65,6 +72,7 @@ public class Game extends BasicGameState {
 
 		world.render(g);
 		chestManager.render(g);
+		anvilManager.render(g);
 		
 		itemManager.render(g);
 		characterManager.render(g);
@@ -121,6 +129,10 @@ public class Game extends BasicGameState {
 	
 	public static ChestManager getChestManager() {
 		return chestManager;
+	}
+
+	public static AnvilManager getAnvilManager() {
+		return anvilManager;
 	}
 
 }
