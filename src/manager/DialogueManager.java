@@ -6,10 +6,16 @@ import dialogue.Dialogue;
 
 public class DialogueManager {
 	
+	public static ArrayList<Dialogue> anvilDialogues = new ArrayList<Dialogue>();
+	
 	public static ArrayList<Dialogue> ogusDialogues = new ArrayList<Dialogue>();
 	public static ArrayList<Dialogue> halrokDialogues = new ArrayList<Dialogue>();
 	
 	public DialogueManager() {
+		
+		anvilDialogues.add(new Dialogue());
+		anvilDialogues.get(0).addSentence("Forge Longsword (Iron Bar, Stick)", "Hero");
+		
 
 		ogusDialogues.add(new Dialogue());
 		ogusDialogues.get(0).addSentence("Who are you?", "Hero");

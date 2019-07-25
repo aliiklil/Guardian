@@ -13,7 +13,7 @@ public class AnvilManager {
 		
 	public AnvilManager() throws SlickException {
 		
-		Anvil anvil1 = new Anvil(10, 2);
+		Anvil anvil1 = new Anvil(10, 2, DialogueManager.anvilDialogues);
 		
 		anvilList.add(anvil1);
 		

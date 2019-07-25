@@ -17,6 +17,7 @@ import gui.NewItemWindow;
 import gui.TradingWindow;
 import main.Game;
 import main.Main;
+import manager.AnvilManager;
 import manager.CharacterManager;
 import manager.ChestManager;
 import manager.ItemTypeManager;
@@ -185,7 +186,8 @@ public class Player extends Character {
 		if(isAlive()) {
 			inventoryWindow.update();
 			newItemWindow.update();
-			updateDialogue();
+			updateDialogueNPC();
+			updateDialogueAnvil();
 			dialogueWindow.update();
 			centeredText.update();
 			levelUpText.update();
@@ -1124,7 +1126,7 @@ public class Player extends Character {
 
 	}
 
-	private void updateDialogue() throws SlickException {
+	private void updateDialogueNPC() throws SlickException {
 
 		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
 
@@ -1132,31 +1134,80 @@ public class Player extends Character {
 
 			for (NPC npc : npcList) {
 
-				if(super.getCollisionBox().willIntersectAnyDirection(npc.getCollisionBox(), 5) && !npc.isHostileToPlayer() && npc.getStartingDialogues() != null) {
+				if(!npc.isHostileToPlayer() && npc.getStartingDialogues() != null) {
 
-					if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5)) {
-						setCurrentAnimation(getLookUpAnimation());
+					if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5) && getCurrentAnimation() == getLookUpAnimation()) {
 						npc.setCurrentAnimation(npc.getLookDownAnimation());
+						
+						dialogueWindow.showWindow(npc.getStartingDialogues());
+						tradingWindow.setNpc(npc);
+						yPressed = false;
 					}
 
-					if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), 5)) {
-						setCurrentAnimation(getLookDownAnimation());
+					if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), 5) && getCurrentAnimation() == getLookDownAnimation()) {
 						npc.setCurrentAnimation(npc.getLookUpAnimation());
+						
+						dialogueWindow.showWindow(npc.getStartingDialogues());
+						tradingWindow.setNpc(npc);
+						yPressed = false;
 					}
 
-					if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), 5)) {
-						setCurrentAnimation(getLookLeftAnimation());
+					if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), 5) && getCurrentAnimation() == getLookLeftAnimation()) {
 						npc.setCurrentAnimation(npc.getLookRightAnimation());
+						
+						dialogueWindow.showWindow(npc.getStartingDialogues());
+						tradingWindow.setNpc(npc);
+						yPressed = false;
 					}
 
-					if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), 5)) {
-						setCurrentAnimation(getLookRightAnimation());
+					if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), 5) && getCurrentAnimation() == getLookRightAnimation()) {
 						npc.setCurrentAnimation(npc.getLookLeftAnimation());
+						
+						dialogueWindow.showWindow(npc.getStartingDialogues());
+						tradingWindow.setNpc(npc);
+						yPressed = false;
 					}
 
-					dialogueWindow.showWindow(npc.getStartingDialogues());
-					tradingWindow.setNpc(npc);
-					yPressed = false;
+
+				}
+
+			}
+
+		}
+
+	}
+	
+	private void updateDialogueAnvil() throws SlickException {
+
+		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
+
+			ArrayList<Anvil> anvilList = AnvilManager.getAnvilList();
+
+			for (Anvil anvil : anvilList) {
+
+				if(anvil.getStartingDialogues() != null) {
+
+					if(super.getCollisionBox().willIntersectUp(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookUpAnimation()) {
+						dialogueWindow.showWindow(anvil.getStartingDialogues());
+						yPressed = false;
+					}
+
+					if(super.getCollisionBox().willIntersectDown(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookDownAnimation()) {
+						dialogueWindow.showWindow(anvil.getStartingDialogues());
+						yPressed = false;
+					}
+
+					if(super.getCollisionBox().willIntersectLeft(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookLeftAnimation()) {
+						dialogueWindow.showWindow(anvil.getStartingDialogues());
+						yPressed = false;
+					}
+
+					if(super.getCollisionBox().willIntersectRight(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookRightAnimation()) {
+						dialogueWindow.showWindow(anvil.getStartingDialogues());
+						yPressed = false;
+					}
+
+
 				}
 
 			}

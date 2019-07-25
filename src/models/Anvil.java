@@ -1,10 +1,13 @@
 package models;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import dialogue.Dialogue;
 import main.Game;
 import util.CollisionBox;
 
@@ -21,16 +24,20 @@ public class Anvil {
 	private SpriteSheet spriteSheet;
 	
 	private Animation animation;
+	
+	private ArrayList<Dialogue> startingDialogues = new ArrayList<Dialogue>();
 
-	public Anvil(int tileX, int tileY) throws SlickException {
+	public Anvil(int tileX, int tileY, ArrayList<Dialogue> startingDialogues) throws SlickException {
 		
 		this.tileX = tileX;
 		this.tileY = tileY;
 				
+		this.startingDialogues = startingDialogues;
+		
 		relativeToScreenX = Game.getCurrentMap().getX() + tileX * 32;
 		relativeToScreenY = Game.getCurrentMap().getY() + tileY * 32;
 		
-		collisionBox = new CollisionBox(tileX * 32, tileY * 32, 32, 32);
+		collisionBox = new CollisionBox(tileX * 32 + 32, tileY * 32, 64, 32);
 
 		spriteSheet = new SpriteSheet("resources/anvil.png", 64, 32);
 
@@ -57,6 +64,10 @@ public class Anvil {
 
 	public Animation getAnimation() {
 		return animation;
+	}
+
+	public ArrayList<Dialogue> getStartingDialogues() {
+		return startingDialogues;
 	}
 	
 }
