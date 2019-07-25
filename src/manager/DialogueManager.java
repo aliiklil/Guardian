@@ -14,9 +14,46 @@ public class DialogueManager {
 	public DialogueManager() {
 		
 		anvilDialogues.add(new Dialogue());
-		anvilDialogues.get(0).addSentence("Forge Longsword (Iron Bar, Stick)", "Hero");
+		anvilDialogues.get(0).addSentence("Forge Weapons", "Hero");
 		anvilDialogues.get(0).setPermanent(true);
+		anvilDialogues.get(0).setForLearning(true);
 		
+		anvilDialogues.get(0).addChildDialogue(new Dialogue());
+		anvilDialogues.get(0).getChildDialogues().get(0).addSentence("Forge Longsword (Iron Bar, Stick)", "Hero");
+		anvilDialogues.get(0).getChildDialogues().get(0).addSentence("I have successfully forged a Longsword.", "Hero");
+		anvilDialogues.get(0).getChildDialogues().get(0).setPermanent(true);
+		anvilDialogues.get(0).getChildDialogues().get(0).setForLearning(true);
+		
+		anvilDialogues.get(0).addChildDialogue(new Dialogue());
+		anvilDialogues.get(0).getChildDialogues().get(1).addSentence("Forge Longspear (Iron Bar, Multiple Sticks)", "Hero");
+		anvilDialogues.get(0).getChildDialogues().get(1).addSentence("I have successfully forged a Longspear.", "Hero");
+		anvilDialogues.get(0).getChildDialogues().get(1).setPermanent(true);
+		
+		anvilDialogues.get(0).addChildDialogue(new Dialogue());
+		anvilDialogues.get(0).getChildDialogues().get(2).addSentence("Back", "Hero");
+		
+		
+		
+		anvilDialogues.add(new Dialogue());
+		anvilDialogues.get(1).addSentence("Forge Armor", "Hero");
+		anvilDialogues.get(1).setPermanent(true);
+		anvilDialogues.get(1).setForLearning(true);
+		
+		anvilDialogues.get(1).addChildDialogue(new Dialogue());
+		anvilDialogues.get(1).getChildDialogues().get(0).addSentence("Forge Metal Helmet (3 Iron Bars)", "Hero");
+		anvilDialogues.get(1).getChildDialogues().get(0).addSentence("I have successfully forged a Metal Helmet.", "Hero");
+		anvilDialogues.get(1).getChildDialogues().get(0).setPermanent(true);
+		
+		anvilDialogues.get(1).addChildDialogue(new Dialogue());
+		anvilDialogues.get(1).getChildDialogues().get(1).addSentence("Forge Gold Helmet (3 Gold Bars)", "Hero");
+		anvilDialogues.get(1).getChildDialogues().get(1).addSentence("I have successfully forged a Gold Helmet.", "Hero");
+		anvilDialogues.get(1).getChildDialogues().get(1).setPermanent(true);
+		
+		anvilDialogues.get(1).addChildDialogue(new Dialogue());
+		anvilDialogues.get(1).getChildDialogues().get(2).addSentence("Back", "Hero");
+		
+		
+
 
 		ogusDialogues.add(new Dialogue());
 		ogusDialogues.get(0).addSentence("Who are you?", "Hero");

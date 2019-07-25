@@ -12,8 +12,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 
 import dialogue.Dialogue;
+import main.Game;
 import main.Main;
 import manager.CharacterManager;
+import manager.ItemTypeManager;
+import models.Item;
 import models.Player;
 
 public class DialogueWindow {
@@ -102,7 +105,8 @@ public class DialogueWindow {
 					if(sentenceCount < currentDialogues.get(selectedOption).getSentences().size() - 1) {
 						
 						checkIfPlayerLearns(currentDialogues.get(selectedOption));
-
+						checkIfPlayerIsBlacksmithing(currentDialogues.get(selectedOption));
+						
 						sentenceCount++;
 						
 						currentSentence = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText();
@@ -117,7 +121,7 @@ public class DialogueWindow {
 						}
 						
 						checkIfPlayerTrades(currentDialogues.get(selectedOption));
-						
+
 					} else if(sentenceCount == currentDialogues.get(selectedOption).getSentences().size() - 1 && currentDialogues.get(selectedOption).hasChildDialogues()) {
 						
 						currentDialogues = currentDialogues.get(selectedOption).getChildDialogues();
@@ -133,12 +137,15 @@ public class DialogueWindow {
 							}
 							
 						}
-														
-						if(!startingDialogues.get(selectedStartingOption).isForLearning()
-								|| startingDialogues.get(selectedStartingOption).getChildDialogues().get(selectedOption).getSentences().get(0).getText().equals("Back")) {
+	
+						startingDialogues.get(selectedStartingOption).getChildDialogues();
+						
+						if(startingDialogues.get(selectedStartingOption).getChildDialogues().get(selectedOption).getSentences().get(0).getText().equals("Back")
+								|| !startingDialogues.get(selectedStartingOption).isForLearning()
+								) {
 							currentDialogues = startingDialogues;
 						}
-												
+							
 						if(!startingDialogues.isEmpty() && !startingDialogues.get(selectedStartingOption).isPermanent()) {
 							startingDialogues.remove(selectedStartingOption);
 						}
@@ -403,6 +410,41 @@ public class DialogueWindow {
 			
 				
 	}
+	
+	private void checkIfPlayerIsBlacksmithing(Dialogue currentDialogue) throws SlickException {
+		
+		
+		Player player = CharacterManager.getPlayer();
+		
+		if(currentDialogues.get(selectedOption).getSentences().get(0).getText().equals("Forge Longsword (Iron Bar, Stick)")) {
+			
+			boolean ironBarExists = false;
+			boolean stickExists = false;
+			
+			for(Item item : player.getInventoryList()) {
+				if(item.getItemType().getName().equals("Iron Bar")) {
+					ironBarExists = true;
+				}
+				if(item.getItemType().getName().equals("Stick")) {
+					stickExists = true;
+				}
+			}
+			
+			if(ironBarExists && stickExists) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().stick);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().longsword));
+				currentDialogues.get(selectedOption).getSentences().get(1).setText("I have successfully forged a Longsword.");
+			} else {
+				currentDialogues.get(selectedOption).getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+			
+		
+	}
+	
 	
 	public void render(Graphics g) {
 		if(windowOpen) {

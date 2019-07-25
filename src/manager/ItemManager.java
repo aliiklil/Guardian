@@ -125,7 +125,7 @@ public class ItemManager {
 		
 		Item copperBar1 = new Item(1024, 512, itemTypeManager.copperBar);
 		
-		Item ironBar1 = new Item(1280, 128, itemTypeManager.ironBar);
+		Item ironBar1 = new Item(64, 128, itemTypeManager.ironBar);
 		
 		Item goldBar1 = new Item(736, 32, itemTypeManager.goldBar);
 

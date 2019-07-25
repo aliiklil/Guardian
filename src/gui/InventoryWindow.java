@@ -640,11 +640,13 @@ public class InventoryWindow {
 				
 				if(playerItemCountList.get(i) > 1) {
 					playerItemCountList.set(i, playerItemCountList.get(i) - 1);
+					break;
 				}
 				
 				if(playerItemCountList.get(i) == 1) {
 					playerInventoryList.remove(i);
 					playerItemCountList.remove(i);
+					break;
 				}
 
 			}
