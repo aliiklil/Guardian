@@ -13,7 +13,7 @@ public class DialogueManager {
 	
 	public DialogueManager() {
 		
-		
+		/*
 		anvilDialogues.add(new Dialogue());
 		anvilDialogues.get(0).addSentence("Forge Weapons", "Hero");
 		anvilDialogues.get(0).setPermanent(true);
@@ -52,7 +52,7 @@ public class DialogueManager {
 		
 		anvilDialogues.get(1).addChildDialogue(new Dialogue());
 		anvilDialogues.get(1).getChildDialogues().get(2).addSentence("Back", "Hero");
-		
+		*/
 		
 
 

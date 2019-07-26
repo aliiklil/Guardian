@@ -54,7 +54,6 @@ public class ItemManager {
 		Item goldenhelmet = new Item(480, 416, itemTypeManager.goldenhelmet);
 		Item leathercap = new Item(480, 416, itemTypeManager.leathercap);
 		Item metalhelmet = new Item(480, 416, itemTypeManager.metalhelmet);
-		Item redironhelmet = new Item(480, 416, itemTypeManager.redironhelmet);
 		Item diamondhelmet = new Item(480, 416, itemTypeManager.diamondhelmet);
 		
 		Item shirt = new Item(480, 416, itemTypeManager.shirt);
@@ -62,25 +61,21 @@ public class ItemManager {
 		Item chainchest = new Item(480, 416, itemTypeManager.chainchest);
 		Item metalchest = new Item(480, 416, itemTypeManager.metalchest);
 		Item goldenchest = new Item(480, 416, itemTypeManager.goldenchest);
-		Item redironchest = new Item(480, 416, itemTypeManager.redironchest);
 		Item diamondchest = new Item(480, 416, itemTypeManager.diamondchest);
 
 		Item metalgloves = new Item(480, 416, itemTypeManager.metalgloves);
 		Item goldengloves = new Item(480, 416, itemTypeManager.goldengloves);
-		Item redirongloves = new Item(480, 416, itemTypeManager.redirongloves);
 		Item diamondgloves = new Item(480, 416, itemTypeManager.diamondgloves);
 		
 		Item skirt = new Item(480, 416, itemTypeManager.skirt);
 		Item metalgreaves = new Item(480, 416, itemTypeManager.metalgreaves);
 		Item goldengreaves = new Item(480, 416, itemTypeManager.goldengreaves);
-		Item redirongreaves = new Item(480, 416, itemTypeManager.redirongreaves);
 		Item diamondgreaves = new Item(480, 416, itemTypeManager.diamondgreaves);
 				
 		Item boots = new Item(480, 416, itemTypeManager.boots);
 		Item leatherboots = new Item(480, 416, itemTypeManager.leatherboots);
 		Item metalboots = new Item(480, 416, itemTypeManager.metalboots);
 		Item goldenboots = new Item(480, 416, itemTypeManager.goldenboots);
-		Item redironboots = new Item(480, 416, itemTypeManager.redironboots);
 		Item diamondboots = new Item(480, 416, itemTypeManager.diamondboots);
 		
 		
@@ -201,7 +196,6 @@ public class ItemManager {
 		itemList.add(goldenhelmet);
 		itemList.add(leathercap);
 		itemList.add(metalhelmet);
-		itemList.add(redironhelmet);
 		itemList.add(diamondhelmet);
 		
 		itemList.add(shirt);
@@ -209,25 +203,21 @@ public class ItemManager {
 		itemList.add(chainchest);
 		itemList.add(metalchest);
 		itemList.add(goldenchest);
-		itemList.add(redironchest);
 		itemList.add(diamondchest);
 		
 		itemList.add(metalgloves);
 		itemList.add(goldengloves);
-		itemList.add(redirongloves);
 		itemList.add(diamondgloves);
 		
 		itemList.add(skirt);
 		itemList.add(metalgreaves);
 		itemList.add(goldengreaves);
-		itemList.add(redirongreaves);
 		itemList.add(diamondgreaves);
 				
 		itemList.add(boots);
 		itemList.add(leatherboots);
 		itemList.add(metalboots);
 		itemList.add(goldenboots);
-		itemList.add(redironboots);
 		itemList.add(diamondboots);
 		
 		itemList.add(arrow1);

@@ -2,6 +2,8 @@ package dialogue;
 
 import java.util.ArrayList;
 
+import manager.DialogueManager;
+
 public class Dialogue {
 
 	private ArrayList<Sentence> sentences = new ArrayList<Sentence>();

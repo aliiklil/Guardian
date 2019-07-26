@@ -165,21 +165,52 @@ public class Learning {
 					String text = "Blacksmithing + 1";
 					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 					currentDialogue.getSentences().get(1).setText("You are a fast learner.");
-					/*
+					
 					if(player.getBlacksmithingSkill() == 1) {
 						
 						DialogueManager.anvilDialogues.add(new Dialogue());
 						DialogueManager.anvilDialogues.get(0).addSentence("Level 1 Blacksmithing", "Hero");
 						DialogueManager.anvilDialogues.get(0).setPermanent(true);
-						DialogueManager.anvilDialogues.get(0).setForLearning(true);
+						DialogueManager.anvilDialogues.get(0).setForLearning(true);	
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).addSentence("Forge Weapons", "Hero");
-						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).addSentence("Forge Armor", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).addSentence("Forge Longsword (Iron Bar, Stick)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).addSentence("I have successfully forged a Longsword.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).addSentence("Back", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).addSentence("Forge Metal Helmet (3 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).addSentence("I have successfully forged a Metal Helmet.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).addSentence("Forge Metal Chest (5 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).addSentence("I have successfully forged a Metal Chest.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(3).addSentence("Forge Metal Gloves (2 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(3).addSentence("I have successfully forged Metal Gloves.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(3).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(4).addSentence("Forge Metal Greaves (4 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(4).addSentence("I have successfully forged Metal Greaves.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(4).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(5).addSentence("Forge Metal Boots (2 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(5).addSentence("I have successfully forged Metal Boots.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(5).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(6).addSentence("Back", "Hero");
+						
+						
+						
+						
+						
+						
 						
 					}
 					
@@ -213,7 +244,7 @@ public class Learning {
 						
 						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
 						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(2).addSentence("Back", "Hero");
-					}*/
+					}
 					
 					
 					
