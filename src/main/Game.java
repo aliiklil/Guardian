@@ -7,6 +7,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import logic.Blacksmithing;
+import logic.Learning;
 import manager.AnvilManager;
 import manager.CharacterManager;
 import manager.ChestManager;
@@ -33,6 +35,9 @@ public class Game extends BasicGameState {
 	
 	private static ChestManager chestManager;
 	private static AnvilManager anvilManager;
+	
+	public static Blacksmithing blacksmithing;
+	public static Learning learning;
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -52,6 +57,9 @@ public class Game extends BasicGameState {
 		
 		chestManager = new ChestManager();
 		anvilManager = new AnvilManager();
+		
+		blacksmithing = new Blacksmithing();
+		learning = new Learning();
 		
 	}
 
@@ -135,4 +143,12 @@ public class Game extends BasicGameState {
 		return anvilManager;
 	}
 
+	public static Blacksmithing getBlacksmithing() {
+		return blacksmithing;
+	}
+
+	public static Learning getLearning() {
+		return learning;
+	}
+	
 }
