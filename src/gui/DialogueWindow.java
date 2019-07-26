@@ -176,7 +176,7 @@ public class DialogueWindow {
 			
 			windowOpen = false;
 			sentenceCount = 0;
-			
+			selectedStartingOption = 0;
 			
 			
 		}

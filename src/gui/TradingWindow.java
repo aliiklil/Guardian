@@ -43,7 +43,7 @@ public class TradingWindow {
 	
 	private Input input = Main.appGameContainer.getInput();
 
-	private long timestamp = 0;
+	private long timestamp = 0; //Needed otherwise the centeredText is displayed immediately, that player has not enough gold because Y is pressed
 
 	private boolean holdUpKey = false;
 	private boolean holdDownKey = false;
