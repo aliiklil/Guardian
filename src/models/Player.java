@@ -1186,26 +1186,31 @@ public class Player extends Character {
 			for (Anvil anvil : anvilList) {
 
 				if(anvil.getStartingDialogues() != null) {
+					
+					if(super.getCollisionBox().willIntersectAnyDirection(anvil.getCollisionBox(), 5) && blacksmithingSkill == 0) {
+						String text = "I don't know how to blacksmith";
+						centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					}
 
-					if(super.getCollisionBox().willIntersectUp(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookUpAnimation()) {
+					if(super.getCollisionBox().willIntersectUp(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookUpAnimation() && blacksmithingSkill > 0) {
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
 						anvil.makeAnvilHot();
 					}
 
-					if(super.getCollisionBox().willIntersectDown(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookDownAnimation()) {
+					if(super.getCollisionBox().willIntersectDown(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookDownAnimation() && blacksmithingSkill > 0) {
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
 						anvil.makeAnvilHot();
 					}
 
-					if(super.getCollisionBox().willIntersectLeft(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookLeftAnimation()) {
+					if(super.getCollisionBox().willIntersectLeft(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookLeftAnimation() && blacksmithingSkill > 0) {
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
 						anvil.makeAnvilHot();
 					}
 
-					if(super.getCollisionBox().willIntersectRight(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookRightAnimation()) {
+					if(super.getCollisionBox().willIntersectRight(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookRightAnimation() && blacksmithingSkill > 0) {
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
 						anvil.makeAnvilHot();

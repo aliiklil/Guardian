@@ -3,6 +3,7 @@ package logic;
 import dialogue.Dialogue;
 import main.Main;
 import manager.CharacterManager;
+import manager.DialogueManager;
 import models.Player;
 
 public class Learning {
@@ -164,6 +165,59 @@ public class Learning {
 					String text = "Blacksmithing + 1";
 					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 					currentDialogue.getSentences().get(1).setText("You are a fast learner.");
+					/*
+					if(player.getBlacksmithingSkill() == 1) {
+						
+						DialogueManager.anvilDialogues.add(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).addSentence("Level 1 Blacksmithing", "Hero");
+						DialogueManager.anvilDialogues.get(0).setPermanent(true);
+						DialogueManager.anvilDialogues.get(0).setForLearning(true);
+						
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).addSentence("Forge Weapons", "Hero");
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).addSentence("Forge Armor", "Hero");
+						
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).addSentence("Back", "Hero");
+						
+					}
+					
+					if(player.getBlacksmithingSkill() == 2) {
+						
+						DialogueManager.anvilDialogues.add(new Dialogue());
+						DialogueManager.anvilDialogues.get(1).addSentence("Level 2 Blacksmithing", "Hero");
+						DialogueManager.anvilDialogues.get(1).setPermanent(true);
+						DialogueManager.anvilDialogues.get(1).setForLearning(true);
+						
+						DialogueManager.anvilDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(0).addSentence("Forge Weapons", "Hero");
+						DialogueManager.anvilDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(1).addSentence("Forge Armor", "Hero");
+						
+						DialogueManager.anvilDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(2).addSentence("Back", "Hero");
+					}
+					
+					if(player.getBlacksmithingSkill() == 3) {
+						
+						DialogueManager.anvilDialogues.add(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).addSentence("Level 3 Blacksmithing", "Hero");
+						DialogueManager.anvilDialogues.get(2).setPermanent(true);
+						DialogueManager.anvilDialogues.get(2).setForLearning(true);
+						
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(0).addSentence("Forge Weapons", "Hero");
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(1).addSentence("Forge Armor", "Hero");
+						
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(2).addSentence("Back", "Hero");
+					}*/
+					
+					
+					
+					
 				} else {
 					currentDialogue.getSentences().get(1).setText("You don't have enough experience. Come back later.");
 				}
