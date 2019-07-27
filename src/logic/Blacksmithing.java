@@ -14,7 +14,34 @@ public class Blacksmithing {
 		
 		Player player = CharacterManager.getPlayer();
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Sword (Iron Bar, Stick)")) {
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Sword (3 Iron Bar)")) {
+			
+			int ironBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Iron Bar")) {
+					ironBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(ironBarsCount >= 3) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().ironsword));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged an Iron Sword.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+		
+		
+		
+		
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Longspear (Iron Bar, 3 Stick)")) {
 			
 			int ironBarsCount = 0;
 			int stickCount = 0;
@@ -28,12 +55,14 @@ public class Blacksmithing {
 				}
 			}
 			
-			if(ironBarsCount >= 1 && stickCount >= 1) {
+			if(ironBarsCount >= 1 && stickCount >= 3) {
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().stick);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().stick);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().stick);
 				
-				player.addItem(new Item(0, 0, Game.getItemTypeManager().ironsword));
-				currentDialogue.getSentences().get(1).setText("I have successfully forged an Iron Sword.");
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().longspear));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Longspear.");
 			} else {
 				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
 			}
@@ -41,6 +70,28 @@ public class Blacksmithing {
 		}
 		
 		
+		
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Sabre (2 Iron Bar)")) {
+			
+			int ironBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Iron Bar")) {
+					ironBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(ironBarsCount >= 2) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().sabre));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Sabre.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
 		
 		
 		

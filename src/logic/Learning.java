@@ -174,37 +174,47 @@ public class Learning {
 						DialogueManager.anvilDialogues.get(0).setForLearning(true);	
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).addSentence("Forge Iron Sword (Iron Bar, Stick)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).addSentence("Forge Iron Sword (3 Iron Bar)", "Hero");
 						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).addSentence("I have successfully forged an Iron Sword.", "Hero");
 						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).addSentence("Forge Iron Helmet (3 Iron Bars)", "Hero");
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).addSentence("I have successfully forged an Iron Helmet.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).addSentence("Forge Longspear (Iron Bar, 3 Stick)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).addSentence("I have successfully forged a Longspear.", "Hero");
 						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).addSentence("Forge Iron Chest (5 Iron Bars)", "Hero");
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).addSentence("I have successfully forged an Iron Chest.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).addSentence("Forge Sabre (2 Iron Bar)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).addSentence("I have successfully forged a Sabre.", "Hero");
 						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(3).addSentence("Forge Iron Gloves (2 Iron Bars)", "Hero");
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(3).addSentence("I have successfully forged Iron Gloves.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(3).addSentence("Forge Iron Helmet (3 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(3).addSentence("I have successfully forged an Iron Helmet.", "Hero");
 						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(3).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(4).addSentence("Forge Iron Greaves (4 Iron Bars)", "Hero");
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(4).addSentence("I have successfully forged Iron Greaves.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(4).addSentence("Forge Iron Chest (5 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(4).addSentence("I have successfully forged an Iron Chest.", "Hero");
 						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(4).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(5).addSentence("Forge Iron Boots (2 Iron Bars)", "Hero");
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(5).addSentence("I have successfully forged Iron Boots.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(5).addSentence("Forge Iron Gloves (2 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(5).addSentence("I have successfully forged Iron Gloves.", "Hero");
 						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(5).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(6).addSentence("Back", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(6).addSentence("Forge Iron Greaves (4 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(6).addSentence("I have successfully forged Iron Greaves.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(6).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(7).addSentence("Forge Iron Boots (2 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(7).addSentence("I have successfully forged Iron Boots.", "Hero");
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(7).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(8).addSentence("Back", "Hero");
 						
 						
 						

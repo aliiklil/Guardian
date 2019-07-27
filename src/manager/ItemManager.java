@@ -19,6 +19,7 @@ public class ItemManager {
 			
 		
 		Item stick = new Item(480, 416, itemTypeManager.stick);
+		Item stick1 = new Item(480, 416, itemTypeManager.stick);
 						
 		Item dagger = new Item(480, 416, itemTypeManager.dagger);
 		Item mace = new Item(480, 416, itemTypeManager.mace);
@@ -166,6 +167,8 @@ public class ItemManager {
 		Item trophy1 = new Item(364, 32, itemTypeManager.trophy);
 
 		itemList.add(stick);
+		itemList.add(stick1);
+		
 		itemList.add(dagger);
 		itemList.add(mace);
 		itemList.add(ironsword);
