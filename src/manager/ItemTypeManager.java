@@ -10,7 +10,7 @@ public class ItemTypeManager {
 	public ItemType stick = new ItemType(1, "resources/items/1melee/stick.png", "Stick", 20, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/stick.png", 10, 0, 0, 15, 0, 0, 0, 0);	
 	public ItemType dagger = new ItemType(1, "resources/items/1melee/dagger.png", "Dagger", 50, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/dagger.png", 20, 0, 0, 25, 0, 0, 0, 0);
 	public ItemType mace = new ItemType(1, "resources/items/1melee/mace.png", "Mace", 100, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mace.png", 30, 0, 0, 35, 0, 0, 0, 0);
-	public ItemType longsword = new ItemType(1, "resources/items/1melee/longsword.png", "Longsword", 300, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/longsword.png", 40, 0, 0, 75, 0, 0, 0, 0);
+	public ItemType ironsword = new ItemType(1, "resources/items/1melee/ironsword.png", "Iron Sword", 300, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/ironsword.png", 40, 0, 0, 75, 0, 0, 0, 0);
 	public ItemType redironsword = new ItemType(1, "resources/items/1melee/redironsword.png", "Red Iron Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/redironsword.png", 50, 0, 0, 90, 0, 0, 0, 0);
 	public ItemType diamondsword = new ItemType(1, "resources/items/1melee/diamondsword.png", "Diamon Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/diamondsword.png", 60, 0, 0, 110, 0, 0, 0, 0);
 	public ItemType blacksword = new ItemType(1, "resources/items/1melee/blacksword.png", "Black Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/blacksword.png", 75, 0, 0, 140, 0, 0, 0, 0);
@@ -36,29 +36,29 @@ public class ItemTypeManager {
 	public ItemType leathercap = new ItemType(1, "resources/items/5helmets/leathercap.png", "Leather Cap", 50, 5, true, "head", "resources/player_sprites/head/leathercap.png", 0, 0, 0, 0, 4, 0, 0, 0);
 	public ItemType chainhat = new ItemType(1, "resources/items/5helmets/chainhat.png", "Chain Hat", 100, 5, true, "head", "resources/player_sprites/head/chainhat.png", 0, 0, 0, 0, 6, 0, 0, 0);
 	public ItemType chainhelmet = new ItemType(1, "resources/items/5helmets/chainhelmet.png", "Chain Helmet", 150, 5, true, "head", "resources/player_sprites/head/chainhelmet.png", 0, 0, 0, 0, 8, 0, 0, 0);
-	public ItemType metalhelmet = new ItemType(1, "resources/items/5helmets/metalhelmet.png", "Metal Helmet", 200, 5, true, "head", "resources/player_sprites/head/metalhelmet.png", 0, 0, 0, 0, 10, 0, 0, 0);
+	public ItemType ironhelmet = new ItemType(1, "resources/items/5helmets/ironhelmet.png", "Iron Helmet", 200, 5, true, "head", "resources/player_sprites/head/ironhelmet.png", 0, 0, 0, 0, 10, 0, 0, 0);
 	public ItemType goldenhelmet = new ItemType(1, "resources/items/5helmets/goldenhelmet.png", "Gold Helmet", 300, 5, true, "head", "resources/player_sprites/head/goldenhelmet.png", 0, 0, 0, 0, 12, 0, 0, 0);
 	public ItemType diamondhelmet = new ItemType(1, "resources/items/5helmets/diamondhelmet.png", "Diamond Helmet", 500, 5, true, "head", "resources/player_sprites/head/diamondhelmet.png", 0, 0, 0, 0, 16, 0, 0, 0);
 
 	public ItemType shirt = new ItemType(1, "resources/items/6torso/shirt.png", "Shirt", 10, 6, true, "chest", "resources/player_sprites/chest/shirt.png", 0, 0, 0, 0, 3, 0, 0, 0);
 	public ItemType leatherchest = new ItemType(1, "resources/items/6torso/leatherchest.png", "Leather Chest", 300, 6, true, "chest", "resources/player_sprites/chest/leatherchest.png", 0, 0, 0, 0, 6, 0, 0, 0);
 	public ItemType chainchest = new ItemType(1, "resources/items/6torso/chainchest.png", "Chain Chest", 500, 6, true, "chest", "resources/player_sprites/chest/chainchest.png", 0, 0, 0, 0, 9, 0, 0, 0);
-	public ItemType metalchest = new ItemType(1, "resources/items/6torso/metalchest.png", "Metal Chest", 700, 6, true, "chest", "resources/player_sprites/chest/metalchest.png", 0, 0, 0, 0, 12, 0, 0, 0);
+	public ItemType ironchest = new ItemType(1, "resources/items/6torso/ironchest.png", "Iron Chest", 700, 6, true, "chest", "resources/player_sprites/chest/ironchest.png", 0, 0, 0, 0, 12, 0, 0, 0);
 	public ItemType goldenchest = new ItemType(1, "resources/items/6torso/goldenchest.png", "Golden Chest", 1400, 6, true, "chest", "resources/player_sprites/chest/goldenchest.png", 0, 0, 0, 0, 15, 0, 0, 0);
 	public ItemType diamondchest = new ItemType(1, "resources/items/6torso/diamondchest.png", "Diamond Chest", 2500, 6, true, "chest", "resources/player_sprites/chest/diamondchest.png", 0, 0, 0, 0, 21, 0, 0, 0);
 
-	public ItemType metalgloves = new ItemType(1, "resources/items/7hands/metalgloves.png", "Metal Gloves", 600, 7, true, "hands", "resources/player_sprites/hands/metalgloves.png", 0, 0, 0, 0, 2, 0, 0, 0);
+	public ItemType irongloves = new ItemType(1, "resources/items/7hands/irongloves.png", "Iron Gloves", 600, 7, true, "hands", "resources/player_sprites/hands/irongloves.png", 0, 0, 0, 0, 2, 0, 0, 0);
 	public ItemType goldengloves = new ItemType(1, "resources/items/7hands/goldengloves.png", "Golden Gloves", 900, 7, true, "hands", "resources/player_sprites/hands/goldengloves.png", 0, 0, 0, 0, 4, 0, 0, 0);
 	public ItemType diamondgloves = new ItemType(1, "resources/items/7hands/diamondgloves.png", "Diamond Gloves", 1600, 7, true, "hands", "resources/player_sprites/hands/diamondgloves.png", 0, 0, 0, 0, 8, 0, 0, 0);
 
 	public ItemType skirt = new ItemType(1, "resources/items/8legarmor/skirt.png", "Skirt", 100, 8, true, "legs", "resources/player_sprites/legs/skirt.png", 0, 0, 0, 0, 3, 0, 0, 0);
-	public ItemType metalgreaves = new ItemType(1, "resources/items/8legarmor/metallegarmor.png", "Metal Greaves", 300, 8, true, "legs", "resources/player_sprites/legs/metalgreaves.png", 0, 0, 0, 0, 6, 0, 0, 0);
+	public ItemType irongreaves = new ItemType(1, "resources/items/8legarmor/ironlegarmor.png", "Iron Greaves", 300, 8, true, "legs", "resources/player_sprites/legs/irongreaves.png", 0, 0, 0, 0, 6, 0, 0, 0);
 	public ItemType goldengreaves = new ItemType(1, "resources/items/8legarmor/goldenlegarmor.png", "Golden Greaves", 1200, 8, true, "legs", "resources/player_sprites/legs/goldengreaves.png", 0, 0, 0, 0, 9, 0, 0, 0);
 	public ItemType diamondgreaves = new ItemType(1, "resources/items/8legarmor/diamondlegarmor.png", "Diamond Greaves", 2200, 8, true, "legs", "resources/player_sprites/legs/diamondgreaves.png", 0, 0, 0, 0, 15, 0, 0, 0);
 
 	public ItemType boots = new ItemType(1, "resources/items/9boots/boots.png", "Boots", 100, 9, true, "feet", "resources/player_sprites/feet/boots.png", 0, 0, 0, 0, 2, 0, 0, 0);
 	public ItemType leatherboots = new ItemType(1, "resources/items/9boots/leatherboots.png", "Leather Boots", 200, 9, true, "feet", "resources/player_sprites/feet/leatherboots.png", 0, 0, 0, 0, 4, 0, 0, 0);
-	public ItemType metalboots = new ItemType(1, "resources/items/9boots/metalboots.png", "Metal Boots", 500, 9, true, "feet", "resources/player_sprites/feet/metalboots.png", 0, 0, 0, 0, 6, 0, 0, 0);
+	public ItemType ironboots = new ItemType(1, "resources/items/9boots/ironboots.png", "Iron Boots", 500, 9, true, "feet", "resources/player_sprites/feet/ironboots.png", 0, 0, 0, 0, 6, 0, 0, 0);
 	public ItemType goldenboots = new ItemType(1, "resources/items/9boots/goldenboots.png", "Golden Boots", 700, 9, true, "feet", "resources/player_sprites/feet/goldenboots.png", 0, 0, 0, 0, 8, 0, 0, 0);
 	public ItemType diamondboots = new ItemType(1, "resources/items/9boots/diamondboots.png", "Diamond Boots", 1500, 9, true, "feet", "resources/player_sprites/feet/diamondboots.png", 0, 0, 0, 0, 12, 0, 0, 0);
 
@@ -159,22 +159,22 @@ public class ItemTypeManager {
 		
 		
 		
-		longsword.setAttackUpCollisionBox(new CollisionBox(0, 0, 89, 45));
-		longsword.setAttackDownCollisionBox(new CollisionBox(0, 0, 89, 45));
-		longsword.setAttackLeftCollisionBox(new CollisionBox(0, 0, 68, 36));
-		longsword.setAttackRightCollisionBox(new CollisionBox(0, 0, 68, 36));
+		ironsword.setAttackUpCollisionBox(new CollisionBox(0, 0, 89, 45));
+		ironsword.setAttackDownCollisionBox(new CollisionBox(0, 0, 89, 45));
+		ironsword.setAttackLeftCollisionBox(new CollisionBox(0, 0, 68, 36));
+		ironsword.setAttackRightCollisionBox(new CollisionBox(0, 0, 68, 36));
 
-		longsword.setAttackUpOffsetX(-28);
-		longsword.setAttackUpOffsetY(-37);
+		ironsword.setAttackUpOffsetX(-28);
+		ironsword.setAttackUpOffsetY(-37);
 		
-		longsword.setAttackDownOffsetX(-28);
-		longsword.setAttackDownOffsetY(+12);
+		ironsword.setAttackDownOffsetX(-28);
+		ironsword.setAttackDownOffsetY(+12);
 		
-		longsword.setAttackLeftOffsetX(-67);
-		longsword.setAttackLeftOffsetY(-16);
+		ironsword.setAttackLeftOffsetX(-67);
+		ironsword.setAttackLeftOffsetY(-16);
 		
-		longsword.setAttackRightOffsetX(+31);
-		longsword.setAttackRightOffsetY(-16);
+		ironsword.setAttackRightOffsetX(+31);
+		ironsword.setAttackRightOffsetY(-16);
 
 		
 		
