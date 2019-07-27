@@ -24,7 +24,7 @@ public class ItemManager {
 		Item dagger = new Item(480, 416, itemTypeManager.dagger);
 		Item mace = new Item(480, 416, itemTypeManager.mace);
 		Item ironsword = new Item(480, 416, itemTypeManager.ironsword);
-		Item redironsword = new Item(480, 416, itemTypeManager.redironsword);
+		Item goldensword = new Item(480, 416, itemTypeManager.goldensword);
 		Item diamondsword = new Item(480, 416, itemTypeManager.diamondsword);
 		Item blacksword = new Item(480, 416, itemTypeManager.blacksword);
 		
@@ -35,7 +35,7 @@ public class ItemManager {
 		Item shortspear = new Item(480, 416, itemTypeManager.shortspear);
 		Item longspear = new Item(480, 416, itemTypeManager.longspear);
 		Item dragonspear = new Item(480, 416, itemTypeManager.dragonspear);
-		Item goldspear = new Item(480, 416, itemTypeManager.goldspear);
+		Item goldenspear = new Item(480, 416, itemTypeManager.goldenspear);
 		
 		Item bow = new Item(480, 416, itemTypeManager.bow);
 		Item longbow = new Item(480, 416, itemTypeManager.longbow);
@@ -127,7 +127,11 @@ public class ItemManager {
 		Item ironBar4 = new Item(64, 128, itemTypeManager.ironBar);
 		Item ironBar5 = new Item(64, 128, itemTypeManager.ironBar);
 		
-		Item goldBar1 = new Item(736, 32, itemTypeManager.goldBar);
+		Item goldenBar1 = new Item(64, 192, itemTypeManager.goldenBar);
+		Item goldenBar2 = new Item(64, 192, itemTypeManager.goldenBar);
+		Item goldenBar3 = new Item(64, 192, itemTypeManager.goldenBar);
+		Item goldenBar4 = new Item(64, 192, itemTypeManager.goldenBar);
+		Item goldenBar5 = new Item(64, 192, itemTypeManager.goldenBar);
 
 		Item feather1 = new Item(512, 0, itemTypeManager.feather);
 		
@@ -172,7 +176,7 @@ public class ItemManager {
 		itemList.add(dagger);
 		itemList.add(mace);
 		itemList.add(ironsword);
-		itemList.add(redironsword);
+		itemList.add(goldensword);
 		itemList.add(diamondsword);
 		itemList.add(blacksword);
 
@@ -182,7 +186,7 @@ public class ItemManager {
 		itemList.add(shortspear);
 		itemList.add(longspear);
 		itemList.add(dragonspear);
-		itemList.add(goldspear);
+		itemList.add(goldenspear);
 		
 		
 		itemList.add(bow);
@@ -254,12 +258,18 @@ public class ItemManager {
 		itemList.add(copperBar1);
 		
 		itemList.add(ironBar1);
-		itemList.add(ironBar1);
-		itemList.add(ironBar1);
-		itemList.add(ironBar1);
-		itemList.add(ironBar1);
+		itemList.add(ironBar2);
+		itemList.add(ironBar3);
+		itemList.add(ironBar4);
+		itemList.add(ironBar5);
 		
-		itemList.add(goldBar1);
+		itemList.add(goldenBar1);
+		itemList.add(goldenBar1);
+		itemList.add(goldenBar1);
+		itemList.add(goldenBar1);
+		itemList.add(goldenBar1);
+		
+		
 		itemList.add(feather1);
 		itemList.add(treasureChest1);
 		itemList.add(goldCrown1);

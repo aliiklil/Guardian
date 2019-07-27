@@ -12,6 +12,30 @@ public class Blacksmithing {
 
 	public void checkIfPlayerIsBlacksmithing(Dialogue currentDialogue) throws SlickException {
 		
+		forgeIronSword(currentDialogue);
+		forgeLongspear(currentDialogue);
+		forgeSabre(currentDialogue);
+		forgeIronHelmet(currentDialogue);
+		forgeIronChest(currentDialogue);
+		forgeIronGloves(currentDialogue);
+		forgeIronGreaves(currentDialogue);
+		forgeIronBoots(currentDialogue);
+		
+		
+		forgeGoldenSword(currentDialogue);
+		forgeGoldenSpear(currentDialogue);
+		forgeRapier(currentDialogue);
+		forgeGoldenHelmet(currentDialogue);
+		forgeGoldenChest(currentDialogue);
+		forgeGoldenGloves(currentDialogue);
+		forgeGoldenGreaves(currentDialogue);
+		forgeGoldenBoots(currentDialogue);
+		
+			
+	}
+	
+	private void forgeIronSword(Dialogue currentDialogue) throws SlickException {
+		
 		Player player = CharacterManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Sword (3 Iron Bar)")) {
@@ -37,9 +61,12 @@ public class Blacksmithing {
 			
 		}
 		
+	}
+	
+	
+	private void forgeLongspear(Dialogue currentDialogue) throws SlickException {
 		
-		
-		
+		Player player = CharacterManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Longspear (Iron Bar, 3 Stick)")) {
 			
@@ -69,8 +96,13 @@ public class Blacksmithing {
 			
 		}
 		
+	}
+	
+	
+	private void forgeSabre(Dialogue currentDialogue) throws SlickException {
 		
-		
+		Player player = CharacterManager.getPlayer();
+	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Sabre (2 Iron Bar)")) {
 			
 			int ironBarsCount = 0;
@@ -93,10 +125,13 @@ public class Blacksmithing {
 			
 		}
 		
+	}
+	
+	
+	private void forgeIronHelmet(Dialogue currentDialogue) throws SlickException {
 		
-		
-		
-		
+		Player player = CharacterManager.getPlayer();
+	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Helmet (3 Iron Bars)")) {
 			
 			int ironBarsCount = 0;
@@ -121,6 +156,12 @@ public class Blacksmithing {
 			
 		}
 		
+	}
+	
+	
+	private void forgeIronChest(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Chest (5 Iron Bars)")) {
 			
@@ -147,10 +188,14 @@ public class Blacksmithing {
 			}
 			
 		}
+	
+	}
+	
+	
+	private void forgeIronGloves(Dialogue currentDialogue) throws SlickException {
 		
-		
-		
-		
+		Player player = CharacterManager.getPlayer();
+	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Gloves (2 Iron Bars)")) {
 			
 			int ironBarsCount = 0;
@@ -173,10 +218,16 @@ public class Blacksmithing {
 			}
 			
 		}
+	
+	}
+	
+	
+	
+	
+	private void forgeIronGreaves(Dialogue currentDialogue) throws SlickException {
 		
-		
-		
-		
+		Player player = CharacterManager.getPlayer();
+	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Greaves (4 Iron Bars)")) {
 			
 			int ironBarsCount = 0;
@@ -201,11 +252,15 @@ public class Blacksmithing {
 			}
 			
 		}
+	
+	}
+	
+	
+	
+	private void forgeIronBoots(Dialogue currentDialogue) throws SlickException {
 		
-		
-		
-		
-		
+		Player player = CharacterManager.getPlayer();
+	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Boots (2 Iron Bars)")) {
 			
 			int ironBarsCount = 0;
@@ -228,10 +283,282 @@ public class Blacksmithing {
 			}
 			
 		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private void forgeGoldenSword(Dialogue currentDialogue) throws SlickException {
 		
+		Player player = CharacterManager.getPlayer();
 		
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Sword (3 Golden Bars, 1 Iron Bar)")) {
 			
+			int goldenBarsCount = 0;
+			int ironBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Golden Bar")) {
+					goldenBarsCount = player.getItemCountList().get(i);
+				}
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Iron Bar")) {
+					ironBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(goldenBarsCount >= 3 && ironBarsCount >= 1) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().goldensword));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Golden Sword.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
 		
 	}
+	
+	
+	private void forgeGoldenSpear(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+		
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Spear (3 Golden Bars, 2 Iron Bars)")) {
+			
+			int goldenBarsCount = 0;
+			int ironBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Golden Bar")) {
+					goldenBarsCount = player.getItemCountList().get(i);
+				}
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Iron Bar")) {
+					ironBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(goldenBarsCount >= 3 && ironBarsCount >= 2) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().goldenspear));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Golden Spear.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+			
+	}
+	
+	
+	private void forgeRapier(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Rapier (1 Golden Bar, 1 Iron Bar)")) {
+			
+			int goldenBarsCount = 0;
+			int ironBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Golden Bar")) {
+					goldenBarsCount = player.getItemCountList().get(i);
+				}
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Iron Bar")) {
+					ironBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(goldenBarsCount >= 1 && ironBarsCount >= 1) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().rapier));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Rapier.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void forgeGoldenHelmet(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Helmet (3 Golden Bars)")) {
+				
+			int goldenBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Golden Bar")) {
+					goldenBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(goldenBarsCount >= 3) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().goldenhelmet));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Golden Helmet.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void forgeGoldenChest(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Chest (5 Golden Bars)")) {
+				
+			int goldenBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Golden Bar")) {
+					goldenBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(goldenBarsCount >= 5) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().goldenchest));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Golden Chest.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void forgeGoldenGloves(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Gloves (2 Golden Bars)")) {
+				
+			int goldenBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Golden Bar")) {
+					goldenBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(goldenBarsCount >= 2) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().goldengloves));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged Golden Gloves.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	private void forgeGoldenGreaves(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Greaves (4 Golden Bars)")) {
+				
+			int goldenBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Golden Bar")) {
+					goldenBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(goldenBarsCount >= 4) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().goldengreaves));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged Golden Greaves.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void forgeGoldenBoots(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Boots (2 Golden Bars)")) {
+				
+			int goldenBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Golden Bar")) {
+					goldenBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(goldenBarsCount >= 2) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().goldenboots));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged Golden Boots.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
 	
 }

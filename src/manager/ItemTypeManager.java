@@ -11,8 +11,8 @@ public class ItemTypeManager {
 	public ItemType dagger = new ItemType(1, "resources/items/1melee/dagger.png", "Dagger", 50, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/dagger.png", 20, 0, 0, 25, 0, 0, 0, 0);
 	public ItemType mace = new ItemType(1, "resources/items/1melee/mace.png", "Mace", 100, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mace.png", 30, 0, 0, 35, 0, 0, 0, 0);
 	public ItemType ironsword = new ItemType(1, "resources/items/1melee/ironsword.png", "Iron Sword", 300, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/ironsword.png", 40, 0, 0, 75, 0, 0, 0, 0);
-	public ItemType redironsword = new ItemType(1, "resources/items/1melee/redironsword.png", "Red Iron Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/redironsword.png", 50, 0, 0, 90, 0, 0, 0, 0);
-	public ItemType diamondsword = new ItemType(1, "resources/items/1melee/diamondsword.png", "Diamon Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/diamondsword.png", 60, 0, 0, 110, 0, 0, 0, 0);
+	public ItemType goldensword = new ItemType(1, "resources/items/1melee/goldensword.png", "Golden Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/goldensword.png", 50, 0, 0, 90, 0, 0, 0, 0);
+	public ItemType diamondsword = new ItemType(1, "resources/items/1melee/diamondsword.png", "Diamond Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/diamondsword.png", 60, 0, 0, 110, 0, 0, 0, 0);
 	public ItemType blacksword = new ItemType(1, "resources/items/1melee/blacksword.png", "Black Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/blacksword.png", 75, 0, 0, 140, 0, 0, 0, 0);
 
 	public ItemType sabre = new ItemType(1, "resources/items/1melee/sabre.png", "Sabre", 200, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/sabre.png", 0, 20, 0, 35, 0, 0, 0, 0);
@@ -21,7 +21,7 @@ public class ItemTypeManager {
 	public ItemType shortspear = new ItemType(1, "resources/items/1melee/shortspear.png", "Short Spear", 50, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/shortspear.png", 10, 0, 0, 25, 0, 0, 0, 0);
 	public ItemType longspear = new ItemType(1, "resources/items/1melee/longspear.png", "Longspear", 200, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/longspear.png", 20, 0, 0, 35, 0, 0, 0, 0);
 	public ItemType dragonspear = new ItemType(1, "resources/items/1melee/dragonspear.png", "Dragonspear", 400, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/dragonspear.png", 30, 0, 0, 65, 0, 0, 0, 0);
-	public ItemType goldspear = new ItemType(1, "resources/items/1melee/goldenspear.png", "Golden Spear", 550, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/goldspear.png", 40, 0, 0, 85, 0, 0, 0, 0);
+	public ItemType goldenspear = new ItemType(1, "resources/items/1melee/goldenspear.png", "Golden Spear", 550, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/goldenspear.png", 40, 0, 0, 85, 0, 0, 0, 0);
 
 	public ItemType bow = new ItemType(1, "resources/items/2bows/bow.png", "Bow", 50, 2, true, "bow", "resources/player_sprites/weapons/bows/bow.png", 0, 10, 0, 25, 0, 0, 0, 0);
 	public ItemType longbow = new ItemType(1, "resources/items/2bows/longbow.png", "Long Bow", 200, 2, true, "bow", "resources/player_sprites/weapons/bows/longbow.png", 0, 20, 0, 35, 0, 0, 0, 0);
@@ -90,7 +90,7 @@ public class ItemTypeManager {
 	public ItemType bone = new ItemType(1, "resources/items/13misc/bone.png", "Bone", 3, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType copperBar = new ItemType(1, "resources/items/13misc/copper_bar.png", "Copper Bar", 80, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType ironBar = new ItemType(1, "resources/items/13misc/iron_bar.png", "Iron Bar", 160, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldBar = new ItemType(1, "resources/items/13misc/gold_bar.png", "Gold Bar", 250, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType goldenBar = new ItemType(1, "resources/items/13misc/gold_bar.png", "Golden Bar", 250, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType feather = new ItemType(1, "resources/items/13misc/feather.png", "Feather", 3, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType treasureChest = new ItemType(1, "resources/items/13misc/treasure_chest.png", "Treasure Chest", 320, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType goldCrown = new ItemType(1, "resources/items/13misc/gold_crown.png", "Gold Crown", 280, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
@@ -178,22 +178,22 @@ public class ItemTypeManager {
 
 		
 		
-		redironsword.setAttackUpCollisionBox(new CollisionBox(0, 0, 89, 45));
-		redironsword.setAttackDownCollisionBox(new CollisionBox(0, 0, 89, 45));
-		redironsword.setAttackLeftCollisionBox(new CollisionBox(0, 0, 68, 36));
-		redironsword.setAttackRightCollisionBox(new CollisionBox(0, 0, 68, 36));
+		goldensword.setAttackUpCollisionBox(new CollisionBox(0, 0, 89, 45));
+		goldensword.setAttackDownCollisionBox(new CollisionBox(0, 0, 89, 45));
+		goldensword.setAttackLeftCollisionBox(new CollisionBox(0, 0, 68, 36));
+		goldensword.setAttackRightCollisionBox(new CollisionBox(0, 0, 68, 36));
 		
-		redironsword.setAttackUpOffsetX(-28);
-		redironsword.setAttackUpOffsetY(-37);
+		goldensword.setAttackUpOffsetX(-28);
+		goldensword.setAttackUpOffsetY(-37);
 		
-		redironsword.setAttackDownOffsetX(-28);
-		redironsword.setAttackDownOffsetY(+12);
+		goldensword.setAttackDownOffsetX(-28);
+		goldensword.setAttackDownOffsetY(+12);
 		
-		redironsword.setAttackLeftOffsetX(-67);
-		redironsword.setAttackLeftOffsetY(-16);
+		goldensword.setAttackLeftOffsetX(-67);
+		goldensword.setAttackLeftOffsetY(-16);
 		
-		redironsword.setAttackRightOffsetX(+31);
-		redironsword.setAttackRightOffsetY(-16);	
+		goldensword.setAttackRightOffsetX(+31);
+		goldensword.setAttackRightOffsetY(-16);	
 		
 		
 		
@@ -334,22 +334,22 @@ public class ItemTypeManager {
 		
 		
 		
-		goldspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 19, 78));
-		goldspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 19, 78));
-		goldspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 65, 19));
-		goldspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 65, 19));
+		goldenspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 19, 78));
+		goldenspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 19, 78));
+		goldenspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 65, 19));
+		goldenspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 65, 19));
 		
-		goldspear.setAttackUpOffsetX(+20);
-		goldspear.setAttackUpOffsetY(-77);
+		goldenspear.setAttackUpOffsetX(+20);
+		goldenspear.setAttackUpOffsetY(-77);
 		
-		goldspear.setAttackDownOffsetX(+11);
-		goldspear.setAttackDownOffsetY(+12);
+		goldenspear.setAttackDownOffsetX(+11);
+		goldenspear.setAttackDownOffsetY(+12);
 		
-		goldspear.setAttackLeftOffsetX(-64);
-		goldspear.setAttackLeftOffsetY(+8);
+		goldenspear.setAttackLeftOffsetX(-64);
+		goldenspear.setAttackLeftOffsetY(+8);
 		
-		goldspear.setAttackRightOffsetX(+31);
-		goldspear.setAttackRightOffsetY(+8);	
+		goldenspear.setAttackRightOffsetX(+31);
+		goldenspear.setAttackRightOffsetY(+8);	
 		
 
 		
