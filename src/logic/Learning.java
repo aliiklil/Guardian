@@ -164,12 +164,14 @@ public class Learning {
 					player.setLearningPoints(player.getLearningPoints() - 10);
 					String text = "Blacksmithing + 1";
 					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
-					currentDialogue.getSentences().get(1).setText("You are a fast learner.");
+					
 					
 					if(player.getBlacksmithingSkill() == 1) {
 						
+						currentDialogue.getSentences().get(1).setText("You are now able to create iron weapons and armor.");
+						
 						DialogueManager.anvilDialogues.add(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).addSentence("Level 1 Blacksmithing", "Hero");
+						DialogueManager.anvilDialogues.get(0).addSentence("Level 1 - Iron Blacksmithing", "Hero");
 						DialogueManager.anvilDialogues.get(0).setPermanent(true);
 						DialogueManager.anvilDialogues.get(0).setForLearning(true);	
 						
@@ -215,19 +217,16 @@ public class Learning {
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
 						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(8).addSentence("Back", "Hero");
-						
-						
-						
-						
-						
-						
+							
 						
 					}
 					
 					if(player.getBlacksmithingSkill() == 2) {
 						
+						currentDialogue.getSentences().get(1).setText("You are now able to create golden weapons and armor.");
+						
 						DialogueManager.anvilDialogues.add(new Dialogue());
-						DialogueManager.anvilDialogues.get(1).addSentence("Level 2 Blacksmithing", "Hero");
+						DialogueManager.anvilDialogues.get(1).addSentence("Level 2 - Gold Blacksmithing", "Hero");
 						DialogueManager.anvilDialogues.get(1).setPermanent(true);
 						DialogueManager.anvilDialogues.get(1).setForLearning(true);
 
@@ -278,8 +277,11 @@ public class Learning {
 					
 					if(player.getBlacksmithingSkill() == 3) {
 						
+						currentDialogue.getSentences().get(1).setText("You are now able to create mithril weapons and armor.");
+						
+						
 						DialogueManager.anvilDialogues.add(new Dialogue());
-						DialogueManager.anvilDialogues.get(2).addSentence("Level 3 Blacksmithing", "Hero");
+						DialogueManager.anvilDialogues.get(2).addSentence("Level 3 - Mithril Blacksmithing", "Hero");
 						DialogueManager.anvilDialogues.get(2).setPermanent(true);
 						DialogueManager.anvilDialogues.get(2).setForLearning(true);
 
