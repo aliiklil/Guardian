@@ -30,7 +30,16 @@ public class Blacksmithing {
 		forgeGoldenGloves(currentDialogue);
 		forgeGoldenGreaves(currentDialogue);
 		forgeGoldenBoots(currentDialogue);
+
 		
+		forgeMithrilSword(currentDialogue);
+		forgeMithrilSpear(currentDialogue);
+		forgeMithrilRapier(currentDialogue);
+		forgeMithrilHelmet(currentDialogue);
+		forgeMithrilChest(currentDialogue);
+		forgeMithrilGloves(currentDialogue);
+		forgeMithrilGreaves(currentDialogue);
+		forgeMithrilBoots(currentDialogue);
 			
 	}
 	
@@ -309,25 +318,20 @@ public class Blacksmithing {
 		
 		Player player = CharacterManager.getPlayer();
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Sword (3 Golden Bars, 1 Iron Bar)")) {
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Sword (3 Golden Bars)")) {
 			
 			int goldenBarsCount = 0;
-			int ironBarsCount = 0;
 			
 			for(int i = 0; i < player.getInventoryList().size(); i++) {
 				if(player.getInventoryList().get(i).getItemType().getName().equals("Golden Bar")) {
 					goldenBarsCount = player.getItemCountList().get(i);
 				}
-				if(player.getInventoryList().get(i).getItemType().getName().equals("Iron Bar")) {
-					ironBarsCount = player.getItemCountList().get(i);
-				}
 			}
 			
-			if(goldenBarsCount >= 3 && ironBarsCount >= 1) {
+			if(goldenBarsCount >= 3) {
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldenBar);
-				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
 				
 				player.addItem(new Item(0, 0, Game.getItemTypeManager().goldensword));
 				currentDialogue.getSentences().get(1).setText("I have successfully forged a Golden Sword.");
@@ -552,6 +556,270 @@ public class Blacksmithing {
 				
 				player.addItem(new Item(0, 0, Game.getItemTypeManager().goldenboots));
 				currentDialogue.getSentences().get(1).setText("I have successfully forged Golden Boots.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private void forgeMithrilSword(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Sword (3 Mithril Bars)")) {
+			
+			int mithrilBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Mithril Bar")) {
+					mithrilBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(mithrilBarsCount >= 3) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().mithrilsword));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Mithril Sword.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void forgeMithrilSpear(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+		
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Spear (3 Mithril Bars, 2 Iron Bars)")) {
+			
+			int mithrilBarsCount = 0;
+			int ironBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Mithril Bar")) {
+					mithrilBarsCount = player.getItemCountList().get(i);
+				}
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Iron Bar")) {
+					ironBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(mithrilBarsCount >= 3 && ironBarsCount >= 2) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().mithrilspear));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Mithril Spear.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+			
+	}
+	
+	
+	private void forgeMithrilRapier(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Rapier (1 Mithril Bar, 1 Iron Bar)")) {
+			
+			int mithrilBarsCount = 0;
+			int ironBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Mithril Bar")) {
+					mithrilBarsCount = player.getItemCountList().get(i);
+				}
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Iron Bar")) {
+					ironBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(mithrilBarsCount >= 1 && ironBarsCount >= 1) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().ironBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().mithrilrapier));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Mithril Rapier.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void forgeMithrilHelmet(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Helmet (3 Mithril Bars)")) {
+				
+			int mithrilBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Mithril Bar")) {
+					mithrilBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(mithrilBarsCount >= 3) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().mithrilhelmet));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Mithril Helmet.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void forgeMithrilChest(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Chest (5 Mithril Bars)")) {
+				
+			int mithrilBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Mithril Bar")) {
+					mithrilBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(mithrilBarsCount >= 5) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().mithrilchest));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Mithril Chest.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void forgeMithrilGloves(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Gloves (2 Mithril Bars)")) {
+				
+			int mithrilBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Mithril Bar")) {
+					mithrilBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(mithrilBarsCount >= 2) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().mithrilgloves));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged Mithril Gloves.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	private void forgeMithrilGreaves(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Greaves (4 Mithril Bars)")) {
+				
+			int mithrilBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Mithril Bar")) {
+					mithrilBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(mithrilBarsCount >= 4) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().mithrilgreaves));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged Mithril Greaves.");
+			} else {
+				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
+			}
+			
+		}
+		
+	}
+	
+	
+	private void forgeMithrilBoots(Dialogue currentDialogue) throws SlickException {
+		
+		Player player = CharacterManager.getPlayer();
+	
+		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Boots (2 Mithril Bars)")) {
+				
+			int mithrilBarsCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Mithril Bar")) {
+					mithrilBarsCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			if(mithrilBarsCount >= 2) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().mithrilBar);
+				
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().mithrilboots));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged Mithril Boots.");
 			} else {
 				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
 			}

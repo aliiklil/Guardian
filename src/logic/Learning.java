@@ -232,8 +232,8 @@ public class Learning {
 						DialogueManager.anvilDialogues.get(1).setForLearning(true);
 
 						DialogueManager.anvilDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(0).addSentence("Forge Golden Sword (3 Golden Bars, 1 Iron Bar)", "Hero");
-						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(0).addSentence("I have successfully forged an Golden Sword.", "Hero");
+						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(0).addSentence("Forge Golden Sword (3 Golden Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(0).addSentence("I have successfully forged a Golden Sword.", "Hero");
 						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(1).addChildDialogue(new Dialogue());
@@ -282,14 +282,50 @@ public class Learning {
 						DialogueManager.anvilDialogues.get(2).addSentence("Level 3 Blacksmithing", "Hero");
 						DialogueManager.anvilDialogues.get(2).setPermanent(true);
 						DialogueManager.anvilDialogues.get(2).setForLearning(true);
+
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(0).addSentence("Forge Mithril Sword (3 Mithril Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(0).addSentence("I have successfully forged a Mithril Sword.", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(0).addSentence("Forge Weapons", "Hero");
-						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(1).addSentence("Forge Armor", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(1).addSentence("Forge Mithril Spear (3 Mithril Bars, 2 Iron Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(1).addSentence("I have successfully forged a Mithril Spear.", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(2).addSentence("Back", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(2).addSentence("Forge Mithril Rapier (1 Mithril Bar, 1 Iron Bar)", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(2).addSentence("I have successfully forged a Mithril Rapier.", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(2).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(3).addSentence("Forge Mithril Helmet (3 Mithril Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(3).addSentence("I have successfully forged an Mithril Helmet.", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(3).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(4).addSentence("Forge Mithril Chest (5 Mithril Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(4).addSentence("I have successfully forged an Mithril Chest.", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(4).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(5).addSentence("Forge Mithril Gloves (2 Mithril Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(5).addSentence("I have successfully forged Mithril Gloves.", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(5).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(6).addSentence("Forge Mithril Greaves (4 Mithril Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(6).addSentence("I have successfully forged Mithril Greaves.", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(6).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(7).addSentence("Forge Mithril Boots (2 Mithril Bars)", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(7).addSentence("I have successfully forged Mithril Boots.", "Hero");
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(7).setPermanent(true);
+						
+						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(8).addSentence("Back", "Hero");
+						
 					}
 					
 					

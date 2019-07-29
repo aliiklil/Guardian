@@ -25,16 +25,16 @@ public class ItemManager {
 		Item mace = new Item(480, 416, itemTypeManager.mace);
 		Item ironsword = new Item(480, 416, itemTypeManager.ironsword);
 		Item goldensword = new Item(480, 416, itemTypeManager.goldensword);
-		Item diamondsword = new Item(480, 416, itemTypeManager.diamondsword);
+		Item mithrilsword = new Item(480, 416, itemTypeManager.mithrilsword);
 		Item blacksword = new Item(480, 416, itemTypeManager.blacksword);
 		
-		
-		Item rapier = new Item(480, 416, itemTypeManager.rapier);
 		Item sabre = new Item(480, 416, itemTypeManager.sabre);
+		Item rapier = new Item(480, 416, itemTypeManager.rapier);
+		Item mithrilrapier = new Item(480, 416, itemTypeManager.mithrilrapier);
 		
 		Item shortspear = new Item(480, 416, itemTypeManager.shortspear);
 		Item longspear = new Item(480, 416, itemTypeManager.longspear);
-		Item dragonspear = new Item(480, 416, itemTypeManager.dragonspear);
+		Item mithrilspear = new Item(480, 416, itemTypeManager.mithrilspear);
 		Item goldenspear = new Item(480, 416, itemTypeManager.goldenspear);
 		
 		Item bow = new Item(480, 416, itemTypeManager.bow);
@@ -55,29 +55,29 @@ public class ItemManager {
 		Item goldenhelmet = new Item(480, 416, itemTypeManager.goldenhelmet);
 		Item leathercap = new Item(480, 416, itemTypeManager.leathercap);
 		Item ironhelmet = new Item(480, 416, itemTypeManager.ironhelmet);
-		Item diamondhelmet = new Item(480, 416, itemTypeManager.diamondhelmet);
+		Item mithrilhelmet = new Item(480, 416, itemTypeManager.mithrilhelmet);
 		
 		Item shirt = new Item(480, 416, itemTypeManager.shirt);
 		Item leatherchest = new Item(480, 416, itemTypeManager.leatherchest);
 		Item chainchest = new Item(480, 416, itemTypeManager.chainchest);
 		Item ironchest = new Item(480, 416, itemTypeManager.ironchest);
 		Item goldenchest = new Item(480, 416, itemTypeManager.goldenchest);
-		Item diamondchest = new Item(480, 416, itemTypeManager.diamondchest);
+		Item mithrilchest = new Item(480, 416, itemTypeManager.mithrilchest);
 
 		Item irongloves = new Item(480, 416, itemTypeManager.irongloves);
 		Item goldengloves = new Item(480, 416, itemTypeManager.goldengloves);
-		Item diamondgloves = new Item(480, 416, itemTypeManager.diamondgloves);
+		Item mithrilgloves = new Item(480, 416, itemTypeManager.mithrilgloves);
 		
 		Item skirt = new Item(480, 416, itemTypeManager.skirt);
 		Item irongreaves = new Item(480, 416, itemTypeManager.irongreaves);
 		Item goldengreaves = new Item(480, 416, itemTypeManager.goldengreaves);
-		Item diamondgreaves = new Item(480, 416, itemTypeManager.diamondgreaves);
+		Item mithrilgreaves = new Item(480, 416, itemTypeManager.mithrilgreaves);
 				
 		Item boots = new Item(480, 416, itemTypeManager.boots);
 		Item leatherboots = new Item(480, 416, itemTypeManager.leatherboots);
 		Item ironboots = new Item(480, 416, itemTypeManager.ironboots);
 		Item goldenboots = new Item(480, 416, itemTypeManager.goldenboots);
-		Item diamondboots = new Item(480, 416, itemTypeManager.diamondboots);
+		Item mithrilboots = new Item(480, 416, itemTypeManager.mithrilboots);
 		
 		
 		Item gold1 = new Item(480, 416, itemTypeManager.gold);
@@ -121,18 +121,10 @@ public class ItemManager {
 		
 		Item copperBar1 = new Item(1024, 512, itemTypeManager.copperBar);
 		
-		Item ironBar1 = new Item(64, 128, itemTypeManager.ironBar);
-		Item ironBar2 = new Item(64, 128, itemTypeManager.ironBar);
-		Item ironBar3 = new Item(64, 128, itemTypeManager.ironBar);
-		Item ironBar4 = new Item(64, 128, itemTypeManager.ironBar);
-		Item ironBar5 = new Item(64, 128, itemTypeManager.ironBar);
+		Item ironBar = new Item(64, 128, itemTypeManager.ironBar);
+		Item goldenBar = new Item(64, 192, itemTypeManager.goldenBar);
+		Item mithrilBar = new Item(64, 192, itemTypeManager.mithrilBar);
 		
-		Item goldenBar1 = new Item(64, 192, itemTypeManager.goldenBar);
-		Item goldenBar2 = new Item(64, 192, itemTypeManager.goldenBar);
-		Item goldenBar3 = new Item(64, 192, itemTypeManager.goldenBar);
-		Item goldenBar4 = new Item(64, 192, itemTypeManager.goldenBar);
-		Item goldenBar5 = new Item(64, 192, itemTypeManager.goldenBar);
-
 		Item feather1 = new Item(512, 0, itemTypeManager.feather);
 		
 		Item treasureChest1 = new Item(576, 0, itemTypeManager.treasureChest);
@@ -141,25 +133,21 @@ public class ItemManager {
 		
 		Item treasure1 = new Item(576, 64, itemTypeManager.treasure);
 		
-		Item verySmallHealingPotion1 = new Item(512, 128, itemTypeManager.verySmallHealingPotion);
+		Item smallHealingPotion1 = new Item(512, 128, itemTypeManager.smallHealingPotion);
 		
-		Item smallHealingPotion1 = new Item(256, 64, itemTypeManager.smallHealingPotion);
 		
 		Item mediumHealingPotion1 = new Item(0, 96, itemTypeManager.mediumHealingPotion);
 		
 		Item bigHealingPotion1 = new Item(320, 32, itemTypeManager.bigHealingPotion);
 		
-		Item veryBigHealingPotion1 = new Item(1280, 64, itemTypeManager.veryBigHealingPotion);
 		
-		Item verySmallManaPotion1 = new Item(64, 32, itemTypeManager.verySmallManaPotion);
+		Item smallManaPotion1 = new Item(64, 32, itemTypeManager.smallManaPotion);
 		
-		Item smallManaPotion1 = new Item(32, 64, itemTypeManager.smallManaPotion);
 		
 		Item mediumManaPotion1 = new Item(128, 0, itemTypeManager.mediumManaPotion);
 		
 		Item bigManaPotion1 = new Item(32, 0, itemTypeManager.bigManaPotion);
 		
-		Item veryBigManaPotion1 = new Item(64, 0, itemTypeManager.veryBigManaPotion);
 		
 		
 		Item multipleSticks1 = new Item(256, 0, itemTypeManager.multipleSticks);
@@ -177,15 +165,16 @@ public class ItemManager {
 		itemList.add(mace);
 		itemList.add(ironsword);
 		itemList.add(goldensword);
-		itemList.add(diamondsword);
+		itemList.add(mithrilsword);
 		itemList.add(blacksword);
 
-		itemList.add(rapier);
 		itemList.add(sabre);
+		itemList.add(rapier);
+		itemList.add(mithrilrapier);
 		
 		itemList.add(shortspear);
 		itemList.add(longspear);
-		itemList.add(dragonspear);
+		itemList.add(mithrilspear);
 		itemList.add(goldenspear);
 		
 		
@@ -207,29 +196,29 @@ public class ItemManager {
 		itemList.add(goldenhelmet);
 		itemList.add(leathercap);
 		itemList.add(ironhelmet);
-		itemList.add(diamondhelmet);
+		itemList.add(mithrilhelmet);
 		
 		itemList.add(shirt);
 		itemList.add(leatherchest);
 		itemList.add(chainchest);
 		itemList.add(ironchest);
 		itemList.add(goldenchest);
-		itemList.add(diamondchest);
+		itemList.add(mithrilchest);
 		
 		itemList.add(irongloves);
 		itemList.add(goldengloves);
-		itemList.add(diamondgloves);
+		itemList.add(mithrilgloves);
 		
 		itemList.add(skirt);
 		itemList.add(irongreaves);
 		itemList.add(goldengreaves);
-		itemList.add(diamondgreaves);
+		itemList.add(mithrilgreaves);
 				
 		itemList.add(boots);
 		itemList.add(leatherboots);
 		itemList.add(ironboots);
 		itemList.add(goldenboots);
-		itemList.add(diamondboots);
+		itemList.add(mithrilboots);
 		
 		itemList.add(arrow1);
 		itemList.add(arrow2);
@@ -257,33 +246,39 @@ public class ItemManager {
 		itemList.add(cookedPork1);
 		itemList.add(copperBar1);
 		
-		itemList.add(ironBar1);
-		itemList.add(ironBar2);
-		itemList.add(ironBar3);
-		itemList.add(ironBar4);
-		itemList.add(ironBar5);
+		itemList.add(ironBar);
+		itemList.add(ironBar);
+		itemList.add(ironBar);
+		itemList.add(ironBar);
+		itemList.add(ironBar);
 		
-		itemList.add(goldenBar1);
-		itemList.add(goldenBar1);
-		itemList.add(goldenBar1);
-		itemList.add(goldenBar1);
-		itemList.add(goldenBar1);
+		itemList.add(goldenBar);
+		itemList.add(goldenBar);
+		itemList.add(goldenBar);
+		itemList.add(goldenBar);
+		itemList.add(goldenBar);
 		
+		itemList.add(mithrilBar);
+		itemList.add(mithrilBar);
+		itemList.add(mithrilBar);
+		itemList.add(mithrilBar);
+		itemList.add(mithrilBar);
+		itemList.add(mithrilBar);
+		itemList.add(mithrilBar);
+		itemList.add(mithrilBar);
+		itemList.add(mithrilBar);
+		itemList.add(mithrilBar);
 		
 		itemList.add(feather1);
 		itemList.add(treasureChest1);
 		itemList.add(goldCrown1);
 		itemList.add(treasure1);
-		itemList.add(verySmallHealingPotion1);
 		itemList.add(smallHealingPotion1);
 		itemList.add(mediumHealingPotion1);
 		itemList.add(bigHealingPotion1);
-		itemList.add(veryBigHealingPotion1);
-		itemList.add(verySmallManaPotion1);
 		itemList.add(smallManaPotion1);
 		itemList.add(mediumManaPotion1);
 		itemList.add(bigManaPotion1);
-		itemList.add(veryBigManaPotion1);
 		itemList.add(multipleSticks1);
 		itemList.add(wheat1);
 		itemList.add(trophy1);
