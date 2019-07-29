@@ -134,26 +134,100 @@ public class Learning {
 			}
 		}
 		
+		
+		
 		if(currentDialogue.getSentences().get(0).getText().equals("Alchemy + 1 (Costs 10LP)")) {
+			
+			if(player.getAlchemySkill() < 3) {
+			
+				if(player.getLearningPoints() >= 10) {
+					player.setAlchemySkill(player.getAlchemySkill() + 1);
+					player.setLearningPoints(player.getLearningPoints() - 10);
+					String text = "Alchemy + 1";
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 					
-					if(player.getAlchemySkill() < 3) {
 					
-						if(player.getLearningPoints() >= 10) {
-							player.setAlchemySkill(player.getAlchemySkill() + 1);
-							player.setLearningPoints(player.getLearningPoints() - 10);
-							String text = "Alchemy + 1";
-							player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
-							currentDialogue.getSentences().get(1).setText("You are a fast learner.");
-						} else {
-							currentDialogue.getSentences().get(1).setText("You don't have enough experience. Come back later.");
-						}
-					
-					} else {
+					if(player.getAlchemySkill() == 1) {
 						
-						currentDialogue.getSentences().get(1).setText("You have already mastered alchemy.");
+						currentDialogue.getSentences().get(1).setText("You are now able to create simple mana and health potions.");
+						
+						DialogueManager.alchemyDeskDialogues.add(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(0).addSentence("Level 1 - Iron Blacksmithing", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).setPermanent(true);
+						DialogueManager.alchemyDeskDialogues.get(0).setForLearning(true);	
+						
+						
+						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(0).addSentence("Back", "Hero");
+							
 						
 					}
+					
+					if(player.getAlchemySkill() == 2) {
+						
+						currentDialogue.getSentences().get(1).setText("You are now able to create strong mana and health potions.");
+						
+						DialogueManager.alchemyDeskDialogues.add(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(1).addSentence("Level 2 - Gold Blacksmithing", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).setPermanent(true);
+						DialogueManager.alchemyDeskDialogues.get(1).setForLearning(true);
+
+	
+						DialogueManager.alchemyDeskDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(0).addSentence("Back", "Hero");
+						
+					}
+					
+					if(player.getAlchemySkill() == 3) {
+						
+						currentDialogue.getSentences().get(1).setText("You are now able to create permanent mana and health potions.");
+						
+						
+						DialogueManager.alchemyDeskDialogues.add(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(2).addSentence("Level 3 - Mithril Blacksmithing", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).setPermanent(true);
+						DialogueManager.alchemyDeskDialogues.get(2).setForLearning(true);
+
+						
+						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(0).addSentence("Back", "Hero");
+						
+					}
+					
+					
+					
+					
+				} else {
+					currentDialogue.getSentences().get(1).setText("You don't have enough experience. Come back later.");
 				}
+			
+			} else {
+				
+				currentDialogue.getSentences().get(1).setText("You have already mastered alchemy.");
+				
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Blacksmithing + 1 (Costs 10LP)")) {
 			
@@ -343,6 +417,24 @@ public class Learning {
 				
 			}
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Take Furs (Costs 10LP)")) {
 			if(player.getLearningPoints() >= 10) {

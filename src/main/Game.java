@@ -9,6 +9,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import logic.Blacksmithing;
 import logic.Learning;
+import manager.AlchemyDeskManager;
 import manager.AnvilManager;
 import manager.CharacterManager;
 import manager.ChestManager;
@@ -35,6 +36,7 @@ public class Game extends BasicGameState {
 	
 	private static ChestManager chestManager;
 	private static AnvilManager anvilManager;
+	private static AlchemyDeskManager alchemyDeskManager;
 	
 	public static Blacksmithing blacksmithing;
 	public static Learning learning;
@@ -57,6 +59,7 @@ public class Game extends BasicGameState {
 		
 		chestManager = new ChestManager();
 		anvilManager = new AnvilManager();
+		alchemyDeskManager = new AlchemyDeskManager();
 		
 		blacksmithing = new Blacksmithing();
 		learning = new Learning();
@@ -72,6 +75,7 @@ public class Game extends BasicGameState {
 		
 		chestManager.update();
 		anvilManager.update();
+		alchemyDeskManager.update();
 		
 	}
 
@@ -79,8 +83,10 @@ public class Game extends BasicGameState {
 	public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
 
 		world.render(g);
+		
 		chestManager.render(g);
 		anvilManager.render(g);
+		alchemyDeskManager.render(g);
 		
 		itemManager.render(g);
 		characterManager.render(g);
@@ -141,6 +147,10 @@ public class Game extends BasicGameState {
 
 	public static AnvilManager getAnvilManager() {
 		return anvilManager;
+	}
+
+	public static AlchemyDeskManager getAlchemyDeskManager() {
+		return alchemyDeskManager;
 	}
 
 	public static Blacksmithing getBlacksmithing() {

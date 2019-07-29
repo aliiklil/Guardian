@@ -7,6 +7,7 @@ import dialogue.Dialogue;
 public class DialogueManager {
 	
 	public static ArrayList<Dialogue> anvilDialogues = new ArrayList<Dialogue>();
+	public static ArrayList<Dialogue> alchemyDeskDialogues = new ArrayList<Dialogue>();
 	
 	public static ArrayList<Dialogue> ogusDialogues = new ArrayList<Dialogue>();
 	public static ArrayList<Dialogue> halrokDialogues = new ArrayList<Dialogue>();

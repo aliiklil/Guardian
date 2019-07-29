@@ -17,6 +17,7 @@ import gui.NewItemWindow;
 import gui.TradingWindow;
 import main.Game;
 import main.Main;
+import manager.AlchemyDeskManager;
 import manager.AnvilManager;
 import manager.CharacterManager;
 import manager.ChestManager;
@@ -188,6 +189,7 @@ public class Player extends Character {
 			newItemWindow.update();
 			updateDialogueNPC();
 			updateDialogueAnvil();
+			updateDialogueAlchemyDesk();
 			dialogueWindow.update();
 			centeredText.update();
 			levelUpText.update();
@@ -1187,35 +1189,62 @@ public class Player extends Character {
 
 				if(anvil.getStartingDialogues() != null) {
 					
-					if(super.getCollisionBox().willIntersectAnyDirection(anvil.getCollisionBox(), 5) && blacksmithingSkill == 0) {
-						String text = "I don't know how to blacksmith";
-						centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
-					}
-
+					
 					if(super.getCollisionBox().willIntersectUp(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookUpAnimation() && blacksmithingSkill > 0) {
+						
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
 						anvil.makeAnvilHot();
+						
+					} else if(super.getCollisionBox().willIntersectUp(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookUpAnimation() && blacksmithingSkill == 0) {
+						
+						String text = "I don't know how to blacksmith";
+						centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+						
 					}
 
 					if(super.getCollisionBox().willIntersectDown(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookDownAnimation() && blacksmithingSkill > 0) {
+						
 						dialogueWindow.showWindow(anvil.getStartingDialogues());
 						yPressed = false;
 						anvil.makeAnvilHot();
+						
+					}  else if(super.getCollisionBox().willIntersectDown(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookDownAnimation() && blacksmithingSkill == 0) {
+						
+						String text = "I don't know how to blacksmith";
+						centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+						
 					}
 
-					if(super.getCollisionBox().willIntersectLeft(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookLeftAnimation() && blacksmithingSkill > 0) {
-						dialogueWindow.showWindow(anvil.getStartingDialogues());
+				}
+
+			}
+
+		}
+
+	}
+	
+	private void updateDialogueAlchemyDesk() throws SlickException {
+
+		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
+
+			ArrayList<AlchemyDesk> alchemyDeskList = AlchemyDeskManager.getAlchemyDeskList();
+
+			for (AlchemyDesk alchemyDesk : alchemyDeskList) {
+				
+				if(alchemyDesk.getStartingDialogues() != null) {
+					
+					if(super.getCollisionBox().willIntersectUp(alchemyDesk.getCollisionBox(), 5) && getCurrentAnimation() == getLookUpAnimation() && alchemySkill > 0) {
+						
+						dialogueWindow.showWindow(alchemyDesk.getStartingDialogues());
 						yPressed = false;
-						anvil.makeAnvilHot();
+						
+					} else if(super.getCollisionBox().willIntersectUp(alchemyDesk.getCollisionBox(), 5) && getCurrentAnimation() == getLookUpAnimation() && alchemySkill == 0) {
+						
+						String text = "I don't know anything about alchemy";
+						centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+						
 					}
-
-					if(super.getCollisionBox().willIntersectRight(anvil.getCollisionBox(), 5) && getCurrentAnimation() == getLookRightAnimation() && blacksmithingSkill > 0) {
-						dialogueWindow.showWindow(anvil.getStartingDialogues());
-						yPressed = false;
-						anvil.makeAnvilHot();
-					}
-
 
 				}
 
