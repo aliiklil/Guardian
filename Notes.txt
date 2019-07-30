@@ -2,10 +2,29 @@
 
 .)Alchemy
 
-.)Forgery
-
 .)Add black armor (black knight) and skeleton armor
 
 .)Maybe make player have his weapon out while walking
 
 .)Implement HP and Mana Regeneration
+
+
+Alchemy:
+
+Level 1 - Simple Potions:
+.)Small HP Potion - Healberry, Empty Bottle
+.)Small Mana Potion - Manaberry, Empty Bottle
+.)Medium HP Potion - Healplant, Empty Bottle
+.)Medium Mana Poition - Manaplant, Empty Bottle
+
+Level 2 - Strong Potions:
+.)Big HP Potion - Healroot, Empty Bottle
+.)Big Mana Potion - Manaroot, Empty Bottle
+.)Speed Potion - Wolfnettel, Empty Bottle
+
+Level 3 - Special Potions:
+.)Permanent HP Bonus Potion - Healroot, Goldtruffle, Empty Bottle
+.)Permanent Mana Bonus Potion  - Manaroot, Goldtruffle, Empty Bottle
+.)Strength Potion - Dragonroot, Goldtruffle, Empty Bottle
+.)Dexterity Potion - Goblinweed, Goldtruffle, Empty Bottle
+.)Wisdom Potion - Godnettel, Goldtruffle, Empty Bottle
