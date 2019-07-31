@@ -10,7 +10,7 @@ import models.Player;
 
 public class Alchemy {
 
-	public void checkIfPlayerIsAlchemy(Dialogue currentDialogue) throws SlickException {
+	public void checkIfPlayerIsUsingAlchemy(Dialogue currentDialogue) throws SlickException {
 		
 	}
 	

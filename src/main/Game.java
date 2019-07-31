@@ -7,6 +7,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import logic.Alchemy;
 import logic.Blacksmithing;
 import logic.Learning;
 import manager.AlchemyDeskManager;
@@ -39,6 +40,7 @@ public class Game extends BasicGameState {
 	private static AlchemyDeskManager alchemyDeskManager;
 	
 	public static Blacksmithing blacksmithing;
+	public static Alchemy alchemy;
 	public static Learning learning;
 
 	@Override
@@ -61,6 +63,7 @@ public class Game extends BasicGameState {
 		anvilManager = new AnvilManager();
 		alchemyDeskManager = new AlchemyDeskManager();
 		
+		alchemy = new Alchemy();
 		blacksmithing = new Blacksmithing();
 		learning = new Learning();
 		
@@ -151,6 +154,10 @@ public class Game extends BasicGameState {
 
 	public static AlchemyDeskManager getAlchemyDeskManager() {
 		return alchemyDeskManager;
+	}
+
+	public static Alchemy getAlchemy() {
+		return alchemy;
 	}
 
 	public static Blacksmithing getBlacksmithing() {

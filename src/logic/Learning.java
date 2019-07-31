@@ -149,48 +149,108 @@ public class Learning {
 					
 					if(player.getAlchemySkill() == 1) {
 						
-						currentDialogue.getSentences().get(1).setText("You are now able to create simple mana and health potions.");
+						currentDialogue.getSentences().get(1).setText("You are now able to create simple potions.");
 						
 						DialogueManager.alchemyDeskDialogues.add(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(0).addSentence("Level 1 - Iron Blacksmithing", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(0).setPermanent(true);
-						DialogueManager.alchemyDeskDialogues.get(0).setForLearning(true);	
-						
+						DialogueManager.alchemyDeskDialogues.get(0).setForLearning(true);
+						DialogueManager.alchemyDeskDialogues.get(0).addSentence("Level 1 - Simple Potions", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).addSentence("", "Hero");
 						
 						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(0).addSentence("Back", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(0).addSentence("Create Small HP Potion (Healberry, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(0).addSentence("I have successfully created a Small HP Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(0).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(1).addSentence("Create Small Mana Potion (Manaberry, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(1).addSentence("I have successfully created a Small Mana Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(1).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(2).addSentence("Create Medium HP Potion (Healplant, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(2).addSentence("I have successfully created a Medium HP Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(2).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(3).addSentence("Create Medium Mana Potion (Manaplant, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(3).addSentence("I have successfully created a Medium Mana Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(3).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(4).addSentence("Back", "Hero");
 							
 						
 					}
 					
 					if(player.getAlchemySkill() == 2) {
 						
-						currentDialogue.getSentences().get(1).setText("You are now able to create strong mana and health potions.");
+						currentDialogue.getSentences().get(1).setText("You are now able to create strong potions.");
 						
 						DialogueManager.alchemyDeskDialogues.add(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(1).addSentence("Level 2 - Gold Blacksmithing", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(1).setPermanent(true);
 						DialogueManager.alchemyDeskDialogues.get(1).setForLearning(true);
-
+						DialogueManager.alchemyDeskDialogues.get(1).addSentence("Level 2 - Strong Potions", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).addSentence("", "Hero");
+						
+						DialogueManager.alchemyDeskDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(0).addSentence("Create Big HP Potion (Healroot, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(0).addSentence("I have successfully created a Big HP Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(0).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(1).addSentence("Create Big Mana Potion (Manaroot, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(1).addSentence("I have successfully created a Big Mana Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(1).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(2).addSentence("Create Speed Potion (Wolfnettel, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(2).addSentence("I have successfully created a Speed Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(2).setPermanent(true);
 	
 						DialogueManager.alchemyDeskDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(0).addSentence("Back", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(3).addSentence("Back", "Hero");
 						
 					}
 					
 					if(player.getAlchemySkill() == 3) {
 						
-						currentDialogue.getSentences().get(1).setText("You are now able to create permanent mana and health potions.");
+						currentDialogue.getSentences().get(1).setText("You are now able to create special potions.");
 						
 						
 						DialogueManager.alchemyDeskDialogues.add(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(2).addSentence("Level 3 - Mithril Blacksmithing", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).setPermanent(true);
 						DialogueManager.alchemyDeskDialogues.get(2).setForLearning(true);
-
+						DialogueManager.alchemyDeskDialogues.get(2).addSentence("Level 3 - Special Potions", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).addSentence("", "Hero");
 						
 						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(0).addSentence("Back", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(0).addSentence("Create Permanent HP Bonus Potion (Healroot, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(0).addSentence("I have successfully created a Permanent HP Bonus Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(0).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(1).addSentence("Create Permanent Mana Bonus Potion (Manaroot, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(1).addSentence("I have successfully created a Permanent Mana Bonus Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(1).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(2).addSentence("Create Strength Potion (Dragonroot, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(2).addSentence("I have successfully created a Strength Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(2).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(3).addSentence("Create Dexterity Potion (Goblinweed, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(3).addSentence("I have successfully created a Dexterity Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(3).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).addSentence("Create Wisdom Potion (Godnettel, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).addSentence("I have successfully created a Wisdom Potion.", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).setPermanent(true);
+						
+						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(5).addSentence("Back", "Hero");
 						
 					}
 					
@@ -245,9 +305,10 @@ public class Learning {
 						currentDialogue.getSentences().get(1).setText("You are now able to create iron weapons and armor.");
 						
 						DialogueManager.anvilDialogues.add(new Dialogue());
-						DialogueManager.anvilDialogues.get(0).addSentence("Level 1 - Iron Blacksmithing", "Hero");
 						DialogueManager.anvilDialogues.get(0).setPermanent(true);
 						DialogueManager.anvilDialogues.get(0).setForLearning(true);	
+						DialogueManager.anvilDialogues.get(0).addSentence("Level 1 - Iron Blacksmithing", "Hero");
+						DialogueManager.anvilDialogues.get(0).addSentence("", "Hero");
 						
 						DialogueManager.anvilDialogues.get(0).addChildDialogue(new Dialogue());
 						DialogueManager.anvilDialogues.get(0).getChildDialogues().get(0).addSentence("Forge Iron Sword (3 Iron Bar)", "Hero");
@@ -300,10 +361,11 @@ public class Learning {
 						currentDialogue.getSentences().get(1).setText("You are now able to create golden weapons and armor.");
 						
 						DialogueManager.anvilDialogues.add(new Dialogue());
-						DialogueManager.anvilDialogues.get(1).addSentence("Level 2 - Gold Blacksmithing", "Hero");
 						DialogueManager.anvilDialogues.get(1).setPermanent(true);
 						DialogueManager.anvilDialogues.get(1).setForLearning(true);
-
+						DialogueManager.anvilDialogues.get(1).addSentence("Level 2 - Gold Blacksmithing", "Hero");
+						DialogueManager.anvilDialogues.get(1).addSentence("", "Hero");
+						
 						DialogueManager.anvilDialogues.get(1).addChildDialogue(new Dialogue());
 						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(0).addSentence("Forge Golden Sword (3 Golden Bars)", "Hero");
 						DialogueManager.anvilDialogues.get(1).getChildDialogues().get(0).addSentence("I have successfully forged a Golden Sword.", "Hero");
@@ -355,10 +417,11 @@ public class Learning {
 						
 						
 						DialogueManager.anvilDialogues.add(new Dialogue());
-						DialogueManager.anvilDialogues.get(2).addSentence("Level 3 - Mithril Blacksmithing", "Hero");
 						DialogueManager.anvilDialogues.get(2).setPermanent(true);
 						DialogueManager.anvilDialogues.get(2).setForLearning(true);
-
+						DialogueManager.anvilDialogues.get(2).addSentence("Level 3 - Mithril Blacksmithing", "Hero");
+						DialogueManager.anvilDialogues.get(2).addSentence("", "Hero");
+						
 						DialogueManager.anvilDialogues.get(2).addChildDialogue(new Dialogue());
 						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(0).addSentence("Forge Mithril Sword (3 Mithril Bars)", "Hero");
 						DialogueManager.anvilDialogues.get(2).getChildDialogues().get(0).addSentence("I have successfully forged a Mithril Sword.", "Hero");

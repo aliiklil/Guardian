@@ -63,7 +63,6 @@ public class CharacterManager {
 		ogus.addItem(new Item(0, 0, itemTypeManager.chainhat));
 		ogus.addItem(new Item(0, 0, itemTypeManager.shortspear));
 		ogus.addItem(new Item(0, 0, itemTypeManager.chainhelmet));
-		ogus.addItem(new Item(0, 0, itemTypeManager.copperBar));
 		ogus.addItem(new Item(0, 0, itemTypeManager.goldenspear));
 		ogus.addItem(new Item(0, 0, itemTypeManager.goldenboots));
 		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHealingPotion));
@@ -71,7 +70,6 @@ public class CharacterManager {
 		ogus.addItem(new Item(0, 0, itemTypeManager.goldenboots));
 		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHealingPotion));
 		ogus.addItem(new Item(0, 0, itemTypeManager.clothhood));
-		ogus.addItem(new Item(0, 0, itemTypeManager.copperBar));
 		ogus.addItem(new Item(0, 0, itemTypeManager.goldenhelmet));
 		ogus.setEquippedMelee(itemTypeManager.goldenspear);
 		

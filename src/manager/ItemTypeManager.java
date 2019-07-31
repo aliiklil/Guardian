@@ -71,32 +71,54 @@ public class ItemTypeManager {
 	public ItemType mediumManaPotion = new ItemType(1, "resources/items/11mana_potions/medium_mana_potion.png", "Medium Mana Potionn", 30, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 100);
 	public ItemType bigManaPotion = new ItemType(1, "resources/items/11mana_potions/big_mana_potion.png", "Big Mana Potion", 40, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 200);
 
-	public ItemType bread = new ItemType(1, "resources/items/12food/bread.png", "Bread", 20, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 15, 0);
-	public ItemType carrot = new ItemType(1, "resources/items/12food/carrot.png", "Carrot", 6, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 10, 0);
-	public ItemType rawChicken = new ItemType(1, "resources/items/12food/raw_chicken.png", "Raw Chicken", 33, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
-	public ItemType cookedChicken = new ItemType(1, "resources/items/12food/cooked_chicken.png", "Cooked Chicken", 33, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
-	public ItemType rawFish = new ItemType(1, "resources/items/12food/raw_fish.png", "Raw Fish", 26, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
-	public ItemType cookedFish = new ItemType(1, "resources/items/12food/cooked_fish.png", "Cooked Fish", 26, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
-	public ItemType rawMeat = new ItemType(1, "resources/items/12food/raw_meat.png", "Raw Meat", 38, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
-	public ItemType cookedMeat = new ItemType(1, "resources/items/12food/cooked_meat.png", "Cooked Meat", 38, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
-	public ItemType rawPork = new ItemType(1, "resources/items/12food/raw_pork.png", "Raw Pork", 29, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
-	public ItemType cookedPork = new ItemType(1, "resources/items/12food/cooked_pork.png", "Cooked Pork", 29, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
-	public ItemType wheat = new ItemType(1, "resources/items/12food/wheat.png", "Wheat", 4, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
-	public ItemType apple = new ItemType(1, "resources/items/12food/apple.png", "Apple", 5, 12, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 15, 0);
+	public ItemType permanentHpBonusPotion = new ItemType(1, "resources/items/12special_potions/permanent_hp_bonus_potion.png", "Permanent HP Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType permanentManaBonusPotion = new ItemType(1, "resources/items/12special_potions/permanent_mana_bonus_potion.png", "Permanent Mana Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType strengthPotion = new ItemType(1, "resources/items/12special_potions/strength_potion.png", "Strength Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType dexterityPotion = new ItemType(1, "resources/items/12special_potions/dexterity_potion.png", "Dexterity Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType wisdomPotion = new ItemType(1, "resources/items/12special_potions/wisdom_potion.png", "Wisdom Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType speedPotion = new ItemType(1, "resources/items/12special_potions/speed_potion.png", "Speed Potion", 200, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	
+	
+	public ItemType dragonroot = new ItemType(1, "resources/items/13plants/dragonroot.png", "Dragonroot", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType goblinweed = new ItemType(1, "resources/items/13plants/goblinweed.png", "Goblinweed", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType godnettel = new ItemType(1, "resources/items/13plants/godnettel.png", "Godnettel", 250, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType goldtruffel = new ItemType(1, "resources/items/13plants/goldtruffle.png", "Goldtruffel", 300, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType wolfnettel = new ItemType(1, "resources/items/13plants/wolfnettel.png", "Wolfnettel", 100, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	
+	public ItemType healberry = new ItemType(1, "resources/items/13plants/healberry.png", "Healberry", 10, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType healplant = new ItemType(1, "resources/items/13plants/healplant.png", "Healplant", 15, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType healroot = new ItemType(1, "resources/items/13plants/healroot.png", "Healroot", 20, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	
+	public ItemType manaberry = new ItemType(1, "resources/items/13plants/manaberry.png", "Manaberry", 25, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType manaplant = new ItemType(1, "resources/items/13plants/manaplant.png", "Manaplant", 30, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType manaroot = new ItemType(1, "resources/items/13plants/manaroot.png", "Manaroot", 35, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	
+	
+	public ItemType bread = new ItemType(1, "resources/items/14food/bread.png", "Bread", 20, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 15, 0);
+	public ItemType carrot = new ItemType(1, "resources/items/14food/carrot.png", "Carrot", 6, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 10, 0);
+	public ItemType rawChicken = new ItemType(1, "resources/items/14food/raw_chicken.png", "Raw Chicken", 33, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
+	public ItemType cookedChicken = new ItemType(1, "resources/items/14food/cooked_chicken.png", "Cooked Chicken", 33, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
+	public ItemType rawFish = new ItemType(1, "resources/items/14food/raw_fish.png", "Raw Fish", 26, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
+	public ItemType cookedFish = new ItemType(1, "resources/items/14food/cooked_fish.png", "Cooked Fish", 26, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
+	public ItemType rawMeat = new ItemType(1, "resources/items/14food/raw_meat.png", "Raw Meat", 38, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
+	public ItemType cookedMeat = new ItemType(1, "resources/items/14food/cooked_meat.png", "Cooked Meat", 38, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
+	public ItemType rawPork = new ItemType(1, "resources/items/14food/raw_pork.png", "Raw Pork", 29, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
+	public ItemType cookedPork = new ItemType(1, "resources/items/14food/cooked_pork.png", "Cooked Pork", 29, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
+	public ItemType wheat = new ItemType(1, "resources/items/14food/wheat.png", "Wheat", 4, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0);
+	public ItemType apple = new ItemType(1, "resources/items/14food/apple.png", "Apple", 5, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 15, 0);
+	
+	public ItemType bone = new ItemType(1, "resources/items/15misc/bone.png", "Bone", 3, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType ironBar = new ItemType(1, "resources/items/15misc/iron_bar.png", "Iron Bar", 160, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType goldenBar = new ItemType(1, "resources/items/15misc/gold_bar.png", "Golden Bar", 250, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType mithrilBar = new ItemType(1, "resources/items/15misc/mithril_bar.png", "Mithril Bar", 350, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType feather = new ItemType(1, "resources/items/15misc/feather.png", "Feather", 3, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType treasureChest = new ItemType(1, "resources/items/15misc/treasure_chest.png", "Treasure Chest", 320, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType goldCrown = new ItemType(1, "resources/items/15misc/gold_crown.png", "Gold Crown", 280, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType treasure = new ItemType(1, "resources/items/15misc/treasure.png", "Treasure", 280, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType multipleSticks = new ItemType(1, "resources/items/15misc/multiple_sticks.png", "Multiple Sticks", 5, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType trophy = new ItemType(1, "resources/items/15misc/trophy.png", "Trophy", 250, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 
-	public ItemType bone = new ItemType(1, "resources/items/13misc/bone.png", "Bone", 3, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType copperBar = new ItemType(1, "resources/items/13misc/copper_bar.png", "Copper Bar", 80, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType ironBar = new ItemType(1, "resources/items/13misc/iron_bar.png", "Iron Bar", 160, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldenBar = new ItemType(1, "resources/items/13misc/gold_bar.png", "Golden Bar", 250, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilBar = new ItemType(1, "resources/items/13misc/mithril_bar.png", "Mithril Bar", 350, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType feather = new ItemType(1, "resources/items/13misc/feather.png", "Feather", 3, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType treasureChest = new ItemType(1, "resources/items/13misc/treasure_chest.png", "Treasure Chest", 320, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldCrown = new ItemType(1, "resources/items/13misc/gold_crown.png", "Gold Crown", 280, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType treasure = new ItemType(1, "resources/items/13misc/treasure.png", "Treasure", 280, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType multipleSticks = new ItemType(1, "resources/items/13misc/multiple_sticks.png", "Multiple Sticks", 5, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType trophy = new ItemType(1, "resources/items/13misc/trophy.png", "Trophy", 250, 13, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-
-	public ItemType gold = new ItemType(100, "resources/items/14gold/goldcoin.png", "Gold", 1, 14, false, "gold", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType gold = new ItemType(100, "resources/items/16gold/goldcoin.png", "Gold", 1, 16, false, "gold", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 
 	public ItemTypeManager() throws SlickException {
 		

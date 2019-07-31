@@ -97,67 +97,61 @@ public class ItemManager {
 		Item bone2 = new Item(832, 320, itemTypeManager.bone);
 		Item bone3 = new Item(864, 640, itemTypeManager.bone);
 		Item bone4 = new Item(896, 384, itemTypeManager.bone);
-
+		Item multipleSticks1 = new Item(256, 0, itemTypeManager.multipleSticks);
+		Item wheat1 = new Item(320, 32, itemTypeManager.wheat);
+		Item trophy1 = new Item(364, 32, itemTypeManager.trophy);
 		
 		Item bread1 = new Item(864, 320, itemTypeManager.bread);
-
 		Item carrot1 = new Item(736, 480, itemTypeManager.carrot);
-		
 		Item rawChicken1 = new Item(64, 1024, itemTypeManager.rawChicken);
-		
 		Item cookedChicken1 = new Item(32, 1024, itemTypeManager.cookedChicken);
-
 		Item rawFish1 = new Item(1024, 64, itemTypeManager.rawFish);
-		
 		Item cookedFish1 = new Item(1024, 0, itemTypeManager.cookedFish);
-		
 		Item rawMeat1 = new Item(1024, 64, itemTypeManager.rawMeat);
-		
 		Item cookedMeat1 = new Item(1024, 0, itemTypeManager.cookedMeat);
-		
 		Item rawPork1 = new Item(256, 704, itemTypeManager.rawPork);
-				
 		Item cookedPork1 = new Item(128, 768, itemTypeManager.cookedPork);
-		
-		Item copperBar1 = new Item(1024, 512, itemTypeManager.copperBar);
 		
 		Item ironBar = new Item(64, 128, itemTypeManager.ironBar);
 		Item goldenBar = new Item(64, 192, itemTypeManager.goldenBar);
 		Item mithrilBar = new Item(64, 192, itemTypeManager.mithrilBar);
 		
 		Item feather1 = new Item(512, 0, itemTypeManager.feather);
-		
 		Item treasureChest1 = new Item(576, 0, itemTypeManager.treasureChest);
-		
 		Item goldCrown1 = new Item(512, 96, itemTypeManager.goldCrown);
-		
 		Item treasure1 = new Item(576, 64, itemTypeManager.treasure);
 		
 		Item smallHealingPotion1 = new Item(512, 128, itemTypeManager.smallHealingPotion);
-		
-		
 		Item mediumHealingPotion1 = new Item(0, 96, itemTypeManager.mediumHealingPotion);
-		
 		Item bigHealingPotion1 = new Item(320, 32, itemTypeManager.bigHealingPotion);
 		
-		
 		Item smallManaPotion1 = new Item(64, 32, itemTypeManager.smallManaPotion);
-		
-		
 		Item mediumManaPotion1 = new Item(128, 0, itemTypeManager.mediumManaPotion);
-		
 		Item bigManaPotion1 = new Item(32, 0, itemTypeManager.bigManaPotion);
 		
+		Item permanentHpBonusPotion1 = new Item(64, 32, itemTypeManager.permanentHpBonusPotion);
+		Item permanentManaBonusPotion1 = new Item(128, 0, itemTypeManager.permanentManaBonusPotion);
+		Item strengthPotion1 = new Item(32, 0, itemTypeManager.strengthPotion);
+		Item dexterityPotion1 = new Item(32, 0, itemTypeManager.dexterityPotion);
+		Item wisdomPotion1 = new Item(32, 0, itemTypeManager.wisdomPotion);
+		Item speedPotion1 = new Item(32, 0, itemTypeManager.speedPotion);
 		
 		
-		Item multipleSticks1 = new Item(256, 0, itemTypeManager.multipleSticks);
+		Item dragonroot1 = new Item(32, 32, itemTypeManager.dragonroot);
+		Item goblinweed1 = new Item(32, 0, itemTypeManager.goblinweed);
+		Item godnettel1 = new Item(32, 0, itemTypeManager.godnettel);
+		Item goldtruffel1 = new Item(32, 0, itemTypeManager.goldtruffel);
+		Item wolfnettel1 = new Item(32, 0, itemTypeManager.wolfnettel);
+		
+		Item healberry1 = new Item(32, 0, itemTypeManager.healberry);
+		Item healplant1 = new Item(32, 0, itemTypeManager.healplant);
+		Item healroot1 = new Item(32, 0, itemTypeManager.healroot);
+		
+		Item manaberry1 = new Item(32, 0, itemTypeManager.manaberry);
+		Item manaplant1 = new Item(32, 0, itemTypeManager.manaplant);
+		Item manaroot1 = new Item(32, 0, itemTypeManager.manaroot);
 		
 		
-		Item wheat1 = new Item(320, 32, itemTypeManager.wheat);
-		
-		
-		Item trophy1 = new Item(364, 32, itemTypeManager.trophy);
-
 		itemList.add(stick);
 		itemList.add(stick1);
 		
@@ -244,7 +238,6 @@ public class ItemManager {
 		itemList.add(cookedMeat1);
 		itemList.add(rawPork1);
 		itemList.add(cookedPork1);
-		itemList.add(copperBar1);
 		
 		itemList.add(ironBar);
 		itemList.add(ironBar);
@@ -282,6 +275,29 @@ public class ItemManager {
 		itemList.add(multipleSticks1);
 		itemList.add(wheat1);
 		itemList.add(trophy1);
+		
+		
+		itemList.add(permanentHpBonusPotion1);
+		itemList.add(permanentManaBonusPotion1);
+		itemList.add(strengthPotion1);
+		itemList.add(dexterityPotion1);
+		itemList.add(wisdomPotion1);
+		itemList.add(speedPotion1);
+		
+		
+		itemList.add(dragonroot1);
+		itemList.add(goblinweed1);
+		itemList.add(godnettel1);
+		itemList.add(goldtruffel1);
+		itemList.add(wolfnettel1);
+		
+		itemList.add(healberry1);
+		itemList.add(healplant1);
+		itemList.add(healroot1);
+		
+		itemList.add(manaberry1);
+		itemList.add(manaplant1);
+		itemList.add(manaroot1);
 		
 	}
 	

@@ -92,7 +92,7 @@ public class DialogueWindow {
 				}
 			}
 			
-			if(CharacterManager.getPlayer().isYPressed()) {
+			if(CharacterManager.getPlayer().isYPressed() || (selectedOption != currentDialogues.size() && currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText().isEmpty())) {
 				
 				if(sentenceCount > 0 && currentlyDisplayedText.length() != currentSentence.length()) {
 					
@@ -106,12 +106,13 @@ public class DialogueWindow {
 						
 						Game.getLearning().checkIfPlayerLearns(currentDialogues.get(selectedOption));
 						Game.getBlacksmithing().checkIfPlayerIsBlacksmithing(currentDialogues.get(selectedOption));
+						Game.getAlchemy().checkIfPlayerIsUsingAlchemy(currentDialogues.get(selectedOption));
 						
 						sentenceCount++;
 						
-						currentSentence = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText();
+						currentSentence = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText();						
 						currentSpeaker = currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getSpeakerName();
-		
+						
 						timeLastCharacterWasAdded = System.currentTimeMillis();
 						addedCharactersCounter = 0;
 						currentlyDisplayedText = "";
@@ -143,9 +144,8 @@ public class DialogueWindow {
 							startingDialogues.remove(selectedStartingOption);
 							
 						}
-						
-						if(!startingDialogues.get(selectedStartingOption).isForLearning() || startingDialogues.get(selectedStartingOption).getChildDialogues().get(selectedOption).getSentences().get(0).getText().equals("Back")
-								) {
+
+						if(!startingDialogues.get(selectedStartingOption).isForLearning() || startingDialogues.get(selectedStartingOption).getChildDialogues().get(selectedOption).getSentences().get(0).getText().equals("Back")) {
 							currentDialogues = startingDialogues;
 							selectedStartingOption = 0;
 						}
