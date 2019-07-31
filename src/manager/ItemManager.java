@@ -125,31 +125,31 @@ public class ItemManager {
 		Item mediumHealingPotion1 = new Item(0, 96, itemTypeManager.mediumHealingPotion);
 		Item bigHealingPotion1 = new Item(320, 32, itemTypeManager.bigHealingPotion);
 		
-		Item smallManaPotion1 = new Item(64, 32, itemTypeManager.smallManaPotion);
-		Item mediumManaPotion1 = new Item(128, 0, itemTypeManager.mediumManaPotion);
-		Item bigManaPotion1 = new Item(32, 0, itemTypeManager.bigManaPotion);
+		Item smallManaPotion1 = new Item(128, 192, itemTypeManager.smallManaPotion);
+		Item mediumManaPotion1 = new Item(128, 128, itemTypeManager.mediumManaPotion);
+		Item bigManaPotion1 = new Item(128, 96, itemTypeManager.bigManaPotion);
 		
-		Item permanentHpBonusPotion1 = new Item(64, 32, itemTypeManager.permanentHpBonusPotion);
-		Item permanentManaBonusPotion1 = new Item(128, 0, itemTypeManager.permanentManaBonusPotion);
-		Item strengthPotion1 = new Item(32, 0, itemTypeManager.strengthPotion);
-		Item dexterityPotion1 = new Item(32, 0, itemTypeManager.dexterityPotion);
-		Item wisdomPotion1 = new Item(32, 0, itemTypeManager.wisdomPotion);
-		Item speedPotion1 = new Item(32, 0, itemTypeManager.speedPotion);
+		Item permanentHpBonusPotion1 = new Item(128, 128, itemTypeManager.permanentHpBonusPotion);
+		Item permanentManaBonusPotion1 = new Item(128, 128, itemTypeManager.permanentManaBonusPotion);
+		Item strengthPotion1 = new Item(128, 128, itemTypeManager.strengthPotion);
+		Item dexterityPotion1 = new Item(128, 128, itemTypeManager.dexterityPotion);
+		Item wisdomPotion1 = new Item(128, 128, itemTypeManager.wisdomPotion);
+		Item speedPotion1 = new Item(128, 128, itemTypeManager.speedPotion);
 		
 		
-		Item dragonroot1 = new Item(32, 32, itemTypeManager.dragonroot);
-		Item goblinweed1 = new Item(32, 0, itemTypeManager.goblinweed);
-		Item godnettel1 = new Item(32, 0, itemTypeManager.godnettel);
-		Item goldtruffel1 = new Item(32, 0, itemTypeManager.goldtruffel);
-		Item wolfnettel1 = new Item(32, 0, itemTypeManager.wolfnettel);
+		Item dragonroot1 = new Item(0, 0, itemTypeManager.dragonroot);
+		Item goblinweed1 = new Item(0, 32, itemTypeManager.goblinweed);
+		Item godnettel1 = new Item(0, 64, itemTypeManager.godnettel);
+		Item goldtruffel1 = new Item(64, 96, itemTypeManager.goldtruffel);
+		Item wolfnettel1 = new Item(96, 64, itemTypeManager.wolfnettel);
 		
-		Item healberry1 = new Item(32, 0, itemTypeManager.healberry);
-		Item healplant1 = new Item(32, 0, itemTypeManager.healplant);
-		Item healroot1 = new Item(32, 0, itemTypeManager.healroot);
+		Item healberry1 = new Item(32, 32, itemTypeManager.healberry);
+		Item healplant1 = new Item(32, 64, itemTypeManager.healplant);
+		Item healroot1 = new Item(32, 96, itemTypeManager.healroot);
 		
-		Item manaberry1 = new Item(32, 0, itemTypeManager.manaberry);
-		Item manaplant1 = new Item(32, 0, itemTypeManager.manaplant);
-		Item manaroot1 = new Item(32, 0, itemTypeManager.manaroot);
+		Item manaberry1 = new Item(64, 0, itemTypeManager.manaberry);
+		Item manaplant1 = new Item(96, 96, itemTypeManager.manaplant);
+		Item manaroot1 = new Item(64, 64, itemTypeManager.manaroot);
 		
 		
 		itemList.add(stick);
