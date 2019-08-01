@@ -63,16 +63,16 @@ public class ItemTypeManager {
 	public ItemType goldenboots = new ItemType(1, "resources/items/9boots/goldenboots.png", "Golden Boots", 700, 9, true, "feet", "resources/player_sprites/feet/goldenboots.png", 0, 0, 0, 0, 8, 0, 0, 0);
 	public ItemType mithrilboots = new ItemType(1, "resources/items/9boots/mithrilboots.png", "Mithril Boots", 1500, 9, true, "feet", "resources/player_sprites/feet/mithrilboots.png", 0, 0, 0, 0, 12, 0, 0, 0);
 
-	public ItemType smallHealingPotion = new ItemType(1, "resources/items/10healing_potions/small_healing_potion.png", "Small Healing Potion", 20, 10, false, "healingpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
-	public ItemType mediumHealingPotion = new ItemType(1, "resources/items/10healing_potions/medium_healing_potion.png", "Medium Healing Potionn", 30, 10, false, "healingpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 100, 0);
-	public ItemType bigHealingPotion = new ItemType(1, "resources/items/10healing_potions/big_healing_potion.png", "Big Healing Potion", 40, 10, false, "healingpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 200, 0);
+	public ItemType smallHpPotion = new ItemType(1, "resources/items/10healing_potions/small_hp_potion.png", "Small HP Potion", 20, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0);
+	public ItemType mediumHpPotion = new ItemType(1, "resources/items/10healing_potions/medium_hp_potion.png", "Medium HP Potion", 30, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 100, 0);
+	public ItemType bigHpPotion = new ItemType(1, "resources/items/10healing_potions/big_hp_potion.png", "Big HP Potion", 40, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 200, 0);
 
 	public ItemType smallManaPotion = new ItemType(1, "resources/items/11mana_potions/small_mana_potion.png", "Small Mana Potion", 20, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 25);
 	public ItemType mediumManaPotion = new ItemType(1, "resources/items/11mana_potions/medium_mana_potion.png", "Medium Mana Potionn", 30, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 100);
 	public ItemType bigManaPotion = new ItemType(1, "resources/items/11mana_potions/big_mana_potion.png", "Big Mana Potion", 40, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 200);
 
-	public ItemType permanentHpBonusPotion = new ItemType(1, "resources/items/12special_potions/permanent_hp_bonus_potion.png", "Permanent HP Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType permanentManaBonusPotion = new ItemType(1, "resources/items/12special_potions/permanent_mana_bonus_potion.png", "Permanent Mana Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType maxHpBonusPotion = new ItemType(1, "resources/items/12special_potions/max_hp_bonus_potion.png", "Max HP Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType maxManaBonusPotion = new ItemType(1, "resources/items/12special_potions/max_mana_bonus_potion.png", "Max Mana Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType strengthPotion = new ItemType(1, "resources/items/12special_potions/strength_potion.png", "Strength Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType dexterityPotion = new ItemType(1, "resources/items/12special_potions/dexterity_potion.png", "Dexterity Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType wisdomPotion = new ItemType(1, "resources/items/12special_potions/wisdom_potion.png", "Wisdom Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
@@ -82,7 +82,7 @@ public class ItemTypeManager {
 	public ItemType dragonroot = new ItemType(1, "resources/items/13plants/dragonroot.png", "Dragonroot", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType goblinweed = new ItemType(1, "resources/items/13plants/goblinweed.png", "Goblinweed", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType godnettel = new ItemType(1, "resources/items/13plants/godnettel.png", "Godnettel", 250, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldtruffel = new ItemType(1, "resources/items/13plants/goldtruffle.png", "Goldtruffel", 300, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType goldtruffle = new ItemType(1, "resources/items/13plants/goldtruffle.png", "Goldtruffle", 300, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType wolfnettel = new ItemType(1, "resources/items/13plants/wolfnettel.png", "Wolfnettel", 100, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	
 	public ItemType healberry = new ItemType(1, "resources/items/13plants/healberry.png", "Healberry", 10, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
@@ -118,6 +118,10 @@ public class ItemTypeManager {
 	public ItemType multipleSticks = new ItemType(1, "resources/items/15misc/multiple_sticks.png", "Multiple Sticks", 5, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 	public ItemType trophy = new ItemType(1, "resources/items/15misc/trophy.png", "Trophy", 250, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 
+	public ItemType smallBottle = new ItemType(1, "resources/items/15misc/small_bottle.png", "Small Bottle", 10, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType mediumBottle = new ItemType(1, "resources/items/15misc/medium_Bottle.png", "Medium Bottle", 20, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType bigBottle = new ItemType(1, "resources/items/15misc/big_Bottle.png", "Big Bottle", 30, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
+	
 	public ItemType gold = new ItemType(100, "resources/items/16gold/goldcoin.png", "Gold", 1, 16, false, "gold", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0);
 
 	public ItemTypeManager() throws SlickException {

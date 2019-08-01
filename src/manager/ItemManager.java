@@ -121,16 +121,16 @@ public class ItemManager {
 		Item goldCrown1 = new Item(512, 96, itemTypeManager.goldCrown);
 		Item treasure1 = new Item(576, 64, itemTypeManager.treasure);
 		
-		Item smallHealingPotion1 = new Item(512, 128, itemTypeManager.smallHealingPotion);
-		Item mediumHealingPotion1 = new Item(0, 96, itemTypeManager.mediumHealingPotion);
-		Item bigHealingPotion1 = new Item(320, 32, itemTypeManager.bigHealingPotion);
+		Item smallHpPotion1 = new Item(512, 128, itemTypeManager.smallHpPotion);
+		Item mediumHpPotion1 = new Item(0, 96, itemTypeManager.mediumHpPotion);
+		Item bigHpPotion1 = new Item(320, 32, itemTypeManager.bigHpPotion);
 		
 		Item smallManaPotion1 = new Item(128, 192, itemTypeManager.smallManaPotion);
 		Item mediumManaPotion1 = new Item(128, 128, itemTypeManager.mediumManaPotion);
 		Item bigManaPotion1 = new Item(128, 96, itemTypeManager.bigManaPotion);
 		
-		Item permanentHpBonusPotion1 = new Item(128, 128, itemTypeManager.permanentHpBonusPotion);
-		Item permanentManaBonusPotion1 = new Item(128, 128, itemTypeManager.permanentManaBonusPotion);
+		Item maxHpBonusPotion1 = new Item(128, 128, itemTypeManager.maxHpBonusPotion);
+		Item maxManaBonusPotion1 = new Item(128, 128, itemTypeManager.maxManaBonusPotion);
 		Item strengthPotion1 = new Item(128, 128, itemTypeManager.strengthPotion);
 		Item dexterityPotion1 = new Item(128, 128, itemTypeManager.dexterityPotion);
 		Item wisdomPotion1 = new Item(128, 128, itemTypeManager.wisdomPotion);
@@ -140,7 +140,7 @@ public class ItemManager {
 		Item dragonroot1 = new Item(0, 0, itemTypeManager.dragonroot);
 		Item goblinweed1 = new Item(0, 32, itemTypeManager.goblinweed);
 		Item godnettel1 = new Item(0, 64, itemTypeManager.godnettel);
-		Item goldtruffel1 = new Item(64, 96, itemTypeManager.goldtruffel);
+		Item goldtruffle1 = new Item(64, 96, itemTypeManager.goldtruffle);
 		Item wolfnettel1 = new Item(96, 64, itemTypeManager.wolfnettel);
 		
 		Item healberry1 = new Item(32, 32, itemTypeManager.healberry);
@@ -151,6 +151,9 @@ public class ItemManager {
 		Item manaplant1 = new Item(96, 96, itemTypeManager.manaplant);
 		Item manaroot1 = new Item(64, 64, itemTypeManager.manaroot);
 		
+		Item smallBottle1 = new Item(64, 0, itemTypeManager.smallBottle);
+		Item mediumBottle1 = new Item(96, 96, itemTypeManager.mediumBottle);
+		Item bigBottle1 = new Item(64, 64, itemTypeManager.bigBottle);
 		
 		itemList.add(stick);
 		itemList.add(stick1);
@@ -266,9 +269,9 @@ public class ItemManager {
 		itemList.add(treasureChest1);
 		itemList.add(goldCrown1);
 		itemList.add(treasure1);
-		itemList.add(smallHealingPotion1);
-		itemList.add(mediumHealingPotion1);
-		itemList.add(bigHealingPotion1);
+		itemList.add(smallHpPotion1);
+		itemList.add(mediumHpPotion1);
+		itemList.add(bigHpPotion1);
 		itemList.add(smallManaPotion1);
 		itemList.add(mediumManaPotion1);
 		itemList.add(bigManaPotion1);
@@ -277,8 +280,8 @@ public class ItemManager {
 		itemList.add(trophy1);
 		
 		
-		itemList.add(permanentHpBonusPotion1);
-		itemList.add(permanentManaBonusPotion1);
+		itemList.add(maxHpBonusPotion1);
+		itemList.add(maxManaBonusPotion1);
 		itemList.add(strengthPotion1);
 		itemList.add(dexterityPotion1);
 		itemList.add(wisdomPotion1);
@@ -288,7 +291,7 @@ public class ItemManager {
 		itemList.add(dragonroot1);
 		itemList.add(goblinweed1);
 		itemList.add(godnettel1);
-		itemList.add(goldtruffel1);
+		itemList.add(goldtruffle1);
 		itemList.add(wolfnettel1);
 		
 		itemList.add(healberry1);
@@ -298,6 +301,10 @@ public class ItemManager {
 		itemList.add(manaberry1);
 		itemList.add(manaplant1);
 		itemList.add(manaroot1);
+		
+		itemList.add(smallBottle1);
+		itemList.add(mediumBottle1);
+		itemList.add(bigBottle1);
 		
 	}
 	

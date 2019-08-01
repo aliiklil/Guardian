@@ -158,22 +158,22 @@ public class Learning {
 						DialogueManager.alchemyDeskDialogues.get(0).addSentence("", "Hero");
 						
 						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(0).addSentence("Create Small HP Potion (Healberry, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(0).addSentence("Create Small HP Potion (Healberry, Small Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(0).addSentence("I have successfully created a Small HP Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(1).addSentence("Create Small Mana Potion (Manaberry, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(1).addSentence("Create Small Mana Potion (Manaberry, Small Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(1).addSentence("I have successfully created a Small Mana Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(2).addSentence("Create Medium HP Potion (Healplant, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(2).addSentence("Create Medium HP Potion (Healplant, Medium Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(2).addSentence("I have successfully created a Medium HP Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(3).addSentence("Create Medium Mana Potion (Manaplant, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(3).addSentence("Create Medium Mana Potion (Manaplant, Medium Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(3).addSentence("I have successfully created a Medium Mana Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(0).getChildDialogues().get(3).setPermanent(true);
 						
@@ -194,17 +194,17 @@ public class Learning {
 						DialogueManager.alchemyDeskDialogues.get(1).addSentence("", "Hero");
 						
 						DialogueManager.alchemyDeskDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(0).addSentence("Create Big HP Potion (Healroot, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(0).addSentence("Create Big HP Potion (Healroot, Big Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(0).addSentence("I have successfully created a Big HP Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(1).addSentence("Create Big Mana Potion (Manaroot, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(1).addSentence("Create Big Mana Potion (Manaroot, Big Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(1).addSentence("I have successfully created a Big Mana Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(2).addSentence("Create Speed Potion (Wolfnettel, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(2).addSentence("Create Speed Potion (Wolfnettel, Big Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(2).addSentence("I have successfully created a Speed Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(1).getChildDialogues().get(2).setPermanent(true);
 	
@@ -225,27 +225,27 @@ public class Learning {
 						DialogueManager.alchemyDeskDialogues.get(2).addSentence("", "Hero");
 						
 						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(0).addSentence("Create Permanent HP Bonus Potion (Healroot, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(0).addSentence("Create Max HP Bonus Potion (Healroot, Goldtruffle, Big Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(0).addSentence("I have successfully created a Permanent HP Bonus Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(1).addSentence("Create Permanent Mana Bonus Potion (Manaroot, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(1).addSentence("Create Max Mana Bonus Potion (Manaroot, Goldtruffle, Big Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(1).addSentence("I have successfully created a Permanent Mana Bonus Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(2).addSentence("Create Strength Potion (Dragonroot, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(2).addSentence("Create Strength Potion (Dragonroot, Goldtruffle, Big Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(2).addSentence("I have successfully created a Strength Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(3).addSentence("Create Dexterity Potion (Goblinweed, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(3).addSentence("Create Dexterity Potion (Goblinweed, Goldtruffle, Big Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(3).addSentence("I have successfully created a Dexterity Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(3).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).addSentence("Create Wisdom Potion (Godnettel, Goldtruffle, Empty Bottle)", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).addSentence("Create Wisdom Potion (Godnettel, Goldtruffle, Big Bottle)", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).addSentence("I have successfully created a Wisdom Potion.", "Hero");
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).setPermanent(true);
 						
