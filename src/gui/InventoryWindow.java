@@ -221,6 +221,20 @@ public class InventoryWindow {
 					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 					
 				}
+				
+				
+				
+				
+				//If player consumes item, which gives mana
+				if(selectedItem.getItemType().getManaBoost() > 0) {
+
+					player.getManaBar().setCurrentValue(player.getManaBar().getCurrentValue() + selectedItem.getItemType().getManaBoost());
+					removeSelectedItem();
+					
+					String text = "Mana Points + " + selectedItem.getItemType().getManaBoost();
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+				}
 	
 			}
 			
@@ -477,7 +491,36 @@ public class InventoryWindow {
 					String manaBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaBoost());
 					g.drawString(manaBoost, 1098 - manaBoost.length() * 9, 943);
 				}
+				
+				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMaxHealthBoost() > 0) {
+					g.drawString("Maximum HP Boost:", 652, 943);
+					String maxHealthBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMaxHealthBoost());
+					g.drawString(maxHealthBoost, 1098 - maxHealthBoost.length() * 9, 943);
+				}
+				
+				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMaxManaBoost() > 0) {
+					g.drawString("Maximum Mana Boost:", 652, 943);
+					String maxManaBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMaxManaBoost());
+					g.drawString(maxManaBoost, 1098 - maxManaBoost.length() * 9, 943);
+				}
 
+				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getStrengthBoost() > 0) {
+					g.drawString("Strength Boost:", 652, 943);
+					String strengthBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getStrengthBoost());
+					g.drawString(strengthBoost, 1098 - strengthBoost.length() * 9, 943);
+				}
+				
+				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDexterityBoost() > 0) {
+					g.drawString("Dexterity Boost:", 652, 943);
+					String dexterityBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDexterityBoost());
+					g.drawString(dexterityBoost, 1098 - dexterityBoost.length() * 9, 943);
+				}
+				
+				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getWisdomBoost() > 0) {
+					g.drawString("Wisdom Boost:", 652, 943);
+					String wisdomBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getWisdomBoost());
+					g.drawString(wisdomBoost, 1098 - wisdomBoost.length() * 9, 943);
+				}
 
 				g.drawString("Value in Gold:", 652, 963);
 				String value = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getValue());

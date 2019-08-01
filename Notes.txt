@@ -4,8 +4,7 @@
 
 .)Maybe make player have his weapon out while walking
 
-.)Implement HP and Mana Regeneration
-
+.)Bug that consuming item deletes more items too
 
 Alchemy:
 

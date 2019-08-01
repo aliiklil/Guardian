@@ -90,6 +90,16 @@ public class ItemType {
 	private int healthBoost = 0;
 	private int manaBoost = 0;
 	
+	
+	//Only needed for special permanent potions
+	private int maxHealthBoost = 0;
+	private int maxManaBoost = 0;
+	
+	private int strengthBoost = 0;
+	private int dexterityBoost = 0;
+	private int wisdomBoost = 0;
+	
+	
 	//Only needed for weapons
 	private CollisionBox attackUpCollisionBox;
 	private CollisionBox attackDownCollisionBox;
@@ -108,7 +118,7 @@ public class ItemType {
 	private int attackRightOffsetX;
 	private int attackRightOffsetY;
 	
-	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath, int minStrength, int minDexterity, int minMagicKnowledge, int damage, int protection, int manaCost, int healthBoost, int manaBoost) throws SlickException {
+	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath, int minStrength, int minDexterity, int minWisdom, int damage, int protection, int manaCost, int healthBoost, int manaBoost, int maxHealthBoost, int maxManaBoost, int strengthBoost, int dexterityBoost, int wisdomBoost) throws SlickException {
 		
 		mapAnimation = new Animation(new SpriteSheet(itemImagePath, spriteWidth, spriteHeight), duration);
 		inventoryAnimation = new Animation(new SpriteSheet(new Image(itemImagePath).getScaledCopy(2), spriteWidth * 2, spriteHeight * 2), duration);
@@ -200,6 +210,13 @@ public class ItemType {
 		
 		this.healthBoost = healthBoost;
 		this.manaBoost = manaBoost;
+		
+		this.maxHealthBoost = maxHealthBoost;
+		this.maxManaBoost = maxManaBoost;
+		
+		this.strengthBoost = strengthBoost;
+		this.dexterityBoost = dexterityBoost;
+		this.wisdomBoost = wisdomBoost;
 		
 	}
 	
@@ -507,6 +524,45 @@ public class ItemType {
 		this.attackRightOffsetY = attackRightOffsetY;
 	}
 	
-	
+	public int getMaxHealthBoost() {
+		return maxHealthBoost;
+	}
+
+	public void setMaxHealthBoost(int maxHealthBoost) {
+		this.maxHealthBoost = maxHealthBoost;
+	}
+
+	public int getMaxManaBoost() {
+		return maxManaBoost;
+	}
+
+	public void setMaxManaBoost(int maxManaBoost) {
+		this.maxManaBoost = maxManaBoost;
+	}
+
+	public int getStrengthBoost() {
+		return strengthBoost;
+	}
+
+	public void setStrengthBoost(int strengthBoost) {
+		this.strengthBoost = strengthBoost;
+	}
+
+	public int getDexterityBoost() {
+		return dexterityBoost;
+	}
+
+	public void setDexterityBoost(int dexterityBoost) {
+		this.dexterityBoost = dexterityBoost;
+	}
+
+	public int getWisdomBoost() {
+		return wisdomBoost;
+	}
+
+	public void setWisdomBoost(int wisdomBoost) {
+		this.wisdomBoost = wisdomBoost;
+	}
+
 	
 }
