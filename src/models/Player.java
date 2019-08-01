@@ -109,10 +109,13 @@ public class Player extends Character {
 	private boolean takeTrophies = false;
 	private boolean hpRegeneration = false;
 	private boolean manaRegeneration = false;
-	
+	private int regenerationCounter = 0; //Needed otherwise regeneration of hp an mana is too 
+
 	private int armorProtection;
 	
 	private Bar manaBar;
+	
+	
 	
 	public Player() throws SlickException {
 
@@ -133,7 +136,8 @@ public class Player extends Character {
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
 
 		npcList = CharacterManager.getNpcList();
-
+		getHealthBar().setCurrentValue(5);
+		getManaBar().setCurrentValue(5);
 	}
 
 	public void update() throws SlickException {
@@ -246,8 +250,18 @@ public class Player extends Character {
 		
 		computeArmorProtection();
 		
+		regenerationCounter++;
 		
-
+		if(regenerationCounter >= 10) {
+			if(hpRegeneration) {
+				getHealthBar().setCurrentValue(getHealthBar().getCurrentValue() + 1);
+			}
+			if(manaRegeneration) {
+				getManaBar().setCurrentValue(getManaBar().getCurrentValue() + 1);
+			}
+			regenerationCounter = 0;
+		}
+		
 	}
 
 	public void render(Graphics g) {
