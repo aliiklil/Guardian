@@ -292,6 +292,28 @@ public class InventoryWindow {
 					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 					
 				}
+				
+				
+				if(selectedItem.getItemType().getName().equals("Wolfnettel")) {
+
+					player.setSpeedBoostTimeStamp(System.currentTimeMillis());
+					
+					player.setMovementSpeed(player.getDefaultMovementSpeed() + 1);
+					player.setDiagonalMovementSpeed(player.getDefaultDiagonalMovementSpeed() + 0.5f);
+					
+					removeSelectedItem();
+					
+					String text = "Speed bonus for 10 seconds";
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+				}
+				
+
+				if(selectedItem.getItemType().getName().equals("Goldtruffle")) {
+
+					removeSelectedItem();
+										
+				}
 	
 			}
 			

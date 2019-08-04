@@ -354,8 +354,10 @@ public class ItemTypeManager {
 		godnettel.setWisdomBoost(1);
 		
 		goldtruffle = new ItemType(1, "resources/items/13plants/goldtruffle.png", "Goldtruffle", 300, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
-		wolfnettel = new ItemType(1, "resources/items/13plants/wolfnettel.png", "Wolfnettel", 100, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+
 		
+		wolfnettel = new ItemType(1, "resources/items/13plants/wolfnettel.png", "Wolfnettel", 100, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+
 		
 		
 		healberry = new ItemType(1, "resources/items/13plants/healberry.png", "Healberry", 10, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
