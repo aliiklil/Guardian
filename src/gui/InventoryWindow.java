@@ -296,7 +296,7 @@ public class InventoryWindow {
 				
 				if(selectedItem.getItemType().getName().equals("Wolfnettel")) {
 
-					player.setSpeedBoostTimeStamp(System.currentTimeMillis());
+					player.setSpeedBoostTimeStamp(System.currentTimeMillis() - 50*1000); // So it stops after 10 seconds, not after 60 seconds
 					
 					player.setMovementSpeed(player.getDefaultMovementSpeed() + 1);
 					player.setDiagonalMovementSpeed(player.getDefaultDiagonalMovementSpeed() + 0.5f);
