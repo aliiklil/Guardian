@@ -3,5 +3,3 @@
 .)Add black armor (black knight) and skeleton armor
 
 .)Maybe make player have his weapon out while walking
-
-.)Bug that consuming item deletes more items too
