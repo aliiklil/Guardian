@@ -118,7 +118,7 @@ public class ItemType {
 	private int attackRightOffsetX;
 	private int attackRightOffsetY;
 	
-	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath, int minStrength, int minDexterity, int minWisdom, int damage, int protection, int manaCost, int healthBoost, int manaBoost, int maxHealthBoost, int maxManaBoost, int strengthBoost, int dexterityBoost, int wisdomBoost) throws SlickException {
+	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath) throws SlickException {
 		
 		mapAnimation = new Animation(new SpriteSheet(itemImagePath, spriteWidth, spriteHeight), duration);
 		inventoryAnimation = new Animation(new SpriteSheet(new Image(itemImagePath).getScaledCopy(2), spriteWidth * 2, spriteHeight * 2), duration);
@@ -564,5 +564,36 @@ public class ItemType {
 		this.wisdomBoost = wisdomBoost;
 	}
 
-	
+	public void setMinStrength(int minStrength) {
+		this.minStrength = minStrength;
+	}
+
+	public void setMinDexterity(int minDexterity) {
+		this.minDexterity = minDexterity;
+	}
+
+	public void setMinWisdom(int minWisdom) {
+		this.minWisdom = minWisdom;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
+	public void setProtection(int protection) {
+		this.protection = protection;
+	}
+
+	public void setManaCost(int manaCost) {
+		this.manaCost = manaCost;
+	}
+
+	public void setHealthBoost(int healthBoost) {
+		this.healthBoost = healthBoost;
+	}
+
+	public void setManaBoost(int manaBoost) {
+		this.manaBoost = manaBoost;
+	}
+
 }

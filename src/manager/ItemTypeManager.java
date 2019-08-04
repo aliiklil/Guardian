@@ -7,124 +7,454 @@ import util.CollisionBox;
 
 public class ItemTypeManager {
 
-	public ItemType stick = new ItemType(1, "resources/items/1melee/stick.png", "Stick", 20, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/stick.png", 10, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType dagger = new ItemType(1, "resources/items/1melee/dagger.png", "Dagger", 50, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/dagger.png", 20, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mace = new ItemType(1, "resources/items/1melee/mace.png", "Mace", 100, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mace.png", 30, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType ironsword = new ItemType(1, "resources/items/1melee/ironsword.png", "Iron Sword", 300, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/ironsword.png", 40, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldensword = new ItemType(1, "resources/items/1melee/goldensword.png", "Golden Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/goldensword.png", 50, 0, 0, 90, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilsword = new ItemType(1, "resources/items/1melee/mithrilsword.png", "Mithril Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mithrilsword.png", 60, 0, 0, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType blacksword = new ItemType(1, "resources/items/1melee/blacksword.png", "Black Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/blacksword.png", 75, 0, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType stick;
+	public ItemType dagger;
+	public ItemType mace;
+	public ItemType ironsword;
+	public ItemType goldensword;
+	public ItemType mithrilsword;
+	public ItemType blacksword;
 
-	public ItemType sabre = new ItemType(1, "resources/items/1melee/sabre.png", "Sabre", 200, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/sabre.png", 0, 20, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType rapier = new ItemType(1, "resources/items/1melee/rapier.png", "Rapier", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/rapier.png", 0, 40, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilrapier = new ItemType(1, "resources/items/1melee/mithrilrapier.png", "Mithril Rapier", 500, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mithrilrapier.png", 0, 50, 0, 75, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType sabre;
+	public ItemType rapier;
+	public ItemType mithrilrapier;
 	
-	public ItemType shortspear = new ItemType(1, "resources/items/1melee/shortspear.png", "Short Spear", 50, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/shortspear.png", 10, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType longspear = new ItemType(1, "resources/items/1melee/longspear.png", "Longspear", 200, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/longspear.png", 20, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilspear = new ItemType(1, "resources/items/1melee/mithrilspear.png", "Mithril Spear", 400, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/mithrilspear.png", 30, 0, 0, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldenspear = new ItemType(1, "resources/items/1melee/goldenspear.png", "Golden Spear", 550, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/goldenspear.png", 40, 0, 0, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType shortspear;
+	public ItemType longspear;
+	public ItemType mithrilspear;
+	public ItemType goldenspear;
 
-	public ItemType bow = new ItemType(1, "resources/items/2bows/bow.png", "Bow", 50, 2, true, "bow", "resources/player_sprites/weapons/bows/bow.png", 0, 10, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType longbow = new ItemType(1, "resources/items/2bows/longbow.png", "Long Bow", 200, 2, true, "bow", "resources/player_sprites/weapons/bows/longbow.png", 0, 20, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType recurvedbow = new ItemType(1, "resources/items/2bows/recurvedbow.png", "Recurved Bow", 400, 2, true, "bow", "resources/player_sprites/weapons/bows/recurvedbow.png", 0, 30, 0, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType bow;
+	public ItemType longbow;
+	public ItemType recurvedbow;
 
-	public ItemType arrow = new ItemType(1, "resources/items/3arrows/arrow.png", "Arrow", 10, 3, false, "arrow", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType arrow;
 
-	public ItemType firespell = new ItemType(1, "resources/items/4spells/firespell.png", "Fire Spell", 150, 4, true, "spell", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 10, 25, 0, 5, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType icespell = new ItemType(1, "resources/items/4spells/icespell.png", "Ice Spell", 200, 4, true, "spell", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 20, 45, 0, 20, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType firespell;
+	public ItemType icespell;
 
-	public ItemType clothhood = new ItemType(1, "resources/items/5helmets/clothhood.png", "Cloth Hood", 20, 5, true, "head", "resources/player_sprites/head/clothhood.png", 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType leathercap = new ItemType(1, "resources/items/5helmets/leathercap.png", "Leather Cap", 50, 5, true, "head", "resources/player_sprites/head/leathercap.png", 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType chainhat = new ItemType(1, "resources/items/5helmets/chainhat.png", "Chain Hat", 100, 5, true, "head", "resources/player_sprites/head/chainhat.png", 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType chainhelmet = new ItemType(1, "resources/items/5helmets/chainhelmet.png", "Chain Helmet", 150, 5, true, "head", "resources/player_sprites/head/chainhelmet.png", 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType ironhelmet = new ItemType(1, "resources/items/5helmets/ironhelmet.png", "Iron Helmet", 200, 5, true, "head", "resources/player_sprites/head/ironhelmet.png", 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldenhelmet = new ItemType(1, "resources/items/5helmets/goldenhelmet.png", "Gold Helmet", 300, 5, true, "head", "resources/player_sprites/head/goldenhelmet.png", 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilhelmet = new ItemType(1, "resources/items/5helmets/mithrilhelmet.png", "Mithril Helmet", 500, 5, true, "head", "resources/player_sprites/head/mithrilhelmet.png", 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType clothhood;
+	public ItemType leathercap;
+	public ItemType chainhat;
+	public ItemType chainhelmet;
+	public ItemType ironhelmet;
+	public ItemType goldenhelmet;
+	public ItemType mithrilhelmet;
 
-	public ItemType shirt = new ItemType(1, "resources/items/6torso/shirt.png", "Shirt", 10, 6, true, "chest", "resources/player_sprites/chest/shirt.png", 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType leatherchest = new ItemType(1, "resources/items/6torso/leatherchest.png", "Leather Chest", 300, 6, true, "chest", "resources/player_sprites/chest/leatherchest.png", 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType chainchest = new ItemType(1, "resources/items/6torso/chainchest.png", "Chain Chest", 500, 6, true, "chest", "resources/player_sprites/chest/chainchest.png", 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType ironchest = new ItemType(1, "resources/items/6torso/ironchest.png", "Iron Chest", 700, 6, true, "chest", "resources/player_sprites/chest/ironchest.png", 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldenchest = new ItemType(1, "resources/items/6torso/goldenchest.png", "Golden Chest", 1400, 6, true, "chest", "resources/player_sprites/chest/goldenchest.png", 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilchest = new ItemType(1, "resources/items/6torso/mithrilchest.png", "Mithril Chest", 2500, 6, true, "chest", "resources/player_sprites/chest/mithrilchest.png", 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType shirt;
+	public ItemType leatherchest;
+	public ItemType chainchest;
+	public ItemType ironchest;
+	public ItemType goldenchest;
+	public ItemType mithrilchest;
 
-	public ItemType irongloves = new ItemType(1, "resources/items/7hands/irongloves.png", "Iron Gloves", 600, 7, true, "hands", "resources/player_sprites/hands/irongloves.png", 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldengloves = new ItemType(1, "resources/items/7hands/goldengloves.png", "Golden Gloves", 900, 7, true, "hands", "resources/player_sprites/hands/goldengloves.png", 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilgloves = new ItemType(1, "resources/items/7hands/mithrilgloves.png", "Mithril Gloves", 1600, 7, true, "hands", "resources/player_sprites/hands/mithrilgloves.png", 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType irongloves;
+	public ItemType goldengloves;
+	public ItemType mithrilgloves;
 
-	public ItemType skirt = new ItemType(1, "resources/items/8legarmor/skirt.png", "Skirt", 100, 8, true, "legs", "resources/player_sprites/legs/skirt.png", 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType irongreaves = new ItemType(1, "resources/items/8legarmor/ironlegarmor.png", "Iron Greaves", 300, 8, true, "legs", "resources/player_sprites/legs/irongreaves.png", 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldengreaves = new ItemType(1, "resources/items/8legarmor/goldenlegarmor.png", "Golden Greaves", 1200, 8, true, "legs", "resources/player_sprites/legs/goldengreaves.png", 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilgreaves = new ItemType(1, "resources/items/8legarmor/mithrillegarmor.png", "Mithril Greaves", 2200, 8, true, "legs", "resources/player_sprites/legs/mithrilgreaves.png", 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType skirt;
+	public ItemType irongreaves;
+	public ItemType goldengreaves;
+	public ItemType mithrilgreaves;
 
-	public ItemType boots = new ItemType(1, "resources/items/9boots/boots.png", "Boots", 100, 9, true, "feet", "resources/player_sprites/feet/boots.png", 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType leatherboots = new ItemType(1, "resources/items/9boots/leatherboots.png", "Leather Boots", 200, 9, true, "feet", "resources/player_sprites/feet/leatherboots.png", 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType ironboots = new ItemType(1, "resources/items/9boots/ironboots.png", "Iron Boots", 500, 9, true, "feet", "resources/player_sprites/feet/ironboots.png", 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldenboots = new ItemType(1, "resources/items/9boots/goldenboots.png", "Golden Boots", 700, 9, true, "feet", "resources/player_sprites/feet/goldenboots.png", 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilboots = new ItemType(1, "resources/items/9boots/mithrilboots.png", "Mithril Boots", 1500, 9, true, "feet", "resources/player_sprites/feet/mithrilboots.png", 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType boots;
+	public ItemType leatherboots;
+	public ItemType ironboots;
+	public ItemType goldenboots;
+	public ItemType mithrilboots;
 
-	public ItemType smallHpPotion = new ItemType(1, "resources/items/10healing_potions/small_hp_potion.png", "Small HP Potion", 20, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0);
-	public ItemType mediumHpPotion = new ItemType(1, "resources/items/10healing_potions/medium_hp_potion.png", "Medium HP Potion", 30, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0);
-	public ItemType bigHpPotion = new ItemType(1, "resources/items/10healing_potions/big_hp_potion.png", "Big HP Potion", 40, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0);
+	public ItemType smallHpPotion;
+	public ItemType mediumHpPotion;
+	public ItemType bigHpPotion;
 
-	public ItemType smallManaPotion = new ItemType(1, "resources/items/11mana_potions/small_mana_potion.png", "Small Mana Potion", 20, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0);
-	public ItemType mediumManaPotion = new ItemType(1, "resources/items/11mana_potions/medium_mana_potion.png", "Medium Mana Potionn", 30, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0);
-	public ItemType bigManaPotion = new ItemType(1, "resources/items/11mana_potions/big_mana_potion.png", "Big Mana Potion", 40, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0);
+	public ItemType smallManaPotion;
+	public ItemType mediumManaPotion;
+	public ItemType bigManaPotion;
 
-	public ItemType maxHpBonusPotion = new ItemType(1, "resources/items/12special_potions/max_hp_bonus_potion.png", "Max HP Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0);
-	public ItemType maxManaBonusPotion = new ItemType(1, "resources/items/12special_potions/max_mana_bonus_potion.png", "Max Mana Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0);
-	public ItemType strengthPotion = new ItemType(1, "resources/items/12special_potions/strength_potion.png", "Strength Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0);
-	public ItemType dexterityPotion = new ItemType(1, "resources/items/12special_potions/dexterity_potion.png", "Dexterity Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0);
-	public ItemType wisdomPotion = new ItemType(1, "resources/items/12special_potions/wisdom_potion.png", "Wisdom Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5);
-	public ItemType speedPotion = new ItemType(1, "resources/items/12special_potions/speed_potion.png", "Speed Potion", 200, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType maxHpBonusPotion;
+	public ItemType maxManaBonusPotion;
+	public ItemType strengthPotion;
+	public ItemType dexterityPotion;
+	public ItemType wisdomPotion;
+	public ItemType speedPotion;
+
+	public ItemType dragonroot;
+	public ItemType goblinweed;
+	public ItemType godnettel;
+	public ItemType goldtruffle;
+	public ItemType wolfnettel;
 	
+	public ItemType healberry;
+	public ItemType healplant;
+	public ItemType healroot;
 	
-	public ItemType dragonroot = new ItemType(1, "resources/items/13plants/dragonroot.png", "Dragonroot", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goblinweed = new ItemType(1, "resources/items/13plants/goblinweed.png", "Goblinweed", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType godnettel = new ItemType(1, "resources/items/13plants/godnettel.png", "Godnettel", 250, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldtruffle = new ItemType(1, "resources/items/13plants/goldtruffle.png", "Goldtruffle", 300, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType wolfnettel = new ItemType(1, "resources/items/13plants/wolfnettel.png", "Wolfnettel", 100, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType manaberry;
+	public ItemType manaplant;
+	public ItemType manaroot;
 	
-	public ItemType healberry = new ItemType(1, "resources/items/13plants/healberry.png", "Healberry", 10, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType healplant = new ItemType(1, "resources/items/13plants/healplant.png", "Healplant", 15, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType healroot = new ItemType(1, "resources/items/13plants/healroot.png", "Healroot", 20, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType bread;
+	public ItemType carrot;
+	public ItemType rawChicken;
+	public ItemType cookedChicken;
+	public ItemType rawFish;
+	public ItemType cookedFish;
+	public ItemType rawMeat;
+	public ItemType cookedMeat;
+	public ItemType rawPork;
+	public ItemType cookedPork;
+	public ItemType wheat;
+	public ItemType apple;
 	
-	public ItemType manaberry = new ItemType(1, "resources/items/13plants/manaberry.png", "Manaberry", 25, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType manaplant = new ItemType(1, "resources/items/13plants/manaplant.png", "Manaplant", 30, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType manaroot = new ItemType(1, "resources/items/13plants/manaroot.png", "Manaroot", 35, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	
-	
-	public ItemType bread = new ItemType(1, "resources/items/14food/bread.png", "Bread", 20, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0);
-	public ItemType carrot = new ItemType(1, "resources/items/14food/carrot.png", "Carrot", 6, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0);
-	public ItemType rawChicken = new ItemType(1, "resources/items/14food/raw_chicken.png", "Raw Chicken", 33, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0);
-	public ItemType cookedChicken = new ItemType(1, "resources/items/14food/cooked_chicken.png", "Cooked Chicken", 33, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0);
-	public ItemType rawFish = new ItemType(1, "resources/items/14food/raw_fish.png", "Raw Fish", 26, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0);
-	public ItemType cookedFish = new ItemType(1, "resources/items/14food/cooked_fish.png", "Cooked Fish", 26, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0);
-	public ItemType rawMeat = new ItemType(1, "resources/items/14food/raw_meat.png", "Raw Meat", 38, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0);
-	public ItemType cookedMeat = new ItemType(1, "resources/items/14food/cooked_meat.png", "Cooked Meat", 38, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0);
-	public ItemType rawPork = new ItemType(1, "resources/items/14food/raw_pork.png", "Raw Pork", 29, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0);
-	public ItemType cookedPork = new ItemType(1, "resources/items/14food/cooked_pork.png", "Cooked Pork", 29, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0);
-	public ItemType wheat = new ItemType(1, "resources/items/14food/wheat.png", "Wheat", 4, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0);
-	public ItemType apple = new ItemType(1, "resources/items/14food/apple.png", "Apple", 5, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0);
-	
-	public ItemType bone = new ItemType(1, "resources/items/15misc/bone.png", "Bone", 3, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType ironBar = new ItemType(1, "resources/items/15misc/iron_bar.png", "Iron Bar", 160, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldenBar = new ItemType(1, "resources/items/15misc/gold_bar.png", "Golden Bar", 250, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mithrilBar = new ItemType(1, "resources/items/15misc/mithril_bar.png", "Mithril Bar", 350, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType feather = new ItemType(1, "resources/items/15misc/feather.png", "Feather", 3, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType treasureChest = new ItemType(1, "resources/items/15misc/treasure_chest.png", "Treasure Chest", 320, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType goldCrown = new ItemType(1, "resources/items/15misc/gold_crown.png", "Gold Crown", 280, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType treasure = new ItemType(1, "resources/items/15misc/treasure.png", "Treasure", 280, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType multipleSticks = new ItemType(1, "resources/items/15misc/multiple_sticks.png", "Multiple Sticks", 5, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType trophy = new ItemType(1, "resources/items/15misc/trophy.png", "Trophy", 250, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType bone;
+	public ItemType ironBar;
+	public ItemType goldenBar;
+	public ItemType mithrilBar;
+	public ItemType feather;
+	public ItemType treasureChest;
+	public ItemType goldCrown;
+	public ItemType treasure;
+	public ItemType multipleSticks;
+	public ItemType trophy;
 
-	public ItemType smallBottle = new ItemType(1, "resources/items/15misc/small_bottle.png", "Small Bottle", 10, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType mediumBottle = new ItemType(1, "resources/items/15misc/medium_Bottle.png", "Medium Bottle", 20, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	public ItemType bigBottle = new ItemType(1, "resources/items/15misc/big_Bottle.png", "Big Bottle", 30, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType smallBottle;
+	public ItemType mediumBottle;
+	public ItemType bigBottle;
 	
-	public ItemType gold = new ItemType(100, "resources/items/16gold/goldcoin.png", "Gold", 1, 16, false, "gold", "resources/player_sprites/empty_sprite_sheet.png", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	public ItemType gold;
+
 
 	public ItemTypeManager() throws SlickException {
+		
+		
+		stick = new ItemType(1, "resources/items/1melee/stick.png", "Stick", 20, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/stick.png");
+		stick.setMinStrength(10);
+		stick.setDamage(15);
+		
+		dagger = new ItemType(1, "resources/items/1melee/dagger.png", "Dagger", 50, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/dagger.png");
+		dagger.setMinStrength(20);
+		dagger.setDamage(25);
+		
+		mace = new ItemType(1, "resources/items/1melee/mace.png", "Mace", 100, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mace.png");
+		mace.setMinStrength(30);
+		mace.setDamage(35);
+		
+		
+		ironsword = new ItemType(1, "resources/items/1melee/ironsword.png", "Iron Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/goldensword.png");
+		ironsword.setMinStrength(30);
+		ironsword.setDamage(50);
+		
+		goldensword = new ItemType(1, "resources/items/1melee/goldensword.png", "Golden Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/goldensword.png");
+		goldensword.setMinStrength(50);
+		goldensword.setDamage(90);
+		
+		mithrilsword = new ItemType(1, "resources/items/1melee/mithrilsword.png", "Mithril Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mithrilsword.png");
+		mithrilsword.setMinStrength(60);
+		mithrilsword.setDamage(110);
+		
+		blacksword = new ItemType(1, "resources/items/1melee/blacksword.png", "Black Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/blacksword.png");
+		blacksword.setMinStrength(75);
+		blacksword.setDamage(140);
+
+		
+		
+		sabre = new ItemType(1, "resources/items/1melee/sabre.png", "Sabre", 200, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/sabre.png");
+		sabre.setMinDexterity(20);
+		sabre.setDamage(35);
+		
+		rapier = new ItemType(1, "resources/items/1melee/rapier.png", "Rapier", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/rapier.png");
+		rapier.setMinDexterity(40);
+		rapier.setDamage(55);
+		
+		mithrilrapier = new ItemType(1, "resources/items/1melee/mithrilrapier.png", "Mithril Rapier", 500, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/mithrilrapier.png");
+		mithrilrapier.setMinDexterity(50);
+		mithrilrapier.setDamage(75);
+		
+		
+		shortspear = new ItemType(1, "resources/items/1melee/shortspear.png", "Short Spear", 50, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/shortspear.png");
+		shortspear.setMinStrength(10);
+		shortspear.setDamage(25);
+		
+		longspear = new ItemType(1, "resources/items/1melee/longspear.png", "Longspear", 200, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/longspear.png");
+		longspear.setMinStrength(20);
+		longspear.setDamage(35);
+		
+		mithrilspear = new ItemType(1, "resources/items/1melee/mithrilspear.png", "Mithril Spear", 400, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/mithrilspear.png");
+		mithrilspear.setMinStrength(30);
+		mithrilspear.setDamage(65);
+		
+		goldenspear = new ItemType(1, "resources/items/1melee/goldenspear.png", "Golden Spear", 550, 1, true, "melee_thrust", "resources/player_sprites/weapons/melee_thrust/goldenspear.png");
+		goldenspear.setMinStrength(40);
+		goldenspear.setDamage(85);
+		
+
+		bow = new ItemType(1, "resources/items/2bows/bow.png", "Bow", 50, 2, true, "bow", "resources/player_sprites/weapons/bows/bow.png");
+		bow.setMinDexterity(10);
+		bow.setDamage(25);
+		
+		longbow = new ItemType(1, "resources/items/2bows/longbow.png", "Long Bow", 200, 2, true, "bow", "resources/player_sprites/weapons/bows/longbow.png");
+		longbow.setMinDexterity(20);
+		longbow.setDamage(35);
+		
+		recurvedbow = new ItemType(1, "resources/items/2bows/recurvedbow.png", "Recurved Bow", 400, 2, true, "bow", "resources/player_sprites/weapons/bows/recurvedbow.png");
+		recurvedbow.setMinDexterity(30);
+		recurvedbow.setDamage(65);
+		
+
+		
+		arrow = new ItemType(1, "resources/items/3arrows/arrow.png", "Arrow", 10, 3, false, "arrow", "resources/player_sprites/empty_sprite_sheet.png");
+
+		
+		
+		firespell = new ItemType(1, "resources/items/4spells/firespell.png", "Fire Spell", 150, 4, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		firespell.setMinWisdom(10);
+		firespell.setDamage(25);
+		firespell.setManaCost(5);
+		
+		
+		
+		icespell = new ItemType(1, "resources/items/4spells/icespell.png", "Ice Spell", 200, 4, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		icespell.setMinWisdom(20);
+		icespell.setDamage(45);
+		icespell.setManaCost(20);
+
+		
+		
+		clothhood = new ItemType(1, "resources/items/5helmets/clothhood.png", "Cloth Hood", 20, 5, true, "head", "resources/player_sprites/head/clothhood.png");
+		clothhood.setProtection(2);
+		
+		leathercap = new ItemType(1, "resources/items/5helmets/leathercap.png", "Leather Cap", 50, 5, true, "head", "resources/player_sprites/head/leathercap.png");
+		leathercap.setProtection(4);
+		
+		chainhat = new ItemType(1, "resources/items/5helmets/chainhat.png", "Chain Hat", 100, 5, true, "head", "resources/player_sprites/head/chainhat.png");
+		chainhat.setProtection(6);
+		
+		chainhelmet = new ItemType(1, "resources/items/5helmets/chainhelmet.png", "Chain Helmet", 150, 5, true, "head", "resources/player_sprites/head/chainhelmet.png");
+		chainhelmet.setProtection(8);
+		
+		ironhelmet = new ItemType(1, "resources/items/5helmets/ironhelmet.png", "Iron Helmet", 200, 5, true, "head", "resources/player_sprites/head/ironhelmet.png");
+		ironhelmet.setProtection(10);
+		
+		goldenhelmet = new ItemType(1, "resources/items/5helmets/goldenhelmet.png", "Gold Helmet", 300, 5, true, "head", "resources/player_sprites/head/goldenhelmet.png");
+		goldenhelmet.setProtection(12);
+		
+		mithrilhelmet = new ItemType(1, "resources/items/5helmets/mithrilhelmet.png", "Mithril Helmet", 500, 5, true, "head", "resources/player_sprites/head/mithrilhelmet.png");
+		mithrilhelmet.setProtection(16);
+
+		
+		
+		shirt = new ItemType(1, "resources/items/6torso/shirt.png", "Shirt", 10, 6, true, "chest", "resources/player_sprites/chest/shirt.png");
+		shirt.setProtection(3);
+		
+		leatherchest = new ItemType(1, "resources/items/6torso/leatherchest.png", "Leather Chest", 300, 6, true, "chest", "resources/player_sprites/chest/leatherchest.png");
+		leatherchest.setProtection(6);
+		
+		chainchest = new ItemType(1, "resources/items/6torso/chainchest.png", "Chain Chest", 500, 6, true, "chest", "resources/player_sprites/chest/chainchest.png");
+		chainchest.setProtection(9);
+		
+		ironchest = new ItemType(1, "resources/items/6torso/ironchest.png", "Iron Chest", 700, 6, true, "chest", "resources/player_sprites/chest/ironchest.png");
+		ironchest.setProtection(12);
+		
+		goldenchest = new ItemType(1, "resources/items/6torso/goldenchest.png", "Golden Chest", 1400, 6, true, "chest", "resources/player_sprites/chest/goldenchest.png");
+		goldenchest.setProtection(15);
+		
+		mithrilchest = new ItemType(1, "resources/items/6torso/mithrilchest.png", "Mithril Chest", 2500, 6, true, "chest", "resources/player_sprites/chest/mithrilchest.png");
+		mithrilchest.setProtection(18);
+		
+
+		
+		irongloves = new ItemType(1, "resources/items/7hands/irongloves.png", "Iron Gloves", 600, 7, true, "hands", "resources/player_sprites/hands/irongloves.png");
+		irongloves.setProtection(2);
+		
+		goldengloves = new ItemType(1, "resources/items/7hands/goldengloves.png", "Golden Gloves", 900, 7, true, "hands", "resources/player_sprites/hands/goldengloves.png");
+		goldengloves.setProtection(4);
+		
+		mithrilgloves = new ItemType(1, "resources/items/7hands/mithrilgloves.png", "Mithril Gloves", 1600, 7, true, "hands", "resources/player_sprites/hands/mithrilgloves.png");
+		mithrilgloves.setProtection(8);
+		
+		
+
+		skirt = new ItemType(1, "resources/items/8legarmor/skirt.png", "Skirt", 100, 8, true, "legs", "resources/player_sprites/legs/skirt.png");
+		skirt.setProtection(3);
+		
+		irongreaves = new ItemType(1, "resources/items/8legarmor/ironlegarmor.png", "Iron Greaves", 300, 8, true, "legs", "resources/player_sprites/legs/irongreaves.png");
+		irongreaves.setProtection(6);
+		
+		goldengreaves = new ItemType(1, "resources/items/8legarmor/goldenlegarmor.png", "Golden Greaves", 1200, 8, true, "legs", "resources/player_sprites/legs/goldengreaves.png");
+		goldengreaves.setProtection(9);
+		
+		mithrilgreaves = new ItemType(1, "resources/items/8legarmor/mithrillegarmor.png", "Mithril Greaves", 2200, 8, true, "legs", "resources/player_sprites/legs/mithrilgreaves.png");
+		mithrilgreaves.setProtection(15);
+		
+		
+
+		boots = new ItemType(1, "resources/items/9boots/boots.png", "Boots", 100, 9, true, "feet", "resources/player_sprites/feet/boots.png");
+		boots.setProtection(2);
+		
+		leatherboots = new ItemType(1, "resources/items/9boots/leatherboots.png", "Leather Boots", 200, 9, true, "feet", "resources/player_sprites/feet/leatherboots.png");
+		leatherboots.setProtection(4);
+		
+		ironboots = new ItemType(1, "resources/items/9boots/ironboots.png", "Iron Boots", 500, 9, true, "feet", "resources/player_sprites/feet/ironboots.png");
+		ironboots.setProtection(6);
+		
+		goldenboots = new ItemType(1, "resources/items/9boots/goldenboots.png", "Golden Boots", 700, 9, true, "feet", "resources/player_sprites/feet/goldenboots.png");
+		goldenboots.setProtection(8);
+		
+		mithrilboots = new ItemType(1, "resources/items/9boots/mithrilboots.png", "Mithril Boots", 1500, 9, true, "feet", "resources/player_sprites/feet/mithrilboots.png");
+		mithrilboots.setProtection(12);
+		
+
+		smallHpPotion = new ItemType(1, "resources/items/10healing_potions/small_hp_potion.png", "Small HP Potion", 20, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
+		smallHpPotion.setHealthBoost(25);
+		
+		mediumHpPotion = new ItemType(1, "resources/items/10healing_potions/medium_hp_potion.png", "Medium HP Potion", 30, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
+		mediumHpPotion.setHealthBoost(100);
+		
+		bigHpPotion = new ItemType(1, "resources/items/10healing_potions/big_hp_potion.png", "Big HP Potion", 40, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
+		bigHpPotion.setHealthBoost(200);
+		
+
+		
+		smallManaPotion = new ItemType(1, "resources/items/11mana_potions/small_mana_potion.png", "Small Mana Potion", 20, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png");
+		smallManaPotion.setManaBoost(25);
+		
+		mediumManaPotion = new ItemType(1, "resources/items/11mana_potions/medium_mana_potion.png", "Medium Mana Potionn", 30, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png");
+		mediumManaPotion.setManaBoost(100);
+		
+		bigManaPotion = new ItemType(1, "resources/items/11mana_potions/big_mana_potion.png", "Big Mana Potion", 40, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png");
+		bigManaPotion.setManaBoost(200);
+		
+
+		
+		maxHpBonusPotion = new ItemType(1, "resources/items/12special_potions/max_hp_bonus_potion.png", "Max HP Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		maxHpBonusPotion.setMaxHealthBoost(10);
+		
+		maxManaBonusPotion = new ItemType(1, "resources/items/12special_potions/max_mana_bonus_potion.png", "Max Mana Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		maxManaBonusPotion.setMaxManaBoost(10);
+		
+		strengthPotion = new ItemType(1, "resources/items/12special_potions/strength_potion.png", "Strength Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		strengthPotion.setStrengthBoost(5);
+		
+		dexterityPotion = new ItemType(1, "resources/items/12special_potions/dexterity_potion.png", "Dexterity Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		dexterityPotion.setDexterityBoost(5);
+		
+		wisdomPotion = new ItemType(1, "resources/items/12special_potions/wisdom_potion.png", "Wisdom Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		wisdomPotion.setWisdomBoost(5);
+		
+		speedPotion = new ItemType(1, "resources/items/12special_potions/speed_potion.png", "Speed Potion", 200, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		
+		
+		
+		dragonroot = new ItemType(1, "resources/items/13plants/dragonroot.png", "Dragonroot", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		dragonroot.setStrengthBoost(1);
+		
+		goblinweed = new ItemType(1, "resources/items/13plants/goblinweed.png", "Goblinweed", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		goblinweed.setDexterityBoost(1);
+		
+		godnettel = new ItemType(1, "resources/items/13plants/godnettel.png", "Godnettel", 250, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		godnettel.setWisdomBoost(1);
+		
+		goldtruffle = new ItemType(1, "resources/items/13plants/goldtruffle.png", "Goldtruffle", 300, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		wolfnettel = new ItemType(1, "resources/items/13plants/wolfnettel.png", "Wolfnettel", 100, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		
+		
+		
+		healberry = new ItemType(1, "resources/items/13plants/healberry.png", "Healberry", 10, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		healberry.setHealthBoost(10);
+		
+		healplant = new ItemType(1, "resources/items/13plants/healplant.png", "Healplant", 15, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		healplant.setHealthBoost(20);
+		
+		healroot = new ItemType(1, "resources/items/13plants/healroot.png", "Healroot", 20, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		healroot.setHealthBoost(30);
+		
+		
+		
+		manaberry = new ItemType(1, "resources/items/13plants/manaberry.png", "Manaberry", 25, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		manaberry.setManaBoost(10);
+		
+		manaplant = new ItemType(1, "resources/items/13plants/manaplant.png", "Manaplant", 30, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		manaplant.setManaBoost(20);
+		
+		manaroot = new ItemType(1, "resources/items/13plants/manaroot.png", "Manaroot", 35, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		manaroot.setManaBoost(30);
+		
+		
+		
+		bread = new ItemType(1, "resources/items/14food/bread.png", "Bread", 20, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		bread.setHealthBoost(5);
+		
+		carrot = new ItemType(1, "resources/items/14food/carrot.png", "Carrot", 6, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		carrot.setHealthBoost(5);
+		
+		rawChicken = new ItemType(1, "resources/items/14food/raw_chicken.png", "Raw Chicken", 33, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		rawChicken.setHealthBoost(5);
+		
+		cookedChicken = new ItemType(1, "resources/items/14food/cooked_chicken.png", "Cooked Chicken", 33, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		cookedChicken.setHealthBoost(10);
+		
+		rawFish = new ItemType(1, "resources/items/14food/raw_fish.png", "Raw Fish", 26, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		rawFish.setHealthBoost(5);
+		
+		cookedFish = new ItemType(1, "resources/items/14food/cooked_fish.png", "Cooked Fish", 26, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		cookedFish.setHealthBoost(10);
+		
+		rawMeat = new ItemType(1, "resources/items/14food/raw_meat.png", "Raw Meat", 38, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		rawMeat.setHealthBoost(5);
+		
+		cookedMeat = new ItemType(1, "resources/items/14food/cooked_meat.png", "Cooked Meat", 38, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		cookedMeat.setHealthBoost(10);
+		
+		rawPork = new ItemType(1, "resources/items/14food/raw_pork.png", "Raw Pork", 29, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		rawPork.setHealthBoost(5);
+		
+		cookedPork = new ItemType(1, "resources/items/14food/cooked_pork.png", "Cooked Pork", 29, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		cookedPork.setHealthBoost(10);
+		
+		wheat = new ItemType(1, "resources/items/14food/wheat.png", "Wheat", 4, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		wheat.setHealthBoost(5);
+		
+		apple = new ItemType(1, "resources/items/14food/apple.png", "Apple", 5, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		apple.setHealthBoost(5);
+		
+		
+		
+		bone = new ItemType(1, "resources/items/15misc/bone.png", "Bone", 3, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		ironBar = new ItemType(1, "resources/items/15misc/iron_bar.png", "Iron Bar", 160, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		goldenBar = new ItemType(1, "resources/items/15misc/gold_bar.png", "Golden Bar", 250, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		mithrilBar = new ItemType(1, "resources/items/15misc/mithril_bar.png", "Mithril Bar", 350, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		feather = new ItemType(1, "resources/items/15misc/feather.png", "Feather", 3, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		treasureChest = new ItemType(1, "resources/items/15misc/treasure_chest.png", "Treasure Chest", 320, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		goldCrown = new ItemType(1, "resources/items/15misc/gold_crown.png", "Gold Crown", 280, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		treasure = new ItemType(1, "resources/items/15misc/treasure.png", "Treasure", 280, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		multipleSticks = new ItemType(1, "resources/items/15misc/multiple_sticks.png", "Multiple Sticks", 5, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		trophy = new ItemType(1, "resources/items/15misc/trophy.png", "Trophy", 250, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+
+		smallBottle = new ItemType(1, "resources/items/15misc/small_bottle.png", "Small Bottle", 10, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		mediumBottle = new ItemType(1, "resources/items/15misc/medium_Bottle.png", "Medium Bottle", 20, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		bigBottle = new ItemType(1, "resources/items/15misc/big_Bottle.png", "Big Bottle", 30, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		
+		gold = new ItemType(100, "resources/items/16gold/goldcoin.png", "Gold", 1, 16, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		stick.setAttackUpCollisionBox(new CollisionBox(0, 0, 80, 29));
 		stick.setAttackDownCollisionBox(new CollisionBox(0, 0, 80, 29));
