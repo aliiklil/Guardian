@@ -16,8 +16,12 @@ public abstract class Character {
 	private final int spriteSize = 64;
 	private final int overSizeSpriteSize = 192;
 
-	private float movementSpeed = 2f;
+	//The normal default speed
+	private final float defaultMovementSpeed = 2f;
+	private final float defaultDiagonalMovementSpeed = 1.5f;
 	
+	//Current speed of the character
+	private float movementSpeed = 2f;
 	private float diagonalMovementSpeed = 1.5f;
 	
 	private float relativeToMapX;
@@ -294,6 +298,14 @@ public abstract class Character {
 		return overSizeSpriteSize;
 	}
 	
+	public float getDefaultMovementSpeed() {
+		return defaultMovementSpeed;
+	}
+
+	public float getDefaultDiagonalMovementSpeed() {
+		return defaultDiagonalMovementSpeed;
+	}
+
 	public float getMovementSpeed() {
 		return movementSpeed;
 	}

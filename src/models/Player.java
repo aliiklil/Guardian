@@ -115,7 +115,7 @@ public class Player extends Character {
 	
 	private Bar manaBar;
 	
-	
+	private long speedBoostTimeStamp; //Time at which speed potion was drank 
 	
 	public Player() throws SlickException {
 
@@ -246,11 +246,10 @@ public class Player extends Character {
 		}
 		
 		
-		
 		computeArmorProtection();
 		
-		regenerationCounter++;
 		
+		regenerationCounter++;
 		if(regenerationCounter >= 10) {
 			if(hpRegeneration) {
 				getHealthBar().setCurrentValue(getHealthBar().getCurrentValue() + 1);
@@ -259,6 +258,13 @@ public class Player extends Character {
 				getManaBar().setCurrentValue(getManaBar().getCurrentValue() + 1);
 			}
 			regenerationCounter = 0;
+		}
+		
+		
+		
+		if((System.currentTimeMillis() - speedBoostTimeStamp)/1000 >= 60) {
+			setMovementSpeed(getDefaultMovementSpeed());
+			setDiagonalMovementSpeed(getDefaultDiagonalMovementSpeed());
 		}
 		
 	}
@@ -3053,6 +3059,14 @@ public class Player extends Character {
 
 	public void setBlacksmithingSkill(int blacksmithingSkill) {
 		this.blacksmithingSkill = blacksmithingSkill;
+	}
+
+	public long getSpeedBoostTimeStamp() {
+		return speedBoostTimeStamp;
+	}
+
+	public void setSpeedBoostTimeStamp(long speedBoostTimeStamp) {
+		this.speedBoostTimeStamp = speedBoostTimeStamp;
 	}
 	
 }

@@ -12,7 +12,7 @@ public class Bar {
 	
 	private int outlineThickness;
 	
-	private final int maxValue;
+	private int maxValue;
 	private int currentValue;
 	
 	private Color color;
@@ -66,6 +66,10 @@ public class Bar {
 
 	public void setY(float y) {
 		this.y = y;
+	}
+
+	public void setMaxValue(int maxValue) {
+		this.maxValue = maxValue;
 	}
 	
 }

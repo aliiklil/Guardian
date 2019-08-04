@@ -16,6 +16,7 @@ import manager.CharacterManager;
 import models.Item;
 import models.ItemType;
 import models.Player;
+import models.Character;
 
 public class InventoryWindow {
 
@@ -221,17 +222,73 @@ public class InventoryWindow {
 					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 					
 				}
-				
-				
-				
-				
-				//If player consumes item, which gives mana
-				if(selectedItem.getItemType().getManaBoost() > 0) {
 
-					player.getManaBar().setCurrentValue(player.getManaBar().getCurrentValue() + selectedItem.getItemType().getManaBoost());
+				//If player consumes item, which gives strength
+				if(selectedItem.getItemType().getStrengthBoost() > 0) {
+
+					player.setStrength(player.getStrength() + selectedItem.getItemType().getStrengthBoost());
 					removeSelectedItem();
 					
-					String text = "Mana Points + " + selectedItem.getItemType().getManaBoost();
+					String text = "Strength + " + selectedItem.getItemType().getStrengthBoost();
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+				}
+				
+				//If player consumes item, which gives dexterity
+				if(selectedItem.getItemType().getDexterityBoost() > 0) {
+
+					player.setDexterity(player.getDexterity() + selectedItem.getItemType().getDexterityBoost());
+					removeSelectedItem();
+					
+					String text = "Dexterity + " + selectedItem.getItemType().getDexterityBoost();
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+				}
+				
+				//If player consumes item, which gives wisdom
+				if(selectedItem.getItemType().getWisdomBoost() > 0) {
+
+					player.setWisdom(player.getWisdom() + selectedItem.getItemType().getWisdomBoost());
+					removeSelectedItem();
+					
+					String text = "Wisdom + " + selectedItem.getItemType().getWisdomBoost();
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+				}
+				
+				//If player consumes item, which gives max hp bonus
+				if(selectedItem.getItemType().getMaxHealthBoost() > 0) {
+
+					player.setHealthPoints(player.getHealthPoints() + selectedItem.getItemType().getMaxHealthBoost());
+					removeSelectedItem();
+					
+					String text = "Max. HP + " + selectedItem.getItemType().getMaxHealthBoost();
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+				}
+				
+				//If player consumes item, which gives max mana bonus
+				if(selectedItem.getItemType().getMaxManaBoost() > 0) {
+
+					player.setMana(player.getMana() + selectedItem.getItemType().getMaxManaBoost());
+					removeSelectedItem();
+					
+					String text = "Mana + " + selectedItem.getItemType().getMaxManaBoost();
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+				}
+				
+				//If player consumes item, which gives speed bonus
+				if(selectedItem.getItemType().getName().equals("Speed Potion")) {
+
+					player.setSpeedBoostTimeStamp(System.currentTimeMillis());
+					
+					player.setMovementSpeed(player.getDefaultMovementSpeed() + 1);
+					player.setDiagonalMovementSpeed(player.getDefaultDiagonalMovementSpeed() + 0.5f);
+					
+					removeSelectedItem();
+					
+					String text = "Speed bonus for 1 minute";
 					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 					
 				}
