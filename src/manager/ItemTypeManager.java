@@ -139,7 +139,7 @@ public class ItemTypeManager {
 		mace.setDamage(35);
 		
 		
-		ironsword = new ItemType(1, "resources/items/1melee/ironsword.png", "Iron Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/goldensword.png");
+		ironsword = new ItemType(1, "resources/items/1melee/ironsword.png", "Iron Sword", 400, 1, true, "melee_slay", "resources/player_sprites/weapons/melee_slay/ironsword.png");
 		ironsword.setMinStrength(30);
 		ironsword.setDamage(50);
 		
