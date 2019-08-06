@@ -1,7 +1,7 @@
+.)When player dies, melee weapon should still be drawn
+
 .)Implement quest system
 
 .)Add black armor (black knight) and skeleton armor
-
-.)Maybe make player have his weapon out while walking
 
 .)Implement spells
