@@ -28,6 +28,9 @@ Freeze Rune:
 AoE Freeze Rune:
 .)Ice Wave
 
+Steal Life Rune:
+.)Steal Life
+
 Transform runes:
 .)Transform into Wolf
 .)Transform into Skeleton
