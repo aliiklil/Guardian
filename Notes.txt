@@ -1,7 +1,6 @@
-.)When player dies, melee weapon should still be drawn
-
 .)Implement quest system
 
 .)Add black armor (black knight) and skeleton armor
 
 .)Implement spells
+--)
