@@ -3,4 +3,32 @@
 .)Add black armor (black knight) and skeleton armor
 
 .)Implement spells
---)
+
+Heal runes:
+.)Heal Light Wounds
+.)Heal Medium Wounds
+.)Heal Heavy Wounds
+
+Bullet runes:
+.)Lightning
+.)Fireball
+.)Ice Lance
+
+Summon runes:
+.)Summon Wolf
+.)Summon Skeleton
+.)Summon Orc Warrior
+
+AoE Runes:
+.)Firerain
+
+Freeze Rune:
+.)Iceblock
+
+AoE Freeze Rune:
+.)Ice Wave
+
+Transform runes:
+.)Transform into Wolf
+.)Transform into Skeleton
+.)Transform into Orc Warrior
