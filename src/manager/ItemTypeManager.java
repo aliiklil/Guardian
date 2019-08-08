@@ -300,6 +300,7 @@ public class ItemTypeManager {
 		
 		lightningSpell = new ItemType(1, "resources/items/8bulletspells/lightningSpell.png", "Lightning", 20, 8, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		lightningSpell.setManaCost(5);
+		lightningSpell.setDamage(20);
 		
 		iceblockSpell = new ItemType(1, "resources/items/9otherspells/iceblockSpell.png", "Iceblock", 25, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		iceblockSpell.setManaCost(10);
@@ -314,6 +315,7 @@ public class ItemTypeManager {
 		
 		icelanceSpell = new ItemType(1, "resources/items/8bulletspells/icelanceSpell.png", "Icelance", 50, 8, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icelanceSpell.setManaCost(10);
+		icelanceSpell.setDamage(50);
 		
 		icewaveSpell = new ItemType(1, "resources/items/9otherspells/icewaveSpell.png", "Icewave", 75, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icewaveSpell.setManaCost(15);
@@ -328,6 +330,7 @@ public class ItemTypeManager {
 		
 		fireballSpell = new ItemType(1, "resources/items/8bulletspells/fireballSpell.png", "Fireball", 100, 8, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		fireballSpell.setManaCost(20);
+		fireballSpell.setDamage(100);
 		
 		firerainSpell = new ItemType(1, "resources/items/9otherspells/firerainSpell.png", "Firerain", 150, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		firerainSpell.setManaCost(30);

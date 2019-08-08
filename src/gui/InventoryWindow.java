@@ -485,96 +485,100 @@ public class InventoryWindow {
 				g.drawString(name, Main.WIDTH/2 - (name.length() * 9)/2, 818);
 				
 
-				if(!playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getItemCategory().equals("spell")) {
+				Item selectedItem = playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns);
+				
+				if(selectedItem.getItemType().getItemCategory().equals("melee_slay") || selectedItem.getItemType().getItemCategory().equals("melee_thrust") || selectedItem.getItemType().getItemCategory().equals("bow")) {
 				
 					//Display minStrength, minDexterity if there is a requirement
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinStrength() > 0) {
+					if(selectedItem.getItemType().getMinStrength() > 0) {
 						g.drawString("Needed Strength:", 652, 943);
-						String minStrength = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinStrength());
+						String minStrength = String.valueOf(selectedItem.getItemType().getMinStrength());
 						g.drawString(minStrength, 1098 - minStrength.length() * 9, 943);
 					}
 				
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinDexterity() > 0) {
+					if(selectedItem.getItemType().getMinDexterity() > 0) {
 						g.drawString("Needed Dexterity:", 652, 943);
-						String minDexterity = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinDexterity());
+						String minDexterity = String.valueOf(selectedItem.getItemType().getMinDexterity());
 						g.drawString(minDexterity, 1098 - minDexterity.length() * 9, 943);
 					}
 	
 					//Display damage if the item has damage
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDamage() > 0) {
+					if(selectedItem.getItemType().getDamage() > 0) {
 						g.drawString("Damage:", 652, 923);
-						String damage = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDamage());
+						String damage = String.valueOf(selectedItem.getItemType().getDamage());
 						g.drawString(damage, 1098 - damage.length() * 9, 923);
 					}
 				
-				} else {
+				}
+
+				if(selectedItem.getItemType().getItemCategory().equals("rune") || selectedItem.getItemType().getItemCategory().equals("spell")) {
 									
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaCost() > 0) {
+					if(selectedItem.getItemType().getManaCost() > 0) {
 						g.drawString("Mana Cost:", 652, 943);
-						String manaCost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaCost());
+						String manaCost = String.valueOf(selectedItem.getItemType().getManaCost());
 						g.drawString(manaCost, 1098 - manaCost.length() * 9, 943);
 					}
 					
 					//Display damage if the item has damage
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDamage() > 0) {
-						g.drawString("Damage:", 652, 903);
-						String damage = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDamage());
-						g.drawString(damage, 1098 - damage.length() * 9, 903);
+					if(selectedItem.getItemType().getDamage() > 0) {
+						g.drawString("Damage:", 652, 923);
+						String damage = String.valueOf(selectedItem.getItemType().getDamage());
+						g.drawString(damage, 1098 - damage.length() * 9, 923);
 					}
 				
 				}
 				
 				
 				//Display protection if the item has protection
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection() > 0) {
+				if(selectedItem.getItemType().getProtection() > 0) {
 					g.drawString("Protection:", 652, 943);
-					String protection = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getProtection()) + "%";
+					String protection = String.valueOf(selectedItem.getItemType().getProtection()) + "%";
 					g.drawString(protection, 1098 - protection.length() * 9, 943);
 				}
 				
 				
 				
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getHealthBoost() > 0) {
+				if(selectedItem.getItemType().getHealthBoost() > 0) {
 					g.drawString("Health Boost:", 652, 943);
-					String healthBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getHealthBoost());
+					String healthBoost = String.valueOf(selectedItem.getItemType().getHealthBoost());
 					g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 943);
 				}
 				
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaBoost() > 0) {
+				if(selectedItem.getItemType().getManaBoost() > 0) {
 					g.drawString("Mana Boost:", 652, 943);
-					String manaBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaBoost());
+					String manaBoost = String.valueOf(selectedItem.getItemType().getManaBoost());
 					g.drawString(manaBoost, 1098 - manaBoost.length() * 9, 943);
 				}
 				
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMaxHealthBoost() > 0) {
+				if(selectedItem.getItemType().getMaxHealthBoost() > 0) {
 					g.drawString("Maximum HP Boost:", 652, 943);
-					String maxHealthBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMaxHealthBoost());
+					String maxHealthBoost = String.valueOf(selectedItem.getItemType().getMaxHealthBoost());
 					g.drawString(maxHealthBoost, 1098 - maxHealthBoost.length() * 9, 943);
 				}
 				
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMaxManaBoost() > 0) {
+				if(selectedItem.getItemType().getMaxManaBoost() > 0) {
 					g.drawString("Maximum Mana Boost:", 652, 943);
-					String maxManaBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMaxManaBoost());
+					String maxManaBoost = String.valueOf(selectedItem.getItemType().getMaxManaBoost());
 					g.drawString(maxManaBoost, 1098 - maxManaBoost.length() * 9, 943);
 				}
 
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getStrengthBoost() > 0) {
+				if(selectedItem.getItemType().getStrengthBoost() > 0) {
 					g.drawString("Strength Boost:", 652, 943);
-					String strengthBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getStrengthBoost());
+					String strengthBoost = String.valueOf(selectedItem.getItemType().getStrengthBoost());
 					g.drawString(strengthBoost, 1098 - strengthBoost.length() * 9, 943);
 				}
 				
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDexterityBoost() > 0) {
+				if(selectedItem.getItemType().getDexterityBoost() > 0) {
 					g.drawString("Dexterity Boost:", 652, 943);
-					String dexterityBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDexterityBoost());
+					String dexterityBoost = String.valueOf(selectedItem.getItemType().getDexterityBoost());
 					g.drawString(dexterityBoost, 1098 - dexterityBoost.length() * 9, 943);
 				}
 				
 				g.drawString("Value in Gold:", 652, 963);
-				String value = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getValue());
+				String value = String.valueOf(selectedItem.getItemType().getValue());
 				g.drawString(value, 1098 - value.length() * 9, 963);
 				
-				playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getDescriptionAnimation().draw(1126, 836);
+				selectedItem.getItemType().getDescriptionAnimation().draw(1126, 836);
 				
 			}
 			
