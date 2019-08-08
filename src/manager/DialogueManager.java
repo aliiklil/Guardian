@@ -112,7 +112,7 @@ public class DialogueManager {
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(1).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(2).addSentence("Wisdom + 5 (Costs 5LP)", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(2).addSentence("Magic Class + 1 (Costs 10LP)", "Hero");
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(2).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());

@@ -41,15 +41,24 @@ public class Learning {
 			}
 		}
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Wisdom + 5 (Costs 5LP)")) {
-			if(player.getLearningPoints() >= 5) {
-				player.setWisdom(player.getWisdom() + 5);
-				player.setLearningPoints(player.getLearningPoints() - 5);
-				String text = "Wisdom + 5";
-				player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
-				currentDialogue.getSentences().get(1).setText("You are a fast learner.");
+		if(currentDialogue.getSentences().get(0).getText().equals("Magic Class + 1 (Costs 10LP)")) {
+			
+			if(player.getMagicClass() < 3) {
+			
+				if(player.getLearningPoints() >= 10) {
+					player.setMagicClass(player.getMagicClass() + 1);
+					player.setLearningPoints(player.getLearningPoints() - 10);
+					String text = "Magic Class + 1";
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					currentDialogue.getSentences().get(1).setText("You are a fast learner.");
+				} else {
+					currentDialogue.getSentences().get(1).setText("You don't have enough experience. Come back later.");
+				}
+			
 			} else {
-				currentDialogue.getSentences().get(1).setText("You don't have enough experience. Come back later.");
+				
+				currentDialogue.getSentences().get(1).setText("You have already mastered all magic classes.");
+				
 			}
 		}
 
@@ -100,19 +109,7 @@ public class Learning {
 				currentDialogue.getSentences().get(1).setText("You don't have enough experience. Come back later.");
 			}
 		}
-		
-		if(currentDialogue.getSentences().get(0).getText().equals("Spell Skill + 5 (Costs 5LP)")) {
-			if(player.getLearningPoints() >= 5) {
-				player.setSpellSkill(player.getSpellSkill() + 5);
-				player.setLearningPoints(player.getLearningPoints() - 5);
-				String text = "Spell Skill + 5";
-				player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
-				currentDialogue.getSentences().get(1).setText("You are a fast learner.");
-			} else {
-				currentDialogue.getSentences().get(1).setText("You don't have enough experience. Come back later.");
-			}
-		}
-		
+				
 		if(currentDialogue.getSentences().get(0).getText().equals("Lockpicking + 1 (Costs 10LP)")) {
 			
 			if(player.getLockPickingSkill() < 3) {

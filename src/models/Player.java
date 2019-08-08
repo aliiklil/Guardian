@@ -92,14 +92,13 @@ public class Player extends Character {
 	
 	private int strength = 200;
 	private int dexterity = 200;
-	private int wisdom = 10;
+	private int magicClass = 0;
 	
 	private int healthPoints = 200;
 	private int mana = 100;
 	
 	private int meleeSkill = 10;
 	private int bowSkill = 10;
-	private int spellSkill = 10;
 
 	private int lockPickingSkill = 0;
 	private int alchemySkill = 0;
@@ -1037,12 +1036,9 @@ public class Player extends Character {
 
 		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
 			
-			damageToDeal = equippedSpell.getDamage() + wisdom + (int) ((equippedSpell.getDamage() + wisdom) * prepareSpellBar.getCurrentValue()/100.0) * 2;
-			if(spellSkill/100.0 > new Random().nextDouble()) {
-				damageToDeal = damageToDeal * 5;
-			}
+			damageToDeal = 50; //Damage needs to depend on the used rune/spell
 			
-			int spellVelocity = 4 + prepareSpellBar.getCurrentValue()/10 + spellSkill/10 * 2;
+			int spellVelocity = 10; //Speed needs to depend on the used rune/spell
 			
 			//Decrease mana
 			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
@@ -2900,9 +2896,9 @@ public class Player extends Character {
 	public int getDexterity() {
 		return dexterity;
 	}
-
-	public int getWisdom() {
-		return wisdom;
+	
+	public int getMagicClass() {
+		return magicClass;
 	}
 
 	public int getHealthPoints() {
@@ -2919,10 +2915,6 @@ public class Player extends Character {
 
 	public int getBowSkill() {
 		return bowSkill;
-	}
-
-	public int getSpellSkill() {
-		return spellSkill;
 	}
 
 	public boolean isTakeFurs() {
@@ -2956,9 +2948,9 @@ public class Player extends Character {
 	public void setDexterity(int dexterity) {
 		this.dexterity = dexterity;
 	}
-
-	public void setWisdom(int wisdom) {
-		this.wisdom = wisdom;
+	
+	public void setMagicClass(int magicClass) {
+		this.magicClass = magicClass;
 	}
 
 	public void setHealthPoints(int healthPoints) {
@@ -2975,10 +2967,6 @@ public class Player extends Character {
 
 	public void setBowSkill(int bowSkill) {
 		this.bowSkill = bowSkill;
-	}
-
-	public void setSpellSkill(int spellSkill) {
-		this.spellSkill = spellSkill;
 	}
 
 	public void setTakeFurs(boolean takeFurs) {
