@@ -75,7 +75,6 @@ public class ItemType {
 	//Strength etc. needed to equip item, only used for weapons
 	private int minStrength = 0;
 	private int minDexterity = 0;
-	private int minWisdom = 0;
 	
 	//Only needed for weapons
 	private int damage = 0;
@@ -97,7 +96,6 @@ public class ItemType {
 	
 	private int strengthBoost = 0;
 	private int dexterityBoost = 0;
-	private int wisdomBoost = 0;
 	
 	
 	//Only needed for weapons
@@ -117,6 +115,11 @@ public class ItemType {
 	
 	private int attackRightOffsetX;
 	private int attackRightOffsetY;
+	
+	
+	//Only needed for runes and spells
+	private int magicClass = 0;
+	
 	
 	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath) throws SlickException {
 		
@@ -198,25 +201,6 @@ public class ItemType {
 		spellRightAnimation.setLooping(false);
 		
 		dieAnimation.setLooping(false);
-		
-		this.minStrength = minStrength;
-		this.minDexterity = minDexterity;
-		this.minWisdom = minWisdom;
-	
-		this.damage = damage;
-		this.protection = protection;
-		
-		this.manaCost = manaCost;
-		
-		this.healthBoost = healthBoost;
-		this.manaBoost = manaBoost;
-		
-		this.maxHealthBoost = maxHealthBoost;
-		this.maxManaBoost = maxManaBoost;
-		
-		this.strengthBoost = strengthBoost;
-		this.dexterityBoost = dexterityBoost;
-		this.wisdomBoost = wisdomBoost;
 		
 	}
 	
@@ -404,10 +388,6 @@ public class ItemType {
 		return minDexterity;
 	}
 
-	public int getMinWisdom() {
-		return minWisdom;
-	}
-
 	public int getDamage() {
 		return damage;
 	}
@@ -556,24 +536,12 @@ public class ItemType {
 		this.dexterityBoost = dexterityBoost;
 	}
 
-	public int getWisdomBoost() {
-		return wisdomBoost;
-	}
-
-	public void setWisdomBoost(int wisdomBoost) {
-		this.wisdomBoost = wisdomBoost;
-	}
-
 	public void setMinStrength(int minStrength) {
 		this.minStrength = minStrength;
 	}
 
 	public void setMinDexterity(int minDexterity) {
 		this.minDexterity = minDexterity;
-	}
-
-	public void setMinWisdom(int minWisdom) {
-		this.minWisdom = minWisdom;
 	}
 
 	public void setDamage(int damage) {
@@ -594,6 +562,14 @@ public class ItemType {
 
 	public void setManaBoost(int manaBoost) {
 		this.manaBoost = manaBoost;
+	}
+
+	public int getMagicClass() {
+		return magicClass;
+	}
+
+	public void setMagicClass(int magicClass) {
+		this.magicClass = magicClass;
 	}
 
 }

@@ -43,21 +43,21 @@ public class ItemManager {
 		
 		
 		
-		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsRune));
+		
 		itemList.add(new Item(480, 416, itemTypeManager.lightningRune));
 		itemList.add(new Item(480, 416, itemTypeManager.iceblockRune));
 		itemList.add(new Item(480, 416, itemTypeManager.summonWolfRune));
-			
-		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsRune));
+		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsRune));	
+		
 		itemList.add(new Item(480, 416, itemTypeManager.icelanceRune));
 		itemList.add(new Item(480, 416, itemTypeManager.icewaveRune));
 		itemList.add(new Item(480, 416, itemTypeManager.summonSkeletonRune));
+		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsRune));
 				
-		itemList.add(new Item(480, 416, itemTypeManager.healHeavyWoundsRune));
 		itemList.add(new Item(480, 416, itemTypeManager.fireballRune));
 		itemList.add(new Item(480, 416, itemTypeManager.firerainRune));
 		itemList.add(new Item(480, 416, itemTypeManager.summonOrcWarriorRune));
-		
+		itemList.add(new Item(480, 416, itemTypeManager.healHeavyWoundsRune));
 		
 		
 		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsSpell));

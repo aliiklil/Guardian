@@ -243,92 +243,96 @@ public class ItemTypeManager {
 		
 		
 		
-		
-		healLightWoundsRune = new ItemType(1, "resources/items/4runes/healLightWoundsRune.png", "Heal Light Wounds", 250, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healLightWoundsRune = new ItemType(1, "resources/items/7healrunes/healLightWoundsRune.png", "Heal Light Wounds", 250, 7, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healLightWoundsRune.setManaCost(5);
-		
-		lightningRune = new ItemType(1, "resources/items/4runes/lightningRune.png", "Lightning", 250, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+
+		lightningRune = new ItemType(1, "resources/items/4bulletrunes/lightningRune.png", "Lightning", 250, 4, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		lightningRune.setManaCost(5);
 		lightningRune.setDamage(20);
 		
-		iceblockRune = new ItemType(1, "resources/items/4runes/iceblockRune.png", "Iceblock", 250, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		iceblockRune = new ItemType(1, "resources/items/5otherrunes/iceblockRune.png", "Iceblock", 250, 5, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		iceblockRune.setManaCost(10);
 		
-		summonWolfRune = new ItemType(1, "resources/items/4runes/summonWolfRune.png", "Summon Wolf", 250, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonWolfRune = new ItemType(1, "resources/items/6summonrunes/summonWolfRune.png", "Summon Wolf", 250, 6, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonWolfRune.setManaCost(10);
 		
 
+
 		
-		healMediumWoundsRune = new ItemType(1, "resources/items/4runes/healMediumWoundsRune.png", "Heal Medium Wounds", 500, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healMediumWoundsRune = new ItemType(1, "resources/items/7healrunes/healMediumWoundsRune.png", "Heal Medium Wounds", 500, 7, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healMediumWoundsRune.setManaCost(20);
-		
-		icelanceRune = new ItemType(1, "resources/items/4runes/icelanceRune.png", "Icelance", 500, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+
+		icelanceRune = new ItemType(1, "resources/items/4bulletrunes/icelanceRune.png", "Icelance", 500, 4, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icelanceRune.setManaCost(25);
 		icelanceRune.setDamage(50);
 		
-		icewaveRune = new ItemType(1, "resources/items/4runes/icewaveRune.png", "Icewave", 500, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		icewaveRune = new ItemType(1, "resources/items/5otherrunes/icewaveRune.png", "Icewave", 500, 5, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icewaveRune.setManaCost(30);
 		
-		summonSkeletonRune = new ItemType(1, "resources/items/4runes/summonSkeletonRune.png", "Summon Skeleton", 500, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonSkeletonRune = new ItemType(1, "resources/items/6summonrunes/summonSkeletonRune.png", "Summon Skeleton", 500, 6, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonSkeletonRune.setManaCost(30);
 		
+
 		
-		
-		healHeavyWoundsRune = new ItemType(1, "resources/items/4runes/healHeavyWoundsRune.png", "Heal Heavy Wounds", 750, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+
+		healHeavyWoundsRune = new ItemType(1, "resources/items/7healrunes/healHeavyWoundsRune.png", "Heal Heavy Wounds", 750, 7, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healHeavyWoundsRune.setManaCost(40);
 		
-		fireballRune = new ItemType(1, "resources/items/4runes/fireballRune.png", "Fireball", 750, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		fireballRune = new ItemType(1, "resources/items/4bulletrunes/fireballRune.png", "Fireball", 750, 4, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		fireballRune.setManaCost(50);
 		fireballRune.setDamage(100);
 		
-		firerainRune = new ItemType(1, "resources/items/4runes/firerainRune.png", "Firerain", 750, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		firerainRune = new ItemType(1, "resources/items/5otherrunes/firerainRune.png", "Firerain", 750, 5, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		firerainRune.setManaCost(60);
 		firerainRune.setDamage(150);
 		
-		summonOrcWarriorRune = new ItemType(1, "resources/items/4runes/summonOrcWarriorRune.png", "Summon Orc Warrior", 750, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonOrcWarriorRune = new ItemType(1, "resources/items/6summonrunes/summonOrcWarriorRune.png", "Summon Orc Warrior", 750, 6, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonOrcWarriorRune.setManaCost(75);
+		
+
+		
 		
 		
 
 		
-		healLightWoundsSpell = new ItemType(1, "resources/items/5spells/healLightWoundsSpell.png", "Heal Light Wounds", 20, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healLightWoundsSpell = new ItemType(1, "resources/items/11healspells/healLightWoundsSpell.png", "Heal Light Wounds", 20, 11, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healLightWoundsSpell.setManaCost(5);
 		
-		lightningSpell = new ItemType(1, "resources/items/5spells/lightningSpell.png", "Lightning", 20, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		lightningSpell = new ItemType(1, "resources/items/8bulletspells/lightningSpell.png", "Lightning", 20, 8, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		lightningSpell.setManaCost(5);
 		
-		iceblockSpell = new ItemType(1, "resources/items/5spells/iceblockSpell.png", "Iceblock", 25, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		iceblockSpell = new ItemType(1, "resources/items/9otherspells/iceblockSpell.png", "Iceblock", 25, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		iceblockSpell.setManaCost(10);
 		
-		summonWolfSpell = new ItemType(1, "resources/items/5spells/summonWolfSpell.png", "Summon Wolf", 30, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonWolfSpell = new ItemType(1, "resources/items/10summonspells/summonWolfSpell.png", "Summon Wolf", 30, 10, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonWolfSpell.setManaCost(10);
 		
 		
 		
-		healMediumWoundsSpell = new ItemType(1, "resources/items/5spells/healMediumWoundsSpell.png", "Heal Medium Wounds", 50, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healMediumWoundsSpell = new ItemType(1, "resources/items/11healspells/healMediumWoundsSpell.png", "Heal Medium Wounds", 50, 11, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healMediumWoundsSpell.setManaCost(10);
 		
-		icelanceSpell = new ItemType(1, "resources/items/5spells/icelanceSpell.png", "Icelance", 50, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		icelanceSpell = new ItemType(1, "resources/items/8bulletspells/icelanceSpell.png", "Icelance", 50, 8, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icelanceSpell.setManaCost(10);
 		
-		icewaveSpell = new ItemType(1, "resources/items/5spells/icewaveSpell.png", "Icewave", 75, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		icewaveSpell = new ItemType(1, "resources/items/9otherspells/icewaveSpell.png", "Icewave", 75, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icewaveSpell.setManaCost(15);
 		
-		summonSkeletonSpell = new ItemType(1, "resources/items/5spells/summonSkeletonSpell.png", "Summon Skeleton", 75, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonSkeletonSpell = new ItemType(1, "resources/items/10summonspells/summonSkeletonSpell.png", "Summon Skeleton", 75, 10, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonSkeletonSpell.setManaCost(15);
 		
 		
 		
-		healHeavyWoundsSpell = new ItemType(1, "resources/items/5spells/healHeavyWoundsSpell.png", "Heal Heavy Wounds", 100, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healHeavyWoundsSpell = new ItemType(1, "resources/items/11healspells/healHeavyWoundsSpell.png", "Heal Heavy Wounds", 100, 11, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healHeavyWoundsSpell.setManaCost(20);
 		
-		fireballSpell = new ItemType(1, "resources/items/5spells/fireballSpell.png", "Fireball", 100, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		fireballSpell = new ItemType(1, "resources/items/8bulletspells/fireballSpell.png", "Fireball", 100, 8, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		fireballSpell.setManaCost(20);
 		
-		firerainSpell = new ItemType(1, "resources/items/5spells/firerainSpell.png", "Firerain", 150, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		firerainSpell = new ItemType(1, "resources/items/9otherspells/firerainSpell.png", "Firerain", 150, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		firerainSpell.setManaCost(30);
 		
-		summonOrcWarriorSpell = new ItemType(1, "resources/items/5spells/summonOrcWarriorSpell.png", "Summon Orc Warrior", 150, 3, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonOrcWarriorSpell = new ItemType(1, "resources/items/10summonspells/summonOrcWarriorSpell.png", "Summon Orc Warrior", 150, 10, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonOrcWarriorSpell.setManaCost(30);
 
 		
@@ -338,231 +342,219 @@ public class ItemTypeManager {
 		
 		
 		
-		/*
-		
-		firespell.setMinWisdom(10);
-		firespell.setDamage(25);
-		firespell.setManaCost(5);
-		
-		
-		
-		icespell.setMinWisdom(20);
-		icespell.setDamage(45);
-		icespell.setManaCost(20);
 
-		*/
 		
-		clothhood = new ItemType(1, "resources/items/6helmets/clothhood.png", "Cloth Hood", 20, 5, true, "head", "resources/player_sprites/head/clothhood.png");
+		clothhood = new ItemType(1, "resources/items/12helmets/clothhood.png", "Cloth Hood", 20, 12, true, "head", "resources/player_sprites/head/clothhood.png");
 		clothhood.setProtection(2);
 		
-		leathercap = new ItemType(1, "resources/items/6helmets/leathercap.png", "Leather Cap", 50, 5, true, "head", "resources/player_sprites/head/leathercap.png");
+		leathercap = new ItemType(1, "resources/items/12helmets/leathercap.png", "Leather Cap", 50, 12, true, "head", "resources/player_sprites/head/leathercap.png");
 		leathercap.setProtection(4);
 		
-		chainhat = new ItemType(1, "resources/items/6helmets/chainhat.png", "Chain Hat", 100, 5, true, "head", "resources/player_sprites/head/chainhat.png");
+		chainhat = new ItemType(1, "resources/items/12helmets/chainhat.png", "Chain Hat", 100, 12, true, "head", "resources/player_sprites/head/chainhat.png");
 		chainhat.setProtection(6);
 		
-		chainhelmet = new ItemType(1, "resources/items/6helmets/chainhelmet.png", "Chain Helmet", 150, 5, true, "head", "resources/player_sprites/head/chainhelmet.png");
+		chainhelmet = new ItemType(1, "resources/items/12helmets/chainhelmet.png", "Chain Helmet", 150, 12, true, "head", "resources/player_sprites/head/chainhelmet.png");
 		chainhelmet.setProtection(8);
 		
-		ironhelmet = new ItemType(1, "resources/items/6helmets/ironhelmet.png", "Iron Helmet", 200, 5, true, "head", "resources/player_sprites/head/ironhelmet.png");
+		ironhelmet = new ItemType(1, "resources/items/12helmets/ironhelmet.png", "Iron Helmet", 200, 12, true, "head", "resources/player_sprites/head/ironhelmet.png");
 		ironhelmet.setProtection(10);
 		
-		goldenhelmet = new ItemType(1, "resources/items/6helmets/goldenhelmet.png", "Gold Helmet", 300, 5, true, "head", "resources/player_sprites/head/goldenhelmet.png");
+		goldenhelmet = new ItemType(1, "resources/items/12helmets/goldenhelmet.png", "Gold Helmet", 300, 12, true, "head", "resources/player_sprites/head/goldenhelmet.png");
 		goldenhelmet.setProtection(12);
 		
-		mithrilhelmet = new ItemType(1, "resources/items/6helmets/mithrilhelmet.png", "Mithril Helmet", 500, 5, true, "head", "resources/player_sprites/head/mithrilhelmet.png");
+		mithrilhelmet = new ItemType(1, "resources/items/12helmets/mithrilhelmet.png", "Mithril Helmet", 500, 12, true, "head", "resources/player_sprites/head/mithrilhelmet.png");
 		mithrilhelmet.setProtection(16);
 
 		
 		
-		shirt = new ItemType(1, "resources/items/7torso/shirt.png", "Shirt", 10, 6, true, "chest", "resources/player_sprites/chest/shirt.png");
+		shirt = new ItemType(1, "resources/items/13torso/shirt.png", "Shirt", 10, 13, true, "chest", "resources/player_sprites/chest/shirt.png");
 		shirt.setProtection(3);
 		
-		leatherchest = new ItemType(1, "resources/items/7torso/leatherchest.png", "Leather Chest", 300, 6, true, "chest", "resources/player_sprites/chest/leatherchest.png");
+		leatherchest = new ItemType(1, "resources/items/13torso/leatherchest.png", "Leather Chest", 300, 13, true, "chest", "resources/player_sprites/chest/leatherchest.png");
 		leatherchest.setProtection(6);
 		
-		chainchest = new ItemType(1, "resources/items/7torso/chainchest.png", "Chain Chest", 500, 6, true, "chest", "resources/player_sprites/chest/chainchest.png");
+		chainchest = new ItemType(1, "resources/items/13torso/chainchest.png", "Chain Chest", 500, 13, true, "chest", "resources/player_sprites/chest/chainchest.png");
 		chainchest.setProtection(9);
 		
-		ironchest = new ItemType(1, "resources/items/7torso/ironchest.png", "Iron Chest", 700, 6, true, "chest", "resources/player_sprites/chest/ironchest.png");
+		ironchest = new ItemType(1, "resources/items/13torso/ironchest.png", "Iron Chest", 700, 13, true, "chest", "resources/player_sprites/chest/ironchest.png");
 		ironchest.setProtection(12);
 		
-		goldenchest = new ItemType(1, "resources/items/7torso/goldenchest.png", "Golden Chest", 1400, 6, true, "chest", "resources/player_sprites/chest/goldenchest.png");
+		goldenchest = new ItemType(1, "resources/items/13torso/goldenchest.png", "Golden Chest", 1400, 13, true, "chest", "resources/player_sprites/chest/goldenchest.png");
 		goldenchest.setProtection(15);
 		
-		mithrilchest = new ItemType(1, "resources/items/7torso/mithrilchest.png", "Mithril Chest", 2500, 6, true, "chest", "resources/player_sprites/chest/mithrilchest.png");
+		mithrilchest = new ItemType(1, "resources/items/13torso/mithrilchest.png", "Mithril Chest", 2500, 13, true, "chest", "resources/player_sprites/chest/mithrilchest.png");
 		mithrilchest.setProtection(18);
 		
 
 		
-		irongloves = new ItemType(1, "resources/items/8hands/irongloves.png", "Iron Gloves", 600, 7, true, "hands", "resources/player_sprites/hands/irongloves.png");
+		irongloves = new ItemType(1, "resources/items/14hands/irongloves.png", "Iron Gloves", 600, 14, true, "hands", "resources/player_sprites/hands/irongloves.png");
 		irongloves.setProtection(2);
 		
-		goldengloves = new ItemType(1, "resources/items/8hands/goldengloves.png", "Golden Gloves", 900, 7, true, "hands", "resources/player_sprites/hands/goldengloves.png");
+		goldengloves = new ItemType(1, "resources/items/14hands/goldengloves.png", "Golden Gloves", 900, 14, true, "hands", "resources/player_sprites/hands/goldengloves.png");
 		goldengloves.setProtection(4);
 		
-		mithrilgloves = new ItemType(1, "resources/items/8hands/mithrilgloves.png", "Mithril Gloves", 1600, 7, true, "hands", "resources/player_sprites/hands/mithrilgloves.png");
+		mithrilgloves = new ItemType(1, "resources/items/14hands/mithrilgloves.png", "Mithril Gloves", 1600, 14, true, "hands", "resources/player_sprites/hands/mithrilgloves.png");
 		mithrilgloves.setProtection(8);
 		
 		
 
-		skirt = new ItemType(1, "resources/items/9legarmor/skirt.png", "Skirt", 100, 8, true, "legs", "resources/player_sprites/legs/skirt.png");
+		skirt = new ItemType(1, "resources/items/15legarmor/skirt.png", "Skirt", 100, 15, true, "legs", "resources/player_sprites/legs/skirt.png");
 		skirt.setProtection(3);
 		
-		irongreaves = new ItemType(1, "resources/items/9legarmor/ironlegarmor.png", "Iron Greaves", 300, 8, true, "legs", "resources/player_sprites/legs/irongreaves.png");
+		irongreaves = new ItemType(1, "resources/items/15legarmor/ironlegarmor.png", "Iron Greaves", 300, 15, true, "legs", "resources/player_sprites/legs/irongreaves.png");
 		irongreaves.setProtection(6);
 		
-		goldengreaves = new ItemType(1, "resources/items/9legarmor/goldenlegarmor.png", "Golden Greaves", 1200, 8, true, "legs", "resources/player_sprites/legs/goldengreaves.png");
+		goldengreaves = new ItemType(1, "resources/items/15legarmor/goldenlegarmor.png", "Golden Greaves", 1200, 15, true, "legs", "resources/player_sprites/legs/goldengreaves.png");
 		goldengreaves.setProtection(9);
 		
-		mithrilgreaves = new ItemType(1, "resources/items/9legarmor/mithrillegarmor.png", "Mithril Greaves", 2200, 8, true, "legs", "resources/player_sprites/legs/mithrilgreaves.png");
+		mithrilgreaves = new ItemType(1, "resources/items/15legarmor/mithrillegarmor.png", "Mithril Greaves", 2200, 15, true, "legs", "resources/player_sprites/legs/mithrilgreaves.png");
 		mithrilgreaves.setProtection(15);
 		
 		
 
-		boots = new ItemType(1, "resources/items/10boots/boots.png", "Boots", 100, 9, true, "feet", "resources/player_sprites/feet/boots.png");
+		boots = new ItemType(1, "resources/items/16boots/boots.png", "Boots", 100, 16, true, "feet", "resources/player_sprites/feet/boots.png");
 		boots.setProtection(2);
 		
-		leatherboots = new ItemType(1, "resources/items/10boots/leatherboots.png", "Leather Boots", 200, 9, true, "feet", "resources/player_sprites/feet/leatherboots.png");
+		leatherboots = new ItemType(1, "resources/items/16boots/leatherboots.png", "Leather Boots", 200, 16, true, "feet", "resources/player_sprites/feet/leatherboots.png");
 		leatherboots.setProtection(4);
 		
-		ironboots = new ItemType(1, "resources/items/10boots/ironboots.png", "Iron Boots", 500, 9, true, "feet", "resources/player_sprites/feet/ironboots.png");
+		ironboots = new ItemType(1, "resources/items/16boots/ironboots.png", "Iron Boots", 500, 16, true, "feet", "resources/player_sprites/feet/ironboots.png");
 		ironboots.setProtection(6);
 		
-		goldenboots = new ItemType(1, "resources/items/10boots/goldenboots.png", "Golden Boots", 700, 9, true, "feet", "resources/player_sprites/feet/goldenboots.png");
+		goldenboots = new ItemType(1, "resources/items/16boots/goldenboots.png", "Golden Boots", 700, 16, true, "feet", "resources/player_sprites/feet/goldenboots.png");
 		goldenboots.setProtection(8);
 		
-		mithrilboots = new ItemType(1, "resources/items/10boots/mithrilboots.png", "Mithril Boots", 1500, 9, true, "feet", "resources/player_sprites/feet/mithrilboots.png");
+		mithrilboots = new ItemType(1, "resources/items/16boots/mithrilboots.png", "Mithril Boots", 1500, 16, true, "feet", "resources/player_sprites/feet/mithrilboots.png");
 		mithrilboots.setProtection(12);
 		
 
-		smallHpPotion = new ItemType(1, "resources/items/11healing_potions/small_hp_potion.png", "Small HP Potion", 20, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
+		smallHpPotion = new ItemType(1, "resources/items/17healing_potions/small_hp_potion.png", "Small HP Potion", 20, 17, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
 		smallHpPotion.setHealthBoost(25);
 		
-		mediumHpPotion = new ItemType(1, "resources/items/11healing_potions/medium_hp_potion.png", "Medium HP Potion", 30, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
+		mediumHpPotion = new ItemType(1, "resources/items/17healing_potions/medium_hp_potion.png", "Medium HP Potion", 30, 17, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
 		mediumHpPotion.setHealthBoost(100);
 		
-		bigHpPotion = new ItemType(1, "resources/items/11healing_potions/big_hp_potion.png", "Big HP Potion", 40, 10, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
+		bigHpPotion = new ItemType(1, "resources/items/17healing_potions/big_hp_potion.png", "Big HP Potion", 40, 17, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
 		bigHpPotion.setHealthBoost(200);
 		
 
 		
-		smallManaPotion = new ItemType(1, "resources/items/12mana_potions/small_mana_potion.png", "Small Mana Potion", 20, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png");
+		smallManaPotion = new ItemType(1, "resources/items/18mana_potions/small_mana_potion.png", "Small Mana Potion", 20, 18, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png");
 		smallManaPotion.setManaBoost(25);
 		
-		mediumManaPotion = new ItemType(1, "resources/items/12mana_potions/medium_mana_potion.png", "Medium Mana Potionn", 30, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png");
+		mediumManaPotion = new ItemType(1, "resources/items/18mana_potions/medium_mana_potion.png", "Medium Mana Potionn", 30, 18, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png");
 		mediumManaPotion.setManaBoost(100);
 		
-		bigManaPotion = new ItemType(1, "resources/items/12mana_potions/big_mana_potion.png", "Big Mana Potion", 40, 11, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png");
+		bigManaPotion = new ItemType(1, "resources/items/18mana_potions/big_mana_potion.png", "Big Mana Potion", 40, 18, false, "manapotion", "resources/player_sprites/empty_sprite_sheet.png");
 		bigManaPotion.setManaBoost(200);
 		
 
 		
-		maxHpBonusPotion = new ItemType(1, "resources/items/13special_potions/max_hp_bonus_potion.png", "Max HP Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		maxHpBonusPotion = new ItemType(1, "resources/items/19special_potions/max_hp_bonus_potion.png", "Max HP Bonus Potion", 250, 19, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
 		maxHpBonusPotion.setMaxHealthBoost(10);
 		
-		maxManaBonusPotion = new ItemType(1, "resources/items/13special_potions/max_mana_bonus_potion.png", "Max Mana Bonus Potion", 250, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		maxManaBonusPotion = new ItemType(1, "resources/items/19special_potions/max_mana_bonus_potion.png", "Max Mana Bonus Potion", 250, 19, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
 		maxManaBonusPotion.setMaxManaBoost(10);
 		
-		strengthPotion = new ItemType(1, "resources/items/13special_potions/strength_potion.png", "Strength Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		strengthPotion = new ItemType(1, "resources/items/19special_potions/strength_potion.png", "Strength Potion", 300, 19, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
 		strengthPotion.setStrengthBoost(5);
 		
-		dexterityPotion = new ItemType(1, "resources/items/13special_potions/dexterity_potion.png", "Dexterity Potion", 300, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		dexterityPotion = new ItemType(1, "resources/items/19special_potions/dexterity_potion.png", "Dexterity Potion", 300, 19, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
 		dexterityPotion.setDexterityBoost(5);
 				
-		speedPotion = new ItemType(1, "resources/items/13special_potions/speed_potion.png", "Speed Potion", 200, 12, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
+		speedPotion = new ItemType(1, "resources/items/19special_potions/speed_potion.png", "Speed Potion", 200, 19, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
 		
 		
 		
-		dragonroot = new ItemType(1, "resources/items/14plants/dragonroot.png", "Dragonroot", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		dragonroot = new ItemType(1, "resources/items/20plants/dragonroot.png", "Dragonroot", 150, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 		dragonroot.setStrengthBoost(1);
 		
-		goblinweed = new ItemType(1, "resources/items/14plants/goblinweed.png", "Goblinweed", 150, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		goblinweed = new ItemType(1, "resources/items/20plants/goblinweed.png", "Goblinweed", 150, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 		goblinweed.setDexterityBoost(1);
 				
-		goldtruffle = new ItemType(1, "resources/items/14plants/goldtruffle.png", "Goldtruffle", 300, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		goldtruffle = new ItemType(1, "resources/items/20plants/goldtruffle.png", "Goldtruffle", 300, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 
 		
-		wolfnettel = new ItemType(1, "resources/items/14plants/wolfnettel.png", "Wolfnettel", 100, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		wolfnettel = new ItemType(1, "resources/items/20plants/wolfnettel.png", "Wolfnettel", 100, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 
 		
 		
-		healberry = new ItemType(1, "resources/items/14plants/healberry.png", "Healberry", 10, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		healberry = new ItemType(1, "resources/items/20plants/healberry.png", "Healberry", 10, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 		healberry.setHealthBoost(10);
 		
-		healplant = new ItemType(1, "resources/items/14plants/healplant.png", "Healplant", 15, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		healplant = new ItemType(1, "resources/items/20plants/healplant.png", "Healplant", 15, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 		healplant.setHealthBoost(20);
 		
-		healroot = new ItemType(1, "resources/items/14plants/healroot.png", "Healroot", 20, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		healroot = new ItemType(1, "resources/items/20plants/healroot.png", "Healroot", 20, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 		healroot.setHealthBoost(30);
 		
 		
 		
-		manaberry = new ItemType(1, "resources/items/14plants/manaberry.png", "Manaberry", 25, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		manaberry = new ItemType(1, "resources/items/20plants/manaberry.png", "Manaberry", 25, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 		manaberry.setManaBoost(10);
 		
-		manaplant = new ItemType(1, "resources/items/14plants/manaplant.png", "Manaplant", 30, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		manaplant = new ItemType(1, "resources/items/20plants/manaplant.png", "Manaplant", 30, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 		manaplant.setManaBoost(20);
 		
-		manaroot = new ItemType(1, "resources/items/14plants/manaroot.png", "Manaroot", 35, 13, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
+		manaroot = new ItemType(1, "resources/items/20plants/manaroot.png", "Manaroot", 35, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
 		manaroot.setManaBoost(30);
 		
 		
 		
-		bread = new ItemType(1, "resources/items/15food/bread.png", "Bread", 20, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		bread = new ItemType(1, "resources/items/21food/bread.png", "Bread", 20, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		bread.setHealthBoost(5);
 		
-		carrot = new ItemType(1, "resources/items/15food/carrot.png", "Carrot", 6, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		carrot = new ItemType(1, "resources/items/21food/carrot.png", "Carrot", 6, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		carrot.setHealthBoost(5);
 		
-		rawChicken = new ItemType(1, "resources/items/15food/raw_chicken.png", "Raw Chicken", 33, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		rawChicken = new ItemType(1, "resources/items/21food/raw_chicken.png", "Raw Chicken", 33, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		rawChicken.setHealthBoost(5);
 		
-		cookedChicken = new ItemType(1, "resources/items/15food/cooked_chicken.png", "Cooked Chicken", 33, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		cookedChicken = new ItemType(1, "resources/items/21food/cooked_chicken.png", "Cooked Chicken", 33, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		cookedChicken.setHealthBoost(10);
 		
-		rawFish = new ItemType(1, "resources/items/15food/raw_fish.png", "Raw Fish", 26, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		rawFish = new ItemType(1, "resources/items/21food/raw_fish.png", "Raw Fish", 26, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		rawFish.setHealthBoost(5);
 		
-		cookedFish = new ItemType(1, "resources/items/15food/cooked_fish.png", "Cooked Fish", 26, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		cookedFish = new ItemType(1, "resources/items/21food/cooked_fish.png", "Cooked Fish", 26, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		cookedFish.setHealthBoost(10);
 		
-		rawMeat = new ItemType(1, "resources/items/15food/raw_meat.png", "Raw Meat", 38, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		rawMeat = new ItemType(1, "resources/items/21food/raw_meat.png", "Raw Meat", 38, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		rawMeat.setHealthBoost(5);
 		
-		cookedMeat = new ItemType(1, "resources/items/15food/cooked_meat.png", "Cooked Meat", 38, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		cookedMeat = new ItemType(1, "resources/items/21food/cooked_meat.png", "Cooked Meat", 38, 1421, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		cookedMeat.setHealthBoost(10);
 		
-		rawPork = new ItemType(1, "resources/items/15food/raw_pork.png", "Raw Pork", 29, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		rawPork = new ItemType(1, "resources/items/21food/raw_pork.png", "Raw Pork", 29, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		rawPork.setHealthBoost(5);
 		
-		cookedPork = new ItemType(1, "resources/items/15food/cooked_pork.png", "Cooked Pork", 29, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		cookedPork = new ItemType(1, "resources/items/21food/cooked_pork.png", "Cooked Pork", 29, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		cookedPork.setHealthBoost(10);
 		
-		wheat = new ItemType(1, "resources/items/15food/wheat.png", "Wheat", 4, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		wheat = new ItemType(1, "resources/items/21food/wheat.png", "Wheat", 4, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		wheat.setHealthBoost(5);
 		
-		apple = new ItemType(1, "resources/items/15food/apple.png", "Apple", 5, 14, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
+		apple = new ItemType(1, "resources/items/21food/apple.png", "Apple", 5, 21, false, "food", "resources/player_sprites/empty_sprite_sheet.png");
 		apple.setHealthBoost(5);
 		
 		
 		
-		bone = new ItemType(1, "resources/items/16misc/bone.png", "Bone", 3, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		ironBar = new ItemType(1, "resources/items/16misc/iron_bar.png", "Iron Bar", 160, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		goldenBar = new ItemType(1, "resources/items/16misc/gold_bar.png", "Golden Bar", 250, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		mithrilBar = new ItemType(1, "resources/items/16misc/mithril_bar.png", "Mithril Bar", 350, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		feather = new ItemType(1, "resources/items/16misc/feather.png", "Feather", 3, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		treasureChest = new ItemType(1, "resources/items/16misc/treasure_chest.png", "Treasure Chest", 320, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		goldCrown = new ItemType(1, "resources/items/16misc/gold_crown.png", "Gold Crown", 280, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		treasure = new ItemType(1, "resources/items/16misc/treasure.png", "Treasure", 280, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		multipleSticks = new ItemType(1, "resources/items/16misc/multiple_sticks.png", "Multiple Sticks", 5, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		trophy = new ItemType(1, "resources/items/16misc/trophy.png", "Trophy", 250, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		bone = new ItemType(1, "resources/items/22misc/bone.png", "Bone", 3, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		ironBar = new ItemType(1, "resources/items/22misc/iron_bar.png", "Iron Bar", 160, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		goldenBar = new ItemType(1, "resources/items/22misc/gold_bar.png", "Golden Bar", 250, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		mithrilBar = new ItemType(1, "resources/items/22misc/mithril_bar.png", "Mithril Bar", 350, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		feather = new ItemType(1, "resources/items/22misc/feather.png", "Feather", 3, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		treasureChest = new ItemType(1, "resources/items/22misc/treasure_chest.png", "Treasure Chest", 320, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		goldCrown = new ItemType(1, "resources/items/22misc/gold_crown.png", "Gold Crown", 280, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		treasure = new ItemType(1, "resources/items/22misc/treasure.png", "Treasure", 280, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		multipleSticks = new ItemType(1, "resources/items/22misc/multiple_sticks.png", "Multiple Sticks", 5, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		trophy = new ItemType(1, "resources/items/22misc/trophy.png", "Trophy", 250, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 
-		smallBottle = new ItemType(1, "resources/items/16misc/small_bottle.png", "Small Bottle", 10, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		mediumBottle = new ItemType(1, "resources/items/16misc/medium_Bottle.png", "Medium Bottle", 20, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		bigBottle = new ItemType(1, "resources/items/16misc/big_Bottle.png", "Big Bottle", 30, 15, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		smallBottle = new ItemType(1, "resources/items/22misc/small_bottle.png", "Small Bottle", 10, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		mediumBottle = new ItemType(1, "resources/items/22misc/medium_Bottle.png", "Medium Bottle", 20, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		bigBottle = new ItemType(1, "resources/items/22misc/big_Bottle.png", "Big Bottle", 30, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		
-		gold = new ItemType(100, "resources/items/17gold/goldcoin.png", "Gold", 1, 16, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
+		gold = new ItemType(100, "resources/items/23gold/goldcoin.png", "Gold", 1, 23, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
 		
 		
 		
