@@ -25,7 +25,6 @@ public class Alchemy {
 		createMaxManaBonusPotion(currentDialogue);
 		createStrengthPotion(currentDialogue);
 		createDexterityPotion(currentDialogue);
-		createWisdomPotion(currentDialogue);
 		
 	}
 	
@@ -409,45 +408,6 @@ public class Alchemy {
 				
 				player.addItem(new Item(0, 0, Game.getItemTypeManager().dexterityPotion));
 				currentDialogue.getSentences().get(1).setText("I have successfully created a Dexterity Potion.");
-			} else {
-				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
-			}
-			
-		}
-		
-	}
-	
-	
-	
-	private void createWisdomPotion(Dialogue currentDialogue) throws SlickException {
-		
-		Player player = CharacterManager.getPlayer();
-		
-		if(currentDialogue.getSentences().get(0).getText().equals("Create Wisdom Potion (Godnettel, Goldtruffle, Big Bottle)")) {
-			
-			int godnettelCount = 0;
-			int goldtruffleCount = 0;
-			int bigBottleCount = 0;
-			
-			for(int i = 0; i < player.getInventoryList().size(); i++) {
-				if(player.getInventoryList().get(i).getItemType().getName().equals("Godnettel")) {
-					godnettelCount = player.getItemCountList().get(i);
-				}
-				if(player.getInventoryList().get(i).getItemType().getName().equals("Goldtruffle")) {
-					goldtruffleCount = player.getItemCountList().get(i);
-				}
-				if(player.getInventoryList().get(i).getItemType().getName().equals("Big Bottle")) {
-					bigBottleCount = player.getItemCountList().get(i);
-				}
-			}
-			
-			if(godnettelCount >= 1 && goldtruffleCount >= 1 && bigBottleCount >= 1) {
-				player.getInventoryWindow().removeItem(Game.getItemTypeManager().godnettel);
-				player.getInventoryWindow().removeItem(Game.getItemTypeManager().goldtruffle);
-				player.getInventoryWindow().removeItem(Game.getItemTypeManager().bigBottle);
-				
-				player.addItem(new Item(0, 0, Game.getItemTypeManager().wisdomPotion));
-				currentDialogue.getSentences().get(1).setText("I have successfully created a Wisdom Potion.");
 			} else {
 				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
 			}

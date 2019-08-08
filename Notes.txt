@@ -45,18 +45,15 @@ First Magic Circle:
 .)Lightning
 .)Iceblock
 .)Summon Wolf
-.)Transform into Wolf
 
 Second Magic Circle:
 .)Heal Medium Wounds
 .)Ice Lance
 .)Ice Wave
 .)Summon Skeleton
-.)Transform into Skeleton
 
 Third Magic Circle:
 .)Heal Heavy Wounds
 .)Fireball
 .)Firerain
 .)Summon Orc Warrior
-.)Transform into Orc Warrior

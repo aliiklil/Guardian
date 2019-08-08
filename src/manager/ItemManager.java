@@ -41,10 +41,50 @@ public class ItemManager {
 		itemList.add(new Item(480, 416, itemTypeManager.longbow));
 		itemList.add(new Item(480, 416, itemTypeManager.recurvedbow));
 		
-		itemList.add(new Item(480, 416, itemTypeManager.firespell));
-		itemList.add(new Item(480, 416, itemTypeManager.firespell));
-		itemList.add(new Item(480, 416, itemTypeManager.icespell));
-		itemList.add(new Item(480, 416, itemTypeManager.icespell));
+		
+		
+		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsRune));
+		itemList.add(new Item(480, 416, itemTypeManager.lightningRune));
+		itemList.add(new Item(480, 416, itemTypeManager.iceblockRune));
+		itemList.add(new Item(480, 416, itemTypeManager.summonWolfRune));
+			
+		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsRune));
+		itemList.add(new Item(480, 416, itemTypeManager.icelanceRune));
+		itemList.add(new Item(480, 416, itemTypeManager.icewaveRune));
+		itemList.add(new Item(480, 416, itemTypeManager.summonSkeletonRune));
+				
+		itemList.add(new Item(480, 416, itemTypeManager.healHeavyWoundsRune));
+		itemList.add(new Item(480, 416, itemTypeManager.fireballRune));
+		itemList.add(new Item(480, 416, itemTypeManager.firerainRune));
+		itemList.add(new Item(480, 416, itemTypeManager.summonOrcWarriorRune));
+		
+		
+		
+		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.lightningSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.iceblockSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.summonWolfSpell));
+			
+		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.icelanceSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.icewaveSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.summonSkeletonSpell));
+				
+		itemList.add(new Item(480, 416, itemTypeManager.healHeavyWoundsSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.fireballSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.firerainSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.summonOrcWarriorSpell));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		itemList.add(new Item(480, 416, itemTypeManager.chainhat));
 		itemList.add(new Item(480, 416, itemTypeManager.chainhat));
@@ -133,13 +173,11 @@ public class ItemManager {
 		itemList.add(new Item(128, 128, itemTypeManager.maxManaBonusPotion));
 		itemList.add(new Item(128, 128, itemTypeManager.strengthPotion));
 		itemList.add(new Item(128, 128, itemTypeManager.dexterityPotion));
-		itemList.add(new Item(128, 128, itemTypeManager.wisdomPotion));
 		itemList.add(new Item(128, 128, itemTypeManager.speedPotion));
 		
 		
 		itemList.add(new Item(0, 0, itemTypeManager.dragonroot));
 		itemList.add(new Item(0, 32, itemTypeManager.goblinweed));
-		itemList.add(new Item(0, 64, itemTypeManager.godnettel));
 		itemList.add(new Item(64, 96, itemTypeManager.goldtruffle));
 		itemList.add(new Item(96, 64, itemTypeManager.wolfnettel));
 		

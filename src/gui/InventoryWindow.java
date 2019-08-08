@@ -508,13 +508,7 @@ public class InventoryWindow {
 					}
 				
 				} else {
-				
-					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinWisdom() > 0) {
-						g.drawString("Needed Wisdom:", 652, 923);
-						String minMagicKnowledge = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getMinWisdom());
-						g.drawString(minMagicKnowledge, 1098 - minMagicKnowledge.length() * 9, 923);
-					}
-					
+									
 					if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaCost() > 0) {
 						g.drawString("Mana Cost:", 652, 943);
 						String manaCost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getManaCost());
@@ -576,12 +570,6 @@ public class InventoryWindow {
 					g.drawString(dexterityBoost, 1098 - dexterityBoost.length() * 9, 943);
 				}
 				
-				if(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getWisdomBoost() > 0) {
-					g.drawString("Wisdom Boost:", 652, 943);
-					String wisdomBoost = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getWisdomBoost());
-					g.drawString(wisdomBoost, 1098 - wisdomBoost.length() * 9, 943);
-				}
-
 				g.drawString("Value in Gold:", 652, 963);
 				String value = String.valueOf(playerInventoryList.get(selectedCellX + (selectedCellY + scrollOffset) * amountColumns).getItemType().getValue());
 				g.drawString(value, 1098 - value.length() * 9, 963);

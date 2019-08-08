@@ -242,12 +242,7 @@ public class Learning {
 						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(3).setPermanent(true);
 						
 						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).addSentence("Create Wisdom Potion (Godnettel, Goldtruffle, Big Bottle)", "Hero");
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).addSentence("I have successfully created a Wisdom Potion.", "Hero");
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).setPermanent(true);
-						
-						DialogueManager.alchemyDeskDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(5).addSentence("Back", "Hero");
+						DialogueManager.alchemyDeskDialogues.get(2).getChildDialogues().get(4).addSentence("Back", "Hero");
 						
 					}
 					
