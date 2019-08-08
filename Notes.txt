@@ -11,8 +11,8 @@ Heal runes:
 
 Bullet runes:
 .)Lightning
-.)Fireball
 .)Ice Lance
+.)Fireball
 
 Summon runes:
 .)Summon Wolf
@@ -28,10 +28,35 @@ Freeze Rune:
 AoE Freeze Rune:
 .)Ice Wave
 
-Steal Life Rune:
-.)Steal Life
-
 Transform runes:
 .)Transform into Wolf
 .)Transform into Skeleton
+.)Transform into Orc Warrior
+
+
+
+
+
+
+
+
+First Magic Circle:
+.)Heal Light Wounds
+.)Lightning
+.)Iceblock
+.)Summon Wolf
+.)Transform into Wolf
+
+Second Magic Circle:
+.)Heal Medium Wounds
+.)Ice Lance
+.)Ice Wave
+.)Summon Skeleton
+.)Transform into Skeleton
+
+Third Magic Circle:
+.)Heal Heavy Wounds
+.)Fireball
+.)Firerain
+.)Summon Orc Warrior
 .)Transform into Orc Warrior
