@@ -8,6 +8,7 @@ public class DialogueManager {
 	
 	public static ArrayList<Dialogue> anvilDialogues = new ArrayList<Dialogue>();
 	public static ArrayList<Dialogue> alchemyDeskDialogues = new ArrayList<Dialogue>();
+	public static ArrayList<Dialogue> runeForgingDialogues = new ArrayList<Dialogue>();
 	
 	public static ArrayList<Dialogue> ogusDialogues = new ArrayList<Dialogue>();
 	public static ArrayList<Dialogue> halrokDialogues = new ArrayList<Dialogue>();
@@ -111,32 +112,25 @@ public class DialogueManager {
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(1).addSentence("Dexterity + 5 (Costs 5LP)", "Hero");
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(1).addSentence("You are a fast learner.", "Ogus");
 		
+		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(2).addSentence("Magic Class + 1 (Costs 10LP)", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(2).addSentence("Health Points + 5 (Costs 5LP)", "Hero");
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(2).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(3).addSentence("Health Points + 5 (Costs 5LP)", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(3).addSentence("Mana + 5 (Costs 5LP)", "Hero");
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(3).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(4).addSentence("Mana + 5 (Costs 5LP)", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(4).addSentence("Melee Skill + 5 (Costs 5LP)", "Hero");
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(4).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(5).addSentence("Melee Skill + 5 (Costs 5LP)", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(5).addSentence("Bow Skill + 5 (Costs 5LP)", "Hero");
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(5).addSentence("You are a fast learner.", "Ogus");
 		
 		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(6).addSentence("Bow Skill + 5 (Costs 5LP)", "Hero");
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(6).addSentence("You are a fast learner.", "Ogus");
-		
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(7).addSentence("Spell Skill + 5 (Costs 5LP)", "Hero");
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(7).addSentence("You are a fast learner.", "Ogus");
-		
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(8).addSentence("Back", "Hero");
+		ogusDialogues.get(4).getNewStartingDialogues().get(0).getChildDialogues().get(6).addSentence("Back", "Hero");
 		
 		ogusDialogues.add(new Dialogue());
 		ogusDialogues.get(5).setPermanent(true);
@@ -178,23 +172,27 @@ public class DialogueManager {
 		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(2).addSentence("You are a fast learner.", "Halrok");
 		
 		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(3).addSentence("Take Furs (Costs 10LP)", "Hero");
-		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(3).addSentence("You are a fast learner.", "Halrok");
+		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(3).addSentence("Runeforging + 1 (Costs 10LP)", "Hero");
+		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(3).addSentence("You are a fast learner.", "Ogus");
 		
 		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(4).addSentence("Take Trophies (Costs 10LP)", "Hero");
+		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(4).addSentence("Take Furs (Costs 10LP)", "Hero");
 		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(4).addSentence("You are a fast learner.", "Halrok");
 		
 		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(5).addSentence("HP Regeneration (Costs 10LP)", "Hero");
+		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(5).addSentence("Take Trophies (Costs 10LP)", "Hero");
 		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(5).addSentence("You are a fast learner.", "Halrok");
 		
 		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(6).addSentence("Mana Regeneration (Costs 10LP)", "Hero");
+		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(6).addSentence("HP Regeneration (Costs 10LP)", "Hero");
 		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(6).addSentence("You are a fast learner.", "Halrok");
 		
 		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
-		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(7).addSentence("Back", "Hero");
+		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(7).addSentence("Mana Regeneration (Costs 10LP)", "Hero");
+		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(7).addSentence("You are a fast learner.", "Halrok");
+		
+		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
+		halrokDialogues.get(2).getNewStartingDialogues().get(0).getChildDialogues().get(8).addSentence("Back", "Hero");
 		
 	}
 	

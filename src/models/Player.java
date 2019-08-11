@@ -22,6 +22,7 @@ import manager.AnvilManager;
 import manager.CharacterManager;
 import manager.ChestManager;
 import manager.ItemTypeManager;
+import manager.RuneTableManager;
 import util.CollisionBox;
 
 public class Player extends Character {
@@ -92,7 +93,6 @@ public class Player extends Character {
 	
 	private int strength = 200;
 	private int dexterity = 200;
-	private int magicClass = 0;
 	
 	private int healthPoints = 200;
 	private int mana = 100;
@@ -103,6 +103,7 @@ public class Player extends Character {
 	private int lockPickingSkill = 0;
 	private int alchemySkill = 0;
 	private int blacksmithingSkill = 0;
+	private int runeForgingSkill = 0;
 	
 	private boolean takeFurs = false;
 	private boolean takeTrophies = false;
@@ -193,6 +194,7 @@ public class Player extends Character {
 			updateDialogueNPC();
 			updateDialogueAnvil();
 			updateDialogueAlchemyDesk();
+			updateDialogueRuneTable();
 			dialogueWindow.update();
 			centeredText.update();
 			levelUpText.update();
@@ -1258,6 +1260,40 @@ public class Player extends Character {
 						
 						String text = "I don't know anything about alchemy";
 						centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+						
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+	
+	private void updateDialogueRuneTable() throws SlickException {
+
+		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
+
+			ArrayList<RuneTable> runeTableList = RuneTableManager.getRuneTableList();
+
+			for (RuneTable runeTable : runeTableList) {
+				
+				if(runeTable.getStartingDialogues() != null) {
+					
+					if(super.getCollisionBox().willIntersectAnyDirection(runeTable.getCollisionBox(), 5)) {
+						
+						if(runeForgingSkill > 0) {
+						
+							dialogueWindow.showWindow(runeTable.getStartingDialogues());
+							yPressed = false;
+						
+						} else {
+							
+							String text = "I don't know anything about runeforging";
+							centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+							
+						}
 						
 					}
 
@@ -2897,10 +2933,6 @@ public class Player extends Character {
 		return dexterity;
 	}
 	
-	public int getMagicClass() {
-		return magicClass;
-	}
-
 	public int getHealthPoints() {
 		return healthPoints;
 	}
@@ -2947,10 +2979,6 @@ public class Player extends Character {
 
 	public void setDexterity(int dexterity) {
 		this.dexterity = dexterity;
-	}
-	
-	public void setMagicClass(int magicClass) {
-		this.magicClass = magicClass;
 	}
 
 	public void setHealthPoints(int healthPoints) {
@@ -3047,6 +3075,14 @@ public class Player extends Character {
 
 	public void setBlacksmithingSkill(int blacksmithingSkill) {
 		this.blacksmithingSkill = blacksmithingSkill;
+	}
+	
+	public int getRuneForgingSkill() {
+		return runeForgingSkill;
+	}
+	
+	public void setRuneForgingSkill(int runeForgingSkill) {
+		this.runeForgingSkill = runeForgingSkill;
 	}
 
 	public long getSpeedBoostTimeStamp() {

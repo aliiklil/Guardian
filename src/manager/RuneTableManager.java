@@ -13,7 +13,7 @@ public class RuneTableManager {
 		
 	public RuneTableManager() throws SlickException {
 		
-		RuneTable runeTable1 = new RuneTable(19, 10, null);
+		RuneTable runeTable1 = new RuneTable(19, 10, DialogueManager.runeForgingDialogues);
 		
 		runeTableList.add(runeTable1);
 		

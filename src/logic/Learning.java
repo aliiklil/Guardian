@@ -41,27 +41,6 @@ public class Learning {
 			}
 		}
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Magic Class + 1 (Costs 10LP)")) {
-			
-			if(player.getMagicClass() < 3) {
-			
-				if(player.getLearningPoints() >= 10) {
-					player.setMagicClass(player.getMagicClass() + 1);
-					player.setLearningPoints(player.getLearningPoints() - 10);
-					String text = "Magic Class + 1";
-					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
-					currentDialogue.getSentences().get(1).setText("You are a fast learner.");
-				} else {
-					currentDialogue.getSentences().get(1).setText("You don't have enough experience. Come back later.");
-				}
-			
-			} else {
-				
-				currentDialogue.getSentences().get(1).setText("You have already mastered all magic classes.");
-				
-			}
-		}
-
 		if(currentDialogue.getSentences().get(0).getText().equals("Health Points + 5 (Costs 5LP)")) {
 			if(player.getLearningPoints() >= 5) {
 				player.setHealthPoints(player.getHealthPoints() + 5);
@@ -476,6 +455,138 @@ public class Learning {
 		
 		
 		
+		
+		if(currentDialogue.getSentences().get(0).getText().equals("Runeforging + 1 (Costs 10LP)")) {
+			
+			if(player.getRuneForgingSkill() < 3) {
+			
+				if(player.getLearningPoints() >= 10) {
+					player.setRuneForgingSkill(player.getRuneForgingSkill() + 1);
+					player.setLearningPoints(player.getLearningPoints() - 10);
+					String text = "Runeforging + 1";
+					player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+					
+					
+					if(player.getRuneForgingSkill() == 1) {
+						
+						currentDialogue.getSentences().get(1).setText("You are now able to create basic runes.");
+						
+						DialogueManager.runeForgingDialogues.add(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(0).setPermanent(true);
+						DialogueManager.runeForgingDialogues.get(0).setForLearning(true);	
+						DialogueManager.runeForgingDialogues.get(0).addSentence("Level 1 - Basic Runes", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).addSentence("", "Hero");
+						
+						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(0).addSentence("Heal Light Wounds Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(0).addSentence("I have successfully forged a Heal Light Wounds Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(0).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(1).addSentence("Lightning Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(1).addSentence("I have successfully forged a Lightning Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(1).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).addSentence("Iceblock Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).addSentence("I have successfully forged an Iceblock Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).addSentence("Summon Wolf Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).addSentence("I have successfully forged a Summon Wolf Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(4).addSentence("Back", "Hero");
+							
+						
+					}
+					
+					if(player.getRuneForgingSkill() == 2) {
+						
+						currentDialogue.getSentences().get(1).setText("You are now able to create intermediate runes.");
+						
+						DialogueManager.runeForgingDialogues.add(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(1).setPermanent(true);
+						DialogueManager.runeForgingDialogues.get(1).setForLearning(true);
+						DialogueManager.runeForgingDialogues.get(1).addSentence("Level 2 - Intermediate Runes", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).addSentence("", "Hero");
+						
+						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(0).addSentence("Heal Medium Wounds Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(0).addSentence("I have successfully forged a Heal Medium Wounds Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(0).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(1).addSentence("Icelance Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(1).addSentence("I have successfully forged an Icelance Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(1).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).addSentence("Icewave Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).addSentence("I have successfully forged an Icewave Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).addSentence("Summon Skeleton Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).addSentence("I have successfully forged a Summon Skeleton Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(4).addSentence("Back", "Hero");
+						
+					}
+					
+					if(player.getRuneForgingSkill() == 3) {
+						
+						currentDialogue.getSentences().get(1).setText("You are now able to create powerful runes.");
+						
+						
+						DialogueManager.runeForgingDialogues.add(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(2).setPermanent(true);
+						DialogueManager.runeForgingDialogues.get(2).setForLearning(true);
+						DialogueManager.runeForgingDialogues.get(2).addSentence("Level 3 - Powerful Runes", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).addSentence("", "Hero");
+						
+						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(0).addSentence("Heal Heavy Wounds Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(0).addSentence("I have successfully forged a Heal Heavy Wounds Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(0).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(1).addSentence("Fireball Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(1).addSentence("I have successfully forged a Fireball Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(1).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(2).addSentence("Firerain Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(2).addSentence("I have successfully forged a Firerain Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(2).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("Summon Orc Warrior Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("I have successfully forged a Orc Warrior Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).setPermanent(true);
+						
+						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(4).addSentence("Back", "Hero");
+						
+					}
+					
+					
+					
+					
+				} else {
+					currentDialogue.getSentences().get(1).setText("You don't have enough experience. Come back later.");
+				}
+			
+			} else {
+				
+				currentDialogue.getSentences().get(1).setText("You have already mastered runeforging.");
+				
+			}
+		}
 		
 		
 		

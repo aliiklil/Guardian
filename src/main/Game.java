@@ -10,6 +10,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import logic.Alchemy;
 import logic.Blacksmithing;
 import logic.Learning;
+import logic.RuneForging;
 import manager.AlchemyDeskManager;
 import manager.AnvilManager;
 import manager.CharacterManager;
@@ -43,6 +44,7 @@ public class Game extends BasicGameState {
 	
 	public static Blacksmithing blacksmithing;
 	public static Alchemy alchemy;
+	public static RuneForging runeForging;
 	public static Learning learning;
 
 	@Override
@@ -68,6 +70,7 @@ public class Game extends BasicGameState {
 		
 		alchemy = new Alchemy();
 		blacksmithing = new Blacksmithing();
+		runeForging = new RuneForging();
 		learning = new Learning();
 		
 	}
@@ -168,6 +171,10 @@ public class Game extends BasicGameState {
 
 	public static Blacksmithing getBlacksmithing() {
 		return blacksmithing;
+	}
+	
+	public static RuneForging getRuneForging() {
+		return runeForging;
 	}
 
 	public static Learning getLearning() {

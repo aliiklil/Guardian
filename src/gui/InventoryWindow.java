@@ -597,17 +597,17 @@ public class InventoryWindow {
 		
 		g.drawString("Strength: ", 299, 417);
 		g.drawString("Dexterity: ", 299, 437);
-		g.drawString("Magic Class: ", 299, 457);
 		
-		g.drawString("Health Points: ", 299, 497);
-		g.drawString("Mana: ", 299, 517);
+		g.drawString("Health Points: ", 299, 477);
+		g.drawString("Mana: ", 299, 497);
 		
-		g.drawString("Melee Skill: ", 299, 557);
-		g.drawString("Bow Skill: ", 299, 577);
+		g.drawString("Melee Skill: ", 299, 537);
+		g.drawString("Bow Skill: ", 299, 557);
 		
-		g.drawString("Lockpicking: ", 299, 617);
-		g.drawString("Alchemy: ", 299, 637);
-		g.drawString("Blacksmithing: ", 299, 657);
+		g.drawString("Lockpicking: ", 299, 597);
+		g.drawString("Alchemy: ", 299, 617);
+		g.drawString("Blacksmithing: ", 299, 637);
+		g.drawString("Runeforging: ", 299, 657);
 		
 		g.drawString("Take Furs: ", 299, 697);
 		g.drawString("Take Trophies: ", 299, 717);
@@ -625,18 +625,17 @@ public class InventoryWindow {
 		
 		g.drawString(String.valueOf(player.getStrength()), 471, 417);
 		g.drawString(String.valueOf(player.getDexterity()), 471, 437);
-		g.drawString(String.valueOf(player.getMagicClass()) + " / 3", 471, 457);
 		
-		g.drawString(String.valueOf(player.getHealthPoints()), 471, 497);
-		g.drawString(String.valueOf(player.getMana()), 471, 517);
+		g.drawString(String.valueOf(player.getHealthPoints()), 471, 477);
+		g.drawString(String.valueOf(player.getMana()), 471, 497);
 		
-		g.drawString(String.valueOf(player.getMeleeSkill()) + "%", 471, 557);
-		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 577);
+		g.drawString(String.valueOf(player.getMeleeSkill()) + "%", 471, 537);
+		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 557);
 				
-		g.drawString(String.valueOf(player.getLockPickingSkill()) + " / 3", 471, 617);
-		g.drawString(String.valueOf(player.getAlchemySkill()) + " / 3", 471, 637);
-		g.drawString(String.valueOf(player.getBlacksmithingSkill()) + " / 3", 471, 657);
-		
+		g.drawString(String.valueOf(player.getLockPickingSkill()) + " / 3", 471, 597);
+		g.drawString(String.valueOf(player.getAlchemySkill()) + " / 3", 471, 617);
+		g.drawString(String.valueOf(player.getBlacksmithingSkill()) + " / 3", 471, 637);
+		g.drawString(String.valueOf(player.getRuneForgingSkill()) + " / 3", 471, 657);
 		
 		
 		
