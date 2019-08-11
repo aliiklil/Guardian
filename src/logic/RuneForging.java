@@ -10,7 +10,7 @@ import models.Player;
 
 public class RuneForging {
 
-	public void checkIfPlayerIsUsingAlchemy(Dialogue currentDialogue) throws SlickException {
+	public void checkIfPlayerIsUsingRuneTable(Dialogue currentDialogue) throws SlickException {
 				
 		createSmallHpPotion(currentDialogue);
 		

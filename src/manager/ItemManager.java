@@ -193,6 +193,7 @@ public class ItemManager {
 		itemList.add(new Item(96, 96, itemTypeManager.mediumBottle));
 		itemList.add(new Item(64, 64, itemTypeManager.bigBottle));
 		
+		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
 	}
 	
 	public void update() {

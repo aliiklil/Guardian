@@ -154,6 +154,8 @@ public class ItemTypeManager {
 	public ItemType mediumBottle;
 	public ItemType bigBottle;
 	
+	public ItemType emptyRune;
+	
 	public ItemType gold;
 
 
@@ -556,6 +558,8 @@ public class ItemTypeManager {
 		smallBottle = new ItemType(1, "resources/items/22misc/small_bottle.png", "Small Bottle", 10, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		mediumBottle = new ItemType(1, "resources/items/22misc/medium_Bottle.png", "Medium Bottle", 20, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		bigBottle = new ItemType(1, "resources/items/22misc/big_Bottle.png", "Big Bottle", 30, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		
+		emptyRune = new ItemType(1, "resources/items/22misc/emptyRune.png", "Empty Rune", 300, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		
 		gold = new ItemType(100, "resources/items/23gold/goldcoin.png", "Gold", 1, 23, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
 		
