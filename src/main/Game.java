@@ -18,6 +18,7 @@ import manager.DialogueManager;
 import manager.ItemManager;
 import manager.ItemTypeManager;
 import manager.ProjectileManager;
+import manager.RuneTableManager;
 import models.Map;
 
 public class Game extends BasicGameState {
@@ -38,6 +39,7 @@ public class Game extends BasicGameState {
 	private static ChestManager chestManager;
 	private static AnvilManager anvilManager;
 	private static AlchemyDeskManager alchemyDeskManager;
+	private static RuneTableManager runeTableManager;
 	
 	public static Blacksmithing blacksmithing;
 	public static Alchemy alchemy;
@@ -62,6 +64,7 @@ public class Game extends BasicGameState {
 		chestManager = new ChestManager();
 		anvilManager = new AnvilManager();
 		alchemyDeskManager = new AlchemyDeskManager();
+		runeTableManager = new RuneTableManager();
 		
 		alchemy = new Alchemy();
 		blacksmithing = new Blacksmithing();
@@ -79,6 +82,7 @@ public class Game extends BasicGameState {
 		chestManager.update();
 		anvilManager.update();
 		alchemyDeskManager.update();
+		runeTableManager.update();
 		
 	}
 
@@ -90,11 +94,13 @@ public class Game extends BasicGameState {
 		chestManager.render(g);
 		anvilManager.render(g);
 		alchemyDeskManager.render(g);
-		
+		runeTableManager.renderBottom(g);
 		itemManager.render(g);
+		
 		characterManager.render(g);
+		
+		runeTableManager.renderTop(g);
 		projectileManager.render(g);
-
 		world.renderUpperLayer(g);
 
 		CharacterManager.getPlayer().getInventoryWindow().render(g);
