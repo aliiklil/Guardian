@@ -41,19 +41,19 @@ Transform runes:
 
 
 First Magic Circle:
-.)Heal Light Wounds
-.)Lightning
-.)Iceblock
-.)Summon Wolf
+.)Heal Light Wounds (Healberry, Empty Rune)
+.)Lightning (Chrystalstone, Empty Rune)
+.)Iceblock (Ice Cube, Empty Rune)
+.)Summon Wolf (Wolf Hide, Empty Rune)
 
 Second Magic Circle:
-.)Heal Medium Wounds
-.)Ice Lance
-.)Ice Wave
-.)Summon Skeleton
+.)Heal Medium Wounds (Healplant, Empty Rune)
+.)Ice Lance (Glacier Quartz, Empty Rune)
+.)Ice Wave (Aquamarine, Empty Rune)
+.)Summon Skeleton (Bone, Empty Rune)
 
 Third Magic Circle:
-.)Heal Heavy Wounds
-.)Fireball
-.)Firerain
-.)Summon Orc Warrior
+.)Heal Heavy Wounds (Healroot, Empty Rune)
+.)Fireball (Pitch, Empty Rune)
+.)Firerain (Sulfur, Empty Rune)
+.)Summon Orc Warrior (Orc Teeth, Empty Rune)
