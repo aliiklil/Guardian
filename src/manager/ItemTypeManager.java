@@ -149,7 +149,15 @@ public class ItemTypeManager {
 	public ItemType treasure;
 	public ItemType multipleSticks;
 	public ItemType trophy;
-
+	public ItemType chrystal;
+	public ItemType icecube;
+	public ItemType wolfHide;
+	public ItemType smaragd;
+	public ItemType aquamarine;
+	public ItemType pitch;
+	public ItemType sulfur;
+	public ItemType orctooth;
+	
 	public ItemType smallBottle;
 	public ItemType mediumBottle;
 	public ItemType bigBottle;
@@ -555,6 +563,19 @@ public class ItemTypeManager {
 		multipleSticks = new ItemType(1, "resources/items/22misc/multiple_sticks.png", "Multiple Sticks", 5, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		trophy = new ItemType(1, "resources/items/22misc/trophy.png", "Trophy", 250, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 
+		
+		chrystal = new ItemType(1, "resources/items/22misc/chrystal.png", "Chrystal", 50, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		icecube = new ItemType(1, "resources/items/22misc/icecube.png", "Icecube", 10, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		wolfHide = new ItemType(1, "resources/items/22misc/wolfHide.png", "Wolf Hide", 40, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		smaragd = new ItemType(1, "resources/items/22misc/smaragd.png", "Smaragd", 80, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		aquamarine = new ItemType(1, "resources/items/22misc/aquamarine.png", "Aquamarine", 80, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		pitch = new ItemType(1, "resources/items/22misc/pitch.png", "Pitch", 20, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		sulfur = new ItemType(1, "resources/items/22misc/sulfur.png", "Sulfur", 10, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		orctooth = new ItemType(1, "resources/items/22misc/orctooth.png", "Orctooth", 150, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		
+
+		
+		
 		smallBottle = new ItemType(1, "resources/items/22misc/small_bottle.png", "Small Bottle", 10, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		mediumBottle = new ItemType(1, "resources/items/22misc/medium_Bottle.png", "Medium Bottle", 20, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		bigBottle = new ItemType(1, "resources/items/22misc/big_Bottle.png", "Big Bottle", 30, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");

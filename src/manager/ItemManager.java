@@ -194,6 +194,16 @@ public class ItemManager {
 		itemList.add(new Item(64, 64, itemTypeManager.bigBottle));
 		
 		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
+		
+		
+		itemList.add(new Item(1088, 64, itemTypeManager.chrystal));
+		itemList.add(new Item(1024, 32, itemTypeManager.icecube));
+		itemList.add(new Item(1152, 64, itemTypeManager.wolfHide));
+		itemList.add(new Item(1216, 64, itemTypeManager.smaragd));
+		itemList.add(new Item(1280, 64, itemTypeManager.aquamarine));
+		itemList.add(new Item(1344, 64, itemTypeManager.pitch));
+		itemList.add(new Item(1408, 64, itemTypeManager.sulfur));
+		itemList.add(new Item(1408, 32, itemTypeManager.orctooth));
 	}
 	
 	public void update() {
