@@ -478,22 +478,22 @@ public class Learning {
 						DialogueManager.runeForgingDialogues.get(0).addSentence("", "Hero");
 						
 						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(0).addSentence("Heal Light Wounds Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(0).addSentence("Heal Light Wounds Rune (Healberry, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(0).addSentence("I have successfully forged a Heal Light Wounds Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(1).addSentence("Lightning Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(1).addSentence("Lightning Rune (Chrystal, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(1).addSentence("I have successfully forged a Lightning Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).addSentence("Iceblock Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).addSentence("Iceblock Rune (Icecube, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).addSentence("I have successfully forged an Iceblock Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).addSentence("Summon Wolf Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).addSentence("Summon Wolf Rune (Wolf Hide, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).addSentence("I have successfully forged a Summon Wolf Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).setPermanent(true);
 						
@@ -514,22 +514,22 @@ public class Learning {
 						DialogueManager.runeForgingDialogues.get(1).addSentence("", "Hero");
 						
 						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(0).addSentence("Heal Medium Wounds Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(0).addSentence("Heal Medium Wounds Rune (Healplant, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(0).addSentence("I have successfully forged a Heal Medium Wounds Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(1).addSentence("Icelance Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(1).addSentence("Icelance Rune (Smaragd, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(1).addSentence("I have successfully forged an Icelance Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).addSentence("Icewave Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).addSentence("Icewave Rune (Aquamarine, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).addSentence("I have successfully forged an Icewave Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).addSentence("Summon Skeleton Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).addSentence("Summon Skeleton Rune (Bone, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).addSentence("I have successfully forged a Summon Skeleton Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).setPermanent(true);
 						
@@ -550,23 +550,23 @@ public class Learning {
 						DialogueManager.runeForgingDialogues.get(2).addSentence("", "Hero");
 						
 						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(0).addSentence("Heal Heavy Wounds Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(0).addSentence("Heal Heavy Wounds Rune (Healroot, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(0).addSentence("I have successfully forged a Heal Heavy Wounds Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(0).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(1).addSentence("Fireball Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(1).addSentence("Fireball Rune (Pitch, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(1).addSentence("I have successfully forged a Fireball Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(2).addSentence("Firerain Rune (3 Iron Bar)", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(2).addSentence("Firerain Rune (Sulfur, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(2).addSentence("I have successfully forged a Firerain Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("Summon Orc Warrior Rune (3 Iron Bar)", "Hero");
-						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("I have successfully forged a Orc Warrior Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("Summon Orc Warrior Rune (Orc Tooth, Empty Rune)", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("I have successfully forged a Summon Orc Warrior Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());

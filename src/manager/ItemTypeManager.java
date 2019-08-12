@@ -156,7 +156,7 @@ public class ItemTypeManager {
 	public ItemType aquamarine;
 	public ItemType pitch;
 	public ItemType sulfur;
-	public ItemType orctooth;
+	public ItemType orcTooth;
 	
 	public ItemType smallBottle;
 	public ItemType mediumBottle;
@@ -253,50 +253,149 @@ public class ItemTypeManager {
 		
 		
 		
-		healLightWoundsRune = new ItemType(1, "resources/items/7healrunes/healLightWoundsRune.png", "Heal Light Wounds", 250, 7, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		
+
+		
+
+		
+		
+		
+		
+		
+
+		
+		clothhood = new ItemType(1, "resources/items/4helmets/clothhood.png", "Cloth Hood", 20, 4, true, "head", "resources/player_sprites/head/clothhood.png");
+		clothhood.setProtection(2);
+		
+		leathercap = new ItemType(1, "resources/items/4helmets/leathercap.png", "Leather Cap", 50, 4, true, "head", "resources/player_sprites/head/leathercap.png");
+		leathercap.setProtection(4);
+		
+		chainhat = new ItemType(1, "resources/items/4helmets/chainhat.png", "Chain Hat", 100, 4, true, "head", "resources/player_sprites/head/chainhat.png");
+		chainhat.setProtection(6);
+		
+		chainhelmet = new ItemType(1, "resources/items/4helmets/chainhelmet.png", "Chain Helmet", 150, 4, true, "head", "resources/player_sprites/head/chainhelmet.png");
+		chainhelmet.setProtection(8);
+		
+		ironhelmet = new ItemType(1, "resources/items/4helmets/ironhelmet.png", "Iron Helmet", 200, 4, true, "head", "resources/player_sprites/head/ironhelmet.png");
+		ironhelmet.setProtection(10);
+		
+		goldenhelmet = new ItemType(1, "resources/items/4helmets/goldenhelmet.png", "Gold Helmet", 300, 4, true, "head", "resources/player_sprites/head/goldenhelmet.png");
+		goldenhelmet.setProtection(12);
+		
+		mithrilhelmet = new ItemType(1, "resources/items/4helmets/mithrilhelmet.png", "Mithril Helmet", 500, 4, true, "head", "resources/player_sprites/head/mithrilhelmet.png");
+		mithrilhelmet.setProtection(16);
+
+		
+		
+		shirt = new ItemType(1, "resources/items/5torso/shirt.png", "Shirt", 10, 5, true, "chest", "resources/player_sprites/chest/shirt.png");
+		shirt.setProtection(3);
+		
+		leatherchest = new ItemType(1, "resources/items/5torso/leatherchest.png", "Leather Chest", 300, 5, true, "chest", "resources/player_sprites/chest/leatherchest.png");
+		leatherchest.setProtection(6);
+		
+		chainchest = new ItemType(1, "resources/items/5torso/chainchest.png", "Chain Chest", 500, 5, true, "chest", "resources/player_sprites/chest/chainchest.png");
+		chainchest.setProtection(9);
+		
+		ironchest = new ItemType(1, "resources/items/5torso/ironchest.png", "Iron Chest", 700, 5, true, "chest", "resources/player_sprites/chest/ironchest.png");
+		ironchest.setProtection(12);
+		
+		goldenchest = new ItemType(1, "resources/items/5torso/goldenchest.png", "Golden Chest", 1400, 5, true, "chest", "resources/player_sprites/chest/goldenchest.png");
+		goldenchest.setProtection(15);
+		
+		mithrilchest = new ItemType(1, "resources/items/5torso/mithrilchest.png", "Mithril Chest", 2500, 5, true, "chest", "resources/player_sprites/chest/mithrilchest.png");
+		mithrilchest.setProtection(18);
+		
+
+		
+		irongloves = new ItemType(1, "resources/items/6hands/irongloves.png", "Iron Gloves", 600, 6, true, "hands", "resources/player_sprites/hands/irongloves.png");
+		irongloves.setProtection(2);
+		
+		goldengloves = new ItemType(1, "resources/items/6hands/goldengloves.png", "Golden Gloves", 900, 6, true, "hands", "resources/player_sprites/hands/goldengloves.png");
+		goldengloves.setProtection(4);
+		
+		mithrilgloves = new ItemType(1, "resources/items/6hands/mithrilgloves.png", "Mithril Gloves", 1600, 6, true, "hands", "resources/player_sprites/hands/mithrilgloves.png");
+		mithrilgloves.setProtection(8);
+		
+		
+
+		skirt = new ItemType(1, "resources/items/7legarmor/skirt.png", "Skirt", 100, 7, true, "legs", "resources/player_sprites/legs/skirt.png");
+		skirt.setProtection(3);
+		
+		irongreaves = new ItemType(1, "resources/items/7legarmor/ironlegarmor.png", "Iron Greaves", 300, 7, true, "legs", "resources/player_sprites/legs/irongreaves.png");
+		irongreaves.setProtection(6);
+		
+		goldengreaves = new ItemType(1, "resources/items/7legarmor/goldenlegarmor.png", "Golden Greaves", 1200, 7, true, "legs", "resources/player_sprites/legs/goldengreaves.png");
+		goldengreaves.setProtection(9);
+		
+		mithrilgreaves = new ItemType(1, "resources/items/7legarmor/mithrillegarmor.png", "Mithril Greaves", 2200, 7, true, "legs", "resources/player_sprites/legs/mithrilgreaves.png");
+		mithrilgreaves.setProtection(15);
+		
+		
+
+		boots = new ItemType(1, "resources/items/8boots/boots.png", "Boots", 100, 8, true, "feet", "resources/player_sprites/feet/boots.png");
+		boots.setProtection(2);
+		
+		leatherboots = new ItemType(1, "resources/items/8boots/leatherboots.png", "Leather Boots", 200, 8, true, "feet", "resources/player_sprites/feet/leatherboots.png");
+		leatherboots.setProtection(4);
+		
+		ironboots = new ItemType(1, "resources/items/8boots/ironboots.png", "Iron Boots", 500, 8, true, "feet", "resources/player_sprites/feet/ironboots.png");
+		ironboots.setProtection(6);
+		
+		goldenboots = new ItemType(1, "resources/items/8boots/goldenboots.png", "Golden Boots", 700, 8, true, "feet", "resources/player_sprites/feet/goldenboots.png");
+		goldenboots.setProtection(8);
+		
+		mithrilboots = new ItemType(1, "resources/items/8boots/mithrilboots.png", "Mithril Boots", 1500, 8, true, "feet", "resources/player_sprites/feet/mithrilboots.png");
+		mithrilboots.setProtection(12);
+		
+		
+		
+		
+		
+		
+		healLightWoundsRune = new ItemType(1, "resources/items/12healrunes/healLightWoundsRune.png", "Heal Light Wounds", 250, 12, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healLightWoundsRune.setManaCost(5);
 
-		lightningRune = new ItemType(1, "resources/items/4bulletrunes/lightningRune.png", "Lightning", 250, 4, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		lightningRune = new ItemType(1, "resources/items/9bulletrunes/lightningRune.png", "Lightning", 250, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		lightningRune.setManaCost(5);
 		lightningRune.setDamage(20);
 		
-		iceblockRune = new ItemType(1, "resources/items/5otherrunes/iceblockRune.png", "Iceblock", 250, 5, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		iceblockRune = new ItemType(1, "resources/items/10otherrunes/iceblockRune.png", "Iceblock", 250, 10, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		iceblockRune.setManaCost(10);
 		
-		summonWolfRune = new ItemType(1, "resources/items/6summonrunes/summonWolfRune.png", "Summon Wolf", 250, 6, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonWolfRune = new ItemType(1, "resources/items/11summonrunes/summonWolfRune.png", "Summon Wolf", 250, 11, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonWolfRune.setManaCost(10);
 		
 
 
 		
-		healMediumWoundsRune = new ItemType(1, "resources/items/7healrunes/healMediumWoundsRune.png", "Heal Medium Wounds", 500, 7, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healMediumWoundsRune = new ItemType(1, "resources/items/12healrunes/healMediumWoundsRune.png", "Heal Medium Wounds", 500, 12, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healMediumWoundsRune.setManaCost(20);
 
-		icelanceRune = new ItemType(1, "resources/items/4bulletrunes/icelanceRune.png", "Icelance", 500, 4, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		icelanceRune = new ItemType(1, "resources/items/9bulletrunes/icelanceRune.png", "Icelance", 500, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icelanceRune.setManaCost(25);
 		icelanceRune.setDamage(50);
 		
-		icewaveRune = new ItemType(1, "resources/items/5otherrunes/icewaveRune.png", "Icewave", 500, 5, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		icewaveRune = new ItemType(1, "resources/items/10otherrunes/icewaveRune.png", "Icewave", 500, 10, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icewaveRune.setManaCost(30);
 		
-		summonSkeletonRune = new ItemType(1, "resources/items/6summonrunes/summonSkeletonRune.png", "Summon Skeleton", 500, 6, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonSkeletonRune = new ItemType(1, "resources/items/11summonrunes/summonSkeletonRune.png", "Summon Skeleton", 500, 11, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonSkeletonRune.setManaCost(30);
 		
 
 		
 
-		healHeavyWoundsRune = new ItemType(1, "resources/items/7healrunes/healHeavyWoundsRune.png", "Heal Heavy Wounds", 750, 7, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healHeavyWoundsRune = new ItemType(1, "resources/items/12healrunes/healHeavyWoundsRune.png", "Heal Heavy Wounds", 750, 12, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healHeavyWoundsRune.setManaCost(40);
 		
-		fireballRune = new ItemType(1, "resources/items/4bulletrunes/fireballRune.png", "Fireball", 750, 4, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		fireballRune = new ItemType(1, "resources/items/9bulletrunes/fireballRune.png", "Fireball", 750, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		fireballRune.setManaCost(50);
 		fireballRune.setDamage(100);
 		
-		firerainRune = new ItemType(1, "resources/items/5otherrunes/firerainRune.png", "Firerain", 750, 5, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		firerainRune = new ItemType(1, "resources/items/10otherrunes/firerainRune.png", "Firerain", 750, 10, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		firerainRune.setManaCost(60);
 		firerainRune.setDamage(150);
 		
-		summonOrcWarriorRune = new ItemType(1, "resources/items/6summonrunes/summonOrcWarriorRune.png", "Summon Orc Warrior", 750, 6, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonOrcWarriorRune = new ItemType(1, "resources/items/11summonrunes/summonOrcWarriorRune.png", "Summon Orc Warrior", 750, 11, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonOrcWarriorRune.setManaCost(75);
 		
 
@@ -305,140 +404,60 @@ public class ItemTypeManager {
 		
 
 		
-		healLightWoundsSpell = new ItemType(1, "resources/items/11healspells/healLightWoundsSpell.png", "Heal Light Wounds", 20, 11, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healLightWoundsSpell = new ItemType(1, "resources/items/16healspells/healLightWoundsSpell.png", "Heal Light Wounds", 20, 16, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healLightWoundsSpell.setManaCost(5);
 		
-		lightningSpell = new ItemType(1, "resources/items/8bulletspells/lightningSpell.png", "Lightning", 20, 8, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		lightningSpell = new ItemType(1, "resources/items/13bulletspells/lightningSpell.png", "Lightning", 20, 13, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		lightningSpell.setManaCost(5);
 		lightningSpell.setDamage(20);
 		
-		iceblockSpell = new ItemType(1, "resources/items/9otherspells/iceblockSpell.png", "Iceblock", 25, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		iceblockSpell = new ItemType(1, "resources/items/14otherspells/iceblockSpell.png", "Iceblock", 25, 14, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		iceblockSpell.setManaCost(10);
 		
-		summonWolfSpell = new ItemType(1, "resources/items/10summonspells/summonWolfSpell.png", "Summon Wolf", 30, 10, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonWolfSpell = new ItemType(1, "resources/items/15summonspells/summonWolfSpell.png", "Summon Wolf", 30, 15, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonWolfSpell.setManaCost(10);
 		
 		
 		
-		healMediumWoundsSpell = new ItemType(1, "resources/items/11healspells/healMediumWoundsSpell.png", "Heal Medium Wounds", 50, 11, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healMediumWoundsSpell = new ItemType(1, "resources/items/16healspells/healMediumWoundsSpell.png", "Heal Medium Wounds", 50, 16, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healMediumWoundsSpell.setManaCost(10);
 		
-		icelanceSpell = new ItemType(1, "resources/items/8bulletspells/icelanceSpell.png", "Icelance", 50, 8, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		icelanceSpell = new ItemType(1, "resources/items/13bulletspells/icelanceSpell.png", "Icelance", 50, 13, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icelanceSpell.setManaCost(10);
 		icelanceSpell.setDamage(50);
 		
-		icewaveSpell = new ItemType(1, "resources/items/9otherspells/icewaveSpell.png", "Icewave", 75, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		icewaveSpell = new ItemType(1, "resources/items/14otherspells/icewaveSpell.png", "Icewave", 75, 14, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		icewaveSpell.setManaCost(15);
 		
-		summonSkeletonSpell = new ItemType(1, "resources/items/10summonspells/summonSkeletonSpell.png", "Summon Skeleton", 75, 10, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonSkeletonSpell = new ItemType(1, "resources/items/15summonspells/summonSkeletonSpell.png", "Summon Skeleton", 75, 15, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonSkeletonSpell.setManaCost(15);
 		
 		
 		
-		healHeavyWoundsSpell = new ItemType(1, "resources/items/11healspells/healHeavyWoundsSpell.png", "Heal Heavy Wounds", 100, 11, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healHeavyWoundsSpell = new ItemType(1, "resources/items/16healspells/healHeavyWoundsSpell.png", "Heal Heavy Wounds", 100, 16, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healHeavyWoundsSpell.setManaCost(20);
 		
-		fireballSpell = new ItemType(1, "resources/items/8bulletspells/fireballSpell.png", "Fireball", 100, 8, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		fireballSpell = new ItemType(1, "resources/items/13bulletspells/fireballSpell.png", "Fireball", 100, 13, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		fireballSpell.setManaCost(20);
 		fireballSpell.setDamage(100);
 		
-		firerainSpell = new ItemType(1, "resources/items/9otherspells/firerainSpell.png", "Firerain", 150, 9, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		firerainSpell = new ItemType(1, "resources/items/14otherspells/firerainSpell.png", "Firerain", 150, 14, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		firerainSpell.setManaCost(30);
 		
-		summonOrcWarriorSpell = new ItemType(1, "resources/items/10summonspells/summonOrcWarriorSpell.png", "Summon Orc Warrior", 150, 10, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		summonOrcWarriorSpell = new ItemType(1, "resources/items/15summonspells/summonOrcWarriorSpell.png", "Summon Orc Warrior", 150, 15, false, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonOrcWarriorSpell.setManaCost(30);
-
-		
-
 		
 		
 		
 		
 		
-
-		
-		clothhood = new ItemType(1, "resources/items/12helmets/clothhood.png", "Cloth Hood", 20, 12, true, "head", "resources/player_sprites/head/clothhood.png");
-		clothhood.setProtection(2);
-		
-		leathercap = new ItemType(1, "resources/items/12helmets/leathercap.png", "Leather Cap", 50, 12, true, "head", "resources/player_sprites/head/leathercap.png");
-		leathercap.setProtection(4);
-		
-		chainhat = new ItemType(1, "resources/items/12helmets/chainhat.png", "Chain Hat", 100, 12, true, "head", "resources/player_sprites/head/chainhat.png");
-		chainhat.setProtection(6);
-		
-		chainhelmet = new ItemType(1, "resources/items/12helmets/chainhelmet.png", "Chain Helmet", 150, 12, true, "head", "resources/player_sprites/head/chainhelmet.png");
-		chainhelmet.setProtection(8);
-		
-		ironhelmet = new ItemType(1, "resources/items/12helmets/ironhelmet.png", "Iron Helmet", 200, 12, true, "head", "resources/player_sprites/head/ironhelmet.png");
-		ironhelmet.setProtection(10);
-		
-		goldenhelmet = new ItemType(1, "resources/items/12helmets/goldenhelmet.png", "Gold Helmet", 300, 12, true, "head", "resources/player_sprites/head/goldenhelmet.png");
-		goldenhelmet.setProtection(12);
-		
-		mithrilhelmet = new ItemType(1, "resources/items/12helmets/mithrilhelmet.png", "Mithril Helmet", 500, 12, true, "head", "resources/player_sprites/head/mithrilhelmet.png");
-		mithrilhelmet.setProtection(16);
-
 		
 		
-		shirt = new ItemType(1, "resources/items/13torso/shirt.png", "Shirt", 10, 13, true, "chest", "resources/player_sprites/chest/shirt.png");
-		shirt.setProtection(3);
-		
-		leatherchest = new ItemType(1, "resources/items/13torso/leatherchest.png", "Leather Chest", 300, 13, true, "chest", "resources/player_sprites/chest/leatherchest.png");
-		leatherchest.setProtection(6);
-		
-		chainchest = new ItemType(1, "resources/items/13torso/chainchest.png", "Chain Chest", 500, 13, true, "chest", "resources/player_sprites/chest/chainchest.png");
-		chainchest.setProtection(9);
-		
-		ironchest = new ItemType(1, "resources/items/13torso/ironchest.png", "Iron Chest", 700, 13, true, "chest", "resources/player_sprites/chest/ironchest.png");
-		ironchest.setProtection(12);
-		
-		goldenchest = new ItemType(1, "resources/items/13torso/goldenchest.png", "Golden Chest", 1400, 13, true, "chest", "resources/player_sprites/chest/goldenchest.png");
-		goldenchest.setProtection(15);
-		
-		mithrilchest = new ItemType(1, "resources/items/13torso/mithrilchest.png", "Mithril Chest", 2500, 13, true, "chest", "resources/player_sprites/chest/mithrilchest.png");
-		mithrilchest.setProtection(18);
-		
-
-		
-		irongloves = new ItemType(1, "resources/items/14hands/irongloves.png", "Iron Gloves", 600, 14, true, "hands", "resources/player_sprites/hands/irongloves.png");
-		irongloves.setProtection(2);
-		
-		goldengloves = new ItemType(1, "resources/items/14hands/goldengloves.png", "Golden Gloves", 900, 14, true, "hands", "resources/player_sprites/hands/goldengloves.png");
-		goldengloves.setProtection(4);
-		
-		mithrilgloves = new ItemType(1, "resources/items/14hands/mithrilgloves.png", "Mithril Gloves", 1600, 14, true, "hands", "resources/player_sprites/hands/mithrilgloves.png");
-		mithrilgloves.setProtection(8);
 		
 		
-
-		skirt = new ItemType(1, "resources/items/15legarmor/skirt.png", "Skirt", 100, 15, true, "legs", "resources/player_sprites/legs/skirt.png");
-		skirt.setProtection(3);
-		
-		irongreaves = new ItemType(1, "resources/items/15legarmor/ironlegarmor.png", "Iron Greaves", 300, 15, true, "legs", "resources/player_sprites/legs/irongreaves.png");
-		irongreaves.setProtection(6);
-		
-		goldengreaves = new ItemType(1, "resources/items/15legarmor/goldenlegarmor.png", "Golden Greaves", 1200, 15, true, "legs", "resources/player_sprites/legs/goldengreaves.png");
-		goldengreaves.setProtection(9);
-		
-		mithrilgreaves = new ItemType(1, "resources/items/15legarmor/mithrillegarmor.png", "Mithril Greaves", 2200, 15, true, "legs", "resources/player_sprites/legs/mithrilgreaves.png");
-		mithrilgreaves.setProtection(15);
 		
 		
-
-		boots = new ItemType(1, "resources/items/16boots/boots.png", "Boots", 100, 16, true, "feet", "resources/player_sprites/feet/boots.png");
-		boots.setProtection(2);
 		
-		leatherboots = new ItemType(1, "resources/items/16boots/leatherboots.png", "Leather Boots", 200, 16, true, "feet", "resources/player_sprites/feet/leatherboots.png");
-		leatherboots.setProtection(4);
-		
-		ironboots = new ItemType(1, "resources/items/16boots/ironboots.png", "Iron Boots", 500, 16, true, "feet", "resources/player_sprites/feet/ironboots.png");
-		ironboots.setProtection(6);
-		
-		goldenboots = new ItemType(1, "resources/items/16boots/goldenboots.png", "Golden Boots", 700, 16, true, "feet", "resources/player_sprites/feet/goldenboots.png");
-		goldenboots.setProtection(8);
-		
-		mithrilboots = new ItemType(1, "resources/items/16boots/mithrilboots.png", "Mithril Boots", 1500, 16, true, "feet", "resources/player_sprites/feet/mithrilboots.png");
-		mithrilboots.setProtection(12);
 		
 
 		smallHpPotion = new ItemType(1, "resources/items/17healing_potions/small_hp_potion.png", "Small HP Potion", 20, 17, false, "hpPotion", "resources/player_sprites/empty_sprite_sheet.png");
@@ -571,7 +590,7 @@ public class ItemTypeManager {
 		aquamarine = new ItemType(1, "resources/items/22misc/aquamarine.png", "Aquamarine", 80, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		pitch = new ItemType(1, "resources/items/22misc/pitch.png", "Pitch", 20, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		sulfur = new ItemType(1, "resources/items/22misc/sulfur.png", "Sulfur", 10, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		orctooth = new ItemType(1, "resources/items/22misc/orctooth.png", "Orctooth", 150, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
+		orcTooth = new ItemType(1, "resources/items/22misc/orcTooth.png", "Orc Tooth", 150, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		
 
 		

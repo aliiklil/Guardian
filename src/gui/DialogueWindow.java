@@ -107,7 +107,7 @@ public class DialogueWindow {
 						Game.getLearning().checkIfPlayerLearns(currentDialogues.get(selectedOption));
 						Game.getBlacksmithing().checkIfPlayerIsBlacksmithing(currentDialogues.get(selectedOption));
 						Game.getAlchemy().checkIfPlayerIsUsingAlchemy(currentDialogues.get(selectedOption));
-						Game.getAlchemy().checkIfPlayerIsUsingAlchemy(currentDialogues.get(selectedOption));
+						Game.getRuneForging().checkIfPlayerIsUsingRuneTable(currentDialogues.get(selectedOption));
 						
 						sentenceCount++;
 						
