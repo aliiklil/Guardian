@@ -95,7 +95,7 @@ public class InventoryWindow {
 						} else if(selectedItem.getItemType().getItemCategory().equals("bow")) {
 							player.setEquippedBow(null);
 							player.setCurrentBowAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("spell")) {
+						} else if(selectedItem.getItemType().getItemCategory().equals("rune") || selectedItem.getItemType().getItemCategory().equals("spell")) {
 							player.setEquippedSpell(null);
 							player.setCurrentSpellAnimation(null);
 						} else if(selectedItem.getItemType().getItemCategory().equals("head")) {
@@ -138,15 +138,22 @@ public class InventoryWindow {
 									item.setEquipped(false);
 									
 								}
+								
+								if(item.isEquipped() && (item.getItemType().getItemCategory().equals("rune") && selectedItem.getItemType().getItemCategory().equals("spell") 
+										 || item.getItemType().getItemCategory().equals("spell") && selectedItem.getItemType().getItemCategory().equals("rune"))) {
+					
+									item.setEquipped(false);
+									
+								}
 							}
 							
 							selectedItem.setEquipped(true);
-							
+							System.out.println("AAAAs");
 							if(selectedItem.getItemType().getItemCategory().equals("melee_slay") || selectedItem.getItemType().getItemCategory().equals("melee_thrust")) {
 								player.setEquippedMelee(selectedItem.getItemType());
 							} else if(selectedItem.getItemType().getItemCategory().equals("bow")) {
 								player.setEquippedBow(selectedItem.getItemType());
-							} else if(selectedItem.getItemType().getItemCategory().equals("spell")) {
+							} else if(selectedItem.getItemType().getItemCategory().equals("rune") || selectedItem.getItemType().getItemCategory().equals("spell")) {
 								player.setEquippedSpell(selectedItem.getItemType());
 							} else if(selectedItem.getItemType().getItemCategory().equals("head")) {
 								player.setEquippedHead(selectedItem.getItemType());
@@ -449,7 +456,7 @@ public class InventoryWindow {
 						item.getItemType().getInventoryAnimation().draw(130, 313);
 					}
 					
-					if(item.getItemType().getItemCategory().equals("spell")) {
+					if(item.getItemType().getItemCategory().equals("rune") || item.getItemType().getItemCategory().equals("spell")) {
 						item.getItemType().getInventoryAnimation().draw(208, 313);
 					}
 					

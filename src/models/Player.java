@@ -54,7 +54,6 @@ public class Player extends Character {
 
 	private Bar prepareAttackBar;
 	private Bar prepareShotBar;
-	private Bar prepareSpellBar;
 
 	private int damageToDeal = 0;
 
@@ -130,7 +129,6 @@ public class Player extends Character {
 		
 		prepareAttackBar = new Bar(getRelativeToMapX() + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
 		prepareShotBar = new Bar(getRelativeToMapX() + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
-		prepareSpellBar = new Bar(getRelativeToMapX() + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
 
 		Game.getCurrentMap().setX(screenRelativeX - super.getRelativeToMapX() + super.getSpriteSize() / 4);
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
@@ -148,9 +146,6 @@ public class Player extends Character {
 
 		prepareShotBar.setX(getRelativeToMapX() + Game.getCurrentMap().getX() - 16);
 		prepareShotBar.setY(getRelativeToMapY() + Game.getCurrentMap().getY() - 32);
-
-		prepareSpellBar.setX(getRelativeToMapX() + Game.getCurrentMap().getX() - 16);
-		prepareSpellBar.setY(getRelativeToMapY() + Game.getCurrentMap().getY() - 32);
 
 		npcList = CharacterManager.getNpcList();
 
@@ -356,10 +351,6 @@ public class Player extends Character {
 
 		if(isPreparingShot && super.getCurrentAnimation().getFrame() == 8 && isAlive() && prepareShotBar.getCurrentValue() > 10) {
 			prepareShotBar.render(g);
-		}
-
-		if(isPreparingSpell && super.getCurrentAnimation().getFrame() == 6 && isAlive() && prepareSpellBar.getCurrentValue() > 10) {
-			prepareSpellBar.render(g);
 		}
 		
 	}
@@ -1032,10 +1023,6 @@ public class Player extends Character {
 
 		}
 
-		if(isPreparingSpell && prepareSpellBar.getCurrentValue() < prepareSpellBar.getMaxValue() && super.getCurrentAnimation().getFrame() == 6) {
-			prepareSpellBar.setCurrentValue(prepareSpellBar.getCurrentValue() + 1);
-		}
-
 		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
 			
 			damageToDeal = 50; //Damage needs to depend on the used rune/spell
@@ -1045,8 +1032,6 @@ public class Player extends Character {
 			//Decrease mana
 			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
 			
-			prepareSpellBar.setCurrentValue(0);
-
 			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
 				restartAllAnimations();
 				setAnimationsToLookUp();
