@@ -134,8 +134,7 @@ public class Player extends Character {
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
 
 		npcList = CharacterManager.getNpcList();
-		getHealthBar().setCurrentValue(5);
-		getManaBar().setCurrentValue(5);
+		getHealthBar().setCurrentValue(10);
 	}
 
 	public void update() throws SlickException {
@@ -199,7 +198,10 @@ public class Player extends Character {
 				updateMove();
 				updateAttack();
 				updateShoot();
-				updateSpell();
+				
+				updateHealMagic();
+				updateBulletMagic();
+				
 				updatePickUpItem();
 				updateOpenChest();
 			}
@@ -945,12 +947,123 @@ public class Player extends Character {
 		}
 
 	}
+	
+	private void updateHealMagic() throws SlickException {
 
-	private void updateSpell() throws SlickException {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()) {
+			
+			boolean enoughMana;
+			
+			if(getManaBar().getCurrentValue() - equippedSpell.getManaCost() >= 0) {
+				enoughMana = true;
+			} else {
+				enoughMana = false;
+			}
+			
+			if(!enoughMana) {
+				
+				String text = "Not enough mana";
+				centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+				
+			} else {
 
-		
-		
-		
+				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellUp();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellUp();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellDownAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellDown();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellDown();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellLeftAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellLeft();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellLeft();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellRightAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellRight();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellRight();
+					}
+					spellCreated = false;
+				}
+	
+				startAllAnimations();
+				isPreparingSpell = true;
+			
+			}
+
+		}
+
+		if(isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
+
+			//Decrease mana
+			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
+			
+			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
+				restartAllAnimations();
+				setAnimationsToLookUp();
+				isPreparingSpell = false;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellDownAnimation()) {
+				restartAllAnimations();
+				setAnimationsToLookDown();
+				isPreparingSpell = false;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellLeftAnimation()) {
+				restartAllAnimations();
+				setAnimationsToLookLeft();
+				isPreparingSpell = false;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellRightAnimation()) {
+				restartAllAnimations();
+				setAnimationsToLookRight();
+				isPreparingSpell = false;
+			}
+			
+			getHealthBar().setCurrentValue(getHealthBar().getCurrentValue() + equippedSpell.getHealthBoost());
+			
+			if(equippedSpell.getItemCategory().equals("spell")) {
+				inventoryWindow.removeItem(equippedSpell);
+				equippedSpell = null;
+			}
+			
+		}
+
+	}
+
+	private void updateBulletMagic() throws SlickException {
+
 		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()) {
 			
 			boolean enoughMana;
@@ -1025,9 +1138,9 @@ public class Player extends Character {
 
 		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
 			
-			damageToDeal = 50; //Damage needs to depend on the used rune/spell
+			damageToDeal = 50;
 			
-			int spellVelocity = 10; //Speed needs to depend on the used rune/spell
+			int spellVelocity = 10;
 			
 			//Decrease mana
 			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());

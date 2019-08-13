@@ -354,6 +354,7 @@ public class ItemTypeManager {
 		
 		healLightWoundsRune = new ItemType(1, "resources/items/12healrunes/healLightWoundsRune.png", "Heal Light Wounds", 250, 12, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		healLightWoundsRune.setManaCost(5);
+		healLightWoundsRune.setHealthBoost(50);
 
 		lightningRune = new ItemType(1, "resources/items/9bulletrunes/lightningRune.png", "Lightning", 250, 9, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		lightningRune.setManaCost(5);
@@ -369,23 +370,25 @@ public class ItemTypeManager {
 
 		
 		healMediumWoundsRune = new ItemType(1, "resources/items/12healrunes/healMediumWoundsRune.png", "Heal Medium Wounds", 500, 12, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
-		healMediumWoundsRune.setManaCost(20);
-
+		healMediumWoundsRune.setManaCost(15);
+		healMediumWoundsRune.setHealthBoost(200);
+		
 		icelanceRune = new ItemType(1, "resources/items/9bulletrunes/icelanceRune.png", "Icelance", 500, 9, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
-		icelanceRune.setManaCost(25);
+		icelanceRune.setManaCost(20);
 		icelanceRune.setDamage(50);
 		
 		icewaveRune = new ItemType(1, "resources/items/10otherrunes/icewaveRune.png", "Icewave", 500, 10, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
-		icewaveRune.setManaCost(30);
+		icewaveRune.setManaCost(20);
 		
 		summonSkeletonRune = new ItemType(1, "resources/items/11summonrunes/summonSkeletonRune.png", "Summon Skeleton", 500, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
-		summonSkeletonRune.setManaCost(30);
+		summonSkeletonRune.setManaCost(25);
 		
 
 		
 
 		healHeavyWoundsRune = new ItemType(1, "resources/items/12healrunes/healHeavyWoundsRune.png", "Heal Heavy Wounds", 750, 12, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
-		healHeavyWoundsRune.setManaCost(40);
+		healHeavyWoundsRune.setManaCost(25);
+		healHeavyWoundsRune.setHealthBoost(400);
 		
 		fireballRune = new ItemType(1, "resources/items/9bulletrunes/fireballRune.png", "Fireball", 750, 9, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		fireballRune.setManaCost(50);
@@ -406,6 +409,7 @@ public class ItemTypeManager {
 		
 		healLightWoundsSpell = new ItemType(1, "resources/items/16healspells/healLightWoundsSpell.png", "Heal Light Wounds", 20, 16, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		healLightWoundsSpell.setManaCost(5);
+		healLightWoundsSpell.setHealthBoost(50);
 		
 		lightningSpell = new ItemType(1, "resources/items/13bulletspells/lightningSpell.png", "Lightning", 20, 13, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		lightningSpell.setManaCost(5);
@@ -421,6 +425,7 @@ public class ItemTypeManager {
 		
 		healMediumWoundsSpell = new ItemType(1, "resources/items/16healspells/healMediumWoundsSpell.png", "Heal Medium Wounds", 50, 16, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		healMediumWoundsSpell.setManaCost(10);
+		healMediumWoundsSpell.setHealthBoost(200);
 		
 		icelanceSpell = new ItemType(1, "resources/items/13bulletspells/icelanceSpell.png", "Icelance", 50, 13, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		icelanceSpell.setManaCost(10);
@@ -436,6 +441,7 @@ public class ItemTypeManager {
 		
 		healHeavyWoundsSpell = new ItemType(1, "resources/items/16healspells/healHeavyWoundsSpell.png", "Heal Heavy Wounds", 100, 16, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		healHeavyWoundsSpell.setManaCost(20);
+		healHeavyWoundsSpell.setHealthBoost(400);
 		
 		fireballSpell = new ItemType(1, "resources/items/13bulletspells/fireballSpell.png", "Fireball", 100, 13, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		fireballSpell.setManaCost(20);

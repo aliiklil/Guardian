@@ -148,7 +148,7 @@ public class InventoryWindow {
 							}
 							
 							selectedItem.setEquipped(true);
-							System.out.println("AAAAs");
+
 							if(selectedItem.getItemType().getItemCategory().equals("melee_slay") || selectedItem.getItemType().getItemCategory().equals("melee_thrust")) {
 								player.setEquippedMelee(selectedItem.getItemType());
 							} else if(selectedItem.getItemType().getItemCategory().equals("bow")) {
@@ -200,7 +200,7 @@ public class InventoryWindow {
 
 				
 				//If player consumes item, which gives health
-				if(selectedItem.getItemType().getHealthBoost() > 0) {
+				if(selectedItem.getItemType().getHealthBoost() > 0 && !selectedItem.getItemType().getItemCategory().equals("rune") && !selectedItem.getItemType().getItemCategory().equals("spell")) {
 
 					player.getHealthBar().setCurrentValue(player.getHealthBar().getCurrentValue() + selectedItem.getItemType().getHealthBoost());
 					removeSelectedItem();
@@ -519,7 +519,14 @@ public class InventoryWindow {
 				}
 
 				if(selectedItem.getItemType().getItemCategory().equals("rune") || selectedItem.getItemType().getItemCategory().equals("spell")) {
-									
+								
+					//For heal runes and heal spells
+					if(selectedItem.getItemType().getHealthBoost() > 0) {
+						g.drawString("Health Boost:", 652, 923);
+						String healthBoost = String.valueOf(selectedItem.getItemType().getHealthBoost());
+						g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 923);
+					}
+					
 					if(selectedItem.getItemType().getManaCost() > 0) {
 						g.drawString("Mana Cost:", 652, 943);
 						String manaCost = String.valueOf(selectedItem.getItemType().getManaCost());
@@ -543,13 +550,16 @@ public class InventoryWindow {
 					g.drawString(protection, 1098 - protection.length() * 9, 943);
 				}
 				
+				if(!selectedItem.getItemType().getItemCategory().equals("rune") && !selectedItem.getItemType().getItemCategory().equals("spell")) {
 				
+					if(selectedItem.getItemType().getHealthBoost() > 0) {
+						g.drawString("Health Boost:", 652, 943);
+						String healthBoost = String.valueOf(selectedItem.getItemType().getHealthBoost());
+						g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 943);
+					}
 				
-				if(selectedItem.getItemType().getHealthBoost() > 0) {
-					g.drawString("Health Boost:", 652, 943);
-					String healthBoost = String.valueOf(selectedItem.getItemType().getHealthBoost());
-					g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 943);
 				}
+				
 				
 				if(selectedItem.getItemType().getManaBoost() > 0) {
 					g.drawString("Mana Boost:", 652, 943);
