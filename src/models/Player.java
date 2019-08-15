@@ -199,9 +199,15 @@ public class Player extends Character {
 				updateAttack();
 				updateShoot();
 				
-				updateHealMagic();
-				updateBulletMagic();
 				
+				if(equippedSpell != null && (equippedSpell.getName().equals("Heal Light Wounds") || equippedSpell.getName().equals("Heal Medium Wounds") || equippedSpell.getName().equals("Heal Heavy Wounds"))) {
+					updateHealMagic();
+				}
+				
+				if(equippedSpell != null && (equippedSpell.getName().equals("Lightning") || equippedSpell.getName().equals("Icelance") || equippedSpell.getName().equals("Fireball"))) {
+					updateBulletMagic();
+				}
+					
 				updatePickUpItem();
 				updateOpenChest();
 			}
@@ -951,7 +957,7 @@ public class Player extends Character {
 	private void updateHealMagic() throws SlickException {
 
 		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()) {
-			
+						
 			boolean enoughMana;
 			
 			if(getManaBar().getCurrentValue() - equippedSpell.getManaCost() >= 0) {
@@ -1150,7 +1156,17 @@ public class Player extends Character {
 				setAnimationsToLookUp();
 				isPreparingSpell = false;
 
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/firespell.png", 64, 64), 0, 1, 7, 1, true, 100, true), 0, damageToDeal, spellVelocity);
+				SpriteSheet spriteSheet = null;
+				
+				if(equippedSpell.getName().equals("Fireball")) {
+					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Icelance")) {
+					spriteSheet = new SpriteSheet("resources/icelance.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Lightning")) {
+					spriteSheet = new SpriteSheet("resources/lightning.png", 64, 64);
+				}
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 1, 7, 1, true, 100, true), 0, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 
@@ -1161,7 +1177,17 @@ public class Player extends Character {
 				setAnimationsToLookDown();
 				isPreparingSpell = false;
 
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/firespell.png", 64, 64), 0, 3, 7, 3, true, 100, true), 1, damageToDeal, spellVelocity);
+				SpriteSheet spriteSheet = null;
+				
+				if(equippedSpell.getName().equals("Fireball")) {
+					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Icelance")) {
+					spriteSheet = new SpriteSheet("resources/icelance.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Lightning")) {
+					spriteSheet = new SpriteSheet("resources/lightning.png", 64, 64);
+				}
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 3, 7, 3, true, 100, true), 1, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -1171,7 +1197,17 @@ public class Player extends Character {
 				setAnimationsToLookLeft();
 				isPreparingSpell = false;
 
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/firespell.png", 64, 64), 0, 0, 7, 0, true, 100, true), 2, damageToDeal, spellVelocity);
+				SpriteSheet spriteSheet = null;
+				
+				if(equippedSpell.getName().equals("Fireball")) {
+					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Icelance")) {
+					spriteSheet = new SpriteSheet("resources/icelance.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Lightning")) {
+					spriteSheet = new SpriteSheet("resources/lightning.png", 64, 64);
+				}
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 0, 7, 0, true, 100, true), 2, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -1181,9 +1217,25 @@ public class Player extends Character {
 				setAnimationsToLookRight();
 				isPreparingSpell = false;
 
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(new SpriteSheet("resources/firespell.png", 64, 64), 0, 2, 7, 2, true, 100, true), 3, damageToDeal, spellVelocity);
+				
+				SpriteSheet spriteSheet = null;
+				
+				if(equippedSpell.getName().equals("Fireball")) {
+					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Icelance")) {
+					spriteSheet = new SpriteSheet("resources/icelance.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Lightning")) {
+					spriteSheet = new SpriteSheet("resources/lightning.png", 64, 64);
+				}
+				
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 2, 7, 2, true, 100, true), 3, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
+			}
+			
+			if(equippedSpell.getItemCategory().equals("spell")) {
+				inventoryWindow.removeItem(equippedSpell);
+				equippedSpell = null;
 			}
 
 		}
