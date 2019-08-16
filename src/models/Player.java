@@ -1166,7 +1166,7 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/lightning.png", 64, 64);
 				}
 				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 1, 7, 1, true, 100, true), 0, damageToDeal, spellVelocity);
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 1, 3, 1, true, 100, true), 0, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 
@@ -1187,7 +1187,7 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/lightning.png", 64, 64);
 				}
 				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 3, 7, 3, true, 100, true), 1, damageToDeal, spellVelocity);
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 3, 3, 3, true, 100, true), 1, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -1207,7 +1207,7 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/lightning.png", 64, 64);
 				}
 				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 0, 7, 0, true, 100, true), 2, damageToDeal, spellVelocity);
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 0, 3, 0, true, 100, true), 2, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -1228,7 +1228,7 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/lightning.png", 64, 64);
 				}
 				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 2, 7, 2, true, 100, true), 3, damageToDeal, spellVelocity);
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 2, 3, 2, true, 100, true), 3, damageToDeal, spellVelocity);
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
