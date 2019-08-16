@@ -352,7 +352,7 @@ public class ItemTypeManager {
 		
 		
 		
-		healLightWoundsRune = new ItemType(1, "resources/items/12healrunes/healLightWoundsRune.png", "Heal Light Wounds", 250, 12, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healLightWoundsRune = new ItemType(1, "resources/items/12healrunes/healLightWoundsRune.png", "Heal Light Wounds", 250, 12, true, "rune", "resources/player_sprites/weapons/magic/healing.png");
 		healLightWoundsRune.setManaCost(5);
 		healLightWoundsRune.setHealthBoost(50);
 
@@ -369,7 +369,7 @@ public class ItemTypeManager {
 
 
 		
-		healMediumWoundsRune = new ItemType(1, "resources/items/12healrunes/healMediumWoundsRune.png", "Heal Medium Wounds", 500, 12, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healMediumWoundsRune = new ItemType(1, "resources/items/12healrunes/healMediumWoundsRune.png", "Heal Medium Wounds", 500, 12, true, "rune", "resources/player_sprites/weapons/magic/healing.png");
 		healMediumWoundsRune.setManaCost(15);
 		healMediumWoundsRune.setHealthBoost(200);
 		
@@ -386,7 +386,7 @@ public class ItemTypeManager {
 
 		
 
-		healHeavyWoundsRune = new ItemType(1, "resources/items/12healrunes/healHeavyWoundsRune.png", "Heal Heavy Wounds", 750, 12, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		healHeavyWoundsRune = new ItemType(1, "resources/items/12healrunes/healHeavyWoundsRune.png", "Heal Heavy Wounds", 750, 12, true, "rune", "resources/player_sprites/weapons/magic/healing.png");
 		healHeavyWoundsRune.setManaCost(25);
 		healHeavyWoundsRune.setHealthBoost(400);
 		
@@ -407,7 +407,7 @@ public class ItemTypeManager {
 		
 
 		
-		healLightWoundsSpell = new ItemType(1, "resources/items/16healspells/healLightWoundsSpell.png", "Heal Light Wounds", 20, 16, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		healLightWoundsSpell = new ItemType(1, "resources/items/16healspells/healLightWoundsSpell.png", "Heal Light Wounds", 20, 16, true, "spell", "resources/player_sprites/weapons/magic/healing.png");
 		healLightWoundsSpell.setManaCost(5);
 		healLightWoundsSpell.setHealthBoost(50);
 		
@@ -423,7 +423,7 @@ public class ItemTypeManager {
 		
 		
 		
-		healMediumWoundsSpell = new ItemType(1, "resources/items/16healspells/healMediumWoundsSpell.png", "Heal Medium Wounds", 50, 16, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		healMediumWoundsSpell = new ItemType(1, "resources/items/16healspells/healMediumWoundsSpell.png", "Heal Medium Wounds", 50, 16, true, "spell", "resources/player_sprites/weapons/magic/healing.png");
 		healMediumWoundsSpell.setManaCost(10);
 		healMediumWoundsSpell.setHealthBoost(200);
 		
@@ -439,7 +439,7 @@ public class ItemTypeManager {
 		
 		
 		
-		healHeavyWoundsSpell = new ItemType(1, "resources/items/16healspells/healHeavyWoundsSpell.png", "Heal Heavy Wounds", 100, 16, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		healHeavyWoundsSpell = new ItemType(1, "resources/items/16healspells/healHeavyWoundsSpell.png", "Heal Heavy Wounds", 100, 16, true, "spell", "resources/player_sprites/weapons/magic/healing.png");
 		healHeavyWoundsSpell.setManaCost(20);
 		healHeavyWoundsSpell.setHealthBoost(400);
 		
