@@ -643,8 +643,8 @@ public class InventoryWindow {
 		g.drawString(String.valueOf(player.getStrength()), 471, 417);
 		g.drawString(String.valueOf(player.getDexterity()), 471, 437);
 		
-		g.drawString(String.valueOf(player.getHealthPoints()), 471, 477);
-		g.drawString(String.valueOf(player.getMana()), 471, 497);
+		g.drawString(player.getHealthBar().getCurrentValue() + "/" + String.valueOf(player.getHealthPoints()), 471, 477);
+		g.drawString(player.getManaBar().getCurrentValue() + "/" + String.valueOf(player.getMana()), 471, 497);
 		
 		g.drawString(String.valueOf(player.getMeleeSkill()) + "%", 471, 537);
 		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 557);
