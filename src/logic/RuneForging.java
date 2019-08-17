@@ -13,17 +13,17 @@ public class RuneForging {
 	public void checkIfPlayerIsUsingRuneTable(Dialogue currentDialogue) throws SlickException {
 				
 		createHealLightWoundsRune(currentDialogue);
-		createLightningRune(currentDialogue);
+		createIceLanceRune(currentDialogue);
 		createIceblockRune(currentDialogue);
 		createSummonWolfRune(currentDialogue);
 		
 		createHealMediumWoundsRune(currentDialogue);
-		createIceLanceRune(currentDialogue);
+		createFireballRune(currentDialogue);
 		createIcewaveRune(currentDialogue);
 		createSummonSkeletonRune(currentDialogue);
 		
 		createHealHeavyWoundsRune(currentDialogue);
-		createFireballRune(currentDialogue);
+		createTitanspearRune(currentDialogue);
 		createFirerainRune(currentDialogue);
 		createSummonOrcWarriorRune(currentDialogue);
 	}
@@ -60,11 +60,11 @@ public class RuneForging {
 		
 	}
 	
-	private void createLightningRune(Dialogue currentDialogue) throws SlickException {
+	private void createTitanspearRune(Dialogue currentDialogue) throws SlickException {
 		
 		Player player = CharacterManager.getPlayer();
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Lightning Rune (Chrystal, Empty Rune)")) {
+		if(currentDialogue.getSentences().get(0).getText().equals("Titanspear Rune (Chrystal, Empty Rune)")) {
 			
 			int chrystalCount = 0;
 			int emptyRuneCount = 0;
@@ -82,8 +82,8 @@ public class RuneForging {
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().chrystal);
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().emptyRune);
 				
-				player.addItem(new Item(0, 0, Game.getItemTypeManager().lightningRune));
-				currentDialogue.getSentences().get(1).setText("I have successfully forged a Lightning Rune.");
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().titanspearRune));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Titanspear Rune.");
 			} else {
 				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
 			}

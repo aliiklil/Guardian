@@ -44,7 +44,7 @@ public class ItemManager {
 		
 		
 		
-		itemList.add(new Item(480, 416, itemTypeManager.lightningRune));
+		itemList.add(new Item(480, 416, itemTypeManager.titanspearRune));
 		itemList.add(new Item(480, 416, itemTypeManager.iceblockRune));
 		itemList.add(new Item(480, 416, itemTypeManager.summonWolfRune));
 		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsRune));	
@@ -61,7 +61,7 @@ public class ItemManager {
 		
 		
 		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.lightningSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.titanspearSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.iceblockSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.summonWolfSpell));
 			
