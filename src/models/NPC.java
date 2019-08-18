@@ -5,9 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -65,6 +67,11 @@ public class NPC extends Character {
 	private double critChance;
 	
 	private ItemType equippedMelee;
+	
+	private boolean iceblocked; //If NPC is blocked by iceblock
+	private long iceblockedTimestamp; //Time when player was iceblocked
+	
+	private Animation iceblockAnimation;
 
 	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer, int damageOutput, double critChance) throws SlickException {
 
@@ -110,6 +117,8 @@ public class NPC extends Character {
 		this.damageOutput = damageOutput;
 		this.critChance = critChance;
 		
+		iceblockAnimation = new Animation(new SpriteSheet("resources/iceblockSprite.png", 64, 64), 0, 0, 0, 0, true, 100, true);
+		
 	}
 
 	public void update() throws SlickException {
@@ -131,7 +140,7 @@ public class NPC extends Character {
 		getHitBox().setX(getRelativeToMapX());
 		getHitBox().setY(getRelativeToMapY() - 10);
 		
-		if(isAlive() && hostileToPlayer) {
+		if(isAlive() && hostileToPlayer && !iceblocked) {
 			goToPlayer();
 			attackPlayer();
 		}
@@ -152,6 +161,8 @@ public class NPC extends Character {
 			equippedMelee.getAttackRightCollisionBox().setY(getRelativeToMapY() - 16);
 			
 		}
+		
+		checkIfIceblockIsOver();
 	
 	}
 	
@@ -173,6 +184,10 @@ public class NPC extends Character {
 		
 		if(super.isDrawBlood()) {
 			super.drawBlood(screenRelativeX, screenRelativeY);
+		}
+		
+		if(iceblocked) {
+			iceblockAnimation.draw(screenRelativeX, screenRelativeY);
 		}
 					
 	}
@@ -643,6 +658,15 @@ public class NPC extends Character {
         return path;
                		
 	}
+	
+	private void checkIfIceblockIsOver() {
+
+		if(System.currentTimeMillis() - iceblockedTimestamp > 10000) {
+			iceblocked = false;
+			getCurrentAnimation().start();
+		}
+		
+	}
 		
 	public boolean isUpCollision(float distance) {
 		
@@ -838,6 +862,20 @@ public class NPC extends Character {
 		this.equippedMelee = equippedMelee;
 	}
 
+	public boolean isIceblocked() {
+		return iceblocked;
+	}
 
+	public void setIceblocked(boolean iceblocked) {
+		this.iceblocked = iceblocked;
+	}
+
+	public long getIceblockedTimestamp() {
+		return iceblockedTimestamp;
+	}
+
+	public void setIceblockedTimestamp(long iceblockedTimestamp) {
+		this.iceblockedTimestamp = iceblockedTimestamp;
+	}
 	
 }

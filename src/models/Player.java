@@ -116,9 +116,9 @@ public class Player extends Character {
 	
 	private long speedBoostTimeStamp; //Time at which speed potion was drank 
 	
-	public Player() throws SlickException {
+	public Player(float relativeToMapX, float relativeToMapY) throws SlickException {
 
-		super(224, 64, "resources/player_sprites/player_base.png");
+		super(relativeToMapX, relativeToMapY, "resources/player_sprites/player_base.png");
 
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize() / 2 - 12, super.getSpriteSize() / 2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize() / 2, super.getSpriteSize() / 2));
@@ -204,7 +204,7 @@ public class Player extends Character {
 					updateHealMagic();
 				}
 				
-				if(equippedSpell != null && (equippedSpell.getName().equals("Icelance") || equippedSpell.getName().equals("Fireball") || equippedSpell.getName().equals("Titanspear"))) {
+				if(equippedSpell != null && (equippedSpell.getName().equals("Icelance") || equippedSpell.getName().equals("Fireball") || equippedSpell.getName().equals("Titanspear") || equippedSpell.getName().equals("Iceblock"))) {
 					updateBulletMagic();
 				}
 					
@@ -1164,9 +1164,16 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Titanspear")) {
 					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Iceblock")) {
+					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() - 32, new Animation(spriteSheet, 0, 1, 3, 1, true, 100, true), 0, damageToDeal, spellVelocity);
+				
+				if(equippedSpell.getName().equals("Iceblock")) {
+					projectile.setBlocking(true);
+				}
+				
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 
@@ -1185,9 +1192,16 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Titanspear")) {
 					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Iceblock")) {
+					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() + 32, new Animation(spriteSheet, 0, 3, 3, 3, true, 100, true), 1, damageToDeal, spellVelocity);
+				
+				if(equippedSpell.getName().equals("Iceblock")) {
+					projectile.setBlocking(true);
+				}
+				
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -1205,9 +1219,16 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Titanspear")) {
 					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Iceblock")) {
+					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 - 32, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 0, 3, 0, true, 100, true), 2, damageToDeal, spellVelocity);
+				
+				if(equippedSpell.getName().equals("Iceblock")) {
+					projectile.setBlocking(true);
+				}
+				
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
@@ -1226,9 +1247,16 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Titanspear")) {
 					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Iceblock")) {
+					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 + 32, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 2, 3, 2, true, 100, true), 3, damageToDeal, spellVelocity);
+				
+				if(equippedSpell.getName().equals("Iceblock")) {
+					projectile.setBlocking(true);
+				}
+				
 				spellCreated = true;
 				Game.getProjectileManager().addProjectile(projectile);
 			}

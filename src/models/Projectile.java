@@ -36,6 +36,8 @@ public class Projectile {
 	
 	private int damage;
 	
+	private boolean isBlocking; //If the projectile should stop the NPC from moving
+	
 	public Projectile(float x, float y, Animation animation, int direction, int damage, int velocity) throws SlickException {
 		
 		this.animation = animation;
@@ -56,7 +58,7 @@ public class Projectile {
 		this.velocity = velocity;
 		
 		collisionBox = new CollisionBox(relativeToMapX + width/4, relativeToMapY + height/4, width/4, height/4);
-				
+		
 	}
 
 	public void update() {
@@ -103,58 +105,10 @@ public class Projectile {
 					if(collisionBox.intersects(npc.getHitBox()) && npc.isAlive() && npc.isHostileToPlayer()) {
 						npc.decreaseHealth(damage);
 						
-						if(direction == 0) {
-						
-							if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() - 2, Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 2);
-								
-							} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() -  1, Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 1);
-								
-							}
-					
-						} else if(direction == 1) {
-							
-							if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 2, Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 2);
-								
-							} else if(Game.getTiledMap().getTileId(npc.getCenterXTile(), npc.getCenterYTile() + 1, Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 1);
-								
-							}
-							
-						} else if(direction == 2) {
-							
-							if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 2);
-								
-							} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() - 1, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 1);
-								
-							}
-							
-						} else if(direction == 3) {
-							
-							if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 2, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 2);
-								
-							} else if(Game.getTiledMap().getTileId(npc.getCenterXTile() + 1, npc.getCenterYTile(), Game.getNotWalkableLayerIndex()) == 0) {
-								
-								npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 1);
-								
-							}
-							
-						} else {
-							
-							throw(new IllegalArgumentException("Direction must be an integer from 0 to 3"));
-							
+						if(isBlocking) {
+							npc.setIceblocked(true);
+							npc.setIceblockedTimestamp(System.currentTimeMillis());
+							npc.getCurrentAnimation().stop();
 						}
 						
 						npc.setGoingToPlayer(true);
@@ -166,6 +120,14 @@ public class Projectile {
 	
 	public void render(Graphics g) {
 		animation.draw(relativeToScreenX, relativeToScreenY);
+	}
+
+	public boolean isBlocking() {
+		return isBlocking;
+	}
+
+	public void setBlocking(boolean isBlocking) {
+		this.isBlocking = isBlocking;
 	}
 	
 }

@@ -27,7 +27,7 @@ public class CharacterManager {
 	
 	public CharacterManager() throws SlickException {
 		
-		player = new Player();
+		player = new Player(480, 416);
 		
 		Item stick = new Item(0, 0, itemTypeManager.stick);
 		Item shirt = new Item(0, 0, itemTypeManager.shirt);
@@ -55,7 +55,7 @@ public class CharacterManager {
 		player.setCurrentFeetAnimation(boots.getItemType().getLookDownAnimation());
 
 			
-		ogus = new NPC(256, 128, 50000, 50000, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1);
+		ogus = new NPC(256, 128, 50000, 50000, "resources/OrcSpriteSheet.png", true, null, DialogueManager.ogusDialogues, 300, 10, 0.1);
 		ogus.addItem(new Item(0, 0, itemTypeManager.dagger));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
