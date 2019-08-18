@@ -187,7 +187,7 @@ public class NPC extends Character {
 		}
 		
 		if(iceblocked) {
-			iceblockAnimation.draw(screenRelativeX, screenRelativeY);
+			iceblockAnimation.draw(screenRelativeX, screenRelativeY + 2);
 		}
 					
 	}

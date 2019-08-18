@@ -134,7 +134,6 @@ public class Player extends Character {
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
 
 		npcList = CharacterManager.getNpcList();
-		getHealthBar().setCurrentValue(10);
 	}
 
 	public void update() throws SlickException {
