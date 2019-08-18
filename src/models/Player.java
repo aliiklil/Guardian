@@ -94,7 +94,7 @@ public class Player extends Character {
 	private int dexterity = 200;
 	
 	private int healthPoints = 200;
-	private int mana = 100;
+	private int mana = 5000;
 	
 	private int meleeSkill = 10;
 	private int bowSkill = 10;
@@ -1357,23 +1357,38 @@ public class Player extends Character {
 			//Decrease mana
 			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
 			
+			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
+				setAnimationsToLookUp();
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellDownAnimation()) {
+				setAnimationsToLookDown();
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellLeftAnimation()) {
+				setAnimationsToLookLeft();
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellRightAnimation()) {
+				setAnimationsToLookRight();
+			}
+			
 			restartAllAnimations();
-			setAnimationsToLookUp();
 			isPreparingSpell = false;
 
 			SpriteSheet spriteSheet = new SpriteSheet("resources/firerain.png", 64, 64);
 			
-			Projectile projectile1 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile2 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile3 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile4 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile5 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile1 = new Projectile(super.getRelativeToMapX() - 128, -200, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile2 = new Projectile(super.getRelativeToMapX() - 96, -150, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile3 = new Projectile(super.getRelativeToMapX() - 64, -100, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile4 = new Projectile(super.getRelativeToMapX() - 32, -50, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
 			
-			Projectile projectile6 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile7 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile8 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile9 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile10 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile5 = new Projectile(super.getRelativeToMapX() - 0, -0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			
+			Projectile projectile6 = new Projectile(super.getRelativeToMapX() + 32, 50, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile7 = new Projectile(super.getRelativeToMapX() + 64, 100, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile8 = new Projectile(super.getRelativeToMapX() + 96, 150, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile9 = new Projectile(super.getRelativeToMapX() + 128, 200, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
 			
 			Game.getProjectileManager().addProjectile(projectile1);
 			Game.getProjectileManager().addProjectile(projectile2);
@@ -1384,8 +1399,7 @@ public class Player extends Character {
 			Game.getProjectileManager().addProjectile(projectile7);
 			Game.getProjectileManager().addProjectile(projectile8);
 			Game.getProjectileManager().addProjectile(projectile9);
-			Game.getProjectileManager().addProjectile(projectile10);
-			
+
 			spellCreated = true;
 			
 			if(equippedSpell.getItemCategory().equals("spell")) {
