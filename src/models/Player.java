@@ -206,6 +206,10 @@ public class Player extends Character {
 				if(equippedSpell != null && (equippedSpell.getName().equals("Icelance") || equippedSpell.getName().equals("Fireball") || equippedSpell.getName().equals("Titanspear") || equippedSpell.getName().equals("Iceblock"))) {
 					updateBulletMagic();
 				}
+				
+				if(equippedSpell != null && (equippedSpell.getName().equals("Firerain"))) {
+					updateFirerain();
+				}
 					
 				updatePickUpItem();
 				updateOpenChest();
@@ -1167,7 +1171,7 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
 				}
 				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() - 32, new Animation(spriteSheet, 0, 1, 3, 1, true, 100, true), 0, damageToDeal, spellVelocity);
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() - 16, new Animation(spriteSheet, 0, 1, 3, 1, true, 100, true), 0, damageToDeal, spellVelocity);
 				
 				if(equippedSpell.getName().equals("Iceblock")) {
 					projectile.setBlocking(true);
@@ -1195,7 +1199,7 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
 				}
 				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() + 32, new Animation(spriteSheet, 0, 3, 3, 3, true, 100, true), 1, damageToDeal, spellVelocity);
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() + 16, new Animation(spriteSheet, 0, 3, 3, 3, true, 100, true), 1, damageToDeal, spellVelocity);
 				
 				if(equippedSpell.getName().equals("Iceblock")) {
 					projectile.setBlocking(true);
@@ -1222,7 +1226,7 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
 				}
 				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 - 32, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 0, 3, 0, true, 100, true), 2, damageToDeal, spellVelocity);
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 - 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 0, 3, 0, true, 100, true), 2, damageToDeal, spellVelocity);
 				
 				if(equippedSpell.getName().equals("Iceblock")) {
 					projectile.setBlocking(true);
@@ -1250,7 +1254,7 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
 				}
 				
-				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 + 32, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 2, 3, 2, true, 100, true), 3, damageToDeal, spellVelocity);
+				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 2, 3, 2, true, 100, true), 3, damageToDeal, spellVelocity);
 				
 				if(equippedSpell.getName().equals("Iceblock")) {
 					projectile.setBlocking(true);
@@ -1267,6 +1271,130 @@ public class Player extends Character {
 
 		}
 
+	}
+	
+	private void updateFirerain() throws SlickException {
+	
+		
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()) {
+			
+			boolean enoughMana;
+			
+			if(getManaBar().getCurrentValue() - equippedSpell.getManaCost() >= 0) {
+				enoughMana = true;
+			} else {
+				enoughMana = false;
+			}
+			
+			if(!enoughMana) {
+				
+				String text = "Not enough mana";
+				centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+				
+			} else {
+
+				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellUp();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellUp();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellDownAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellDown();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellDown();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellLeftAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellLeft();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellLeft();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellRightAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellRight();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellRight();
+					}
+					spellCreated = false;
+				}
+	
+				startAllAnimations();
+				isPreparingSpell = true;
+			
+			}
+
+		}
+
+		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
+			
+			damageToDeal = equippedSpell.getDamage();
+			
+			int spellVelocity = 10;
+			
+			//Decrease mana
+			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
+			
+			restartAllAnimations();
+			setAnimationsToLookUp();
+			isPreparingSpell = false;
+
+			SpriteSheet spriteSheet = new SpriteSheet("resources/firerain.png", 64, 64);
+			
+			Projectile projectile1 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile2 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile3 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile4 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile5 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			
+			Projectile projectile6 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile7 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile8 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile9 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			Projectile projectile10 = new Projectile(super.getRelativeToMapX() + 16, 0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
+			
+			Game.getProjectileManager().addProjectile(projectile1);
+			Game.getProjectileManager().addProjectile(projectile2);
+			Game.getProjectileManager().addProjectile(projectile3);
+			Game.getProjectileManager().addProjectile(projectile4);
+			Game.getProjectileManager().addProjectile(projectile5);
+			Game.getProjectileManager().addProjectile(projectile6);
+			Game.getProjectileManager().addProjectile(projectile7);
+			Game.getProjectileManager().addProjectile(projectile8);
+			Game.getProjectileManager().addProjectile(projectile9);
+			Game.getProjectileManager().addProjectile(projectile10);
+			
+			spellCreated = true;
+			
+			if(equippedSpell.getItemCategory().equals("spell")) {
+				inventoryWindow.removeItem(equippedSpell);
+				equippedSpell = null;
+			}
+
+		}
+		
 	}
 
 	private void updatePickUpItem() throws SlickException {
