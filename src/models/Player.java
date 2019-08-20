@@ -1279,7 +1279,7 @@ public class Player extends Character {
 	
 	private void updateFirerain() throws SlickException {
 	
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !spellCreated) {
 			
 			boolean enoughMana;
 			
