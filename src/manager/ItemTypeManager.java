@@ -447,7 +447,7 @@ public class ItemTypeManager {
 		titanspearSpell.setManaCost(15);
 		titanspearSpell.setDamage(100);
 		
-		firerainSpell = new ItemType(1, "resources/items/14otherspells/firerainSpell.png", "Firerain", 150, 14, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		firerainSpell = new ItemType(1, "resources/items/14otherspells/firerainSpell.png", "Firerain", 100, 14, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		firerainSpell.setManaCost(20);
 		
 		summonOrcWarriorSpell = new ItemType(1, "resources/items/15summonspells/summonOrcWarriorSpell.png", "Summon Orc Warrior", 150, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import main.Game;
 import main.Main;
@@ -29,7 +30,7 @@ public class Projectile {
 	private ArrayList<NPC> npcList;
 		
 	private int travelledDistance = 0;
-	private final int travelledDistanceRemove = Main.TILE_SIZE * 30;
+	private final int travelledDistanceRemove = Main.TILE_SIZE * 33;
 	
 	private final int width;
 	private final int height;
@@ -37,6 +38,10 @@ public class Projectile {
 	private int damage;
 	
 	private boolean isBlocking; //If the projectile should stop the NPC from moving
+	
+	private boolean isFirerainProjectile; //If projectile is firerain
+	
+	private boolean spriteChanged = false; //If sprite was changed for firerain to the ending of the firerain proectile
 	
 	public Projectile(float x, float y, Animation animation, int direction, int damage, int velocity) throws SlickException {
 		
@@ -61,7 +66,9 @@ public class Projectile {
 		
 	}
 
-	public void update() {
+
+
+	public void update() throws SlickException {
 		
 		if(direction == 0) {
 			
@@ -79,9 +86,14 @@ public class Projectile {
 			
 			relativeToMapX = relativeToMapX + velocity;
 			
+		} else if(direction == 4) { //For fire rain, which comes from top right and goes bottom left
+			
+			relativeToMapX = relativeToMapX - velocity/5;
+			relativeToMapY = relativeToMapY + velocity;
+			
 		} else {
 			
-			throw(new IllegalArgumentException("Direction must be an integer from 0 to 3"));
+			throw(new IllegalArgumentException("Direction must be an integer from 0 to 4"));
 			
 		}
 		
@@ -90,9 +102,19 @@ public class Projectile {
 		
 		travelledDistance = travelledDistance + velocity;
 		
+		if(isFirerainProjectile && travelledDistance > travelledDistanceRemove - 256 && !spriteChanged) { //If a projectile from firerain is before it ends, it will become black
+			
+			SpriteSheet spriteSheet = new SpriteSheet("resources/firerain_end.png", 64, 64);
+			animation = new Animation(spriteSheet, 0, 0, 4, 0, true, 100, true);
+			animation.setLooping(false);
+			spriteChanged = true;
+			
+		}
+		
 		if(travelledDistance > travelledDistanceRemove) {
 			
 			Game.getProjectileManager().removeProjectile(this);
+			spriteChanged = false;
 			
 		} else {
 			
@@ -128,6 +150,14 @@ public class Projectile {
 
 	public void setBlocking(boolean isBlocking) {
 		this.isBlocking = isBlocking;
+	}
+	
+	public boolean isFirerainProjectile() {
+		return isFirerainProjectile;
+	}
+
+	public void setFirerainProjectile(boolean isFirerainProjectile) {
+		this.isFirerainProjectile = isFirerainProjectile;
 	}
 	
 }

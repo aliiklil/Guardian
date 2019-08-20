@@ -101,10 +101,11 @@ public class Game extends BasicGameState {
 		itemManager.render(g);
 		
 		characterManager.render(g);
-		
 		runeTableManager.renderTop(g);
 		projectileManager.render(g);
+		
 		world.renderUpperLayer(g);
+		projectileManager.renderUpperLayer(g);
 
 		CharacterManager.getPlayer().getInventoryWindow().render(g);
 		CharacterManager.getPlayer().getHealthBar().render(g);

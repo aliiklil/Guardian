@@ -114,7 +114,11 @@ public class Player extends Character {
 	
 	private Bar manaBar;
 	
-	private long speedBoostTimeStamp; //Time at which speed potion was drank 
+	private long speedBoostTimeStamp; //Time at which speed potion was drank
+	
+	private int firerainCounter; //Firerain has 5 volleys and a counter is needed
+	
+	private long firerainTimeStamp; //To know when the last firerain volley was fired
 	
 	public Player(float relativeToMapX, float relativeToMapY) throws SlickException {
 
@@ -1275,7 +1279,6 @@ public class Player extends Character {
 	
 	private void updateFirerain() throws SlickException {
 	
-		
 		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()) {
 			
 			boolean enoughMana;
@@ -1350,10 +1353,6 @@ public class Player extends Character {
 
 		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
 			
-			damageToDeal = equippedSpell.getDamage();
-			
-			int spellVelocity = 10;
-			
 			//Decrease mana
 			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
 			
@@ -1376,37 +1375,54 @@ public class Player extends Character {
 			restartAllAnimations();
 			isPreparingSpell = false;
 
-			SpriteSheet spriteSheet = new SpriteSheet("resources/firerain.png", 64, 64);
-			
-			Projectile projectile1 = new Projectile(super.getRelativeToMapX() - 128, -200, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile2 = new Projectile(super.getRelativeToMapX() - 96, -150, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile3 = new Projectile(super.getRelativeToMapX() - 64, -100, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile4 = new Projectile(super.getRelativeToMapX() - 32, -50, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			
-			Projectile projectile5 = new Projectile(super.getRelativeToMapX() - 0, -0, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			
-			Projectile projectile6 = new Projectile(super.getRelativeToMapX() + 32, 50, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile7 = new Projectile(super.getRelativeToMapX() + 64, 100, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile8 = new Projectile(super.getRelativeToMapX() + 96, 150, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			Projectile projectile9 = new Projectile(super.getRelativeToMapX() + 128, 200, new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 1, damageToDeal, spellVelocity);
-			
-			Game.getProjectileManager().addProjectile(projectile1);
-			Game.getProjectileManager().addProjectile(projectile2);
-			Game.getProjectileManager().addProjectile(projectile3);
-			Game.getProjectileManager().addProjectile(projectile4);
-			Game.getProjectileManager().addProjectile(projectile5);
-			Game.getProjectileManager().addProjectile(projectile6);
-			Game.getProjectileManager().addProjectile(projectile7);
-			Game.getProjectileManager().addProjectile(projectile8);
-			Game.getProjectileManager().addProjectile(projectile9);
-
 			spellCreated = true;
 			
 			if(equippedSpell.getItemCategory().equals("spell")) {
 				inventoryWindow.removeItem(equippedSpell);
 				equippedSpell = null;
 			}
+			
+			firerainTimeStamp = System.currentTimeMillis();
+			
+		}
+		
+		if(spellCreated && firerainCounter < 25 && System.currentTimeMillis() - firerainTimeStamp >= 200) {
+			
+			firerainTimeStamp = System.currentTimeMillis();
+			
+			damageToDeal = equippedSpell.getDamage();
+			
+			int spellVelocity = 10;
+			
+			SpriteSheet spriteSheet = new SpriteSheet("resources/firerain.png", 64, 64);
+			
+			Random r = new Random();
+			
+			Projectile projectile1 = new Projectile(super.getRelativeToMapX() - 64, -r.nextInt(500) - Game.getCurrentMap().getY(), new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 4, damageToDeal, spellVelocity);
+			Projectile projectile2 = new Projectile(super.getRelativeToMapX() + 64, -r.nextInt(500) - Game.getCurrentMap().getY(), new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 4, damageToDeal, spellVelocity);
+			Projectile projectile3 = new Projectile(super.getRelativeToMapX() + 192, -r.nextInt(500) - Game.getCurrentMap().getY(), new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 4, damageToDeal, spellVelocity);
+			Projectile projectile4 = new Projectile(super.getRelativeToMapX() + 320, -r.nextInt(500) - Game.getCurrentMap().getY(), new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 4, damageToDeal, spellVelocity);
+			Projectile projectile5 = new Projectile(super.getRelativeToMapX() + 448, -r.nextInt(500) - Game.getCurrentMap().getY(), new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true), 4, damageToDeal, spellVelocity);
+			
+			projectile1.setFirerainProjectile(true);
+			projectile2.setFirerainProjectile(true);
+			projectile3.setFirerainProjectile(true);
+			projectile4.setFirerainProjectile(true);
+			projectile5.setFirerainProjectile(true);
+			
+			Game.getProjectileManager().addProjectile(projectile1);
+			Game.getProjectileManager().addProjectile(projectile2);
+			Game.getProjectileManager().addProjectile(projectile3);
+			Game.getProjectileManager().addProjectile(projectile4);
+			Game.getProjectileManager().addProjectile(projectile5);
 
+			firerainCounter++;
+			
+		}
+		
+		if(spellCreated && firerainCounter >= 25) {
+			firerainCounter = 0;
+			spellCreated = false;
 		}
 		
 	}
