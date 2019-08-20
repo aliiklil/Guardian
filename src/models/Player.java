@@ -3120,7 +3120,7 @@ public class Player extends Character {
 
 			if(getHealthBar().getCurrentValue() <= 0) {
 				getHealthBar().setCurrentValue(0);
-				setCurrentAnimation(getDieAnimation());
+				setAnimationsToDie();	
 				setAlive(false);
 			}
 
