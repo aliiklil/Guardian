@@ -39,7 +39,7 @@ public class ItemTypeManager {
 	
 	public ItemType healMediumWoundsRune;
 	public ItemType fireballRune;
-	public ItemType icewaveRune;
+	public ItemType bloodtheftRune;
 	public ItemType summonSkeletonRune;
 	public ItemType transformIntoSkeletonRune;
 	
@@ -58,7 +58,7 @@ public class ItemTypeManager {
 	
 	public ItemType healMediumWoundsSpell;
 	public ItemType icelanceSpell;
-	public ItemType icewaveSpell;
+	public ItemType bloodtheftSpell;
 	public ItemType summonSkeletonSpell;
 	public ItemType transformIntoSkeletonSpell;
 	
@@ -157,6 +157,7 @@ public class ItemTypeManager {
 	public ItemType pitch;
 	public ItemType sulfur;
 	public ItemType orcTooth;
+	public ItemType heart;
 	
 	public ItemType smallBottle;
 	public ItemType mediumBottle;
@@ -377,8 +378,9 @@ public class ItemTypeManager {
 		fireballRune.setManaCost(20);
 		fireballRune.setDamage(50);
 		
-		icewaveRune = new ItemType(1, "resources/items/10otherrunes/icewaveRune.png", "Icewave", 500, 10, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
-		icewaveRune.setManaCost(20);
+		bloodtheftRune = new ItemType(1, "resources/items/10otherrunes/bloodtheftRune.png", "Bloodtheft", 500, 10, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		bloodtheftRune.setManaCost(20);
+		bloodtheftRune.setDamage(15);
 		
 		summonSkeletonRune = new ItemType(1, "resources/items/11summonrunes/summonSkeletonRune.png", "Summon Skeleton", 500, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		summonSkeletonRune.setManaCost(25);
@@ -431,8 +433,8 @@ public class ItemTypeManager {
 		fireballSpell.setManaCost(10);
 		fireballSpell.setDamage(50);
 		
-		icewaveSpell = new ItemType(1, "resources/items/14otherspells/icewaveSpell.png", "Icewave", 75, 14, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
-		icewaveSpell.setManaCost(15);
+		bloodtheftSpell = new ItemType(1, "resources/items/14otherspells/bloodtheftSpell.png", "Bloodtheft", 75, 14, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		bloodtheftSpell.setManaCost(15);
 		
 		summonSkeletonSpell = new ItemType(1, "resources/items/15summonspells/summonSkeletonSpell.png", "Summon Skeleton", 75, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		summonSkeletonSpell.setManaCost(15);
@@ -597,8 +599,7 @@ public class ItemTypeManager {
 		pitch = new ItemType(1, "resources/items/22misc/pitch.png", "Pitch", 20, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		sulfur = new ItemType(1, "resources/items/22misc/sulfur.png", "Sulfur", 10, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		orcTooth = new ItemType(1, "resources/items/22misc/orcTooth.png", "Orc Tooth", 150, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		
-
+		heart = new ItemType(1, "resources/items/22misc/heart.png", "Heart", 200, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		
 		
 		smallBottle = new ItemType(1, "resources/items/22misc/small_bottle.png", "Small Bottle", 10, 22, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");

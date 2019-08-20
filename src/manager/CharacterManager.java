@@ -75,7 +75,7 @@ public class CharacterManager {
 		
 		
 		
-		halrok = new NPC(256, 192, 300, 300, "resources/SkeletonSpriteSheet.png", true, null, DialogueManager.halrokDialogues, 400, 20, 0.3);
+		halrok = new NPC(256, 192, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3);
 		halrok.setEquippedMelee(itemTypeManager.ironsword);
 		
 		

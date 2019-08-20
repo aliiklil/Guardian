@@ -19,7 +19,7 @@ public class RuneForging {
 		
 		createHealMediumWoundsRune(currentDialogue);
 		createFireballRune(currentDialogue);
-		createIcewaveRune(currentDialogue);
+		createBloodtheftRune(currentDialogue);
 		createSummonSkeletonRune(currentDialogue);
 		
 		createHealHeavyWoundsRune(currentDialogue);
@@ -96,22 +96,22 @@ public class RuneForging {
 		
 		Player player = CharacterManager.getPlayer();
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Iceblock Rune (Icecube, Empty Rune)")) {
+		if(currentDialogue.getSentences().get(0).getText().equals("Iceblock Rune (Aquamarine, Empty Rune)")) {
 			
-			int icecubeCount = 0;
+			int aquamarineCount = 0;
 			int emptyRuneCount = 0;
 			
 			for(int i = 0; i < player.getInventoryList().size(); i++) {
-				if(player.getInventoryList().get(i).getItemType().getName().equals("Icecube")) {
-					icecubeCount = player.getItemCountList().get(i);
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Aquamarine")) {
+					aquamarineCount = player.getItemCountList().get(i);
 				}
 				if(player.getInventoryList().get(i).getItemType().getName().equals("Empty Rune")) {
 					emptyRuneCount = player.getItemCountList().get(i);
 				}
 			}
 			
-			if(icecubeCount >= 1 && emptyRuneCount >= 1) {
-				player.getInventoryWindow().removeItem(Game.getItemTypeManager().icecube);
+			if(aquamarineCount >= 1 && emptyRuneCount >= 1) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().aquamarine);
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().emptyRune);
 				
 				player.addItem(new Item(0, 0, Game.getItemTypeManager().iceblockRune));
@@ -220,30 +220,30 @@ public class RuneForging {
 		
 	}
 	
-	private void createIcewaveRune(Dialogue currentDialogue) throws SlickException {
+	private void createBloodtheftRune(Dialogue currentDialogue) throws SlickException {
 		
 		Player player = CharacterManager.getPlayer();
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Icewave Rune (Aquamarine, Empty Rune)")) {
+		if(currentDialogue.getSentences().get(0).getText().equals("Bloodtheft Rune (Heart, Empty Rune)")) {
 			
-			int aquamarineCount = 0;
+			int heartCount = 0;
 			int emptyRuneCount = 0;
 			
 			for(int i = 0; i < player.getInventoryList().size(); i++) {
-				if(player.getInventoryList().get(i).getItemType().getName().equals("Aquamarine")) {
-					aquamarineCount = player.getItemCountList().get(i);
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Heart")) {
+					heartCount = player.getItemCountList().get(i);
 				}
 				if(player.getInventoryList().get(i).getItemType().getName().equals("Empty Rune")) {
 					emptyRuneCount = player.getItemCountList().get(i);
 				}
 			}
 			
-			if(aquamarineCount >= 1 && emptyRuneCount >= 1) {
-				player.getInventoryWindow().removeItem(Game.getItemTypeManager().aquamarine);
+			if(heartCount >= 1 && emptyRuneCount >= 1) {
+				player.getInventoryWindow().removeItem(Game.getItemTypeManager().heart);
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().emptyRune);
 				
-				player.addItem(new Item(0, 0, Game.getItemTypeManager().icewaveRune));
-				currentDialogue.getSentences().get(1).setText("I have successfully forged an Icewave Rune.");
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().bloodtheftRune));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Bloodtheft Rune.");
 			} else {
 				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
 			}

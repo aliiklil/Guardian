@@ -488,7 +488,7 @@ public class Learning {
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).addSentence("Iceblock Rune (Icecube, Empty Rune)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).addSentence("Iceblock Rune (Aquamarine, Empty Rune)", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).addSentence("I have successfully forged an Iceblock Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).setPermanent(true);
 						
@@ -524,8 +524,8 @@ public class Learning {
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(1).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).addSentence("Icewave Rune (Aquamarine, Empty Rune)", "Hero");
-						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).addSentence("I have successfully forged an Icewave Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).addSentence("Bloodtheft Rune (Heart, Empty Rune)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).addSentence("I have successfully forged an Bloodtheft Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());

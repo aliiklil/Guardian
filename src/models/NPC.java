@@ -17,6 +17,7 @@ import dialogue.Dialogue;
 import main.Game;
 import main.Main;
 import manager.CharacterManager;
+import manager.ItemTypeManager;
 import util.CollisionBox;
 import pathfinding.Node;
 import pathfinding.AStar;
@@ -72,7 +73,11 @@ public class NPC extends Character {
 	private long iceblockedTimestamp; //Time when player was iceblocked
 	
 	private Animation iceblockAnimation;
-
+	
+	private boolean bloodtheft;
+	private int bloodtheftCounter;
+	private long bloodtheftTimestamp;
+	
 	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer, int damageOutput, double critChance) throws SlickException {
 
 		super(relativeToMapX, relativeToMapY, spriteSheetPath);
@@ -163,9 +168,11 @@ public class NPC extends Character {
 		}
 		
 		checkIfIceblockIsOver();
+		
+		checkIfBloodtheft();
 	
 	}
-	
+
 	public void render(Graphics g) {
 		
 		if(isAttacking && isAlive()) {
@@ -668,6 +675,26 @@ public class NPC extends Character {
 		
 	}
 		
+	private void checkIfBloodtheft() {
+
+		if(bloodtheft && bloodtheftCounter < 10 && System.currentTimeMillis() - bloodtheftTimestamp >= 1000) {
+			decreaseHealth(15);
+			player.getHealthBar().setCurrentValue(player.getHealthBar().getCurrentValue() + 15);
+			
+			bloodtheftTimestamp = System.currentTimeMillis();
+			bloodtheftCounter++;
+			
+			setDrawBlood(true);
+				
+		}
+		
+		if(bloodtheft && bloodtheftCounter >= 10) {
+			bloodtheft = false;
+			bloodtheftCounter = 0;
+		}
+		
+	}
+	
 	public boolean isUpCollision(float distance) {
 		
 		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
@@ -827,6 +854,8 @@ public class NPC extends Character {
 				getHealthBar().setCurrentValue(0);
 				setCurrentAnimation(getDieAnimation());
 				setAlive(false);
+				bloodtheft = false;
+				bloodtheftCounter = 0;
 				
 				player.addExperience(experienceForPlayer);
 								
@@ -876,6 +905,30 @@ public class NPC extends Character {
 
 	public void setIceblockedTimestamp(long iceblockedTimestamp) {
 		this.iceblockedTimestamp = iceblockedTimestamp;
+	}
+	
+	public boolean isBloodtheft() {
+		return bloodtheft;
+	}
+
+	public void setBloodtheft(boolean bloodtheft) {
+		this.bloodtheft = bloodtheft;
+	}
+
+	public int getBloodtheftCounter() {
+		return bloodtheftCounter;
+	}
+
+	public void setBloodtheftCounter(int bloodtheftCounter) {
+		this.bloodtheftCounter = bloodtheftCounter;
+	}
+
+	public long getBloodtheftTimestamp() {
+		return bloodtheftTimestamp;
+	}
+
+	public void setBloodtheftTimestamp(long bloodtheftTimestamp) {
+		this.bloodtheftTimestamp = bloodtheftTimestamp;
 	}
 	
 }

@@ -43,6 +43,8 @@ public class Projectile {
 	
 	private boolean spriteChanged = false; //If sprite was changed for firerain to the ending of the firerain proectile
 	
+	private boolean isBloodtheft;
+
 	public Projectile(float x, float y, Animation animation, int direction, int damage, int velocity) throws SlickException {
 		
 		this.animation = animation;
@@ -65,8 +67,6 @@ public class Projectile {
 		collisionBox = new CollisionBox(relativeToMapX + width/4, relativeToMapY + height/4, width/4, height/4);
 		
 	}
-
-
 
 	public void update() throws SlickException {
 		
@@ -133,6 +133,11 @@ public class Projectile {
 							npc.getCurrentAnimation().stop();
 						}
 						
+						if(isBloodtheft) {
+							npc.setBloodtheft(true);
+							npc.setBloodtheftTimestamp(System.currentTimeMillis());
+						}
+						
 						npc.setGoingToPlayer(true);
 						Game.getProjectileManager().removeProjectile(this);
 					}
@@ -158,6 +163,14 @@ public class Projectile {
 
 	public void setFirerainProjectile(boolean isFirerainProjectile) {
 		this.isFirerainProjectile = isFirerainProjectile;
+	}
+	
+	public boolean isBloodtheft() {
+		return isBloodtheft;
+	}
+	
+	public void setBloodtheft(boolean isBloodtheft) {
+		this.isBloodtheft = isBloodtheft;
 	}
 	
 }

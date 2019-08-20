@@ -50,7 +50,7 @@ public class ItemManager {
 		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsRune));	
 		
 		itemList.add(new Item(480, 416, itemTypeManager.icelanceRune));
-		itemList.add(new Item(480, 416, itemTypeManager.icewaveRune));
+		itemList.add(new Item(480, 416, itemTypeManager.bloodtheftRune));
 		itemList.add(new Item(480, 416, itemTypeManager.summonSkeletonRune));
 		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsRune));
 				
@@ -67,7 +67,7 @@ public class ItemManager {
 			
 		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.icelanceSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.icewaveSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.bloodtheftSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.summonSkeletonSpell));
 				
 		itemList.add(new Item(480, 416, itemTypeManager.healHeavyWoundsSpell));
@@ -215,6 +215,8 @@ public class ItemManager {
 		itemList.add(new Item(1344, 64, itemTypeManager.pitch));
 		itemList.add(new Item(1408, 64, itemTypeManager.sulfur));
 		itemList.add(new Item(1408, 32, itemTypeManager.orcTooth));
+		itemList.add(new Item(1408, 32, itemTypeManager.heart));
+		
 	}
 	
 	public void update() {

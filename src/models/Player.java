@@ -138,6 +138,8 @@ public class Player extends Character {
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
 
 		npcList = CharacterManager.getNpcList();
+		
+		getHealthBar().setCurrentValue(10);
 	}
 
 	public void update() throws SlickException {
@@ -207,7 +209,7 @@ public class Player extends Character {
 					updateHealMagic();
 				}
 				
-				if(equippedSpell != null && (equippedSpell.getName().equals("Icelance") || equippedSpell.getName().equals("Fireball") || equippedSpell.getName().equals("Titanspear") || equippedSpell.getName().equals("Iceblock"))) {
+				if(equippedSpell != null && (equippedSpell.getName().equals("Icelance") || equippedSpell.getName().equals("Fireball") || equippedSpell.getName().equals("Titanspear") || equippedSpell.getName().equals("Iceblock") || equippedSpell.getName().equals("Bloodtheft"))) {
 					updateBulletMagic();
 				}
 				
@@ -1173,12 +1175,18 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Iceblock")) {
 					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Bloodtheft")) {
+					spriteSheet = new SpriteSheet("resources/bloodtheft.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() - 16, new Animation(spriteSheet, 0, 1, 3, 1, true, 100, true), 0, damageToDeal, spellVelocity);
 				
 				if(equippedSpell.getName().equals("Iceblock")) {
 					projectile.setBlocking(true);
+				}
+				
+				if(equippedSpell.getName().equals("Bloodtheft")) {
+					projectile.setBloodtheft(true);
 				}
 				
 				spellCreated = true;
@@ -1201,12 +1209,18 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Iceblock")) {
 					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Bloodtheft")) {
+					spriteSheet = new SpriteSheet("resources/bloodtheft.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() + 16, new Animation(spriteSheet, 0, 3, 3, 3, true, 100, true), 1, damageToDeal, spellVelocity);
 				
 				if(equippedSpell.getName().equals("Iceblock")) {
 					projectile.setBlocking(true);
+				}
+				
+				if(equippedSpell.getName().equals("Bloodtheft")) {
+					projectile.setBloodtheft(true);
 				}
 				
 				spellCreated = true;
@@ -1228,12 +1242,18 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Iceblock")) {
 					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Bloodtheft")) {
+					spriteSheet = new SpriteSheet("resources/bloodtheft.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 - 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 0, 3, 0, true, 100, true), 2, damageToDeal, spellVelocity);
 				
 				if(equippedSpell.getName().equals("Iceblock")) {
 					projectile.setBlocking(true);
+				}
+				
+				if(equippedSpell.getName().equals("Bloodtheft")) {
+					projectile.setBloodtheft(true);
 				}
 				
 				spellCreated = true;
@@ -1256,6 +1276,8 @@ public class Player extends Character {
 					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Iceblock")) {
 					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
+				} else if(equippedSpell.getName().equals("Bloodtheft")) {
+					spriteSheet = new SpriteSheet("resources/bloodtheft.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 2, 3, 2, true, 100, true), 3, damageToDeal, spellVelocity);
@@ -1271,6 +1293,7 @@ public class Player extends Character {
 			if(equippedSpell.getItemCategory().equals("spell")) {
 				inventoryWindow.removeItem(equippedSpell);
 				equippedSpell = null;
+				currentSpellAnimation = null;
 			}
 
 		}
@@ -1426,7 +1449,7 @@ public class Player extends Character {
 		}
 		
 	}
-
+	
 	private void updatePickUpItem() throws SlickException {
 
 		ArrayList<Item> itemList = Game.getItemManager().getItemList();
