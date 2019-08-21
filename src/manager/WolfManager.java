@@ -25,6 +25,9 @@ public class WolfManager {
 	
 	public WolfManager() throws SlickException {
 		
+		wolf1 = new Wolf(512, 256, 100, null, 100, 50);
+		
+		
 		wolfList.add(wolf1);
 		
 	}

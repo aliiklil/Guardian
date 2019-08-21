@@ -107,47 +107,47 @@ public abstract class Character {
 		spriteSheet = new SpriteSheet(spriteSheetPath, 64, 64);
 		overSizeSpriteSheet = new SpriteSheet(spriteSheetPath, 192, 192);
 		
-		lookUpAnimation = new Animation(spriteSheet, 0, 8, 0, 8, true, 100, false);
-		lookDownAnimation = new Animation(spriteSheet, 0, 10, 0, 10, true, 100, false);
-		lookLeftAnimation = new Animation(spriteSheet, 0, 9, 0, 9, true, 100, false);
-		lookRightAnimation = new Animation(spriteSheet, 0, 11, 0, 11, true, 100, false);
+		lookUpAnimation = new Animation(spriteSheet, 0, 8, 0, 8, true, 100, true);
+		lookDownAnimation = new Animation(spriteSheet, 0, 10, 0, 10, true, 100, true);
+		lookLeftAnimation = new Animation(spriteSheet, 0, 9, 0, 9, true, 100, true);
+		lookRightAnimation = new Animation(spriteSheet, 0, 11, 0, 11, true, 100, true);
 		
-		goUpAnimation = new Animation(spriteSheet, 1, 8, 8, 8, true, 100, false);
-		goDownAnimation = new Animation(spriteSheet, 1, 10, 8, 10, true, 100, false);
-		goLeftAnimation = new Animation(spriteSheet, 1, 9, 8, 9, true, 100, false);
-		goRightAnimation = new Animation(spriteSheet, 1, 11, 8, 11, true, 100, false);
+		goUpAnimation = new Animation(spriteSheet, 1, 8, 8, 8, true, 100, true);
+		goDownAnimation = new Animation(spriteSheet, 1, 10, 8, 10, true, 100, true);
+		goLeftAnimation = new Animation(spriteSheet, 1, 9, 8, 9, true, 100, true);
+		goRightAnimation = new Animation(spriteSheet, 1, 11, 8, 11, true, 100, true);
 		
-		slayUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 5, 7, true, 100, false);
-		slayDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 5, 9, true, 100, false);
-		slayLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 5, 8, true, 100, false);
-		slayRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 5, 10, true, 100, false);
+		slayUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 5, 7, true, 100, true);
+		slayDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 5, 9, true, 100, true);
+		slayLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 5, 8, true, 100, true);
+		slayRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 5, 10, true, 100, true);
 		
-		prepareSlayUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 2, 7, true, 100, false);
-		prepareSlayDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 2, 9, true, 100, false);
-		prepareSlayLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 2, 8, true, 100, false);
-		prepareSlayRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 2, 10, true, 100, false);
+		prepareSlayUpAnimation = new Animation(overSizeSpriteSheet, 2, 7, 2, 7, true, 100, true);
+		prepareSlayDownAnimation = new Animation(overSizeSpriteSheet, 2, 9, 2, 9, true, 100, true);
+		prepareSlayLeftAnimation = new Animation(overSizeSpriteSheet, 2, 8, 2, 8, true, 100, true);
+		prepareSlayRightAnimation = new Animation(overSizeSpriteSheet, 2, 10, 2, 10, true, 100, true);
 
-		thrustUpAnimation = new Animation(overSizeSpriteSheet, 3, 11, 7, 11, true, 100, false);
-		thrustDownAnimation = new Animation(overSizeSpriteSheet, 3, 13, 7, 13, true, 100, false);
-		thrustLeftAnimation = new Animation(overSizeSpriteSheet, 3, 12, 7, 12, true, 100, false);
-		thrustRightAnimation = new Animation(overSizeSpriteSheet, 3, 14, 7, 14, true, 100, false);
+		thrustUpAnimation = new Animation(overSizeSpriteSheet, 3, 11, 7, 11, true, 100, true);
+		thrustDownAnimation = new Animation(overSizeSpriteSheet, 3, 13, 7, 13, true, 100, true);
+		thrustLeftAnimation = new Animation(overSizeSpriteSheet, 3, 12, 7, 12, true, 100, true);
+		thrustRightAnimation = new Animation(overSizeSpriteSheet, 3, 14, 7, 14, true, 100, true);
 		
-		prepareThrustUpAnimation = new Animation(overSizeSpriteSheet, 3, 11, 3, 11, true, 100, false);
-		prepareThrustDownAnimation = new Animation(overSizeSpriteSheet, 3, 13, 3, 13, true, 100, false);
-		prepareThrustLeftAnimation = new Animation(overSizeSpriteSheet, 3, 12, 3, 12, true, 100, false);
-		prepareThrustRightAnimation = new Animation(overSizeSpriteSheet, 3, 14, 3, 14, true, 100, false);
+		prepareThrustUpAnimation = new Animation(overSizeSpriteSheet, 3, 11, 3, 11, true, 100, true);
+		prepareThrustDownAnimation = new Animation(overSizeSpriteSheet, 3, 13, 3, 13, true, 100, true);
+		prepareThrustLeftAnimation = new Animation(overSizeSpriteSheet, 3, 12, 3, 12, true, 100, true);
+		prepareThrustRightAnimation = new Animation(overSizeSpriteSheet, 3, 14, 3, 14, true, 100, true);
 
-		shootUpAnimation = new Animation(spriteSheet, 0, 16, 8, 16, true, 100, false);
-		shootDownAnimation = new Animation(spriteSheet, 0, 18, 8, 18, true, 100, false);
-		shootLeftAnimation = new Animation(spriteSheet, 0, 17, 8, 17, true, 100, false);
-		shootRightAnimation = new Animation(spriteSheet, 0, 19, 8, 19, true, 100, false);
+		shootUpAnimation = new Animation(spriteSheet, 0, 16, 8, 16, true, 100, true);
+		shootDownAnimation = new Animation(spriteSheet, 0, 18, 8, 18, true, 100, true);
+		shootLeftAnimation = new Animation(spriteSheet, 0, 17, 8, 17, true, 100, true);
+		shootRightAnimation = new Animation(spriteSheet, 0, 19, 8, 19, true, 100, true);
 		
-		spellUpAnimation = new Animation(spriteSheet, 0, 0, 6, 0, true, 100, false);
-		spellDownAnimation = new Animation(spriteSheet, 0, 2, 6, 2, true, 100, false);
-		spellLeftAnimation = new Animation(spriteSheet, 0, 1, 6, 1, true, 100, false);
-		spellRightAnimation = new Animation(spriteSheet, 0, 3, 6, 3, true, 100, false);
+		spellUpAnimation = new Animation(spriteSheet, 0, 0, 6, 0, true, 100, true);
+		spellDownAnimation = new Animation(spriteSheet, 0, 2, 6, 2, true, 100, true);
+		spellLeftAnimation = new Animation(spriteSheet, 0, 1, 6, 1, true, 100, true);
+		spellRightAnimation = new Animation(spriteSheet, 0, 3, 6, 3, true, 100, true);
 		
-		dieAnimation = new Animation(spriteSheet, 0, 20, 5, 20, true, 100, false);
+		dieAnimation = new Animation(spriteSheet, 0, 20, 5, 20, true, 100, true);
 
 		
 		slayUpAnimation.setLooping(false);
@@ -179,49 +179,7 @@ public abstract class Character {
 		
 		centerXTile = (int) (centerX / Main.TILE_SIZE);
 		centerYTile = (int) (centerY / Main.TILE_SIZE);
-		
-		lookUpAnimation.setAutoUpdate(true);
-		lookDownAnimation.setAutoUpdate(true);
-		lookLeftAnimation.setAutoUpdate(true);
-		lookRightAnimation.setAutoUpdate(true);
-		
-		goUpAnimation.setAutoUpdate(true);
-		goDownAnimation.setAutoUpdate(true);
-		goLeftAnimation.setAutoUpdate(true);
-		goRightAnimation.setAutoUpdate(true);
-		
-		slayUpAnimation.setAutoUpdate(true);
-		slayDownAnimation.setAutoUpdate(true);
-		slayLeftAnimation.setAutoUpdate(true);
-		slayRightAnimation.setAutoUpdate(true);
-		
-		prepareSlayUpAnimation.setAutoUpdate(true);
-		prepareSlayDownAnimation.setAutoUpdate(true);
-		prepareSlayLeftAnimation.setAutoUpdate(true);
-		prepareSlayRightAnimation.setAutoUpdate(true);
-
-		thrustUpAnimation.setAutoUpdate(true);
-		thrustDownAnimation.setAutoUpdate(true);
-		thrustLeftAnimation.setAutoUpdate(true);
-		thrustRightAnimation.setAutoUpdate(true);
-		
-		prepareThrustUpAnimation.setAutoUpdate(true);
-		prepareThrustDownAnimation.setAutoUpdate(true);
-		prepareThrustLeftAnimation.setAutoUpdate(true);
-		prepareThrustRightAnimation.setAutoUpdate(true);
-
-		shootUpAnimation.setAutoUpdate(true);
-		shootDownAnimation.setAutoUpdate(true);
-		shootLeftAnimation.setAutoUpdate(true);
-		shootRightAnimation.setAutoUpdate(true);
-		
-		spellUpAnimation.setAutoUpdate(true);
-		spellDownAnimation.setAutoUpdate(true);
-		spellLeftAnimation.setAutoUpdate(true);
-		spellRightAnimation.setAutoUpdate(true);
-		
-		dieAnimation.setAutoUpdate(true);
-		
+			
 	}
 	
 	public void update() throws SlickException {
