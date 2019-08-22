@@ -20,11 +20,9 @@ public class WolfManager {
 	private static ArrayList<Wolf> wolfList = new ArrayList<Wolf>();
 	
 	private static Wolf wolf1;
-	
-	private ItemTypeManager itemTypeManager = Game.getItemTypeManager();	
-	
+
 	public WolfManager() throws SlickException {
-		wolf1 = new Wolf(512, 256, 100, null, 100, 50);		
+		wolf1 = new Wolf(512, 256, 10000, null, 100, 50);		
 		wolfList.add(wolf1);
 	}
 	

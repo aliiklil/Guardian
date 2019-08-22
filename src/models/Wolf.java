@@ -18,6 +18,7 @@ import main.Game;
 import main.Main;
 import manager.CharacterManager;
 import manager.ItemTypeManager;
+import manager.WolfManager;
 import util.CollisionBox;
 import pathfinding.Node;
 import pathfinding.AStar;
@@ -88,7 +89,9 @@ public class Wolf {
 	
 	private Bar healthBar;
 	
-	
+	private SpriteSheet bloodSpriteSheet;
+	private Animation bloodAnimation;
+	private boolean drawBlood;
 	
 	
 	
@@ -108,7 +111,8 @@ public class Wolf {
 	private int spriteSize;
 	
 	private CollisionBox collisionBox;
-
+	private CollisionBox hitBox;
+	
 	private Circle aggressionCircle;
 	private int aggressionCircleRadius = 320;
 	
@@ -240,10 +244,15 @@ public class Wolf {
 		this.relativeToMapY = relativeToMapY;
 		
 		collisionBox = new CollisionBox(relativeToMapX + 8, relativeToMapY + 8, 16, 32);
+		setHitBox(new CollisionBox(relativeToMapX + 8, relativeToMapY + 8, 16, 32));
 		
 		healthBar = new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, maxHealth, maxHealth, Color.red);
 		
-		setAlive(true);
+		isAlive = true;
+		bloodSpriteSheet = new SpriteSheet("resources/blood.png", 64, 64);
+		bloodAnimation = new Animation(bloodSpriteSheet, 0, 0, 7, 0, true, 50, true);
+		bloodAnimation.setLooping(false);
+		drawBlood = false;
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
@@ -276,11 +285,21 @@ public class Wolf {
 		healthBar.setX(screenRelativeX);
 		healthBar.setY(screenRelativeY);
 		
+		collisionBox.setX(getRelativeToMapX() + 8);
+		collisionBox.setY(getRelativeToMapY() + 8);
+		
+		hitBox.setX(getRelativeToMapX() + 8);
+		hitBox.setY(getRelativeToMapY() + 8);
+		
+		
 	}
 
 	public void render(Graphics g) {
 		currentAnimation.draw(screenRelativeX, screenRelativeY);
 		
+		if(drawBlood) {
+			drawBlood(screenRelativeX, screenRelativeY);
+		}
 
 	}
 	
@@ -290,6 +309,167 @@ public class Wolf {
 		if(healthBar.getCurrentValue() > 0) {
 			healthBar.render(g);
 		}
+	}
+	
+	public void decreaseHealth(int amount) {
+		
+		if(isAlive()) {
+			
+			healthBar.setCurrentValue(healthBar.getCurrentValue() - amount);
+			
+			if(healthBar.getCurrentValue() <= 0) {
+				healthBar.setCurrentValue(0);
+				currentAnimation = dieDownAnimation;
+				currentAnimationUpperLayer = dieDownAnimationUpperLayer;
+				isAlive = false;
+				bloodtheft = false;
+				bloodtheftCounter = 0;
+				
+				player.addExperience(experienceForPlayer);
+								
+				if(itemDrop != null) {
+					CharacterManager.getPlayer().getInventoryWindow().addItem(itemDrop);
+					CharacterManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
+				}
+			}
+						
+			drawBlood = true;
+		
+		}
+		
+	}
+	
+	public void drawBlood(float screenRelativeX, float screenRelativeY) {
+		
+		bloodAnimation.draw(screenRelativeX, screenRelativeY);
+		if(bloodAnimation.isStopped()) {
+			drawBlood = false;
+			bloodAnimation.restart();
+		}
+		
+	}
+	
+	public boolean isUpCollision(float distance) {
+		
+		if(collisionBox.willIntersectUp(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		ArrayList<NPC> npcList = CharacterManager.getNpcList();
+		for(NPC npc : npcList) {
+			if(collisionBox.willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
+				return true;
+			}
+		}
+		
+		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+		wolfList.remove(this);
+		
+		for(Wolf wolf : wolfList) {
+			if(collisionBox.willIntersectUp(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
+		}
+				
+		if(tiledMap.getTileId((int) collisionBox.getTopLeftX()/Main.TILE_SIZE, (int) (collisionBox.getTopLeftY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) collisionBox.getTopRightX()/Main.TILE_SIZE, (int) (collisionBox.getTopRightY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+			return false;
+		} else {
+			return true;
+		}
+		
+	}
+	
+	public boolean isDownCollision(float distance) {
+		
+		if(collisionBox.willIntersectDown(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		ArrayList<NPC> npcList = CharacterManager.getNpcList();
+		for(NPC npc : npcList) {
+			if(collisionBox.willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
+				return true;
+			}
+		}
+				
+		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+		wolfList.remove(this);
+		
+		for(Wolf wolf : wolfList) {
+			if(collisionBox.willIntersectDown(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
+		}
+		
+		if(tiledMap.getTileId((int) collisionBox.getBottomLeftX()/Main.TILE_SIZE, (int) (collisionBox.getBottomLeftY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) collisionBox.getBottomRightX()/Main.TILE_SIZE, (int) (collisionBox.getBottomRightY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public boolean isLeftCollision(float distance) {
+		
+		if(collisionBox.willIntersectLeft(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		ArrayList<NPC> npcList = CharacterManager.getNpcList();
+		for(NPC npc : npcList) {
+			if(collisionBox.willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
+				return true;
+			}
+		}
+			
+		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+		wolfList.remove(this);
+		
+		for(Wolf wolf : wolfList) {
+			if(collisionBox.willIntersectLeft(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
+		}
+		
+		if(tiledMap.getTileId((int) (collisionBox.getTopLeftX() - distance)/Main.TILE_SIZE, (int) collisionBox.getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (collisionBox.getBottomLeftX() - distance)/Main.TILE_SIZE, (int) collisionBox.getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+			return false;
+		} else {
+			return true;
+		}
+		
+	}
+	
+	public boolean isRightCollision(float distance) {
+		
+		if(collisionBox.willIntersectRight(player.getCollisionBox(), 5)) {
+			return true;
+		}
+	
+		ArrayList<NPC> npcList = CharacterManager.getNpcList();
+		for(NPC npc : npcList) {
+			if(collisionBox.willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
+				return true;
+			}
+		}
+		
+		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+		wolfList.remove(this);
+		
+		for(Wolf wolf : wolfList) {
+			if(collisionBox.willIntersectRight(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
+		}
+		
+		if(tiledMap.getTileId((int) (collisionBox.getTopRightX() + distance)/Main.TILE_SIZE, (int) collisionBox.getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (collisionBox.getBottomRightX() + distance)/Main.TILE_SIZE, (int) collisionBox.getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			return false;
+		} else {
+			return true;
+		}
+		
 	}
 	
 	public CollisionBox getCollisionBox() {
@@ -346,6 +526,30 @@ public class Wolf {
 
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
+	}
+
+	public CollisionBox getHitBox() {
+		return hitBox;
+	}
+
+	public void setHitBox(CollisionBox hitBox) {
+		this.hitBox = hitBox;
+	}
+
+	public float getRelativeToMapX() {
+		return relativeToMapX;
+	}
+
+	public void setRelativeToMapX(float relativeToMapX) {
+		this.relativeToMapX = relativeToMapX;
+	}
+
+	public float getRelativeToMapY() {
+		return relativeToMapY;
+	}
+
+	public void setRelativeToMapY(float relativeToMapY) {
+		this.relativeToMapY = relativeToMapY;
 	}
 	
 }
