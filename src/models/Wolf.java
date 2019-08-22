@@ -86,7 +86,7 @@ public class Wolf {
 	
 	
 	
-	
+	private Bar healthBar;
 	
 	
 	
@@ -203,15 +203,8 @@ public class Wolf {
 		dieDownAnimation.setLooping(false);
 		dieLeftAnimation.setLooping(false);
 		dieRightAnimation.setLooping(false);
-		
-		
-		
+				
 		currentAnimation = lookDownAnimation;
-		
-		
-		
-		
-		
 		
 		
 		
@@ -243,32 +236,14 @@ public class Wolf {
 		currentAnimationUpperLayer = lookDownAnimationUpperLayer;
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		this.relativeToMapX = relativeToMapX;
 		this.relativeToMapY = relativeToMapY;
 		
 		collisionBox = new CollisionBox(relativeToMapX + 8, relativeToMapY + 8, 16, 32);
 		
-		
-		
-		
+		healthBar = new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, maxHealth, maxHealth, Color.red);
 		
 		setAlive(true);
-		
-		
-		
-		
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
@@ -298,14 +273,23 @@ public class Wolf {
 		screenRelativeX = (int) Game.getCurrentMap().getX() + relativeToMapX - spriteSize / 4;		
 		screenRelativeY = (int) Game.getCurrentMap().getY() + relativeToMapY  - spriteSize / 4;
 
+		healthBar.setX(screenRelativeX);
+		healthBar.setY(screenRelativeY);
+		
 	}
 
 	public void render(Graphics g) {
 		currentAnimation.draw(screenRelativeX, screenRelativeY);
+		
+
 	}
 	
 	public void renderUpperLayer(Graphics g) {
 		currentAnimationUpperLayer.draw(screenRelativeX, screenRelativeY);
+		
+		if(healthBar.getCurrentValue() > 0) {
+			healthBar.render(g);
+		}
 	}
 	
 	public CollisionBox getCollisionBox() {
