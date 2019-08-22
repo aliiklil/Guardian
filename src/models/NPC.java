@@ -18,6 +18,7 @@ import main.Game;
 import main.Main;
 import manager.CharacterManager;
 import manager.ItemTypeManager;
+import manager.WolfManager;
 import util.CollisionBox;
 import pathfinding.Node;
 import pathfinding.AStar;
@@ -147,7 +148,7 @@ public class NPC extends Character {
 		
 		if(isAlive() && hostileToPlayer && !iceblocked) {
 			goToPlayer();
-			attackPlayer();
+			//attackPlayer();
 		}
 				
 		
@@ -610,12 +611,19 @@ public class NPC extends Character {
         	}
         }
         
-        ArrayList<NPC> npcList = CharacterManager.getNpcList();
+        ArrayList<NPC> npcList = new ArrayList<NPC>(CharacterManager.getNpcList());
         npcList.remove(this);
         
         for(NPC npc : npcList) {
         	blocksArray[k][0] = npc.getCenterYTile();
 			blocksArray[k][1] = npc.getCenterXTile();
+			k++;
+        }
+        
+        ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+        for(Wolf wolf : wolfList) {
+        	blocksArray[k][0] = wolf.getCenterYTile();
+			blocksArray[k][1] = wolf.getCenterXTile();
 			k++;
         }
         

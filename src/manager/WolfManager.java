@@ -22,7 +22,7 @@ public class WolfManager {
 	private static Wolf wolf1;
 
 	public WolfManager() throws SlickException {
-		wolf1 = new Wolf(512, 256, 10000, null, 100, 50);		
+		wolf1 = new Wolf(0, 0, 1000, null, 100, 50);		
 		wolfList.add(wolf1);
 	}
 	
@@ -38,9 +38,9 @@ public class WolfManager {
 		}
 	}
 	
-	public void renderUpperLayer(Graphics g) { ////To draw tail above player for example
+	public void renderHealthBar(Graphics g) {
 		for(Wolf wolf : wolfList) {
-			wolf.renderUpperLayer(g);
+			wolf.renderHealthBar(g);
 		}
 	}
 	

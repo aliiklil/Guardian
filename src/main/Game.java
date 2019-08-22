@@ -104,10 +104,8 @@ public class Game extends BasicGameState {
 		runeTableManager.renderBottom(g);
 		itemManager.render(g);
 		wolfManager.render(g);
-		
 		characterManager.render(g);
-		
-		wolfManager.renderUpperLayer(g);
+		wolfManager.renderHealthBar(g);
 		
 		runeTableManager.renderTop(g);
 		projectileManager.render(g);

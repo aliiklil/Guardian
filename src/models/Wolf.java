@@ -56,53 +56,26 @@ public class Wolf {
 	private Animation dieRightAnimation;
 	
 	private Animation currentAnimation;
-	
-	
-	
-	//So one part of the dog is drawn over the player for example, which looks better
-	private Animation lookUpAnimationUpperLayer;
-	private Animation lookDownAnimationUpperLayer;
 
-	private Animation howlUpAnimationUpperLayer;
-	private Animation howlDownAnimationUpperLayer;
-
-	private Animation walkUpAnimationUpperLayer;
-	private Animation walkDownAnimationUpperLayer;
-	
-	private Animation runUpAnimationUpperLayer;
-	private Animation runDownAnimationUpperLayer;
-
-	private Animation attackUpAnimationUpperLayer;
-	private Animation attackDownAnimationUpperLayer;
-	
-	private Animation dieUpAnimationUpperLayer;
-	private Animation dieDownAnimationUpperLayer;
-
-	private Animation currentAnimationUpperLayer;
 	
 	
 	
-	
-	
-	
-	
-	
-	private Bar healthBar;
-	
-	private SpriteSheet bloodSpriteSheet;
-	private Animation bloodAnimation;
-	private boolean drawBlood;
-	
-	
-	
-	
-
 	
 	private float relativeToMapX;
 	private float relativeToMapY;
 	
 	private float screenRelativeX;
 	private float screenRelativeY;
+	
+	private float centerX;
+	private float centerY;
+	
+	private int centerXTile;
+	private int centerYTile;
+
+	//Current speed of the character
+	private float movementSpeed = 2f;
+	private float diagonalMovementSpeed = 1.5f;
 	
 	private SpriteSheet spriteSheet;
 	
@@ -113,13 +86,17 @@ public class Wolf {
 	private CollisionBox collisionBox;
 	private CollisionBox hitBox;
 	
+	private Bar healthBar;
+	
+	private SpriteSheet bloodSpriteSheet;
+	private Animation bloodAnimation;
+	private boolean drawBlood;
+	
 	private Circle aggressionCircle;
 	private int aggressionCircleRadius = 320;
-	
 	private boolean isGoingToPlayer = false;
-	
 	private List<Node> path;
-
+	
 	private Player player = CharacterManager.getPlayer();
 
 	private int notWalkableLayerIndex;
@@ -147,7 +124,6 @@ public class Wolf {
 	
 	private boolean iceblocked; //If NPC is blocked by iceblock
 	private long iceblockedTimestamp; //Time when player was iceblocked
-	
 	private Animation iceblockAnimation;
 	
 	private boolean bloodtheft;
@@ -158,45 +134,45 @@ public class Wolf {
 		
 		spriteSheet = new SpriteSheet("resources/WolfSpriteSheet.png", 64, 64);
 		
-		lookUpAnimation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, false);
-		lookDownAnimation = new Animation(spriteSheet, 0, 2, 0, 2, true, 100, false);
-		lookLeftAnimation = new Animation(spriteSheet, 0, 1, 0, 1, true, 100, false);
-		lookRightAnimation = new Animation(spriteSheet, 0, 3, 0, 3, true, 100, false);
+		lookUpAnimation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
+		lookDownAnimation = new Animation(spriteSheet, 0, 2, 0, 2, true, 100, true);
+		lookLeftAnimation = new Animation(spriteSheet, 0, 1, 0, 1, true, 100, true);
+		lookRightAnimation = new Animation(spriteSheet, 0, 3, 0, 3, true, 100, true);
 		
-		howlUpAnimation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, false);
-		howlDownAnimation = new Animation(spriteSheet, 0, 2, 4, 2, true, 100, false);
-		howlLeftAnimation = new Animation(spriteSheet, 0, 1, 3, 1, true, 100, false);
-		howlRightAnimation = new Animation(spriteSheet, 0, 3, 3, 3, true, 100, false);
+		howlUpAnimation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
+		howlDownAnimation = new Animation(spriteSheet, 0, 2, 4, 2, true, 100, true);
+		howlLeftAnimation = new Animation(spriteSheet, 0, 1, 3, 1, true, 100, true);
+		howlRightAnimation = new Animation(spriteSheet, 0, 3, 3, 3, true, 100, true);
 		
-		walkUpAnimation = new Animation(spriteSheet, 0, 4, 3, 4, true, 100, false);
-		walkDownAnimation = new Animation(spriteSheet, 0, 6, 3, 6, true, 100, false);
-		walkLeftAnimation = new Animation(spriteSheet, 0, 5, 4, 5, true, 100, false);
-		walkRightAnimation = new Animation(spriteSheet, 0, 7, 4, 7, true, 100, false);
+		walkUpAnimation = new Animation(spriteSheet, 0, 4, 3, 4, true, 100, true);
+		walkDownAnimation = new Animation(spriteSheet, 0, 6, 3, 6, true, 100, true);
+		walkLeftAnimation = new Animation(spriteSheet, 0, 5, 4, 5, true, 100, true);
+		walkRightAnimation = new Animation(spriteSheet, 0, 7, 4, 7, true, 100, true);
 		
-		runUpAnimation = new Animation(spriteSheet, 0, 8, 4, 8, true, 100, false);
-		runDownAnimation = new Animation(spriteSheet, 0, 10, 4, 10, true, 100, false);
-		runLeftAnimation = new Animation(spriteSheet, 0, 9, 4, 9, true, 100, false);
-		runRightAnimation = new Animation(spriteSheet, 0, 11, 4, 11, true, 100, false);
+		runUpAnimation = new Animation(spriteSheet, 0, 8, 4, 8, true, 100, true);
+		runDownAnimation = new Animation(spriteSheet, 0, 10, 4, 10, true, 100, true);
+		runLeftAnimation = new Animation(spriteSheet, 0, 9, 4, 9, true, 100, true);
+		runRightAnimation = new Animation(spriteSheet, 0, 11, 4, 11, true, 100, true);
 		
-		attackUpAnimation = new Animation(spriteSheet, 0, 12, 4, 12, true, 100, false);
-		attackDownAnimation = new Animation(spriteSheet, 0, 14, 4, 14, true, 100, false);
-		attackLeftAnimation = new Animation(spriteSheet, 0, 13, 4, 13, true, 100, false);
-		attackRightAnimation = new Animation(spriteSheet, 0, 15, 4, 15, true, 100, false);
+		attackUpAnimation = new Animation(spriteSheet, 0, 12, 4, 12, true, 100, true);
+		attackDownAnimation = new Animation(spriteSheet, 0, 14, 4, 14, true, 100, true);
+		attackLeftAnimation = new Animation(spriteSheet, 0, 13, 4, 13, true, 100, true);
+		attackRightAnimation = new Animation(spriteSheet, 0, 15, 4, 15, true, 100, true);
 		
-		dieUpAnimation = new Animation(spriteSheet, 0, 16, 3, 16, true, 100, false);
-		dieDownAnimation = new Animation(spriteSheet, 0, 18, 3, 18, true, 100, false);
-		dieLeftAnimation = new Animation(spriteSheet, 0, 17, 3, 17, true, 100, false);
-		dieRightAnimation = new Animation(spriteSheet, 0, 19, 3, 19, true, 100, false);
+		dieUpAnimation = new Animation(spriteSheet, 0, 16, 3, 16, true, 100, true);
+		dieDownAnimation = new Animation(spriteSheet, 0, 18, 3, 18, true, 100, true);
+		dieLeftAnimation = new Animation(spriteSheet, 0, 17, 3, 17, true, 100, true);
+		dieRightAnimation = new Animation(spriteSheet, 0, 19, 3, 19, true, 100, true);
 		
-		attackUpAnimation = new Animation(spriteSheet, 0, 12, 4, 12, true, 100, false);
-		attackDownAnimation = new Animation(spriteSheet, 0, 14, 4, 14, true, 100, false);
-		attackLeftAnimation = new Animation(spriteSheet, 0, 13, 4, 13, true, 100, false);
-		attackRightAnimation = new Animation(spriteSheet, 0, 15, 4, 15, true, 100, false);
+		attackUpAnimation = new Animation(spriteSheet, 0, 12, 4, 12, true, 100, true);
+		attackDownAnimation = new Animation(spriteSheet, 0, 14, 4, 14, true, 100, true);
+		attackLeftAnimation = new Animation(spriteSheet, 0, 13, 4, 13, true, 100, true);
+		attackRightAnimation = new Animation(spriteSheet, 0, 15, 4, 15, true, 100, true);
 		
-		dieUpAnimation = new Animation(spriteSheet, 0, 16, 3, 16, true, 100, false);
-		dieDownAnimation = new Animation(spriteSheet, 0, 18, 3, 18, true, 100, false);
-		dieLeftAnimation = new Animation(spriteSheet, 0, 17, 3, 17, true, 100, false);
-		dieRightAnimation = new Animation(spriteSheet, 0, 19, 3, 19, true, 100, false);
+		dieUpAnimation = new Animation(spriteSheet, 0, 16, 3, 16, true, 100, true);
+		dieDownAnimation = new Animation(spriteSheet, 0, 18, 3, 18, true, 100, true);
+		dieLeftAnimation = new Animation(spriteSheet, 0, 17, 3, 17, true, 100, true);
+		dieRightAnimation = new Animation(spriteSheet, 0, 19, 3, 19, true, 100, true);
 		
 		attackUpAnimation.setLooping(false);
 		attackDownAnimation.setLooping(false);
@@ -209,36 +185,6 @@ public class Wolf {
 		dieRightAnimation.setLooping(false);
 				
 		currentAnimation = lookDownAnimation;
-		
-		
-		
-		lookUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 0, 0, 0, true, 100, false);
-		lookDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 4, 0, 4, true, 100, false);
-
-		howlUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 0, 0, 0, true, 100, false);
-		howlDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 4, 4, 4, true, 100, false);
-		
-		walkUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 8, 3, 8, true, 100, false);
-		walkDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 12, 3, 12, true, 100, false);
-
-		runUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 16, 4, 16, true, 100, false);
-		runDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 20, 4, 20, true, 100, false);
-
-		attackUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 24, 4, 24, true, 100, false);
-		attackDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 28, 4, 28, true, 100, false);
-
-		dieUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 32, 3, 32, true, 100, false);
-		dieDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 36, 3, 36, true, 100, false);
-
-		attackUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 24, 4, 24, true, 100, false);
-		attackDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 28, 4, 28, true, 100, false);
-
-		dieUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 32, 3, 32, true, 100, false);
-		dieDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 36, 3, 36, true, 100, false);
-
-		
-		currentAnimationUpperLayer = lookDownAnimationUpperLayer;
-		
 		
 		this.relativeToMapX = relativeToMapX;
 		this.relativeToMapY = relativeToMapY;
@@ -275,6 +221,20 @@ public class Wolf {
 		
 		spriteSize = 64;
 		
+		centerX = relativeToMapX + Main.TILE_SIZE/2;
+		centerY = relativeToMapY + Main.TILE_SIZE/2;
+		
+		centerXTile = (int) (centerX / Main.TILE_SIZE);
+		centerYTile = (int) (centerY / Main.TILE_SIZE);
+		
+		
+		System.out.println("centerX " + centerX);
+		System.out.println("centerY " + centerY);
+		System.out.println("centerXTile " + centerXTile);
+		System.out.println("centerYTile " + centerYTile);
+		
+		aggressionCircle = new Circle(centerX, centerY, aggressionCircleRadius);
+		
 	}
 
 	public void update() throws SlickException {
@@ -291,6 +251,10 @@ public class Wolf {
 		hitBox.setX(getRelativeToMapX() + 8);
 		hitBox.setY(getRelativeToMapY() + 8);
 		
+		if(isAlive() && !iceblocked) {
+			goToPlayer();
+			//attackPlayer();
+		}
 		
 	}
 
@@ -303,12 +267,479 @@ public class Wolf {
 
 	}
 	
-	public void renderUpperLayer(Graphics g) {
-		currentAnimationUpperLayer.draw(screenRelativeX, screenRelativeY);
-		
+	public void renderHealthBar(Graphics g) {
 		if(healthBar.getCurrentValue() > 0) {
 			healthBar.render(g);
 		}
+	}
+	
+	private void goToPlayer() {
+		
+		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
+			isGoingToPlayer = true;
+		}
+	
+		if(isGoingToPlayer) {
+			path = findPath();
+		}
+		
+		if(isGoingToPlayer && path != null && !path.isEmpty() && centerYTile == path.get(0).getRow() && centerXTile == path.get(0).getCol() && (centerX+16) % 32 == 0 && (centerY+16) % 32 == 0) {
+			path.remove(0);
+			
+			if(!path.isEmpty()) {
+			
+				if(!goUp && centerYTile > path.get(0).getRow() && centerXTile == path.get(0).getCol()) {		
+					goUp = true;
+					goDown = false;
+					goLeft = false;
+					goRight = false;
+					
+					goUpLeft = false;
+					goUpRight = false;
+					goDownLeft = false;
+					goDownRight = false;
+					
+					isAttacking = false;
+				}
+				
+				if(!goDown && centerYTile < path.get(0).getRow() && centerXTile == path.get(0).getCol()) {	
+					goUp = false;
+					goDown = true;
+					goLeft = false;
+					goRight = false;
+					
+					goUpLeft = false;
+					goUpRight = false;
+					goDownLeft = false;
+					goDownRight = false;
+					
+					isAttacking = false;
+				}
+							
+				if(!goLeft && centerXTile > path.get(0).getCol() && centerYTile == path.get(0).getRow()) {	
+					goUp = false;
+					goDown = false;
+					goLeft = true;
+					goRight = false;
+					
+					goUpLeft = false;
+					goUpRight = false;
+					goDownLeft = false;
+					goDownRight = false;
+					
+					isAttacking = false;
+				}
+				
+				if(!goRight && centerXTile < path.get(0).getCol() && centerYTile == path.get(0).getRow()) {	
+					goUp = false;
+					goDown = false;
+					goLeft = false;
+					goRight = true;
+					
+					goUpLeft = false;
+					goUpRight = false;
+					goDownLeft = false;
+					goDownRight = false;
+
+					isAttacking = false;
+				}
+				
+				if(!goUpLeft && centerYTile > path.get(0).getRow() && centerXTile > path.get(0).getCol()) {		
+					goUp = false;
+					goDown = false;
+					goLeft = false;
+					goRight = false;
+					
+					goUpLeft = true;
+					goUpRight = false;
+					goDownLeft = false;
+					goDownRight = false;
+
+					isAttacking = false;
+				}
+				
+				if(!goUpRight && centerYTile > path.get(0).getRow() && centerXTile < path.get(0).getCol()) {		
+					goUp = false;
+					goDown = false;
+					goLeft = false;
+					goRight = false;
+					
+					goUpLeft = false;
+					goUpRight = true;
+					goDownLeft = false;
+					goDownRight = false;
+				
+					isAttacking = false;
+				}
+				
+				if(!goDownLeft && centerYTile < path.get(0).getRow() && centerXTile > path.get(0).getCol()) {		
+					goUp = false;
+					goDown = false;
+					goLeft = false;
+					goRight = false;
+					
+					goUpLeft = false;
+					goUpRight = false;
+					goDownLeft = true;
+					goDownRight = false;
+					
+					isAttacking = false;
+				}
+				
+				if(!goDownRight && centerYTile < path.get(0).getRow() && centerXTile < path.get(0).getCol()) {		
+					goUp = false;
+					goDown = false;
+					goLeft = false;
+					goRight = false;
+					
+					goUpLeft = false;
+					goUpRight = false;
+					goDownLeft = false;
+					goDownRight = true;
+
+					isAttacking = false;
+				}
+			
+			} else {
+				goUp = false;
+				goDown = false;
+				goLeft = false;
+				goRight = false;
+				
+				goUpLeft = false;
+				goUpRight = false;
+				goDownLeft = false;
+				goDownRight = false;
+				
+				isAttacking = false;			
+			}
+	
+		}
+		
+		if(isGoingToPlayer && path != null && !path.isEmpty() && !isAttacking) {
+			
+			if(goUp && !isUpCollision(movementSpeed)) {		
+				relativeToMapY = relativeToMapY - movementSpeed;
+				currentAnimation = runUpAnimation;
+				isAttacking = false;
+			}
+			
+			if(goDown && !isDownCollision(movementSpeed)) {	
+				relativeToMapY = relativeToMapY + movementSpeed;
+				currentAnimation = runDownAnimation;
+				isAttacking = false;
+			}
+						
+			if(goLeft && !isLeftCollision(movementSpeed)) {	
+				relativeToMapX = relativeToMapX - movementSpeed;
+				currentAnimation = runLeftAnimation;
+				isAttacking = false;
+			}
+			
+			if(goRight && !isRightCollision(movementSpeed)) {	
+				relativeToMapX = relativeToMapX + movementSpeed;
+				currentAnimation = runRightAnimation;
+				isAttacking = false;
+			}
+			
+			if(goUpLeft && !isUpCollision(movementSpeed) && !isLeftCollision(movementSpeed)) {
+				
+				if(!isUpCollision(movementSpeed)) {
+					relativeToMapY = relativeToMapY - diagonalMovementSpeed;
+				}
+				
+				if(!isLeftCollision(movementSpeed)) {
+					relativeToMapX = relativeToMapX - diagonalMovementSpeed;
+				}
+				
+				currentAnimation = runLeftAnimation;
+				isAttacking = false;
+			}
+			
+			if(goUpRight && !isUpCollision(movementSpeed) && !isRightCollision(movementSpeed)) {
+				
+				if(!isUpCollision(movementSpeed)) {
+					relativeToMapY = relativeToMapY - diagonalMovementSpeed;
+				}
+				
+				if(!isRightCollision(movementSpeed)) {
+					relativeToMapX = relativeToMapX + diagonalMovementSpeed;
+				}
+				
+				currentAnimation = runRightAnimation;
+				isAttacking = false;
+			}
+			
+			if(goDownLeft && !isDownCollision(movementSpeed) && !isLeftCollision(movementSpeed)) {
+				
+				if(!isDownCollision(movementSpeed)) {
+					relativeToMapY = relativeToMapY + diagonalMovementSpeed;
+				}
+				
+				if(!isLeftCollision(movementSpeed)) {
+					relativeToMapX = relativeToMapX - diagonalMovementSpeed;
+				}
+				currentAnimation = runLeftAnimation;
+				isAttacking = false;
+			}
+			
+			if(goDownRight && !isDownCollision(movementSpeed) && !isRightCollision(movementSpeed)) {
+				
+				if(!isDownCollision(movementSpeed)) {
+					relativeToMapY = relativeToMapY + diagonalMovementSpeed;
+				}
+				
+				if(!isRightCollision(movementSpeed)) {
+					relativeToMapX = relativeToMapX + diagonalMovementSpeed;
+				}
+				currentAnimation = runRightAnimation;
+				isAttacking = false;
+			}
+						
+		}
+		
+		if(path != null && path.isEmpty()) {
+			
+			if(centerXTile == player.getCenterXTile() && centerYTile - 1 == player.getCenterYTile()) {
+				currentAnimation = lookUpAnimation;
+			}
+			
+			if(centerXTile == player.getCenterXTile() && centerYTile + 1 == player.getCenterYTile()) {
+				currentAnimation = lookDownAnimation;
+			}
+			
+			if(centerXTile - 1 == player.getCenterXTile() && centerYTile == player.getCenterYTile()) {
+				currentAnimation = lookLeftAnimation;
+			}
+			
+			if(centerXTile + 1 == player.getCenterXTile() && centerYTile == player.getCenterYTile()) {
+				currentAnimation = lookRightAnimation;
+			}
+			
+		}
+		
+	}
+	
+	/*
+	private void attackPlayer() {
+		
+		if(isGoingToPlayer && player.isAlive()) {
+			if(path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) || isTouchingPlayer()
+					|| equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox()) || equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox()) 
+					|| equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox()) || equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox())) {
+				
+				if((super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) && equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox())) {
+					super.setCurrentAnimation(super.getSlayUpAnimation());
+					isAttacking = true;
+					damageDealt = false;
+				}
+				
+				if((super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) && equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox())) {
+					super.setCurrentAnimation(super.getSlayDownAnimation());
+					isAttacking = true;
+					damageDealt = false;
+				}
+				
+				if((super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) && equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox())) {
+					super.setCurrentAnimation(super.getSlayLeftAnimation());
+					isAttacking = true;
+					damageDealt = false;
+				}
+				
+				if((super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) && equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox())) {
+					super.setCurrentAnimation(super.getSlayRightAnimation());
+					isAttacking = true;
+					damageDealt = false;
+				}
+				
+				if(isAttacking && super.getCurrentAnimation().isStopped()) {
+					super.getCurrentAnimation().restart();
+					isAttacking = true;
+					damageDealt = false;
+				}
+			}
+		}
+		
+		if(!damageDealt) {
+			
+			int damageToDeal = damageOutput;
+			
+			if(critChance > new Random().nextDouble()) {
+				damageToDeal = damageToDeal * 5;
+			}
+			
+			damageToDeal = (int) (damageToDeal * (1 - player.getArmorProtection()/100.0));
+						
+			if(super.getCurrentAnimation() == super.getSlayUpAnimation() && super.getCurrentAnimation().getFrame() == 1) {
+					if(equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+						player.decreaseHealth(damageToDeal);
+						damageDealt = true;
+				}
+			}
+			
+			if(super.getCurrentAnimation() == super.getSlayDownAnimation() && super.getCurrentAnimation().getFrame() == 1) {
+					if(equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+						player.decreaseHealth(damageToDeal);
+						damageDealt = true;
+					}
+			}
+			
+			if(super.getCurrentAnimation() == super.getSlayLeftAnimation() && super.getCurrentAnimation().getFrame() == 1) {
+					if(equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+						player.decreaseHealth(damageToDeal);
+						damageDealt = true;
+				}		
+			}
+			
+			if(super.getCurrentAnimation() == super.getSlayRightAnimation() && super.getCurrentAnimation().getFrame() == 1) {
+					if(equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+						player.decreaseHealth(damageToDeal);
+						damageDealt = true;
+					}						
+			}		
+			
+		}
+		
+		if(!equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox()) || !equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox()) 
+				|| !equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox()) || !equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox())) {
+			
+			if(super.getCurrentAnimation() == super.getSlayUpAnimation() && !equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox())) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookUpAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getSlayDownAnimation() && !equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox())) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookDownAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getSlayLeftAnimation() && !equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox())) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookLeftAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getSlayRightAnimation() && !equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox())) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookRightAnimation());
+				isAttacking = false;
+			}
+			
+		}
+		
+		if(!player.isAlive()) {
+			
+			if(super.getCurrentAnimation() == super.getSlayUpAnimation()) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookUpAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getSlayDownAnimation()) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookDownAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getSlayLeftAnimation()) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookLeftAnimation());
+				isAttacking = false;
+			}
+			
+			if(super.getCurrentAnimation() == super.getSlayRightAnimation()) {
+				super.getCurrentAnimation().restart();
+				super.setCurrentAnimation(super.getLookRightAnimation());
+				isAttacking = false;
+			}
+			
+		}
+						
+	}
+	*/
+	
+	private List<Node> findPath() {
+		
+		Node initialNode = new Node(centerYTile, centerXTile);
+        Node finalNode = new Node(player.getCenterYTile(), player.getCenterXTile());
+        
+        int rows = Game.getCurrentMap().getTiledMap().getHeight();
+        int cols = Game.getCurrentMap().getTiledMap().getWidth();
+                
+        AStar aStar = new AStar(rows, cols, initialNode, finalNode);
+        
+        int[][] blocksArray = new int[rows * cols][2];
+        
+        int notWalkableLayerIndex = Game.getNotWalkableLayerIndex();
+        
+        int k = 0;
+        
+        for(int i = 0; i < rows; i++) {
+        	for(int j = 0; j < cols; j++) {
+        		if(Game.getCurrentMap().getTiledMap().getTileId(j, i, notWalkableLayerIndex) != 0) {
+        			blocksArray[k][0] = i;
+        			blocksArray[k][1] = j;
+        			k++;
+        		}
+        	}
+        }
+        
+        
+        ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+        wolfList.remove(this);
+        for(Wolf wolf : wolfList) {
+        	blocksArray[k][0] = wolf.getCenterYTile();
+			blocksArray[k][1] = wolf.getCenterXTile();
+			k++;
+        }
+        
+        aStar.setBlocks(blocksArray);
+        
+        List<Node> path = aStar.findPath();
+        
+        if(path.size() >= 2) {
+        
+	        Node lastNode = path.get(path.size() - 1);
+	        Node foreLastNode = path.get(path.size() - 2);
+	        
+	        if(foreLastNode.getRow() + 1 == lastNode.getRow() && foreLastNode.getCol() + 1 == lastNode.getCol()) {
+	        	path.remove(path.size() - 1);
+	        	if(Game.getCurrentMap().getTiledMap().getTileId(foreLastNode.getCol(), foreLastNode.getRow() + 1, notWalkableLayerIndex) != 0) {
+	        		path.add(new Node(foreLastNode.getRow(), foreLastNode.getCol() + 1));
+	        	} else {
+	        		path.add(new Node(foreLastNode.getRow() + 1, foreLastNode.getCol()));
+	        	}
+	        } else if(foreLastNode.getRow() + 1 == lastNode.getRow() && foreLastNode.getCol() - 1 == lastNode.getCol()) {
+	        	path.remove(path.size() - 1);
+	        	if(Game.getCurrentMap().getTiledMap().getTileId(foreLastNode.getCol(), foreLastNode.getRow() + 1, notWalkableLayerIndex) != 0) {
+	        		path.add(new Node(foreLastNode.getRow(), foreLastNode.getCol() - 1));
+	        	} else {
+	        		path.add(new Node(foreLastNode.getRow() + 1, foreLastNode.getCol()));
+	        	}
+	        } else if(foreLastNode.getRow() - 1 == lastNode.getRow() && foreLastNode.getCol() - 1 == lastNode.getCol()) {
+	        	path.remove(path.size() - 1);
+	        	if(Game.getCurrentMap().getTiledMap().getTileId(foreLastNode.getCol(), foreLastNode.getRow() - 1, notWalkableLayerIndex) != 0) {
+	        		path.add(new Node(foreLastNode.getRow(), foreLastNode.getCol() - 1));
+	        	} else {
+	        		path.add(new Node(foreLastNode.getRow() - 1, foreLastNode.getCol()));
+	        	}
+	        } else  if(foreLastNode.getRow() - 1 == lastNode.getRow() && foreLastNode.getCol() + 1 == lastNode.getCol()) {
+	        	path.remove(path.size() - 1);
+	        	if(Game.getCurrentMap().getTiledMap().getTileId(foreLastNode.getCol(), foreLastNode.getRow() - 1, notWalkableLayerIndex) != 0) {
+	        		path.add(new Node(foreLastNode.getRow(), foreLastNode.getCol() + 1));
+	        	} else {
+	        		path.add(new Node(foreLastNode.getRow() - 1, foreLastNode.getCol()));
+	        	}
+	        } else {
+	        	path.remove(path.size() - 1);
+	        }
+	        
+		}
+            
+        return path;
+               		
 	}
 	
 	public void decreaseHealth(int amount) {
@@ -319,8 +750,23 @@ public class Wolf {
 			
 			if(healthBar.getCurrentValue() <= 0) {
 				healthBar.setCurrentValue(0);
-				currentAnimation = dieDownAnimation;
-				currentAnimationUpperLayer = dieDownAnimationUpperLayer;
+				
+				if(currentAnimation == lookUpAnimation || currentAnimation == howlUpAnimation || currentAnimation == walkUpAnimation || currentAnimation == runUpAnimation || currentAnimation == attackUpAnimation) {
+					currentAnimation = dieUpAnimation;
+				}
+				
+				if(currentAnimation == lookDownAnimation || currentAnimation == howlDownAnimation || currentAnimation == walkDownAnimation || currentAnimation == runDownAnimation || currentAnimation == attackDownAnimation) {
+					currentAnimation = dieDownAnimation;
+				}
+				
+				if(currentAnimation == lookLeftAnimation || currentAnimation == howlLeftAnimation || currentAnimation == walkLeftAnimation || currentAnimation == runLeftAnimation || currentAnimation == attackLeftAnimation) {
+					currentAnimation = dieLeftAnimation;
+				}
+				
+				if(currentAnimation == lookRightAnimation || currentAnimation == howlRightAnimation || currentAnimation == walkRightAnimation || currentAnimation == runRightAnimation || currentAnimation == attackRightAnimation) {
+					currentAnimation = dieRightAnimation;
+				}
+				
 				isAlive = false;
 				bloodtheft = false;
 				bloodtheftCounter = 0;
@@ -551,5 +997,39 @@ public class Wolf {
 	public void setRelativeToMapY(float relativeToMapY) {
 		this.relativeToMapY = relativeToMapY;
 	}
+
+	public float getCenterX() {
+		return centerX;
+	}
+
+	public void setCenterX(float centerX) {
+		this.centerX = centerX;
+	}
+
+	public float getCenterY() {
+		return centerY;
+	}
+
+	public void setCenterY(float centerY) {
+		this.centerY = centerY;
+	}
+
+	public int getCenterXTile() {
+		return centerXTile;
+	}
+
+	public void setCenterXTile(int centerXTile) {
+		this.centerXTile = centerXTile;
+	}
+
+	public int getCenterYTile() {
+		return centerYTile;
+	}
+
+	public void setCenterYTile(int centerYTile) {
+		this.centerYTile = centerYTile;
+	}
+	
+	
 	
 }
