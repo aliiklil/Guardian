@@ -24,32 +24,29 @@ public class WolfManager {
 	private ItemTypeManager itemTypeManager = Game.getItemTypeManager();	
 	
 	public WolfManager() throws SlickException {
-		
-		wolf1 = new Wolf(512, 256, 100, null, 100, 50);
-		
-		
+		wolf1 = new Wolf(512, 256, 100, null, 100, 50);		
 		wolfList.add(wolf1);
-		
 	}
 	
 	public void update() throws SlickException {
-		
 		for(Wolf wolf : wolfList) {
 			wolf.update();
 		}
-		
 	}
 
 	public void render(Graphics g) {
-	
 		for(Wolf wolf : wolfList) {
 			wolf.render(g);
 		}
-		
+	}
+	
+	public void renderUpperLayer(Graphics g) { ////To draw tail above player for example
+		for(Wolf wolf : wolfList) {
+			wolf.renderUpperLayer(g);
+		}
 	}
 	
 	public static ArrayList<Wolf> getWolfList() {
-		
 		return wolfList;
 	}
 		

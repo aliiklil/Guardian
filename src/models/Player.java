@@ -23,6 +23,7 @@ import manager.CharacterManager;
 import manager.ChestManager;
 import manager.ItemTypeManager;
 import manager.RuneTableManager;
+import manager.WolfManager;
 import util.CollisionBox;
 
 public class Player extends Character {
@@ -3066,11 +3067,15 @@ public class Player extends Character {
 	private boolean isUpCollision(float distance) {
 
 		for (NPC npc : npcList) {
-
 			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
-
+		}
+		
+		for (Wolf wolf : WolfManager.getWolfList()) {
+			if(super.getCollisionBox().willIntersectUp(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
 		}
 
 		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
@@ -3084,11 +3089,15 @@ public class Player extends Character {
 	private boolean isDownCollision(float distance) {
 
 		for (NPC npc : npcList) {
-
 			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
-
+		}
+		
+		for (Wolf wolf : WolfManager.getWolfList()) {
+			if(super.getCollisionBox().willIntersectDown(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
 		}
 
 		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
@@ -3102,11 +3111,15 @@ public class Player extends Character {
 	private boolean isLeftCollision(float distance) {
 
 		for (NPC npc : npcList) {
-
 			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
-
+		}
+		
+		for (Wolf wolf : WolfManager.getWolfList()) {
+			if(super.getCollisionBox().willIntersectLeft(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
 		}
 
 		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
@@ -3120,11 +3133,15 @@ public class Player extends Character {
 	private boolean isRightCollision(float distance) {
 
 		for (NPC npc : npcList) {
-
 			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
 				return true;
 			}
-
+		}
+		
+		for (Wolf wolf : WolfManager.getWolfList()) {
+			if(super.getCollisionBox().willIntersectRight(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
 		}
 
 		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {

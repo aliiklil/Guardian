@@ -24,18 +24,6 @@ import pathfinding.AStar;
 
 public class Wolf {
 
-	private float relativeToMapX;
-	private float relativeToMapY;
-	
-	private float screenRelativeX;
-	private float screenRelativeY;
-	
-	private SpriteSheet spriteSheet;
-	
-	private int spriteSize;
-	
-	private CollisionBox collisionBox;
-	
 	private Animation lookUpAnimation;
 	private Animation lookDownAnimation;
 	private Animation lookLeftAnimation;
@@ -68,6 +56,59 @@ public class Wolf {
 	
 	private Animation currentAnimation;
 	
+	
+	
+	//So one part of the dog is drawn over the player for example, which looks better
+	private Animation lookUpAnimationUpperLayer;
+	private Animation lookDownAnimationUpperLayer;
+
+	private Animation howlUpAnimationUpperLayer;
+	private Animation howlDownAnimationUpperLayer;
+
+	private Animation walkUpAnimationUpperLayer;
+	private Animation walkDownAnimationUpperLayer;
+	
+	private Animation runUpAnimationUpperLayer;
+	private Animation runDownAnimationUpperLayer;
+
+	private Animation attackUpAnimationUpperLayer;
+	private Animation attackDownAnimationUpperLayer;
+	
+	private Animation dieUpAnimationUpperLayer;
+	private Animation dieDownAnimationUpperLayer;
+
+	private Animation currentAnimationUpperLayer;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	private float relativeToMapX;
+	private float relativeToMapY;
+	
+	private float screenRelativeX;
+	private float screenRelativeY;
+	
+	private SpriteSheet spriteSheet;
+	
+	private boolean isAlive;
+	
+	private int spriteSize;
+	
+	private CollisionBox collisionBox;
+
 	private Circle aggressionCircle;
 	private int aggressionCircleRadius = 320;
 	
@@ -110,9 +151,6 @@ public class Wolf {
 	private long bloodtheftTimestamp;
 	
 	public Wolf(float relativeToMapX, float relativeToMapY, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput) throws SlickException {
-		
-		this.relativeToMapX = relativeToMapX;
-		this.relativeToMapY = relativeToMapY;
 		
 		spriteSheet = new SpriteSheet("resources/WolfSpriteSheet.png", 64, 64);
 		
@@ -166,7 +204,71 @@ public class Wolf {
 		dieLeftAnimation.setLooping(false);
 		dieRightAnimation.setLooping(false);
 		
+		
+		
 		currentAnimation = lookDownAnimation;
+		
+		
+		
+		
+		
+		
+		
+		
+		lookUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 0, 0, 0, true, 100, false);
+		lookDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 4, 0, 4, true, 100, false);
+
+		howlUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 0, 0, 0, true, 100, false);
+		howlDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 4, 4, 4, true, 100, false);
+		
+		walkUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 8, 3, 8, true, 100, false);
+		walkDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 12, 3, 12, true, 100, false);
+
+		runUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 16, 4, 16, true, 100, false);
+		runDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 20, 4, 20, true, 100, false);
+
+		attackUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 24, 4, 24, true, 100, false);
+		attackDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 28, 4, 28, true, 100, false);
+
+		dieUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 32, 3, 32, true, 100, false);
+		dieDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 36, 3, 36, true, 100, false);
+
+		attackUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 24, 4, 24, true, 100, false);
+		attackDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 28, 4, 28, true, 100, false);
+
+		dieUpAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 32, 3, 32, true, 100, false);
+		dieDownAnimationUpperLayer = new Animation(new SpriteSheet("resources/WolfSpriteSheet.png", 64, 32), 0, 36, 3, 36, true, 100, false);
+
+		
+		currentAnimationUpperLayer = lookDownAnimationUpperLayer;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		this.relativeToMapX = relativeToMapX;
+		this.relativeToMapY = relativeToMapY;
+		
+		collisionBox = new CollisionBox(relativeToMapX + 8, relativeToMapY + 8, 16, 32);
+		
+		
+		
+		
+		
+		setAlive(true);
+		
+		
+		
+		
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
@@ -202,6 +304,14 @@ public class Wolf {
 		currentAnimation.draw(screenRelativeX, screenRelativeY);
 	}
 	
+	public void renderUpperLayer(Graphics g) {
+		currentAnimationUpperLayer.draw(screenRelativeX, screenRelativeY);
+	}
+	
+	public CollisionBox getCollisionBox() {
+		return collisionBox;
+	}
+
 	public int getExperienceForPlayer() {
 		return experienceForPlayer;
 	}
@@ -244,6 +354,14 @@ public class Wolf {
 
 	public void setBloodtheftTimestamp(long bloodtheftTimestamp) {
 		this.bloodtheftTimestamp = bloodtheftTimestamp;
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 	
 }

@@ -106,6 +106,9 @@ public class Game extends BasicGameState {
 		wolfManager.render(g);
 		
 		characterManager.render(g);
+		
+		wolfManager.renderUpperLayer(g);
+		
 		runeTableManager.renderTop(g);
 		projectileManager.render(g);
 		
@@ -185,6 +188,10 @@ public class Game extends BasicGameState {
 
 	public static Learning getLearning() {
 		return learning;
+	}
+
+	public static WolfManager getWolfManager() {
+		return wolfManager;
 	}
 	
 }
