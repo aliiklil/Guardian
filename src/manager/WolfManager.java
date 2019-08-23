@@ -22,7 +22,7 @@ public class WolfManager {
 	private static Wolf wolf1;
 
 	public WolfManager() throws SlickException {
-		wolf1 = new Wolf(0, 0, 1000, null, 100, 50);		
+		wolf1 = new Wolf(0, 0, 1000, null, 100, 5);		
 		wolfList.add(wolf1);
 	}
 	

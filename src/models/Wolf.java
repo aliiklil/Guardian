@@ -130,6 +130,8 @@ public class Wolf {
 	private int bloodtheftCounter;
 	private long bloodtheftTimestamp;
 	
+	private CollisionBox attackBox;
+	
 	public Wolf(float relativeToMapX, float relativeToMapY, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput) throws SlickException {
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
@@ -237,6 +239,8 @@ public class Wolf {
 		
 		aggressionCircle = new Circle(centerX, centerY, aggressionCircleRadius);
 		
+		
+		attackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 32, 64, 64);
 	}
 
 	public void update() throws SlickException {
@@ -253,9 +257,12 @@ public class Wolf {
 		hitBox.setX(getRelativeToMapX());
 		hitBox.setY(getRelativeToMapY() - 16);
 		
+		attackBox.setX(relativeToMapX - 16);
+		attackBox.setY(relativeToMapY - 32);
+		
 		if(isAlive() && !iceblocked) {
 			goToPlayer();
-			//attackPlayer();
+			attackPlayer();
 		}
 		
 		centerX = relativeToMapX + Main.TILE_SIZE/2;
@@ -533,40 +540,38 @@ public class Wolf {
 		
 	}
 	
-	/*
+	
 	private void attackPlayer() {
 		
 		if(isGoingToPlayer && player.isAlive()) {
-			if(path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) || isTouchingPlayer()
-					|| equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox()) || equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox()) 
-					|| equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox()) || equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox())) {
+			if(path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) || isTouchingPlayer() || attackBox.intersects(player.getHitBox())) {
 				
-				if((super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation()) && equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox())) {
-					super.setCurrentAnimation(super.getSlayUpAnimation());
+				if((currentAnimation == lookUpAnimation || currentAnimation == runUpAnimation) && attackBox.intersects(player.getHitBox())) {
+					currentAnimation = attackUpAnimation;
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if((super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation()) && equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox())) {
-					super.setCurrentAnimation(super.getSlayDownAnimation());
+				if((currentAnimation == lookDownAnimation || currentAnimation == runDownAnimation) && attackBox.intersects(player.getHitBox())) {
+					currentAnimation = attackDownAnimation;
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if((super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation()) && equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox())) {
-					super.setCurrentAnimation(super.getSlayLeftAnimation());
+				if((currentAnimation == lookLeftAnimation || currentAnimation == runLeftAnimation) && attackBox.intersects(player.getHitBox())) {
+					currentAnimation = attackLeftAnimation;
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if((super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation()) && equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox())) {
-					super.setCurrentAnimation(super.getSlayRightAnimation());
+				if((currentAnimation == lookRightAnimation || currentAnimation == runRightAnimation) && attackBox.intersects(player.getHitBox())) {
+					currentAnimation = attackRightAnimation;
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if(isAttacking && super.getCurrentAnimation().isStopped()) {
-					super.getCurrentAnimation().restart();
+				if(isAttacking && currentAnimation.isStopped()) {
+					currentAnimation.restart();
 					isAttacking = true;
 					damageDealt = false;
 				}
@@ -577,35 +582,35 @@ public class Wolf {
 			
 			int damageToDeal = damageOutput;
 			
-			if(critChance > new Random().nextDouble()) {
+			if(0.1 > new Random().nextDouble()) {
 				damageToDeal = damageToDeal * 5;
 			}
 			
 			damageToDeal = (int) (damageToDeal * (1 - player.getArmorProtection()/100.0));
 						
-			if(super.getCurrentAnimation() == super.getSlayUpAnimation() && super.getCurrentAnimation().getFrame() == 1) {
-					if(equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+			if(currentAnimation == attackUpAnimation && currentAnimation.getFrame() == 1) {
+					if(attackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 				}
 			}
 			
-			if(super.getCurrentAnimation() == super.getSlayDownAnimation() && super.getCurrentAnimation().getFrame() == 1) {
-					if(equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+			if(currentAnimation == attackDownAnimation && currentAnimation.getFrame() == 1) {
+					if(attackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 					}
 			}
 			
-			if(super.getCurrentAnimation() == super.getSlayLeftAnimation() && super.getCurrentAnimation().getFrame() == 1) {
-					if(equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+			if(currentAnimation == attackLeftAnimation && currentAnimation.getFrame() == 1) {
+					if(attackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 				}		
 			}
 			
-			if(super.getCurrentAnimation() == super.getSlayRightAnimation() && super.getCurrentAnimation().getFrame() == 1) {
-					if(equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox()) && player.isAlive()) {
+			if(currentAnimation == attackRightAnimation && currentAnimation.getFrame() == 1) {
+					if(attackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 					}						
@@ -613,30 +618,29 @@ public class Wolf {
 			
 		}
 		
-		if(!equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox()) || !equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox()) 
-				|| !equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox()) || !equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox())) {
+		if(!attackBox.intersects(player.getHitBox())) {
 			
-			if(super.getCurrentAnimation() == super.getSlayUpAnimation() && !equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox())) {
-				super.getCurrentAnimation().restart();
-				super.setCurrentAnimation(super.getLookUpAnimation());
+			if(currentAnimation == attackUpAnimation) {
+				currentAnimation.restart();
+				currentAnimation = lookUpAnimation;
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getSlayDownAnimation() && !equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox())) {
-				super.getCurrentAnimation().restart();
-				super.setCurrentAnimation(super.getLookDownAnimation());
+			if(currentAnimation == attackDownAnimation) {
+				currentAnimation.restart();
+				currentAnimation = lookDownAnimation;
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getSlayLeftAnimation() && !equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox())) {
-				super.getCurrentAnimation().restart();
-				super.setCurrentAnimation(super.getLookLeftAnimation());
+			if(currentAnimation == attackLeftAnimation) {
+				currentAnimation.restart();
+				currentAnimation = lookLeftAnimation;
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getSlayRightAnimation() && !equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox())) {
-				super.getCurrentAnimation().restart();
-				super.setCurrentAnimation(super.getLookRightAnimation());
+			if(currentAnimation == attackRightAnimation) {
+				currentAnimation.restart();
+				currentAnimation = lookRightAnimation;
 				isAttacking = false;
 			}
 			
@@ -644,34 +648,34 @@ public class Wolf {
 		
 		if(!player.isAlive()) {
 			
-			if(super.getCurrentAnimation() == super.getSlayUpAnimation()) {
-				super.getCurrentAnimation().restart();
-				super.setCurrentAnimation(super.getLookUpAnimation());
+			if(currentAnimation == attackUpAnimation) {
+				currentAnimation.restart();
+				currentAnimation = lookUpAnimation;
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getSlayDownAnimation()) {
-				super.getCurrentAnimation().restart();
-				super.setCurrentAnimation(super.getLookDownAnimation());
+			if(currentAnimation == attackDownAnimation) {
+				currentAnimation.restart();
+				currentAnimation = lookDownAnimation;
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getSlayLeftAnimation()) {
-				super.getCurrentAnimation().restart();
-				super.setCurrentAnimation(super.getLookLeftAnimation());
+			if(currentAnimation == attackLeftAnimation) {
+				currentAnimation.restart();
+				currentAnimation = lookLeftAnimation;
 				isAttacking = false;
 			}
 			
-			if(super.getCurrentAnimation() == super.getSlayRightAnimation()) {
-				super.getCurrentAnimation().restart();
-				super.setCurrentAnimation(super.getLookRightAnimation());
+			if(currentAnimation == attackRightAnimation) {
+				currentAnimation.restart();
+				currentAnimation = lookRightAnimation;
 				isAttacking = false;
 			}
 			
 		}
 						
 	}
-	*/
+	
 	
 	private List<Node> findPath() {
 		
@@ -937,6 +941,28 @@ public class Wolf {
 		} else {
 			return true;
 		}
+		
+	}
+	
+	private boolean isTouchingPlayer() {
+		
+		if(collisionBox.willIntersectUp(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		if(collisionBox.willIntersectDown(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		if(collisionBox.willIntersectLeft(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		if(collisionBox.willIntersectRight(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		return false;
 		
 	}
 	
