@@ -130,7 +130,7 @@ public class NPC extends Character {
 	public void update() throws SlickException {
 		
 		super.update();
-		
+			
 		screenRelativeX = (int) Game.getCurrentMap().getX() + getRelativeToMapX() - getSpriteSize() / 4;		
 		screenRelativeY = (int) Game.getCurrentMap().getY() + getRelativeToMapY()  - getSpriteSize() / 2;
 

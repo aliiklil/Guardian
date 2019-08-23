@@ -132,6 +132,9 @@ public class Wolf {
 	
 	public Wolf(float relativeToMapX, float relativeToMapY, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput) throws SlickException {
 		
+		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
+		tiledMap = Game.getCurrentMap().getTiledMap();
+		
 		spriteSheet = new SpriteSheet("resources/WolfSpriteSheet.png", 64, 64);
 		
 		lookUpAnimation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
@@ -186,10 +189,14 @@ public class Wolf {
 				
 		currentAnimation = lookDownAnimation;
 		
+		screenRelativeX = (int) Game.getCurrentMap().getX() + relativeToMapX - spriteSize / 4;		
+		screenRelativeY = (int) Game.getCurrentMap().getY() + relativeToMapY  - spriteSize / 2;
+		
 		this.relativeToMapX = relativeToMapX;
 		this.relativeToMapY = relativeToMapY;
 		
-		collisionBox = new CollisionBox(relativeToMapX + 8, relativeToMapY + 8, 16, 32);
+		collisionBox = new CollisionBox(0, 0, 0, 0);
+	
 		setHitBox(new CollisionBox(relativeToMapX + 8, relativeToMapY + 8, 16, 32));
 		
 		healthBar = new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, maxHealth, maxHealth, Color.red);
@@ -221,8 +228,8 @@ public class Wolf {
 		
 		spriteSize = 64;
 		
-		centerX = relativeToMapX + Main.TILE_SIZE/2;
-		centerY = relativeToMapY + Main.TILE_SIZE/2;
+		centerX = relativeToMapX - Main.TILE_SIZE/2;
+		centerY = relativeToMapY - Main.TILE_SIZE/2;
 		
 		centerXTile = (int) (centerX / Main.TILE_SIZE);
 		centerYTile = (int) (centerY / Main.TILE_SIZE);
@@ -240,13 +247,13 @@ public class Wolf {
 	public void update() throws SlickException {
 				
 		screenRelativeX = (int) Game.getCurrentMap().getX() + relativeToMapX - spriteSize / 4;		
-		screenRelativeY = (int) Game.getCurrentMap().getY() + relativeToMapY  - spriteSize / 4;
+		screenRelativeY = (int) Game.getCurrentMap().getY() + relativeToMapY  - spriteSize / 2;
 
 		healthBar.setX(screenRelativeX);
 		healthBar.setY(screenRelativeY);
 		
-		collisionBox.setX(getRelativeToMapX() + 8);
-		collisionBox.setY(getRelativeToMapY() + 8);
+		collisionBox.setX(getRelativeToMapX() + 6);
+		collisionBox.setY(getRelativeToMapY() + 10);
 		
 		hitBox.setX(getRelativeToMapX() + 8);
 		hitBox.setY(getRelativeToMapY() + 8);
@@ -255,6 +262,27 @@ public class Wolf {
 			goToPlayer();
 			//attackPlayer();
 		}
+		
+		centerX = relativeToMapX - Main.TILE_SIZE/2;
+		centerY = relativeToMapY - Main.TILE_SIZE/2;
+		
+		centerXTile = (int) (centerX / Main.TILE_SIZE);
+		centerYTile = (int) (centerY / Main.TILE_SIZE);
+		
+		System.out.println("goUp " + goUp);
+		System.out.println("goDown " + goDown);
+		System.out.println("goLeft " + goLeft);
+		System.out.println("goRight " + goRight);
+		
+		System.out.println("goUpLeft " + goUpLeft);
+		System.out.println("goUpRight " + goUpRight);
+		System.out.println("goDownLeft " + goDownLeft);
+		System.out.println("goDownRight " + goDownRight);
+		
+		System.out.println("centerX " + centerX);
+		System.out.println("centerY " + centerY);
+		System.out.println("centerXTile " + centerXTile);
+		System.out.println("centerYTile " + centerYTile);
 		
 	}
 
@@ -281,10 +309,17 @@ public class Wolf {
 	
 		if(isGoingToPlayer) {
 			path = findPath();
+			
+			for(Node node : path) {
+				System.out.println(node.toString());
+			}
+			
 		}
 		
 		if(isGoingToPlayer && path != null && !path.isEmpty() && centerYTile == path.get(0).getRow() && centerXTile == path.get(0).getCol() && (centerX+16) % 32 == 0 && (centerY+16) % 32 == 0) {
 			path.remove(0);
+			System.out.println("BBBBBBBBBBBB");
+			
 			
 			if(!path.isEmpty()) {
 			
@@ -417,7 +452,7 @@ public class Wolf {
 		}
 		
 		if(isGoingToPlayer && path != null && !path.isEmpty() && !isAttacking) {
-			
+		
 			if(goUp && !isUpCollision(movementSpeed)) {		
 				relativeToMapY = relativeToMapY - movementSpeed;
 				currentAnimation = runUpAnimation;
@@ -686,9 +721,10 @@ public class Wolf {
         	}
         }
         
-        
+       
         ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
         wolfList.remove(this);
+        
         for(Wolf wolf : wolfList) {
         	blocksArray[k][0] = wolf.getCenterYTile();
 			blocksArray[k][1] = wolf.getCenterXTile();
@@ -797,124 +833,24 @@ public class Wolf {
 	
 	public boolean isUpCollision(float distance) {
 		
-		if(collisionBox.willIntersectUp(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		for(NPC npc : npcList) {
-			if(collisionBox.willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-		
-		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-		wolfList.remove(this);
-		
-		for(Wolf wolf : wolfList) {
-			if(collisionBox.willIntersectUp(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-				
-		if(tiledMap.getTileId((int) collisionBox.getTopLeftX()/Main.TILE_SIZE, (int) (collisionBox.getTopLeftY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) collisionBox.getTopRightX()/Main.TILE_SIZE, (int) (collisionBox.getTopRightY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
-			return false;
-		} else {
-			return true;
-		}
+		return false;
 		
 	}
 	
 	public boolean isDownCollision(float distance) {
 		
-		if(collisionBox.willIntersectDown(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		for(NPC npc : npcList) {
-			if(collisionBox.willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-				
-		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-		wolfList.remove(this);
-		
-		for(Wolf wolf : wolfList) {
-			if(collisionBox.willIntersectDown(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-		
-		if(tiledMap.getTileId((int) collisionBox.getBottomLeftX()/Main.TILE_SIZE, (int) (collisionBox.getBottomLeftY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) collisionBox.getBottomRightX()/Main.TILE_SIZE, (int) (collisionBox.getBottomRightY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return false;
-		} else {
-			return true;
-		}
+		return false;
 	}
 	
 	public boolean isLeftCollision(float distance) {
 		
-		if(collisionBox.willIntersectLeft(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		for(NPC npc : npcList) {
-			if(collisionBox.willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-			
-		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-		wolfList.remove(this);
-		
-		for(Wolf wolf : wolfList) {
-			if(collisionBox.willIntersectLeft(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-		
-		if(tiledMap.getTileId((int) (collisionBox.getTopLeftX() - distance)/Main.TILE_SIZE, (int) collisionBox.getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (collisionBox.getBottomLeftX() - distance)/Main.TILE_SIZE, (int) collisionBox.getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
-			return false;
-		} else {
-			return true;
-		}
+		return false;
 		
 	}
 	
 	public boolean isRightCollision(float distance) {
 		
-		if(collisionBox.willIntersectRight(player.getCollisionBox(), 5)) {
-			return true;
-		}
-	
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		for(NPC npc : npcList) {
-			if(collisionBox.willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-		
-		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-		wolfList.remove(this);
-		
-		for(Wolf wolf : wolfList) {
-			if(collisionBox.willIntersectRight(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-		
-		if(tiledMap.getTileId((int) (collisionBox.getTopRightX() + distance)/Main.TILE_SIZE, (int) collisionBox.getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (collisionBox.getBottomRightX() + distance)/Main.TILE_SIZE, (int) collisionBox.getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return false;
-		} else {
-			return true;
-		}
+		return false;
 		
 	}
 	
