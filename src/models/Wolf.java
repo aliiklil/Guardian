@@ -197,7 +197,7 @@ public class Wolf {
 				
 		collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 10, 20, 20);
 
-		setHitBox(new CollisionBox(relativeToMapX + 8, relativeToMapY - 8, 16, 16));
+		setHitBox(new CollisionBox(relativeToMapX, relativeToMapY - 16, 32, 32));
 			
 		healthBar = new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, maxHealth, maxHealth, Color.red);
 		
@@ -250,8 +250,8 @@ public class Wolf {
 		collisionBox.setX(getRelativeToMapX() + 6);
 		collisionBox.setY(getRelativeToMapY() + 10);
 		
-		hitBox.setX(getRelativeToMapX() + 8);
-		hitBox.setY(getRelativeToMapY() + 8);
+		hitBox.setX(getRelativeToMapX());
+		hitBox.setY(getRelativeToMapY() - 16);
 		
 		if(isAlive() && !iceblocked) {
 			goToPlayer();
