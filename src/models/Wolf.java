@@ -194,11 +194,11 @@ public class Wolf {
 		
 		this.relativeToMapX = relativeToMapX;
 		this.relativeToMapY = relativeToMapY;
-		
-		collisionBox = new CollisionBox(0, 0, 0, 0);
-	
-		setHitBox(new CollisionBox(relativeToMapX + 8, relativeToMapY + 8, 16, 32));
-		
+				
+		collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 10, 20, 20);
+
+		setHitBox(new CollisionBox(relativeToMapX + 8, relativeToMapY - 8, 16, 16));
+			
 		healthBar = new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, maxHealth, maxHealth, Color.red);
 		
 		isAlive = true;
@@ -233,12 +233,7 @@ public class Wolf {
 		
 		centerXTile = (int) (centerX / Main.TILE_SIZE);
 		centerYTile = (int) (centerY / Main.TILE_SIZE);
-		
-		
-		System.out.println("centerX " + centerX);
-		System.out.println("centerY " + centerY);
-		System.out.println("centerXTile " + centerXTile);
-		System.out.println("centerYTile " + centerYTile);
+
 		
 		aggressionCircle = new Circle(centerX, centerY, aggressionCircleRadius);
 		
@@ -263,21 +258,11 @@ public class Wolf {
 			//attackPlayer();
 		}
 		
-		centerX = relativeToMapX - Main.TILE_SIZE/2;
-		centerY = relativeToMapY - Main.TILE_SIZE/2;
+		centerX = relativeToMapX + Main.TILE_SIZE/2;
+		centerY = relativeToMapY + Main.TILE_SIZE/2;
 		
 		centerXTile = (int) (centerX / Main.TILE_SIZE);
 		centerYTile = (int) (centerY / Main.TILE_SIZE);
-		
-		System.out.println("goUp " + goUp);
-		System.out.println("goDown " + goDown);
-		System.out.println("goLeft " + goLeft);
-		System.out.println("goRight " + goRight);
-		
-		System.out.println("goUpLeft " + goUpLeft);
-		System.out.println("goUpRight " + goUpRight);
-		System.out.println("goDownLeft " + goDownLeft);
-		System.out.println("goDownRight " + goDownRight);
 		
 		System.out.println("centerX " + centerX);
 		System.out.println("centerY " + centerY);
@@ -309,17 +294,10 @@ public class Wolf {
 	
 		if(isGoingToPlayer) {
 			path = findPath();
-			
-			for(Node node : path) {
-				System.out.println(node.toString());
-			}
-			
 		}
 		
 		if(isGoingToPlayer && path != null && !path.isEmpty() && centerYTile == path.get(0).getRow() && centerXTile == path.get(0).getCol() && (centerX+16) % 32 == 0 && (centerY+16) % 32 == 0) {
 			path.remove(0);
-			System.out.println("BBBBBBBBBBBB");
-			
 			
 			if(!path.isEmpty()) {
 			
@@ -721,7 +699,15 @@ public class Wolf {
         	}
         }
         
-       
+        ArrayList<NPC> npcList = new ArrayList<NPC>(CharacterManager.getNpcList());
+
+        for(NPC npc : npcList) {
+        	blocksArray[k][0] = npc.getCenterYTile();
+			blocksArray[k][1] = npc.getCenterXTile();
+			k++;
+        }
+        
+        
         ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
         wolfList.remove(this);
         
@@ -833,24 +819,124 @@ public class Wolf {
 	
 	public boolean isUpCollision(float distance) {
 		
-		return false;
+		if(collisionBox.willIntersectUp(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		ArrayList<NPC> npcList = CharacterManager.getNpcList();
+		for(NPC npc : npcList) {
+			if(collisionBox.willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
+				return true;
+			}
+		}
+		
+		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+		wolfList.remove(this);
+		
+		for(Wolf wolf : wolfList) {
+			if(collisionBox.willIntersectUp(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
+		}
+				
+		if(tiledMap.getTileId((int) collisionBox.getTopLeftX()/Main.TILE_SIZE, (int) (collisionBox.getTopLeftY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) collisionBox.getTopRightX()/Main.TILE_SIZE, (int) (collisionBox.getTopRightY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+			return false;
+		} else {
+			return true;
+		}
 		
 	}
 	
 	public boolean isDownCollision(float distance) {
 		
-		return false;
+		if(collisionBox.willIntersectDown(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		ArrayList<NPC> npcList = CharacterManager.getNpcList();
+		for(NPC npc : npcList) {
+			if(collisionBox.willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
+				return true;
+			}
+		}
+				
+		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+		wolfList.remove(this);
+		
+		for(Wolf wolf : wolfList) {
+			if(collisionBox.willIntersectDown(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
+		}
+		
+		if(tiledMap.getTileId((int) collisionBox.getBottomLeftX()/Main.TILE_SIZE, (int) (collisionBox.getBottomLeftY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) collisionBox.getBottomRightX()/Main.TILE_SIZE, (int) (collisionBox.getBottomRightY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	public boolean isLeftCollision(float distance) {
 		
-		return false;
+		if(collisionBox.willIntersectLeft(player.getCollisionBox(), 5)) {
+			return true;
+		}
+		
+		ArrayList<NPC> npcList = CharacterManager.getNpcList();
+		for(NPC npc : npcList) {
+			if(collisionBox.willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
+				return true;
+			}
+		}
+			
+		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+		wolfList.remove(this);
+		
+		for(Wolf wolf : wolfList) {
+			if(collisionBox.willIntersectLeft(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
+		}
+		
+		if(tiledMap.getTileId((int) (collisionBox.getTopLeftX() - distance)/Main.TILE_SIZE, (int) collisionBox.getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (collisionBox.getBottomLeftX() - distance)/Main.TILE_SIZE, (int) collisionBox.getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
+			return false;
+		} else {
+			return true;
+		}
 		
 	}
 	
 	public boolean isRightCollision(float distance) {
 		
-		return false;
+		if(collisionBox.willIntersectRight(player.getCollisionBox(), 5)) {
+			return true;
+		}
+	
+		ArrayList<NPC> npcList = CharacterManager.getNpcList();
+		for(NPC npc : npcList) {
+			if(collisionBox.willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
+				return true;
+			}
+		}
+		
+		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
+		wolfList.remove(this);
+		
+		for(Wolf wolf : wolfList) {
+			if(collisionBox.willIntersectRight(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
+				return true;
+			}
+		}
+		
+		if(tiledMap.getTileId((int) (collisionBox.getTopRightX() + distance)/Main.TILE_SIZE, (int) collisionBox.getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
+		   tiledMap.getTileId((int) (collisionBox.getBottomRightX() + distance)/Main.TILE_SIZE, (int) collisionBox.getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
+			return false;
+		} else {
+			return true;
+		}
 		
 	}
 	

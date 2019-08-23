@@ -103,8 +103,8 @@ public class Game extends BasicGameState {
 		alchemyDeskManager.render(g);
 		runeTableManager.renderBottom(g);
 		itemManager.render(g);
-		wolfManager.render(g);
 		characterManager.render(g);
+		wolfManager.render(g);
 		wolfManager.renderHealthBar(g);
 		
 		runeTableManager.renderTop(g);
