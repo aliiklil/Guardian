@@ -9,7 +9,7 @@ import org.newdawn.slick.SpriteSheet;
 
 import main.Game;
 import main.Main;
-import manager.CharacterManager;
+import manager.MobManager;
 import util.CollisionBox;
 
 public class Projectile {
@@ -121,7 +121,7 @@ public class Projectile {
 			collisionBox.setX(relativeToMapX + 16);
 			collisionBox.setY(relativeToMapY + 16);
 			
-			npcList = CharacterManager.getNpcList();
+			npcList = MobManager.getNpcList();
 			
 			for(NPC npc : npcList) {
 					if(collisionBox.intersects(npc.getHitBox()) && npc.isAlive() && npc.isHostileToPlayer()) {

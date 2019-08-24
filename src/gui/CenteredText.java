@@ -6,7 +6,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import main.Main;
-import manager.CharacterManager;
 import models.Item;
 
 public class CenteredText {

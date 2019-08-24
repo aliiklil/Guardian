@@ -4,7 +4,7 @@ import org.newdawn.slick.SlickException;
 
 import dialogue.Dialogue;
 import main.Game;
-import manager.CharacterManager;
+import manager.MobManager;
 import models.Item;
 import models.Player;
 
@@ -45,7 +45,7 @@ public class Blacksmithing {
 	
 	private void forgeIronSword(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Sword (3 Iron Bar)")) {
 			
@@ -75,7 +75,7 @@ public class Blacksmithing {
 	
 	private void forgeLongspear(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Longspear (Iron Bar, 3 Stick)")) {
 			
@@ -110,7 +110,7 @@ public class Blacksmithing {
 	
 	private void forgeSabre(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Sabre (2 Iron Bar)")) {
 			
@@ -139,7 +139,7 @@ public class Blacksmithing {
 	
 	private void forgeIronHelmet(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Helmet (3 Iron Bars)")) {
 			
@@ -170,7 +170,7 @@ public class Blacksmithing {
 	
 	private void forgeIronChest(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Chest (5 Iron Bars)")) {
 			
@@ -203,7 +203,7 @@ public class Blacksmithing {
 	
 	private void forgeIronGloves(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Gloves (2 Iron Bars)")) {
 			
@@ -235,7 +235,7 @@ public class Blacksmithing {
 	
 	private void forgeIronGreaves(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Greaves (4 Iron Bars)")) {
 			
@@ -268,7 +268,7 @@ public class Blacksmithing {
 	
 	private void forgeIronBoots(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Iron Boots (2 Iron Bars)")) {
 			
@@ -316,7 +316,7 @@ public class Blacksmithing {
 	
 	private void forgeGoldenSword(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Sword (3 Golden Bars)")) {
 			
@@ -346,7 +346,7 @@ public class Blacksmithing {
 	
 	private void forgeGoldenSpear(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Spear (3 Golden Bars, 2 Iron Bars)")) {
 			
@@ -382,7 +382,7 @@ public class Blacksmithing {
 	
 	private void forgeRapier(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Rapier (1 Golden Bar, 1 Iron Bar)")) {
 			
@@ -415,7 +415,7 @@ public class Blacksmithing {
 	
 	private void forgeGoldenHelmet(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Helmet (3 Golden Bars)")) {
 				
@@ -445,7 +445,7 @@ public class Blacksmithing {
 	
 	private void forgeGoldenChest(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Chest (5 Golden Bars)")) {
 				
@@ -477,7 +477,7 @@ public class Blacksmithing {
 	
 	private void forgeGoldenGloves(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Gloves (2 Golden Bars)")) {
 				
@@ -507,7 +507,7 @@ public class Blacksmithing {
 	
 	private void forgeGoldenGreaves(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Greaves (4 Golden Bars)")) {
 				
@@ -538,7 +538,7 @@ public class Blacksmithing {
 	
 	private void forgeGoldenBoots(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Golden Boots (2 Golden Bars)")) {
 				
@@ -580,7 +580,7 @@ public class Blacksmithing {
 	
 	private void forgeMithrilSword(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Sword (3 Mithril Bars)")) {
 			
 			int mithrilBarsCount = 0;
@@ -609,7 +609,7 @@ public class Blacksmithing {
 	
 	private void forgeMithrilSpear(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Spear (3 Mithril Bars, 2 Iron Bars)")) {
 			
@@ -646,7 +646,7 @@ public class Blacksmithing {
 	
 	private void forgeMithrilRapier(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Rapier (1 Mithril Bar, 1 Iron Bar)")) {
 			
@@ -679,7 +679,7 @@ public class Blacksmithing {
 	
 	private void forgeMithrilHelmet(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Helmet (3 Mithril Bars)")) {
 				
@@ -709,7 +709,7 @@ public class Blacksmithing {
 	
 	private void forgeMithrilChest(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Chest (5 Mithril Bars)")) {
 				
@@ -741,7 +741,7 @@ public class Blacksmithing {
 	
 	private void forgeMithrilGloves(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Gloves (2 Mithril Bars)")) {
 				
@@ -771,7 +771,7 @@ public class Blacksmithing {
 	
 	private void forgeMithrilGreaves(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Greaves (4 Mithril Bars)")) {
 				
@@ -802,7 +802,7 @@ public class Blacksmithing {
 	
 	private void forgeMithrilBoots(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 	
 		if(currentDialogue.getSentences().get(0).getText().equals("Forge Mithril Boots (2 Mithril Bars)")) {
 				

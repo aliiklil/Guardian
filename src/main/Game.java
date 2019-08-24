@@ -13,14 +13,13 @@ import logic.Learning;
 import logic.RuneForging;
 import manager.AlchemyDeskManager;
 import manager.AnvilManager;
-import manager.CharacterManager;
 import manager.ChestManager;
 import manager.DialogueManager;
 import manager.ItemManager;
 import manager.ItemTypeManager;
+import manager.MobManager;
 import manager.ProjectileManager;
 import manager.RuneTableManager;
-import manager.WolfManager;
 import models.Map;
 
 public class Game extends BasicGameState {
@@ -32,13 +31,12 @@ public class Game extends BasicGameState {
 	private static int chestLayerIndex;
 	private static TiledMap tiledMap;
 
-	private static CharacterManager characterManager;
+	private static MobManager mobManager;
 	private static ProjectileManager projectileManager;
 	private static ItemTypeManager itemTypeManager;
 	private static ItemManager itemManager;
 	private static DialogueManager dialogueManager;
-	private static WolfManager wolfManager;
-	
+
 	private static ChestManager chestManager;
 	private static AnvilManager anvilManager;
 	private static AlchemyDeskManager alchemyDeskManager;
@@ -60,11 +58,10 @@ public class Game extends BasicGameState {
 		tiledMap = Game.getCurrentMap().getTiledMap();
 
 		itemTypeManager = new ItemTypeManager();
-		characterManager = new CharacterManager();
+		mobManager = new MobManager();
 		projectileManager = new ProjectileManager();
 		itemManager = new ItemManager();
 		dialogueManager = new DialogueManager();
-		wolfManager = new WolfManager();
 		
 		chestManager = new ChestManager();
 		anvilManager = new AnvilManager();
@@ -81,10 +78,9 @@ public class Game extends BasicGameState {
 	@Override
 	public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
-		characterManager.update();
+		mobManager.update();
 		projectileManager.update();
 		itemManager.update();
-		wolfManager.update();
 		
 		chestManager.update();
 		anvilManager.update();
@@ -103,9 +99,8 @@ public class Game extends BasicGameState {
 		alchemyDeskManager.render(g);
 		runeTableManager.renderBottom(g);
 		itemManager.render(g);
-		characterManager.render(g);
-		wolfManager.render(g);
-		wolfManager.renderHealthBar(g);
+		
+		mobManager.render(g);
 		
 		runeTableManager.renderTop(g);
 		projectileManager.render(g);
@@ -113,14 +108,14 @@ public class Game extends BasicGameState {
 		world.renderUpperLayer(g);
 		projectileManager.renderUpperLayer(g);
 
-		CharacterManager.getPlayer().getInventoryWindow().render(g);
-		CharacterManager.getPlayer().getHealthBar().render(g);
-		CharacterManager.getPlayer().getManaBar().render(g);
-		CharacterManager.getPlayer().getNewItemWindow().render(g);
-		CharacterManager.getPlayer().getDialogueWindow().render(g);
-		CharacterManager.getPlayer().getCenteredText().render(g);
-		CharacterManager.getPlayer().getLevelUpText().render(g);
-		CharacterManager.getPlayer().getTradingWindow().render(g);
+		MobManager.getPlayer().getInventoryWindow().render(g);
+		MobManager.getPlayer().getHealthBar().render(g);
+		MobManager.getPlayer().getManaBar().render(g);
+		MobManager.getPlayer().getNewItemWindow().render(g);
+		MobManager.getPlayer().getDialogueWindow().render(g);
+		MobManager.getPlayer().getCenteredText().render(g);
+		MobManager.getPlayer().getLevelUpText().render(g);
+		MobManager.getPlayer().getTradingWindow().render(g);
 	}
 
 	@Override
@@ -186,10 +181,6 @@ public class Game extends BasicGameState {
 
 	public static Learning getLearning() {
 		return learning;
-	}
-
-	public static WolfManager getWolfManager() {
-		return wolfManager;
 	}
 	
 }

@@ -16,14 +16,13 @@ import org.newdawn.slick.tiled.TiledMap;
 import dialogue.Dialogue;
 import main.Game;
 import main.Main;
-import manager.CharacterManager;
 import manager.ItemTypeManager;
-import manager.WolfManager;
+import manager.MobManager;
 import util.CollisionBox;
 import pathfinding.Node;
 import pathfinding.AStar;
 
-public class Wolf {
+public class Wolf extends Mob {
 
 	private Animation lookUpAnimation;
 	private Animation lookDownAnimation;
@@ -56,20 +55,10 @@ public class Wolf {
 	private Animation dieRightAnimation;
 	
 	private Animation currentAnimation;
-
-	
-	private float relativeToMapX;
-	private float relativeToMapY;
 	
 	private float screenRelativeX;
 	private float screenRelativeY;
 	
-	private float centerX;
-	private float centerY;
-	
-	private int centerXTile;
-	private int centerYTile;
-
 	private float runMovementSpeed = 2f;
 	private float diagonalRunMovementSpeed = 1.6f;
 	
@@ -81,10 +70,7 @@ public class Wolf {
 	
 	private SpriteSheet spriteSheet;
 	private int spriteSize;
-	
-	private CollisionBox collisionBox;
-	private CollisionBox hitBox;
-	
+		
 	private Bar healthBar;
 	private boolean isAlive;
 	
@@ -93,13 +79,13 @@ public class Wolf {
 	private boolean drawBlood;
 	
 	private Circle aggressionCircle;
-	private int aggressionCircleRadius = 320;
+	private int aggressionCircleRadius = 640;
 	private boolean isGoingToPlayer = false;
 	private List<Node> path;
 	private long aggressionTimestamp; //Timestamp when the player pulls aggro
-	private int durationBeforeRunning = 4000; //Time in milliseconds to run out before wolf starts to run instead of walk towards player
+	private int durationBeforeRunning = 2000; //Time in milliseconds to run out before wolf starts to run instead of walk towards player
 	
-	private Player player = CharacterManager.getPlayer();
+	private Player player = MobManager.getPlayer();
 
 	private int notWalkableLayerIndex;
 	private TiledMap tiledMap;
@@ -134,7 +120,9 @@ public class Wolf {
 	
 	private CollisionBox attackBox;
 	
-	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput) throws SlickException {
+	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive) throws SlickException {
+		
+		super(relativeToMapX, relativeToMapY, alive);
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
@@ -195,12 +183,8 @@ public class Wolf {
 		
 		screenRelativeX = (int) Game.getCurrentMap().getX() + relativeToMapX - spriteSize / 4;		
 		screenRelativeY = (int) Game.getCurrentMap().getY() + relativeToMapY  - spriteSize / 2;
-		
-		this.relativeToMapX = relativeToMapX;
-		this.relativeToMapY = relativeToMapY;
-				
-		collisionBox = new CollisionBox(relativeToMapX + 6, relativeToMapY + 10, 20, 20);
-
+						
+		setCollisionBox(new CollisionBox(relativeToMapX + 6, relativeToMapY + 10, 20, 20));
 		setHitBox(new CollisionBox(relativeToMapX, relativeToMapY - 16, 32, 32));
 			
 		healthBar = new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, maxHealth, maxHealth, Color.red);
@@ -232,14 +216,7 @@ public class Wolf {
 		
 		spriteSize = 64;
 		
-		centerX = relativeToMapX - Main.TILE_SIZE/2;
-		centerY = relativeToMapY - Main.TILE_SIZE/2;
-		
-		centerXTile = (int) (centerX / Main.TILE_SIZE);
-		centerYTile = (int) (centerY / Main.TILE_SIZE);
-
-		
-		aggressionCircle = new Circle(centerX, centerY, aggressionCircleRadius);
+		aggressionCircle = new Circle(getCenterX(), getCenterY(), aggressionCircleRadius);
 		
 		
 		attackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 32, 64, 64);
@@ -248,36 +225,33 @@ public class Wolf {
 
 	public void update() throws SlickException {
 				
-		screenRelativeX = (int) Game.getCurrentMap().getX() + relativeToMapX - spriteSize / 4;		
-		screenRelativeY = (int) Game.getCurrentMap().getY() + relativeToMapY  - spriteSize / 2;
+		screenRelativeX = (int) Game.getCurrentMap().getX() + getRelativeToMapX() - spriteSize / 4;		
+		screenRelativeY = (int) Game.getCurrentMap().getY() + getRelativeToMapY()  - spriteSize / 2;
 
 		healthBar.setX(screenRelativeX);
 		healthBar.setY(screenRelativeY);
 		
-		collisionBox.setX(getRelativeToMapX() + 6);
-		collisionBox.setY(getRelativeToMapY() + 10);
+		getCollisionBox().setX(getRelativeToMapX() + 6);
+		getCollisionBox().setY(getRelativeToMapY() + 10);
 		
-		hitBox.setX(getRelativeToMapX());
-		hitBox.setY(getRelativeToMapY() - 16);
+		getHitBox().setX(getRelativeToMapX());
+		getHitBox().setY(getRelativeToMapY() - 16);
 		
-		attackBox.setX(relativeToMapX - 16);
-		attackBox.setY(relativeToMapY - 32);
+		attackBox.setX(getRelativeToMapX() - 16);
+		attackBox.setY(getRelativeToMapY() - 32);
 		
 		if(isAlive() && !iceblocked) {
 			goToPlayer();
 			attackPlayer();
 		}
 		
-		centerX = relativeToMapX + Main.TILE_SIZE/2;
-		centerY = relativeToMapY + Main.TILE_SIZE/2;
+		setCenterX(getRelativeToMapX() + Main.TILE_SIZE/2);
+		setCenterY(getRelativeToMapY() + Main.TILE_SIZE/2);
 		
-		centerXTile = (int) (centerX / Main.TILE_SIZE);
-		centerYTile = (int) (centerY / Main.TILE_SIZE);
+		setCenterXTile((int) (getCenterX() / Main.TILE_SIZE));
+		setCenterYTile((int) (getCenterY() / Main.TILE_SIZE));
 		
-		System.out.println("centerX " + centerX);
-		System.out.println("centerY " + centerY);
-		System.out.println("centerXTile " + centerXTile);
-		System.out.println("centerYTile " + centerYTile);
+
 				
 	}
 
@@ -303,7 +277,7 @@ public class Wolf {
 			aggressionTimestamp = System.currentTimeMillis();
 		}
 	
-		if(isGoingToPlayer && System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning && (Math.round(centerX)+16) % 32 == 0 && (Math.round(centerY)+16) % 32 == 0) {
+		if(isGoingToPlayer && System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
 			movementSpeed = runMovementSpeed;
 			diagonalMovementSpeed = diagonalRunMovementSpeed;
 		}
@@ -312,12 +286,12 @@ public class Wolf {
 			path = findPath();
 		}
 		
-		if(isGoingToPlayer && path != null && !path.isEmpty() && centerYTile == path.get(0).getRow() && centerXTile == path.get(0).getCol() && (Math.round(centerX)+16) % 32 == 0 && (Math.round(centerY)+16) % 32 == 0) {
+		if(isGoingToPlayer && path != null && !path.isEmpty() && getCenterYTile() == path.get(0).getRow() && getCenterXTile() == path.get(0).getCol() && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
 			path.remove(0);
 			
 			if(!path.isEmpty()) {
 			
-				if(!goUp && centerYTile > path.get(0).getRow() && centerXTile == path.get(0).getCol()) {		
+				if(!goUp && getCenterYTile() > path.get(0).getRow() && getCenterXTile() == path.get(0).getCol()) {		
 					goUp = true;
 					goDown = false;
 					goLeft = false;
@@ -331,7 +305,7 @@ public class Wolf {
 					isAttacking = false;
 				}
 				
-				if(!goDown && centerYTile < path.get(0).getRow() && centerXTile == path.get(0).getCol()) {	
+				if(!goDown && getCenterYTile() < path.get(0).getRow() && getCenterXTile() == path.get(0).getCol()) {	
 					goUp = false;
 					goDown = true;
 					goLeft = false;
@@ -345,7 +319,7 @@ public class Wolf {
 					isAttacking = false;
 				}
 							
-				if(!goLeft && centerXTile > path.get(0).getCol() && centerYTile == path.get(0).getRow()) {	
+				if(!goLeft && getCenterXTile() > path.get(0).getCol() && getCenterYTile() == path.get(0).getRow()) {	
 					goUp = false;
 					goDown = false;
 					goLeft = true;
@@ -359,7 +333,7 @@ public class Wolf {
 					isAttacking = false;
 				}
 				
-				if(!goRight && centerXTile < path.get(0).getCol() && centerYTile == path.get(0).getRow()) {	
+				if(!goRight && getCenterXTile() < path.get(0).getCol() && getCenterYTile() == path.get(0).getRow()) {	
 					goUp = false;
 					goDown = false;
 					goLeft = false;
@@ -373,7 +347,7 @@ public class Wolf {
 					isAttacking = false;
 				}
 				
-				if(!goUpLeft && centerYTile > path.get(0).getRow() && centerXTile > path.get(0).getCol()) {		
+				if(!goUpLeft && getCenterYTile() > path.get(0).getRow() && getCenterXTile() > path.get(0).getCol()) {		
 					goUp = false;
 					goDown = false;
 					goLeft = false;
@@ -387,7 +361,7 @@ public class Wolf {
 					isAttacking = false;
 				}
 				
-				if(!goUpRight && centerYTile > path.get(0).getRow() && centerXTile < path.get(0).getCol()) {		
+				if(!goUpRight && getCenterYTile() > path.get(0).getRow() && getCenterXTile() < path.get(0).getCol()) {		
 					goUp = false;
 					goDown = false;
 					goLeft = false;
@@ -401,7 +375,7 @@ public class Wolf {
 					isAttacking = false;
 				}
 				
-				if(!goDownLeft && centerYTile < path.get(0).getRow() && centerXTile > path.get(0).getCol()) {		
+				if(!goDownLeft && getCenterYTile() < path.get(0).getRow() && getCenterXTile() > path.get(0).getCol()) {		
 					goUp = false;
 					goDown = false;
 					goLeft = false;
@@ -415,7 +389,7 @@ public class Wolf {
 					isAttacking = false;
 				}
 				
-				if(!goDownRight && centerYTile < path.get(0).getRow() && centerXTile < path.get(0).getCol()) {		
+				if(!goDownRight && getCenterYTile() < path.get(0).getRow() && getCenterXTile() < path.get(0).getCol()) {		
 					goUp = false;
 					goDown = false;
 					goLeft = false;
@@ -448,7 +422,7 @@ public class Wolf {
 		if(isGoingToPlayer && path != null && !path.isEmpty() && !isAttacking) {
 		
 			if(goUp && !isUpCollision(movementSpeed)) {		
-				relativeToMapY = relativeToMapY - movementSpeed;
+				setRelativeToMapY(getRelativeToMapY() - movementSpeed);
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
 					currentAnimation = runUpAnimation;
 				} else {
@@ -458,7 +432,7 @@ public class Wolf {
 			}
 			
 			if(goDown && !isDownCollision(movementSpeed)) {	
-				relativeToMapY = relativeToMapY + movementSpeed;
+				setRelativeToMapY(getRelativeToMapY() + movementSpeed);
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
 					currentAnimation = runDownAnimation;
 				} else {
@@ -468,7 +442,7 @@ public class Wolf {
 			}
 						
 			if(goLeft && !isLeftCollision(movementSpeed)) {	
-				relativeToMapX = relativeToMapX - movementSpeed;
+				setRelativeToMapX(getRelativeToMapX() - movementSpeed);
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
 					currentAnimation = runLeftAnimation;
 				} else {
@@ -478,7 +452,7 @@ public class Wolf {
 			}
 			
 			if(goRight && !isRightCollision(movementSpeed)) {	
-				relativeToMapX = relativeToMapX + movementSpeed;
+				setRelativeToMapX(getRelativeToMapX() + movementSpeed);
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
 					currentAnimation = runRightAnimation;
 				} else {
@@ -490,11 +464,11 @@ public class Wolf {
 			if(goUpLeft && !isUpCollision(movementSpeed) && !isLeftCollision(movementSpeed)) {
 				
 				if(!isUpCollision(movementSpeed)) {
-					relativeToMapY = relativeToMapY - diagonalMovementSpeed;
+					setRelativeToMapY(getRelativeToMapY() - diagonalMovementSpeed);
 				}
 				
 				if(!isLeftCollision(movementSpeed)) {
-					relativeToMapX = relativeToMapX - diagonalMovementSpeed;
+					setRelativeToMapX(getRelativeToMapX() - diagonalMovementSpeed);
 				}
 				
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
@@ -508,11 +482,11 @@ public class Wolf {
 			if(goUpRight && !isUpCollision(movementSpeed) && !isRightCollision(movementSpeed)) {
 				
 				if(!isUpCollision(movementSpeed)) {
-					relativeToMapY = relativeToMapY - diagonalMovementSpeed;
+					setRelativeToMapY(getRelativeToMapY() - diagonalMovementSpeed);
 				}
 				
 				if(!isRightCollision(movementSpeed)) {
-					relativeToMapX = relativeToMapX + diagonalMovementSpeed;
+					setRelativeToMapX(getRelativeToMapX() + diagonalMovementSpeed);
 				}
 				
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
@@ -526,11 +500,11 @@ public class Wolf {
 			if(goDownLeft && !isDownCollision(movementSpeed) && !isLeftCollision(movementSpeed)) {
 				
 				if(!isDownCollision(movementSpeed)) {
-					relativeToMapY = relativeToMapY + diagonalMovementSpeed;
+					setRelativeToMapY(getRelativeToMapY() + diagonalMovementSpeed);
 				}
 				
 				if(!isLeftCollision(movementSpeed)) {
-					relativeToMapX = relativeToMapX - diagonalMovementSpeed;
+					setRelativeToMapX(getRelativeToMapX() - diagonalMovementSpeed);
 				}
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
 					currentAnimation = runLeftAnimation;
@@ -543,11 +517,11 @@ public class Wolf {
 			if(goDownRight && !isDownCollision(movementSpeed) && !isRightCollision(movementSpeed)) {
 				
 				if(!isDownCollision(movementSpeed)) {
-					relativeToMapY = relativeToMapY + diagonalMovementSpeed;
+					setRelativeToMapY(getRelativeToMapY() + diagonalMovementSpeed);
 				}
 				
 				if(!isRightCollision(movementSpeed)) {
-					relativeToMapX = relativeToMapX + diagonalMovementSpeed;
+					setRelativeToMapX(getRelativeToMapX() + diagonalMovementSpeed);
 				}
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
 					currentAnimation = runRightAnimation;
@@ -561,19 +535,19 @@ public class Wolf {
 		
 		if(path != null && path.isEmpty()) {
 			
-			if(centerXTile == player.getCenterXTile() && centerYTile - 1 == player.getCenterYTile()) {
+			if(getCenterXTile() == player.getCenterXTile() && getCenterYTile() - 1 == player.getCenterYTile()) {
 				currentAnimation = lookUpAnimation;
 			}
 			
-			if(centerXTile == player.getCenterXTile() && centerYTile + 1 == player.getCenterYTile()) {
+			if(getCenterXTile() == player.getCenterXTile() && getCenterYTile() + 1 == player.getCenterYTile()) {
 				currentAnimation = lookDownAnimation;
 			}
 			
-			if(centerXTile - 1 == player.getCenterXTile() && centerYTile == player.getCenterYTile()) {
+			if(getCenterXTile() - 1 == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) {
 				currentAnimation = lookLeftAnimation;
 			}
 			
-			if(centerXTile + 1 == player.getCenterXTile() && centerYTile == player.getCenterYTile()) {
+			if(getCenterXTile() + 1 == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) {
 				currentAnimation = lookRightAnimation;
 			}
 			
@@ -720,7 +694,7 @@ public class Wolf {
 	
 	private List<Node> findPath() {
 		
-		Node initialNode = new Node(centerYTile, centerXTile);
+		Node initialNode = new Node(getCenterYTile(), getCenterXTile());
         Node finalNode = new Node(player.getCenterYTile(), player.getCenterXTile());
         
         int rows = Game.getCurrentMap().getTiledMap().getHeight();
@@ -744,24 +718,15 @@ public class Wolf {
         	}
         }
         
-        ArrayList<NPC> npcList = new ArrayList<NPC>(CharacterManager.getNpcList());
-
-        for(NPC npc : npcList) {
-        	blocksArray[k][0] = npc.getCenterYTile();
-			blocksArray[k][1] = npc.getCenterXTile();
+        ArrayList<Mob> mobList = new ArrayList<Mob>(MobManager.getMobListWithoutPlayer());
+        mobList.remove(this);
+        
+        for(Mob mob : mobList) {
+        	blocksArray[k][0] = mob.getCenterYTile();
+			blocksArray[k][1] = mob.getCenterXTile();
 			k++;
         }
-        
-        
-        ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-        wolfList.remove(this);
-        
-        for(Wolf wolf : wolfList) {
-        	blocksArray[k][0] = wolf.getCenterYTile();
-			blocksArray[k][1] = wolf.getCenterXTile();
-			k++;
-        }
-        
+                
         aStar.setBlocks(blocksArray);
         
         List<Node> path = aStar.findPath();
@@ -841,8 +806,8 @@ public class Wolf {
 				player.addExperience(experienceForPlayer);
 								
 				if(itemDrop != null) {
-					CharacterManager.getPlayer().getInventoryWindow().addItem(itemDrop);
-					CharacterManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
+					MobManager.getPlayer().getInventoryWindow().addItem(itemDrop);
+					MobManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
 				}
 			}
 						
@@ -862,144 +827,21 @@ public class Wolf {
 		
 	}
 	
-	public boolean isUpCollision(float distance) {
-		
-		if(collisionBox.willIntersectUp(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		for(NPC npc : npcList) {
-			if(collisionBox.willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-		
-		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-		wolfList.remove(this);
-		
-		for(Wolf wolf : wolfList) {
-			if(collisionBox.willIntersectUp(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-				
-		if(tiledMap.getTileId((int) collisionBox.getTopLeftX()/Main.TILE_SIZE, (int) (collisionBox.getTopLeftY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) collisionBox.getTopRightX()/Main.TILE_SIZE, (int) (collisionBox.getTopRightY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
-			return false;
-		} else {
-			return true;
-		}
-		
-	}
-	
-	public boolean isDownCollision(float distance) {
-		
-		if(collisionBox.willIntersectDown(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		for(NPC npc : npcList) {
-			if(collisionBox.willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-				
-		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-		wolfList.remove(this);
-		
-		for(Wolf wolf : wolfList) {
-			if(collisionBox.willIntersectDown(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-		
-		if(tiledMap.getTileId((int) collisionBox.getBottomLeftX()/Main.TILE_SIZE, (int) (collisionBox.getBottomLeftY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) collisionBox.getBottomRightX()/Main.TILE_SIZE, (int) (collisionBox.getBottomRightY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	public boolean isLeftCollision(float distance) {
-		
-		if(collisionBox.willIntersectLeft(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		for(NPC npc : npcList) {
-			if(collisionBox.willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-			
-		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-		wolfList.remove(this);
-		
-		for(Wolf wolf : wolfList) {
-			if(collisionBox.willIntersectLeft(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-		
-		if(tiledMap.getTileId((int) (collisionBox.getTopLeftX() - distance)/Main.TILE_SIZE, (int) collisionBox.getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (collisionBox.getBottomLeftX() - distance)/Main.TILE_SIZE, (int) collisionBox.getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
-			return false;
-		} else {
-			return true;
-		}
-		
-	}
-	
-	public boolean isRightCollision(float distance) {
-		
-		if(collisionBox.willIntersectRight(player.getCollisionBox(), 5)) {
-			return true;
-		}
-	
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		for(NPC npc : npcList) {
-			if(collisionBox.willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-		
-		ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-		wolfList.remove(this);
-		
-		for(Wolf wolf : wolfList) {
-			if(collisionBox.willIntersectRight(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-		
-		if(tiledMap.getTileId((int) (collisionBox.getTopRightX() + distance)/Main.TILE_SIZE, (int) collisionBox.getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (collisionBox.getBottomRightX() + distance)/Main.TILE_SIZE, (int) collisionBox.getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-		
-	}
-	
 	private boolean isTouchingPlayer() {
 		
-		if(collisionBox.willIntersectUp(player.getCollisionBox(), 5)) {
+		if(getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
 			return true;
 		}
 		
-		if(collisionBox.willIntersectDown(player.getCollisionBox(), 5)) {
+		if(getCollisionBox().willIntersectDown(player.getCollisionBox(), 5)) {
 			return true;
 		}
 		
-		if(collisionBox.willIntersectLeft(player.getCollisionBox(), 5)) {
+		if(getCollisionBox().willIntersectLeft(player.getCollisionBox(), 5)) {
 			return true;
 		}
 		
-		if(collisionBox.willIntersectRight(player.getCollisionBox(), 5)) {
+		if(getCollisionBox().willIntersectRight(player.getCollisionBox(), 5)) {
 			return true;
 		}
 		
@@ -1007,10 +849,6 @@ public class Wolf {
 		
 	}
 	
-	public CollisionBox getCollisionBox() {
-		return collisionBox;
-	}
-
 	public int getExperienceForPlayer() {
 		return experienceForPlayer;
 	}
@@ -1062,63 +900,5 @@ public class Wolf {
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-
-	public CollisionBox getHitBox() {
-		return hitBox;
-	}
-
-	public void setHitBox(CollisionBox hitBox) {
-		this.hitBox = hitBox;
-	}
-
-	public float getRelativeToMapX() {
-		return relativeToMapX;
-	}
-
-	public void setRelativeToMapX(float relativeToMapX) {
-		this.relativeToMapX = relativeToMapX;
-	}
-
-	public float getRelativeToMapY() {
-		return relativeToMapY;
-	}
-
-	public void setRelativeToMapY(float relativeToMapY) {
-		this.relativeToMapY = relativeToMapY;
-	}
-
-	public float getCenterX() {
-		return centerX;
-	}
-
-	public void setCenterX(float centerX) {
-		this.centerX = centerX;
-	}
-
-	public float getCenterY() {
-		return centerY;
-	}
-
-	public void setCenterY(float centerY) {
-		this.centerY = centerY;
-	}
-
-	public int getCenterXTile() {
-		return centerXTile;
-	}
-
-	public void setCenterXTile(int centerXTile) {
-		this.centerXTile = centerXTile;
-	}
-
-	public int getCenterYTile() {
-		return centerYTile;
-	}
-
-	public void setCenterYTile(int centerYTile) {
-		this.centerYTile = centerYTile;
-	}
-	
-	
 	
 }

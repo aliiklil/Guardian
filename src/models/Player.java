@@ -19,11 +19,10 @@ import main.Game;
 import main.Main;
 import manager.AlchemyDeskManager;
 import manager.AnvilManager;
-import manager.CharacterManager;
 import manager.ChestManager;
 import manager.ItemTypeManager;
+import manager.MobManager;
 import manager.RuneTableManager;
-import manager.WolfManager;
 import util.CollisionBox;
 
 public class Player extends Character {
@@ -38,7 +37,7 @@ public class Player extends Character {
 
 	private Input input = Main.appGameContainer.getInput();
 
-	private ArrayList<NPC> npcList;
+	private ArrayList<Mob> mobList;
 
 	private boolean damageDealt = false;
 
@@ -121,9 +120,9 @@ public class Player extends Character {
 	
 	private long firerainTimeStamp; //To know when the last firerain volley was fired
 	
-	public Player(float relativeToMapX, float relativeToMapY) throws SlickException {
+	public Player(float relativeToMapX, float relativeToMapY, boolean alive) throws SlickException {
 
-		super(relativeToMapX, relativeToMapY, "resources/player_sprites/player_base.png");
+		super(relativeToMapX, relativeToMapY, "resources/player_sprites/player_base.png", alive);
 
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize() / 2 - 12, super.getSpriteSize() / 2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize() / 2, super.getSpriteSize() / 2));
@@ -138,7 +137,7 @@ public class Player extends Character {
 		Game.getCurrentMap().setX(screenRelativeX - super.getRelativeToMapX() + super.getSpriteSize() / 4);
 		Game.getCurrentMap().setY(screenRelativeY - super.getRelativeToMapY() + super.getSpriteSize() / 2);
 
-		npcList = CharacterManager.getNpcList();
+		mobList = MobManager.getMobListWithoutPlayer();
 		
 		getHealthBar().setCurrentValue(10);
 	}
@@ -152,7 +151,7 @@ public class Player extends Character {
 		prepareShotBar.setX(getRelativeToMapX() + Game.getCurrentMap().getX() - 16);
 		prepareShotBar.setY(getRelativeToMapY() + Game.getCurrentMap().getY() - 32);
 
-		npcList = CharacterManager.getNpcList();
+		mobList = MobManager.getMobListWithoutPlayer();
 
 		super.setRelativeToMapX((screenRelativeX + super.getSpriteSize() / 4) - Game.getCurrentMap().getX());
 		super.setRelativeToMapY((screenRelativeY + super.getSpriteSize() / 2) - Game.getCurrentMap().getY());
@@ -708,116 +707,64 @@ public class Player extends Character {
 		if(!damageDealt) {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayUpAnimation() || super.getCurrentAnimation() == super.getThrustUpAnimation())) {
-				for (NPC npc : npcList) {
-					if(equippedMelee.getAttackUpCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
-						npc.decreaseHealth(damageToDeal);
+				for (Mob mob : mobList) {
+					if(equippedMelee.getAttackUpCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+						mob.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(!npc.isUpCollision(Main.TILE_SIZE * 3) && !npc.isUpCollision(Main.TILE_SIZE * 2) && !npc.isUpCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 3);
-						} else if(!npc.isUpCollision(Main.TILE_SIZE * 2) && !npc.isUpCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 2);
-						} else if(!npc.isUpCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() - Main.TILE_SIZE * 1);
-						}
-					}
-				}
-				for (Wolf wolf : WolfManager.getWolfList()) {
-					if(equippedMelee.getAttackUpCollisionBox().intersects(wolf.getHitBox()) && wolf.isAlive()) {
-						wolf.decreaseHealth(damageToDeal);
-						damageDealt = true;
-						if(!wolf.isUpCollision(Main.TILE_SIZE * 3) && !wolf.isUpCollision(Main.TILE_SIZE * 2) && !wolf.isUpCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapY(wolf.getRelativeToMapY() - Main.TILE_SIZE * 3);
-						} else if(!wolf.isUpCollision(Main.TILE_SIZE * 2) && !wolf.isUpCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapY(wolf.getRelativeToMapY() - Main.TILE_SIZE * 2);
-						} else if(!wolf.isUpCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapY(wolf.getRelativeToMapY() - Main.TILE_SIZE * 1);
+						if(!mob.isUpCollision(Main.TILE_SIZE * 3) && !mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 3);
+						} else if(!mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 2);
+						} else if(!mob.isUpCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 1);
 						}
 					}
 				}
 			}
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayDownAnimation() || super.getCurrentAnimation() == super.getThrustDownAnimation())) {
-				for (NPC npc : npcList) {
-					if(equippedMelee.getAttackDownCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
-						npc.decreaseHealth(damageToDeal);
+				for (Mob mob : mobList) {
+					if(equippedMelee.getAttackDownCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+						mob.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(!npc.isDownCollision(Main.TILE_SIZE * 3) && !npc.isDownCollision(Main.TILE_SIZE * 2) && !npc.isDownCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 3);
-						} else if(!npc.isDownCollision(Main.TILE_SIZE * 2) && !npc.isDownCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 2);
-						} else if(!npc.isDownCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapY(npc.getRelativeToMapY() + Main.TILE_SIZE * 1);
-						}
-					}
-				}
-				for (Wolf wolf : WolfManager.getWolfList()) {
-					if(equippedMelee.getAttackDownCollisionBox().intersects(wolf.getHitBox()) && wolf.isAlive()) {
-						wolf.decreaseHealth(damageToDeal);
-						damageDealt = true;
-						if(!wolf.isDownCollision(Main.TILE_SIZE * 3) && !wolf.isDownCollision(Main.TILE_SIZE * 2) && !wolf.isDownCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapY(wolf.getRelativeToMapY() + Main.TILE_SIZE * 3);
-						} else if(!wolf.isDownCollision(Main.TILE_SIZE * 2) && !wolf.isDownCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapY(wolf.getRelativeToMapY() + Main.TILE_SIZE * 2);
-						} else if(!wolf.isDownCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapY(wolf.getRelativeToMapY() + Main.TILE_SIZE * 1);
+						if(!mob.isDownCollision(Main.TILE_SIZE * 3) && !mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 3);
+						} else if(!mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 2);
+						} else if(!mob.isDownCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 1);
 						}
 					}
 				}
 			}
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayLeftAnimation() || super.getCurrentAnimation() == super.getThrustLeftAnimation())) {
-				for (NPC npc : npcList) {
-					if(equippedMelee.getAttackLeftCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
-						npc.decreaseHealth(damageToDeal);
+				for (Mob mob : mobList) {
+					if(equippedMelee.getAttackLeftCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+						mob.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(!npc.isLeftCollision(Main.TILE_SIZE * 3) && !npc.isLeftCollision(Main.TILE_SIZE * 2) && !npc.isLeftCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 3);
-						} else if(!npc.isLeftCollision(Main.TILE_SIZE * 2) && !npc.isLeftCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 2);
-						} else if(!npc.isLeftCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() - Main.TILE_SIZE * 1);
-						}
-					}
-				}
-				for (Wolf wolf : WolfManager.getWolfList()) {
-					if(equippedMelee.getAttackLeftCollisionBox().intersects(wolf.getHitBox()) && wolf.isAlive()) {
-						wolf.decreaseHealth(damageToDeal);
-						damageDealt = true;
-						if(!wolf.isLeftCollision(Main.TILE_SIZE * 3) && !wolf.isLeftCollision(Main.TILE_SIZE * 2) && !wolf.isLeftCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapX(wolf.getRelativeToMapX() - Main.TILE_SIZE * 3);
-						} else if(!wolf.isLeftCollision(Main.TILE_SIZE * 2) && !wolf.isLeftCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapX(wolf.getRelativeToMapX() - Main.TILE_SIZE * 2);
-						} else if(!wolf.isLeftCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapX(wolf.getRelativeToMapX() - Main.TILE_SIZE * 1);
+						if(!mob.isLeftCollision(Main.TILE_SIZE * 3) && !mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 3);
+						} else if(!mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 2);
+						} else if(!mob.isLeftCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 1);
 						}
 					}
 				}
 			}
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayRightAnimation() || super.getCurrentAnimation() == super.getThrustRightAnimation())) {
-				for (NPC npc : npcList) {
-					if(equippedMelee.getAttackRightCollisionBox().intersects(npc.getHitBox()) && npc.isAlive()) {
-						npc.decreaseHealth(damageToDeal);
+				for (Mob mob : mobList) {
+					if(equippedMelee.getAttackRightCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+						mob.decreaseHealth(damageToDeal);
 						damageDealt = true;
-						if(!npc.isRightCollision(Main.TILE_SIZE * 3) && !npc.isRightCollision(Main.TILE_SIZE * 2) && !npc.isRightCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 3);
-						} else if(!npc.isRightCollision(Main.TILE_SIZE * 2) && !npc.isRightCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 2);
-						} else if(!npc.isRightCollision(Main.TILE_SIZE * 1)) {
-							npc.setRelativeToMapX(npc.getRelativeToMapX() + Main.TILE_SIZE * 1);
-						}
-					}
-				}
-				for (Wolf wolf : WolfManager.getWolfList()) {
-					if(equippedMelee.getAttackRightCollisionBox().intersects(wolf.getHitBox()) && wolf.isAlive()) {
-						wolf.decreaseHealth(damageToDeal);
-						damageDealt = true;
-						if(!wolf.isRightCollision(Main.TILE_SIZE * 3) && !wolf.isRightCollision(Main.TILE_SIZE * 2) && !wolf.isRightCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapX(wolf.getRelativeToMapX() + Main.TILE_SIZE * 3);
-						} else if(!wolf.isRightCollision(Main.TILE_SIZE * 2) && !wolf.isRightCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapX(wolf.getRelativeToMapX() + Main.TILE_SIZE * 2);
-						} else if(!wolf.isRightCollision(Main.TILE_SIZE * 1)) {
-							wolf.setRelativeToMapX(wolf.getRelativeToMapX() + Main.TILE_SIZE * 1);
+						if(!mob.isRightCollision(Main.TILE_SIZE * 3) && !mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 3);
+						} else if(!mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 2);
+						} else if(!mob.isRightCollision(Main.TILE_SIZE * 1)) {
+							mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 1);
 						}
 					}
 				}
@@ -1524,7 +1471,7 @@ public class Player extends Character {
 
 		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
 
-			ArrayList<NPC> npcList = CharacterManager.getNpcList();
+			ArrayList<NPC> npcList = MobManager.getNpcList();
 
 			for (NPC npc : npcList) {
 
@@ -3079,95 +3026,7 @@ public class Player extends Character {
 		}
 
 	}
-
-	private boolean isUpCollision(float distance) {
-
-		for (NPC npc : npcList) {
-			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-		
-		for (Wolf wolf : WolfManager.getWolfList()) {
-			if(super.getCollisionBox().willIntersectUp(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-
-		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getTopRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-
-	}
-
-	private boolean isDownCollision(float distance) {
-
-		for (NPC npc : npcList) {
-			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-		
-		for (Wolf wolf : WolfManager.getWolfList()) {
-			if(super.getCollisionBox().willIntersectDown(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-
-		if(Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomLeftX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) super.getCollisionBox().getBottomRightX() / Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + distance) / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-
-	}
-
-	private boolean isLeftCollision(float distance) {
-
-		for (NPC npc : npcList) {
-			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-		
-		for (Wolf wolf : WolfManager.getWolfList()) {
-			if(super.getCollisionBox().willIntersectLeft(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-
-		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomLeftX() - distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-
-	}
-
-	private boolean isRightCollision(float distance) {
-
-		for (NPC npc : npcList) {
-			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-		}
-		
-		for (Wolf wolf : WolfManager.getWolfList()) {
-			if(super.getCollisionBox().willIntersectRight(wolf.getCollisionBox(), 5) && wolf.isAlive()) {
-				return true;
-			}
-		}
-
-		if(Game.getTiledMap().getTileId((int) (super.getCollisionBox().getTopRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0 && Game.getTiledMap().getTileId((int) (super.getCollisionBox().getBottomRightX() + distance) / Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY() / Main.TILE_SIZE, Game.getNotWalkableLayerIndex()) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-
-	}
-
+	
 	public void decreaseHealth(int amount) {
 
 		if(isAlive()) {

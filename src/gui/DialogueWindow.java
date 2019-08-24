@@ -14,8 +14,8 @@ import org.newdawn.slick.TrueTypeFont;
 import dialogue.Dialogue;
 import main.Game;
 import main.Main;
-import manager.CharacterManager;
 import manager.ItemTypeManager;
+import manager.MobManager;
 import models.Item;
 import models.Player;
 
@@ -92,7 +92,7 @@ public class DialogueWindow {
 				}
 			}
 			
-			if(CharacterManager.getPlayer().isYPressed() || (selectedOption != currentDialogues.size() && currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText().isEmpty())) {
+			if(MobManager.getPlayer().isYPressed() || (selectedOption != currentDialogues.size() && currentDialogues.get(selectedOption).getSentences().get(sentenceCount).getText().isEmpty())) {
 				
 				if(sentenceCount > 0 && currentlyDisplayedText.length() != currentSentence.length()) {
 					
@@ -174,7 +174,7 @@ public class DialogueWindow {
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Show me your goods.") && sentenceCount == 1) {
 			
-			Player player = CharacterManager.getPlayer();
+			Player player = MobManager.getPlayer();
 			player.getTradingWindow().setWindowOpen(true);
 			player.getTradingWindow().setTimestamp(System.currentTimeMillis());
 			

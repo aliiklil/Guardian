@@ -4,7 +4,7 @@ import org.newdawn.slick.SlickException;
 
 import dialogue.Dialogue;
 import main.Game;
-import manager.CharacterManager;
+import manager.MobManager;
 import models.Item;
 import models.Player;
 
@@ -30,7 +30,7 @@ public class Alchemy {
 	
 	private void createSmallHpPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Small HP Potion (Healberry, Small Bottle)")) {
 			
@@ -62,7 +62,7 @@ public class Alchemy {
 	
 	private void createSmallManaPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Small Mana Potion (Manaberry, Small Bottle)")) {
 			
@@ -95,7 +95,7 @@ public class Alchemy {
 	
 	private void createMediumHpPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Medium HP Potion (Healplant, Medium Bottle)")) {
 			
@@ -128,7 +128,7 @@ public class Alchemy {
 	
 	private void createMediumManaPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Medium Mana Potion (Manaplant, Medium Bottle)")) {
 			
@@ -160,7 +160,7 @@ public class Alchemy {
 	
 	private void createBigHpPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Big HP Potion (Healroot, Big Bottle)")) {
 			
@@ -194,7 +194,7 @@ public class Alchemy {
 	
 	private void createBigManaPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Big Mana Potion (Manaroot, Big Bottle)")) {
 			
@@ -228,7 +228,7 @@ public class Alchemy {
 	
 	private void createSpeedPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Speed Potion (Wolfnettel, Big Bottle)")) {
 			
@@ -261,7 +261,7 @@ public class Alchemy {
 	
 	private void createMaxHpBonusPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Max HP Bonus Potion (Healroot, Goldtruffle, Big Bottle)")) {
 			
@@ -300,7 +300,7 @@ public class Alchemy {
 	
 	private void createMaxManaBonusPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Max Mana Bonus Potion (Manaroot, Goldtruffle, Big Bottle)")) {
 			
@@ -340,7 +340,7 @@ public class Alchemy {
 	
 	private void createStrengthPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Strength Potion (Dragonroot, Goldtruffle, Big Bottle)")) {
 			
@@ -381,7 +381,7 @@ public class Alchemy {
 	
 	private void createDexterityPotion(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Create Dexterity Potion (Goblinweed, Goldtruffle, Big Bottle)")) {
 			

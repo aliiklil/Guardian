@@ -12,7 +12,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
 import main.Main;
-import manager.CharacterManager;
+import manager.MobManager;
 import models.Item;
 import models.ItemType;
 import models.Player;
@@ -61,7 +61,7 @@ public class InventoryWindow {
 	
 	public void update() throws SlickException {
 		
-		player = CharacterManager.getPlayer();
+		player = MobManager.getPlayer();
 		
 		playerInventoryList = player.getInventoryList();
 		playerItemCountList = player.getItemCountList();

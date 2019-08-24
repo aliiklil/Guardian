@@ -11,7 +11,7 @@ import org.newdawn.slick.SpriteSheet;
 import main.Main;
 import util.CollisionBox;
 
-public abstract class Character {
+public abstract class Character extends Mob {
 
 	private final int spriteSize = 64;
 	private final int overSizeSpriteSize = 192;
@@ -23,10 +23,7 @@ public abstract class Character {
 	//Current speed of the character
 	private float movementSpeed = 2f;
 	private float diagonalMovementSpeed = 1.6f;
-	
-	private float relativeToMapX;
-	private float relativeToMapY;
-	
+		
 	private float centerX;
 	private float centerY;
 	
@@ -40,9 +37,6 @@ public abstract class Character {
 	private SpriteSheet bloodSpriteSheet;
 	private Animation bloodAnimation;
 	private boolean drawBlood;
-	
-	private CollisionBox collisionBox;
-	private CollisionBox hitBox;
 	
 	private SpriteSheet spriteSheet;
 	private SpriteSheet overSizeSpriteSheet;
@@ -94,11 +88,10 @@ public abstract class Character {
 	private ArrayList<Item> inventoryList = new ArrayList<Item>();
 	private ArrayList<Integer> itemCountList = new ArrayList<Integer>();
 	
-	public Character(float relativeToMapX, float relativeToMapY, String spriteSheetPath) throws SlickException {
+	public Character(float relativeToMapX, float relativeToMapY, String spriteSheetPath, boolean alive) throws SlickException {
 		
-		this.relativeToMapX = relativeToMapX;
-		this.relativeToMapY = relativeToMapY;
-				
+		super(relativeToMapX, relativeToMapY, alive);
+						
 		bloodSpriteSheet = new SpriteSheet("resources/blood.png", 64, 64);
 		bloodAnimation = new Animation(bloodSpriteSheet, 0, 0, 7, 0, true, 50, true);
 		bloodAnimation.setLooping(false);
@@ -183,8 +176,8 @@ public abstract class Character {
 	}
 	
 	public void update() throws SlickException {
-		centerX = relativeToMapX + Main.TILE_SIZE/2;
-		centerY = relativeToMapY + Main.TILE_SIZE/2;
+		centerX = getRelativeToMapX() + Main.TILE_SIZE/2;
+		centerY = getRelativeToMapY() + Main.TILE_SIZE/2;
 		
 		centerXTile = (int) (centerX / Main.TILE_SIZE);
 		centerYTile = (int) (centerY / Main.TILE_SIZE);
@@ -280,22 +273,6 @@ public abstract class Character {
 		this.diagonalMovementSpeed = diagonalMovementSpeed;
 	}
 	
-	public float getRelativeToMapX() {
-		return relativeToMapX;
-	}
-	
-	public void setRelativeToMapX(float relativeToMapX) {
-		this.relativeToMapX = relativeToMapX;
-	}
-
-	public float getRelativeToMapY() {
-		return relativeToMapY;
-	}
-	
-	public void setRelativeToMapY(float relativeToMapY) {
-		this.relativeToMapY = relativeToMapY;
-	}
-	
 	public float getCenterX() {
 		return centerX;
 	}
@@ -347,23 +324,7 @@ public abstract class Character {
 	public void setDrawBlood(boolean drawBlood) {
 		this.drawBlood = drawBlood;
 	}
-
-	public CollisionBox getCollisionBox() {
-		return collisionBox;
-	}
-
-	public void setCollisionBox(CollisionBox collisionBox) {
-		this.collisionBox = collisionBox;
-	}
 	
-	public CollisionBox getHitBox() {
-		return hitBox;
-	}
-	
-	public void setHitBox(CollisionBox hitBox) {
-		this.hitBox = hitBox;
-	}
-		
 	public SpriteSheet getSpriteSheet() {
 		return spriteSheet;
 	}

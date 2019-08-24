@@ -16,9 +16,8 @@ import org.newdawn.slick.tiled.TiledMap;
 import dialogue.Dialogue;
 import main.Game;
 import main.Main;
-import manager.CharacterManager;
 import manager.ItemTypeManager;
-import manager.WolfManager;
+import manager.MobManager;
 import util.CollisionBox;
 import pathfinding.Node;
 import pathfinding.AStar;
@@ -38,7 +37,7 @@ public class NPC extends Character {
 	
 	private List<Node> path;
 
-	private Player player = CharacterManager.getPlayer();
+	private Player player = MobManager.getPlayer();
 
 	private int notWalkableLayerIndex;
 	private TiledMap tiledMap;
@@ -79,9 +78,9 @@ public class NPC extends Character {
 	private int bloodtheftCounter;
 	private long bloodtheftTimestamp;
 	
-	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer, int damageOutput, double critChance) throws SlickException {
+	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer, int damageOutput, double critChance, boolean alive) throws SlickException {
 
-		super(relativeToMapX, relativeToMapY, spriteSheetPath);
+		super(relativeToMapX, relativeToMapY, spriteSheetPath, alive);
 		
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize()/2, super.getSpriteSize()/2));
@@ -619,7 +618,7 @@ public class NPC extends Character {
         	}
         }
         
-        ArrayList<NPC> npcList = new ArrayList<NPC>(CharacterManager.getNpcList());
+        ArrayList<NPC> npcList = new ArrayList<NPC>(MobManager.getNpcList());
         npcList.remove(this);
         
         for(NPC npc : npcList) {
@@ -627,14 +626,7 @@ public class NPC extends Character {
 			blocksArray[k][1] = npc.getCenterXTile();
 			k++;
         }
-        
-        ArrayList<Wolf> wolfList = new ArrayList<Wolf>(WolfManager.getWolfList());
-        for(Wolf wolf : wolfList) {
-        	blocksArray[k][0] = wolf.getCenterYTile();
-			blocksArray[k][1] = wolf.getCenterXTile();
-			k++;
-        }
-        
+                
         aStar.setBlocks(blocksArray);
         
         List<Node> path = aStar.findPath();
@@ -710,113 +702,7 @@ public class NPC extends Character {
 		}
 		
 	}
-	
-	public boolean isUpCollision(float distance) {
-		
-		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		npcList.remove(this);
-
-		for(NPC npc : npcList) {
-			
-			if(super.getCollisionBox().willIntersectUp(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-			
-		}
-				
-		if(tiledMap.getTileId((int) super.getCollisionBox().getTopLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) super.getCollisionBox().getTopRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
-			return false;
-		} else {
-			return true;
-		}
-		
-	}
-	
-	public boolean isDownCollision(float distance) {
-		
-		if(super.getCollisionBox().willIntersectDown(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		npcList.remove(this);
-
-		for(NPC npc : npcList) {
-			
-			if(super.getCollisionBox().willIntersectDown(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-			
-		}
-				
-		if(tiledMap.getTileId((int) super.getCollisionBox().getBottomLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) super.getCollisionBox().getBottomRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-		
-		
-	}
-	
-	public boolean isLeftCollision(float distance) {
-		
-		if(super.getCollisionBox().willIntersectLeft(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		npcList.remove(this);
-
-		for(NPC npc : npcList) {
-			
-			if(super.getCollisionBox().willIntersectLeft(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-			
-		}
 					
-		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopLeftX() - distance)/Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomLeftX() - distance)/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
-			return false;
-		} else {
-			return true;
-		}
-		
-		
-	}
-	
-	public boolean isRightCollision(float distance) {
-		
-		if(super.getCollisionBox().willIntersectRight(player.getCollisionBox(), 5)) {
-			return true;
-		}
-		
-		ArrayList<NPC> npcList = CharacterManager.getNpcList();
-		npcList.remove(this);
-
-		for(NPC npc : npcList) {
-			
-			if(super.getCollisionBox().willIntersectRight(npc.getCollisionBox(), 5) && npc.isAlive()) {
-				return true;
-			}
-			
-		}
-		
-		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopRightX() + distance)/Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
-		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomRightX() + distance)/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-		
-	}
-				
 	public void setGoingToPlayer(boolean isGoingToPlayer) {
 		this.isGoingToPlayer = isGoingToPlayer;
 	}
@@ -860,8 +746,8 @@ public class NPC extends Character {
 				player.addExperience(experienceForPlayer);
 								
 				if(itemDrop != null) {
-					CharacterManager.getPlayer().getInventoryWindow().addItem(itemDrop);
-					CharacterManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
+					MobManager.getPlayer().getInventoryWindow().addItem(itemDrop);
+					MobManager.getPlayer().getNewItemWindow().showWindow(itemDrop);
 				}
 			}
 						

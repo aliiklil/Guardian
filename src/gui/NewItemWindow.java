@@ -6,7 +6,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import main.Main;
-import manager.CharacterManager;
+import manager.MobManager;
 import models.Item;
 
 public class NewItemWindow {
@@ -33,7 +33,7 @@ public class NewItemWindow {
 	
 	public void update() throws SlickException {
 		
-		if(System.currentTimeMillis() - startTime >= duration || CharacterManager.getPlayer().getInventoryWindow().isWindowOpen() || CharacterManager.getPlayer().getDialogueWindow().isWindowOpen()) {
+		if(System.currentTimeMillis() - startTime >= duration || MobManager.getPlayer().getInventoryWindow().isWindowOpen() || MobManager.getPlayer().getDialogueWindow().isWindowOpen()) {
 			isWindowOpen = false;
 		}
 		

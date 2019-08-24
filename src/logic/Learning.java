@@ -2,7 +2,7 @@ package logic;
 
 import dialogue.Dialogue;
 import main.Main;
-import manager.CharacterManager;
+import manager.MobManager;
 import manager.DialogueManager;
 import models.Player;
 
@@ -10,7 +10,7 @@ public class Learning {
 
 	public void checkIfPlayerLearns(Dialogue currentDialogue) {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		//If player wants to learn somethings, which he already has learned
 		if(currentDialogue.getSentences().get(0).getText().contains("(Learned already)")) {

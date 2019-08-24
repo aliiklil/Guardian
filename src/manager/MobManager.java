@@ -11,23 +11,27 @@ import main.Game;
 import models.Character;
 import models.Item;
 import models.ItemType;
+import models.Mob;
 import models.NPC;
 import models.Player;
+import models.Wolf;
 
-public class CharacterManager {
+public class MobManager {
 
-	private static ArrayList<Character> characterList = new ArrayList<Character>();
+	private static ArrayList<Mob> mobList = new ArrayList<Mob>();
 	
 	private static Player player;
 
 	private static NPC ogus;
 	private static NPC halrok;
 	
+	private static Wolf wolf1;
+	
 	private ItemTypeManager itemTypeManager = Game.getItemTypeManager();	
 	
-	public CharacterManager() throws SlickException {
+	public MobManager() throws SlickException {
 		
-		player = new Player(480, 416);
+		player = new Player(480, 416, true);
 		
 		Item stick = new Item(0, 0, itemTypeManager.stick);
 		Item shirt = new Item(0, 0, itemTypeManager.shirt);
@@ -55,7 +59,7 @@ public class CharacterManager {
 		player.setCurrentFeetAnimation(boots.getItemType().getLookDownAnimation());
 
 			
-		ogus = new NPC(256, 128, 2000, 2000, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1);
+		ogus = new NPC(256, 128, 2000, 2000, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
 		ogus.addItem(new Item(0, 0, itemTypeManager.dagger));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
@@ -75,58 +79,73 @@ public class CharacterManager {
 		
 		
 		
-		halrok = new NPC(256, 192, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3);
+		halrok = new NPC(256, 192, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
 		halrok.setEquippedMelee(itemTypeManager.ironsword);
 		
 		
-		characterList.add(player);
-		characterList.add(ogus);
-		characterList.add(halrok);
+		mobList.add(player);
+		mobList.add(ogus);
+		mobList.add(halrok);
+		
+		wolf1 = new Wolf(0, 0, "resources/WargSpriteSheet.png", 1000, null, 100, 5, true);		
+		mobList.add(wolf1);
 		
 	}
 	
 	public void update() throws SlickException {
 		
-		for(Character character : characterList)
-			character.update();
-		
+		for(Mob mob : mobList)
+			mob.update();
+
 	}
 
-	public void render(Graphics g) {
+	public void render(Graphics g) throws SlickException {
 	
-		ArrayList<Character> characterDrawOrderList = new ArrayList<Character>(characterList);
+		ArrayList<Mob> mobDrawOrderList = new ArrayList<Mob>(mobList);
 		
-		for (int i = 0; i < characterDrawOrderList.size() - 1; i++) {
+		for (int i = 0; i < mobDrawOrderList.size() - 1; i++) {
 			int index = i;
-			for (int j = i + 1; j < characterDrawOrderList.size(); j++) {
-				if (characterDrawOrderList.get(j).getRelativeToMapY() < characterDrawOrderList.get(index).getRelativeToMapY()) {
+			for (int j = i + 1; j < mobDrawOrderList.size(); j++) {
+				if (mobDrawOrderList.get(j).getRelativeToMapY() < mobDrawOrderList.get(index).getRelativeToMapY()) {
 					index = j;
 				}
 			}
-			Collections.swap(characterDrawOrderList, index, i);
+			Collections.swap(mobDrawOrderList, index, i);
 		}
 		
-		for(Character character : characterDrawOrderList) {
-			if (!character.isAlive()) {
-				character.render(g);
+		for(Mob mob : mobDrawOrderList) {
+			if (!mob.isAlive()) {
+				mob.render(g);
 			}
 		}
 			
-		for(Character character : characterDrawOrderList) {
-			if (character.isAlive()) {
-				character.render(g);
+		for(Mob mob : mobDrawOrderList) {
+			if (mob.isAlive()) {
+				mob.render(g);
 			}
 		}
 		
+	}
+	
+	public static ArrayList<Mob> getMobList() {
+		return mobList;
+	}
+	
+	public static ArrayList<Mob> getMobListWithoutPlayer() {
+		
+		ArrayList<Mob> mobListWithoutPlayer = new ArrayList<Mob>(mobList);
+		mobListWithoutPlayer.remove(player);
+
+		return mobList;
 	}
 	
 	public static ArrayList<NPC> getNpcList() {
 		
 		ArrayList<NPC> npcList = new ArrayList<NPC>();
 		
-		for(Character character : characterList) {
-			if(character instanceof NPC) {
-				npcList.add((NPC) character);
+		for(Mob mob : mobList) {
+			if (mob instanceof NPC) {
+				npcList.add((NPC)mob);
 			}
 		}
 

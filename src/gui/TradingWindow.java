@@ -12,8 +12,8 @@ import org.newdawn.slick.SpriteSheet;
 
 import main.Game;
 import main.Main;
-import manager.CharacterManager;
 import manager.ItemTypeManager;
+import manager.MobManager;
 import models.Item;
 import models.NPC;
 import models.Player;
@@ -71,7 +71,7 @@ public class TradingWindow {
 	
 	public void update() throws SlickException {
 		
-		player = CharacterManager.getPlayer();
+		player = MobManager.getPlayer();
 		
 		playerInventoryList = player.getInventoryList();
 		playerItemCountList = player.getItemCountList();
@@ -82,7 +82,7 @@ public class TradingWindow {
 			if(player.isEscapePressed()) {
 				
 				windowOpen = false;
-				CharacterManager.getPlayer().getDialogueWindow().setWindowOpen(true);
+				MobManager.getPlayer().getDialogueWindow().setWindowOpen(true);
 						
 			}
 			

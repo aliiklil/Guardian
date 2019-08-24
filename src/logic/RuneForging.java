@@ -4,7 +4,7 @@ import org.newdawn.slick.SlickException;
 
 import dialogue.Dialogue;
 import main.Game;
-import manager.CharacterManager;
+import manager.MobManager;
 import models.Item;
 import models.Player;
 
@@ -30,7 +30,7 @@ public class RuneForging {
 	
 	private void createHealLightWoundsRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Heal Light Wounds Rune (Healberry, Empty Rune)")) {
 			
@@ -62,7 +62,7 @@ public class RuneForging {
 	
 	private void createTitanspearRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Titanspear Rune (Chrystal, Empty Rune)")) {
 			
@@ -94,7 +94,7 @@ public class RuneForging {
 	
 	private void createIceblockRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Iceblock Rune (Aquamarine, Empty Rune)")) {
 			
@@ -126,7 +126,7 @@ public class RuneForging {
 	
 	private void createSummonWolfRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Summon Wolf Rune (Wolf Hide, Empty Rune)")) {
 			
@@ -158,7 +158,7 @@ public class RuneForging {
 	
 	private void createHealMediumWoundsRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Heal Medium Wounds Rune (Healplant, Empty Rune)")) {
 			
@@ -190,7 +190,7 @@ public class RuneForging {
 	
 	private void createIceLanceRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Icelance Rune (Smaragd, Empty Rune)")) {
 			
@@ -222,7 +222,7 @@ public class RuneForging {
 	
 	private void createBloodtheftRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Bloodtheft Rune (Heart, Empty Rune)")) {
 			
@@ -254,7 +254,7 @@ public class RuneForging {
 	
 	private void createSummonSkeletonRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Summon Skeleton Rune (Bone, Empty Rune)")) {
 			
@@ -286,7 +286,7 @@ public class RuneForging {
 	
 	private void createHealHeavyWoundsRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Heal Heavy Wounds Rune (Healroot, Empty Rune)")) {
 			
@@ -318,7 +318,7 @@ public class RuneForging {
 	
 	private void createFireballRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Fireball Rune (Pitch, Empty Rune)")) {
 			
@@ -350,7 +350,7 @@ public class RuneForging {
 	
 	private void createFirerainRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Firerain Rune (Sulfur, Empty Rune)")) {
 			
@@ -382,7 +382,7 @@ public class RuneForging {
 	
 	private void createSummonOrcWarriorRune(Dialogue currentDialogue) throws SlickException {
 		
-		Player player = CharacterManager.getPlayer();
+		Player player = MobManager.getPlayer();
 		
 		if(currentDialogue.getSentences().get(0).getText().equals("Summon Orc Warrior Rune (Orc Tooth, Empty Rune)")) {
 			
