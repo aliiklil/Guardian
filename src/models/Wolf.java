@@ -58,9 +58,6 @@ public class Wolf {
 	private Animation currentAnimation;
 
 	
-	
-	
-	
 	private float relativeToMapX;
 	private float relativeToMapY;
 	
@@ -73,20 +70,23 @@ public class Wolf {
 	private int centerXTile;
 	private int centerYTile;
 
-	//Current speed of the character
-	private float movementSpeed = 2f;
-	private float diagonalMovementSpeed = 1.6f;
+	private float runMovementSpeed = 2f;
+	private float diagonalRunMovementSpeed = 1.6f;
+	
+	private float walkMovementSpeed = runMovementSpeed/2;
+	private float diagonalWalkMovementSpeed = diagonalRunMovementSpeed/2;
+
+	private float movementSpeed = walkMovementSpeed;
+	private float diagonalMovementSpeed = diagonalWalkMovementSpeed;
 	
 	private SpriteSheet spriteSheet;
-	
-	private boolean isAlive;
-	
 	private int spriteSize;
 	
 	private CollisionBox collisionBox;
 	private CollisionBox hitBox;
 	
 	private Bar healthBar;
+	private boolean isAlive;
 	
 	private SpriteSheet bloodSpriteSheet;
 	private Animation bloodAnimation;
@@ -96,6 +96,8 @@ public class Wolf {
 	private int aggressionCircleRadius = 320;
 	private boolean isGoingToPlayer = false;
 	private List<Node> path;
+	private long aggressionTimestamp; //Timestamp when the player pulls aggro
+	private int durationBeforeRunning = 3000; //Time in milliseconds to run out before wolf starts to run instead of walk towards player
 	
 	private Player player = CharacterManager.getPlayer();
 
@@ -276,7 +278,7 @@ public class Wolf {
 		System.out.println("centerY " + centerY);
 		System.out.println("centerXTile " + centerXTile);
 		System.out.println("centerYTile " + centerYTile);
-		
+				
 	}
 
 	public void render(Graphics g) {
@@ -298,8 +300,14 @@ public class Wolf {
 		
 		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
 			isGoingToPlayer = true;
+			aggressionTimestamp = System.currentTimeMillis();
 		}
 	
+		if(isGoingToPlayer && System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning && (Math.round(centerX)+16) % 32 == 0 && (Math.round(centerY)+16) % 32 == 0) {
+			movementSpeed = runMovementSpeed;
+			diagonalMovementSpeed = diagonalRunMovementSpeed;
+		}
+		
 		if(isGoingToPlayer) {
 			path = findPath();
 		}
@@ -441,25 +449,41 @@ public class Wolf {
 		
 			if(goUp && !isUpCollision(movementSpeed)) {		
 				relativeToMapY = relativeToMapY - movementSpeed;
-				currentAnimation = runUpAnimation;
+				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
+					currentAnimation = runUpAnimation;
+				} else {
+					currentAnimation = walkUpAnimation;
+				}
 				isAttacking = false;
 			}
 			
 			if(goDown && !isDownCollision(movementSpeed)) {	
 				relativeToMapY = relativeToMapY + movementSpeed;
-				currentAnimation = runDownAnimation;
+				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
+					currentAnimation = runDownAnimation;
+				} else {
+					currentAnimation = walkDownAnimation;
+				}
 				isAttacking = false;
 			}
 						
 			if(goLeft && !isLeftCollision(movementSpeed)) {	
 				relativeToMapX = relativeToMapX - movementSpeed;
-				currentAnimation = runLeftAnimation;
+				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
+					currentAnimation = runLeftAnimation;
+				} else {
+					currentAnimation = walkLeftAnimation;
+				}
 				isAttacking = false;
 			}
 			
 			if(goRight && !isRightCollision(movementSpeed)) {	
 				relativeToMapX = relativeToMapX + movementSpeed;
-				currentAnimation = runRightAnimation;
+				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
+					currentAnimation = runRightAnimation;
+				} else {
+					currentAnimation = walkRightAnimation;
+				}
 				isAttacking = false;
 			}
 			
@@ -473,7 +497,11 @@ public class Wolf {
 					relativeToMapX = relativeToMapX - diagonalMovementSpeed;
 				}
 				
-				currentAnimation = runLeftAnimation;
+				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
+					currentAnimation = runLeftAnimation;
+				} else {
+					currentAnimation = walkLeftAnimation;
+				}
 				isAttacking = false;
 			}
 			
@@ -487,7 +515,11 @@ public class Wolf {
 					relativeToMapX = relativeToMapX + diagonalMovementSpeed;
 				}
 				
-				currentAnimation = runRightAnimation;
+				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
+					currentAnimation = runRightAnimation;
+				} else {
+					currentAnimation = walkRightAnimation;
+				}
 				isAttacking = false;
 			}
 			
@@ -500,7 +532,11 @@ public class Wolf {
 				if(!isLeftCollision(movementSpeed)) {
 					relativeToMapX = relativeToMapX - diagonalMovementSpeed;
 				}
-				currentAnimation = runLeftAnimation;
+				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
+					currentAnimation = runLeftAnimation;
+				} else {
+					currentAnimation = walkLeftAnimation;
+				}
 				isAttacking = false;
 			}
 			
@@ -513,7 +549,11 @@ public class Wolf {
 				if(!isRightCollision(movementSpeed)) {
 					relativeToMapX = relativeToMapX + diagonalMovementSpeed;
 				}
-				currentAnimation = runRightAnimation;
+				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
+					currentAnimation = runRightAnimation;
+				} else {
+					currentAnimation = walkRightAnimation;
+				}
 				isAttacking = false;
 			}
 						
