@@ -108,10 +108,7 @@ public class NPC extends Character {
 		goUpRight = false;
 		goDownLeft = false;
 		goDownRight = false;
-		
-		super.setMovementSpeed(2f);
-		super.setDiagonalMovementSpeed(1f);
-				
+						
 		this.hostileToPlayer = hostileToPlayer;
 		
 		this.itemDrop = itemDrop;
@@ -171,6 +168,17 @@ public class NPC extends Character {
 		checkIfIceblockIsOver();
 		
 		checkIfBloodtheft();
+		
+		
+		System.out.println("goUp " + goUp);
+		System.out.println("goDown " + goDown);
+		System.out.println("goLeft " + goLeft);
+		System.out.println("goRight " + goRight);
+		
+		System.out.println("goUpLeft " + goUpLeft);
+		System.out.println("goUpRight " + goUpRight);
+		System.out.println("goDownLeft " + goDownLeft);
+		System.out.println("goDownRight " + goDownRight);
 	
 	}
 
@@ -210,7 +218,7 @@ public class NPC extends Character {
 			path = findPath();
 		}
 		
-		if(isGoingToPlayer && path != null && !path.isEmpty() && super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && (super.getCenterX()+16) % 32 == 0 && (super.getCenterY()+16) % 32 == 0) {
+		if(isGoingToPlayer && path != null && !path.isEmpty() && super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && (Math.round(super.getCenterX())+16) % 32 == 0 && (Math.round(super.getCenterY())+16) % 32 == 0) {
 			path.remove(0);
 			
 			if(!path.isEmpty()) {
@@ -722,13 +730,9 @@ public class NPC extends Character {
 				
 		if(tiledMap.getTileId((int) super.getCollisionBox().getTopLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopLeftY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) super.getCollisionBox().getTopRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getTopRightY() - distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
-			
 			return false;
-			
 		} else {
-			
 			return true;
-			
 		}
 		
 	}
@@ -752,13 +756,9 @@ public class NPC extends Character {
 				
 		if(tiledMap.getTileId((int) super.getCollisionBox().getBottomLeftX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomLeftY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) super.getCollisionBox().getBottomRightX()/Main.TILE_SIZE, (int) (super.getCollisionBox().getBottomRightY() + distance)/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			
 			return false;
-			
 		} else {
-			
 			return true;
-			
 		}
 		
 		
@@ -783,13 +783,9 @@ public class NPC extends Character {
 					
 		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopLeftX() - distance)/Main.TILE_SIZE, (int) super.getCollisionBox().getTopLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomLeftX() - distance)/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomLeftY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {	
-			
 			return false;
-			
 		} else {
-			
 			return true;
-			
 		}
 		
 		
@@ -814,13 +810,9 @@ public class NPC extends Character {
 		
 		if(tiledMap.getTileId((int) (super.getCollisionBox().getTopRightX() + distance)/Main.TILE_SIZE, (int) super.getCollisionBox().getTopRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0 &&
 		   tiledMap.getTileId((int) (super.getCollisionBox().getBottomRightX() + distance)/Main.TILE_SIZE, (int) super.getCollisionBox().getBottomRightY()/Main.TILE_SIZE, notWalkableLayerIndex) == 0) {
-			
 			return false;
-			
 		} else {
-			
 			return true;
-			
 		}
 		
 	}

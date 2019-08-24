@@ -18,11 +18,11 @@ public abstract class Character {
 
 	//The normal default speed
 	private final float defaultMovementSpeed = 2f;
-	private final float defaultDiagonalMovementSpeed = 1.5f;
+	private final float defaultDiagonalMovementSpeed = 1.6f;
 	
 	//Current speed of the character
 	private float movementSpeed = 2f;
-	private float diagonalMovementSpeed = 1.5f;
+	private float diagonalMovementSpeed = 1.6f;
 	
 	private float relativeToMapX;
 	private float relativeToMapY;

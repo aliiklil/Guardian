@@ -75,7 +75,7 @@ public class Wolf {
 
 	//Current speed of the character
 	private float movementSpeed = 2f;
-	private float diagonalMovementSpeed = 1.5f;
+	private float diagonalMovementSpeed = 1.6f;
 	
 	private SpriteSheet spriteSheet;
 	
@@ -241,6 +241,7 @@ public class Wolf {
 		
 		
 		attackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 32, 64, 64);
+
 	}
 
 	public void update() throws SlickException {
@@ -303,7 +304,7 @@ public class Wolf {
 			path = findPath();
 		}
 		
-		if(isGoingToPlayer && path != null && !path.isEmpty() && centerYTile == path.get(0).getRow() && centerXTile == path.get(0).getCol() && (centerX+16) % 32 == 0 && (centerY+16) % 32 == 0) {
+		if(isGoingToPlayer && path != null && !path.isEmpty() && centerYTile == path.get(0).getRow() && centerXTile == path.get(0).getCol() && (Math.round(centerX)+16) % 32 == 0 && (Math.round(centerY)+16) % 32 == 0) {
 			path.remove(0);
 			
 			if(!path.isEmpty()) {
