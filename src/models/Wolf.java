@@ -97,7 +97,7 @@ public class Wolf {
 	private boolean isGoingToPlayer = false;
 	private List<Node> path;
 	private long aggressionTimestamp; //Timestamp when the player pulls aggro
-	private int durationBeforeRunning = 3000; //Time in milliseconds to run out before wolf starts to run instead of walk towards player
+	private int durationBeforeRunning = 4000; //Time in milliseconds to run out before wolf starts to run instead of walk towards player
 	
 	private Player player = CharacterManager.getPlayer();
 
@@ -134,12 +134,12 @@ public class Wolf {
 	
 	private CollisionBox attackBox;
 	
-	public Wolf(float relativeToMapX, float relativeToMapY, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput) throws SlickException {
+	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput) throws SlickException {
 		
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
 		tiledMap = Game.getCurrentMap().getTiledMap();
 		
-		spriteSheet = new SpriteSheet("resources/WolfSpriteSheet.png", 64, 64);
+		spriteSheet = new SpriteSheet(spriteSheetPath, 64, 64);
 		
 		lookUpAnimation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
 		lookDownAnimation = new Animation(spriteSheet, 0, 2, 0, 2, true, 100, true);
