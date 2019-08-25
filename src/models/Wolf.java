@@ -115,7 +115,9 @@ public class Wolf extends Mob {
 	private int bloodtheftCounter;
 	private long bloodtheftTimestamp;
 	
-	private CollisionBox attackBox;
+	private CollisionBox currentAttackBox;
+	private CollisionBox horizontalAttackBox;
+	private CollisionBox verticalAttackBox;
 	
 	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive) throws SlickException {
 		
@@ -209,8 +211,8 @@ public class Wolf extends Mob {
 		
 		aggressionCircle = new Circle(getCenterX(), getCenterY(), aggressionCircleRadius);
 		
-		
-		attackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 32, 64, 64);
+		horizontalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
+		verticalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
 
 	}
 
@@ -227,9 +229,8 @@ public class Wolf extends Mob {
 		
 		getHitBox().setX(getRelativeToMapX());
 		getHitBox().setY(getRelativeToMapY() - 16);
-		
-		attackBox.setX(getRelativeToMapX() - 16);
-		attackBox.setY(getRelativeToMapY() - 32);
+	
+		updateAttackBox();
 		
 		if(isAlive() && !iceblocked) {
 			goToPlayer();
@@ -244,6 +245,26 @@ public class Wolf extends Mob {
 		
 
 				
+	}
+
+	private void updateAttackBox() {
+		
+		horizontalAttackBox.setX(getRelativeToMapX());
+		horizontalAttackBox.setY(getRelativeToMapY() - 32);
+		
+		verticalAttackBox.setX(getRelativeToMapX() - 16);
+		verticalAttackBox.setY(getRelativeToMapY() - 16);
+		
+		if(currentAnimation == lookUpAnimation || currentAnimation == howlUpAnimation || currentAnimation == walkUpAnimation || currentAnimation == runUpAnimation || currentAnimation == attackUpAnimation ||
+		   currentAnimation == lookDownAnimation || currentAnimation == howlDownAnimation || currentAnimation == walkDownAnimation || currentAnimation == runDownAnimation || currentAnimation == attackDownAnimation) {
+			currentAttackBox = horizontalAttackBox;
+		}
+		
+		if(currentAnimation == lookLeftAnimation || currentAnimation == howlLeftAnimation || currentAnimation == walkLeftAnimation || currentAnimation == runLeftAnimation || currentAnimation == attackLeftAnimation ||
+		   currentAnimation == lookRightAnimation || currentAnimation == howlRightAnimation || currentAnimation == walkRightAnimation || currentAnimation == runRightAnimation || currentAnimation == attackRightAnimation) {
+			currentAttackBox = verticalAttackBox;
+		}
+		
 	}
 
 	public void render(Graphics g) {
@@ -550,27 +571,27 @@ public class Wolf extends Mob {
 	private void attackPlayer() {
 		
 		if(isGoingToPlayer && player.isAlive()) {
-			if(path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) || isTouchingPlayer() || attackBox.intersects(player.getHitBox())) {
+			if(path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) || isTouchingPlayer() || currentAttackBox.intersects(player.getHitBox())) {
 				
-				if((currentAnimation == lookUpAnimation || currentAnimation == runUpAnimation) && attackBox.intersects(player.getHitBox())) {
+				if((currentAnimation == lookUpAnimation || currentAnimation == runUpAnimation) && currentAttackBox.intersects(player.getHitBox())) {
 					currentAnimation = attackUpAnimation;
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if((currentAnimation == lookDownAnimation || currentAnimation == runDownAnimation) && attackBox.intersects(player.getHitBox())) {
+				if((currentAnimation == lookDownAnimation || currentAnimation == runDownAnimation) && currentAttackBox.intersects(player.getHitBox())) {
 					currentAnimation = attackDownAnimation;
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if((currentAnimation == lookLeftAnimation || currentAnimation == runLeftAnimation) && attackBox.intersects(player.getHitBox())) {
+				if((currentAnimation == lookLeftAnimation || currentAnimation == runLeftAnimation) && currentAttackBox.intersects(player.getHitBox())) {
 					currentAnimation = attackLeftAnimation;
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if((currentAnimation == lookRightAnimation || currentAnimation == runRightAnimation) && attackBox.intersects(player.getHitBox())) {
+				if((currentAnimation == lookRightAnimation || currentAnimation == runRightAnimation) && currentAttackBox.intersects(player.getHitBox())) {
 					currentAnimation = attackRightAnimation;
 					isAttacking = true;
 					damageDealt = false;
@@ -595,28 +616,28 @@ public class Wolf extends Mob {
 			damageToDeal = (int) (damageToDeal * (1 - player.getArmorProtection()/100.0));
 						
 			if(currentAnimation == attackUpAnimation && currentAnimation.getFrame() == 1) {
-					if(attackBox.intersects(player.getHitBox()) && player.isAlive()) {
+					if(currentAttackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 				}
 			}
 			
 			if(currentAnimation == attackDownAnimation && currentAnimation.getFrame() == 1) {
-					if(attackBox.intersects(player.getHitBox()) && player.isAlive()) {
+					if(currentAttackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 					}
 			}
 			
 			if(currentAnimation == attackLeftAnimation && currentAnimation.getFrame() == 1) {
-					if(attackBox.intersects(player.getHitBox()) && player.isAlive()) {
+					if(currentAttackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 				}		
 			}
 			
 			if(currentAnimation == attackRightAnimation && currentAnimation.getFrame() == 1) {
-					if(attackBox.intersects(player.getHitBox()) && player.isAlive()) {
+					if(currentAttackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 					}						
@@ -624,7 +645,7 @@ public class Wolf extends Mob {
 			
 		}
 		
-		if(!attackBox.intersects(player.getHitBox())) {
+		if(!currentAttackBox.intersects(player.getHitBox())) {
 			
 			if(currentAnimation == attackUpAnimation) {
 				currentAnimation.restart();
