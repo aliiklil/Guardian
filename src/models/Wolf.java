@@ -123,12 +123,16 @@ public class Wolf extends Mob {
 	private long howlingTimestamp; //Timestamp when wolf howled last time
 	private int durationBetweenHowling = 10000;
 	
+	
 	private boolean isRoaming = true;
 	
 	private boolean isRoamingUp = false;
 	private boolean isRoamingDown = false;
 	private boolean isRoamingLeft = true;
 	private boolean isRoamingRight = false;
+	
+	private long roamingTimestamp; //Timestamp when wolf was roaming last time
+	private int durationBetweenRoaming = 7000;
 	
 	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive) throws SlickException {
 		
@@ -298,7 +302,9 @@ public class Wolf extends Mob {
 		
 		if(isRoaming && !isGoingToPlayer) {
 		
-			if((Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
+			if((Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0 && System.currentTimeMillis() - roamingTimestamp > durationBetweenRoaming) {
+				
+				roamingTimestamp = System.currentTimeMillis();
 				
 				if(isRoamingUp) {
 					isRoamingUp = false;
@@ -315,7 +321,7 @@ public class Wolf extends Mob {
 					isRoamingDown = true;
 					isRoamingLeft = false;
 					isRoamingRight = false;
-				}else if(isRoamingRight) {
+				} else if(isRoamingRight) {
 					isRoamingUp = true;
 					isRoamingDown = false;
 					isRoamingLeft = false;
@@ -324,25 +330,42 @@ public class Wolf extends Mob {
 				
 			}
 			
-			if(isRoamingUp && !isUpCollision(movementSpeed)) {		
-				setRelativeToMapY(getRelativeToMapY() - movementSpeed);
-				currentAnimation = walkUpAnimation;
+			if(isRoamingUp && !isUpCollision(movementSpeed)) {	
+				if(getCenterYTile() - getStartCenterYTile() == 0 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
+					currentAnimation = lookUpAnimation;
+				} else {
+					setRelativeToMapY(getRelativeToMapY() - movementSpeed);
+					currentAnimation = walkUpAnimation;
+				}
 			}
 			
 			if(isRoamingDown && !isDownCollision(movementSpeed)) {		
-				setRelativeToMapY(getRelativeToMapY() + movementSpeed);
-				currentAnimation = walkDownAnimation;
+				if(getCenterYTile() - getStartCenterYTile() == 2 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
+					currentAnimation = lookDownAnimation;
+				} else {
+					setRelativeToMapY(getRelativeToMapY() + movementSpeed);
+					currentAnimation = walkDownAnimation;
+				}
 			}
 			
-			if(isRoamingLeft && !isLeftCollision(movementSpeed)) {		
-				setRelativeToMapX(getRelativeToMapX() - movementSpeed);
-				currentAnimation = walkLeftAnimation;
+			if(isRoamingLeft && !isLeftCollision(movementSpeed)) {
+				if(getCenterXTile() - getStartCenterXTile() == 0 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
+					currentAnimation = lookLeftAnimation;
+				} else {
+					setRelativeToMapX(getRelativeToMapX() - movementSpeed);
+					currentAnimation = walkLeftAnimation;
+				}
 			}
 			
-			if(isRoamingRight && !isRightCollision(movementSpeed)) {		
-				setRelativeToMapX(getRelativeToMapX() + movementSpeed);
-				currentAnimation = walkRightAnimation;
+			if(isRoamingRight && !isRightCollision(movementSpeed)) {
+				if(getCenterXTile() - getStartCenterXTile() == 2 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
+					currentAnimation = lookRightAnimation;
+				} else {
+					setRelativeToMapX(getRelativeToMapX() + movementSpeed);
+					currentAnimation = walkRightAnimation;
+				}
 			}
+			
 
 		}
 		
