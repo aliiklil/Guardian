@@ -255,7 +255,6 @@ public class Wolf extends Mob {
 		if(isAlive() && !iceblocked) {
 			updateMove();
 			updateAttackPlayer();
-			updateHowling();
 			updateRoaming();
 		}
 		
@@ -284,19 +283,6 @@ public class Wolf extends Mob {
 		}
 	}
 	
-	private void updateHowling() {
-		/*
-		if(currentAnimation == lookDownAnimation && System.currentTimeMillis() - howlingTimestamp > durationBetweenHowling) {
-			currentAnimation = howlDownAnimation;
-			currentAnimation.restart();
-		}
-		
-		if(currentAnimation.isStopped() && currentAnimation == howlDownAnimation) {
-			currentAnimation = lookDownAnimation;
-			howlingTimestamp = System.currentTimeMillis();
-		}
- 		*/
-	}
 
 	private void updateRoaming() {
 		
@@ -350,7 +336,11 @@ public class Wolf extends Mob {
 			
 			if(isRoamingLeft && !isLeftCollision(movementSpeed)) {
 				if(getCenterXTile() - getStartCenterXTile() == 0 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
-					currentAnimation = lookLeftAnimation;
+					currentAnimation = howlLeftAnimation;
+	
+					if(howlLeftAnimation.isStopped()) {
+						currentAnimation = lookLeftAnimation;
+					}
 				} else {
 					setRelativeToMapX(getRelativeToMapX() - movementSpeed);
 					currentAnimation = walkLeftAnimation;
@@ -359,14 +349,17 @@ public class Wolf extends Mob {
 			
 			if(isRoamingRight && !isRightCollision(movementSpeed)) {
 				if(getCenterXTile() - getStartCenterXTile() == 2 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
-					currentAnimation = lookRightAnimation;
+					currentAnimation = howlRightAnimation;
+					
+					if(howlRightAnimation.isStopped()) {
+						currentAnimation = lookRightAnimation;
+					}
 				} else {
 					setRelativeToMapX(getRelativeToMapX() + movementSpeed);
 					currentAnimation = walkRightAnimation;
 				}
 			}
 			
-
 		}
 		
 	}
@@ -393,7 +386,7 @@ public class Wolf extends Mob {
 	
 	private void updateMove() {
 		
-		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
+		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY()) && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
 			isGoingToPlayer = true;
 			aggressionTimestamp = System.currentTimeMillis();
 		}
@@ -813,7 +806,7 @@ public class Wolf extends Mob {
 	}
 	
 	
-	private List<Node> findPath(int targetTileX, int targetTileY) {
+	private List<Node> findPath(int targetTileY, int targetTileX) {
 		
 		Node initialNode = new Node(getCenterYTile(), getCenterXTile());
         Node finalNode = new Node(targetTileY, targetTileX);
