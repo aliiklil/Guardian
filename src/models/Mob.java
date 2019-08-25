@@ -21,6 +21,9 @@ public abstract class Mob {
 	private int centerXTile;
 	private int centerYTile;
 	
+	private int startCenterXTile; //Tile on which the mob spawns at the start
+	private int startCenterYTile;
+	
 	private boolean alive;
 	
 	private CollisionBox collisionBox;
@@ -37,6 +40,9 @@ public abstract class Mob {
 		
 		this.centerXTile = (int) (centerX / Main.TILE_SIZE);
 		this.centerYTile = (int) (centerY / Main.TILE_SIZE);
+		
+		this.startCenterXTile = centerXTile;
+		this.startCenterYTile = centerYTile;
 		
 	}
 
@@ -189,6 +195,22 @@ public abstract class Mob {
 
 	public void setHitBox(CollisionBox hitBox) {
 		this.hitBox = hitBox;
+	}
+
+	public int getStartCenterXTile() {
+		return startCenterXTile;
+	}
+
+	public void setStartCenterXTile(int startCenterXTile) {
+		this.startCenterXTile = startCenterXTile;
+	}
+
+	public int getStartCenterYTile() {
+		return startCenterYTile;
+	}
+
+	public void setStartCenterYTile(int startCenterYTile) {
+		this.startCenterYTile = startCenterYTile;
 	}
 	
 }

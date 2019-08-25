@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.Sys;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -79,7 +80,7 @@ public class Wolf extends Mob {
 	private boolean drawBlood;
 	
 	private Circle aggressionCircle;
-	private int aggressionCircleRadius = 640;
+	private int aggressionCircleRadius = 320;
 	private boolean isGoingToPlayer = false;
 	private List<Node> path;
 	private long aggressionTimestamp; //Timestamp when the player pulls aggro
@@ -119,6 +120,9 @@ public class Wolf extends Mob {
 	private CollisionBox horizontalAttackBox;
 	private CollisionBox verticalAttackBox;
 	
+	private long howlingTimestamp; //Timestamp when wolf howled last time
+	private int durationBetweenHowling = 10000;
+	
 	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive) throws SlickException {
 		
 		super(relativeToMapX, relativeToMapY, alive);
@@ -130,10 +134,10 @@ public class Wolf extends Mob {
 		lookLeftAnimation = new Animation(spriteSheet, 0, 1, 0, 1, true, 100, true);
 		lookRightAnimation = new Animation(spriteSheet, 0, 3, 0, 3, true, 100, true);
 		
-		howlUpAnimation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
-		howlDownAnimation = new Animation(spriteSheet, 0, 2, 4, 2, true, 100, true);
-		howlLeftAnimation = new Animation(spriteSheet, 0, 1, 3, 1, true, 100, true);
-		howlRightAnimation = new Animation(spriteSheet, 0, 3, 3, 3, true, 100, true);
+		howlUpAnimation = new Animation(spriteSheet, 0, 0, 0, 0, true, 300, true);
+		howlDownAnimation = new Animation(spriteSheet, 0, 2, 4, 2, true, 300, true);
+		howlLeftAnimation = new Animation(spriteSheet, 0, 1, 3, 1, true, 300, true);
+		howlRightAnimation = new Animation(spriteSheet, 0, 3, 3, 3, true, 300, true);
 		
 		walkUpAnimation = new Animation(spriteSheet, 0, 4, 3, 4, true, 100, true);
 		walkDownAnimation = new Animation(spriteSheet, 0, 6, 3, 6, true, 100, true);
@@ -164,6 +168,11 @@ public class Wolf extends Mob {
 		dieDownAnimation = new Animation(spriteSheet, 0, 18, 3, 18, true, 100, true);
 		dieLeftAnimation = new Animation(spriteSheet, 0, 17, 3, 17, true, 100, true);
 		dieRightAnimation = new Animation(spriteSheet, 0, 19, 3, 19, true, 100, true);
+				
+		howlUpAnimation.setLooping(false);
+		howlDownAnimation.setLooping(false);
+		howlLeftAnimation.setLooping(false);
+		howlRightAnimation.setLooping(false);
 		
 		attackUpAnimation.setLooping(false);
 		attackDownAnimation.setLooping(false);
@@ -213,7 +222,7 @@ public class Wolf extends Mob {
 		
 		horizontalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
 		verticalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
-
+		
 	}
 
 	public void update() throws SlickException {
@@ -233,8 +242,9 @@ public class Wolf extends Mob {
 		updateAttackBox();
 		
 		if(isAlive() && !iceblocked) {
-			goToPlayer();
-			attackPlayer();
+			updateMove();
+			updateAttackPlayer();
+			updateHowling();
 		}
 		
 		setCenterX(getRelativeToMapX() + Main.TILE_SIZE/2);
@@ -245,6 +255,37 @@ public class Wolf extends Mob {
 		
 
 				
+	}
+
+
+
+	public void render(Graphics g) {
+		currentAnimation.draw(screenRelativeX, screenRelativeY);
+		
+		if(drawBlood) {
+			drawBlood(screenRelativeX, screenRelativeY);
+		}
+
+	}
+	
+	public void renderHealthBar(Graphics g) {
+		if(healthBar.getCurrentValue() > 0) {
+			healthBar.render(g);
+		}
+	}
+	
+	private void updateHowling() {
+		
+		if(currentAnimation == lookDownAnimation && System.currentTimeMillis() - howlingTimestamp > durationBetweenHowling) {
+			currentAnimation = howlDownAnimation;
+			currentAnimation.restart();
+		}
+		
+		if(currentAnimation == howlDownAnimation && currentAnimation.isStopped()) {
+			currentAnimation = lookDownAnimation;
+			howlingTimestamp = System.currentTimeMillis();
+		}
+ 		
 	}
 
 	private void updateAttackBox() {
@@ -266,23 +307,8 @@ public class Wolf extends Mob {
 		}
 		
 	}
-
-	public void render(Graphics g) {
-		currentAnimation.draw(screenRelativeX, screenRelativeY);
-		
-		if(drawBlood) {
-			drawBlood(screenRelativeX, screenRelativeY);
-		}
-
-	}
 	
-	public void renderHealthBar(Graphics g) {
-		if(healthBar.getCurrentValue() > 0) {
-			healthBar.render(g);
-		}
-	}
-	
-	private void goToPlayer() {
+	private void updateMove() {
 		
 		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
 			isGoingToPlayer = true;
@@ -295,7 +321,7 @@ public class Wolf extends Mob {
 		}
 		
 		if(isGoingToPlayer) {
-			path = findPath();
+			path = findPath(player.getCenterYTile(), player.getCenterXTile());
 		}
 		
 		if(isGoingToPlayer && path != null && !path.isEmpty() && getCenterYTile() == path.get(0).getRow() && getCenterXTile() == path.get(0).getCol() && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
@@ -568,7 +594,7 @@ public class Wolf extends Mob {
 	}
 	
 	
-	private void attackPlayer() {
+	private void updateAttackPlayer() {
 		
 		if(isGoingToPlayer && player.isAlive()) {
 			if(path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) || isTouchingPlayer() || currentAttackBox.intersects(player.getHitBox())) {
@@ -704,10 +730,10 @@ public class Wolf extends Mob {
 	}
 	
 	
-	private List<Node> findPath() {
+	private List<Node> findPath(int targetTileX, int targetTileY) {
 		
 		Node initialNode = new Node(getCenterYTile(), getCenterXTile());
-        Node finalNode = new Node(player.getCenterYTile(), player.getCenterXTile());
+        Node finalNode = new Node(targetTileY, targetTileX);
         
         int rows = Game.getCurrentMap().getTiledMap().getHeight();
         int cols = Game.getCurrentMap().getTiledMap().getWidth();

@@ -162,17 +162,6 @@ public class NPC extends Character {
 		
 		checkIfBloodtheft();
 		
-		
-		System.out.println("goUp " + goUp);
-		System.out.println("goDown " + goDown);
-		System.out.println("goLeft " + goLeft);
-		System.out.println("goRight " + goRight);
-		
-		System.out.println("goUpLeft " + goUpLeft);
-		System.out.println("goUpRight " + goUpRight);
-		System.out.println("goDownLeft " + goDownLeft);
-		System.out.println("goDownRight " + goDownRight);
-	
 	}
 
 	public void render(Graphics g) {
