@@ -237,7 +237,7 @@ public class Wolf extends Mob {
 	
 		updateAttackBox();
 		
-		if(isAlive() && !isIceblocked()) {
+		if(isAlive() && isHostileToPlayer() && !isIceblocked()) {
 			updateMove();
 			updateAttackPlayer();
 			updateRoaming();

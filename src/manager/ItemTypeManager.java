@@ -828,8 +828,8 @@ public class ItemTypeManager {
 
 		
 		
-		shortspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 5, 36));
-		shortspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 5, 36));
+		shortspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 50, 36));
+		shortspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 50, 36));
 		shortspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 20, 5));
 		shortspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 20, 5));
 		
@@ -847,8 +847,8 @@ public class ItemTypeManager {
 		
 		
 		
-		longspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 5, 73));
-		longspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 5, 73));
+		longspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 50, 73));
+		longspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 50, 73));
 		longspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 59, 5));
 		longspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 59, 5));
 		
@@ -866,8 +866,8 @@ public class ItemTypeManager {
 		
 		
 		
-		mithrilspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 11, 78));
-		mithrilspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 11, 78));
+		mithrilspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 50, 78));
+		mithrilspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 50, 78));
 		mithrilspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 65, 11));
 		mithrilspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 65, 11));
 		
@@ -885,8 +885,8 @@ public class ItemTypeManager {
 		
 		
 		
-		goldenspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 19, 78));
-		goldenspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 19, 78));
+		goldenspear.setAttackUpCollisionBox(new CollisionBox(0, 0, 50, 78));
+		goldenspear.setAttackDownCollisionBox(new CollisionBox(0, 0, 50, 78));
 		goldenspear.setAttackLeftCollisionBox(new CollisionBox(0, 0, 65, 19));
 		goldenspear.setAttackRightCollisionBox(new CollisionBox(0, 0, 65, 19));
 		
@@ -903,6 +903,11 @@ public class ItemTypeManager {
 		goldenspear.setAttackRightOffsetY(+8);	
 		
 
+		
+		
+
+		
+		
 		
 	}
 
