@@ -54,9 +54,7 @@ public class Wolf extends Mob {
 	private Animation dieDownAnimation;
 	private Animation dieLeftAnimation;
 	private Animation dieRightAnimation;
-	
-	private Animation currentAnimation;
-	
+		
 	private float screenRelativeX;
 	private float screenRelativeY;
 	
@@ -81,7 +79,6 @@ public class Wolf extends Mob {
 	
 	private Circle aggressionCircle;
 	private int aggressionCircleRadius = 320;
-	private boolean isGoingToPlayer = false;
 	private List<Node> path;
 	private long aggressionTimestamp; //Timestamp when the player pulls aggro
 	private int durationBeforeRunning = 2000; //Time in milliseconds to run out before wolf starts to run instead of walk towards player
@@ -107,23 +104,11 @@ public class Wolf extends Mob {
 	private int experienceForPlayer;
 	
 	private int damageOutput;
-	
-	private boolean iceblocked; //If NPC is blocked by iceblock
-	private long iceblockedTimestamp; //Time when player was iceblocked
-	private Animation iceblockAnimation;
-	
-	private boolean bloodtheft;
-	private int bloodtheftCounter;
-	private long bloodtheftTimestamp;
-	
+			
 	private CollisionBox currentAttackBox;
 	private CollisionBox horizontalAttackBox;
 	private CollisionBox verticalAttackBox;
-	
-	private long howlingTimestamp; //Timestamp when wolf howled last time
-	private int durationBetweenHowling = 10000;
-	
-	
+		
 	private boolean isRoaming = true;
 	
 	private boolean isRoamingUp = false;
@@ -134,7 +119,7 @@ public class Wolf extends Mob {
 	private long roamingTimestamp; //Timestamp when wolf was roaming last time
 	private int durationBetweenRoaming = 7000;
 	
-	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive) throws SlickException {
+	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive, boolean hostileToPlayer) throws SlickException {
 		
 		super(relativeToMapX, relativeToMapY, alive);
 				
@@ -195,7 +180,7 @@ public class Wolf extends Mob {
 		dieLeftAnimation.setLooping(false);
 		dieRightAnimation.setLooping(false);
 				
-		currentAnimation = lookDownAnimation;
+		setCurrentAnimation(lookDownAnimation);
 		
 		screenRelativeX = (int) Game.getCurrentMap().getX() + relativeToMapX - spriteSize / 4;		
 		screenRelativeY = (int) Game.getCurrentMap().getY() + relativeToMapY  - spriteSize / 2;
@@ -224,15 +209,15 @@ public class Wolf extends Mob {
 		this.itemDrop = itemDrop;
 		this.experienceForPlayer = experienceForPlayer;
 		this.damageOutput = damageOutput;
-		
-		iceblockAnimation = new Animation(new SpriteSheet("resources/iceblockSprite.png", 64, 64), 0, 0, 0, 0, true, 100, true);
-		
+				
 		spriteSize = 64;
 		
 		aggressionCircle = new Circle(getCenterX(), getCenterY(), aggressionCircleRadius);
 		
 		horizontalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
 		verticalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
+		
+		setHostileToPlayer(hostileToPlayer);
 		
 	}
 
@@ -252,7 +237,7 @@ public class Wolf extends Mob {
 	
 		updateAttackBox();
 		
-		if(isAlive() && !iceblocked) {
+		if(isAlive() && !isIceblocked()) {
 			updateMove();
 			updateAttackPlayer();
 			updateRoaming();
@@ -264,15 +249,24 @@ public class Wolf extends Mob {
 		setCenterXTile((int) (getCenterX() / Main.TILE_SIZE));
 		setCenterYTile((int) (getCenterY() / Main.TILE_SIZE));
 		
-
+		checkIfIceblockIsOver();
+		checkIfBloodtheft();
 				
 	}
 
 	public void render(Graphics g) {
-		currentAnimation.draw(screenRelativeX, screenRelativeY);
+		getCurrentAnimation().draw(screenRelativeX, screenRelativeY);
 		
 		if(drawBlood) {
 			drawBlood(screenRelativeX, screenRelativeY);
+		}
+		
+		if(healthBar.getCurrentValue() > 0) {
+			healthBar.render(g);
+		}
+		
+		if(isIceblocked()) {
+			getIceblockAnimation().draw(screenRelativeX, screenRelativeY + 2);
 		}
 
 	}
@@ -286,7 +280,7 @@ public class Wolf extends Mob {
 
 	private void updateRoaming() {
 		
-		if(isRoaming && !isGoingToPlayer) {
+		if(isRoaming && !isGoingToPlayer()) {
 		
 			if((Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0 && System.currentTimeMillis() - roamingTimestamp > durationBetweenRoaming) {
 				
@@ -318,48 +312,53 @@ public class Wolf extends Mob {
 			
 			if(isRoamingUp && !isUpCollision(movementSpeed)) {	
 				if(getCenterYTile() - getStartCenterYTile() == 0 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
-					currentAnimation = lookUpAnimation;
+					setCurrentAnimation(lookUpAnimation);
 				} else {
 					setRelativeToMapY(getRelativeToMapY() - movementSpeed);
-					currentAnimation = walkUpAnimation;
+					setCurrentAnimation(walkUpAnimation);
 				}
 			}
 			
 			if(isRoamingDown && !isDownCollision(movementSpeed)) {		
 				if(getCenterYTile() - getStartCenterYTile() == 2 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
-					currentAnimation = lookDownAnimation;
+					setCurrentAnimation(lookDownAnimation);
 				} else {
 					setRelativeToMapY(getRelativeToMapY() + movementSpeed);
-					currentAnimation = walkDownAnimation;
+					setCurrentAnimation(walkDownAnimation);
 				}
 			}
 			
 			if(isRoamingLeft && !isLeftCollision(movementSpeed)) {
 				if(getCenterXTile() - getStartCenterXTile() == 0 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
-					currentAnimation = howlLeftAnimation;
+					setCurrentAnimation(howlLeftAnimation);
 	
 					if(howlLeftAnimation.isStopped()) {
-						currentAnimation = lookLeftAnimation;
+						setCurrentAnimation(lookLeftAnimation);
 					}
 				} else {
 					setRelativeToMapX(getRelativeToMapX() - movementSpeed);
-					currentAnimation = walkLeftAnimation;
+					setCurrentAnimation(walkLeftAnimation);
 				}
 			}
 			
 			if(isRoamingRight && !isRightCollision(movementSpeed)) {
 				if(getCenterXTile() - getStartCenterXTile() == 2 && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
-					currentAnimation = howlRightAnimation;
+					setCurrentAnimation(howlRightAnimation);
 					
 					if(howlRightAnimation.isStopped()) {
-						currentAnimation = lookRightAnimation;
+						setCurrentAnimation(lookRightAnimation);
 					}
 				} else {
 					setRelativeToMapX(getRelativeToMapX() + movementSpeed);
-					currentAnimation = walkRightAnimation;
+					setCurrentAnimation(walkRightAnimation);
 				}
 			}
 			
+		} else {
+			isRoamingUp = false;
+			isRoamingDown = false;
+			isRoamingLeft = false;
+			isRoamingRight = false;
 		}
 		
 	}
@@ -372,35 +371,35 @@ public class Wolf extends Mob {
 		verticalAttackBox.setX(getRelativeToMapX() - 16);
 		verticalAttackBox.setY(getRelativeToMapY() - 16);
 		
-		if(currentAnimation == lookUpAnimation || currentAnimation == howlUpAnimation || currentAnimation == walkUpAnimation || currentAnimation == runUpAnimation || currentAnimation == attackUpAnimation ||
-		   currentAnimation == lookDownAnimation || currentAnimation == howlDownAnimation || currentAnimation == walkDownAnimation || currentAnimation == runDownAnimation || currentAnimation == attackDownAnimation) {
+		if(getCurrentAnimation() == lookUpAnimation || getCurrentAnimation() == howlUpAnimation || getCurrentAnimation() == walkUpAnimation || getCurrentAnimation() == runUpAnimation || getCurrentAnimation() == attackUpAnimation ||
+				getCurrentAnimation() == lookDownAnimation || getCurrentAnimation() == howlDownAnimation || getCurrentAnimation() == walkDownAnimation || getCurrentAnimation() == runDownAnimation || getCurrentAnimation() == attackDownAnimation) {
 			currentAttackBox = horizontalAttackBox;
 		}
 		
-		if(currentAnimation == lookLeftAnimation || currentAnimation == howlLeftAnimation || currentAnimation == walkLeftAnimation || currentAnimation == runLeftAnimation || currentAnimation == attackLeftAnimation ||
-		   currentAnimation == lookRightAnimation || currentAnimation == howlRightAnimation || currentAnimation == walkRightAnimation || currentAnimation == runRightAnimation || currentAnimation == attackRightAnimation) {
+		if(getCurrentAnimation() == lookLeftAnimation || getCurrentAnimation() == howlLeftAnimation || getCurrentAnimation() == walkLeftAnimation || getCurrentAnimation() == runLeftAnimation || getCurrentAnimation() == attackLeftAnimation ||
+				getCurrentAnimation() == lookRightAnimation || getCurrentAnimation() == howlRightAnimation || getCurrentAnimation() == walkRightAnimation || getCurrentAnimation() == runRightAnimation || getCurrentAnimation() == attackRightAnimation) {
 			currentAttackBox = verticalAttackBox;
 		}
-		
+				
 	}
 	
 	private void updateMove() {
 		
-		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY()) && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
-			isGoingToPlayer = true;
+		if(!isGoingToPlayer() && aggressionCircle.contains(player.getCenterX(), player.getCenterY()) && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
+			setGoingToPlayer(true);
 			aggressionTimestamp = System.currentTimeMillis();
 		}
 	
-		if(isGoingToPlayer && System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
+		if(isGoingToPlayer() && System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
 			movementSpeed = runMovementSpeed;
 			diagonalMovementSpeed = diagonalRunMovementSpeed;
 		}
 		
-		if(isGoingToPlayer) {
+		if(isGoingToPlayer()) {
 			path = findPath(player.getCenterYTile(), player.getCenterXTile());
 		}
 		
-		if(isGoingToPlayer && path != null && !path.isEmpty() && getCenterYTile() == path.get(0).getRow() && getCenterXTile() == path.get(0).getCol() && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
+		if(isGoingToPlayer() && path != null && !path.isEmpty() && getCenterYTile() == path.get(0).getRow() && getCenterXTile() == path.get(0).getCol() && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
 			path.remove(0);
 			
 			if(!path.isEmpty()) {
@@ -533,14 +532,14 @@ public class Wolf extends Mob {
 	
 		}
 		
-		if(isGoingToPlayer && path != null && !path.isEmpty() && !isAttacking) {
+		if(isGoingToPlayer() && path != null && !path.isEmpty() && !isAttacking) {
 		
 			if(goUp && !isUpCollision(movementSpeed)) {		
 				setRelativeToMapY(getRelativeToMapY() - movementSpeed);
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
-					currentAnimation = runUpAnimation;
+					setCurrentAnimation(runUpAnimation);
 				} else {
-					currentAnimation = walkUpAnimation;
+					setCurrentAnimation(walkUpAnimation);
 				}
 				isAttacking = false;
 			}
@@ -548,9 +547,9 @@ public class Wolf extends Mob {
 			if(goDown && !isDownCollision(movementSpeed)) {	
 				setRelativeToMapY(getRelativeToMapY() + movementSpeed);
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
-					currentAnimation = runDownAnimation;
+					setCurrentAnimation(runDownAnimation);
 				} else {
-					currentAnimation = walkDownAnimation;
+					setCurrentAnimation(walkDownAnimation);
 				}
 				isAttacking = false;
 			}
@@ -558,9 +557,9 @@ public class Wolf extends Mob {
 			if(goLeft && !isLeftCollision(movementSpeed)) {	
 				setRelativeToMapX(getRelativeToMapX() - movementSpeed);
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
-					currentAnimation = runLeftAnimation;
+					setCurrentAnimation(runLeftAnimation);
 				} else {
-					currentAnimation = walkLeftAnimation;
+					setCurrentAnimation(walkLeftAnimation);
 				}
 				isAttacking = false;
 			}
@@ -568,9 +567,9 @@ public class Wolf extends Mob {
 			if(goRight && !isRightCollision(movementSpeed)) {	
 				setRelativeToMapX(getRelativeToMapX() + movementSpeed);
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
-					currentAnimation = runRightAnimation;
+					setCurrentAnimation(runRightAnimation);
 				} else {
-					currentAnimation = walkRightAnimation;
+					setCurrentAnimation(walkRightAnimation);
 				}
 				isAttacking = false;
 			}
@@ -586,9 +585,9 @@ public class Wolf extends Mob {
 				}
 				
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
-					currentAnimation = runLeftAnimation;
+					setCurrentAnimation(runLeftAnimation);
 				} else {
-					currentAnimation = walkLeftAnimation;
+					setCurrentAnimation(walkLeftAnimation);
 				}
 				isAttacking = false;
 			}
@@ -604,9 +603,9 @@ public class Wolf extends Mob {
 				}
 				
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
-					currentAnimation = runRightAnimation;
+					setCurrentAnimation(runRightAnimation);
 				} else {
-					currentAnimation = walkRightAnimation;
+					setCurrentAnimation(walkRightAnimation);
 				}
 				isAttacking = false;
 			}
@@ -621,9 +620,9 @@ public class Wolf extends Mob {
 					setRelativeToMapX(getRelativeToMapX() - diagonalMovementSpeed);
 				}
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
-					currentAnimation = runLeftAnimation;
+					setCurrentAnimation(runLeftAnimation);
 				} else {
-					currentAnimation = walkLeftAnimation;
+					setCurrentAnimation(walkLeftAnimation);
 				}
 				isAttacking = false;
 			}
@@ -638,9 +637,9 @@ public class Wolf extends Mob {
 					setRelativeToMapX(getRelativeToMapX() + diagonalMovementSpeed);
 				}
 				if(System.currentTimeMillis() - aggressionTimestamp > durationBeforeRunning) {
-					currentAnimation = runRightAnimation;
+					setCurrentAnimation(runRightAnimation);
 				} else {
-					currentAnimation = walkRightAnimation;
+					setCurrentAnimation(walkRightAnimation);
 				}
 				isAttacking = false;
 			}
@@ -650,19 +649,19 @@ public class Wolf extends Mob {
 		if(path != null && path.isEmpty()) {
 			
 			if(getCenterXTile() == player.getCenterXTile() && getCenterYTile() - 1 == player.getCenterYTile()) {
-				currentAnimation = lookUpAnimation;
+				setCurrentAnimation(lookUpAnimation);
 			}
 			
 			if(getCenterXTile() == player.getCenterXTile() && getCenterYTile() + 1 == player.getCenterYTile()) {
-				currentAnimation = lookDownAnimation;
+				setCurrentAnimation(lookDownAnimation);
 			}
 			
 			if(getCenterXTile() - 1 == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) {
-				currentAnimation = lookLeftAnimation;
+				setCurrentAnimation(lookLeftAnimation);
 			}
 			
 			if(getCenterXTile() + 1 == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) {
-				currentAnimation = lookRightAnimation;
+				setCurrentAnimation(lookRightAnimation);
 			}
 			
 		}
@@ -672,35 +671,35 @@ public class Wolf extends Mob {
 	
 	private void updateAttackPlayer() {
 		
-		if(isGoingToPlayer && player.isAlive()) {
+		if(isGoingToPlayer() && player.isAlive()) {
 			if(path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) || isTouchingPlayer() || currentAttackBox.intersects(player.getHitBox())) {
 				
-				if((currentAnimation == lookUpAnimation || currentAnimation == runUpAnimation) && currentAttackBox.intersects(player.getHitBox())) {
-					currentAnimation = attackUpAnimation;
+				if((getCurrentAnimation() == lookUpAnimation || getCurrentAnimation() == runUpAnimation) && currentAttackBox.intersects(player.getHitBox())) {
+					setCurrentAnimation(attackUpAnimation);
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if((currentAnimation == lookDownAnimation || currentAnimation == runDownAnimation) && currentAttackBox.intersects(player.getHitBox())) {
-					currentAnimation = attackDownAnimation;
+				if((getCurrentAnimation() == lookDownAnimation || getCurrentAnimation() == runDownAnimation) && currentAttackBox.intersects(player.getHitBox())) {
+					setCurrentAnimation(attackDownAnimation);
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if((currentAnimation == lookLeftAnimation || currentAnimation == runLeftAnimation) && currentAttackBox.intersects(player.getHitBox())) {
-					currentAnimation = attackLeftAnimation;
+				if((getCurrentAnimation() == lookLeftAnimation || getCurrentAnimation() == runLeftAnimation) && currentAttackBox.intersects(player.getHitBox())) {
+					setCurrentAnimation(attackLeftAnimation);
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if((currentAnimation == lookRightAnimation || currentAnimation == runRightAnimation) && currentAttackBox.intersects(player.getHitBox())) {
-					currentAnimation = attackRightAnimation;
+				if((getCurrentAnimation() == lookRightAnimation || getCurrentAnimation() == runRightAnimation) && currentAttackBox.intersects(player.getHitBox())) {
+					setCurrentAnimation(attackRightAnimation);
 					isAttacking = true;
 					damageDealt = false;
 				}
 				
-				if(isAttacking && currentAnimation.isStopped()) {
-					currentAnimation.restart();
+				if(isAttacking && getCurrentAnimation().isStopped()) {
+					getCurrentAnimation().restart();
 					isAttacking = true;
 					damageDealt = false;
 				}
@@ -717,28 +716,28 @@ public class Wolf extends Mob {
 			
 			damageToDeal = (int) (damageToDeal * (1 - player.getArmorProtection()/100.0));
 						
-			if(currentAnimation == attackUpAnimation && currentAnimation.getFrame() == 1) {
+			if(getCurrentAnimation() == attackUpAnimation && getCurrentAnimation().getFrame() == 1) {
 					if(currentAttackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 				}
 			}
 			
-			if(currentAnimation == attackDownAnimation && currentAnimation.getFrame() == 1) {
+			if(getCurrentAnimation() == attackDownAnimation && getCurrentAnimation().getFrame() == 1) {
 					if(currentAttackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 					}
 			}
 			
-			if(currentAnimation == attackLeftAnimation && currentAnimation.getFrame() == 1) {
+			if(getCurrentAnimation() == attackLeftAnimation && getCurrentAnimation().getFrame() == 1) {
 					if(currentAttackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
 				}		
 			}
 			
-			if(currentAnimation == attackRightAnimation && currentAnimation.getFrame() == 1) {
+			if(getCurrentAnimation() == attackRightAnimation && getCurrentAnimation().getFrame() == 1) {
 					if(currentAttackBox.intersects(player.getHitBox()) && player.isAlive()) {
 						player.decreaseHealth(damageToDeal);
 						damageDealt = true;
@@ -749,27 +748,27 @@ public class Wolf extends Mob {
 		
 		if(!currentAttackBox.intersects(player.getHitBox())) {
 			
-			if(currentAnimation == attackUpAnimation) {
-				currentAnimation.restart();
-				currentAnimation = lookUpAnimation;
+			if(getCurrentAnimation() == attackUpAnimation) {
+				getCurrentAnimation().restart();
+				setCurrentAnimation(lookUpAnimation);
 				isAttacking = false;
 			}
 			
-			if(currentAnimation == attackDownAnimation) {
-				currentAnimation.restart();
-				currentAnimation = lookDownAnimation;
+			if(getCurrentAnimation() == attackDownAnimation) {
+				getCurrentAnimation().restart();
+				setCurrentAnimation(lookDownAnimation);
 				isAttacking = false;
 			}
 			
-			if(currentAnimation == attackLeftAnimation) {
-				currentAnimation.restart();
-				currentAnimation = lookLeftAnimation;
+			if(getCurrentAnimation() == attackLeftAnimation) {
+				getCurrentAnimation().restart();
+				setCurrentAnimation(lookLeftAnimation);
 				isAttacking = false;
 			}
 			
-			if(currentAnimation == attackRightAnimation) {
-				currentAnimation.restart();
-				currentAnimation = lookRightAnimation;
+			if(getCurrentAnimation() == attackRightAnimation) {
+				getCurrentAnimation().restart();
+				setCurrentAnimation(lookRightAnimation);
 				isAttacking = false;
 			}
 			
@@ -777,27 +776,27 @@ public class Wolf extends Mob {
 		
 		if(!player.isAlive()) {
 			
-			if(currentAnimation == attackUpAnimation) {
-				currentAnimation.restart();
-				currentAnimation = lookUpAnimation;
+			if(getCurrentAnimation() == attackUpAnimation) {
+				getCurrentAnimation().restart();
+				setCurrentAnimation(lookUpAnimation);
 				isAttacking = false;
 			}
 			
-			if(currentAnimation == attackDownAnimation) {
-				currentAnimation.restart();
-				currentAnimation = lookDownAnimation;
+			if(getCurrentAnimation() == attackDownAnimation) {
+				getCurrentAnimation().restart();
+				setCurrentAnimation(lookDownAnimation);
 				isAttacking = false;
 			}
 			
-			if(currentAnimation == attackLeftAnimation) {
-				currentAnimation.restart();
-				currentAnimation = lookLeftAnimation;
+			if(getCurrentAnimation() == attackLeftAnimation) {
+				getCurrentAnimation().restart();
+				setCurrentAnimation(lookLeftAnimation);
 				isAttacking = false;
 			}
 			
-			if(currentAnimation == attackRightAnimation) {
-				currentAnimation.restart();
-				currentAnimation = lookRightAnimation;
+			if(getCurrentAnimation() == attackRightAnimation) {
+				getCurrentAnimation().restart();
+				setCurrentAnimation(lookRightAnimation);
 				isAttacking = false;
 			}
 			
@@ -897,25 +896,25 @@ public class Wolf extends Mob {
 			if(healthBar.getCurrentValue() <= 0) {
 				healthBar.setCurrentValue(0);
 				
-				if(currentAnimation == lookUpAnimation || currentAnimation == howlUpAnimation || currentAnimation == walkUpAnimation || currentAnimation == runUpAnimation || currentAnimation == attackUpAnimation) {
-					currentAnimation = dieUpAnimation;
+				if(getCurrentAnimation() == lookUpAnimation || getCurrentAnimation() == howlUpAnimation || getCurrentAnimation() == walkUpAnimation || getCurrentAnimation() == runUpAnimation || getCurrentAnimation() == attackUpAnimation) {
+					setCurrentAnimation(dieUpAnimation);
 				}
 				
-				if(currentAnimation == lookDownAnimation || currentAnimation == howlDownAnimation || currentAnimation == walkDownAnimation || currentAnimation == runDownAnimation || currentAnimation == attackDownAnimation) {
-					currentAnimation = dieDownAnimation;
+				if(getCurrentAnimation() == lookDownAnimation || getCurrentAnimation() == howlDownAnimation || getCurrentAnimation() == walkDownAnimation || getCurrentAnimation() == runDownAnimation || getCurrentAnimation() == attackDownAnimation) {
+					setCurrentAnimation(dieDownAnimation);
 				}
 				
-				if(currentAnimation == lookLeftAnimation || currentAnimation == howlLeftAnimation || currentAnimation == walkLeftAnimation || currentAnimation == runLeftAnimation || currentAnimation == attackLeftAnimation) {
-					currentAnimation = dieLeftAnimation;
+				if(getCurrentAnimation() == lookLeftAnimation || getCurrentAnimation() == howlLeftAnimation || getCurrentAnimation() == walkLeftAnimation || getCurrentAnimation() == runLeftAnimation || getCurrentAnimation() == attackLeftAnimation) {
+					setCurrentAnimation(dieLeftAnimation);
 				}
 				
-				if(currentAnimation == lookRightAnimation || currentAnimation == howlRightAnimation || currentAnimation == walkRightAnimation || currentAnimation == runRightAnimation || currentAnimation == attackRightAnimation) {
-					currentAnimation = dieRightAnimation;
+				if(getCurrentAnimation() == lookRightAnimation || getCurrentAnimation() == howlRightAnimation || getCurrentAnimation() == walkRightAnimation || getCurrentAnimation() == runRightAnimation || getCurrentAnimation() == attackRightAnimation) {
+					setCurrentAnimation(dieRightAnimation);
 				}
 				
 				isAlive = false;
-				bloodtheft = false;
-				bloodtheftCounter = 0;
+				setBloodtheft(false);
+				setBloodtheftCounter(0);
 				
 				player.addExperience(experienceForPlayer);
 								
@@ -937,6 +936,35 @@ public class Wolf extends Mob {
 		if(bloodAnimation.isStopped()) {
 			drawBlood = false;
 			bloodAnimation.restart();
+		}
+		
+	}
+	
+	private void checkIfIceblockIsOver() {
+
+		if(System.currentTimeMillis() - getIceblockedTimestamp() > 10000) {
+			setIceblocked(false);
+			getCurrentAnimation().start();
+		}
+		
+	}
+		
+	private void checkIfBloodtheft() {
+
+		if(isBloodtheft() && getBloodtheftCounter() < 10 && System.currentTimeMillis() - getBloodtheftTimestamp() >= 1000) {
+			decreaseHealth(15);
+			player.getHealthBar().setCurrentValue(player.getHealthBar().getCurrentValue() + 15);
+			
+			setBloodtheftTimestamp(System.currentTimeMillis());
+			setBloodtheftCounter(getBloodtheftCounter() + 1);
+			
+			drawBlood = true;
+
+		}
+		
+		if(isBloodtheft() && getBloodtheftCounter() >= 10) {
+			setBloodtheft(false);
+			setBloodtheftCounter(0);
 		}
 		
 	}
@@ -965,46 +993,6 @@ public class Wolf extends Mob {
 	
 	public int getExperienceForPlayer() {
 		return experienceForPlayer;
-	}
-
-	public boolean isIceblocked() {
-		return iceblocked;
-	}
-
-	public void setIceblocked(boolean iceblocked) {
-		this.iceblocked = iceblocked;
-	}
-
-	public long getIceblockedTimestamp() {
-		return iceblockedTimestamp;
-	}
-
-	public void setIceblockedTimestamp(long iceblockedTimestamp) {
-		this.iceblockedTimestamp = iceblockedTimestamp;
-	}
-	
-	public boolean isBloodtheft() {
-		return bloodtheft;
-	}
-
-	public void setBloodtheft(boolean bloodtheft) {
-		this.bloodtheft = bloodtheft;
-	}
-
-	public int getBloodtheftCounter() {
-		return bloodtheftCounter;
-	}
-
-	public void setBloodtheftCounter(int bloodtheftCounter) {
-		this.bloodtheftCounter = bloodtheftCounter;
-	}
-
-	public long getBloodtheftTimestamp() {
-		return bloodtheftTimestamp;
-	}
-
-	public void setBloodtheftTimestamp(long bloodtheftTimestamp) {
-		this.bloodtheftTimestamp = bloodtheftTimestamp;
 	}
 
 	public boolean isAlive() {

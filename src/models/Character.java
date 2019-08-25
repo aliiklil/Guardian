@@ -23,15 +23,7 @@ public abstract class Character extends Mob {
 	//Current speed of the character
 	private float movementSpeed = 2f;
 	private float diagonalMovementSpeed = 1.6f;
-		
-	private float centerX;
-	private float centerY;
-	
-	private int centerXTile;
-	private int centerYTile;
-	
-	private boolean alive = true;
-	
+				
 	private Bar healthBar;
 	
 	private SpriteSheet bloodSpriteSheet;
@@ -82,8 +74,6 @@ public abstract class Character extends Mob {
 	private Animation spellRightAnimation;
 	
 	private Animation dieAnimation;
-	
-	private Animation currentAnimation;
 	
 	private ArrayList<Item> inventoryList = new ArrayList<Item>();
 	private ArrayList<Integer> itemCountList = new ArrayList<Integer>();
@@ -165,22 +155,22 @@ public abstract class Character extends Mob {
 		
 		dieAnimation.setLooping(false);
 		
-		currentAnimation = lookDownAnimation;
+		setCurrentAnimation(lookDownAnimation);
 		
-		centerX = relativeToMapX - Main.TILE_SIZE/2;
-		centerY = relativeToMapY - Main.TILE_SIZE/2;
+		setCenterX(getRelativeToMapX() + Main.TILE_SIZE/2);
+		setCenterY(getRelativeToMapY() + Main.TILE_SIZE/2);
 		
-		centerXTile = (int) (centerX / Main.TILE_SIZE);
-		centerYTile = (int) (centerY / Main.TILE_SIZE);
+		setCenterXTile((int) (getCenterX() / Main.TILE_SIZE));
+		setCenterYTile((int) (getCenterY() / Main.TILE_SIZE));
 			
 	}
 	
 	public void update() throws SlickException {
-		centerX = getRelativeToMapX() + Main.TILE_SIZE/2;
-		centerY = getRelativeToMapY() + Main.TILE_SIZE/2;
+		setCenterX(getRelativeToMapX() + Main.TILE_SIZE/2);
+		setCenterY(getRelativeToMapY() + Main.TILE_SIZE/2);
 		
-		centerXTile = (int) (centerX / Main.TILE_SIZE);
-		centerYTile = (int) (centerY / Main.TILE_SIZE);
+		setCenterXTile((int) (getCenterX() / Main.TILE_SIZE));
+		setCenterYTile((int) (getCenterY() / Main.TILE_SIZE));
 	}
 	
 	public abstract void render(Graphics g);
@@ -273,38 +263,6 @@ public abstract class Character extends Mob {
 		this.diagonalMovementSpeed = diagonalMovementSpeed;
 	}
 	
-	public float getCenterX() {
-		return centerX;
-	}
-
-	public float getCenterY() {
-		return centerY;
-	}
-	
-	public void setCenterX(float centerX) {
-		this.centerX = centerX;
-	}
-
-	public void setCenterY(float centerY) {
-		this.centerY = centerY;
-	}
-	
-	public int getCenterXTile() {
-		return centerXTile;
-	}
-
-	public int getCenterYTile() {
-		return centerYTile;
-	}
-	
-	public boolean isAlive() {
-		return alive;
-	}
-
-	public void setAlive(boolean alive) {
-		this.alive = alive;
-	}
-	
 	public Bar getHealthBar() {
 		return healthBar;
 	}
@@ -341,14 +299,6 @@ public abstract class Character extends Mob {
 		this.overSizeSpriteSheet = overSizeSpriteSheet;
 	}
 	
-	public Animation getCurrentAnimation() {
-		return currentAnimation;
-	}
-
-	public void setCurrentAnimation(Animation currentAnimation) {
-		this.currentAnimation = currentAnimation;
-	}
-
 	public Animation getLookUpAnimation() {
 		return lookUpAnimation;
 	}

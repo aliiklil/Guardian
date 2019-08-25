@@ -2,8 +2,10 @@ package models;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import main.Game;
 import main.Main;
@@ -29,7 +31,21 @@ public abstract class Mob {
 	private CollisionBox collisionBox;
 	private CollisionBox hitBox;
 
-	public Mob(float relativeToMapX, float relativeToMapY, boolean alive) {
+	private boolean iceblocked; //If NPC is blocked by iceblock
+	private long iceblockedTimestamp; //Time when player was iceblocked
+	private Animation iceblockAnimation;
+	
+	private Animation currentAnimation;
+	
+	private boolean isGoingToPlayer;
+	
+	private boolean bloodtheft;
+	private int bloodtheftCounter;
+	private long bloodtheftTimestamp;
+	
+	private boolean hostileToPlayer;
+	
+	public Mob(float relativeToMapX, float relativeToMapY, boolean alive) throws SlickException {
 		
 		this.relativeToMapX = relativeToMapX;
 		this.relativeToMapY = relativeToMapY;
@@ -43,7 +59,9 @@ public abstract class Mob {
 		
 		this.startCenterXTile = centerXTile;
 		this.startCenterYTile = centerYTile;
+				
 		
+		iceblockAnimation = new Animation(new SpriteSheet("resources/iceblockSprite.png", 64, 64), 0, 0, 0, 0, true, 100, true);
 	}
 
 	public abstract void update() throws SlickException;
@@ -212,5 +230,77 @@ public abstract class Mob {
 	public void setStartCenterYTile(int startCenterYTile) {
 		this.startCenterYTile = startCenterYTile;
 	}
-	
+
+	public boolean isIceblocked() {
+		return iceblocked;
+	}
+
+	public void setIceblocked(boolean iceblocked) {
+		this.iceblocked = iceblocked;
+	}
+
+	public long getIceblockedTimestamp() {
+		return iceblockedTimestamp;
+	}
+
+	public void setIceblockedTimestamp(long iceblockedTimestamp) {
+		this.iceblockedTimestamp = iceblockedTimestamp;
+	}
+
+	public Animation getIceblockAnimation() {
+		return iceblockAnimation;
+	}
+
+	public void setIceblockAnimation(Animation iceblockAnimation) {
+		this.iceblockAnimation = iceblockAnimation;
+	}
+
+	public Animation getCurrentAnimation() {
+		return currentAnimation;
+	}
+
+	public void setCurrentAnimation(Animation currentAnimation) {
+		this.currentAnimation = currentAnimation;
+	}
+
+	public boolean isGoingToPlayer() {
+		return isGoingToPlayer;
+	}
+
+	public void setGoingToPlayer(boolean isGoingToPlayer) {
+		this.isGoingToPlayer = isGoingToPlayer;
+	}
+
+	public boolean isBloodtheft() {
+		return bloodtheft;
+	}
+
+	public void setBloodtheft(boolean bloodtheft) {
+		this.bloodtheft = bloodtheft;
+	}
+
+	public int getBloodtheftCounter() {
+		return bloodtheftCounter;
+	}
+
+	public void setBloodtheftCounter(int bloodtheftCounter) {
+		this.bloodtheftCounter = bloodtheftCounter;
+	}
+
+	public long getBloodtheftTimestamp() {
+		return bloodtheftTimestamp;
+	}
+
+	public void setBloodtheftTimestamp(long bloodtheftTimestamp) {
+		this.bloodtheftTimestamp = bloodtheftTimestamp;
+	}
+
+	public boolean isHostileToPlayer() {
+		return hostileToPlayer;
+	}
+
+	public void setHostileToPlayer(boolean hostileToPlayer) {
+		this.hostileToPlayer = hostileToPlayer;
+	}
+
 }

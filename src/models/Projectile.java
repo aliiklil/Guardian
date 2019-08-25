@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 
+import javax.swing.plaf.synth.SynthSplitPaneUI;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -27,7 +29,7 @@ public class Projectile {
 	private final int velocity;
 	private final int direction;
 	
-	private ArrayList<NPC> npcList;
+	private ArrayList<Mob> mobList;
 		
 	private int travelledDistance = 0;
 	private final int travelledDistanceRemove = Main.TILE_SIZE * 33;
@@ -121,24 +123,24 @@ public class Projectile {
 			collisionBox.setX(relativeToMapX + 16);
 			collisionBox.setY(relativeToMapY + 16);
 			
-			npcList = MobManager.getNpcList();
+			mobList = MobManager.getMobListWithoutPlayer();
 			
-			for(NPC npc : npcList) {
-					if(collisionBox.intersects(npc.getHitBox()) && npc.isAlive() && npc.isHostileToPlayer()) {
-						npc.decreaseHealth(damage);
+			for(Mob mob : mobList) {
+					if(collisionBox.intersects(mob.getHitBox()) && mob.isAlive() && mob.isHostileToPlayer()) {
+						mob.decreaseHealth(damage);
 						
 						if(isBlocking) {
-							npc.setIceblocked(true);
-							npc.setIceblockedTimestamp(System.currentTimeMillis());
-							npc.getCurrentAnimation().stop();
+							mob.setIceblocked(true);
+							mob.setIceblockedTimestamp(System.currentTimeMillis());
+							mob.getCurrentAnimation().stop();
 						}
 						
 						if(isBloodtheft) {
-							npc.setBloodtheft(true);
-							npc.setBloodtheftTimestamp(System.currentTimeMillis());
+							mob.setBloodtheft(true);
+							mob.setBloodtheftTimestamp(System.currentTimeMillis());
 						}
 						
-						npc.setGoingToPlayer(true);
+						mob.setGoingToPlayer(true);
 						Game.getProjectileManager().removeProjectile(this);
 					}
 			}

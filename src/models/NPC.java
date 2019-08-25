@@ -33,8 +33,6 @@ public class NPC extends Character {
 	private Circle aggressionCircle;
 	private int aggressionCircleRadius = 320;
 	
-	private boolean isGoingToPlayer = false;
-	
 	private List<Node> path;
 
 	private Player player = MobManager.getPlayer();
@@ -53,8 +51,6 @@ public class NPC extends Character {
 	
 	private boolean damageDealt = false;
 	
-	private boolean hostileToPlayer;
-	
 	private Item itemDrop;
 
 	private ArrayList<Dialogue> startingDialogues = new ArrayList<Dialogue>();
@@ -65,16 +61,7 @@ public class NPC extends Character {
 	private double critChance;
 	
 	private ItemType equippedMelee;
-	
-	private boolean iceblocked; //If NPC is blocked by iceblock
-	private long iceblockedTimestamp; //Time when player was iceblocked
-	
-	private Animation iceblockAnimation;
-	
-	private boolean bloodtheft;
-	private int bloodtheftCounter;
-	private long bloodtheftTimestamp;
-	
+		
 	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer, int damageOutput, double critChance, boolean alive) throws SlickException {
 
 		super(relativeToMapX, relativeToMapY, spriteSheetPath, alive);
@@ -102,7 +89,7 @@ public class NPC extends Character {
 		goDownLeft = false;
 		goDownRight = false;
 						
-		this.hostileToPlayer = hostileToPlayer;
+		setHostileToPlayer(hostileToPlayer);
 		
 		this.itemDrop = itemDrop;
 		
@@ -112,9 +99,7 @@ public class NPC extends Character {
 		
 		this.damageOutput = damageOutput;
 		this.critChance = critChance;
-		
-		iceblockAnimation = new Animation(new SpriteSheet("resources/iceblockSprite.png", 64, 64), 0, 0, 0, 0, true, 100, true);
-		
+				
 	}
 
 	public void update() throws SlickException {
@@ -136,9 +121,9 @@ public class NPC extends Character {
 		getHitBox().setX(getRelativeToMapX());
 		getHitBox().setY(getRelativeToMapY() - 10);
 		
-		if(isAlive() && hostileToPlayer && !iceblocked) {
-			goToPlayer();
-			//attackPlayer();
+		if(isAlive() && isHostileToPlayer() && !isIceblocked()) {
+			updateMove();
+			updateAttackPlayer();
 		}
 				
 		
@@ -159,7 +144,6 @@ public class NPC extends Character {
 		}
 		
 		checkIfIceblockIsOver();
-		
 		checkIfBloodtheft();
 		
 	}
@@ -184,23 +168,23 @@ public class NPC extends Character {
 			super.drawBlood(screenRelativeX, screenRelativeY);
 		}
 		
-		if(iceblocked) {
-			iceblockAnimation.draw(screenRelativeX, screenRelativeY + 2);
+		if(isIceblocked()) {
+			getIceblockAnimation().draw(screenRelativeX, screenRelativeY + 2);
 		}
 					
 	}
 	
-	private void goToPlayer() {
+	private void updateMove() {
 		
-		if(!isGoingToPlayer && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
-			isGoingToPlayer = true;
+		if(!isGoingToPlayer() && aggressionCircle.contains(player.getCenterX(), player.getCenterY())) {
+			setGoingToPlayer(true);
 		}
 	
-		if(isGoingToPlayer) {
+		if(isGoingToPlayer()) {
 			path = findPath();
 		}
 		
-		if(isGoingToPlayer && path != null && !path.isEmpty() && super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && (Math.round(super.getCenterX())+16) % 32 == 0 && (Math.round(super.getCenterY())+16) % 32 == 0) {
+		if(isGoingToPlayer() && path != null && !path.isEmpty() && super.getCenterYTile() == path.get(0).getRow() && super.getCenterXTile() == path.get(0).getCol() && (Math.round(super.getCenterX())+16) % 32 == 0 && (Math.round(super.getCenterY())+16) % 32 == 0) {
 			path.remove(0);
 			
 			if(!path.isEmpty()) {
@@ -333,7 +317,7 @@ public class NPC extends Character {
 	
 		}
 		
-		if(isGoingToPlayer && path != null && !path.isEmpty() && !isAttacking) {
+		if(isGoingToPlayer() && path != null && !path.isEmpty() && !isAttacking) {
 			
 			if(goUp && !isUpCollision(super.getMovementSpeed())) {		
 				super.setRelativeToMapY(super.getRelativeToMapY() - super.getMovementSpeed());
@@ -437,9 +421,9 @@ public class NPC extends Character {
 		
 	}
 	
-	private void attackPlayer() {
+	private void updateAttackPlayer() {
 		
-		if(isGoingToPlayer && player.isAlive()) {
+		if(isGoingToPlayer() && player.isAlive()) {
 			if(path.isEmpty() || (getCenterXTile() == player.getCenterXTile() && getCenterYTile() == player.getCenterYTile()) || isTouchingPlayer()
 					|| equippedMelee.getAttackUpCollisionBox().intersects(player.getHitBox()) || equippedMelee.getAttackDownCollisionBox().intersects(player.getHitBox()) 
 					|| equippedMelee.getAttackLeftCollisionBox().intersects(player.getHitBox()) || equippedMelee.getAttackRightCollisionBox().intersects(player.getHitBox())) {
@@ -659,8 +643,8 @@ public class NPC extends Character {
 	
 	private void checkIfIceblockIsOver() {
 
-		if(System.currentTimeMillis() - iceblockedTimestamp > 10000) {
-			iceblocked = false;
+		if(System.currentTimeMillis() - getIceblockedTimestamp() > 10000) {
+			setIceblocked(false);
 			getCurrentAnimation().start();
 		}
 		
@@ -668,29 +652,24 @@ public class NPC extends Character {
 		
 	private void checkIfBloodtheft() {
 
-		if(bloodtheft && bloodtheftCounter < 10 && System.currentTimeMillis() - bloodtheftTimestamp >= 1000) {
+		if(isBloodtheft() && getBloodtheftCounter() < 10 && System.currentTimeMillis() - getBloodtheftTimestamp() >= 1000) {
 			decreaseHealth(15);
 			player.getHealthBar().setCurrentValue(player.getHealthBar().getCurrentValue() + 15);
 			
-			bloodtheftTimestamp = System.currentTimeMillis();
-			bloodtheftCounter++;
+			setBloodtheftTimestamp(System.currentTimeMillis());
+			setBloodtheftCounter(getBloodtheftCounter() + 1);
 			
 			setDrawBlood(true);
 				
 		}
 		
-		if(bloodtheft && bloodtheftCounter >= 10) {
-			bloodtheft = false;
-			bloodtheftCounter = 0;
+		if(isBloodtheft() && getBloodtheftCounter() >= 10) {
+			setBloodtheft(false);
+			setBloodtheftCounter(0);
 		}
 		
 	}
-					
-	public void setGoingToPlayer(boolean isGoingToPlayer) {
-		this.isGoingToPlayer = isGoingToPlayer;
-	}
-	
-	
+						
 	private boolean isTouchingPlayer() {
 		
 		if(super.getCollisionBox().willIntersectUp(player.getCollisionBox(), 5)) {
@@ -723,8 +702,8 @@ public class NPC extends Character {
 				getHealthBar().setCurrentValue(0);
 				setCurrentAnimation(getDieAnimation());
 				setAlive(false);
-				bloodtheft = false;
-				bloodtheftCounter = 0;
+				setBloodtheft(false);
+				setBloodtheftCounter(0);
 				
 				player.addExperience(experienceForPlayer);
 								
@@ -740,10 +719,6 @@ public class NPC extends Character {
 		
 	}
 	
-	public boolean isHostileToPlayer() {
-		return hostileToPlayer;
-	}
-
 	public ArrayList<Dialogue> getStartingDialogues() {
 		return startingDialogues;
 	}
@@ -760,44 +735,4 @@ public class NPC extends Character {
 		this.equippedMelee = equippedMelee;
 	}
 
-	public boolean isIceblocked() {
-		return iceblocked;
-	}
-
-	public void setIceblocked(boolean iceblocked) {
-		this.iceblocked = iceblocked;
-	}
-
-	public long getIceblockedTimestamp() {
-		return iceblockedTimestamp;
-	}
-
-	public void setIceblockedTimestamp(long iceblockedTimestamp) {
-		this.iceblockedTimestamp = iceblockedTimestamp;
-	}
-	
-	public boolean isBloodtheft() {
-		return bloodtheft;
-	}
-
-	public void setBloodtheft(boolean bloodtheft) {
-		this.bloodtheft = bloodtheft;
-	}
-
-	public int getBloodtheftCounter() {
-		return bloodtheftCounter;
-	}
-
-	public void setBloodtheftCounter(int bloodtheftCounter) {
-		this.bloodtheftCounter = bloodtheftCounter;
-	}
-
-	public long getBloodtheftTimestamp() {
-		return bloodtheftTimestamp;
-	}
-
-	public void setBloodtheftTimestamp(long bloodtheftTimestamp) {
-		this.bloodtheftTimestamp = bloodtheftTimestamp;
-	}
-	
 }

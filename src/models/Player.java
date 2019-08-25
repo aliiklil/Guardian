@@ -708,7 +708,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayUpAnimation() || super.getCurrentAnimation() == super.getThrustUpAnimation())) {
 				for (Mob mob : mobList) {
-					if(equippedMelee.getAttackUpCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+					if(equippedMelee.getAttackUpCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() && mob.isHostileToPlayer()) {
 						mob.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						if(!mob.isUpCollision(Main.TILE_SIZE * 3) && !mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
@@ -724,7 +724,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayDownAnimation() || super.getCurrentAnimation() == super.getThrustDownAnimation())) {
 				for (Mob mob : mobList) {
-					if(equippedMelee.getAttackDownCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+					if(equippedMelee.getAttackDownCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() && mob.isHostileToPlayer()) {
 						mob.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						if(!mob.isDownCollision(Main.TILE_SIZE * 3) && !mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
@@ -740,7 +740,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayLeftAnimation() || super.getCurrentAnimation() == super.getThrustLeftAnimation())) {
 				for (Mob mob : mobList) {
-					if(equippedMelee.getAttackLeftCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+					if(equippedMelee.getAttackLeftCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() && mob.isHostileToPlayer()) {
 						mob.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						if(!mob.isLeftCollision(Main.TILE_SIZE * 3) && !mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
@@ -756,7 +756,7 @@ public class Player extends Character {
 
 			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayRightAnimation() || super.getCurrentAnimation() == super.getThrustRightAnimation())) {
 				for (Mob mob : mobList) {
-					if(equippedMelee.getAttackRightCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+					if(equippedMelee.getAttackRightCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() && mob.isHostileToPlayer()) {
 						mob.decreaseHealth(damageToDeal);
 						damageDealt = true;
 						if(!mob.isRightCollision(Main.TILE_SIZE * 3) && !mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {
@@ -1153,7 +1153,7 @@ public class Player extends Character {
 					projectile.setBloodtheft(true);
 				}
 				
-				spellCreated = true;
+				spellCreated = false;
 				Game.getProjectileManager().addProjectile(projectile);
 
 			}
@@ -1187,7 +1187,7 @@ public class Player extends Character {
 					projectile.setBloodtheft(true);
 				}
 				
-				spellCreated = true;
+				spellCreated = false;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
 
@@ -1220,7 +1220,7 @@ public class Player extends Character {
 					projectile.setBloodtheft(true);
 				}
 				
-				spellCreated = true;
+				spellCreated = false;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
 
@@ -1231,7 +1231,7 @@ public class Player extends Character {
 
 				
 				SpriteSheet spriteSheet = null;
-				System.out.println(equippedSpell.getName());
+
 				if(equippedSpell.getName().equals("Icelance")) {
 					spriteSheet = new SpriteSheet("resources/icelance.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Fireball")) {
@@ -1250,7 +1250,11 @@ public class Player extends Character {
 					projectile.setBlocking(true);
 				}
 				
-				spellCreated = true;
+				if(equippedSpell.getName().equals("Bloodtheft")) {
+					projectile.setBloodtheft(true);
+				}
+				
+				spellCreated = false;
 				Game.getProjectileManager().addProjectile(projectile);
 			}
 			
