@@ -123,6 +123,13 @@ public class Wolf extends Mob {
 	private long howlingTimestamp; //Timestamp when wolf howled last time
 	private int durationBetweenHowling = 10000;
 	
+	private boolean isRoaming = true;
+	
+	private boolean isRoamingUp = false;
+	private boolean isRoamingDown = false;
+	private boolean isRoamingLeft = true;
+	private boolean isRoamingRight = false;
+	
 	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive) throws SlickException {
 		
 		super(relativeToMapX, relativeToMapY, alive);
@@ -245,6 +252,7 @@ public class Wolf extends Mob {
 			updateMove();
 			updateAttackPlayer();
 			updateHowling();
+			updateRoaming();
 		}
 		
 		setCenterX(getRelativeToMapX() + Main.TILE_SIZE/2);
@@ -256,8 +264,6 @@ public class Wolf extends Mob {
 
 				
 	}
-
-
 
 	public void render(Graphics g) {
 		currentAnimation.draw(screenRelativeX, screenRelativeY);
@@ -275,17 +281,71 @@ public class Wolf extends Mob {
 	}
 	
 	private void updateHowling() {
-		
+		/*
 		if(currentAnimation == lookDownAnimation && System.currentTimeMillis() - howlingTimestamp > durationBetweenHowling) {
 			currentAnimation = howlDownAnimation;
 			currentAnimation.restart();
 		}
 		
-		if(currentAnimation == howlDownAnimation && currentAnimation.isStopped()) {
+		if(currentAnimation.isStopped() && currentAnimation == howlDownAnimation) {
 			currentAnimation = lookDownAnimation;
 			howlingTimestamp = System.currentTimeMillis();
 		}
- 		
+ 		*/
+	}
+
+	private void updateRoaming() {
+		
+		if(isRoaming && !isGoingToPlayer) {
+		
+			if((Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
+				
+				if(isRoamingUp) {
+					isRoamingUp = false;
+					isRoamingDown = false;
+					isRoamingLeft = true;
+					isRoamingRight = false;
+				} else if(isRoamingDown) {
+					isRoamingUp = false;
+					isRoamingDown = false;
+					isRoamingLeft = false;
+					isRoamingRight = true;
+				} else if(isRoamingLeft) {
+					isRoamingUp = false;
+					isRoamingDown = true;
+					isRoamingLeft = false;
+					isRoamingRight = false;
+				}else if(isRoamingRight) {
+					isRoamingUp = true;
+					isRoamingDown = false;
+					isRoamingLeft = false;
+					isRoamingRight = false;
+				}
+				
+			}
+			
+			if(isRoamingUp && !isUpCollision(movementSpeed)) {		
+				setRelativeToMapY(getRelativeToMapY() - movementSpeed);
+				currentAnimation = walkUpAnimation;
+			}
+			
+			if(isRoamingDown && !isDownCollision(movementSpeed)) {		
+				setRelativeToMapY(getRelativeToMapY() + movementSpeed);
+				currentAnimation = walkDownAnimation;
+			}
+			
+			if(isRoamingLeft && !isLeftCollision(movementSpeed)) {		
+				setRelativeToMapX(getRelativeToMapX() - movementSpeed);
+				currentAnimation = walkLeftAnimation;
+			}
+			
+			if(isRoamingRight && !isRightCollision(movementSpeed)) {		
+				setRelativeToMapX(getRelativeToMapX() + movementSpeed);
+				currentAnimation = walkRightAnimation;
+			}
+
+		}
+		
 	}
 
 	private void updateAttackBox() {
