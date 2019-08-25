@@ -493,8 +493,8 @@ public class Learning {
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).addSentence("Summon Wolf Rune (Wolf Hide, Empty Rune)", "Hero");
-						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).addSentence("I have successfully forged a Summon Wolf Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).addSentence("Transform Into Wolf Rune (Wolf Hide, Empty Rune)", "Hero");
+						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).addSentence("I have successfully forged a Transform Into Wolf Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(0).getChildDialogues().get(3).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(0).addChildDialogue(new Dialogue());
@@ -529,8 +529,8 @@ public class Learning {
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).addSentence("Summon Skeleton Rune (Bone, Empty Rune)", "Hero");
-						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).addSentence("I have successfully forged a Summon Skeleton Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).addSentence("Transform Into Skeleton Rune (Bone, Empty Rune)", "Hero");
+						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).addSentence("I have successfully forged a Transform Into Skeleton Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(1).getChildDialogues().get(3).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(1).addChildDialogue(new Dialogue());
@@ -565,8 +565,8 @@ public class Learning {
 						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(2).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());
-						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("Summon Orc Warrior Rune (Orc Tooth, Empty Rune)", "Hero");
-						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("I have successfully forged a Summon Orc Warrior Rune.", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("Transform Into Orc Warrior Rune (Orc Tooth, Empty Rune)", "Hero");
+						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).addSentence("I have successfully forged a Transform Into Orc Warrior Rune.", "Hero");
 						DialogueManager.runeForgingDialogues.get(2).getChildDialogues().get(3).setPermanent(true);
 						
 						DialogueManager.runeForgingDialogues.get(2).addChildDialogue(new Dialogue());

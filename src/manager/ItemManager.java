@@ -46,34 +46,34 @@ public class ItemManager {
 		
 		itemList.add(new Item(480, 416, itemTypeManager.titanspearRune));
 		itemList.add(new Item(480, 416, itemTypeManager.iceblockRune));
-		itemList.add(new Item(480, 416, itemTypeManager.summonWolfRune));
+		itemList.add(new Item(480, 416, itemTypeManager.transformIntoWolfRune));
 		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsRune));	
 		
 		itemList.add(new Item(480, 416, itemTypeManager.icelanceRune));
 		itemList.add(new Item(480, 416, itemTypeManager.bloodtheftRune));
-		itemList.add(new Item(480, 416, itemTypeManager.summonSkeletonRune));
+		itemList.add(new Item(480, 416, itemTypeManager.transformIntoSkeletonRune));
 		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsRune));
 				
 		itemList.add(new Item(480, 416, itemTypeManager.fireballRune));
 		itemList.add(new Item(480, 416, itemTypeManager.firerainRune));
-		itemList.add(new Item(480, 416, itemTypeManager.summonOrcWarriorRune));
+		itemList.add(new Item(480, 416, itemTypeManager.transformIntoOrcWarriorRune));
 		itemList.add(new Item(480, 416, itemTypeManager.healHeavyWoundsRune));
 		
 		
 		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.titanspearSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.iceblockSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.summonWolfSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.transformIntoWolfSpell));
 			
 		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.icelanceSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.bloodtheftSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.summonSkeletonSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.transformIntoSkeletonSpell));
 				
 		itemList.add(new Item(480, 416, itemTypeManager.healHeavyWoundsSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.fireballSpell));
 		itemList.add(new Item(480, 416, itemTypeManager.firerainSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.summonOrcWarriorSpell));
+		itemList.add(new Item(480, 416, itemTypeManager.transformIntoOrcWarriorSpell));
 		
 		
 		

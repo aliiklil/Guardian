@@ -34,38 +34,32 @@ public class ItemTypeManager {
 	public ItemType healLightWoundsRune;
 	public ItemType icelanceRune;
 	public ItemType iceblockRune;
-	public ItemType summonWolfRune;
 	public ItemType transformIntoWolfRune;
 	
 	public ItemType healMediumWoundsRune;
 	public ItemType fireballRune;
 	public ItemType bloodtheftRune;
-	public ItemType summonSkeletonRune;
 	public ItemType transformIntoSkeletonRune;
 	
 	public ItemType healHeavyWoundsRune;
 	public ItemType titanspearRune;
 	public ItemType firerainRune;
-	public ItemType summonOrcWarriorRune;
 	public ItemType transformIntoOrcWarriorRune;
 	
 	
 	public ItemType healLightWoundsSpell;
 	public ItemType titanspearSpell;
 	public ItemType iceblockSpell;
-	public ItemType summonWolfSpell;
 	public ItemType transformIntoWolfSpell;
 	
 	public ItemType healMediumWoundsSpell;
 	public ItemType icelanceSpell;
 	public ItemType bloodtheftSpell;
-	public ItemType summonSkeletonSpell;
 	public ItemType transformIntoSkeletonSpell;
 	
 	public ItemType healHeavyWoundsSpell;
 	public ItemType fireballSpell;
 	public ItemType firerainSpell;
-	public ItemType summonOrcWarriorSpell;
 	public ItemType transformIntoOrcWarriorSpell;
 	
 	
@@ -364,8 +358,8 @@ public class ItemTypeManager {
 		iceblockRune = new ItemType(1, "resources/items/10otherrunes/iceblockRune.png", "Iceblock", 250, 10, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		iceblockRune.setManaCost(10);
 		
-		summonWolfRune = new ItemType(1, "resources/items/11summonrunes/summonWolfRune.png", "Summon Wolf", 250, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
-		summonWolfRune.setManaCost(10);
+		transformIntoWolfRune = new ItemType(1, "resources/items/11transformrunes/transformIntoWolfRune.png", "Transform Into Wolf", 250, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		transformIntoWolfRune.setManaCost(10);
 		
 
 
@@ -382,8 +376,8 @@ public class ItemTypeManager {
 		bloodtheftRune.setManaCost(20);
 		bloodtheftRune.setDamage(15);
 		
-		summonSkeletonRune = new ItemType(1, "resources/items/11summonrunes/summonSkeletonRune.png", "Summon Skeleton", 500, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
-		summonSkeletonRune.setManaCost(25);
+		transformIntoSkeletonRune = new ItemType(1, "resources/items/11transformrunes/transformIntoSkeletonRune.png", "Transform Into Skeleton", 500, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		transformIntoSkeletonRune.setManaCost(25);
 		
 
 		
@@ -400,8 +394,8 @@ public class ItemTypeManager {
 		firerainRune.setManaCost(60);
 		firerainRune.setDamage(150);
 		
-		summonOrcWarriorRune = new ItemType(1, "resources/items/11summonrunes/summonOrcWarriorRune.png", "Summon Orc Warrior", 750, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
-		summonOrcWarriorRune.setManaCost(75);
+		transformIntoOrcWarriorRune = new ItemType(1, "resources/items/11transformrunes/transformIntoOrcWarriorRune.png", "Transform Into Orc Warrior", 750, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
+		transformIntoOrcWarriorRune.setManaCost(75);
 		
 
 		
@@ -420,8 +414,8 @@ public class ItemTypeManager {
 		iceblockSpell = new ItemType(1, "resources/items/14otherspells/iceblockSpell.png", "Iceblock", 25, 14, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		iceblockSpell.setManaCost(10);
 		
-		summonWolfSpell = new ItemType(1, "resources/items/15summonspells/summonWolfSpell.png", "Summon Wolf", 30, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
-		summonWolfSpell.setManaCost(10);
+		transformIntoWolfSpell = new ItemType(1, "resources/items/15transformspells/transformIntoWolfSpell.png", "Transform Into Wolf", 30, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		transformIntoWolfSpell.setManaCost(10);
 		
 		
 		
@@ -436,8 +430,8 @@ public class ItemTypeManager {
 		bloodtheftSpell = new ItemType(1, "resources/items/14otherspells/bloodtheftSpell.png", "Bloodtheft", 75, 14, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		bloodtheftSpell.setManaCost(15);
 		
-		summonSkeletonSpell = new ItemType(1, "resources/items/15summonspells/summonSkeletonSpell.png", "Summon Skeleton", 75, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
-		summonSkeletonSpell.setManaCost(15);
+		transformIntoSkeletonSpell = new ItemType(1, "resources/items/15transformspells/transformIntoSkeletonSpell.png", "Transform Into Skeleton", 75, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		transformIntoSkeletonSpell.setManaCost(15);
 		
 		
 		
@@ -452,8 +446,8 @@ public class ItemTypeManager {
 		firerainSpell = new ItemType(1, "resources/items/14otherspells/firerainSpell.png", "Firerain", 100, 14, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		firerainSpell.setManaCost(20);
 		
-		summonOrcWarriorSpell = new ItemType(1, "resources/items/15summonspells/summonOrcWarriorSpell.png", "Summon Orc Warrior", 150, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
-		summonOrcWarriorSpell.setManaCost(20);
+		transformIntoOrcWarriorSpell = new ItemType(1, "resources/items/15transformspells/transformIntoOrcWarriorSpell.png", "Transform Into Orc Warrior", 150, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
+		transformIntoOrcWarriorSpell.setManaCost(20);
 		
 		
 		

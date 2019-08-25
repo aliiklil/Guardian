@@ -128,7 +128,7 @@ public class RuneForging {
 		
 		Player player = MobManager.getPlayer();
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Summon Wolf Rune (Wolf Hide, Empty Rune)")) {
+		if(currentDialogue.getSentences().get(0).getText().equals("Transform Into Wolf Rune (Wolf Hide, Empty Rune)")) {
 			
 			int wolfHideCount = 0;
 			int emptyRuneCount = 0;
@@ -146,8 +146,8 @@ public class RuneForging {
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().wolfHide);
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().emptyRune);
 				
-				player.addItem(new Item(0, 0, Game.getItemTypeManager().summonWolfRune));
-				currentDialogue.getSentences().get(1).setText("I have successfully forged a Summon Wolf Rune.");
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().transformIntoWolfRune));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Transform Into Wolf Rune.");
 			} else {
 				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
 			}
@@ -256,7 +256,7 @@ public class RuneForging {
 		
 		Player player = MobManager.getPlayer();
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Summon Skeleton Rune (Bone, Empty Rune)")) {
+		if(currentDialogue.getSentences().get(0).getText().equals("Transform Into Skeleton Rune (Bone, Empty Rune)")) {
 			
 			int boneCount = 0;
 			int emptyRuneCount = 0;
@@ -274,8 +274,8 @@ public class RuneForging {
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().bone);
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().emptyRune);
 				
-				player.addItem(new Item(0, 0, Game.getItemTypeManager().summonSkeletonRune));
-				currentDialogue.getSentences().get(1).setText("I have successfully forged a Summon Skeleton Rune.");
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().transformIntoSkeletonRune));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Transform Into Skeleton Rune.");
 			} else {
 				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
 			}
@@ -384,7 +384,7 @@ public class RuneForging {
 		
 		Player player = MobManager.getPlayer();
 		
-		if(currentDialogue.getSentences().get(0).getText().equals("Summon Orc Warrior Rune (Orc Tooth, Empty Rune)")) {
+		if(currentDialogue.getSentences().get(0).getText().equals("Transform Into Orc Warrior Rune (Orc Tooth, Empty Rune)")) {
 			
 			int orcToothCount = 0;
 			int emptyRuneCount = 0;
@@ -402,8 +402,8 @@ public class RuneForging {
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().orcTooth);
 				player.getInventoryWindow().removeItem(Game.getItemTypeManager().emptyRune);
 				
-				player.addItem(new Item(0, 0, Game.getItemTypeManager().summonOrcWarriorRune));
-				currentDialogue.getSentences().get(1).setText("I have successfully forged a Summon Orc Warrior Rune.");
+				player.addItem(new Item(0, 0, Game.getItemTypeManager().transformIntoOrcWarriorRune));
+				currentDialogue.getSentences().get(1).setText("I have successfully forged a Transform Into Orc Warrior Rune.");
 			} else {
 				currentDialogue.getSentences().get(1).setText("I don't have the resources.");
 			}
