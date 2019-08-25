@@ -86,9 +86,6 @@ public class Wolf extends Mob {
 	private int durationBeforeRunning = 2000; //Time in milliseconds to run out before wolf starts to run instead of walk towards player
 	
 	private Player player = MobManager.getPlayer();
-
-	private int notWalkableLayerIndex;
-	private TiledMap tiledMap;
 	
 	private boolean goUp;
 	private boolean goDown;
@@ -123,10 +120,7 @@ public class Wolf extends Mob {
 	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive) throws SlickException {
 		
 		super(relativeToMapX, relativeToMapY, alive);
-		
-		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
-		tiledMap = Game.getCurrentMap().getTiledMap();
-		
+				
 		spriteSheet = new SpriteSheet(spriteSheetPath, 64, 64);
 		
 		lookUpAnimation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
@@ -194,10 +188,7 @@ public class Wolf extends Mob {
 		bloodAnimation = new Animation(bloodSpriteSheet, 0, 0, 7, 0, true, 50, true);
 		bloodAnimation.setLooping(false);
 		drawBlood = false;
-		
-		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
-		tiledMap = Game.getCurrentMap().getTiledMap();
-		
+				
 		goUp = false;
 		goDown = false;
 		goLeft = false;

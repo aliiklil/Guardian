@@ -38,9 +38,6 @@ public class NPC extends Character {
 	private List<Node> path;
 
 	private Player player = MobManager.getPlayer();
-
-	private int notWalkableLayerIndex;
-	private TiledMap tiledMap;
 	
 	private boolean goUp;
 	private boolean goDown;
@@ -94,10 +91,7 @@ public class NPC extends Character {
 		screenRelativeOverSizeY = Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getOverSizeSpriteSize() / 2;
 		
 		aggressionCircle = new Circle(super.getCenterX(), super.getCenterY(), aggressionCircleRadius);
-		
-		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");
-		tiledMap = Game.getCurrentMap().getTiledMap();
-		
+				
 		goUp = false;
 		goDown = false;
 		goLeft = false;
@@ -618,12 +612,12 @@ public class NPC extends Character {
         	}
         }
         
-        ArrayList<NPC> npcList = new ArrayList<NPC>(MobManager.getNpcList());
-        npcList.remove(this);
+        ArrayList<Mob> mobList = new ArrayList<Mob>(MobManager.getMobListWithoutPlayer());
+        mobList.remove(this);
         
-        for(NPC npc : npcList) {
-        	blocksArray[k][0] = npc.getCenterYTile();
-			blocksArray[k][1] = npc.getCenterXTile();
+        for(Mob mob : mobList) {
+        	blocksArray[k][0] = mob.getCenterYTile();
+			blocksArray[k][1] = mob.getCenterXTile();
 			k++;
         }
                 
