@@ -120,6 +120,107 @@ public class Player extends Character {
 	
 	private long firerainTimeStamp; //To know when the last firerain volley was fired
 	
+	
+	
+	
+	
+	
+	
+	private SpriteSheet skeletonSpriteSheet = new SpriteSheet("resources/player_sprites/skeleton_base.png", 64, 64);
+	private SpriteSheet overSizeSkeletonSpriteSheet = new SpriteSheet("resources/player_sprites/skeleton_base.png", 192, 192);
+	
+	private Animation skeletonLookUpAnimation = new Animation(skeletonSpriteSheet, 0, 8, 0, 8, true, 100, true);
+	private Animation skeletonLookDownAnimation = new Animation(skeletonSpriteSheet, 0, 10, 0, 10, true, 100, true);
+	private Animation skeletonLookLeftAnimation = new Animation(skeletonSpriteSheet, 0, 9, 0, 9, true, 100, true);
+	private Animation skeletonLookRightAnimation = new Animation(skeletonSpriteSheet, 0, 11, 0, 11, true, 100, true);
+	
+	private Animation skeletonGoUpAnimation = new Animation(skeletonSpriteSheet, 1, 8, 8, 8, true, 100, true);
+	private Animation skeletonGoDownAnimation = new Animation(skeletonSpriteSheet, 1, 10, 8, 10, true, 100, true);
+	private Animation skeletonGoLeftAnimation = new Animation(skeletonSpriteSheet, 1, 9, 8, 9, true, 100, true);
+	private Animation skeletonGoRightAnimation = new Animation(skeletonSpriteSheet, 1, 11, 8, 11, true, 100, true);
+	
+	private Animation skeletonSlayUpAnimation = new Animation(overSizeSkeletonSpriteSheet, 2, 7, 5, 7, true, 100, true);
+	private Animation skeletonSlayDownAnimation = new Animation(overSizeSkeletonSpriteSheet, 2, 9, 5, 9, true, 100, true);
+	private Animation skeletonSlayLeftAnimation = new Animation(overSizeSkeletonSpriteSheet, 2, 8, 5, 8, true, 100, true);
+	private Animation skeletonSlayRightAnimation = new Animation(overSizeSkeletonSpriteSheet, 2, 10, 5, 10, true, 100, true);
+	
+	private Animation skeletonPrepareSlayUpAnimation = new Animation(overSizeSkeletonSpriteSheet, 2, 7, 2, 7, true, 100, true);
+	private Animation skeletonPrepareSlayDownAnimation = new Animation(overSizeSkeletonSpriteSheet, 2, 9, 2, 9, true, 100, true);
+	private Animation skeletonPrepareSlayLeftAnimation = new Animation(overSizeSkeletonSpriteSheet, 2, 8, 2, 8, true, 100, true);
+	private Animation skeletonPrepareSlayRightAnimation = new Animation(overSizeSkeletonSpriteSheet, 2, 10, 2, 10, true, 100, true);
+
+	private Animation skeletonThrustUpAnimation = new Animation(overSizeSkeletonSpriteSheet, 3, 11, 7, 11, true, 100, true);
+	private Animation skeletonThrustDownAnimation = new Animation(overSizeSkeletonSpriteSheet, 3, 13, 7, 13, true, 100, true);
+	private Animation skeletonThrustLeftAnimation = new Animation(overSizeSkeletonSpriteSheet, 3, 12, 7, 12, true, 100, true);
+	private Animation skeletonThrustRightAnimation = new Animation(overSizeSkeletonSpriteSheet, 3, 14, 7, 14, true, 100, true);
+	
+	private Animation skeletonPrepareThrustUpAnimation = new Animation(overSizeSkeletonSpriteSheet, 3, 11, 3, 11, true, 100, true);
+	private Animation skeletonPrepareThrustDownAnimation = new Animation(overSizeSkeletonSpriteSheet, 3, 13, 3, 13, true, 100, true);
+	private Animation skeletonPrepareThrustLeftAnimation = new Animation(overSizeSkeletonSpriteSheet, 3, 12, 3, 12, true, 100, true);
+	private Animation skeletonPrepareThrustRightAnimation = new Animation(overSizeSkeletonSpriteSheet, 3, 14, 3, 14, true, 100, true);
+
+	private Animation skeletonShootUpAnimation = new Animation(skeletonSpriteSheet, 0, 16, 8, 16, true, 100, true);
+	private Animation skeletonShootDownAnimation = new Animation(skeletonSpriteSheet, 0, 18, 8, 18, true, 100, true);
+	private Animation skeletonShootLeftAnimation = new Animation(skeletonSpriteSheet, 0, 17, 8, 17, true, 100, true);
+	private Animation skeletonShootRightAnimation = new Animation(skeletonSpriteSheet, 0, 19, 8, 19, true, 100, true);
+	
+	private Animation skeletonSpellUpAnimation = new Animation(skeletonSpriteSheet, 0, 0, 6, 0, true, 100, true);
+	private Animation skeletonSpellDownAnimation = new Animation(skeletonSpriteSheet, 0, 2, 6, 2, true, 100, true);
+	private Animation skeletonSpellLeftAnimation = new Animation(skeletonSpriteSheet, 0, 1, 6, 1, true, 100, true);
+	private Animation skeletonSpellRightAnimation = new Animation(skeletonSpriteSheet, 0, 3, 6, 3, true, 100, true);
+	
+	private Animation skeletonDieAnimation = new Animation(skeletonSpriteSheet, 0, 20, 5, 20, true, 100, true);
+	
+	
+	
+	
+	private SpriteSheet orcSpriteSheet = new SpriteSheet("resources/player_sprites/orc_base.png", 64, 64);
+	private SpriteSheet overSizeOrcSpriteSheet = new SpriteSheet("resources/player_sprites/orc_base.png", 192, 192);
+	
+	private Animation orcLookUpAnimation = new Animation(orcSpriteSheet, 0, 8, 0, 8, true, 100, true);
+	private Animation orcLookDownAnimation = new Animation(orcSpriteSheet, 0, 10, 0, 10, true, 100, true);
+	private Animation orcLookLeftAnimation = new Animation(orcSpriteSheet, 0, 9, 0, 9, true, 100, true);
+	private Animation orcLookRightAnimation = new Animation(orcSpriteSheet, 0, 11, 0, 11, true, 100, true);
+	
+	private Animation orcGoUpAnimation = new Animation(orcSpriteSheet, 1, 8, 8, 8, true, 100, true);
+	private Animation orcGoDownAnimation = new Animation(orcSpriteSheet, 1, 10, 8, 10, true, 100, true);
+	private Animation orcGoLeftAnimation = new Animation(orcSpriteSheet, 1, 9, 8, 9, true, 100, true);
+	private Animation orcGoRightAnimation = new Animation(orcSpriteSheet, 1, 11, 8, 11, true, 100, true);
+	
+	private Animation orcSlayUpAnimation = new Animation(overSizeOrcSpriteSheet, 2, 7, 5, 7, true, 100, true);
+	private Animation orcSlayDownAnimation = new Animation(overSizeOrcSpriteSheet, 2, 9, 5, 9, true, 100, true);
+	private Animation orcSlayLeftAnimation = new Animation(overSizeOrcSpriteSheet, 2, 8, 5, 8, true, 100, true);
+	private Animation orcSlayRightAnimation = new Animation(overSizeOrcSpriteSheet, 2, 10, 5, 10, true, 100, true);
+	
+	private Animation orcPrepareSlayUpAnimation = new Animation(overSizeOrcSpriteSheet, 2, 7, 2, 7, true, 100, true);
+	private Animation orcPrepareSlayDownAnimation = new Animation(overSizeOrcSpriteSheet, 2, 9, 2, 9, true, 100, true);
+	private Animation orcPrepareSlayLeftAnimation = new Animation(overSizeOrcSpriteSheet, 2, 8, 2, 8, true, 100, true);
+	private Animation orcPrepareSlayRightAnimation = new Animation(overSizeOrcSpriteSheet, 2, 10, 2, 10, true, 100, true);
+
+	private Animation orcThrustUpAnimation = new Animation(overSizeOrcSpriteSheet, 3, 11, 7, 11, true, 100, true);
+	private Animation orcThrustDownAnimation = new Animation(overSizeOrcSpriteSheet, 3, 13, 7, 13, true, 100, true);
+	private Animation orcThrustLeftAnimation = new Animation(overSizeOrcSpriteSheet, 3, 12, 7, 12, true, 100, true);
+	private Animation orcThrustRightAnimation = new Animation(overSizeOrcSpriteSheet, 3, 14, 7, 14, true, 100, true);
+	
+	private Animation orcPrepareThrustUpAnimation = new Animation(overSizeOrcSpriteSheet, 3, 11, 3, 11, true, 100, true);
+	private Animation orcPrepareThrustDownAnimation = new Animation(overSizeOrcSpriteSheet, 3, 13, 3, 13, true, 100, true);
+	private Animation orcPrepareThrustLeftAnimation = new Animation(overSizeOrcSpriteSheet, 3, 12, 3, 12, true, 100, true);
+	private Animation orcPrepareThrustRightAnimation = new Animation(overSizeOrcSpriteSheet, 3, 14, 3, 14, true, 100, true);
+
+	private Animation orcShootUpAnimation = new Animation(orcSpriteSheet, 0, 16, 8, 16, true, 100, true);
+	private Animation orcShootDownAnimation = new Animation(orcSpriteSheet, 0, 18, 8, 18, true, 100, true);
+	private Animation orcShootLeftAnimation = new Animation(orcSpriteSheet, 0, 17, 8, 17, true, 100, true);
+	private Animation orcShootRightAnimation = new Animation(orcSpriteSheet, 0, 19, 8, 19, true, 100, true);
+	
+	private Animation orcSpellUpAnimation = new Animation(orcSpriteSheet, 0, 0, 6, 0, true, 100, true);
+	private Animation orcSpellDownAnimation = new Animation(orcSpriteSheet, 0, 2, 6, 2, true, 100, true);
+	private Animation orcSpellLeftAnimation = new Animation(orcSpriteSheet, 0, 1, 6, 1, true, 100, true);
+	private Animation orcSpellRightAnimation = new Animation(orcSpriteSheet, 0, 3, 6, 3, true, 100, true);
+	
+	private Animation orcDieAnimation = new Animation(orcSpriteSheet, 0, 20, 5, 20, true, 100, true);
+	
+	
+	
 	public Player(float relativeToMapX, float relativeToMapY, boolean alive) throws SlickException {
 
 		super(relativeToMapX, relativeToMapY, "resources/player_sprites/player_base.png", alive);
@@ -140,6 +241,51 @@ public class Player extends Character {
 		mobList = MobManager.getMobListWithoutPlayer();
 		
 		getHealthBar().setCurrentValue(10);
+		
+		
+		skeletonSlayUpAnimation.setLooping(false);
+		skeletonSlayDownAnimation.setLooping(false);
+		skeletonSlayLeftAnimation.setLooping(false);
+		skeletonSlayRightAnimation.setLooping(false);
+		
+		skeletonThrustUpAnimation.setLooping(false);
+		skeletonThrustDownAnimation.setLooping(false);
+		skeletonThrustLeftAnimation.setLooping(false);
+		skeletonThrustRightAnimation.setLooping(false);
+		
+		skeletonShootUpAnimation.setLooping(false);
+		skeletonShootDownAnimation.setLooping(false);
+		skeletonShootLeftAnimation.setLooping(false);
+		skeletonShootRightAnimation.setLooping(false);
+		
+		skeletonSpellUpAnimation.setLooping(false);
+		skeletonSpellDownAnimation.setLooping(false);
+		skeletonSpellLeftAnimation.setLooping(false);
+		skeletonSpellRightAnimation.setLooping(false);
+		
+		
+		
+		orcSlayUpAnimation.setLooping(false);
+		orcSlayDownAnimation.setLooping(false);
+		orcSlayLeftAnimation.setLooping(false);
+		orcSlayRightAnimation.setLooping(false);
+		
+		orcThrustUpAnimation.setLooping(false);
+		orcThrustDownAnimation.setLooping(false);
+		orcThrustLeftAnimation.setLooping(false);
+		orcThrustRightAnimation.setLooping(false);
+		
+		orcShootUpAnimation.setLooping(false);
+		orcShootDownAnimation.setLooping(false);
+		orcShootLeftAnimation.setLooping(false);
+		orcShootRightAnimation.setLooping(false);
+		
+		orcSpellUpAnimation.setLooping(false);
+		orcSpellDownAnimation.setLooping(false);
+		orcSpellLeftAnimation.setLooping(false);
+		orcSpellRightAnimation.setLooping(false);
+		
+		
 	}
 
 	public void update() throws SlickException {
@@ -215,6 +361,14 @@ public class Player extends Character {
 				
 				if(equippedSpell != null && (equippedSpell.getName().equals("Firerain"))) {
 					updateFirerain();
+				}
+				
+				if(equippedSpell != null && (equippedSpell.getName().equals("Transform Into Skeleton"))) {
+					updateTransformIntoSkeleton();
+				}
+				
+				if(equippedSpell != null && (equippedSpell.getName().equals("Transform Into Orc Warrior"))) {
+					updateTransformIntoOrcWarrior();
 				}
 					
 				updatePickUpItem();
@@ -1414,6 +1568,362 @@ public class Player extends Character {
 		if(spellCreated && firerainCounter >= 25) {
 			firerainCounter = 0;
 			spellCreated = false;
+		}
+		
+	}
+	
+	private void updateTransformIntoSkeleton() throws SlickException {
+		
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !spellCreated) {
+			
+			boolean enoughMana;
+			
+			if(getManaBar().getCurrentValue() - equippedSpell.getManaCost() >= 0) {
+				enoughMana = true;
+			} else {
+				enoughMana = false;
+			}
+			
+			if(!enoughMana) {
+				
+				String text = "Not enough mana";
+				centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+				
+			} else {
+
+				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellUp();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellUp();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellDownAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellDown();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellDown();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellLeftAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellLeft();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellLeft();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellRightAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellRight();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellRight();
+					}
+					spellCreated = false;
+				}
+	
+				startAllAnimations();
+				isPreparingSpell = true;
+			
+			}
+
+		}
+
+		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
+			
+			//Decrease mana
+			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
+			
+			boolean lookingUp = false;
+			boolean lookingDown = false;
+			boolean lookingLeft = false;
+			boolean lookingRight = false;
+			
+			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
+				setAnimationsToLookUp();
+				lookingUp = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellDownAnimation()) {
+				setAnimationsToLookDown();
+				lookingDown = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellLeftAnimation()) {
+				setAnimationsToLookLeft();
+				lookingLeft = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellRightAnimation()) {
+				setAnimationsToLookRight();
+				lookingRight = true;
+			}
+			
+			setLookUpAnimation(skeletonLookUpAnimation);
+			setLookDownAnimation(skeletonLookDownAnimation);
+			setLookLeftAnimation(skeletonLookLeftAnimation);
+			setLookRightAnimation(skeletonLookRightAnimation);
+			
+			setGoUpAnimation(skeletonGoUpAnimation);
+			setGoDownAnimation(skeletonGoDownAnimation);
+			setGoLeftAnimation(skeletonGoLeftAnimation);
+			setGoRightAnimation(skeletonGoRightAnimation);
+			
+			setSlayUpAnimation(skeletonSlayUpAnimation);
+			setSlayDownAnimation(skeletonSlayDownAnimation);
+			setSlayLeftAnimation(skeletonSlayLeftAnimation);
+			setSlayRightAnimation(skeletonSlayRightAnimation);
+			
+			setPrepareSlayUpAnimation(skeletonPrepareSlayUpAnimation);
+			setPrepareSlayDownAnimation(skeletonPrepareSlayDownAnimation);
+			setPrepareSlayLeftAnimation(skeletonPrepareSlayLeftAnimation);
+			setPrepareSlayRightAnimation(skeletonPrepareSlayRightAnimation);
+
+			setThrustUpAnimation(skeletonThrustUpAnimation);
+			setThrustDownAnimation(skeletonThrustDownAnimation);
+			setThrustLeftAnimation(skeletonThrustLeftAnimation);
+			setThrustRightAnimation(skeletonThrustRightAnimation);
+			
+			setPrepareThrustUpAnimation(skeletonPrepareThrustUpAnimation);
+			setPrepareThrustDownAnimation(skeletonPrepareThrustDownAnimation);
+			setPrepareThrustLeftAnimation(skeletonPrepareThrustLeftAnimation);
+			setPrepareThrustRightAnimation(skeletonPrepareThrustRightAnimation);
+
+			setShootDownAnimation(skeletonShootUpAnimation);
+			setShootDownAnimation(skeletonShootDownAnimation);
+			setShootLeftAnimation(skeletonShootLeftAnimation);
+			setShootRightAnimation(skeletonShootRightAnimation);
+			
+			setSpellUpAnimation(skeletonSpellUpAnimation);
+			setSpellDownAnimation(skeletonSpellDownAnimation);
+			setSpellLeftAnimation(skeletonSpellLeftAnimation);
+			setSpellRightAnimation(skeletonSpellRightAnimation);
+			
+			setDieAnimation(skeletonDieAnimation);
+			
+			if(lookingUp) {
+				setAnimationsToLookUp();
+			}
+			
+			if(lookingDown) {
+				setAnimationsToLookDown();
+			}
+			
+			if(lookingLeft) {
+				setAnimationsToLookLeft();
+			}
+			
+			if(lookingRight) {
+				setAnimationsToLookRight();
+			}
+			
+			restartAllAnimations();
+			isPreparingSpell = false;
+
+			spellCreated = true;
+			
+			if(equippedSpell.getItemCategory().equals("spell")) {
+				inventoryWindow.removeItem(equippedSpell);
+				equippedSpell = null;
+			}
+			
+		}
+		
+	}
+	
+	private void updateTransformIntoOrcWarrior() throws SlickException {
+		
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !spellCreated) {
+			
+			boolean enoughMana;
+			
+			if(getManaBar().getCurrentValue() - equippedSpell.getManaCost() >= 0) {
+				enoughMana = true;
+			} else {
+				enoughMana = false;
+			}
+			
+			if(!enoughMana) {
+				
+				String text = "Not enough mana";
+				centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+				
+			} else {
+
+				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellUp();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellUp();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellDownAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellDown();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellDown();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellLeftAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellLeft();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellLeft();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellRightAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellRight();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellRight();
+					}
+					spellCreated = false;
+				}
+	
+				startAllAnimations();
+				isPreparingSpell = true;
+			
+			}
+
+		}
+
+		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
+			
+			//Decrease mana
+			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
+			
+			boolean lookingUp = false;
+			boolean lookingDown = false;
+			boolean lookingLeft = false;
+			boolean lookingRight = false;
+			
+			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
+				setAnimationsToLookUp();
+				lookingUp = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellDownAnimation()) {
+				setAnimationsToLookDown();
+				lookingDown = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellLeftAnimation()) {
+				setAnimationsToLookLeft();
+				lookingLeft = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellRightAnimation()) {
+				setAnimationsToLookRight();
+				lookingRight = true;
+			}
+			
+			
+			setLookUpAnimation(orcLookUpAnimation);
+			setLookDownAnimation(orcLookDownAnimation);
+			setLookLeftAnimation(orcLookLeftAnimation);
+			setLookRightAnimation(orcLookRightAnimation);
+			
+			setGoUpAnimation(orcGoUpAnimation);
+			setGoDownAnimation(orcGoDownAnimation);
+			setGoLeftAnimation(orcGoLeftAnimation);
+			setGoRightAnimation(orcGoRightAnimation);
+			
+			setSlayUpAnimation(orcSlayUpAnimation);
+			setSlayDownAnimation(orcSlayDownAnimation);
+			setSlayLeftAnimation(orcSlayLeftAnimation);
+			setSlayRightAnimation(orcSlayRightAnimation);
+			
+			setPrepareSlayUpAnimation(orcPrepareSlayUpAnimation);
+			setPrepareSlayDownAnimation(orcPrepareSlayDownAnimation);
+			setPrepareSlayLeftAnimation(orcPrepareSlayLeftAnimation);
+			setPrepareSlayRightAnimation(orcPrepareSlayRightAnimation);
+
+			setThrustUpAnimation(orcThrustUpAnimation);
+			setThrustDownAnimation(orcThrustDownAnimation);
+			setThrustLeftAnimation(orcThrustLeftAnimation);
+			setThrustRightAnimation(orcThrustRightAnimation);
+			
+			setPrepareThrustUpAnimation(orcPrepareThrustUpAnimation);
+			setPrepareThrustDownAnimation(orcPrepareThrustDownAnimation);
+			setPrepareThrustLeftAnimation(orcPrepareThrustLeftAnimation);
+			setPrepareThrustRightAnimation(orcPrepareThrustRightAnimation);
+
+			setShootDownAnimation(orcShootUpAnimation);
+			setShootDownAnimation(orcShootDownAnimation);
+			setShootLeftAnimation(orcShootLeftAnimation);
+			setShootRightAnimation(orcShootRightAnimation);
+			
+			setSpellUpAnimation(orcSpellUpAnimation);
+			setSpellDownAnimation(orcSpellDownAnimation);
+			setSpellLeftAnimation(orcSpellLeftAnimation);
+			setSpellRightAnimation(orcSpellRightAnimation);
+			
+			setDieAnimation(orcDieAnimation);
+			
+			if(lookingUp) {
+				setAnimationsToLookUp();
+			}
+			
+			if(lookingDown) {
+				setAnimationsToLookDown();
+			}
+			
+			if(lookingLeft) {
+				setAnimationsToLookLeft();
+			}
+			
+			if(lookingRight) {
+				setAnimationsToLookRight();
+			}
+
+			
+			
+			
+			restartAllAnimations();
+			isPreparingSpell = false;
+
+			spellCreated = true;
+			
+			if(equippedSpell.getItemCategory().equals("spell")) {
+				inventoryWindow.removeItem(equippedSpell);
+				equippedSpell = null;
+			}
+			
 		}
 		
 	}

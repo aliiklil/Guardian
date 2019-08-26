@@ -74,7 +74,7 @@ public abstract class Character extends Mob {
 	private Animation spellRightAnimation;
 	
 	private Animation dieAnimation;
-	
+		
 	private ArrayList<Item> inventoryList = new ArrayList<Item>();
 	private ArrayList<Integer> itemCountList = new ArrayList<Integer>();
 	
@@ -438,6 +438,138 @@ public abstract class Character extends Mob {
 
 	public ArrayList<Integer> getItemCountList() {
 		return itemCountList;
+	}
+
+	public void setLookUpAnimation(Animation lookUpAnimation) {
+		this.lookUpAnimation = lookUpAnimation;
+	}
+
+	public void setLookDownAnimation(Animation lookDownAnimation) {
+		this.lookDownAnimation = lookDownAnimation;
+	}
+
+	public void setLookLeftAnimation(Animation lookLeftAnimation) {
+		this.lookLeftAnimation = lookLeftAnimation;
+	}
+
+	public void setLookRightAnimation(Animation lookRightAnimation) {
+		this.lookRightAnimation = lookRightAnimation;
+	}
+
+	public void setGoUpAnimation(Animation goUpAnimation) {
+		this.goUpAnimation = goUpAnimation;
+	}
+
+	public void setGoDownAnimation(Animation goDownAnimation) {
+		this.goDownAnimation = goDownAnimation;
+	}
+
+	public void setGoLeftAnimation(Animation goLeftAnimation) {
+		this.goLeftAnimation = goLeftAnimation;
+	}
+
+	public void setGoRightAnimation(Animation goRightAnimation) {
+		this.goRightAnimation = goRightAnimation;
+	}
+
+	public void setSlayUpAnimation(Animation slayUpAnimation) {
+		this.slayUpAnimation = slayUpAnimation;
+	}
+
+	public void setSlayDownAnimation(Animation slayDownAnimation) {
+		this.slayDownAnimation = slayDownAnimation;
+	}
+
+	public void setSlayLeftAnimation(Animation slayLeftAnimation) {
+		this.slayLeftAnimation = slayLeftAnimation;
+	}
+
+	public void setSlayRightAnimation(Animation slayRightAnimation) {
+		this.slayRightAnimation = slayRightAnimation;
+	}
+
+	public void setPrepareSlayUpAnimation(Animation prepareSlayUpAnimation) {
+		this.prepareSlayUpAnimation = prepareSlayUpAnimation;
+	}
+
+	public void setPrepareSlayDownAnimation(Animation prepareSlayDownAnimation) {
+		this.prepareSlayDownAnimation = prepareSlayDownAnimation;
+	}
+
+	public void setPrepareSlayLeftAnimation(Animation prepareSlayLeftAnimation) {
+		this.prepareSlayLeftAnimation = prepareSlayLeftAnimation;
+	}
+
+	public void setPrepareSlayRightAnimation(Animation prepareSlayRightAnimation) {
+		this.prepareSlayRightAnimation = prepareSlayRightAnimation;
+	}
+
+	public void setThrustUpAnimation(Animation thrustUpAnimation) {
+		this.thrustUpAnimation = thrustUpAnimation;
+	}
+
+	public void setThrustDownAnimation(Animation thrustDownAnimation) {
+		this.thrustDownAnimation = thrustDownAnimation;
+	}
+
+	public void setThrustLeftAnimation(Animation thrustLeftAnimation) {
+		this.thrustLeftAnimation = thrustLeftAnimation;
+	}
+
+	public void setThrustRightAnimation(Animation thrustRightAnimation) {
+		this.thrustRightAnimation = thrustRightAnimation;
+	}
+
+	public void setPrepareThrustUpAnimation(Animation prepareThrustUpAnimation) {
+		this.prepareThrustUpAnimation = prepareThrustUpAnimation;
+	}
+
+	public void setPrepareThrustDownAnimation(Animation prepareThrustDownAnimation) {
+		this.prepareThrustDownAnimation = prepareThrustDownAnimation;
+	}
+
+	public void setPrepareThrustLeftAnimation(Animation prepareThrustLeftAnimation) {
+		this.prepareThrustLeftAnimation = prepareThrustLeftAnimation;
+	}
+
+	public void setPrepareThrustRightAnimation(Animation prepareThrustRightAnimation) {
+		this.prepareThrustRightAnimation = prepareThrustRightAnimation;
+	}
+
+	public void setShootUpAnimation(Animation shootUpAnimation) {
+		this.shootUpAnimation = shootUpAnimation;
+	}
+
+	public void setShootDownAnimation(Animation shootDownAnimation) {
+		this.shootDownAnimation = shootDownAnimation;
+	}
+
+	public void setShootLeftAnimation(Animation shootLeftAnimation) {
+		this.shootLeftAnimation = shootLeftAnimation;
+	}
+
+	public void setShootRightAnimation(Animation shootRightAnimation) {
+		this.shootRightAnimation = shootRightAnimation;
+	}
+
+	public void setSpellUpAnimation(Animation spellUpAnimation) {
+		this.spellUpAnimation = spellUpAnimation;
+	}
+
+	public void setSpellDownAnimation(Animation spellDownAnimation) {
+		this.spellDownAnimation = spellDownAnimation;
+	}
+
+	public void setSpellLeftAnimation(Animation spellLeftAnimation) {
+		this.spellLeftAnimation = spellLeftAnimation;
+	}
+
+	public void setSpellRightAnimation(Animation spellRightAnimation) {
+		this.spellRightAnimation = spellRightAnimation;
+	}
+
+	public void setDieAnimation(Animation dieAnimation) {
+		this.dieAnimation = dieAnimation;
 	}
 		
 }
