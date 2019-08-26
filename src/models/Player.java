@@ -83,6 +83,16 @@ public class Player extends Character {
 	private ItemType equippedHands;
 	private ItemType equippedBoots;
 	
+	//Before Transformation
+	private ItemType equippedMeleeBefore;
+	private ItemType equippedBowBefore;
+	private ItemType equippedSpellBefore;
+	private ItemType equippedHeadBefore;
+	private ItemType equippedTorsoBefore;
+	private ItemType equippedLegsBefore;
+	private ItemType equippedHandsBefore;
+	private ItemType equippedBootsBefore;
+	
 	private int[] levelBorders = {100, 500, 1000, 2000, 5000, 10000, 20000};
 	
 	private int level = 0;
@@ -1651,6 +1661,11 @@ public class Player extends Character {
 			//Decrease mana
 			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
 			
+			if(equippedSpell.getItemCategory().equals("spell")) {
+				inventoryWindow.removeItem(equippedSpell);
+				equippedSpell = null;
+			}
+			
 			boolean lookingUp = false;
 			boolean lookingDown = false;
 			boolean lookingLeft = false;
@@ -1718,6 +1733,25 @@ public class Player extends Character {
 			
 			setDieAnimation(skeletonDieAnimation);
 			
+			equippedMeleeBefore = equippedMelee;
+			equippedBowBefore = equippedBow;
+			equippedSpellBefore = equippedSpell;
+			equippedHeadBefore = equippedHead;
+			equippedTorsoBefore = equippedTorso;
+			equippedLegsBefore = equippedLegs;
+			equippedHandsBefore = equippedHands;
+			equippedBootsBefore = equippedBoots;
+			
+			
+			
+			equippedMelee = Game.getItemTypeManager().ironsword;
+			equippedHead = Game.getItemTypeManager().chainhat;
+			equippedTorso = Game.getItemTypeManager().chainchest;
+			equippedLegs = Game.getItemTypeManager().irongreaves;
+			equippedHands = Game.getItemTypeManager().irongloves;
+			equippedBoots = Game.getItemTypeManager().ironboots;
+			
+			
 			if(lookingUp) {
 				setAnimationsToLookUp();
 			}
@@ -1734,15 +1768,14 @@ public class Player extends Character {
 				setAnimationsToLookRight();
 			}
 			
+			
+			
 			restartAllAnimations();
 			isPreparingSpell = false;
 
 			spellCreated = true;
 			
-			if(equippedSpell.getItemCategory().equals("spell")) {
-				inventoryWindow.removeItem(equippedSpell);
-				equippedSpell = null;
-			}
+
 			
 		}
 		
@@ -1894,6 +1927,29 @@ public class Player extends Character {
 			setSpellRightAnimation(orcSpellRightAnimation);
 			
 			setDieAnimation(orcDieAnimation);
+
+
+			
+			equippedMeleeBefore = equippedMelee;
+			equippedBowBefore = equippedBow;
+			equippedSpellBefore = equippedSpell;
+			equippedHeadBefore = equippedHead;
+			equippedTorsoBefore = equippedTorso;
+			equippedLegsBefore = equippedLegs;
+			equippedHandsBefore = equippedHands;
+			equippedBootsBefore = equippedBoots;
+			
+			
+			
+			equippedMelee = Game.getItemTypeManager().ironsword;
+			equippedBow = null;
+			equippedSpell = null;
+			equippedHead = Game.getItemTypeManager().goldenhelmet;
+			equippedTorso = Game.getItemTypeManager().goldenchest;
+			equippedLegs = Game.getItemTypeManager().goldengreaves;
+			equippedHands = Game.getItemTypeManager().goldengloves;
+			equippedBoots = Game.getItemTypeManager().goldenboots;
+			
 			
 			if(lookingUp) {
 				setAnimationsToLookUp();
@@ -1910,8 +1966,6 @@ public class Player extends Character {
 			if(lookingRight) {
 				setAnimationsToLookRight();
 			}
-
-			
 			
 			
 			restartAllAnimations();
