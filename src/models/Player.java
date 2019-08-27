@@ -1893,17 +1893,17 @@ public class Player extends Character {
 		
 		boolean transformBackToHuman = false;
 		
-		if(isTranformedToWolf && System.currentTimeMillis() - wolfTransformationTimestamp > wolfTransformationDuration) {
+		if(isTranformedToWolf && System.currentTimeMillis() - wolfTransformationTimestamp > wolfTransformationDuration && !isAttacking && !isPreparingAttack) {
 			isTranformedToWolf = false;
 			transformBackToHuman = true;
 		}
 		
-		if(isTranformedToSkeleton && System.currentTimeMillis() - skeletonTransformationTimestamp > skeletonTransformationDuration) {
+		if(isTranformedToSkeleton && System.currentTimeMillis() - skeletonTransformationTimestamp > skeletonTransformationDuration && !isAttacking && !isPreparingAttack) {
 			isTranformedToSkeleton = false;
 			transformBackToHuman = true;
 		}
 		
-		if(isTranformedToOrc && System.currentTimeMillis() - orcTransformationTimestamp > orcTransformationDuration) {
+		if(isTranformedToOrc && System.currentTimeMillis() - orcTransformationTimestamp > orcTransformationDuration && !isAttacking && !isPreparingAttack) {
 			isTranformedToOrc = false;
 			transformBackToHuman = true;
 		}
@@ -1961,62 +1961,49 @@ public class Player extends Character {
 			equippedHands = equippedHandsBefore;
 			equippedBoots = equippedBootsBefore;
 
+			currentMeleeAnimation = null;
+			currentBowAnimation = null;
+			currentSpellAnimation = null;
+			currentHeadAnimation = null;
+			currentChestAnimation = null;
+			currentLegsAnimation = null;
+			currentHandsAnimation = null;
+			currentFeetAnimation = null;
 			
 			if(getCurrentAnimation() == skeletonLookUpAnimation || getCurrentAnimation() == skeletonGoUpAnimation || getCurrentAnimation() == skeletonPrepareSlayUpAnimation || getCurrentAnimation() == skeletonPrepareThrustUpAnimation || getCurrentAnimation() == skeletonSlayUpAnimation || getCurrentAnimation() == skeletonThrustUpAnimation) {
-				
-				if(equippedMelee != null) {
-					currentMeleeAnimation = equippedMelee.getLookUpAnimation();
-				} else {
-					currentMeleeAnimation = null;
-				}
-				
-				if(equippedBow != null) {
-					currentBowAnimation = equippedBow.getLookUpAnimation();
-				} else {
-					currentBowAnimation = null;
-				}
-				
-				if(equippedSpell != null) {
-					currentSpellAnimation = equippedSpell.getLookUpAnimation();
-				} else {
-					currentSpellAnimation = null;
-				}	
-				
-				if(equippedHead != null) {
-					currentHeadAnimation = equippedHead.getLookUpAnimation();
-				} else {
-					currentHeadAnimation = null;
-				}
-				
-				if(equippedTorso != null) {
-					currentChestAnimation = equippedTorso.getLookUpAnimation();
-				} else {
-					currentChestAnimation = null;
-				}
-				
-				if(equippedLegs != null) {
-					currentLegsAnimation = equippedLegs.getLookUpAnimation();
-				} else {
-					currentLegsAnimation = null;
-				}
-				
-				if(equippedHands != null) {
-					currentHandsAnimation = equippedHands.getLookUpAnimation();
-				} else {
-					currentHandsAnimation = null;
-				}
-				
-				if(equippedMelee != null) {
-					currentFeetAnimation = equippedBoots.getLookUpAnimation();
-				} else {
-					currentFeetAnimation = null;
-				}
-				
 				setAnimationsToLookUp();
 			}
 			
-
+			if(getCurrentAnimation() == skeletonLookDownAnimation || getCurrentAnimation() == skeletonGoDownAnimation || getCurrentAnimation() == skeletonPrepareSlayDownAnimation || getCurrentAnimation() == skeletonPrepareThrustDownAnimation || getCurrentAnimation() == skeletonSlayDownAnimation || getCurrentAnimation() == skeletonThrustDownAnimation) {
+				setAnimationsToLookDown();
+			}
 			
+			if(getCurrentAnimation() == skeletonLookLeftAnimation || getCurrentAnimation() == skeletonGoLeftAnimation || getCurrentAnimation() == skeletonPrepareSlayLeftAnimation || getCurrentAnimation() == skeletonPrepareThrustLeftAnimation || getCurrentAnimation() == skeletonSlayLeftAnimation || getCurrentAnimation() == skeletonThrustLeftAnimation) {
+				setAnimationsToLookLeft();
+			}
+			
+			if(getCurrentAnimation() == skeletonLookRightAnimation || getCurrentAnimation() == skeletonGoRightAnimation || getCurrentAnimation() == skeletonPrepareSlayRightAnimation || getCurrentAnimation() == skeletonPrepareThrustRightAnimation || getCurrentAnimation() == skeletonSlayRightAnimation || getCurrentAnimation() == skeletonThrustRightAnimation) {
+				setAnimationsToLookRight();
+			}
+			
+			
+			
+			if(getCurrentAnimation() == orcLookUpAnimation || getCurrentAnimation() == orcGoUpAnimation || getCurrentAnimation() == orcPrepareSlayUpAnimation || getCurrentAnimation() == orcPrepareThrustUpAnimation || getCurrentAnimation() == orcSlayUpAnimation || getCurrentAnimation() == orcThrustUpAnimation) {
+				setAnimationsToLookUp();
+			}
+			
+			if(getCurrentAnimation() == orcLookDownAnimation || getCurrentAnimation() == orcGoDownAnimation || getCurrentAnimation() == orcPrepareSlayDownAnimation || getCurrentAnimation() == orcPrepareThrustDownAnimation || getCurrentAnimation() == orcSlayDownAnimation || getCurrentAnimation() == orcThrustDownAnimation) {
+				setAnimationsToLookDown();
+			}
+			
+			if(getCurrentAnimation() == orcLookLeftAnimation || getCurrentAnimation() == orcGoLeftAnimation || getCurrentAnimation() == orcPrepareSlayLeftAnimation || getCurrentAnimation() == orcPrepareThrustLeftAnimation || getCurrentAnimation() == orcSlayLeftAnimation || getCurrentAnimation() == orcThrustLeftAnimation) {
+				setAnimationsToLookLeft();
+			}
+			
+			if(getCurrentAnimation() == orcLookRightAnimation || getCurrentAnimation() == orcGoRightAnimation || getCurrentAnimation() == orcPrepareSlayRightAnimation || getCurrentAnimation() == orcPrepareThrustRightAnimation || getCurrentAnimation() == orcSlayRightAnimation || getCurrentAnimation() == orcThrustRightAnimation) {
+				setAnimationsToLookRight();
+			}
+
 			restartAllAnimations();
 			
 			
