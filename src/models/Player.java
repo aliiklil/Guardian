@@ -281,18 +281,21 @@ public class Player extends Character {
 	private Animation orcSpellRightAnimation = new Animation(orcSpriteSheet, 0, 3, 6, 3, true, 100, true);
 	
 	private Animation orcDieAnimation = new Animation(orcSpriteSheet, 0, 20, 5, 20, true, 100, true);
-	
+		
 	private boolean isTranformedToWolf = false;
 	private long wolfTransformationTimestamp;
 	private int wolfTransformationDuration = 5000;
+	private int wolfMaxHp = 200;
 	
 	private boolean isTranformedToSkeleton = false;
 	private long skeletonTransformationTimestamp;
 	private int skeletonTransformationDuration = 5000;
+	private int skeletonMaxHp = 400;
 	
 	private boolean isTranformedToOrc = false;
 	private long orcTransformationTimestamp;
 	private int orcTransformationDuration = 5000;
+	private int orcMaxHp = 600;
 	
 	public Player(float relativeToMapX, float relativeToMapY, boolean alive) throws SlickException {
 
@@ -1860,7 +1863,8 @@ public class Player extends Character {
 			
 			currentSpellAnimation = null;
 			
-			
+			getHealthBar().setMaxValue(skeletonMaxHp);
+			getHealthBar().setCurrentValue(skeletonMaxHp);
 			
 			if(lookingUp) {
 				setAnimationsToLookUp();
@@ -2052,7 +2056,7 @@ public class Player extends Character {
 			
 			
 			
-			equippedMelee = Game.getItemTypeManager().ironsword;
+			equippedMelee = Game.getItemTypeManager().goldenspear;
 			equippedBow = null;
 			equippedSpell = null;
 			equippedHead = null;
@@ -2066,7 +2070,8 @@ public class Player extends Character {
 			
 			currentSpellAnimation = null;
 			
-			
+			getHealthBar().setMaxValue(orcMaxHp);
+			getHealthBar().setCurrentValue(orcMaxHp);
 			
 			if(lookingUp) {
 				setAnimationsToLookUp();
@@ -2158,6 +2163,9 @@ public class Player extends Character {
 			setSpellRightAnimation(humanSpellRightAnimation);
 			
 			setDieAnimation(humanDieAnimation);
+			
+			getHealthBar().setMaxValue(healthPoints);
+			getHealthBar().setCurrentValue(healthPoints);
 						
 			equippedMelee = equippedMeleeBefore;
 			equippedBow = equippedBowBefore;

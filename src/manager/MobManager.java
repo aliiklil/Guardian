@@ -59,7 +59,7 @@ public class MobManager {
 		player.setCurrentFeetAnimation(boots.getItemType().getLookDownAnimation());
 
 			
-		ogus = new NPC(256, 128, 2000, 2000, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
+		ogus = new NPC(256, 128, 2000, 2000, "resources/OrcSpriteSheet.png", true, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
 		ogus.addItem(new Item(0, 0, itemTypeManager.dagger));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
@@ -75,12 +75,13 @@ public class MobManager {
 		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHpPotion));
 		ogus.addItem(new Item(0, 0, itemTypeManager.clothhood));
 		ogus.addItem(new Item(0, 0, itemTypeManager.goldenhelmet));
-		ogus.setEquippedMelee(itemTypeManager.goldenspear);
+		
+		ogus.setEquippedMelee(new Item(0, 0, itemTypeManager.goldenspear).getItemType());
 		
 		
 		
 		halrok = new NPC(256, 64, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
-		halrok.setEquippedMelee(itemTypeManager.ironsword);
+		ogus.setEquippedMelee(new Item(0, 0, itemTypeManager.ironsword).getItemType());
 		
 		
 		mobList.add(player);
