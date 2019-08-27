@@ -1881,13 +1881,220 @@ public class Player extends Character {
 			restartAllAnimations();
 			isPreparingSpell = false;
 
-			spellCreated = true;
+			spellCreated = false;
 			
 
 			
 		}
 			
 	}
+	
+	
+	private void updateTransformIntoOrcWarrior() throws SlickException {
+		
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !spellCreated) {
+			
+			boolean enoughMana;
+			
+			if(getManaBar().getCurrentValue() - equippedSpell.getManaCost() >= 0) {
+				enoughMana = true;
+			} else {
+				enoughMana = false;
+			}
+			
+			if(!enoughMana) {
+				
+				String text = "Not enough mana";
+				centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+				
+			} else {
+
+				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellUp();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellUp();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellDownAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellDown();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellDown();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellLeftAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellLeft();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellLeft();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellRightAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellRight();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellRight();
+					}
+					spellCreated = false;
+				}
+	
+				startAllAnimations();
+				isPreparingSpell = true;
+			
+			}
+
+		}
+
+		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
+			
+			//Decrease mana
+			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
+			
+			if(equippedSpell.getItemCategory().equals("spell")) {
+				inventoryWindow.removeItem(equippedSpell);
+				equippedSpell = null;
+			}
+			
+			boolean lookingUp = false;
+			boolean lookingDown = false;
+			boolean lookingLeft = false;
+			boolean lookingRight = false;
+			
+			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
+				setAnimationsToLookUp();
+				lookingUp = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellDownAnimation()) {
+				setAnimationsToLookDown();
+				lookingDown = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellLeftAnimation()) {
+				setAnimationsToLookLeft();
+				lookingLeft = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellRightAnimation()) {
+				setAnimationsToLookRight();
+				lookingRight = true;
+			}
+			
+			setLookUpAnimation(orcLookUpAnimation);
+			setLookDownAnimation(orcLookDownAnimation);
+			setLookLeftAnimation(orcLookLeftAnimation);
+			setLookRightAnimation(orcLookRightAnimation);
+			
+			setGoUpAnimation(orcGoUpAnimation);
+			setGoDownAnimation(orcGoDownAnimation);
+			setGoLeftAnimation(orcGoLeftAnimation);
+			setGoRightAnimation(orcGoRightAnimation);
+			
+			setSlayUpAnimation(orcSlayUpAnimation);
+			setSlayDownAnimation(orcSlayDownAnimation);
+			setSlayLeftAnimation(orcSlayLeftAnimation);
+			setSlayRightAnimation(orcSlayRightAnimation);
+			
+			setPrepareSlayUpAnimation(orcPrepareSlayUpAnimation);
+			setPrepareSlayDownAnimation(orcPrepareSlayDownAnimation);
+			setPrepareSlayLeftAnimation(orcPrepareSlayLeftAnimation);
+			setPrepareSlayRightAnimation(orcPrepareSlayRightAnimation);
+
+			setThrustUpAnimation(orcThrustUpAnimation);
+			setThrustDownAnimation(orcThrustDownAnimation);
+			setThrustLeftAnimation(orcThrustLeftAnimation);
+			setThrustRightAnimation(orcThrustRightAnimation);
+			
+			setPrepareThrustUpAnimation(orcPrepareThrustUpAnimation);
+			setPrepareThrustDownAnimation(orcPrepareThrustDownAnimation);
+			setPrepareThrustLeftAnimation(orcPrepareThrustLeftAnimation);
+			setPrepareThrustRightAnimation(orcPrepareThrustRightAnimation);
+
+			setShootDownAnimation(orcShootUpAnimation);
+			setShootDownAnimation(orcShootDownAnimation);
+			setShootLeftAnimation(orcShootLeftAnimation);
+			setShootRightAnimation(orcShootRightAnimation);
+			
+			setSpellUpAnimation(orcSpellUpAnimation);
+			setSpellDownAnimation(orcSpellDownAnimation);
+			setSpellLeftAnimation(orcSpellLeftAnimation);
+			setSpellRightAnimation(orcSpellRightAnimation);
+			
+			setDieAnimation(orcDieAnimation);
+			
+			equippedMeleeBefore = equippedMelee;
+			equippedBowBefore = equippedBow;
+			equippedSpellBefore = equippedSpell;
+			equippedHeadBefore = equippedHead;
+			equippedTorsoBefore = equippedTorso;
+			equippedLegsBefore = equippedLegs;
+			equippedHandsBefore = equippedHands;
+			equippedBootsBefore = equippedBoots;
+			
+			
+			
+			equippedMelee = Game.getItemTypeManager().ironsword;
+			equippedBow = null;
+			equippedSpell = null;
+			equippedHead = null;
+			equippedTorso = Game.getItemTypeManager().goldenchest;
+			equippedLegs = Game.getItemTypeManager().goldengreaves;
+			equippedHands = Game.getItemTypeManager().goldengloves;
+			equippedBoots = Game.getItemTypeManager().goldenboots;
+			
+			isTranformedToOrc = true;
+			orcTransformationTimestamp = System.currentTimeMillis();
+			
+			currentSpellAnimation = null;
+			
+			
+			
+			if(lookingUp) {
+				setAnimationsToLookUp();
+			}
+			
+			if(lookingDown) {
+				setAnimationsToLookDown();
+			}
+			
+			if(lookingLeft) {
+				setAnimationsToLookLeft();
+			}
+			
+			if(lookingRight) {
+				setAnimationsToLookRight();
+			}
+	
+			restartAllAnimations();
+			isPreparingSpell = false;
+
+			spellCreated = false;
+			
+
+			
+		}
+		
+	}
+
 	
 	private void checkIfTransformationOver() {
 		
@@ -2011,207 +2218,6 @@ public class Player extends Character {
 		
 	}
 	
-	private void updateTransformIntoOrcWarrior() throws SlickException {
-		
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !spellCreated) {
-			
-			boolean enoughMana;
-			
-			if(getManaBar().getCurrentValue() - equippedSpell.getManaCost() >= 0) {
-				enoughMana = true;
-			} else {
-				enoughMana = false;
-			}
-			
-			if(!enoughMana) {
-				
-				String text = "Not enough mana";
-				centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
-				
-			} else {
-
-				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
-					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
-						int frameIndex = super.getCurrentAnimation().getFrame();
-						restartAllAnimations();
-						setAnimationsToSpellUp();
-						setAllAnimationsToFrame(frameIndex);
-					} else {
-						setAnimationsToSpellUp();
-					}
-					spellCreated = false;
-				}
-	
-				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
-					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellDownAnimation()) {
-						int frameIndex = super.getCurrentAnimation().getFrame();
-						restartAllAnimations();
-						setAnimationsToSpellDown();
-						setAllAnimationsToFrame(frameIndex);
-					} else {
-						setAnimationsToSpellDown();
-					}
-					spellCreated = false;
-				}
-	
-				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
-					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellLeftAnimation()) {
-						int frameIndex = super.getCurrentAnimation().getFrame();
-						restartAllAnimations();
-						setAnimationsToSpellLeft();
-						setAllAnimationsToFrame(frameIndex);
-					} else {
-						setAnimationsToSpellLeft();
-					}
-					spellCreated = false;
-				}
-	
-				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
-					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellRightAnimation()) {
-						int frameIndex = super.getCurrentAnimation().getFrame();
-						restartAllAnimations();
-						setAnimationsToSpellRight();
-						setAllAnimationsToFrame(frameIndex);
-					} else {
-						setAnimationsToSpellRight();
-					}
-					spellCreated = false;
-				}
-	
-				startAllAnimations();
-				isPreparingSpell = true;
-			
-			}
-
-		}
-
-		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
-			
-			//Decrease mana
-			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
-			
-			boolean lookingUp = false;
-			boolean lookingDown = false;
-			boolean lookingLeft = false;
-			boolean lookingRight = false;
-			
-			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
-				setAnimationsToLookUp();
-				lookingUp = true;
-			}
-
-			if(super.getCurrentAnimation() == super.getSpellDownAnimation()) {
-				setAnimationsToLookDown();
-				lookingDown = true;
-			}
-
-			if(super.getCurrentAnimation() == super.getSpellLeftAnimation()) {
-				setAnimationsToLookLeft();
-				lookingLeft = true;
-			}
-
-			if(super.getCurrentAnimation() == super.getSpellRightAnimation()) {
-				setAnimationsToLookRight();
-				lookingRight = true;
-			}
-			
-			
-			setLookUpAnimation(orcLookUpAnimation);
-			setLookDownAnimation(orcLookDownAnimation);
-			setLookLeftAnimation(orcLookLeftAnimation);
-			setLookRightAnimation(orcLookRightAnimation);
-			
-			setGoUpAnimation(orcGoUpAnimation);
-			setGoDownAnimation(orcGoDownAnimation);
-			setGoLeftAnimation(orcGoLeftAnimation);
-			setGoRightAnimation(orcGoRightAnimation);
-			
-			setSlayUpAnimation(orcSlayUpAnimation);
-			setSlayDownAnimation(orcSlayDownAnimation);
-			setSlayLeftAnimation(orcSlayLeftAnimation);
-			setSlayRightAnimation(orcSlayRightAnimation);
-			
-			setPrepareSlayUpAnimation(orcPrepareSlayUpAnimation);
-			setPrepareSlayDownAnimation(orcPrepareSlayDownAnimation);
-			setPrepareSlayLeftAnimation(orcPrepareSlayLeftAnimation);
-			setPrepareSlayRightAnimation(orcPrepareSlayRightAnimation);
-
-			setThrustUpAnimation(orcThrustUpAnimation);
-			setThrustDownAnimation(orcThrustDownAnimation);
-			setThrustLeftAnimation(orcThrustLeftAnimation);
-			setThrustRightAnimation(orcThrustRightAnimation);
-			
-			setPrepareThrustUpAnimation(orcPrepareThrustUpAnimation);
-			setPrepareThrustDownAnimation(orcPrepareThrustDownAnimation);
-			setPrepareThrustLeftAnimation(orcPrepareThrustLeftAnimation);
-			setPrepareThrustRightAnimation(orcPrepareThrustRightAnimation);
-
-			setShootDownAnimation(orcShootUpAnimation);
-			setShootDownAnimation(orcShootDownAnimation);
-			setShootLeftAnimation(orcShootLeftAnimation);
-			setShootRightAnimation(orcShootRightAnimation);
-			
-			setSpellUpAnimation(orcSpellUpAnimation);
-			setSpellDownAnimation(orcSpellDownAnimation);
-			setSpellLeftAnimation(orcSpellLeftAnimation);
-			setSpellRightAnimation(orcSpellRightAnimation);
-			
-			setDieAnimation(orcDieAnimation);
-
-
-			
-			equippedMeleeBefore = equippedMelee;
-			equippedBowBefore = equippedBow;
-			equippedSpellBefore = equippedSpell;
-			equippedHeadBefore = equippedHead;
-			equippedTorsoBefore = equippedTorso;
-			equippedLegsBefore = equippedLegs;
-			equippedHandsBefore = equippedHands;
-			equippedBootsBefore = equippedBoots;
-			
-			
-			
-			equippedMelee = Game.getItemTypeManager().ironsword;
-			equippedBow = null;
-			equippedSpell = null;
-			equippedHead = Game.getItemTypeManager().goldenhelmet;
-			equippedTorso = Game.getItemTypeManager().goldenchest;
-			equippedLegs = Game.getItemTypeManager().goldengreaves;
-			equippedHands = Game.getItemTypeManager().goldengloves;
-			equippedBoots = Game.getItemTypeManager().goldenboots;
-			
-			
-			if(lookingUp) {
-				setAnimationsToLookUp();
-			}
-			
-			if(lookingDown) {
-				setAnimationsToLookDown();
-			}
-			
-			if(lookingLeft) {
-				setAnimationsToLookLeft();
-			}
-			
-			if(lookingRight) {
-				setAnimationsToLookRight();
-			}
-			
-			
-			restartAllAnimations();
-			isPreparingSpell = false;
-
-			spellCreated = true;
-			
-			if(equippedSpell.getItemCategory().equals("spell")) {
-				inventoryWindow.removeItem(equippedSpell);
-				equippedSpell = null;
-			}
-			
-		}
-		
-	}
-
 	
 	private void updatePickUpItem() throws SlickException {
 
