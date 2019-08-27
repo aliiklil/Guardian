@@ -190,17 +190,7 @@ public class Player extends Character {
 	private Animation wolfLookDownAnimation = new Animation(wolfSpriteSheet, 0, 2, 0, 2, true, 100, true);
 	private Animation wolfLookLeftAnimation = new Animation(wolfSpriteSheet, 0, 1, 0, 1, true, 100, true);
 	private Animation wolfLookRightAnimation = new Animation(wolfSpriteSheet, 0, 3, 0, 3, true, 100, true);
-	
-	private Animation wolfHowlUpAnimation = new Animation(wolfSpriteSheet, 0, 0, 0, 0, true, 300, true);
-	private Animation wolfHowlDownAnimation = new Animation(wolfSpriteSheet, 0, 2, 4, 2, true, 300, true);
-	private Animation wolfHowlLeftAnimation = new Animation(wolfSpriteSheet, 0, 1, 3, 1, true, 300, true);
-	private Animation wolfHowlRightAnimation = new Animation(wolfSpriteSheet, 0, 3, 3, 3, true, 300, true);
-	
-	private Animation wolfWalkUpAnimation = new Animation(wolfSpriteSheet, 0, 4, 3, 4, true, 100, true);
-	private Animation wolfWalkDownAnimation = new Animation(wolfSpriteSheet, 0, 6, 3, 6, true, 100, true);
-	private Animation wolfWalkLeftAnimation = new Animation(wolfSpriteSheet, 0, 5, 4, 5, true, 100, true);
-	private Animation wolfWalkRightAnimation = new Animation(wolfSpriteSheet, 0, 7, 4, 7, true, 100, true);
-	
+		
 	private Animation wolfRunUpAnimation = new Animation(wolfSpriteSheet, 0, 8, 4, 8, true, 100, true);
 	private Animation wolfRunDownAnimation = new Animation(wolfSpriteSheet, 0, 10, 4, 10, true, 100, true);
 	private Animation wolfRunLeftAnimation = new Animation(wolfSpriteSheet, 0, 9, 4, 9, true, 100, true);
@@ -321,11 +311,19 @@ public class Player extends Character {
 	private Animation orcSpellRightAnimation = new Animation(orcSpriteSheet, 0, 3, 6, 3, true, 100, true);
 	
 	private Animation orcDieAnimation = new Animation(orcSpriteSheet, 0, 20, 5, 20, true, 100, true);
-		
+	
+	
 	private boolean isTranformedToWolf = false;
 	private long wolfTransformationTimestamp;
-	private int wolfTransformationDuration = 5000;
+	private int wolfTransformationDuration = 50000;
 	private int wolfMaxHp = 200;
+	private int wolfAttackDamage = 50;
+	
+	private CollisionBox wolfHorizontalAttackBox;
+	private CollisionBox wolfVerticalAttackBox;
+	
+	private boolean wolfIsAttacking = false;
+	
 	
 	private boolean isTranformedToSkeleton = false;
 	private long skeletonTransformationTimestamp;
@@ -385,13 +383,7 @@ public class Player extends Character {
 		
 		
 		
-		
-		
-		wolfHowlUpAnimation.setLooping(false);
-		wolfHowlDownAnimation.setLooping(false);
-		wolfHowlLeftAnimation.setLooping(false);
-		wolfHowlRightAnimation.setLooping(false);
-		
+				
 		wolfAttackUpAnimation.setLooping(false);
 		wolfAttackDownAnimation.setLooping(false);
 		wolfAttackLeftAnimation.setLooping(false);
@@ -453,6 +445,8 @@ public class Player extends Character {
 		
 		orcDieAnimation.setLooping(false);
 		
+		wolfHorizontalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
+		wolfVerticalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
 		
 	}
 
@@ -517,12 +511,15 @@ public class Player extends Character {
 			levelUpText.update();
 			
 
+			
+			
 			if(!dialogueWindow.isWindowOpen()) {
 				updateMove();
 				updateAttack();
 				updatePickUpItem();
 				updateOpenChest();
 				
+				updateWolfAttack();
 				checkIfTransformationOver();
 				
 				if(!isTranformedToWolf && !isTranformedToSkeleton && !isTranformedToOrc) {
@@ -954,157 +951,161 @@ public class Player extends Character {
 
 	private void updateAttack() {
 
-		if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventoryWindow.isWindowOpen() && equippedMelee != null && !tradingWindow.isWindowOpen()) {
-
-			if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
-				setAnimationsToPrepareAttackUp();
+		if(!isTranformedToWolf) {
+		
+			if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventoryWindow.isWindowOpen() && equippedMelee != null && !tradingWindow.isWindowOpen()) {
+	
+				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
+					setAnimationsToPrepareAttackUp();
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
+					setAnimationsToPrepareAttackDown();
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
+					setAnimationsToPrepareAttackLeft();
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
+					setAnimationsToPrepareAttackRight();
+				}
+	
+				startAllAnimations();
+				isPreparingAttack = true;
+	
 			}
-
-			if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
-				setAnimationsToPrepareAttackDown();
+	
+			if(isPreparingAttack && prepareAttackBar.getCurrentValue() < prepareAttackBar.getMaxValue() && isAlive()) {
+				prepareAttackBar.setCurrentValue(prepareAttackBar.getCurrentValue() + 1);
 			}
-
-			if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
-				setAnimationsToPrepareAttackLeft();
+	
+			if(!input.isKeyDown(Input.KEY_X) && isPreparingAttack) {
+	
+				if(super.getCurrentAnimation() == super.getPrepareSlayUpAnimation() || super.getCurrentAnimation() == super.getPrepareThrustUpAnimation()) {
+					setAnimationsToAttackUp();
+					isPreparingAttack = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getPrepareSlayDownAnimation() || super.getCurrentAnimation() == super.getPrepareThrustDownAnimation()) {
+					setAnimationsToAttackDown();
+					isPreparingAttack = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getPrepareSlayLeftAnimation() || super.getCurrentAnimation() == super.getPrepareThrustLeftAnimation()) {
+					setAnimationsToAttackLeft();
+					isPreparingAttack = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getPrepareSlayRightAnimation() || super.getCurrentAnimation() == super.getPrepareThrustRightAnimation()) {
+					setAnimationsToAttackRight();
+					isPreparingAttack = false;
+				}
+	
+				startAllAnimations();
+				damageToDeal = equippedMelee.getDamage() + strength + (int) ((equippedMelee.getDamage() + strength) * prepareAttackBar.getCurrentValue()/100.0) * 2;
+	
+				if((equippedMelee.getItemCategory().equals("melee_slay") || equippedMelee.getItemCategory().equals("melee_thrust")) && meleeSkill/100.0 > new Random().nextDouble()) {
+					damageToDeal = damageToDeal * 5;
+				}
+				
+				isAttacking = true;
+				damageDealt = false;
+				prepareAttackBar.setCurrentValue(0);
+	
 			}
-
-			if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
-				setAnimationsToPrepareAttackRight();
+	
+			if(isAttacking && (super.getSlayUpAnimation().isStopped() || super.getThrustUpAnimation().isStopped())) {
+				restartAllAnimations();
+				setAnimationsToLookUp();
+				isAttacking = false;
 			}
-
-			startAllAnimations();
-			isPreparingAttack = true;
-
-		}
-
-		if(isPreparingAttack && prepareAttackBar.getCurrentValue() < prepareAttackBar.getMaxValue() && isAlive()) {
-			prepareAttackBar.setCurrentValue(prepareAttackBar.getCurrentValue() + 1);
-		}
-
-		if(!input.isKeyDown(Input.KEY_X) && isPreparingAttack) {
-
-			if(super.getCurrentAnimation() == super.getPrepareSlayUpAnimation() || super.getCurrentAnimation() == super.getPrepareThrustUpAnimation()) {
-				setAnimationsToAttackUp();
-				isPreparingAttack = false;
+	
+			if(isAttacking && (super.getSlayDownAnimation().isStopped() || super.getThrustDownAnimation().isStopped())) {
+				restartAllAnimations();
+				setAnimationsToLookDown();
+				isAttacking = false;
 			}
-
-			if(super.getCurrentAnimation() == super.getPrepareSlayDownAnimation() || super.getCurrentAnimation() == super.getPrepareThrustDownAnimation()) {
-				setAnimationsToAttackDown();
-				isPreparingAttack = false;
+	
+			if(isAttacking && (super.getSlayLeftAnimation().isStopped() || super.getThrustLeftAnimation().isStopped())) {
+				restartAllAnimations();
+				setAnimationsToLookLeft();
+				isAttacking = false;
 			}
-
-			if(super.getCurrentAnimation() == super.getPrepareSlayLeftAnimation() || super.getCurrentAnimation() == super.getPrepareThrustLeftAnimation()) {
-				setAnimationsToAttackLeft();
-				isPreparingAttack = false;
+	
+			if(isAttacking && (super.getSlayRightAnimation().isStopped() || super.getThrustRightAnimation().isStopped())) {
+				restartAllAnimations();
+				setAnimationsToLookRight();
+				isAttacking = false;
 			}
-
-			if(super.getCurrentAnimation() == super.getPrepareSlayRightAnimation() || super.getCurrentAnimation() == super.getPrepareThrustRightAnimation()) {
-				setAnimationsToAttackRight();
-				isPreparingAttack = false;
-			}
-
-			startAllAnimations();
-			damageToDeal = equippedMelee.getDamage() + strength + (int) ((equippedMelee.getDamage() + strength) * prepareAttackBar.getCurrentValue()/100.0) * 2;
-
-			if((equippedMelee.getItemCategory().equals("melee_slay") || equippedMelee.getItemCategory().equals("melee_thrust")) && meleeSkill/100.0 > new Random().nextDouble()) {
-				damageToDeal = damageToDeal * 5;
-			}
-			
-			isAttacking = true;
-			damageDealt = false;
-			prepareAttackBar.setCurrentValue(0);
-
-		}
-
-		if(isAttacking && (super.getSlayUpAnimation().isStopped() || super.getThrustUpAnimation().isStopped())) {
-			restartAllAnimations();
-			setAnimationsToLookUp();
-			isAttacking = false;
-		}
-
-		if(isAttacking && (super.getSlayDownAnimation().isStopped() || super.getThrustDownAnimation().isStopped())) {
-			restartAllAnimations();
-			setAnimationsToLookDown();
-			isAttacking = false;
-		}
-
-		if(isAttacking && (super.getSlayLeftAnimation().isStopped() || super.getThrustLeftAnimation().isStopped())) {
-			restartAllAnimations();
-			setAnimationsToLookLeft();
-			isAttacking = false;
-		}
-
-		if(isAttacking && (super.getSlayRightAnimation().isStopped() || super.getThrustRightAnimation().isStopped())) {
-			restartAllAnimations();
-			setAnimationsToLookRight();
-			isAttacking = false;
-		}
-
-		if(!damageDealt) {
-
-			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayUpAnimation() || super.getCurrentAnimation() == super.getThrustUpAnimation())) {
-				for (Mob mob : mobList) {
-					if(equippedMelee.getAttackUpCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() ) {
-						mob.decreaseHealth(damageToDeal);
-						damageDealt = true;
-						if(!mob.isUpCollision(Main.TILE_SIZE * 3) && !mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 3);
-						} else if(!mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 2);
-						} else if(!mob.isUpCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 1);
+	
+			if(!damageDealt) {
+	
+				if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayUpAnimation() || super.getCurrentAnimation() == super.getThrustUpAnimation())) {
+					for (Mob mob : mobList) {
+						if(equippedMelee.getAttackUpCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() ) {
+							mob.decreaseHealth(damageToDeal);
+							damageDealt = true;
+							if(!mob.isUpCollision(Main.TILE_SIZE * 3) && !mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 3);
+							} else if(!mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 2);
+							} else if(!mob.isUpCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 1);
+							}
+						}
+					}
+				}
+	
+				if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayDownAnimation() || super.getCurrentAnimation() == super.getThrustDownAnimation())) {
+					for (Mob mob : mobList) {
+						if(equippedMelee.getAttackDownCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+							mob.decreaseHealth(damageToDeal);
+							damageDealt = true;
+							if(!mob.isDownCollision(Main.TILE_SIZE * 3) && !mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 3);
+							} else if(!mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 2);
+							} else if(!mob.isDownCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 1);
+							}
+						}
+					}
+				}
+	
+				if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayLeftAnimation() || super.getCurrentAnimation() == super.getThrustLeftAnimation())) {
+					for (Mob mob : mobList) {
+						if(equippedMelee.getAttackLeftCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() ) {
+							mob.decreaseHealth(damageToDeal);
+							damageDealt = true;
+							if(!mob.isLeftCollision(Main.TILE_SIZE * 3) && !mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 3);
+							} else if(!mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 2);
+							} else if(!mob.isLeftCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 1);
+							}
+						}
+					}
+				}
+	
+				if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayRightAnimation() || super.getCurrentAnimation() == super.getThrustRightAnimation())) {
+					for (Mob mob : mobList) {
+						if(equippedMelee.getAttackRightCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() ) {
+							mob.decreaseHealth(damageToDeal);
+							damageDealt = true;
+							if(!mob.isRightCollision(Main.TILE_SIZE * 3) && !mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 3);
+							} else if(!mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 2);
+							} else if(!mob.isRightCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 1);
+							}
 						}
 					}
 				}
 			}
-
-			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayDownAnimation() || super.getCurrentAnimation() == super.getThrustDownAnimation())) {
-				for (Mob mob : mobList) {
-					if(equippedMelee.getAttackDownCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
-						mob.decreaseHealth(damageToDeal);
-						damageDealt = true;
-						if(!mob.isDownCollision(Main.TILE_SIZE * 3) && !mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 3);
-						} else if(!mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 2);
-						} else if(!mob.isDownCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 1);
-						}
-					}
-				}
-			}
-
-			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayLeftAnimation() || super.getCurrentAnimation() == super.getThrustLeftAnimation())) {
-				for (Mob mob : mobList) {
-					if(equippedMelee.getAttackLeftCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() ) {
-						mob.decreaseHealth(damageToDeal);
-						damageDealt = true;
-						if(!mob.isLeftCollision(Main.TILE_SIZE * 3) && !mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 3);
-						} else if(!mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 2);
-						} else if(!mob.isLeftCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 1);
-						}
-					}
-				}
-			}
-
-			if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayRightAnimation() || super.getCurrentAnimation() == super.getThrustRightAnimation())) {
-				for (Mob mob : mobList) {
-					if(equippedMelee.getAttackRightCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() ) {
-						mob.decreaseHealth(damageToDeal);
-						damageDealt = true;
-						if(!mob.isRightCollision(Main.TILE_SIZE * 3) && !mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 3);
-						} else if(!mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 2);
-						} else if(!mob.isRightCollision(Main.TILE_SIZE * 1)) {
-							mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 1);
-						}
-					}
-				}
-			}
+		
 		}
 	}
 
@@ -1945,6 +1946,138 @@ public class Player extends Character {
 			
 		}
 			
+	}
+	
+	private void updateWolfAttack() {
+		
+		wolfHorizontalAttackBox.setX(getRelativeToMapX());
+		wolfHorizontalAttackBox.setY(getRelativeToMapY() - 32);
+		
+		wolfVerticalAttackBox.setX(getRelativeToMapX() - 16);
+		wolfVerticalAttackBox.setY(getRelativeToMapY() - 16);
+		
+		if(isTranformedToWolf) {
+			
+			if(input.isKeyDown(Input.KEY_X)) {
+
+				if(getCurrentAnimation() == wolfLookUpAnimation || getCurrentAnimation() == wolfRunUpAnimation) {
+					setCurrentAnimation(wolfAttackUpAnimation);
+				}
+
+				if(getCurrentAnimation() == wolfLookDownAnimation || getCurrentAnimation() == wolfRunDownAnimation) {
+					setCurrentAnimation(wolfAttackDownAnimation);
+				}
+
+				if(getCurrentAnimation() == wolfLookLeftAnimation || getCurrentAnimation() == wolfRunLeftAnimation) {
+					setCurrentAnimation(wolfAttackLeftAnimation);
+				}
+
+				if(getCurrentAnimation() == wolfLookRightAnimation || getCurrentAnimation() == wolfRunRightAnimation) {
+					setCurrentAnimation(wolfAttackRightAnimation);
+				}
+
+				startAllAnimations();
+				damageToDeal = wolfAttackDamage;
+
+				wolfIsAttacking = true;
+				damageDealt = false;
+
+			}
+
+			if(wolfIsAttacking && wolfAttackUpAnimation.isStopped()) {
+				restartAllAnimations();
+				setCurrentAnimation(wolfLookUpAnimation);
+				wolfIsAttacking = false;
+			}
+
+			if(wolfIsAttacking && wolfAttackDownAnimation.isStopped()) {
+				restartAllAnimations();
+				setCurrentAnimation(wolfLookDownAnimation);
+				wolfIsAttacking = false;
+			}
+
+			if(wolfIsAttacking && wolfAttackLeftAnimation.isStopped()) {
+				restartAllAnimations();
+				setCurrentAnimation(wolfLookLeftAnimation);
+				wolfIsAttacking = false;
+			}
+
+			if(wolfIsAttacking && wolfAttackRightAnimation.isStopped()) {
+				restartAllAnimations();
+				setCurrentAnimation(wolfLookRightAnimation);
+				wolfIsAttacking = false;
+			}
+
+			if(!damageDealt) {
+
+				if(getCurrentAnimation().getFrame() == 3 && getCurrentAnimation() == wolfAttackUpAnimation) {
+					for (Mob mob : mobList) {
+						if(wolfVerticalAttackBox.intersects(mob.getHitBox()) && mob.isAlive() ) {
+							mob.decreaseHealth(damageToDeal);
+							damageDealt = true;
+							if(!mob.isUpCollision(Main.TILE_SIZE * 3) && !mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 3);
+							} else if(!mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 2);
+							} else if(!mob.isUpCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() - Main.TILE_SIZE * 1);
+							}
+						}
+					}
+				}
+
+				if(getCurrentAnimation().getFrame() == 3 && getCurrentAnimation() == wolfAttackDownAnimation) {
+					for (Mob mob : mobList) {
+						if(wolfVerticalAttackBox.intersects(mob.getHitBox()) && mob.isAlive()) {
+							mob.decreaseHealth(damageToDeal);
+							damageDealt = true;
+							if(!mob.isDownCollision(Main.TILE_SIZE * 3) && !mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 3);
+							} else if(!mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 2);
+							} else if(!mob.isDownCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapY(mob.getRelativeToMapY() + Main.TILE_SIZE * 1);
+							}
+						}
+					}
+				}
+
+				if(getCurrentAnimation().getFrame() == 3 && getCurrentAnimation() == wolfAttackLeftAnimation) {
+					for (Mob mob : mobList) {
+						if(wolfHorizontalAttackBox.intersects(mob.getHitBox()) && mob.isAlive() ) {
+							mob.decreaseHealth(damageToDeal);
+							damageDealt = true;
+							if(!mob.isLeftCollision(Main.TILE_SIZE * 3) && !mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 3);
+							} else if(!mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 2);
+							} else if(!mob.isLeftCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() - Main.TILE_SIZE * 1);
+							}
+						}
+					}
+				}
+
+				if(getCurrentAnimation().getFrame() == 3 && getCurrentAnimation() == wolfAttackRightAnimation) {
+					for (Mob mob : mobList) {
+						if(wolfHorizontalAttackBox.intersects(mob.getHitBox()) && mob.isAlive() ) {
+							mob.decreaseHealth(damageToDeal);
+							damageDealt = true;
+							if(!mob.isRightCollision(Main.TILE_SIZE * 3) && !mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 3);
+							} else if(!mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 2);
+							} else if(!mob.isRightCollision(Main.TILE_SIZE * 1)) {
+								mob.setRelativeToMapX(mob.getRelativeToMapX() + Main.TILE_SIZE * 1);
+							}
+						}
+					}
+				}
+			}
+			
+		}
+		
+		
 	}
 	
 	private void updateTransformIntoSkeleton() throws SlickException {
@@ -3006,7 +3139,7 @@ public class Player extends Character {
 
 	public void setAnimationsToAttackUp() {
 
-		if(equippedMelee.getItemCategory().equals("melee_slay")) {
+		if(equippedMelee != null && equippedMelee.getItemCategory().equals("melee_slay")) {
 		
 			super.setCurrentAnimation(super.getSlayUpAnimation());
 	
@@ -3044,7 +3177,7 @@ public class Player extends Character {
 			
 		} 
 		
-		if(equippedMelee.getItemCategory().equals("melee_thrust")) {
+		if(equippedMelee != null && equippedMelee.getItemCategory().equals("melee_thrust")) {
 			
 			super.setCurrentAnimation(super.getThrustUpAnimation());
 			
@@ -3086,7 +3219,7 @@ public class Player extends Character {
 
 	public void setAnimationsToAttackDown() {
 
-		if(equippedMelee.getItemCategory().equals("melee_slay")) {
+		if(equippedMelee != null && equippedMelee.getItemCategory().equals("melee_slay")) {
 			
 			super.setCurrentAnimation(super.getSlayDownAnimation());
 	
@@ -3124,7 +3257,7 @@ public class Player extends Character {
 			
 		} 
 		
-		if(equippedMelee.getItemCategory().equals("melee_thrust")) {
+		if(equippedMelee != null && equippedMelee.getItemCategory().equals("melee_thrust")) {
 			
 			super.setCurrentAnimation(super.getThrustDownAnimation());
 			
@@ -3166,7 +3299,7 @@ public class Player extends Character {
 
 	public void setAnimationsToAttackLeft() {
 
-		if(equippedMelee.getItemCategory().equals("melee_slay")) {
+		if(equippedMelee != null && equippedMelee.getItemCategory().equals("melee_slay")) {
 			
 			super.setCurrentAnimation(super.getSlayLeftAnimation());
 	
@@ -3204,7 +3337,7 @@ public class Player extends Character {
 			
 		} 
 		
-		if(equippedMelee.getItemCategory().equals("melee_thrust")) {
+		if(equippedMelee != null && equippedMelee.getItemCategory().equals("melee_thrust")) {
 			
 			super.setCurrentAnimation(super.getThrustLeftAnimation());
 			
@@ -3246,7 +3379,7 @@ public class Player extends Character {
 
 	public void setAnimationsToAttackRight() {
 
-		if(equippedMelee.getItemCategory().equals("melee_slay")) {
+		if(equippedMelee != null && equippedMelee.getItemCategory().equals("melee_slay")) {
 			
 			super.setCurrentAnimation(super.getSlayRightAnimation());
 	
@@ -3284,7 +3417,7 @@ public class Player extends Character {
 			
 		} 
 		
-		if(equippedMelee.getItemCategory().equals("melee_thrust")) {
+		if(equippedMelee != null && equippedMelee.getItemCategory().equals("melee_thrust")) {
 			
 			super.setCurrentAnimation(super.getThrustRightAnimation());
 			
