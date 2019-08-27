@@ -135,6 +135,59 @@ public class Player extends Character {
 	
 	
 	
+	private SpriteSheet humanSpriteSheet = new SpriteSheet("resources/player_sprites/human_base.png", 64, 64);
+	private SpriteSheet overSizeHumanSpriteSheet = new SpriteSheet("resources/player_sprites/human_base.png", 192, 192);
+	
+	private Animation humanLookUpAnimation = new Animation(humanSpriteSheet, 0, 8, 0, 8, true, 100, true);
+	private Animation humanLookDownAnimation = new Animation(humanSpriteSheet, 0, 10, 0, 10, true, 100, true);
+	private Animation humanLookLeftAnimation = new Animation(humanSpriteSheet, 0, 9, 0, 9, true, 100, true);
+	private Animation humanLookRightAnimation = new Animation(humanSpriteSheet, 0, 11, 0, 11, true, 100, true);
+	
+	private Animation humanGoUpAnimation = new Animation(humanSpriteSheet, 1, 8, 8, 8, true, 100, true);
+	private Animation humanGoDownAnimation = new Animation(humanSpriteSheet, 1, 10, 8, 10, true, 100, true);
+	private Animation humanGoLeftAnimation = new Animation(humanSpriteSheet, 1, 9, 8, 9, true, 100, true);
+	private Animation humanGoRightAnimation = new Animation(humanSpriteSheet, 1, 11, 8, 11, true, 100, true);
+	
+	private Animation humanSlayUpAnimation = new Animation(overSizeHumanSpriteSheet, 2, 7, 5, 7, true, 100, true);
+	private Animation humanSlayDownAnimation = new Animation(overSizeHumanSpriteSheet, 2, 9, 5, 9, true, 100, true);
+	private Animation humanSlayLeftAnimation = new Animation(overSizeHumanSpriteSheet, 2, 8, 5, 8, true, 100, true);
+	private Animation humanSlayRightAnimation = new Animation(overSizeHumanSpriteSheet, 2, 10, 5, 10, true, 100, true);
+	
+	private Animation humanPrepareSlayUpAnimation = new Animation(overSizeHumanSpriteSheet, 2, 7, 2, 7, true, 100, true);
+	private Animation humanPrepareSlayDownAnimation = new Animation(overSizeHumanSpriteSheet, 2, 9, 2, 9, true, 100, true);
+	private Animation humanPrepareSlayLeftAnimation = new Animation(overSizeHumanSpriteSheet, 2, 8, 2, 8, true, 100, true);
+	private Animation humanPrepareSlayRightAnimation = new Animation(overSizeHumanSpriteSheet, 2, 10, 2, 10, true, 100, true);
+
+	private Animation humanThrustUpAnimation = new Animation(overSizeHumanSpriteSheet, 3, 11, 7, 11, true, 100, true);
+	private Animation humanThrustDownAnimation = new Animation(overSizeHumanSpriteSheet, 3, 13, 7, 13, true, 100, true);
+	private Animation humanThrustLeftAnimation = new Animation(overSizeHumanSpriteSheet, 3, 12, 7, 12, true, 100, true);
+	private Animation humanThrustRightAnimation = new Animation(overSizeHumanSpriteSheet, 3, 14, 7, 14, true, 100, true);
+	
+	private Animation humanPrepareThrustUpAnimation = new Animation(overSizeHumanSpriteSheet, 3, 11, 3, 11, true, 100, true);
+	private Animation humanPrepareThrustDownAnimation = new Animation(overSizeHumanSpriteSheet, 3, 13, 3, 13, true, 100, true);
+	private Animation humanPrepareThrustLeftAnimation = new Animation(overSizeHumanSpriteSheet, 3, 12, 3, 12, true, 100, true);
+	private Animation humanPrepareThrustRightAnimation = new Animation(overSizeHumanSpriteSheet, 3, 14, 3, 14, true, 100, true);
+
+	private Animation humanShootUpAnimation = new Animation(humanSpriteSheet, 0, 16, 8, 16, true, 100, true);
+	private Animation humanShootDownAnimation = new Animation(humanSpriteSheet, 0, 18, 8, 18, true, 100, true);
+	private Animation humanShootLeftAnimation = new Animation(humanSpriteSheet, 0, 17, 8, 17, true, 100, true);
+	private Animation humanShootRightAnimation = new Animation(humanSpriteSheet, 0, 19, 8, 19, true, 100, true);
+	
+	private Animation humanSpellUpAnimation = new Animation(humanSpriteSheet, 0, 0, 6, 0, true, 100, true);
+	private Animation humanSpellDownAnimation = new Animation(humanSpriteSheet, 0, 2, 6, 2, true, 100, true);
+	private Animation humanSpellLeftAnimation = new Animation(humanSpriteSheet, 0, 1, 6, 1, true, 100, true);
+	private Animation humanSpellRightAnimation = new Animation(humanSpriteSheet, 0, 3, 6, 3, true, 100, true);
+	
+	private Animation humanDieAnimation = new Animation(humanSpriteSheet, 0, 20, 5, 20, true, 100, true);
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private SpriteSheet skeletonSpriteSheet = new SpriteSheet("resources/player_sprites/skeleton_base.png", 64, 64);
 	private SpriteSheet overSizeSkeletonSpriteSheet = new SpriteSheet("resources/player_sprites/skeleton_base.png", 192, 192);
@@ -229,11 +282,21 @@ public class Player extends Character {
 	
 	private Animation orcDieAnimation = new Animation(orcSpriteSheet, 0, 20, 5, 20, true, 100, true);
 	
+	private boolean isTranformedToWolf = false;
+	private long wolfTransformationTimestamp;
+	private int wolfTransformationDuration = 5000;
 	
+	private boolean isTranformedToSkeleton = false;
+	private long skeletonTransformationTimestamp;
+	private int skeletonTransformationDuration = 5000;
+	
+	private boolean isTranformedToOrc = false;
+	private long orcTransformationTimestamp;
+	private int orcTransformationDuration = 5000;
 	
 	public Player(float relativeToMapX, float relativeToMapY, boolean alive) throws SlickException {
 
-		super(relativeToMapX, relativeToMapY, "resources/player_sprites/player_base.png", alive);
+		super(relativeToMapX, relativeToMapY, "resources/player_sprites/human_base.png", alive);
 
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize() / 2 - 12, super.getSpriteSize() / 2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize() / 2, super.getSpriteSize() / 2));
@@ -251,6 +314,31 @@ public class Player extends Character {
 		mobList = MobManager.getMobListWithoutPlayer();
 		
 		getHealthBar().setCurrentValue(10);
+		
+		
+		
+		humanSlayUpAnimation.setLooping(false);
+		humanSlayDownAnimation.setLooping(false);
+		humanSlayLeftAnimation.setLooping(false);
+		humanSlayRightAnimation.setLooping(false);
+		
+		humanThrustUpAnimation.setLooping(false);
+		humanThrustDownAnimation.setLooping(false);
+		humanThrustLeftAnimation.setLooping(false);
+		humanThrustRightAnimation.setLooping(false);
+		
+		humanShootUpAnimation.setLooping(false);
+		humanShootDownAnimation.setLooping(false);
+		humanShootLeftAnimation.setLooping(false);
+		humanShootRightAnimation.setLooping(false);
+		
+		humanSpellUpAnimation.setLooping(false);
+		humanSpellDownAnimation.setLooping(false);
+		humanSpellLeftAnimation.setLooping(false);
+		humanSpellRightAnimation.setLooping(false);
+		
+		humanDieAnimation.setLooping(false);
+		
 		
 		
 		skeletonSlayUpAnimation.setLooping(false);
@@ -273,6 +361,8 @@ public class Player extends Character {
 		skeletonSpellLeftAnimation.setLooping(false);
 		skeletonSpellRightAnimation.setLooping(false);
 		
+		skeletonDieAnimation.setLooping(false);
+		
 		
 		
 		orcSlayUpAnimation.setLooping(false);
@@ -294,6 +384,8 @@ public class Player extends Character {
 		orcSpellDownAnimation.setLooping(false);
 		orcSpellLeftAnimation.setLooping(false);
 		orcSpellRightAnimation.setLooping(false);
+		
+		orcDieAnimation.setLooping(false);
 		
 		
 	}
@@ -344,45 +436,55 @@ public class Player extends Character {
 		}
 
 		if(isAlive()) {
-			inventoryWindow.update();
+			if(!isTranformedToWolf && !isTranformedToSkeleton && !isTranformedToOrc) {
+				inventoryWindow.update();
+				updateDialogueNPC();
+				updateDialogueAnvil();
+				updateDialogueAlchemyDesk();
+				updateDialogueRuneTable();
+				dialogueWindow.update();
+				tradingWindow.update();
+			}
+			
 			newItemWindow.update();
-			updateDialogueNPC();
-			updateDialogueAnvil();
-			updateDialogueAlchemyDesk();
-			updateDialogueRuneTable();
-			dialogueWindow.update();
 			centeredText.update();
 			levelUpText.update();
-			tradingWindow.update();
+			
 
 			if(!dialogueWindow.isWindowOpen()) {
 				updateMove();
 				updateAttack();
-				updateShoot();
-				
-				
-				if(equippedSpell != null && (equippedSpell.getName().equals("Heal Light Wounds") || equippedSpell.getName().equals("Heal Medium Wounds") || equippedSpell.getName().equals("Heal Heavy Wounds"))) {
-					updateHealMagic();
-				}
-				
-				if(equippedSpell != null && (equippedSpell.getName().equals("Icelance") || equippedSpell.getName().equals("Fireball") || equippedSpell.getName().equals("Titanspear") || equippedSpell.getName().equals("Iceblock") || equippedSpell.getName().equals("Bloodtheft"))) {
-					updateBulletMagic();
-				}
-				
-				if(equippedSpell != null && (equippedSpell.getName().equals("Firerain"))) {
-					updateFirerain();
-				}
-				
-				if(equippedSpell != null && (equippedSpell.getName().equals("Transform Into Skeleton"))) {
-					updateTransformIntoSkeleton();
-				}
-				
-				if(equippedSpell != null && (equippedSpell.getName().equals("Transform Into Orc Warrior"))) {
-					updateTransformIntoOrcWarrior();
-				}
-					
 				updatePickUpItem();
 				updateOpenChest();
+				
+				checkIfTransformationOver();
+				
+				if(!isTranformedToWolf && !isTranformedToSkeleton && !isTranformedToOrc) {
+					
+					updateShoot();
+				
+					if(equippedSpell != null && (equippedSpell.getName().equals("Heal Light Wounds") || equippedSpell.getName().equals("Heal Medium Wounds") || equippedSpell.getName().equals("Heal Heavy Wounds"))) {
+						updateHealMagic();
+					}
+					
+					if(equippedSpell != null && (equippedSpell.getName().equals("Icelance") || equippedSpell.getName().equals("Fireball") || equippedSpell.getName().equals("Titanspear") || equippedSpell.getName().equals("Iceblock") || equippedSpell.getName().equals("Bloodtheft"))) {
+						updateBulletMagic();
+					}
+					
+					if(equippedSpell != null && (equippedSpell.getName().equals("Firerain"))) {
+						updateFirerain();
+					}
+					
+					if(equippedSpell != null && (equippedSpell.getName().equals("Transform Into Skeleton"))) {
+						updateTransformIntoSkeleton();
+					}
+					
+					if(equippedSpell != null && (equippedSpell.getName().equals("Transform Into Orc Warrior"))) {
+						updateTransformIntoOrcWarrior();
+					}
+					
+				}
+				
 			}
 		}
 
@@ -1745,11 +1847,19 @@ public class Player extends Character {
 			
 			
 			equippedMelee = Game.getItemTypeManager().ironsword;
+			equippedBow = null;
+			equippedSpell = null;
 			equippedHead = Game.getItemTypeManager().chainhat;
 			equippedTorso = Game.getItemTypeManager().chainchest;
 			equippedLegs = Game.getItemTypeManager().irongreaves;
 			equippedHands = Game.getItemTypeManager().irongloves;
 			equippedBoots = Game.getItemTypeManager().ironboots;
+			
+			isTranformedToSkeleton = true;
+			skeletonTransformationTimestamp = System.currentTimeMillis();
+			
+			currentSpellAnimation = null;
+			
 			
 			
 			if(lookingUp) {
@@ -1767,15 +1877,148 @@ public class Player extends Character {
 			if(lookingRight) {
 				setAnimationsToLookRight();
 			}
-			
-			
-			
+	
 			restartAllAnimations();
 			isPreparingSpell = false;
 
 			spellCreated = true;
 			
 
+			
+		}
+			
+	}
+	
+	private void checkIfTransformationOver() {
+		
+		boolean transformBackToHuman = false;
+		
+		if(isTranformedToWolf && System.currentTimeMillis() - wolfTransformationTimestamp > wolfTransformationDuration) {
+			isTranformedToWolf = false;
+			transformBackToHuman = true;
+		}
+		
+		if(isTranformedToSkeleton && System.currentTimeMillis() - skeletonTransformationTimestamp > skeletonTransformationDuration) {
+			isTranformedToSkeleton = false;
+			transformBackToHuman = true;
+		}
+		
+		if(isTranformedToOrc && System.currentTimeMillis() - orcTransformationTimestamp > orcTransformationDuration) {
+			isTranformedToOrc = false;
+			transformBackToHuman = true;
+		}
+		
+		if(transformBackToHuman) {
+			
+			setLookUpAnimation(humanLookUpAnimation);
+			setLookDownAnimation(humanLookDownAnimation);
+			setLookLeftAnimation(humanLookLeftAnimation);
+			setLookRightAnimation(humanLookRightAnimation);
+			
+			setGoUpAnimation(humanGoUpAnimation);
+			setGoDownAnimation(humanGoDownAnimation);
+			setGoLeftAnimation(humanGoLeftAnimation);
+			setGoRightAnimation(humanGoRightAnimation);
+			
+			setSlayUpAnimation(humanSlayUpAnimation);
+			setSlayDownAnimation(humanSlayDownAnimation);
+			setSlayLeftAnimation(humanSlayLeftAnimation);
+			setSlayRightAnimation(humanSlayRightAnimation);
+			
+			setPrepareSlayUpAnimation(humanPrepareSlayUpAnimation);
+			setPrepareSlayDownAnimation(humanPrepareSlayDownAnimation);
+			setPrepareSlayLeftAnimation(humanPrepareSlayLeftAnimation);
+			setPrepareSlayRightAnimation(humanPrepareSlayRightAnimation);
+
+			setThrustUpAnimation(humanThrustUpAnimation);
+			setThrustDownAnimation(humanThrustDownAnimation);
+			setThrustLeftAnimation(humanThrustLeftAnimation);
+			setThrustRightAnimation(humanThrustRightAnimation);
+			
+			setPrepareThrustUpAnimation(humanPrepareThrustUpAnimation);
+			setPrepareThrustDownAnimation(humanPrepareThrustDownAnimation);
+			setPrepareThrustLeftAnimation(humanPrepareThrustLeftAnimation);
+			setPrepareThrustRightAnimation(humanPrepareThrustRightAnimation);
+
+			setShootDownAnimation(humanShootUpAnimation);
+			setShootDownAnimation(humanShootDownAnimation);
+			setShootLeftAnimation(humanShootLeftAnimation);
+			setShootRightAnimation(humanShootRightAnimation);
+			
+			setSpellUpAnimation(humanSpellUpAnimation);
+			setSpellDownAnimation(humanSpellDownAnimation);
+			setSpellLeftAnimation(humanSpellLeftAnimation);
+			setSpellRightAnimation(humanSpellRightAnimation);
+			
+			setDieAnimation(humanDieAnimation);
+						
+			equippedMelee = equippedMeleeBefore;
+			equippedBow = equippedBowBefore;
+			equippedSpell = equippedSpellBefore;
+			equippedHead = equippedHeadBefore;
+			equippedTorso = equippedTorsoBefore;
+			equippedLegs = equippedLegsBefore;
+			equippedHands = equippedHandsBefore;
+			equippedBoots = equippedBootsBefore;
+
+			
+			if(getCurrentAnimation() == skeletonLookUpAnimation || getCurrentAnimation() == skeletonGoUpAnimation || getCurrentAnimation() == skeletonPrepareSlayUpAnimation || getCurrentAnimation() == skeletonPrepareThrustUpAnimation || getCurrentAnimation() == skeletonSlayUpAnimation || getCurrentAnimation() == skeletonThrustUpAnimation) {
+				
+				if(equippedMelee != null) {
+					currentMeleeAnimation = equippedMelee.getLookUpAnimation();
+				} else {
+					currentMeleeAnimation = null;
+				}
+				
+				if(equippedBow != null) {
+					currentBowAnimation = equippedBow.getLookUpAnimation();
+				} else {
+					currentBowAnimation = null;
+				}
+				
+				if(equippedSpell != null) {
+					currentSpellAnimation = equippedSpell.getLookUpAnimation();
+				} else {
+					currentSpellAnimation = null;
+				}	
+				
+				if(equippedHead != null) {
+					currentHeadAnimation = equippedHead.getLookUpAnimation();
+				} else {
+					currentHeadAnimation = null;
+				}
+				
+				if(equippedTorso != null) {
+					currentChestAnimation = equippedTorso.getLookUpAnimation();
+				} else {
+					currentChestAnimation = null;
+				}
+				
+				if(equippedLegs != null) {
+					currentLegsAnimation = equippedLegs.getLookUpAnimation();
+				} else {
+					currentLegsAnimation = null;
+				}
+				
+				if(equippedHands != null) {
+					currentHandsAnimation = equippedHands.getLookUpAnimation();
+				} else {
+					currentHandsAnimation = null;
+				}
+				
+				if(equippedMelee != null) {
+					currentFeetAnimation = equippedBoots.getLookUpAnimation();
+				} else {
+					currentFeetAnimation = null;
+				}
+				
+				setAnimationsToLookUp();
+			}
+			
+
+			
+			restartAllAnimations();
+			
 			
 		}
 		
@@ -1981,6 +2224,7 @@ public class Player extends Character {
 		}
 		
 	}
+
 	
 	private void updatePickUpItem() throws SlickException {
 
@@ -3910,5 +4154,17 @@ public class Player extends Character {
 	public void setSpeedBoostTimeStamp(long speedBoostTimeStamp) {
 		this.speedBoostTimeStamp = speedBoostTimeStamp;
 	}
+
+	public boolean isTranformedToWolf() {
+		return isTranformedToWolf;
+	}
+
+	public boolean isTranformedToSkeleton() {
+		return isTranformedToSkeleton;
+	}
+
+	public boolean isTranformedToOrc() {
+		return isTranformedToOrc;
+	}	
 	
 }
