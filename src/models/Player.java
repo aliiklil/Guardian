@@ -184,6 +184,46 @@ public class Player extends Character {
 	
 	
 	
+	private SpriteSheet wolfSpriteSheet = new SpriteSheet("resources/WolfSpriteSheet.png", 64, 64);
+	
+	private Animation wolfLookUpAnimation = new Animation(wolfSpriteSheet, 0, 0, 0, 0, true, 100, true);
+	private Animation wolfLookDownAnimation = new Animation(wolfSpriteSheet, 0, 2, 0, 2, true, 100, true);
+	private Animation wolfLookLeftAnimation = new Animation(wolfSpriteSheet, 0, 1, 0, 1, true, 100, true);
+	private Animation wolfLookRightAnimation = new Animation(wolfSpriteSheet, 0, 3, 0, 3, true, 100, true);
+	
+	private Animation wolfHowlUpAnimation = new Animation(wolfSpriteSheet, 0, 0, 0, 0, true, 300, true);
+	private Animation wolfHowlDownAnimation = new Animation(wolfSpriteSheet, 0, 2, 4, 2, true, 300, true);
+	private Animation wolfHowlLeftAnimation = new Animation(wolfSpriteSheet, 0, 1, 3, 1, true, 300, true);
+	private Animation wolfHowlRightAnimation = new Animation(wolfSpriteSheet, 0, 3, 3, 3, true, 300, true);
+	
+	private Animation wolfWalkUpAnimation = new Animation(wolfSpriteSheet, 0, 4, 3, 4, true, 100, true);
+	private Animation wolfWalkDownAnimation = new Animation(wolfSpriteSheet, 0, 6, 3, 6, true, 100, true);
+	private Animation wolfWalkLeftAnimation = new Animation(wolfSpriteSheet, 0, 5, 4, 5, true, 100, true);
+	private Animation wolfWalkRightAnimation = new Animation(wolfSpriteSheet, 0, 7, 4, 7, true, 100, true);
+	
+	private Animation wolfRunUpAnimation = new Animation(wolfSpriteSheet, 0, 8, 4, 8, true, 100, true);
+	private Animation wolfRunDownAnimation = new Animation(wolfSpriteSheet, 0, 10, 4, 10, true, 100, true);
+	private Animation wolfRunLeftAnimation = new Animation(wolfSpriteSheet, 0, 9, 4, 9, true, 100, true);
+	private Animation wolfRunRightAnimation = new Animation(wolfSpriteSheet, 0, 11, 4, 11, true, 100, true);
+			
+	private Animation wolfAttackUpAnimation = new Animation(wolfSpriteSheet, 0, 12, 4, 12, true, 100, true);
+	private Animation wolfAttackDownAnimation = new Animation(wolfSpriteSheet, 0, 14, 4, 14, true, 100, true);
+	private Animation wolfAttackLeftAnimation = new Animation(wolfSpriteSheet, 0, 13, 4, 13, true, 100, true);
+	private Animation wolfAttackRightAnimation = new Animation(wolfSpriteSheet, 0, 15, 4, 15, true, 100, true);
+	
+	private Animation wolfDieDownAnimation = new Animation(wolfSpriteSheet, 0, 18, 3, 18, true, 100, true);
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -344,6 +384,29 @@ public class Player extends Character {
 		
 		
 		
+		
+		
+		
+		wolfHowlUpAnimation.setLooping(false);
+		wolfHowlDownAnimation.setLooping(false);
+		wolfHowlLeftAnimation.setLooping(false);
+		wolfHowlRightAnimation.setLooping(false);
+		
+		wolfAttackUpAnimation.setLooping(false);
+		wolfAttackDownAnimation.setLooping(false);
+		wolfAttackLeftAnimation.setLooping(false);
+		wolfAttackRightAnimation.setLooping(false);
+		
+		wolfDieDownAnimation.setLooping(false);
+
+		
+		
+		
+		
+		
+		
+		
+		
 		skeletonSlayUpAnimation.setLooping(false);
 		skeletonSlayDownAnimation.setLooping(false);
 		skeletonSlayLeftAnimation.setLooping(false);
@@ -476,6 +539,10 @@ public class Player extends Character {
 					
 					if(equippedSpell != null && (equippedSpell.getName().equals("Firerain"))) {
 						updateFirerain();
+					}
+					
+					if(equippedSpell != null && (equippedSpell.getName().equals("Transform Into Wolf"))) {
+						updateTransformIntoWolf();
 					}
 					
 					if(equippedSpell != null && (equippedSpell.getName().equals("Transform Into Skeleton"))) {
@@ -1685,6 +1752,199 @@ public class Player extends Character {
 			spellCreated = false;
 		}
 		
+	}
+	
+	private void updateTransformIntoWolf() throws SlickException {
+		
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !spellCreated) {
+			
+			boolean enoughMana;
+			
+			if(getManaBar().getCurrentValue() - equippedSpell.getManaCost() >= 0) {
+				enoughMana = true;
+			} else {
+				enoughMana = false;
+			}
+			
+			if(!enoughMana) {
+				
+				String text = "Not enough mana";
+				centeredText.showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+				
+			} else {
+
+				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellUpAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellUp();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellUp();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookDownAnimation() || super.getCurrentAnimation() == super.getGoDownAnimation() || input.isKeyDown(Input.KEY_DOWN)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellDownAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellDown();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellDown();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookLeftAnimation() || super.getCurrentAnimation() == super.getGoLeftAnimation() || input.isKeyDown(Input.KEY_LEFT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellLeftAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellLeft();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellLeft();
+					}
+					spellCreated = false;
+				}
+	
+				if(super.getCurrentAnimation() == super.getLookRightAnimation() || super.getCurrentAnimation() == super.getGoRightAnimation() || input.isKeyDown(Input.KEY_RIGHT)) {
+					if(isPreparingSpell && super.getCurrentAnimation() != super.getSpellRightAnimation()) {
+						int frameIndex = super.getCurrentAnimation().getFrame();
+						restartAllAnimations();
+						setAnimationsToSpellRight();
+						setAllAnimationsToFrame(frameIndex);
+					} else {
+						setAnimationsToSpellRight();
+					}
+					spellCreated = false;
+				}
+	
+				startAllAnimations();
+				isPreparingSpell = true;
+			
+			}
+
+		}
+
+		if(!input.isKeyDown(Input.KEY_S) && isPreparingSpell && super.getCurrentAnimation().isStopped() && !spellCreated) {
+			
+			//Decrease mana
+			getManaBar().setCurrentValue(getManaBar().getCurrentValue() - equippedSpell.getManaCost());
+			
+			if(equippedSpell.getItemCategory().equals("spell")) {
+				inventoryWindow.removeItem(equippedSpell);
+				equippedSpell = null;
+			}
+			
+			boolean lookingUp = false;
+			boolean lookingDown = false;
+			boolean lookingLeft = false;
+			boolean lookingRight = false;
+			
+			if(super.getCurrentAnimation() == super.getSpellUpAnimation()) {
+				setAnimationsToLookUp();
+				lookingUp = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellDownAnimation()) {
+				setAnimationsToLookDown();
+				lookingDown = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellLeftAnimation()) {
+				setAnimationsToLookLeft();
+				lookingLeft = true;
+			}
+
+			if(super.getCurrentAnimation() == super.getSpellRightAnimation()) {
+				setAnimationsToLookRight();
+				lookingRight = true;
+			}
+			
+
+			
+			
+			setLookUpAnimation(wolfLookUpAnimation);
+			setLookDownAnimation(wolfLookDownAnimation);
+			setLookLeftAnimation(wolfLookLeftAnimation);
+			setLookRightAnimation(wolfLookRightAnimation);
+			
+			setGoUpAnimation(wolfRunUpAnimation);
+			setGoDownAnimation(wolfRunDownAnimation);
+			setGoLeftAnimation(wolfRunLeftAnimation);
+			setGoRightAnimation(wolfRunRightAnimation);
+			
+			setSlayUpAnimation(wolfAttackUpAnimation);
+			setSlayDownAnimation(wolfAttackDownAnimation);
+			setSlayLeftAnimation(wolfAttackLeftAnimation);
+			setSlayRightAnimation(wolfAttackRightAnimation);
+						
+			setDieAnimation(wolfDieDownAnimation);
+			
+			
+			
+			equippedMeleeBefore = equippedMelee;
+			equippedBowBefore = equippedBow;
+			equippedSpellBefore = equippedSpell;
+			equippedHeadBefore = equippedHead;
+			equippedTorsoBefore = equippedTorso;
+			equippedLegsBefore = equippedLegs;
+			equippedHandsBefore = equippedHands;
+			equippedBootsBefore = equippedBoots;
+			
+			currentMeleeAnimation = null;
+			currentBowAnimation = null;
+			currentSpellAnimation = null;
+			currentHeadAnimation = null;
+			currentChestAnimation = null;
+			currentLegsAnimation = null;
+			currentHandsAnimation = null;
+			currentFeetAnimation = null;
+			
+			equippedMelee = null;
+			equippedBow = null;
+			equippedSpell = null;
+			equippedHead = null;
+			equippedTorso = null;
+			equippedLegs = null;
+			equippedHands = null;
+			equippedBoots = null;
+			
+			isTranformedToWolf = true;
+			wolfTransformationTimestamp = System.currentTimeMillis();
+			
+			currentSpellAnimation = null;
+			
+			getHealthBar().setMaxValue(wolfMaxHp);
+			getHealthBar().setCurrentValue(wolfMaxHp);
+			
+			if(lookingUp) {
+				setAnimationsToLookUp();
+			}
+			
+			if(lookingDown) {
+				setAnimationsToLookDown();
+			}
+			
+			if(lookingLeft) {
+				setAnimationsToLookLeft();
+			}
+			
+			if(lookingRight) {
+				setAnimationsToLookRight();
+			}
+	
+			restartAllAnimations();
+			isPreparingSpell = false;
+
+			spellCreated = false;
+			
+
+			
+		}
+			
 	}
 	
 	private void updateTransformIntoSkeleton() throws SlickException {

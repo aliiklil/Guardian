@@ -144,17 +144,7 @@ public class Wolf extends Mob {
 		runDownAnimation = new Animation(spriteSheet, 0, 10, 4, 10, true, 100, true);
 		runLeftAnimation = new Animation(spriteSheet, 0, 9, 4, 9, true, 100, true);
 		runRightAnimation = new Animation(spriteSheet, 0, 11, 4, 11, true, 100, true);
-		
-		attackUpAnimation = new Animation(spriteSheet, 0, 12, 4, 12, true, 100, true);
-		attackDownAnimation = new Animation(spriteSheet, 0, 14, 4, 14, true, 100, true);
-		attackLeftAnimation = new Animation(spriteSheet, 0, 13, 4, 13, true, 100, true);
-		attackRightAnimation = new Animation(spriteSheet, 0, 15, 4, 15, true, 100, true);
-		
-		dieUpAnimation = new Animation(spriteSheet, 0, 16, 3, 16, true, 100, true);
-		dieDownAnimation = new Animation(spriteSheet, 0, 18, 3, 18, true, 100, true);
-		dieLeftAnimation = new Animation(spriteSheet, 0, 17, 3, 17, true, 100, true);
-		dieRightAnimation = new Animation(spriteSheet, 0, 19, 3, 19, true, 100, true);
-		
+				
 		attackUpAnimation = new Animation(spriteSheet, 0, 12, 4, 12, true, 100, true);
 		attackDownAnimation = new Animation(spriteSheet, 0, 14, 4, 14, true, 100, true);
 		attackLeftAnimation = new Animation(spriteSheet, 0, 13, 4, 13, true, 100, true);
