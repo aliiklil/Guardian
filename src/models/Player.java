@@ -317,7 +317,7 @@ public class Player extends Character {
 	
 	private boolean isTranformedToWolf = false;
 	private long wolfTransformationTimestamp;
-	private int wolfTransformationDuration = 5000;
+	private int wolfTransformationDuration = 30000;
 	private int wolfMaxHp = 200;
 	private int wolfAttackDamage = 100;
 	
@@ -329,12 +329,12 @@ public class Player extends Character {
 	
 	private boolean isTranformedToSkeleton = false;
 	private long skeletonTransformationTimestamp;
-	private int skeletonTransformationDuration = 5000;
+	private int skeletonTransformationDuration = 30000;
 	private int skeletonMaxHp = 400;
 	
 	private boolean isTranformedToOrc = false;
 	private long orcTransformationTimestamp;
-	private int orcTransformationDuration = 5000;
+	private int orcTransformationDuration = 30000;
 	private int orcMaxHp = 600;
 	
 	public Player(float relativeToMapX, float relativeToMapY, boolean alive) throws SlickException {
