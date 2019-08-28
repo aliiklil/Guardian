@@ -1,3 +1,11 @@
+.)Create description for items (for example explaining that transformation magic has 30 seconds duration)
+
+.)Update interface
+
 .)Implement quest system
 
-.)Add black armor (black knight) and skeleton armor
+.)Add black kight armor
+
+.)Add guild armor
+
+.)Add more enemies (for example rats)
