@@ -449,8 +449,8 @@ public class Player extends Character {
 		
 		orcDieAnimation.setLooping(false);
 		
-		wolfHorizontalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
-		wolfVerticalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
+		wolfHorizontalAttackBox = new CollisionBox(relativeToMapX - 32, relativeToMapY - 16, 96, 32);
+		wolfVerticalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 48, 32, 96);
 		
 	}
 
@@ -1954,11 +1954,12 @@ public class Player extends Character {
 	
 	private void updateWolfAttack() {
 				
-		wolfHorizontalAttackBox.setX(getRelativeToMapX() - 16);
+		wolfHorizontalAttackBox.setX(getRelativeToMapX() - 32);
 		wolfHorizontalAttackBox.setY(getRelativeToMapY() - 16);
 		
 		wolfVerticalAttackBox.setX(getRelativeToMapX());
-		wolfVerticalAttackBox.setY(getRelativeToMapY() - 32);
+		wolfVerticalAttackBox.setY(getRelativeToMapY() - 48);
+		
 		
 		if(isTranformedToWolf) {
 			
@@ -2648,7 +2649,7 @@ public class Player extends Character {
 
 	private void updateOpenChest() throws SlickException {
 
-		if(yPressed && getCurrentAnimation() == getLookUpAnimation() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
+		if(yPressed && getCurrentAnimation() == getLookUpAnimation() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !isTranformedToWolf) {
 
 			ArrayList<Chest> chestList = ChestManager.getChestList();
 
