@@ -204,8 +204,8 @@ public class Wolf extends Mob {
 		
 		aggressionCircle = new Circle(getCenterX(), getCenterY(), aggressionCircleRadius);
 		
-		horizontalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
-		verticalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
+		horizontalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
+		verticalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
 		
 		setHostileToPlayer(hostileToPlayer);
 		
@@ -354,21 +354,21 @@ public class Wolf extends Mob {
 	}
 
 	private void updateAttackBox() {
+				
+		horizontalAttackBox.setX(getRelativeToMapX() - 16);
+		horizontalAttackBox.setY(getRelativeToMapY() - 16);
 		
-		horizontalAttackBox.setX(getRelativeToMapX());
-		horizontalAttackBox.setY(getRelativeToMapY() - 32);
-		
-		verticalAttackBox.setX(getRelativeToMapX() - 16);
-		verticalAttackBox.setY(getRelativeToMapY() - 16);
+		verticalAttackBox.setX(getRelativeToMapX());
+		verticalAttackBox.setY(getRelativeToMapY() - 32);
 		
 		if(getCurrentAnimation() == lookUpAnimation || getCurrentAnimation() == howlUpAnimation || getCurrentAnimation() == walkUpAnimation || getCurrentAnimation() == runUpAnimation || getCurrentAnimation() == attackUpAnimation ||
 				getCurrentAnimation() == lookDownAnimation || getCurrentAnimation() == howlDownAnimation || getCurrentAnimation() == walkDownAnimation || getCurrentAnimation() == runDownAnimation || getCurrentAnimation() == attackDownAnimation) {
-			currentAttackBox = horizontalAttackBox;
+			currentAttackBox = verticalAttackBox;
 		}
 		
 		if(getCurrentAnimation() == lookLeftAnimation || getCurrentAnimation() == howlLeftAnimation || getCurrentAnimation() == walkLeftAnimation || getCurrentAnimation() == runLeftAnimation || getCurrentAnimation() == attackLeftAnimation ||
 				getCurrentAnimation() == lookRightAnimation || getCurrentAnimation() == howlRightAnimation || getCurrentAnimation() == walkRightAnimation || getCurrentAnimation() == runRightAnimation || getCurrentAnimation() == attackRightAnimation) {
-			currentAttackBox = verticalAttackBox;
+			currentAttackBox = horizontalAttackBox;
 		}
 				
 	}

@@ -201,8 +201,10 @@ public class Player extends Character {
 	private Animation wolfAttackLeftAnimation = new Animation(wolfSpriteSheet, 0, 13, 4, 13, true, 100, true);
 	private Animation wolfAttackRightAnimation = new Animation(wolfSpriteSheet, 0, 15, 4, 15, true, 100, true);
 	
+	private Animation wolfDieUpAnimation = new Animation(wolfSpriteSheet, 0, 16, 3, 16, true, 100, true);
 	private Animation wolfDieDownAnimation = new Animation(wolfSpriteSheet, 0, 18, 3, 18, true, 100, true);
-
+	private Animation wolfDieLeftAnimation = new Animation(wolfSpriteSheet, 0, 17, 3, 17, true, 100, true);
+	private Animation wolfDieRightAnimation = new Animation(wolfSpriteSheet, 0, 19, 3, 19, true, 100, true);
 	
 	
 	
@@ -317,7 +319,7 @@ public class Player extends Character {
 	private long wolfTransformationTimestamp;
 	private int wolfTransformationDuration = 50000;
 	private int wolfMaxHp = 200;
-	private int wolfAttackDamage = 50;
+	private int wolfAttackDamage = 100;
 	
 	private CollisionBox wolfHorizontalAttackBox;
 	private CollisionBox wolfVerticalAttackBox;
@@ -382,15 +384,17 @@ public class Player extends Character {
 		
 		
 		
-		
+
 				
 		wolfAttackUpAnimation.setLooping(false);
 		wolfAttackDownAnimation.setLooping(false);
 		wolfAttackLeftAnimation.setLooping(false);
 		wolfAttackRightAnimation.setLooping(false);
 		
+		wolfDieUpAnimation.setLooping(false);
 		wolfDieDownAnimation.setLooping(false);
-
+		wolfDieLeftAnimation.setLooping(false);
+		wolfDieRightAnimation.setLooping(false);
 		
 		
 		
@@ -445,8 +449,8 @@ public class Player extends Character {
 		
 		orcDieAnimation.setLooping(false);
 		
-		wolfHorizontalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
-		wolfVerticalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
+		wolfHorizontalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
+		wolfVerticalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
 		
 	}
 
@@ -707,7 +711,7 @@ public class Player extends Character {
 
 	private void updateMove() {
 
-		if(!isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell) {
+		if(!isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell && !wolfIsAttacking) {
 
 			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
 
@@ -1949,16 +1953,16 @@ public class Player extends Character {
 	}
 	
 	private void updateWolfAttack() {
+				
+		wolfHorizontalAttackBox.setX(getRelativeToMapX() - 16);
+		wolfHorizontalAttackBox.setY(getRelativeToMapY() - 16);
 		
-		wolfHorizontalAttackBox.setX(getRelativeToMapX());
-		wolfHorizontalAttackBox.setY(getRelativeToMapY() - 32);
-		
-		wolfVerticalAttackBox.setX(getRelativeToMapX() - 16);
-		wolfVerticalAttackBox.setY(getRelativeToMapY() - 16);
+		wolfVerticalAttackBox.setX(getRelativeToMapX());
+		wolfVerticalAttackBox.setY(getRelativeToMapY() - 32);
 		
 		if(isTranformedToWolf) {
 			
-			if(input.isKeyDown(Input.KEY_X)) {
+			if(input.isKeyDown(Input.KEY_X) && !wolfIsAttacking) {
 
 				if(getCurrentAnimation() == wolfLookUpAnimation || getCurrentAnimation() == wolfRunUpAnimation) {
 					setCurrentAnimation(wolfAttackUpAnimation);
@@ -4241,7 +4245,22 @@ public class Player extends Character {
 
 			if(getHealthBar().getCurrentValue() <= 0) {
 				getHealthBar().setCurrentValue(0);
-				setAnimationsToDie();	
+				if(!isTranformedToWolf) {
+					setAnimationsToDie();	
+				} else {
+					if(getCurrentAnimation() == wolfLookUpAnimation || getCurrentAnimation() == wolfRunUpAnimation || getCurrentAnimation() == wolfAttackUpAnimation) {
+						setCurrentAnimation(wolfDieUpAnimation);
+					}
+					if(getCurrentAnimation() == wolfLookDownAnimation || getCurrentAnimation() == wolfRunDownAnimation || getCurrentAnimation() == wolfAttackDownAnimation) {
+						setCurrentAnimation(wolfDieDownAnimation);
+					}
+					if(getCurrentAnimation() == wolfLookLeftAnimation || getCurrentAnimation() == wolfRunLeftAnimation || getCurrentAnimation() == wolfAttackLeftAnimation) {
+						setCurrentAnimation(wolfDieLeftAnimation);
+					}
+					if(getCurrentAnimation() == wolfLookRightAnimation || getCurrentAnimation() == wolfRunRightAnimation || getCurrentAnimation() == wolfAttackRightAnimation) {
+						setCurrentAnimation(wolfDieRightAnimation);
+					}
+				}
 				setAlive(false);
 			}
 
