@@ -360,7 +360,7 @@ public class ItemTypeManager {
 		
 		transformIntoWolfRune = new ItemType(1, "resources/items/11transformrunes/transformIntoWolfRune.png", "Transform Into Wolf", 250, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		transformIntoWolfRune.setManaCost(10);
-		
+		transformIntoWolfRune.setEffectDuration(30);
 
 
 		
@@ -378,7 +378,7 @@ public class ItemTypeManager {
 		
 		transformIntoSkeletonRune = new ItemType(1, "resources/items/11transformrunes/transformIntoSkeletonRune.png", "Transform Into Skeleton", 500, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		transformIntoSkeletonRune.setManaCost(25);
-		
+		transformIntoSkeletonRune.setEffectDuration(30);
 
 		
 
@@ -396,7 +396,7 @@ public class ItemTypeManager {
 		
 		transformIntoOrcWarriorRune = new ItemType(1, "resources/items/11transformrunes/transformIntoOrcWarriorRune.png", "Transform Into Orc Warrior", 750, 11, true, "rune", "resources/player_sprites/empty_sprite_sheet.png");
 		transformIntoOrcWarriorRune.setManaCost(75);
-		
+		transformIntoOrcWarriorRune.setEffectDuration(30);
 
 		
 		
@@ -416,7 +416,7 @@ public class ItemTypeManager {
 		
 		transformIntoWolfSpell = new ItemType(1, "resources/items/15transformspells/transformIntoWolfSpell.png", "Transform Into Wolf", 30, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		transformIntoWolfSpell.setManaCost(10);
-		
+		transformIntoWolfSpell.setEffectDuration(30);
 		
 		
 		healMediumWoundsSpell = new ItemType(1, "resources/items/16healspells/healMediumWoundsSpell.png", "Heal Medium Wounds", 50, 16, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
@@ -432,7 +432,7 @@ public class ItemTypeManager {
 		
 		transformIntoSkeletonSpell = new ItemType(1, "resources/items/15transformspells/transformIntoSkeletonSpell.png", "Transform Into Skeleton", 75, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		transformIntoSkeletonSpell.setManaCost(15);
-		
+		transformIntoSkeletonSpell.setEffectDuration(30);
 		
 		
 		healHeavyWoundsSpell = new ItemType(1, "resources/items/16healspells/healHeavyWoundsSpell.png", "Heal Heavy Wounds", 100, 16, true, "spell", "resources/player_sprites/weapons/magic/magicCloud.png");
@@ -448,7 +448,7 @@ public class ItemTypeManager {
 		
 		transformIntoOrcWarriorSpell = new ItemType(1, "resources/items/15transformspells/transformIntoOrcWarriorSpell.png", "Transform Into Orc Warrior", 150, 15, true, "spell", "resources/player_sprites/empty_sprite_sheet.png");
 		transformIntoOrcWarriorSpell.setManaCost(20);
-		
+		transformIntoOrcWarriorSpell.setEffectDuration(30);
 		
 		
 		
@@ -497,7 +497,7 @@ public class ItemTypeManager {
 		dexterityPotion.setDexterityBoost(5);
 				
 		speedPotion = new ItemType(1, "resources/items/19special_potions/speed_potion.png", "Speed Potion", 200, 19, false, "specialpotion", "resources/player_sprites/empty_sprite_sheet.png");
-		
+		speedPotion.setEffectDuration(60);
 		
 		
 		dragonroot = new ItemType(1, "resources/items/20plants/dragonroot.png", "Dragonroot", 150, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
@@ -510,7 +510,7 @@ public class ItemTypeManager {
 
 		
 		wolfnettel = new ItemType(1, "resources/items/20plants/wolfnettel.png", "Wolfnettel", 100, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");
-
+		wolfnettel.setEffectDuration(10);
 		
 		
 		healberry = new ItemType(1, "resources/items/20plants/healberry.png", "Healberry", 10, 20, false, "plant", "resources/player_sprites/empty_sprite_sheet.png");

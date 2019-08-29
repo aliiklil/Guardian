@@ -527,6 +527,14 @@ public class InventoryWindow {
 						g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 923);
 					}
 					
+					//Relevant for transformation spells and runes
+					if(selectedItem.getItemType().getEffectDuration() > 0) {
+						g.drawString("Duration:", 652, 923);
+						String duration = String.valueOf(selectedItem.getItemType().getEffectDuration()) + " seconds";
+						g.drawString(duration, 1098 - duration.length() * 9, 923);
+					}
+					
+					//Relevant for all runes and spells, because they consume mana
 					if(selectedItem.getItemType().getManaCost() > 0) {
 						g.drawString("Mana Cost:", 652, 943);
 						String manaCost = String.valueOf(selectedItem.getItemType().getManaCost());
@@ -557,9 +565,21 @@ public class InventoryWindow {
 						String healthBoost = String.valueOf(selectedItem.getItemType().getHealthBoost());
 						g.drawString(healthBoost, 1098 - healthBoost.length() * 9, 943);
 					}
+					
+					//Relevant for speed potion and wolfnettel
+					if(selectedItem.getItemType().getEffectDuration() > 0) {
+						g.drawString("Duration:", 652, 943);
+						String duration = String.valueOf(selectedItem.getItemType().getEffectDuration()) + " seconds";
+						g.drawString(duration, 1098 - duration.length() * 9, 943);
+					}
 				
 				}
 				
+				if(selectedItem.getItemType().getManaBoost() > 0) {
+					g.drawString("Mana Boost:", 652, 943);
+					String manaBoost = String.valueOf(selectedItem.getItemType().getManaBoost());
+					g.drawString(manaBoost, 1098 - manaBoost.length() * 9, 943);
+				}
 				
 				if(selectedItem.getItemType().getManaBoost() > 0) {
 					g.drawString("Mana Boost:", 652, 943);

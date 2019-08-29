@@ -120,6 +120,9 @@ public class ItemType {
 	//Only needed for runes and spells
 	private int magicClass = 0;
 	
+
+	private int effectDuration; //Needed to display player, how long speed potions or transformation magic lasts
+	
 	
 	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath) throws SlickException {
 		
@@ -572,4 +575,12 @@ public class ItemType {
 		this.magicClass = magicClass;
 	}
 
+	public int getEffectDuration() {
+		return effectDuration;
+	}
+
+	public void setEffectDuration(int effectDuration) {
+		this.effectDuration = effectDuration;
+	}
+	
 }
