@@ -1,5 +1,3 @@
-.)Update interface (Maybe show face in dialogues)
-
 .)Implement quest system
 
 .)Add black kight armor

@@ -72,13 +72,18 @@ public class InventoryWindow {
 		playerInventoryList = player.getInventoryList();
 		playerItemCountList = player.getItemCountList();
 		
-		if(input.isKeyPressed(Input.KEY_TAB) && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen()) {
+		if(player.isTabPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen()) {
 			if(!windowOpen) {
 				windowOpen = true;
 			} else {
 				windowOpen = false;
 			}
 		}	
+		
+		
+		if(player.isTranformedToWolf() || player.isTranformedToSkeleton() || player.isTranformedToOrc()) {
+			input.consumeEvent();
+		}
 		
 		if(player.isEscapePressed() && windowOpen) {
 			windowOpen = false;
