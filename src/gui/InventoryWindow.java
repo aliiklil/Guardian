@@ -55,6 +55,12 @@ public class InventoryWindow {
 	private ArrayList<Item> playerInventoryList;
 	private ArrayList<Integer> playerItemCountList;
 	
+	
+	private Image zeroOfThree = new Image("resources/zero_of_three.png");
+	private Image oneOfThree = new Image("resources/one_of_three.png");
+	private Image twoOfThree = new Image("resources/two_of_three.png");
+	private Image threeOfThree = new Image("resources/three_of_three.png");
+	
 	public InventoryWindow() throws SlickException {
 		
 	}
@@ -668,12 +674,55 @@ public class InventoryWindow {
 		
 		g.drawString(String.valueOf(player.getMeleeSkill()) + "%", 471, 537);
 		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 557);
-				
+	
+		
+		if(player.getLockPickingSkill() == 0) {
+			zeroOfThree.draw(471, 605);
+		} else if(player.getLockPickingSkill() == 1) {
+			oneOfThree.draw(471, 605);
+		} else if(player.getLockPickingSkill() == 2) {
+			twoOfThree.draw(471, 605);
+		} else if(player.getLockPickingSkill() == 3) {
+			threeOfThree.draw(471, 605);
+		}
+		
+		if(player.getAlchemySkill() == 0) {
+			zeroOfThree.draw(471, 625);
+		} else if(player.getAlchemySkill() == 1) {
+			oneOfThree.draw(471, 625);
+		} else if(player.getAlchemySkill() == 2) {
+			twoOfThree.draw(471, 625);
+		} else if(player.getAlchemySkill() == 3) {
+			threeOfThree.draw(471, 625);
+		}
+		
+		if(player.getBlacksmithingSkill() == 0) {
+			zeroOfThree.draw(471, 645);
+		} else if(player.getBlacksmithingSkill() == 1) {
+			oneOfThree.draw(471, 645);
+		} else if(player.getBlacksmithingSkill() == 2) {
+			twoOfThree.draw(471, 645);
+		} else if(player.getBlacksmithingSkill() == 3) {
+			threeOfThree.draw(471, 645);
+		}
+		
+		if(player.getRuneForgingSkill() == 0) {
+			zeroOfThree.draw(471, 665);
+		} else if(player.getRuneForgingSkill() == 1) {
+			oneOfThree.draw(471, 665);
+		} else if(player.getRuneForgingSkill() == 2) {
+			twoOfThree.draw(471, 665);
+		} else if(player.getRuneForgingSkill() == 3) {
+			threeOfThree.draw(471, 665);
+		}
+		
+		
+		/*
 		g.drawString(String.valueOf(player.getLockPickingSkill()) + " / 3", 471, 597);
 		g.drawString(String.valueOf(player.getAlchemySkill()) + " / 3", 471, 617);
 		g.drawString(String.valueOf(player.getBlacksmithingSkill()) + " / 3", 471, 637);
 		g.drawString(String.valueOf(player.getRuneForgingSkill()) + " / 3", 471, 657);
-		
+*/
 		
 		
 		if(player.isTakeFurs()) {
