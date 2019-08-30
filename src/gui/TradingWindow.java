@@ -400,7 +400,7 @@ public class TradingWindow {
 			g.drawImage(selectedCellImage, 1484 + playerSelectedCellX * 78, 305 + playerSelectedCellY * 78);	
 		}
 		
-		g.setColor(Color.white);
+		g.setColor(Color.black);
 		
 		g.drawString("Gold: ", 1733, 239);
 		g.drawString(String.valueOf(player.getInventoryWindow().getGoldCounter()), 1853 - Integer.toString(player.getInventoryWindow().getGoldCounter()).length() * 9, 239);

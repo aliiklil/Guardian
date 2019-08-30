@@ -410,7 +410,7 @@ public class InventoryWindow {
 			g.drawImage(inventoryImage, 0, 0);
 			g.drawImage(selectedCellImage, 1484 + selectedCellX * 78, 305 + selectedCellY * 78);
 			
-			g.setColor(Color.white);
+			g.setColor(Color.black);
 			
 			drawPlayerStats(g);
 			

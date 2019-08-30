@@ -43,7 +43,7 @@ public class NewItemWindow {
 		if(isWindowOpen) {
 			g.drawImage(image, 0, 0);
 			currentItem.getItemType().getInventoryAnimation().draw(773, 823);
-			g.setColor(Color.white);
+			g.setColor(Color.black);
 			
 			String itemName = currentItem.getItemType().getName();
 			g.drawString(itemName, Main.WIDTH/2 - (itemName.length() * 9)/2 + 32, 844);

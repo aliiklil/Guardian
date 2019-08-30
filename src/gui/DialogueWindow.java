@@ -200,7 +200,7 @@ public class DialogueWindow {
 				for(int i = 0; i <= currentDialogues.size(); i++) {
 					Color fontColor;
 					if(i == selectedOption) {
-						fontColor = Color.white;
+						fontColor = Color.black;
 					} else {
 						fontColor = Color.gray;
 					}
@@ -218,9 +218,9 @@ public class DialogueWindow {
 			} else {
 				Color fontColor;
 				if(!currentSpeaker.equals("Hero")) {
-					fontColor = Color.yellow;
+					fontColor = Color.gray;
 				} else {
-					fontColor = Color.white;
+					fontColor = Color.black;
 				}
 				ttf.drawString(Main.WIDTH/2 - ttf.getWidth(currentSpeaker)/2, 763, currentSpeaker, fontColor);
 								
