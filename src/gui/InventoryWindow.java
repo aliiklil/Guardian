@@ -717,13 +717,6 @@ public class InventoryWindow {
 		}
 		
 		
-		/*
-		g.drawString(String.valueOf(player.getLockPickingSkill()) + " / 3", 471, 597);
-		g.drawString(String.valueOf(player.getAlchemySkill()) + " / 3", 471, 617);
-		g.drawString(String.valueOf(player.getBlacksmithingSkill()) + " / 3", 471, 637);
-		g.drawString(String.valueOf(player.getRuneForgingSkill()) + " / 3", 471, 657);
-*/
-		
 		
 		if(player.isTakeFurs()) {
 			g.drawString("Learned", 471, 697);

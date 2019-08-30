@@ -1,4 +1,4 @@
-.)Update interface
+.)Update interface (Maybe show face in dialogues)
 
 .)Implement quest system
 
