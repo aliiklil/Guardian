@@ -2266,6 +2266,7 @@ public class Player extends Character {
 			isTranformedToSkeleton = true;
 			skeletonTransformationTimestamp = System.currentTimeMillis();
 			
+			currentBowAnimation = null;
 			currentSpellAnimation = null;
 			
 			getHealthBar().setMaxValue(skeletonMaxHp);
@@ -2473,6 +2474,7 @@ public class Player extends Character {
 			isTranformedToOrc = true;
 			orcTransformationTimestamp = System.currentTimeMillis();
 			
+			currentBowAnimation = null;
 			currentSpellAnimation = null;
 			
 			getHealthBar().setMaxValue(orcMaxHp);
