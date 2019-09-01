@@ -63,35 +63,24 @@ public class ItemTypeManager {
 	public ItemType transformIntoOrcWarriorSpell;
 	
 	
-	public ItemType clothhood;
-	public ItemType leathercap;
-	public ItemType chainhat;
-	public ItemType chainhelmet;
-	public ItemType ironhelmet;
-	public ItemType goldenhelmet;
-	public ItemType mithrilhelmet;
+	public ItemType lightImperialArmor;
+	public ItemType mediumImperialArmor;
+	public ItemType heavyImperialArmor;
 
-	public ItemType shirt;
-	public ItemType leatherchest;
-	public ItemType chainchest;
-	public ItemType ironchest;
-	public ItemType goldenchest;
-	public ItemType mithrilchest;
+	public ItemType lightRebelArmor;
+	public ItemType mediumRebelArmor;
+	public ItemType heavyRebelArmor;
+	
+	public ItemType noviceArmor;
+	public ItemType mageArmor;
+	public ItemType heavyMageArmor;
+	
+	public ItemType blackknightArmor;
+	public ItemType goldenArmor;
+	public ItemType mithrilArmor;
+	
 
-	public ItemType irongloves;
-	public ItemType goldengloves;
-	public ItemType mithrilgloves;
-
-	public ItemType skirt;
-	public ItemType irongreaves;
-	public ItemType goldengreaves;
-	public ItemType mithrilgreaves;
-
-	public ItemType boots;
-	public ItemType leatherboots;
-	public ItemType ironboots;
-	public ItemType goldenboots;
-	public ItemType mithrilboots;
+	
 
 	public ItemType smallHpPotion;
 	public ItemType mediumHpPotion;
@@ -253,9 +242,24 @@ public class ItemTypeManager {
 		
 
 		
+		lightImperialArmor = new ItemType(1, "resources/items/imperial_armor/clothhood.png", "Cloth Hood", 20, 4, true, "head", "resources/player_sprites/head/clothhood.png");
+		mediumImperialArmor;
+		heavyImperialArmor;
+
+		lightRebelArmor;
+		mediumRebelArmor;
+		heavyRebelArmor;
+		
+		noviceArmor;
+		mageArmor;
+		heavyMageArmor;
+		
+		blackknightArmor;
+		goldenArmor;
+		mithrilArmor;
 		
 		
-		
+		/*
 		
 
 		
@@ -342,7 +346,7 @@ public class ItemTypeManager {
 		mithrilboots = new ItemType(1, "resources/items/8boots/mithrilboots.png", "Mithril Boots", 1500, 8, true, "feet", "resources/player_sprites/feet/mithrilboots.png");
 		mithrilboots.setProtection(12);
 		
-		
+		*/
 		
 		
 		
