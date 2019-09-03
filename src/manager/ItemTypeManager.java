@@ -242,21 +242,21 @@ public class ItemTypeManager {
 		
 
 		
-		lightImperialArmor = new ItemType(1, "resources/items/imperial_armor/clothhood.png", "Cloth Hood", 20, 4, true, "head", "resources/player_sprites/head/clothhood.png");
-		mediumImperialArmor;
-		heavyImperialArmor;
+		lightImperialArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Light Imperial Armor", 20, 4, true, "armor", "resources/player_sprites/armor/imperial_armor/light_imperial_armor.png");
+		mediumImperialArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Medium Imperial Armor", 20, 4, true, "armor", "resources/player_sprites/armor/imperial_armor/medium_imperial_armor.png");
+		heavyImperialArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Heavy Imperial Armor", 20, 4, true, "armor", "resources/player_sprites/armor/imperial_armor/heavy_imperial_armor.png");
 
-		lightRebelArmor;
-		mediumRebelArmor;
-		heavyRebelArmor;
+		lightRebelArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Light Rebel Armor", 20, 4, true, "armor", "resources/player_sprites/armor/rebel_armor/light_rebel_armor.png");
+		mediumRebelArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Medium Rebel Armor", 20, 4, true, "armor", "resources/player_sprites/armor/rebel_armor/medium_rebel_armor.png");;
+		heavyRebelArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Heavy Rebel Armor", 20, 4, true, "armor", "resources/player_sprites/armor/rebel_armor/heavy_rebel_armor.png");
 		
-		noviceArmor;
-		mageArmor;
-		heavyMageArmor;
+		noviceArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Novice Armor", 20, 4, true, "armor", "resources/player_sprites/armor/mage_armor/novice_armor.png");
+		mageArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Mage Armor", 20, 4, true, "armor", "resources/player_sprites/armor/mage_armor/mage_armor.png");
+		heavyMageArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Heavy Mage Armor", 20, 4, true, "armor", "resources/player_sprites/armor/mage_armor/heavy_mage_armor.png");
 		
-		blackknightArmor;
-		goldenArmor;
-		mithrilArmor;
+		blackknightArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Blackknight Armor", 20, 4, true, "armor", "resources/player_sprites/armor/other_armor/");
+		goldenArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Golden Armor", 20, 4, true, "armor", "resources/player_sprites/armor/other_armor/");
+		mithrilArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Mithril armor", 20, 4, true, "armor", "resources/player_sprites/armor/other_armor/");
 		
 		
 		/*
