@@ -76,6 +76,7 @@ public class ItemTypeManager {
 	public ItemType heavyMageArmor;
 	
 	public ItemType leatherArmor;
+	public ItemType ironArmor;
 	public ItemType blackknightArmor;
 	public ItemType goldenArmor;
 	public ItemType mithrilArmor;
@@ -282,7 +283,10 @@ public class ItemTypeManager {
 		
 		
 		leatherArmor = new ItemType(1, "resources/items/7other_armor/leather_armor.png", "Leather Armor", 200, 7, true, "armor", "resources/player_sprites/armor/other_armor/leather_armor.png");
-		leatherArmor.setProtection(15);
+		leatherArmor.setProtection(10);
+		
+		ironArmor = new ItemType(1, "resources/items/7other_armor/iron_armor.png", "Iron Armor", 250, 7, true, "armor", "resources/player_sprites/armor/other_armor/iron_armor.png");
+		ironArmor.setProtection(15);
 		
 		blackknightArmor = new ItemType(1, "resources/items/7other_armor/blackknight_armor.png", "Blackknight Armor", 500, 7, true, "armor", "resources/player_sprites/armor/other_armor/blackknight_armor.png");
 		blackknightArmor.setProtection(70);

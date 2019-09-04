@@ -102,6 +102,7 @@ public class ItemManager {
 		itemList.add(new Item(480, 416, itemTypeManager.heavyMageArmor));
 		
 		itemList.add(new Item(480, 416, itemTypeManager.leatherArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.ironArmor));
 		itemList.add(new Item(480, 416, itemTypeManager.blackknightArmor));
 		itemList.add(new Item(480, 416, itemTypeManager.goldenArmor));
 		itemList.add(new Item(480, 416, itemTypeManager.mithrilArmor));
