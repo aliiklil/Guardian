@@ -66,7 +66,7 @@ public class MobManager {
 		mobList.add(ogus);
 		mobList.add(halrok);
 		
-		wolf1 = new Wolf(1024, 768, "resources/WolfSpriteSheet.png", 1000, null, 100, 5, true, true);		
+		wolf1 = new Wolf(1024, 768, "resources/RatSpriteSheet.png", 1000, null, 100, 5, true, true);		
 		mobList.add(wolf1);
 		
 	}
