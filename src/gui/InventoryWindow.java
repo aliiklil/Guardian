@@ -109,21 +109,9 @@ public class InventoryWindow {
 						} else if(selectedItem.getItemType().getItemCategory().equals("rune") || selectedItem.getItemType().getItemCategory().equals("spell")) {
 							player.setEquippedSpell(null);
 							player.setCurrentSpellAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("head")) {
-							player.setEquippedHead(null);
-							player.setCurrentHeadAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("chest")) {
-							player.setEquippedTorso(null);
-							player.setCurrentChestAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("hands")) {
-							player.setEquippedHands(null);
-							player.setCurrentHandsAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("legs")) {
-							player.setEquippedLegs(null);
-							player.setCurrentLegsAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("feet")) {
-							player.setEquippedBoots(null);
-							player.setCurrentFeetAnimation(null);
+						} else if(selectedItem.getItemType().getItemCategory().equals("armor")) {
+							player.setEquippedArmor(null);
+							player.setCurrentArmorAnimation(null);
 						}
 						
 						if(player.getCurrentAnimation() == player.getLookUpAnimation()) {
@@ -166,16 +154,8 @@ public class InventoryWindow {
 								player.setEquippedBow(selectedItem.getItemType());
 							} else if(selectedItem.getItemType().getItemCategory().equals("rune") || selectedItem.getItemType().getItemCategory().equals("spell")) {
 								player.setEquippedSpell(selectedItem.getItemType());
-							} else if(selectedItem.getItemType().getItemCategory().equals("head")) {
-								player.setEquippedHead(selectedItem.getItemType());
-							} else if(selectedItem.getItemType().getItemCategory().equals("chest")) {
-								player.setEquippedTorso(selectedItem.getItemType());
-							} else if(selectedItem.getItemType().getItemCategory().equals("hands")) {
-								player.setEquippedHands(selectedItem.getItemType());
-							} else if(selectedItem.getItemType().getItemCategory().equals("legs")) {
-								player.setEquippedLegs(selectedItem.getItemType());
-							} else if(selectedItem.getItemType().getItemCategory().equals("feet")) {
-								player.setEquippedBoots(selectedItem.getItemType());
+							} else if(selectedItem.getItemType().getItemCategory().equals("armor")) {
+								player.setEquippedArmor(selectedItem.getItemType());
 							}
 							
 							if(player.getCurrentAnimation() == player.getLookUpAnimation()) {

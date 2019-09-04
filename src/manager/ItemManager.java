@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 
 import main.Game;
 import models.Item;
+import models.ItemType;
 
 public class ItemManager {
 	
@@ -82,42 +83,28 @@ public class ItemManager {
 		
 		
 		
-		
-		
-		
-		
-		itemList.add(new Item(480, 416, itemTypeManager.chainhat));
-		itemList.add(new Item(480, 416, itemTypeManager.chainhat));
-		itemList.add(new Item(480, 416, itemTypeManager.chainhat));
-		itemList.add(new Item(480, 416, itemTypeManager.chainhelmet));
-		itemList.add(new Item(480, 416, itemTypeManager.chainhelmet));
-		itemList.add(new Item(480, 416, itemTypeManager.clothhood));
-		itemList.add(new Item(480, 416, itemTypeManager.goldenhelmet));
-		itemList.add(new Item(480, 416, itemTypeManager.leathercap));
-		itemList.add(new Item(480, 416, itemTypeManager.ironhelmet));
-		itemList.add(new Item(480, 416, itemTypeManager.mithrilhelmet));
-		
-		itemList.add(new Item(480, 416, itemTypeManager.shirt));
-		itemList.add(new Item(480, 416, itemTypeManager.leatherchest));
-		itemList.add(new Item(480, 416, itemTypeManager.chainchest));
-		itemList.add(new Item(480, 416, itemTypeManager.ironchest));
-		itemList.add(new Item(480, 416, itemTypeManager.goldenchest));
-		itemList.add(new Item(480, 416, itemTypeManager.mithrilchest));
 
-		itemList.add(new Item(480, 416, itemTypeManager.irongloves));
-		itemList.add(new Item(480, 416, itemTypeManager.goldengloves));
-		itemList.add(new Item(480, 416, itemTypeManager.mithrilgloves));
 		
-		itemList.add(new Item(480, 416, itemTypeManager.skirt));
-		itemList.add(new Item(480, 416, itemTypeManager.irongreaves));
-		itemList.add(new Item(480, 416, itemTypeManager.goldengreaves));
-		itemList.add(new Item(480, 416, itemTypeManager.mithrilgreaves));
-				
-		itemList.add(new Item(480, 416, itemTypeManager.boots));
-		itemList.add(new Item(480, 416, itemTypeManager.leatherboots));
-		itemList.add(new Item(480, 416, itemTypeManager.ironboots));
-		itemList.add(new Item(480, 416, itemTypeManager.goldenboots));
-		itemList.add(new Item(480, 416, itemTypeManager.mithrilboots));
+		
+		
+		
+		
+		itemList.add(new Item(480, 416, itemTypeManager.lightImperialArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.mediumImperialArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.heavyImperialArmor));
+		
+		itemList.add(new Item(480, 416, itemTypeManager.lightRebelArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.mediumRebelArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.heavyRebelArmor));
+		
+		itemList.add(new Item(480, 416, itemTypeManager.noviceArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.mageArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.heavyMageArmor));
+		
+		itemList.add(new Item(480, 416, itemTypeManager.leatherArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.blackknightArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.goldenArmor));
+		itemList.add(new Item(480, 416, itemTypeManager.mithrilArmor));
 		
 		
 		itemList.add(new Item(480, 416, itemTypeManager.gold));

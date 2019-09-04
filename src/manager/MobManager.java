@@ -34,47 +34,25 @@ public class MobManager {
 		player = new Player(480, 416, true);
 		
 		Item stick = new Item(0, 0, itemTypeManager.stick);
-		Item shirt = new Item(0, 0, itemTypeManager.shirt);
-		Item skirt = new Item(0, 0, itemTypeManager.skirt);
-		Item boots = new Item(0, 0, itemTypeManager.boots);
-		
+
 		stick.setEquipped(true);
-		shirt.setEquipped(true);
-		skirt.setEquipped(true);
-		boots.setEquipped(true);
 		
 		player.addItem(stick);
-		player.addItem(shirt);
-		player.addItem(skirt);
-		player.addItem(boots);
 		
 		player.setEquippedMelee(stick.getItemType());
-		player.setEquippedTorso(shirt.getItemType());
-		player.setEquippedLegs(skirt.getItemType());
-		player.setEquippedBoots(boots.getItemType());
 		
 		player.setCurrentMeleeAnimation(stick.getItemType().getLookDownAnimation());
-		player.setCurrentChestAnimation(shirt.getItemType().getLookDownAnimation());
-		player.setCurrentLegsAnimation(skirt.getItemType().getLookDownAnimation());
-		player.setCurrentFeetAnimation(boots.getItemType().getLookDownAnimation());
-
 			
 		ogus = new NPC(256, 128, 2000, 2000, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
 		ogus.addItem(new Item(0, 0, itemTypeManager.dagger));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
 		ogus.addItem(new Item(0, 0, itemTypeManager.arrow));
-		ogus.addItem(new Item(0, 0, itemTypeManager.chainhat));
 		ogus.addItem(new Item(0, 0, itemTypeManager.shortspear));
-		ogus.addItem(new Item(0, 0, itemTypeManager.chainhelmet));
 		ogus.addItem(new Item(0, 0, itemTypeManager.goldenspear));
-		ogus.addItem(new Item(0, 0, itemTypeManager.goldenboots));
 		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHpPotion));
 		ogus.addItem(new Item(0, 0, itemTypeManager.goldenspear));
-		ogus.addItem(new Item(0, 0, itemTypeManager.goldenboots));
 		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHpPotion));
-		ogus.addItem(new Item(0, 0, itemTypeManager.clothhood));
-		ogus.addItem(new Item(0, 0, itemTypeManager.goldenhelmet));
 		
 		ogus.setEquippedMelee(new Item(0, 0, itemTypeManager.goldenspear).getItemType());
 		

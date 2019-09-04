@@ -104,22 +104,10 @@ public class TradingWindow {
 						} else if(selectedItem.getItemType().getItemCategory().equals("spell")) {
 							player.setEquippedSpell(null);
 							player.setCurrentSpellAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("head")) {
-							player.setEquippedHead(null);
-							player.setCurrentHeadAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("chest")) {
-							player.setEquippedTorso(null);
-							player.setCurrentChestAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("hands")) {
-							player.setEquippedHands(null);
-							player.setCurrentHandsAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("legs")) {
-							player.setEquippedLegs(null);
-							player.setCurrentLegsAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("feet")) {
-							player.setEquippedBoots(null);
-							player.setCurrentFeetAnimation(null);
-						}
+						} else if(selectedItem.getItemType().getItemCategory().equals("armor")) {
+							player.setEquippedArmor(null);
+							player.setCurrentArmorAnimation(null);
+						} 
 						
 					}
 					

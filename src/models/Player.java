@@ -69,30 +69,18 @@ public class Player extends Character {
 	private Animation currentMeleeAnimation;
 	private Animation currentBowAnimation;
 	private Animation currentSpellAnimation;
-	private Animation currentHeadAnimation;
-	private Animation currentChestAnimation;
-	private Animation currentLegsAnimation;
-	private Animation currentHandsAnimation;
-	private Animation currentFeetAnimation;
+	private Animation currentArmorAnimation;
 
 	private ItemType equippedMelee;
 	private ItemType equippedBow;
 	private ItemType equippedSpell;
-	private ItemType equippedHead;
-	private ItemType equippedTorso;
-	private ItemType equippedLegs;
-	private ItemType equippedHands;
-	private ItemType equippedBoots;
+	private ItemType equippedArmor;
 	
 	//Before Transformation
 	private ItemType equippedMeleeBefore;
 	private ItemType equippedBowBefore;
 	private ItemType equippedSpellBefore;
-	private ItemType equippedHeadBefore;
-	private ItemType equippedTorsoBefore;
-	private ItemType equippedLegsBefore;
-	private ItemType equippedHandsBefore;
-	private ItemType equippedBootsBefore;
+	private ItemType equippedArmorBefore;
 	
 	private int[] levelBorders = {100, 500, 1000, 2000, 5000, 10000, 20000};
 	
@@ -580,25 +568,10 @@ public class Player extends Character {
 			currentSpellAnimation.setCurrentFrame(getCurrentAnimation().getFrame());
 		}
 
-		if(currentHeadAnimation != null) {
-			currentHeadAnimation.setCurrentFrame(getCurrentAnimation().getFrame());
+		if(currentArmorAnimation != null) {
+			currentArmorAnimation.setCurrentFrame(getCurrentAnimation().getFrame());
 		}
 
-		if(currentChestAnimation != null) {
-			currentChestAnimation.setCurrentFrame(getCurrentAnimation().getFrame());
-		}
-
-		if(currentHandsAnimation != null) {
-			currentHandsAnimation.setCurrentFrame(getCurrentAnimation().getFrame());
-		}
-
-		if(currentLegsAnimation != null) {
-			currentLegsAnimation.setCurrentFrame(getCurrentAnimation().getFrame());
-		}
-
-		if(currentFeetAnimation != null) {
-			currentFeetAnimation.setCurrentFrame(getCurrentAnimation().getFrame());
-		}
 		
 		
 		computeArmorProtection();
@@ -630,24 +603,8 @@ public class Player extends Character {
 
 			super.getCurrentAnimation().draw(screenRelativeX - 64, screenRelativeY - 64);
 			
-			if(currentHeadAnimation != null) {
-				currentHeadAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
-			}
-
-			if(currentHandsAnimation != null) {
-				currentHandsAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
-			}
-
-			if(currentLegsAnimation != null) {
-				currentLegsAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
-			}
-			
-			if(currentChestAnimation != null) {
-				currentChestAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
-			}
-
-			if(currentFeetAnimation != null) {
-				currentFeetAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
+			if(currentArmorAnimation != null) {
+				currentArmorAnimation.draw(screenRelativeX - 64, screenRelativeY - 64);
 			}
 			
 			if(currentMeleeAnimation != null) {
@@ -666,26 +623,10 @@ public class Player extends Character {
 
 			super.getCurrentAnimation().draw(screenRelativeX, screenRelativeY);
 
-			if(currentHeadAnimation != null) {
-				currentHeadAnimation.draw(screenRelativeX, screenRelativeY);
+			if(currentArmorAnimation != null) {
+				currentArmorAnimation.draw(screenRelativeX, screenRelativeY);
 			}
-
-			if(currentHandsAnimation != null) {
-				currentHandsAnimation.draw(screenRelativeX, screenRelativeY);
-			}
-
-			if(currentLegsAnimation != null) {
-				currentLegsAnimation.draw(screenRelativeX, screenRelativeY);
-			}
-			
-			if(currentChestAnimation != null) {
-				currentChestAnimation.draw(screenRelativeX, screenRelativeY);
-			}
-
-			if(currentFeetAnimation != null) {
-				currentFeetAnimation.draw(screenRelativeX, screenRelativeY);
-			}
-			
+		
 			if(currentMeleeAnimation != null) {
 				currentMeleeAnimation.draw(screenRelativeX, screenRelativeY);
 			}
@@ -1898,29 +1839,17 @@ public class Player extends Character {
 			equippedMeleeBefore = equippedMelee;
 			equippedBowBefore = equippedBow;
 			equippedSpellBefore = equippedSpell;
-			equippedHeadBefore = equippedHead;
-			equippedTorsoBefore = equippedTorso;
-			equippedLegsBefore = equippedLegs;
-			equippedHandsBefore = equippedHands;
-			equippedBootsBefore = equippedBoots;
+			equippedArmorBefore = equippedArmor;
 			
 			currentMeleeAnimation = null;
 			currentBowAnimation = null;
 			currentSpellAnimation = null;
-			currentHeadAnimation = null;
-			currentChestAnimation = null;
-			currentLegsAnimation = null;
-			currentHandsAnimation = null;
-			currentFeetAnimation = null;
+			currentArmorAnimation = null;
 			
 			equippedMelee = null;
 			equippedBow = null;
 			equippedSpell = null;
-			equippedHead = null;
-			equippedTorso = null;
-			equippedLegs = null;
-			equippedHands = null;
-			equippedBoots = null;
+			equippedArmor = null;
 			
 			isTranformedToWolf = true;
 			wolfTransformationTimestamp = System.currentTimeMillis();
@@ -2246,22 +2175,13 @@ public class Player extends Character {
 			equippedMeleeBefore = equippedMelee;
 			equippedBowBefore = equippedBow;
 			equippedSpellBefore = equippedSpell;
-			equippedHeadBefore = equippedHead;
-			equippedTorsoBefore = equippedTorso;
-			equippedLegsBefore = equippedLegs;
-			equippedHandsBefore = equippedHands;
-			equippedBootsBefore = equippedBoots;
-			
-			
-			
+			equippedArmorBefore = equippedArmor;
+						
 			equippedMelee = Game.getItemTypeManager().ironsword;
 			equippedBow = null;
 			equippedSpell = null;
-			equippedHead = Game.getItemTypeManager().chainhat;
-			equippedTorso = Game.getItemTypeManager().chainchest;
-			equippedLegs = Game.getItemTypeManager().irongreaves;
-			equippedHands = Game.getItemTypeManager().irongloves;
-			equippedBoots = Game.getItemTypeManager().ironboots;
+			equippedArmor = Game.getItemTypeManager().skeletonTransformationArmor;
+			
 			
 			isTranformedToSkeleton = true;
 			skeletonTransformationTimestamp = System.currentTimeMillis();
@@ -2454,23 +2374,14 @@ public class Player extends Character {
 			equippedMeleeBefore = equippedMelee;
 			equippedBowBefore = equippedBow;
 			equippedSpellBefore = equippedSpell;
-			equippedHeadBefore = equippedHead;
-			equippedTorsoBefore = equippedTorso;
-			equippedLegsBefore = equippedLegs;
-			equippedHandsBefore = equippedHands;
-			equippedBootsBefore = equippedBoots;
-			
-			
+			equippedArmorBefore = equippedArmor;
+						
 			
 			equippedMelee = Game.getItemTypeManager().goldenspear;
 			equippedBow = null;
 			equippedSpell = null;
-			equippedHead = null;
-			equippedTorso = Game.getItemTypeManager().goldenchest;
-			equippedLegs = Game.getItemTypeManager().goldengreaves;
-			equippedHands = Game.getItemTypeManager().goldengloves;
-			equippedBoots = Game.getItemTypeManager().goldenboots;
-			
+			equippedArmor = Game.getItemTypeManager().orcTransformationArmor;
+
 			isTranformedToOrc = true;
 			orcTransformationTimestamp = System.currentTimeMillis();
 			
@@ -2579,20 +2490,13 @@ public class Player extends Character {
 				equippedMelee = equippedMeleeBefore;
 				equippedBow = equippedBowBefore;
 				equippedSpell = equippedSpellBefore;
-				equippedHead = equippedHeadBefore;
-				equippedTorso = equippedTorsoBefore;
-				equippedLegs = equippedLegsBefore;
-				equippedHands = equippedHandsBefore;
-				equippedBoots = equippedBootsBefore;
+				equippedArmor = equippedArmorBefore;
 	
 				currentMeleeAnimation = null;
 				currentBowAnimation = null;
 				currentSpellAnimation = null;
-				currentHeadAnimation = null;
-				currentChestAnimation = null;
-				currentLegsAnimation = null;
-				currentHandsAnimation = null;
-				currentFeetAnimation = null;
+				currentArmorAnimation = null;
+
 				
 				if(getCurrentAnimation() == wolfLookUpAnimation || getCurrentAnimation() == wolfRunUpAnimation || getCurrentAnimation() == wolfAttackUpAnimation) {
 					setAnimationsToLookUp();
@@ -2885,24 +2789,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getLookUpAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getLookUpAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getLookUpAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getLookUpAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getLookUpAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getLookUpAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getLookUpAnimation();
 		}
 
 	}
@@ -2923,24 +2811,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getLookDownAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getLookDownAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getLookDownAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getLookDownAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getLookDownAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getLookDownAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getLookDownAnimation();
 		}
 
 	}
@@ -2961,24 +2833,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getLookLeftAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getLookLeftAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getLookLeftAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getLookLeftAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getLookLeftAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getLookLeftAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getLookLeftAnimation();
 		}
 
 	}
@@ -2999,24 +2855,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getLookRightAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getLookRightAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getLookRightAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getLookRightAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getLookRightAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getLookRightAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getLookRightAnimation();
 		}
 
 	}
@@ -3037,26 +2877,10 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getGoUpAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getGoUpAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getGoUpAnimation();
 		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getGoUpAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getGoUpAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getGoUpAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getGoUpAnimation();
-		}
-
+		
 	}
 
 	public void setAnimationsToGoDown() {
@@ -3075,24 +2899,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getGoDownAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getGoDownAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getGoDownAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getGoDownAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getGoDownAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getGoDownAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getGoDownAnimation();
 		}
 
 	}
@@ -3113,24 +2921,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getGoLeftAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getGoLeftAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getGoLeftAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getGoLeftAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getGoLeftAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getGoLeftAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getGoLeftAnimation();
 		}
 
 	}
@@ -3151,24 +2943,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getGoRightAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getGoRightAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getGoRightAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getGoRightAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getGoRightAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getGoRightAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getGoRightAnimation();
 		}
 
 	}
@@ -3191,24 +2967,8 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getSlayUpAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getSlayUpAnimation();
-			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getSlayUpAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getSlayUpAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getSlayUpAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getSlayUpAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getSlayUpAnimation();
 			}
 			
 		} 
@@ -3229,26 +2989,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getThrustUpAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getThrustUpAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getThrustUpAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getThrustUpAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getThrustUpAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getThrustUpAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getThrustUpAnimation();
-			}
-			
+
 		}
 
 	}
@@ -3271,24 +3015,8 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getSlayDownAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getSlayDownAnimation();
-			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getSlayDownAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getSlayDownAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getSlayDownAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getSlayDownAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getSlayDownAnimation();
 			}
 			
 		} 
@@ -3309,26 +3037,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getThrustDownAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getThrustDownAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getThrustDownAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getThrustDownAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getThrustDownAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getThrustDownAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getThrustDownAnimation();
-			}
-			
+
 		}
 
 	}
@@ -3351,24 +3063,8 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getSlayLeftAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getSlayLeftAnimation();
-			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getSlayLeftAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getSlayLeftAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getSlayLeftAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getSlayLeftAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getSlayLeftAnimation();
 			}
 			
 		} 
@@ -3389,26 +3085,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getThrustLeftAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getThrustLeftAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getThrustLeftAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getThrustLeftAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getThrustLeftAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getThrustLeftAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getThrustLeftAnimation();
-			}
-			
+
 		}
 
 	}
@@ -3431,26 +3111,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getSlayRightAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getSlayRightAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getSlayRightAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getSlayRightAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getSlayRightAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getSlayRightAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getSlayRightAnimation();
-			}
-			
+				
 		} 
 		
 		if(equippedMelee != null && equippedMelee.getItemCategory().equals("melee_thrust")) {
@@ -3469,26 +3133,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getThrustRightAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getThrustRightAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getThrustRightAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getThrustRightAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getThrustRightAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getThrustRightAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getThrustRightAnimation();
-			}
-			
+				
 		}
 
 	}
@@ -3511,26 +3159,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getPrepareSlayUpAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getPrepareSlayUpAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getPrepareSlayUpAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getPrepareSlayUpAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getPrepareSlayUpAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getPrepareSlayUpAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getPrepareSlayUpAnimation();
-			}
-			
+
 		} 
 		
 		if(equippedMelee.getItemCategory().equals("melee_thrust")) {
@@ -3549,26 +3181,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getPrepareThrustUpAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getPrepareThrustUpAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getPrepareThrustUpAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getPrepareThrustUpAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getPrepareThrustUpAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getPrepareThrustUpAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getPrepareThrustUpAnimation();
-			}
-			
+				
 		}
 
 	}
@@ -3591,26 +3207,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getPrepareSlayDownAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getPrepareSlayDownAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getPrepareSlayDownAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getPrepareSlayDownAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getPrepareSlayDownAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getPrepareSlayDownAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getPrepareSlayDownAnimation();
-			}
-			
+				
 		} 
 		
 		if(equippedMelee.getItemCategory().equals("melee_thrust")) {
@@ -3629,26 +3229,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getPrepareThrustDownAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getPrepareThrustDownAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getPrepareThrustDownAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getPrepareThrustDownAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getPrepareThrustDownAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getPrepareThrustDownAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getPrepareThrustDownAnimation();
-			}
-			
+				
 		}
 
 	}
@@ -3671,26 +3255,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getPrepareSlayLeftAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getPrepareSlayLeftAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getPrepareSlayLeftAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getPrepareSlayLeftAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getPrepareSlayLeftAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getPrepareSlayLeftAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getPrepareSlayLeftAnimation();
-			}
-			
+				
 		} 
 		
 		if(equippedMelee.getItemCategory().equals("melee_thrust")) {
@@ -3709,26 +3277,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getPrepareThrustLeftAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getPrepareThrustLeftAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getPrepareThrustLeftAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getPrepareThrustLeftAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getPrepareThrustLeftAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getPrepareThrustLeftAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getPrepareThrustLeftAnimation();
-			}
-			
+				
 		}
 
 	}
@@ -3751,26 +3303,10 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getPrepareSlayRightAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getPrepareSlayRightAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getPrepareSlayRightAnimation();
 			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getPrepareSlayRightAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getPrepareSlayRightAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getPrepareSlayRightAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getPrepareSlayRightAnimation();
-			}
-			
+				
 		} 
 		
 		if(equippedMelee.getItemCategory().equals("melee_thrust")) {
@@ -3789,24 +3325,8 @@ public class Player extends Character {
 				currentSpellAnimation = equippedSpell.getPrepareThrustRightAnimation();
 			}
 	
-			if(equippedHead != null) {
-				currentHeadAnimation = equippedHead.getPrepareThrustRightAnimation();
-			}
-	
-			if(equippedTorso != null) {
-				currentChestAnimation = equippedTorso.getPrepareThrustRightAnimation();
-			}
-	
-			if(equippedHands != null) {
-				currentHandsAnimation = equippedHands.getPrepareThrustRightAnimation();
-			}
-	
-			if(equippedLegs != null) {
-				currentLegsAnimation = equippedLegs.getPrepareThrustRightAnimation();
-			}
-	
-			if(equippedBoots != null) {
-				currentFeetAnimation = equippedBoots.getPrepareThrustRightAnimation();
+			if(equippedArmor != null) {
+				currentArmorAnimation = equippedArmor.getPrepareThrustRightAnimation();
 			}
 			
 		}
@@ -3829,24 +3349,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getShootUpAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getShootUpAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getShootUpAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getShootUpAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getShootUpAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getShootUpAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getShootUpAnimation();
 		}
 
 	}
@@ -3867,24 +3371,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getShootDownAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getShootDownAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getShootDownAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getShootDownAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getShootDownAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getShootDownAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getShootDownAnimation();
 		}
 
 	}
@@ -3905,24 +3393,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getShootLeftAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getShootLeftAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getShootLeftAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getShootLeftAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getShootLeftAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getShootLeftAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getShootLeftAnimation();
 		}
 
 	}
@@ -3943,24 +3415,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getShootRightAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getShootRightAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getShootRightAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getShootRightAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getShootRightAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getShootRightAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getShootRightAnimation();
 		}
 
 	}
@@ -3981,24 +3437,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getSpellUpAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getSpellUpAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getSpellUpAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getSpellUpAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getSpellUpAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getSpellUpAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getSpellUpAnimation();
 		}
 
 	}
@@ -4019,24 +3459,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getSpellDownAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getSpellDownAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getSpellDownAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getSpellDownAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getSpellDownAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getSpellDownAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getSpellDownAnimation();
 		}
 
 	}
@@ -4057,24 +3481,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getSpellLeftAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getSpellLeftAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getSpellLeftAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getSpellLeftAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getSpellLeftAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getSpellLeftAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getSpellLeftAnimation();
 		}
 
 	}
@@ -4095,24 +3503,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getSpellRightAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getSpellRightAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getSpellRightAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getSpellRightAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getSpellRightAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getSpellRightAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getSpellRightAnimation();
 		}
 
 	}
@@ -4133,24 +3525,8 @@ public class Player extends Character {
 			currentSpellAnimation = equippedSpell.getDieAnimation();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation = equippedHead.getDieAnimation();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation = equippedTorso.getDieAnimation();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation = equippedHands.getDieAnimation();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation = equippedLegs.getDieAnimation();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation = equippedBoots.getDieAnimation();
+		if(equippedArmor != null) {
+			currentArmorAnimation = equippedArmor.getDieAnimation();
 		}
 
 	}
@@ -4171,24 +3547,8 @@ public class Player extends Character {
 			currentSpellAnimation.restart();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation.restart();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation.restart();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation.restart();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation.restart();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation.restart();
+		if(equippedArmor != null) {
+			currentArmorAnimation.restart();
 		}
 
 	}
@@ -4209,24 +3569,8 @@ public class Player extends Character {
 			currentSpellAnimation.setCurrentFrame(index);
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation.setCurrentFrame(index);
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation.setCurrentFrame(index);
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation.setCurrentFrame(index);
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation.setCurrentFrame(index);
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation.setCurrentFrame(index);
+		if(equippedArmor != null) {
+			currentArmorAnimation.setCurrentFrame(index);
 		}
 
 	}
@@ -4247,24 +3591,8 @@ public class Player extends Character {
 			currentSpellAnimation.start();
 		}
 
-		if(equippedHead != null) {
-			currentHeadAnimation.start();
-		}
-
-		if(equippedTorso != null) {
-			currentChestAnimation.start();
-		}
-
-		if(equippedHands != null) {
-			currentHandsAnimation.start();
-		}
-
-		if(equippedLegs != null) {
-			currentLegsAnimation.start();
-		}
-
-		if(equippedBoots != null) {
-			currentFeetAnimation.start();
+		if(equippedArmor != null) {
+			currentArmorAnimation.start();
 		}
 
 	}
@@ -4352,24 +3680,8 @@ public class Player extends Character {
 		this.equippedSpell = equippedSpell;
 	}
 
-	public void setEquippedHead(ItemType equippedHead) {
-		this.equippedHead = equippedHead;
-	}
-
-	public void setEquippedTorso(ItemType equippedTorso) {
-		this.equippedTorso = equippedTorso;
-	}
-
-	public void setEquippedLegs(ItemType equippedLegs) {
-		this.equippedLegs = equippedLegs;
-	}
-
-	public void setEquippedHands(ItemType equippedHands) {
-		this.equippedHands = equippedHands;
-	}
-
-	public void setEquippedBoots(ItemType equippedBoots) {
-		this.equippedBoots = equippedBoots;
+	public void setEquippedArmor(ItemType equippedArmor) {
+		this.equippedArmor = equippedArmor;
 	}
 
 	public void setCurrentMeleeAnimation(Animation currentMeleeAnimation) {
@@ -4384,26 +3696,10 @@ public class Player extends Character {
 		this.currentSpellAnimation = currentSpellAnimation;
 	}
 
-	public void setCurrentHeadAnimation(Animation currentHeadAnimation) {
-		this.currentHeadAnimation = currentHeadAnimation;
+	public void setCurrentArmorAnimation(Animation currentArmorAnimation) {
+		this.currentArmorAnimation = currentArmorAnimation;
 	}
 
-	public void setCurrentChestAnimation(Animation currentChestAnimation) {
-		this.currentChestAnimation = currentChestAnimation;
-	}
-
-	public void setCurrentLegsAnimation(Animation currentLegsAnimation) {
-		this.currentLegsAnimation = currentLegsAnimation;
-	}
-
-	public void setCurrentHandsAnimation(Animation currentHandsAnimation) {
-		this.currentHandsAnimation = currentHandsAnimation;
-	}
-
-	public void setCurrentFeetAnimation(Animation currentFeetAnimation) {
-		this.currentFeetAnimation = currentFeetAnimation;
-	}
-	
 	public int getLevel() {
 		return level;
 	}
@@ -4528,24 +3824,8 @@ public class Player extends Character {
 		this.learningPoints = learningPoints;
 	}
 
-	public ItemType getEquippedHead() {
-		return equippedHead;
-	}
-
-	public ItemType getEquippedTorso() {
-		return equippedTorso;
-	}
-
-	public ItemType getEquippedLegs() {
-		return equippedLegs;
-	}
-
-	public ItemType getEquippedHands() {
-		return equippedHands;
-	}
-
-	public ItemType getEquippedBoots() {
-		return equippedBoots;
+	public ItemType getEquippedArmor() {
+		return equippedArmor;
 	}
 	
 	public int getArmorProtection() {

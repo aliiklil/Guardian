@@ -75,9 +75,14 @@ public class ItemTypeManager {
 	public ItemType mageArmor;
 	public ItemType heavyMageArmor;
 	
+	public ItemType leatherArmor;
 	public ItemType blackknightArmor;
 	public ItemType goldenArmor;
 	public ItemType mithrilArmor;
+	
+	public ItemType skeletonTransformationArmor;
+	public ItemType orcTransformationArmor;
+	
 	
 
 	
@@ -242,21 +247,59 @@ public class ItemTypeManager {
 		
 
 		
-		lightImperialArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Light Imperial Armor", 20, 4, true, "armor", "resources/player_sprites/armor/imperial_armor/light_imperial_armor.png");
-		mediumImperialArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Medium Imperial Armor", 20, 4, true, "armor", "resources/player_sprites/armor/imperial_armor/medium_imperial_armor.png");
-		heavyImperialArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Heavy Imperial Armor", 20, 4, true, "armor", "resources/player_sprites/armor/imperial_armor/heavy_imperial_armor.png");
+		lightImperialArmor = new ItemType(1, "resources/items/4imperial_armor/light_imperial_armor.png", "Light Imperial Armor", 300, 4, true, "armor", "resources/player_sprites/armor/imperial_armor/light_imperial_armor.png");
+		lightImperialArmor.setProtection(20);
+		
+		mediumImperialArmor = new ItemType(1, "resources/items/4imperial_armor/medium_imperial_armor.png", "Medium Imperial Armor", 600, 4, true, "armor", "resources/player_sprites/armor/imperial_armor/medium_imperial_armor.png");
+		mediumImperialArmor.setProtection(40);
+		
+		heavyImperialArmor = new ItemType(1, "resources/items/4imperial_armor/heavy_imperial_armor.png", "Heavy Imperial Armor", 900, 4, true, "armor", "resources/player_sprites/armor/imperial_armor/heavy_imperial_armor.png");
+		heavyImperialArmor.setProtection(60);
+		
 
-		lightRebelArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Light Rebel Armor", 20, 4, true, "armor", "resources/player_sprites/armor/rebel_armor/light_rebel_armor.png");
-		mediumRebelArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Medium Rebel Armor", 20, 4, true, "armor", "resources/player_sprites/armor/rebel_armor/medium_rebel_armor.png");;
-		heavyRebelArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Heavy Rebel Armor", 20, 4, true, "armor", "resources/player_sprites/armor/rebel_armor/heavy_rebel_armor.png");
 		
-		noviceArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Novice Armor", 20, 4, true, "armor", "resources/player_sprites/armor/mage_armor/novice_armor.png");
-		mageArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Mage Armor", 20, 4, true, "armor", "resources/player_sprites/armor/mage_armor/mage_armor.png");
-		heavyMageArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Heavy Mage Armor", 20, 4, true, "armor", "resources/player_sprites/armor/mage_armor/heavy_mage_armor.png");
 		
-		blackknightArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Blackknight Armor", 20, 4, true, "armor", "resources/player_sprites/armor/other_armor/");
-		goldenArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Golden Armor", 20, 4, true, "armor", "resources/player_sprites/armor/other_armor/");
-		mithrilArmor = new ItemType(1, "resources/items/armor/imperial_armor/clothhood.png", "Mithril armor", 20, 4, true, "armor", "resources/player_sprites/armor/other_armor/");
+		lightRebelArmor = new ItemType(1, "resources/items/5rebel_armor/light_rebel_armor.png", "Light Rebel Armor", 300, 5, true, "armor", "resources/player_sprites/armor/rebel_armor/light_rebel_armor.png");
+		lightRebelArmor.setProtection(20);
+		
+		mediumRebelArmor = new ItemType(1, "resources/items/5rebel_armor/medium_rebel_armor.png", "Medium Rebel Armor", 600, 5, true, "armor", "resources/player_sprites/armor/rebel_armor/medium_rebel_armor.png");;
+		mediumRebelArmor.setProtection(40);
+		
+		heavyRebelArmor = new ItemType(1, "resources/items/5rebel_armor/heavy_rebel_armor.png", "Heavy Rebel Armor", 900, 5, true, "armor", "resources/player_sprites/armor/rebel_armor/heavy_rebel_armor.png");
+		heavyRebelArmor.setProtection(60);
+		
+		
+		
+		noviceArmor = new ItemType(1, "resources/items/6mage_armor/novice_armor.png", "Novice Armor", 300, 6, true, "armor", "resources/player_sprites/armor/mage_armor/novice_armor.png");
+		noviceArmor.setProtection(10);
+		
+		mageArmor = new ItemType(1, "resources/items/6mage_armor/mage_armor.png", "Mage Armor", 600, 6, true, "armor", "resources/player_sprites/armor/mage_armor/mage_armor.png");
+		mageArmor.setProtection(20);
+		
+		heavyMageArmor = new ItemType(1, "resources/items/6mage_armor/heavy_mage_armor.png", "Heavy Mage Armor", 900, 6, true, "armor", "resources/player_sprites/armor/mage_armor/heavy_mage_armor.png");
+		heavyMageArmor.setProtection(30);
+		
+		
+		
+		leatherArmor = new ItemType(1, "resources/items/7other_armor/leather_armor.png", "Leather Armor", 200, 7, true, "armor", "resources/player_sprites/armor/other_armor/leather_armor.png");
+		leatherArmor.setProtection(15);
+		
+		blackknightArmor = new ItemType(1, "resources/items/7other_armor/blackknight_armor.png", "Blackknight Armor", 500, 7, true, "armor", "resources/player_sprites/armor/other_armor/blackknight_armor.png");
+		blackknightArmor.setProtection(70);
+		
+		goldenArmor = new ItemType(1, "resources/items/7other_armor/golden_armor.png", "Golden Armor", 800, 7, true, "armor", "resources/player_sprites/armor/other_armor/golden_armor.png");
+		goldenArmor.setProtection(80);
+		
+		mithrilArmor = new ItemType(1, "resources/items/7other_armor/mithril_armor.png", "Mithril Armor", 1200, 7, true, "armor", "resources/player_sprites/armor/other_armor/mithril_armor.png");
+		mithrilArmor.setProtection(90);
+		
+		
+		
+		skeletonTransformationArmor = new ItemType(1, "resources/items/8transformation_armor/skeleton_armor.png", "Skeleton Armor", 0, 0, true, "armor", "resources/player_sprites/armor/transformation_armor/skeleton_armor.png");
+		skeletonTransformationArmor.setProtection(70);
+		
+		orcTransformationArmor = new ItemType(1, "resources/items/8transformation_armor/orc_armor.png", "Orc Armor", 0, 0, true, "armor", "resources/player_sprites/armor/transformation_armor/orc_armor.png");
+		orcTransformationArmor.setProtection(70);
 		
 		
 		/*
