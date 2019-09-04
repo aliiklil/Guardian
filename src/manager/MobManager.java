@@ -12,9 +12,9 @@ import models.Character;
 import models.Item;
 import models.ItemType;
 import models.Mob;
+import models.Monster;
 import models.NPC;
 import models.Player;
-import models.Wolf;
 
 public class MobManager {
 
@@ -25,7 +25,7 @@ public class MobManager {
 	private static NPC ogus;
 	private static NPC halrok;
 	
-	private static Wolf wolf1;
+	private static Monster monster1;
 	
 	private ItemTypeManager itemTypeManager = Game.getItemTypeManager();	
 	
@@ -66,8 +66,8 @@ public class MobManager {
 		mobList.add(ogus);
 		mobList.add(halrok);
 		
-		wolf1 = new Wolf(1024, 768, "resources/RatSpriteSheet.png", 1000, null, 100, 5, true, true);		
-		mobList.add(wolf1);
+		monster1 = new Monster(1024, 768, "resources/RatSpriteSheet.png", 1000, null, 100, 5, true, true);		
+		mobList.add(monster1);
 		
 	}
 	

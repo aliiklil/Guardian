@@ -23,7 +23,7 @@ import util.CollisionBox;
 import pathfinding.Node;
 import pathfinding.AStar;
 
-public class Wolf extends Mob {
+public class Monster extends Mob {
 
 	private Animation lookUpAnimation;
 	private Animation lookDownAnimation;
@@ -81,7 +81,7 @@ public class Wolf extends Mob {
 	private int aggressionCircleRadius = 320;
 	private List<Node> path;
 	private long aggressionTimestamp; //Timestamp when the player pulls aggro
-	private int durationBeforeRunning = 2000; //Time in milliseconds to run out before wolf starts to run instead of walk towards player
+	private int durationBeforeRunning = 2000; //Time in milliseconds to run out before monster starts to run instead of walk towards player
 	
 	private Player player = MobManager.getPlayer();
 	
@@ -116,10 +116,10 @@ public class Wolf extends Mob {
 	private boolean isRoamingLeft = true;
 	private boolean isRoamingRight = false;
 	
-	private long roamingTimestamp; //Timestamp when wolf was roaming last time
+	private long roamingTimestamp; //Timestamp when monster was roaming last time
 	private int durationBetweenRoaming = 7000;
 	
-	public Wolf(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive, boolean hostileToPlayer) throws SlickException {
+	public Monster(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive, boolean hostileToPlayer) throws SlickException {
 		
 		super(relativeToMapX, relativeToMapY, alive);
 				
