@@ -141,7 +141,24 @@ public class ItemManager {
 		itemList.add(new Item(128, 768, itemTypeManager.cookedPork));
 		
 		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
+		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
+		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
+		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
+		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
+		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
+		
 		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
+		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
+		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
+		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
+		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
+		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
+		
+		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
+		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
+		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
+		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
+		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
 		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
 		
 		itemList.add(new Item(512, 0, itemTypeManager.feather));
