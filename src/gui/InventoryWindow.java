@@ -451,28 +451,8 @@ public class InventoryWindow {
 						item.getItemType().getInventoryAnimation().draw(208, 313);
 					}
 					
-					if(item.getItemType().getItemCategory().equals("head")) {
-						item.getItemType().getInventoryAnimation().draw(130, 469);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("chest")) {
-						item.getItemType().getInventoryAnimation().draw(130, 547);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("hands")) {
-						item.getItemType().getInventoryAnimation().draw(52, 547);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("hands")) {
-						item.getItemType().getInventoryAnimation().draw(208, 547);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("legs")) {
-						item.getItemType().getInventoryAnimation().draw(130, 625);
-					}
-					
-					if(item.getItemType().getItemCategory().equals("feet")) {
-						item.getItemType().getInventoryAnimation().draw(130, 703);
+					if(item.getItemType().getItemCategory().equals("armor")) {
+						item.getItemType().getInventoryAnimation().draw(130, 391);
 					}
 				}
 			}

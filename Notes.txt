@@ -1,7 +1,3 @@
 .)Implement quest system
 
-.)Add black kight armor
-
-.)Add guild armor
-
 .)Add more enemies (for example rats)
