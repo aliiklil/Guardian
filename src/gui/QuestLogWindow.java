@@ -78,7 +78,7 @@ public class QuestLogWindow {
 			}
 		}	
 				
-		if(player.isEscapePressed() && windowOpen) {
+		if(player.isEscapePressed() && windowOpen && leftSideSelected) {
 			windowOpen = false;
 		}
 		
@@ -99,21 +99,24 @@ public class QuestLogWindow {
 					selectedOptionRightSide--;
 				}
 				
-				if(player.isKeyDownPressed() && selectedOptionRightSide < 2) {
-					selectedOptionRightSide++;
+				if(player.isKeyDownPressed()) {
+					if(selectedOptionLeftSide == 0 && selectedOptionRightSide < numberOfCurrentQuests - 1 || selectedOptionLeftSide == 1 && selectedOptionRightSide < numberOfFinishedQuests - 1 || selectedOptionLeftSide == 2 && selectedOptionRightSide < numberOfFailedQuests - 1) {
+						selectedOptionRightSide++;
+					}
 				}
 			}
 			
-			if(player.isYPressed()) {
-				if(leftSideSelected) {
+			if(player.isYPressed() && leftSideSelected) {
+				if(selectedOptionLeftSide == 0 && numberOfCurrentQuests > 0 || selectedOptionLeftSide == 1 && numberOfFinishedQuests > 0 || selectedOptionLeftSide == 2 && numberOfFailedQuests > 0) {
 					leftSideSelected = false;
 					rightSideSelected = true;
 				}
-				
-				if(rightSideSelected) {
-					leftSideSelected = true;
-					rightSideSelected = false;
-				}
+			}
+			
+			if(player.isEscapePressed() && rightSideSelected) {
+				leftSideSelected = true;
+				rightSideSelected = false;
+				selectedOptionRightSide = 0;
 			}
 			
 		}
@@ -131,49 +134,62 @@ public class QuestLogWindow {
 			String finishedQuests = "Finished Quests";
 			String failedQuests = "Failed Quests";
 			
-			if(leftSideSelected) {
-			
-				if(selectedOptionLeftSide == 0) {
-					g.setColor(Color.black);
-				} else {
-					g.setColor(Color.gray);
-				}
-				
-				g.drawString(currentQuests, 783 - currentQuests.length() * 9, 303);
-				
-				if(selectedOptionLeftSide == 1) {
-					g.setColor(Color.black);
-				} else {
-					g.setColor(Color.gray);
-				}
-				
-				g.drawString(finishedQuests, 787 - finishedQuests.length() * 9, 385);
-				
-				if(selectedOptionLeftSide == 2) {
-					g.setColor(Color.black);
-				} else {
-					g.setColor(Color.gray);
-				}
-				g.drawString(failedQuests, 778 - failedQuests.length() * 9, 467);
-			
+		
+			if(selectedOptionLeftSide == 0 && leftSideSelected) {
+				g.setColor(Color.black);
+			} else {
+				g.setColor(Color.gray);
 			}
 			
+			g.drawString(currentQuests, 783 - currentQuests.length() * 9, 303);
+			
+			if(selectedOptionLeftSide == 1 && leftSideSelected) {
+				g.setColor(Color.black);
+			} else {
+				g.setColor(Color.gray);
+			}
+			
+			g.drawString(finishedQuests, 787 - finishedQuests.length() * 9, 385);
+			
+			if(selectedOptionLeftSide == 2 && leftSideSelected) {
+				g.setColor(Color.black);
+			} else {
+				g.setColor(Color.gray);
+			}
+			g.drawString(failedQuests, 778 - failedQuests.length() * 9, 467);
+		
+
+			
+
 			
 			if(selectedOptionLeftSide == 0) {
 				int k = 0;
 				for(Quest quest : QuestManager.getQuestList()) {
 					if(quest.isActive()) {
+						
+						if(selectedOptionRightSide == k && rightSideSelected) {
+							g.setColor(Color.black);
+						} else {
+							g.setColor(Color.gray);
+						}
+						
 						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
 						k++;
 					}
 				}
 			}
 			
-			
 			if(selectedOptionLeftSide == 1) {
 				int k = 0;
 				for(Quest quest : QuestManager.getQuestList()) {
 					if(quest.isFinished()) {
+						
+						if(selectedOptionRightSide == k && rightSideSelected) {
+							g.setColor(Color.black);
+						} else {
+							g.setColor(Color.gray);
+						}
+						
 						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
 						k++;
 					}
@@ -184,6 +200,13 @@ public class QuestLogWindow {
 				int k = 0;
 				for(Quest quest : QuestManager.getQuestList()) {
 					if(quest.isFailed()) {
+						
+						if(selectedOptionRightSide == k && rightSideSelected) {
+							g.setColor(Color.black);
+						} else {
+							g.setColor(Color.gray);
+						}
+						
 						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
 						k++;
 					}
