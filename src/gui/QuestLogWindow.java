@@ -48,6 +48,18 @@ public class QuestLogWindow {
 	//Selected option (either on current, finished or failed quests)
 	private int selectedOptionLeftSide = 0;
 	
+	//Selected option on the right side where the quests are
+	private int selectedOptionRightSide = 0;
+	
+	
+	//If cursor (or selected option) is right now left or right side
+	private boolean leftSideSelected = true;
+	private boolean rightSideSelected = false;
+	
+	private int numberOfCurrentQuests;
+	private int numberOfFinishedQuests;
+	private int numberOfFailedQuests;
+	
 	
 	public QuestLogWindow() throws SlickException {
 		
@@ -60,6 +72,7 @@ public class QuestLogWindow {
 		if(player.isQPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen()) {
 			if(!windowOpen) {
 				windowOpen = true;
+				countNumberOfQuests();
 			} else {
 				windowOpen = false;
 			}
@@ -70,18 +83,40 @@ public class QuestLogWindow {
 		}
 		
 		if(windowOpen) {
-			
-			if(player.isKeyUpPressed() && selectedOptionLeftSide > 0) {
-				selectedOptionLeftSide--;
+
+			if(leftSideSelected) {
+				if(player.isKeyUpPressed() && selectedOptionLeftSide > 0) {
+					selectedOptionLeftSide--;
+				}
+				
+				if(player.isKeyDownPressed() && selectedOptionLeftSide < 2) {
+					selectedOptionLeftSide++;
+				}
 			}
 			
-			if(player.isKeyDownPressed() && selectedOptionLeftSide < 2) {
-				selectedOptionLeftSide++;
+			if(rightSideSelected) {
+				if(player.isKeyUpPressed() && selectedOptionRightSide > 0) {
+					selectedOptionRightSide--;
+				}
+				
+				if(player.isKeyDownPressed() && selectedOptionRightSide < 2) {
+					selectedOptionRightSide++;
+				}
+			}
+			
+			if(player.isYPressed()) {
+				if(leftSideSelected) {
+					leftSideSelected = false;
+					rightSideSelected = true;
+				}
+				
+				if(rightSideSelected) {
+					leftSideSelected = true;
+					rightSideSelected = false;
+				}
 			}
 			
 		}
-		
-		System.out.println(selectedOptionLeftSide);
 		
 	}
 		
@@ -96,44 +131,62 @@ public class QuestLogWindow {
 			String finishedQuests = "Finished Quests";
 			String failedQuests = "Failed Quests";
 			
-			if(selectedOptionLeftSide == 0) {
-				g.setColor(Color.black);
-			} else {
-				g.setColor(Color.gray);
-			}
+			if(leftSideSelected) {
 			
-			g.drawString(currentQuests, 783 - currentQuests.length() * 9, 303);
-			
-			if(selectedOptionLeftSide == 1) {
-				g.setColor(Color.black);
-			} else {
-				g.setColor(Color.gray);
-			}
-			
-			g.drawString(finishedQuests, 787 - finishedQuests.length() * 9, 385);
-			
-			if(selectedOptionLeftSide == 2) {
-				g.setColor(Color.black);
-			} else {
-				g.setColor(Color.gray);
-			}
-			g.drawString(failedQuests, 778 - failedQuests.length() * 9, 467);
-			
-			
-			
-			
-			if(selectedOptionLeftSide == 0) {
+				if(selectedOptionLeftSide == 0) {
+					g.setColor(Color.black);
+				} else {
+					g.setColor(Color.gray);
+				}
 				
+				g.drawString(currentQuests, 783 - currentQuests.length() * 9, 303);
+				
+				if(selectedOptionLeftSide == 1) {
+					g.setColor(Color.black);
+				} else {
+					g.setColor(Color.gray);
+				}
+				
+				g.drawString(finishedQuests, 787 - finishedQuests.length() * 9, 385);
+				
+				if(selectedOptionLeftSide == 2) {
+					g.setColor(Color.black);
+				} else {
+					g.setColor(Color.gray);
+				}
+				g.drawString(failedQuests, 778 - failedQuests.length() * 9, 467);
+			
+			}
+			
+			
+			if(selectedOptionLeftSide == 0) {
 				int k = 0;
-				
 				for(Quest quest : QuestManager.getQuestList()) {
-					
 					if(quest.isActive()) {
-						
 						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
 						k++;
 					}
-					
+				}
+			}
+			
+			
+			if(selectedOptionLeftSide == 1) {
+				int k = 0;
+				for(Quest quest : QuestManager.getQuestList()) {
+					if(quest.isFinished()) {
+						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
+						k++;
+					}
+				}
+			}
+			
+			if(selectedOptionLeftSide == 2) {
+				int k = 0;
+				for(Quest quest : QuestManager.getQuestList()) {
+					if(quest.isFailed()) {
+						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
+						k++;
+					}
 				}
 			}
 			
@@ -142,6 +195,29 @@ public class QuestLogWindow {
 							
 	}
 	
+	private void countNumberOfQuests() {
+		numberOfCurrentQuests = 0;
+		numberOfFinishedQuests = 0;
+		numberOfFailedQuests = 0;
+		
+		for(Quest quest : QuestManager.getQuestList()) {
+			if(quest.isActive()) {
+				numberOfCurrentQuests++;
+			}
+		}
+		
+		for(Quest quest : QuestManager.getQuestList()) {
+			if(quest.isFinished()) {
+				numberOfFinishedQuests++;
+			}
+		}
+		
+		for(Quest quest : QuestManager.getQuestList()) {
+			if(quest.isFailed()) {
+				numberOfFailedQuests++;
+			}
+		}
+	}
 
 	public boolean isWindowOpen() {
 		return windowOpen;
