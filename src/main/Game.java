@@ -116,6 +116,7 @@ public class Game extends BasicGameState {
 		MobManager.getPlayer().getCenteredText().render(g);
 		MobManager.getPlayer().getLevelUpText().render(g);
 		MobManager.getPlayer().getTradingWindow().render(g);
+		MobManager.getPlayer().getQuestLogWindow().render(g);
 	}
 
 	@Override

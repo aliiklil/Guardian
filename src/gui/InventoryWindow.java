@@ -72,7 +72,7 @@ public class InventoryWindow {
 		playerInventoryList = player.getInventoryList();
 		playerItemCountList = player.getItemCountList();
 		
-		if(player.isTabPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen()) {
+		if(player.isTabPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen() &&!player.getQuestLogWindow().isWindowOpen()) {
 			if(!windowOpen) {
 				windowOpen = true;
 			} else {
@@ -296,7 +296,7 @@ public class InventoryWindow {
 	
 			}
 			
-			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyUpPressed() || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if(scrollOffset > 0 && selectedCellY == 0) {
 					scrollOffset--;
@@ -310,7 +310,7 @@ public class InventoryWindow {
 				
 			}
 						
-			if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyDownPressed() || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if(selectedCellY == amountRows - 1 && playerInventoryList.size() > amountCells + scrollOffset * amountColumns) {
 					
@@ -336,14 +336,14 @@ public class InventoryWindow {
 
 			}
 			
-			if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyLeftPressed() || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
 				if(selectedCellX > 0) {
 					selectedCellX--;
 					timestamp = System.currentTimeMillis();
 				}
 			}
 			
-			if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyRightPressed() || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
 				if(selectedCellX < amountColumns - 1 && playerInventoryList.size() > selectedCellX + (selectedCellY + scrollOffset) * amountColumns + 1) {
 					selectedCellX++;
 					timestamp = System.currentTimeMillis();
