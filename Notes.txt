@@ -1,5 +1,7 @@
 .)Implement quest system
 
+.)Fix dialogue bug (When there is a dialogue starting option at the bottom which isnt for learning or trading the game crashes)
+
 .)Implement reading of notes and books in the game
 
 .)Make the viewport smaller (by scaling by 2)
@@ -17,7 +19,7 @@
 
 Quest System Notes:
 
-.)Quests are always started by talking to a character (Or by reading a note)
+.)Quests are always started by talking to a character
 
 .)Quests progress by talking to a character (and giving him an item), by killing something or by reading a note or a book or by picking an item up
 

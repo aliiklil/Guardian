@@ -11,11 +11,14 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import main.Game;
 import main.Main;
 import manager.MobManager;
+import manager.QuestManager;
 import models.Item;
 import models.ItemType;
 import models.Player;
+import models.Quest;
 import models.Character;
 
 public class QuestLogWindow {
@@ -115,6 +118,25 @@ public class QuestLogWindow {
 				g.setColor(Color.gray);
 			}
 			g.drawString(failedQuests, 778 - failedQuests.length() * 9, 467);
+			
+			
+			
+			
+			if(selectedOptionLeftSide == 0) {
+				
+				int k = 0;
+				
+				for(Quest quest : QuestManager.getQuestList()) {
+					
+					if(quest.isActive()) {
+						
+						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
+						k++;
+					}
+					
+				}
+			}
+			
 			
 		}
 							

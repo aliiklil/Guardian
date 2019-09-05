@@ -2647,7 +2647,7 @@ public class Player extends Character {
 
 	private void updateDialogueNPC() throws SlickException {
 
-		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
+		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
 
 			ArrayList<NPC> npcList = MobManager.getNpcList();
 

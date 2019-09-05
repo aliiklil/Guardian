@@ -10,6 +10,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import logic.Alchemy;
 import logic.Blacksmithing;
 import logic.Learning;
+import logic.QuestLogic;
 import logic.RuneForging;
 import manager.AlchemyDeskManager;
 import manager.AnvilManager;
@@ -19,6 +20,7 @@ import manager.ItemManager;
 import manager.ItemTypeManager;
 import manager.MobManager;
 import manager.ProjectileManager;
+import manager.QuestManager;
 import manager.RuneTableManager;
 import models.Map;
 
@@ -36,6 +38,7 @@ public class Game extends BasicGameState {
 	private static ItemTypeManager itemTypeManager;
 	private static ItemManager itemManager;
 	private static DialogueManager dialogueManager;
+	private static QuestManager questManager;
 
 	private static ChestManager chestManager;
 	private static AnvilManager anvilManager;
@@ -46,6 +49,7 @@ public class Game extends BasicGameState {
 	public static Alchemy alchemy;
 	public static RuneForging runeForging;
 	public static Learning learning;
+	public static QuestLogic questLogic;
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -62,6 +66,7 @@ public class Game extends BasicGameState {
 		projectileManager = new ProjectileManager();
 		itemManager = new ItemManager();
 		dialogueManager = new DialogueManager();
+		questManager = new QuestManager();
 		
 		chestManager = new ChestManager();
 		anvilManager = new AnvilManager();
@@ -72,6 +77,7 @@ public class Game extends BasicGameState {
 		blacksmithing = new Blacksmithing();
 		runeForging = new RuneForging();
 		learning = new Learning();
+		questLogic = new QuestLogic();
 		
 	}
 
@@ -167,6 +173,10 @@ public class Game extends BasicGameState {
 	public static AlchemyDeskManager getAlchemyDeskManager() {
 		return alchemyDeskManager;
 	}
+	
+	public static QuestManager getQuestManager() {
+		return questManager;
+	}
 
 	public static Alchemy getAlchemy() {
 		return alchemy;
@@ -182,6 +192,10 @@ public class Game extends BasicGameState {
 
 	public static Learning getLearning() {
 		return learning;
+	}
+
+	public static QuestLogic getQuestLogic() {
+		return questLogic;
 	}
 	
 }

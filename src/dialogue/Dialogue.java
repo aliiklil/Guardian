@@ -12,6 +12,9 @@ public class Dialogue {
 	
 	private boolean isPermanent = false; //Dialogue can be spoken as often as the player wants
 	private boolean isForLearning = false; //Dialogue is a learning dialogue
+	
+	//Starts the quest with this title
+	private String questTitle = null;
 		
 	public ArrayList<Sentence> getSentences() {
 		return sentences;
@@ -59,6 +62,14 @@ public class Dialogue {
 
 	public void setForLearning(boolean isForLearning) {
 		this.isForLearning = isForLearning;
+	}
+
+	public String getQuestTitle() {
+		return questTitle;
+	}
+
+	public void setQuestTitle(String questTitle) {
+		this.questTitle = questTitle;
 	}
 	
 }

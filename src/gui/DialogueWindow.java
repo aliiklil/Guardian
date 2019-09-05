@@ -63,7 +63,7 @@ public class DialogueWindow {
 		if(windowOpen) {
 			
 			if(sentenceCount == 0) {
-				if(input.isKeyPressed(Input.KEY_UP)) {
+				if(MobManager.getPlayer().isKeyUpPressed()) {
 					if(selectedOption > 0) {
 						selectedOption--;
 					} else if(selectedOption == 0) {
@@ -75,7 +75,7 @@ public class DialogueWindow {
 					}
 				}
 								
-				if(input.isKeyPressed(Input.KEY_DOWN)) {
+				if(MobManager.getPlayer().isKeyDownPressed()) {
 					if(currentDialogues == startingDialogues) {
 						if(selectedOption < currentDialogues.size()) {
 							selectedOption++;
@@ -108,6 +108,7 @@ public class DialogueWindow {
 						Game.getBlacksmithing().checkIfPlayerIsBlacksmithing(currentDialogues.get(selectedOption));
 						Game.getAlchemy().checkIfPlayerIsUsingAlchemy(currentDialogues.get(selectedOption));
 						Game.getRuneForging().checkIfPlayerIsUsingRuneTable(currentDialogues.get(selectedOption));
+						Game.getQuestLogic().updateQuestLogic(currentDialogues.get(selectedOption));
 						
 						sentenceCount++;
 						
