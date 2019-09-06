@@ -66,6 +66,11 @@ public class QuestLogWindow {
 	//Relevant for quest notes, so they can be wrapped do multiple lines if needed
 	private final int MAX_CHAR_AMOUNT_PER_LINE = 68;
 	
+	//Maximum of lines for notes
+	private final int MAX_LINES = 26;
+		
+	private ArrayList<String> notesOfSelectedQuest;
+	
 	public QuestLogWindow() throws SlickException {
 		
 	}
@@ -116,6 +121,24 @@ public class QuestLogWindow {
 				rightSideSelected = false;
 				questNotesSelected = true;
 				
+				notesOfSelectedQuest = new ArrayList<String>();
+				
+				for(int i = 0; i < selectedQuest.getNotes().size(); i++) {
+						String restNote = selectedQuest.getNotes().get(i);
+						while(true) {
+							if(restNote.length() >= 68) {
+								notesOfSelectedQuest.add(restNote.substring(0, restNote.substring(0, 68).lastIndexOf(" ")));
+								restNote = restNote.substring(restNote.substring(0, 68).lastIndexOf(" ") + 1, restNote.length());
+							} else {
+								notesOfSelectedQuest.add(restNote);
+								break;
+							}
+						}
+						
+						if(!(i == selectedQuest.getNotes().size() - 1)) {
+							notesOfSelectedQuest.add("-----");
+						}
+					}
 			}
 			
 			if(player.isYPressed() && leftSideSelected) {
@@ -138,6 +161,15 @@ public class QuestLogWindow {
 				leftSideSelected = false;
 				rightSideSelected = true;
 				questNotesSelected = false;
+				scrollOffset = 0;
+			}
+			
+			if(player.isKeyDownPressed() && questNotesSelected && scrollOffset + MAX_LINES < notesOfSelectedQuest.size()) {
+				scrollOffset++;
+			}
+			
+			if(player.isKeyUpPressed() && questNotesSelected && scrollOffset > 0) {
+				scrollOffset--;
 			}
 			
 		}
@@ -146,7 +178,7 @@ public class QuestLogWindow {
 		
 	public void render(Graphics g) {
 				
-		if(windowOpen) {		
+		if(windowOpen) {
 			if(leftSideSelected || rightSideSelected) {
 				g.drawImage(questLogWindow, 0, 0);
 			
@@ -242,44 +274,40 @@ public class QuestLogWindow {
 			
 			} else if(questNotesSelected) {
 				g.drawImage(questNotesWindow, 0, 0);
+				drawArrow(g);
 				g.setColor(Color.black);
-
-				int k = 0;		
-				for(int i = 0; i < selectedQuest.getNotes().size(); i++) {
-					
-						ArrayList<String> lines = new ArrayList<String>();
+				
+					int k = 0;
+					for(int i = scrollOffset; i < notesOfSelectedQuest.size(); i++) {
+						g.drawString(notesOfSelectedQuest.get(i), 655, 285 + k * 20);
+						k++;
 						
-						String restNote = selectedQuest.getNotes().get(i);
-						while(true) {
-							
-							if(restNote.length() >= 68) {
-								lines.add(restNote.substring(0, restNote.substring(0, 68).lastIndexOf(" ")));
-								restNote = restNote.substring(restNote.substring(0, 68).lastIndexOf(" ") + 1, restNote.length());
-							
-							} else {
-								lines.add(restNote);
-								break;
-							}
-							
-						}
-					
-						for(String line : lines) {
-							g.drawString(line, 655, 285 + k * 20);
-							k++;
+						if(k >= MAX_LINES) {
+							break;
 						}
 						
-						if(!(i == selectedQuest.getNotes().size() - 1)) {
-							g.drawString("-----", 655, 285 + k * 20);
-							k++;
-						}	
-						
-
 					}
+					
 				}
 				
 			}
 		
-	}				
+	}			
+	
+	private void drawArrow(Graphics g) {
+		
+		arrowUpAnimation.updateNoDraw();
+		arrowDownAnimation.updateNoDraw();
+		
+		if(questNotesSelected && scrollOffset > 0) { 
+			arrowUpAnimation.draw(1279, 271);
+		}
+		
+		if(questNotesSelected && scrollOffset + MAX_LINES < notesOfSelectedQuest.size()) {
+			arrowDownAnimation.draw(1279, 765);
+		}
+				
+	}
 	
 	
 	private void countNumberOfQuests() {
