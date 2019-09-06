@@ -247,7 +247,6 @@ public class QuestLogWindow {
 				int k = 0;		
 				for(int i = 0; i < selectedQuest.getNotes().size(); i++) {
 					
-					
 						ArrayList<String> lines = new ArrayList<String>();
 						
 						String restNote = selectedQuest.getNotes().get(i);
@@ -264,7 +263,6 @@ public class QuestLogWindow {
 							
 						}
 					
-						
 						for(String line : lines) {
 							g.drawString(line, 655, 285 + k * 20);
 							k++;
@@ -274,40 +272,6 @@ public class QuestLogWindow {
 							g.drawString("-----", 655, 285 + k * 20);
 							k++;
 						}	
-						
-					
-					
-					
-
-						/*
-						String[] wrappedLines = new String[(int) Math.ceil((double)note.length()/MAX_CHAR_AMOUNT_PER_LINE)];
-						
-						for(int i = 0; i < wrappedLines.length; i++) {
-							if((note.length() >= (i+1)*68)) {
-								wrappedLines[i] = note.substring(i * 68, (i+1)*68);
-							} else {
-								wrappedLines[i] = note.substring(i * 68, note.length());
-							}
-							
-						}
-						
-						for(int i = 0; i < wrappedLines.length; i++) {
-							if(wrappedLines[i].substring(0, 1).equals(" ")) {
-								wrappedLines[i] = wrappedLines[i].substring(1);
-							}
-						}
-						
-						for(int i = 0; i < wrappedLines.length; i++) {
-							g.drawString(wrappedLines[i], 655, 285 + k * 20);
-							k = k + 1;
-						}
-*/
-						
-					
-						
-						/*if(!(k == selectedQuest.getNotes().size() - 1)) {
-							g.drawString("-----", 655, 285 + k * 40 + 20);
-						}*/
 						
 
 					}

@@ -236,26 +236,26 @@ public class DialogueWindow {
 				
 				
 				
-				String[] wrappedLines = new String[(int) Math.ceil((double)currentlyDisplayedText.length()/MAX_CHAR_AMOUNT_PER_LINE)];
+				ArrayList<String> lines = new ArrayList<String>();
 				
-				for(int i = 0; i < wrappedLines.length; i++) {
-					if((currentlyDisplayedText.length() >= (i+1)*62)) {
-						wrappedLines[i] = currentlyDisplayedText.substring(i * 62, (i+1)*62);
+				String restText = currentlyDisplayedText;
+				while(true) {
+					
+					if(restText.length() >= 62) {
+						lines.add(restText.substring(0, restText.substring(0, 62).lastIndexOf(" ")));
+						restText = restText.substring(restText.substring(0, 62).lastIndexOf(" ") + 1, restText.length());
+					
 					} else {
-						wrappedLines[i] = currentlyDisplayedText.substring(i * 62, currentlyDisplayedText.length());
+						lines.add(restText);
+						break;
 					}
+					
 				}
-				
-				for(int i = 0; i < wrappedLines.length; i++) {
-					if(wrappedLines[i].substring(0, 1).equals(" ")) {
-						wrappedLines[i] = wrappedLines[i].substring(1);
-					}
+			
+				for(int i = 0; i < lines.size(); i++) {
+					ttf.drawString(495, 808 + i * 30, lines.get(i), fontColor);
 				}
-
-				for(int i = 0; i < wrappedLines.length; i++) {
-					ttf.drawString(495, 808 + i * 30, wrappedLines[i], fontColor);
-				}
-				
+					
 			}
 		}
 	}
