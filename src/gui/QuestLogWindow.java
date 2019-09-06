@@ -24,8 +24,8 @@ import models.Character;
 public class QuestLogWindow {
 
 	private boolean windowOpen = false;
-	private Image questLogWindow = new Image("resources/quest_log1.png");
-	private Image questWindow = new Image("resources/quest_log2.png");
+	private Image questLogWindow = new Image("resources/quest_log.png");
+	private Image questNotesWindow = new Image("resources/quest_notes.png");
 	
 	private int scrollOffset = 0;
 		
@@ -55,11 +55,16 @@ public class QuestLogWindow {
 	//If cursor (or selected option) is right now left or right side
 	private boolean leftSideSelected = true;
 	private boolean rightSideSelected = false;
+	private boolean questNotesSelected = false;
 	
 	private int numberOfCurrentQuests;
 	private int numberOfFinishedQuests;
 	private int numberOfFailedQuests;
 	
+	private Quest selectedQuest;
+	
+	//Relevant for quest notes, so they can be wrapped do multiple lines if needed
+	private final int MAX_CHAR_AMOUNT_PER_LINE = 68;
 	
 	public QuestLogWindow() throws SlickException {
 		
@@ -69,7 +74,7 @@ public class QuestLogWindow {
 		
 		player = MobManager.getPlayer();
 		
-		if(player.isQPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen()) {
+		if(player.isQPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen() && !player.getInventoryWindow().isWindowOpen() && leftSideSelected) {
 			if(!windowOpen) {
 				windowOpen = true;
 				countNumberOfQuests();
@@ -106,6 +111,13 @@ public class QuestLogWindow {
 				}
 			}
 			
+			if(player.isYPressed() && rightSideSelected) {
+				leftSideSelected = false;
+				rightSideSelected = false;
+				questNotesSelected = true;
+				
+			}
+			
 			if(player.isYPressed() && leftSideSelected) {
 				if(selectedOptionLeftSide == 0 && numberOfCurrentQuests > 0 || selectedOptionLeftSide == 1 && numberOfFinishedQuests > 0 || selectedOptionLeftSide == 2 && numberOfFailedQuests > 0) {
 					leftSideSelected = false;
@@ -119,104 +131,192 @@ public class QuestLogWindow {
 				selectedOptionRightSide = 0;
 			}
 			
+			
+
+			
+			if(player.isEscapePressed() && questNotesSelected) {
+				leftSideSelected = false;
+				rightSideSelected = true;
+				questNotesSelected = false;
+			}
+			
 		}
 		
 	}
 		
 	public void render(Graphics g) {
 				
-		if(windowOpen) {			
-			g.drawImage(questLogWindow, 0, 0);
+		if(windowOpen) {		
+			if(leftSideSelected || rightSideSelected) {
+				g.drawImage(questLogWindow, 0, 0);
 			
-			g.setColor(Color.black);
-						
-			String currentQuests = "Current Quests";
-			String finishedQuests = "Finished Quests";
-			String failedQuests = "Failed Quests";
 			
-		
-			if(selectedOptionLeftSide == 0 && leftSideSelected) {
 				g.setColor(Color.black);
-			} else {
-				g.setColor(Color.gray);
-			}
-			
-			g.drawString(currentQuests, 783 - currentQuests.length() * 9, 303);
-			
-			if(selectedOptionLeftSide == 1 && leftSideSelected) {
-				g.setColor(Color.black);
-			} else {
-				g.setColor(Color.gray);
-			}
-			
-			g.drawString(finishedQuests, 787 - finishedQuests.length() * 9, 385);
-			
-			if(selectedOptionLeftSide == 2 && leftSideSelected) {
-				g.setColor(Color.black);
-			} else {
-				g.setColor(Color.gray);
-			}
-			g.drawString(failedQuests, 778 - failedQuests.length() * 9, 467);
-		
-
-			
-
-			
-			if(selectedOptionLeftSide == 0) {
-				int k = 0;
-				for(Quest quest : QuestManager.getQuestList()) {
-					if(quest.isActive()) {
-						
-						if(selectedOptionRightSide == k && rightSideSelected) {
-							g.setColor(Color.black);
-						} else {
-							g.setColor(Color.gray);
-						}
-						
-						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
-						k++;
-					}
-				}
-			}
-			
-			if(selectedOptionLeftSide == 1) {
-				int k = 0;
-				for(Quest quest : QuestManager.getQuestList()) {
-					if(quest.isFinished()) {
-						
-						if(selectedOptionRightSide == k && rightSideSelected) {
-							g.setColor(Color.black);
-						} else {
-							g.setColor(Color.gray);
-						}
-						
-						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
-						k++;
-					}
-				}
-			}
-			
-			if(selectedOptionLeftSide == 2) {
-				int k = 0;
-				for(Quest quest : QuestManager.getQuestList()) {
-					if(quest.isFailed()) {
-						
-						if(selectedOptionRightSide == k && rightSideSelected) {
-							g.setColor(Color.black);
-						} else {
-							g.setColor(Color.gray);
-						}
-						
-						g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
-						k++;
-					}
-				}
-			}
-			
-			
-		}
 							
-	}
+				String currentQuests = "Current Quests";
+				String finishedQuests = "Finished Quests";
+				String failedQuests = "Failed Quests";
+				
+			
+				if(selectedOptionLeftSide == 0 && leftSideSelected) {
+					g.setColor(Color.black);
+				} else {
+					g.setColor(Color.gray);
+				}
+				
+				g.drawString(currentQuests, 783 - currentQuests.length() * 9, 303);
+				
+				if(selectedOptionLeftSide == 1 && leftSideSelected) {
+					g.setColor(Color.black);
+				} else {
+					g.setColor(Color.gray);
+				}
+				
+				g.drawString(finishedQuests, 787 - finishedQuests.length() * 9, 385);
+				
+				if(selectedOptionLeftSide == 2 && leftSideSelected) {
+					g.setColor(Color.black);
+				} else {
+					g.setColor(Color.gray);
+				}
+				g.drawString(failedQuests, 778 - failedQuests.length() * 9, 467);
+			
+	
+				
+	
+				
+				if(selectedOptionLeftSide == 0) {
+					int k = 0;
+					for(Quest quest : QuestManager.getQuestList()) {
+						if(quest.isActive()) {
+							
+							if(selectedOptionRightSide == k && rightSideSelected) {
+								g.setColor(Color.black);
+								selectedQuest = quest;
+							} else {
+								g.setColor(Color.gray);
+							}
+							
+							g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
+							k++;
+						}
+					}
+				}
+				
+				if(selectedOptionLeftSide == 1) {
+					int k = 0;
+					for(Quest quest : QuestManager.getQuestList()) {
+						if(quest.isFinished()) {
+							
+							if(selectedOptionRightSide == k && rightSideSelected) {
+								g.setColor(Color.black);
+								selectedQuest = quest;
+							} else {
+								g.setColor(Color.gray);
+							}
+							
+							g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
+							k++;
+						}
+					}
+				}
+				
+				if(selectedOptionLeftSide == 2) {
+					int k = 0;
+					for(Quest quest : QuestManager.getQuestList()) {
+						if(quest.isFailed()) {
+							
+							if(selectedOptionRightSide == k && rightSideSelected) {
+								g.setColor(Color.black);
+								selectedQuest = quest;
+							} else {
+								g.setColor(Color.gray);
+							}
+							
+							g.drawString(quest.getQuestTitle(), 810, 280 + k * 20);
+							k++;
+						}
+					}
+				}
+			
+			
+			} else if(questNotesSelected) {
+				g.drawImage(questNotesWindow, 0, 0);
+				g.setColor(Color.black);
+
+				int k = 0;		
+				for(int i = 0; i < selectedQuest.getNotes().size(); i++) {
+					
+					
+						ArrayList<String> lines = new ArrayList<String>();
+						
+						String restNote = selectedQuest.getNotes().get(i);
+						while(true) {
+							
+							if(restNote.length() >= 68) {
+								lines.add(restNote.substring(0, restNote.substring(0, 68).lastIndexOf(" ")));
+								restNote = restNote.substring(restNote.substring(0, 68).lastIndexOf(" ") + 1, restNote.length());
+							
+							} else {
+								lines.add(restNote);
+								break;
+							}
+							
+						}
+					
+						
+						for(String line : lines) {
+							g.drawString(line, 655, 285 + k * 20);
+							k++;
+						}
+						
+						if(!(i == selectedQuest.getNotes().size() - 1)) {
+							g.drawString("-----", 655, 285 + k * 20);
+							k++;
+						}	
+						
+					
+					
+					
+
+						/*
+						String[] wrappedLines = new String[(int) Math.ceil((double)note.length()/MAX_CHAR_AMOUNT_PER_LINE)];
+						
+						for(int i = 0; i < wrappedLines.length; i++) {
+							if((note.length() >= (i+1)*68)) {
+								wrappedLines[i] = note.substring(i * 68, (i+1)*68);
+							} else {
+								wrappedLines[i] = note.substring(i * 68, note.length());
+							}
+							
+						}
+						
+						for(int i = 0; i < wrappedLines.length; i++) {
+							if(wrappedLines[i].substring(0, 1).equals(" ")) {
+								wrappedLines[i] = wrappedLines[i].substring(1);
+							}
+						}
+						
+						for(int i = 0; i < wrappedLines.length; i++) {
+							g.drawString(wrappedLines[i], 655, 285 + k * 20);
+							k = k + 1;
+						}
+*/
+						
+					
+						
+						/*if(!(k == selectedQuest.getNotes().size() - 1)) {
+							g.drawString("-----", 655, 285 + k * 40 + 20);
+						}*/
+						
+
+					}
+				}
+				
+			}
+		
+	}				
+	
 	
 	private void countNumberOfQuests() {
 		numberOfCurrentQuests = 0;

@@ -15,6 +15,9 @@ public class Dialogue {
 	
 	//Starts the quest with this title
 	private String questTitle = null;
+	
+	//If quest of this dialogue is already started
+	private boolean questStarted = false;
 		
 	public ArrayList<Sentence> getSentences() {
 		return sentences;
@@ -71,5 +74,13 @@ public class Dialogue {
 	public void setQuestTitle(String questTitle) {
 		this.questTitle = questTitle;
 	}
-	
+
+	public boolean isQuestStarted() {
+		return questStarted;
+	}
+
+	public void setQuestStarted(boolean questStarted) {
+		this.questStarted = questStarted;
+	}
+		
 }
