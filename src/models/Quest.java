@@ -26,36 +26,48 @@ public class Quest {
 		return questTitle;
 	}
 
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-	
 	public boolean isInactive() {
 		return inactive;
 	}
 
-	public void setInactive(boolean inactive) {
-		this.inactive = inactive;
+	public void setInactive() {
+		inactive = true;
+		active = false;
+		finished = false;
+		failed = false;
+	}
+	
+	public boolean isActive() {
+		return active;
 	}
 
+	public void setActive() {
+		inactive = false;
+		active = true;
+		finished = false;
+		failed = false;
+	}
+	
 	public boolean isFinished() {
 		return finished;
 	}
 
-	public void setFinished(boolean finished) {
-		this.finished = finished;
+	public void setFinished() {
+		inactive = false;
+		active = false;
+		finished = true;
+		failed = false;
 	}
 
 	public boolean isFailed() {
 		return failed;
 	}
 
-	public void setFailed(boolean failed) {
-		this.failed = failed;
+	public void setFailed() {
+		inactive = false;
+		active = false;
+		finished = false;
+		failed = true;
 	}
 
 	public int getExperienceReward() {

@@ -21,6 +21,8 @@ public class QuestManager {
 	public QuestManager() throws SlickException {
 				
 		halroksRatProblem = new Quest("Halrok's Rat Problem", 300);
+		halroksRatProblem.setGoldReward(50);
+		
 		lostChrystal = new Quest("Lost Chrystal", 300);
 		
 		questList.add(halroksRatProblem);

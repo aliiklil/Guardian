@@ -2804,6 +2804,13 @@ public class Player extends Character {
 		}
 
 	}
+	
+	public void addGold(int amount) throws SlickException {
+		for(int i = 0; i < amount; i++) {
+			inventoryWindow.addItem(new Item(0, 0, Game.getItemTypeManager().gold));
+			inventoryWindow.incrementGoldCounter();
+		}
+	}
 
 	public void setAnimationsToLookUp() {
 
