@@ -704,6 +704,7 @@ public class NPC extends Character {
 				setAlive(false);
 				setBloodtheft(false);
 				setBloodtheftCounter(0);
+				fireKillEvent();
 				
 				player.addExperience(experienceForPlayer);
 								

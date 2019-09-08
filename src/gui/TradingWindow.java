@@ -155,7 +155,7 @@ public class TradingWindow {
 		//Player inventory controls
 		if(playerInventoryActive) {
 			
-			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyUpPressed() || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if(playerScrollOffset > 0 && playerSelectedCellY == 0) {
 					playerScrollOffset--;
@@ -169,7 +169,7 @@ public class TradingWindow {
 				
 			}
 						
-			if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyDownPressed() || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if(playerSelectedCellY == amountRows - 1 && playerInventoryList.size() > amountCells + playerScrollOffset * amountColumns) {
 					
@@ -195,7 +195,7 @@ public class TradingWindow {
 	
 			}
 			
-			if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyLeftPressed() || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if(playerSelectedCellX == 0 && playerInventoryActive) {
 					npcInventoryActive = true;
@@ -220,7 +220,7 @@ public class TradingWindow {
 		
 			}
 			
-			if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyRightPressed() || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
 				if(playerSelectedCellX < amountColumns - 1 && playerInventoryList.size() > playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns + 1) {
 					playerSelectedCellX++;
 					timestamp = System.currentTimeMillis();
@@ -237,7 +237,7 @@ public class TradingWindow {
 		if(npcInventoryActive) {
 		
 			//NPC inventory controls
-			if(input.isKeyPressed(Input.KEY_UP) || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyUpPressed() || holdUpKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if(npcScrollOffset > 0 && npcSelectedCellY == 0) {
 					npcScrollOffset--;
@@ -251,7 +251,7 @@ public class TradingWindow {
 				
 			}
 						
-			if(input.isKeyPressed(Input.KEY_DOWN) || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyDownPressed() || holdDownKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if(npcSelectedCellY == amountRows - 1 && npc.getInventoryList().size() > amountCells + npcScrollOffset * amountColumns) {
 					
@@ -277,7 +277,7 @@ public class TradingWindow {
 	
 			}
 			
-			if(input.isKeyPressed(Input.KEY_LEFT) || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyLeftPressed() || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
 				if(npcSelectedCellX > 0) {
 					npcSelectedCellX--;
 					timestamp = System.currentTimeMillis();
@@ -285,7 +285,7 @@ public class TradingWindow {
 				
 			}
 			
-			if(input.isKeyPressed(Input.KEY_RIGHT) || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyRightPressed() || holdRightKey && System.currentTimeMillis() - timestamp > 100) {
 				
 				if((npcSelectedCellX == 4 || npc != null && npcSelectedCellX == npc.getInventoryList().size() % amountColumns - 1 && npcSelectedCellY == npc.getInventoryList().size() / amountColumns)  && npcInventoryActive) {
 					npcInventoryActive = false;

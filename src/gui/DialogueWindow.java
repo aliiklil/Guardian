@@ -61,6 +61,10 @@ public class DialogueWindow {
 	public void update() throws SlickException {
 				
 		if(windowOpen) {
+
+			if(selectedOption != currentDialogues.size() && currentDialogues.get(selectedOption) != null) {
+				Game.getQuestLogic().updateQuestLogic(currentDialogues.get(selectedOption));
+			}
 			
 			if(sentenceCount == 0) {
 				if(MobManager.getPlayer().isKeyUpPressed()) {
@@ -108,7 +112,6 @@ public class DialogueWindow {
 						Game.getBlacksmithing().checkIfPlayerIsBlacksmithing(currentDialogues.get(selectedOption));
 						Game.getAlchemy().checkIfPlayerIsUsingAlchemy(currentDialogues.get(selectedOption));
 						Game.getRuneForging().checkIfPlayerIsUsingRuneTable(currentDialogues.get(selectedOption));
-						Game.getQuestLogic().updateQuestLogic(currentDialogues.get(selectedOption));
 						
 						sentenceCount++;
 						
@@ -141,16 +144,18 @@ public class DialogueWindow {
 							
 						}
 	
-
-						if(!startingDialogues.isEmpty() && !startingDialogues.get(selectedStartingOption).isPermanent()) {
-							startingDialogues.remove(selectedStartingOption);
-							
-						}
-
+						int selectedStartingOptionBefore = selectedStartingOption;
+						
 						if(!startingDialogues.get(selectedStartingOption).isForLearning() || startingDialogues.get(selectedStartingOption).getChildDialogues().get(selectedOption).getSentences().get(0).getText().equals("Back")) {
 							currentDialogues = startingDialogues;
 							selectedStartingOption = 0;
 						}
+						
+						if(!startingDialogues.isEmpty() && !startingDialogues.get(selectedStartingOptionBefore).isPermanent()) {
+							startingDialogues.remove(selectedStartingOptionBefore);
+						}
+						
+
 							
 
 

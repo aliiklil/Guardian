@@ -905,6 +905,7 @@ public class Monster extends Mob {
 				isAlive = false;
 				setBloodtheft(false);
 				setBloodtheftCounter(0);
+				fireKillEvent();
 				
 				player.addExperience(experienceForPlayer);
 								

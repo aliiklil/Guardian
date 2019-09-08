@@ -351,7 +351,7 @@ public class Player extends Character {
 
 		mobList = MobManager.getMobListWithoutPlayer();
 		
-		getHealthBar().setCurrentValue(10);
+
 		
 		
 		

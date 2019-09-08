@@ -20,12 +20,12 @@ public class MobManager {
 
 	private static ArrayList<Mob> mobList = new ArrayList<Mob>();
 	
-	private static Player player;
+	public static Player player;
 
-	private static NPC ogus;
-	private static NPC halrok;
+	public static NPC ogus;
+	public static NPC halrok;
 	
-	private static Monster monster1;
+	public static Monster filthyRat;
 	
 	private ItemTypeManager itemTypeManager = Game.getItemTypeManager();	
 	
@@ -66,8 +66,8 @@ public class MobManager {
 		mobList.add(ogus);
 		mobList.add(halrok);
 		
-		monster1 = new Monster(1024, 768, "resources/RatSpriteSheet.png", 1000, null, 100, 5, true, true);		
-		mobList.add(monster1);
+		filthyRat = new Monster(1024, 768, "resources/RatSpriteSheet.png", 1000, null, 100, 5, true, true);		
+		mobList.add(filthyRat);
 		
 	}
 	

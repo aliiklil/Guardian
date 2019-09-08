@@ -45,6 +45,9 @@ public abstract class Mob {
 	
 	private boolean hostileToPlayer;
 	
+	//Is set to true when mob is killed, the event can be consumed for quest logic by setting it to false again
+	private boolean killEvent;
+	
 	public Mob(float relativeToMapX, float relativeToMapY, boolean alive) throws SlickException {
 		
 		this.relativeToMapX = relativeToMapX;
@@ -303,4 +306,16 @@ public abstract class Mob {
 		this.hostileToPlayer = hostileToPlayer;
 	}
 
+	public boolean isKillEvent() {
+		return killEvent;
+	}
+
+	public void fireKillEvent() {
+		this.killEvent = true;
+	}
+	
+	public void consumeKillEvent() {
+		this.killEvent = false;
+	}
+	
 }

@@ -33,7 +33,7 @@ public class NewItemWindow {
 	
 	public void update() throws SlickException {
 		
-		if(System.currentTimeMillis() - startTime >= duration || MobManager.getPlayer().getInventoryWindow().isWindowOpen() || MobManager.getPlayer().getDialogueWindow().isWindowOpen()) {
+		if(System.currentTimeMillis() - startTime >= duration || MobManager.getPlayer().getInventoryWindow().isWindowOpen() || MobManager.getPlayer().getDialogueWindow().isWindowOpen() || MobManager.getPlayer().getQuestLogWindow().isWindowOpen()) {
 			isWindowOpen = false;
 		}
 		
