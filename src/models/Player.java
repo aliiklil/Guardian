@@ -3950,6 +3950,22 @@ public class Player extends Character {
 
 	public QuestLogWindow getQuestLogWindow() {
 		return questLogWindow;
+	}
+
+	public void setKeyUpPressed(boolean keyUpPressed) {
+		this.keyUpPressed = keyUpPressed;
+	}
+
+	public void setKeyDownPressed(boolean keyDownPressed) {
+		this.keyDownPressed = keyDownPressed;
+	}
+
+	public void setKeyLeftPressed(boolean keyLeftPressed) {
+		this.keyLeftPressed = keyLeftPressed;
+	}
+
+	public void setKeyRightPressed(boolean keyRightPressed) {
+		this.keyRightPressed = keyRightPressed;
 	}	
 	
 }

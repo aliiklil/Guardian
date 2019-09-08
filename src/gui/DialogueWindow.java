@@ -154,10 +154,6 @@ public class DialogueWindow {
 						if(!startingDialogues.isEmpty() && !startingDialogues.get(selectedStartingOptionBefore).isPermanent()) {
 							startingDialogues.remove(selectedStartingOptionBefore);
 						}
-						
-
-							
-
 
 						selectedOption = 0;
 						sentenceCount = 0;

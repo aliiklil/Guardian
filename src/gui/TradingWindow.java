@@ -76,7 +76,6 @@ public class TradingWindow {
 		playerInventoryList = player.getInventoryList();
 		playerItemCountList = player.getItemCountList();
 		
-				
 		if(windowOpen) {
 			
 			if(player.isEscapePressed()) {
@@ -201,22 +200,33 @@ public class TradingWindow {
 					npcInventoryActive = true;
 					playerInventoryActive = false;
 					
+					
+					
 					npcSelectedCellY = playerSelectedCellY;
 					npcSelectedCellX = 4;
 					
-					if(npc != null && npc.getInventoryList().size() < npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns - 1) {
-						npcSelectedCellY = npc.getInventoryList().size() / amountColumns;
+					
+					if((npc.getInventoryList().size() - 1) / amountColumns <= playerSelectedCellY) {
+						
+						npcSelectedCellY = (npc.getInventoryList().size() - 1) / amountColumns;
 						npcSelectedCellX = npc.getInventoryList().size() % amountColumns - 1;
+						
+						if(npcSelectedCellX == -1) {
+							npcSelectedCellX = 4;
+						}
+
 					}
 					
-					
 					timestamp = System.currentTimeMillis();
+					
 				}
 				
 				if(playerSelectedCellX > 0) {
 					playerSelectedCellX--;
 					timestamp = System.currentTimeMillis();
 				}
+				
+				player.setKeyLeftPressed(false);
 		
 			}
 			
@@ -277,7 +287,7 @@ public class TradingWindow {
 	
 			}
 			
-			if(player.isKeyLeftPressed() || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
+			if(player.isKeyLeftPressed() && System.currentTimeMillis() - timestamp > 100 || holdLeftKey && System.currentTimeMillis() - timestamp > 100) {
 				if(npcSelectedCellX > 0) {
 					npcSelectedCellX--;
 					timestamp = System.currentTimeMillis();
