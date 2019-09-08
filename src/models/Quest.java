@@ -17,6 +17,9 @@ public class Quest {
 	
 	private ArrayList<String> notes = new ArrayList<String>();
 	
+	//Timestamps when the quest became active, finished or failed. Relevant for the ordering in the questlog
+	private long timestamp;
+	
 	public Quest(String questTitle, int experienceReward) {
 		this.questTitle = questTitle;
 		this.experienceReward = experienceReward;
@@ -29,13 +32,6 @@ public class Quest {
 	public boolean isInactive() {
 		return inactive;
 	}
-
-	public void setInactive() {
-		inactive = true;
-		active = false;
-		finished = false;
-		failed = false;
-	}
 	
 	public boolean isActive() {
 		return active;
@@ -46,6 +42,8 @@ public class Quest {
 		active = true;
 		finished = false;
 		failed = false;
+		
+		timestamp = System.currentTimeMillis();
 	}
 	
 	public boolean isFinished() {
@@ -57,6 +55,8 @@ public class Quest {
 		active = false;
 		finished = true;
 		failed = false;
+		
+		timestamp = System.currentTimeMillis();
 	}
 
 	public boolean isFailed() {
@@ -68,6 +68,8 @@ public class Quest {
 		active = false;
 		finished = false;
 		failed = true;
+		
+		timestamp = System.currentTimeMillis();
 	}
 
 	public int getExperienceReward() {
@@ -96,6 +98,10 @@ public class Quest {
 
 	public void setNotes(ArrayList<String> notes) {
 		this.notes = notes;
+	}
+
+	public long getTimestamp() {
+		return timestamp;
 	}
 		
 }

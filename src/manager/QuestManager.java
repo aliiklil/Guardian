@@ -1,6 +1,7 @@
 package manager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -45,7 +46,7 @@ public class QuestManager {
 			}
 		}
 		
-		return activeQuestList;
+		return sortAfterTimestamp(activeQuestList);
 		
 	}
 	
@@ -59,7 +60,7 @@ public class QuestManager {
 			}
 		}
 		
-		return finishedQuestList;
+		return sortAfterTimestamp(finishedQuestList);
 	}
 	
 	public static ArrayList<Quest> getFailedQuestList() {
@@ -72,7 +73,21 @@ public class QuestManager {
 			}
 		}
 		
-		return failedQuestList;
+		return sortAfterTimestamp(failedQuestList);
+	}
+	
+	//Sort after timestamp (for the ordering of quests in the questlog)
+	private static ArrayList<Quest> sortAfterTimestamp(ArrayList<Quest> questListToSort) {
+		for (int i = 0; i < questListToSort.size() - 1; i++) {
+			int index = i;
+			for (int j = i + 1; j < questListToSort.size(); j++) {
+				if (questListToSort.get(j).getTimestamp() < questListToSort.get(index).getTimestamp()) {
+					index = j;
+				}
+			}
+			Collections.swap(questListToSort, index, i);
+		}
+		return questListToSort;
 	}
 	
 }
