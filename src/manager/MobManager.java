@@ -25,7 +25,14 @@ public class MobManager {
 	public static NPC ogus;
 	public static NPC halrok;
 	
+	public static NPC jorgen;
+	public static NPC rico;
+	
 	public static Monster filthyRat;
+	
+	public static Monster aggressiveWolf1;
+	public static Monster aggressiveWolf2;
+	public static Monster aggressiveWolf3;
 	
 	private ItemTypeManager itemTypeManager = Game.getItemTypeManager();	
 	
@@ -43,7 +50,7 @@ public class MobManager {
 		
 		player.setCurrentMeleeAnimation(stick.getItemType().getLookDownAnimation());
 			
-		ogus = new NPC(256, 128, 2000, 2000, "resources/OrcSpriteSheet.png", true, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
+		ogus = new NPC(256, 128, 2000, 2000, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
 		ogus.addItem(new Item(0, 0, itemTypeManager.dagger));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
@@ -58,16 +65,35 @@ public class MobManager {
 		
 		
 		
-		halrok = new NPC(256, 64, 300, 300, "resources/SkeletonSpriteSheet.png", true, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
+		halrok = new NPC(256, 64, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
 		halrok.setEquippedMelee(new Item(0, 0, itemTypeManager.ironsword).getItemType());
+		
+		jorgen = new NPC(512, 64, 300, 300, "resources/Jorgen.png", false, null, DialogueManager.jorgenDialogues, 400, 20, 0.3, true);
+		jorgen.setEquippedMelee(new Item(0, 0, itemTypeManager.rapier).getItemType());
+		
+		rico = new NPC(640, 32, 300, 300, "resources/Rico.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
+		rico.setEquippedMelee(new Item(0, 0, itemTypeManager.ironsword).getItemType());
+		
 		
 		
 		mobList.add(player);
 		mobList.add(ogus);
 		mobList.add(halrok);
 		
+		mobList.add(jorgen);
+		mobList.add(rico);
+		
 		filthyRat = new Monster(1024, 768, "resources/RatSpriteSheet.png", 1000, null, 100, 5, true, true);		
 		mobList.add(filthyRat);
+		
+		aggressiveWolf1 = new Monster(64, 1024, "resources/WolfSpriteSheet.png", 500, null, 100, 5, true, true);		
+		mobList.add(aggressiveWolf1);
+		
+		aggressiveWolf2 = new Monster(192, 1152, "resources/WolfSpriteSheet.png", 500, null, 100, 5, true, true);		
+		mobList.add(aggressiveWolf2);
+		
+		aggressiveWolf3 = new Monster(256, 1280, "resources/WolfSpriteSheet.png", 500, null, 100, 5, true, true);		
+		mobList.add(aggressiveWolf3);
 		
 	}
 	

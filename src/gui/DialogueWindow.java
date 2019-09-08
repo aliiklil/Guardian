@@ -64,6 +64,8 @@ public class DialogueWindow {
 
 			if(selectedOption != currentDialogues.size() && currentDialogues.get(selectedOption) != null) {
 				Game.getQuestLogic().updateQuestLogic(currentDialogues.get(selectedOption));
+			} else {
+				Game.getQuestLogic().updateQuestLogic(null);
 			}
 			
 			if(sentenceCount == 0) {

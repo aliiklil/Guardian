@@ -86,6 +86,8 @@ public class QuestLogWindow {
 		if(player.isQPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen() && !player.getInventoryWindow().isWindowOpen() && leftSideSelected) {
 			if(!windowOpen) {
 				windowOpen = true;
+				rightSideScrollOffset = 0;
+				selectedOptionRightSide = 0;
 			} else {
 				windowOpen = false;
 			}

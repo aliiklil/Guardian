@@ -17,12 +17,13 @@ public class QuestLogic {
 				
 		updateHalroksRatProblem(currentDialogue);
 		updateLostChrystal(currentDialogue);
+		updateWolfHunt(currentDialogue);
 
 	}
 	
 	private void updateHalroksRatProblem(Dialogue currentDialogue) throws SlickException {
 				
-		if(MobManager.getPlayer().isYPressed() && currentDialogue.getQuestTitle() != null && Game.getQuestManager().halroksRatProblem.isInactive() && currentDialogue.getQuestTitle().equals("Halrok's Rat Problem") && !currentDialogue.isQuestStarted()) {
+		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && currentDialogue.getQuestTitle() != null && Game.getQuestManager().halroksRatProblem.isInactive() && currentDialogue.getQuestTitle().equals("Halrok's Rat Problem") && !currentDialogue.isQuestStarted()) {
 			
 			Game.getQuestManager().halroksRatProblem.setActive();
 						
@@ -48,7 +49,7 @@ public class QuestLogic {
 						
 		}
 		
-		if(MobManager.getPlayer().isYPressed() && Game.getQuestManager().halroksRatProblem.isActive() && currentDialogue.getSentences().get(0).getText().equals("I killed the rat.")) {
+		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && Game.getQuestManager().halroksRatProblem.isActive() && currentDialogue.getSentences().get(0).getText().equals("I killed the rat.")) {
 			
 			MobManager.getPlayer().addExperience(Game.getQuestManager().halroksRatProblem.getExperienceReward());
 			MobManager.getPlayer().addGold(Game.getQuestManager().halroksRatProblem.getGoldReward());
@@ -62,7 +63,7 @@ public class QuestLogic {
 
 	private void updateLostChrystal(Dialogue currentDialogue) throws SlickException {
 				
-		if(currentDialogue.getQuestTitle() != null && currentDialogue.getQuestTitle().equals("Lost Chrystal") && !currentDialogue.isQuestStarted()) {
+		if(currentDialogue != null && currentDialogue.getQuestTitle() != null && currentDialogue.getQuestTitle().equals("Lost Chrystal") && !currentDialogue.isQuestStarted()) {
 			
 			Game.getQuestManager().lostChrystal.setActive();
 			
@@ -89,7 +90,7 @@ public class QuestLogic {
 						
 		}
 				
-		if(MobManager.getPlayer().isYPressed() && Game.getQuestManager().lostChrystal.isActive() && currentDialogue.getSentences().get(0).getText().equals("I found the chrystal.")) {
+		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && Game.getQuestManager().lostChrystal.isActive() && currentDialogue.getSentences().get(0).getText().equals("I found the chrystal.")) {
 			
 			MobManager.getPlayer().addExperience(Game.getQuestManager().lostChrystal.getExperienceReward());
 			MobManager.getPlayer().addGold(Game.getQuestManager().lostChrystal.getGoldReward());
@@ -98,6 +99,49 @@ public class QuestLogic {
 			Game.getQuestManager().lostChrystal.getNotes().add("I gave him the chrystal and I got 100 gold as a reward.");
 
 			MobManager.getPlayer().getInventoryWindow().removeItem(Game.getItemTypeManager().ogusChrystal);
+			
+		}
+		
+	}
+	
+	
+	private void updateWolfHunt(Dialogue currentDialogue) throws SlickException {
+		
+		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && currentDialogue.getQuestTitle() != null && currentDialogue.getQuestTitle().equals("Wolf Hunt") && !currentDialogue.isQuestStarted()) {
+			
+			Game.getQuestManager().wolfHunt.setActive();
+			
+			Game.getQuestManager().wolfHunt.getNotes().add("Jorgen needs to kill three aggressive wolfes, that are currently south from here.");
+			
+			currentDialogue.setQuestStarted(true);
+			
+			String text = "New quest log entry";
+			MobManager.getPlayer().getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+			
+		}
+		
+		if(Game.getQuestManager().wolfHunt.isActive() && MobManager.aggressiveWolf1.isKillEvent() && MobManager.aggressiveWolf2.isKillEvent() && MobManager.aggressiveWolf3.isKillEvent()) {
+			System.out.println("XXXXXXXXXXXXXX");
+			MobManager.aggressiveWolf1.consumeKillEvent();
+			MobManager.aggressiveWolf2.consumeKillEvent();
+			MobManager.aggressiveWolf3.consumeKillEvent();
+			
+			Dialogue dialogue = new Dialogue();
+			dialogue.addSentence("The wolfes are dead now.", "Hero");
+			dialogue.addSentence("Good job. Here take 200 gold.", "Jorgen");
+			dialogue.addSentence("Thanks.", "Hero");
+			
+			MobManager.jorgen.getStartingDialogues().add(dialogue);
+						
+		}
+				
+		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && Game.getQuestManager().wolfHunt.isActive() && currentDialogue.getSentences().get(0).getText().equals("The wolfes are dead now.")) {
+			
+			MobManager.getPlayer().addExperience(Game.getQuestManager().wolfHunt.getExperienceReward());
+			MobManager.getPlayer().addGold(Game.getQuestManager().wolfHunt.getGoldReward());
+			Game.getQuestManager().wolfHunt.setFinished();
+			
+			Game.getQuestManager().wolfHunt.getNotes().add("He gave me 200 gold as a reward.");
 			
 		}
 		

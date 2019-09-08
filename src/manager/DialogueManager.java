@@ -13,6 +13,9 @@ public class DialogueManager {
 	public static ArrayList<Dialogue> ogusDialogues = new ArrayList<Dialogue>();
 	public static ArrayList<Dialogue> halrokDialogues = new ArrayList<Dialogue>();
 	
+	public static ArrayList<Dialogue> jorgenDialogues = new ArrayList<Dialogue>();
+	public static ArrayList<Dialogue> ricoDialogues = new ArrayList<Dialogue>();
+	
 	public DialogueManager() {
 		
 
@@ -205,7 +208,15 @@ public class DialogueManager {
 		halrokDialogues.get(3).getNewStartingDialogues().get(0).getChildDialogues().add(new Dialogue());
 		halrokDialogues.get(3).getNewStartingDialogues().get(0).getChildDialogues().get(8).addSentence("Back", "Hero");
 		
-
+		
+		
+		jorgenDialogues.add(new Dialogue());
+		jorgenDialogues.get(0).addSentence("What are you doing?", "Hero");
+		jorgenDialogues.get(0).addSentence("I need to kill the aggressive wolf pack south from here.", "Jorgen");
+		jorgenDialogues.get(0).addSentence("I think there are 3 of them. But I feel it might be too many for me.", "Jorgen");
+		jorgenDialogues.get(0).addSentence("If you kill it, I will give you 200 gold.", "Jorgen");	
+		jorgenDialogues.get(0).addSentence("I see what I can do.", "Hero");
+		jorgenDialogues.get(0).setQuestTitle("Wolf Hunt");
 		
 	}
 	

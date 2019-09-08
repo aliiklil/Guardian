@@ -18,6 +18,8 @@ public class QuestManager {
 	
 	public Quest halroksRatProblem;
 	public Quest lostChrystal;
+	
+	public Quest wolfHunt;
 		
 	public QuestManager() throws SlickException {
 				
@@ -27,8 +29,15 @@ public class QuestManager {
 		lostChrystal = new Quest("Lost Chrystal", 400);
 		lostChrystal.setGoldReward(100);
 		
+		wolfHunt = new Quest("Wolf Hunt", 500);
+		wolfHunt.setGoldReward(200);
+		
+		
+		
+		
 		questList.add(halroksRatProblem);
 		questList.add(lostChrystal);
+		questList.add(wolfHunt);
 
 	}
 	
@@ -81,7 +90,7 @@ public class QuestManager {
 		for (int i = 0; i < questListToSort.size() - 1; i++) {
 			int index = i;
 			for (int j = i + 1; j < questListToSort.size(); j++) {
-				if (questListToSort.get(j).getTimestamp() < questListToSort.get(index).getTimestamp()) {
+				if (questListToSort.get(j).getTimestamp() > questListToSort.get(index).getTimestamp()) {
 					index = j;
 				}
 			}

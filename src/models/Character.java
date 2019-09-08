@@ -17,12 +17,12 @@ public abstract class Character extends Mob {
 	private final int overSizeSpriteSize = 192;
 
 	//The normal default speed
-	private final float defaultMovementSpeed = 2f;
-	private final float defaultDiagonalMovementSpeed = 1.6f;
+	private final float defaultMovementSpeed = 2f*3;
+	private final float defaultDiagonalMovementSpeed = 1.6f*3;
 	
 	//Current speed of the character
-	private float movementSpeed = 2f;
-	private float diagonalMovementSpeed = 1.6f;
+	private float movementSpeed = 2f*3;
+	private float diagonalMovementSpeed = 1.6f*3;
 				
 	private Bar healthBar;
 	
