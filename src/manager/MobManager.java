@@ -43,7 +43,7 @@ public class MobManager {
 		
 		player.setCurrentMeleeAnimation(stick.getItemType().getLookDownAnimation());
 			
-		ogus = new NPC(256, 128, 2000, 2000, "resources/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
+		ogus = new NPC(256, 128, 2000, 2000, "resources/OrcSpriteSheet.png", true, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
 		ogus.addItem(new Item(0, 0, itemTypeManager.dagger));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
 		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
@@ -58,8 +58,8 @@ public class MobManager {
 		
 		
 		
-		halrok = new NPC(256, 64, 300, 300, "resources/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
-		ogus.setEquippedMelee(new Item(0, 0, itemTypeManager.ironsword).getItemType());
+		halrok = new NPC(256, 64, 300, 300, "resources/SkeletonSpriteSheet.png", true, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
+		halrok.setEquippedMelee(new Item(0, 0, itemTypeManager.ironsword).getItemType());
 		
 		
 		mobList.add(player);
