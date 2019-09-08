@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 
 import dialogue.Dialogue;
 import main.Game;
+import models.Item;
 import models.Player;
 import models.Quest;
 
@@ -20,6 +21,7 @@ public class QuestManager {
 	public Quest lostChrystal;
 	
 	public Quest wolfHunt;
+	public Quest plantsForAPotion;
 		
 	public QuestManager() throws SlickException {
 				
@@ -32,13 +34,14 @@ public class QuestManager {
 		wolfHunt = new Quest("Wolf Hunt", 500);
 		wolfHunt.setGoldReward(200);
 		
-		
+		plantsForAPotion = new Quest("Plants For A Potion", 500);
+		plantsForAPotion.setItemReward(new Item(0, 0, Game.getItemTypeManager().maxHpBonusPotion));
 		
 		
 		questList.add(halroksRatProblem);
 		questList.add(lostChrystal);
 		questList.add(wolfHunt);
-
+		questList.add(plantsForAPotion);
 	}
 	
 	public static ArrayList<Quest> getQuestList() {

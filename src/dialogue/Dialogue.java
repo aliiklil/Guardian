@@ -83,4 +83,19 @@ public class Dialogue {
 		this.questStarted = questStarted;
 	}
 		
+	public boolean isSame(Dialogue otherDialogue) {
+		
+		for(int i = 0; i < sentences.size(); i++) {
+			if(!sentences.get(i).getText().equals(otherDialogue.getSentences().get(i).getText())) {
+				return false;
+			}
+			if(!sentences.get(i).getSpeakerName().equals(otherDialogue.getSentences().get(i).getSpeakerName())) {
+				return false;
+			}
+		}
+		
+		return true;
+		
+	}
+	
 }

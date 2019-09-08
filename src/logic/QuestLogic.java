@@ -13,17 +13,19 @@ import models.Player;
 
 public class QuestLogic {
 	
+	private Player player = MobManager.getPlayer();
+	
 	public void updateQuestLogic(Dialogue currentDialogue) throws SlickException {
 				
 		updateHalroksRatProblem(currentDialogue);
 		updateLostChrystal(currentDialogue);
 		updateWolfHunt(currentDialogue);
-
+		updatePlantsForAPotion(currentDialogue);
 	}
 	
 	private void updateHalroksRatProblem(Dialogue currentDialogue) throws SlickException {
 				
-		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && currentDialogue.getQuestTitle() != null && Game.getQuestManager().halroksRatProblem.isInactive() && currentDialogue.getQuestTitle().equals("Halrok's Rat Problem") && !currentDialogue.isQuestStarted()) {
+		if(player.isYPressed() && currentDialogue != null && currentDialogue.getQuestTitle() != null && Game.getQuestManager().halroksRatProblem.isInactive() && currentDialogue.getQuestTitle().equals("Halrok's Rat Problem") && !currentDialogue.isQuestStarted()) {
 			
 			Game.getQuestManager().halroksRatProblem.setActive();
 						
@@ -32,7 +34,7 @@ public class QuestLogic {
 			currentDialogue.setQuestStarted(true);
 			
 			String text = "New quest log entry";
-			MobManager.getPlayer().getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+			player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 
 		}
 
@@ -49,10 +51,10 @@ public class QuestLogic {
 						
 		}
 		
-		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && Game.getQuestManager().halroksRatProblem.isActive() && currentDialogue.getSentences().get(0).getText().equals("I killed the rat.")) {
+		if(player.isYPressed() && currentDialogue != null && Game.getQuestManager().halroksRatProblem.isActive() && currentDialogue.getSentences().get(0).getText().equals("I killed the rat.")) {
 			
-			MobManager.getPlayer().addExperience(Game.getQuestManager().halroksRatProblem.getExperienceReward());
-			MobManager.getPlayer().addGold(Game.getQuestManager().halroksRatProblem.getGoldReward());
+			player.addExperience(Game.getQuestManager().halroksRatProblem.getExperienceReward());
+			player.addGold(Game.getQuestManager().halroksRatProblem.getGoldReward());
 			Game.getQuestManager().halroksRatProblem.setFinished();
 			
 			Game.getQuestManager().halroksRatProblem.getNotes().add("The rat is dead and I got 50 gold as a reward.");
@@ -73,7 +75,7 @@ public class QuestLogic {
 			currentDialogue.setQuestStarted(true);
 			
 			String text = "New quest log entry";
-			MobManager.getPlayer().getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+			player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 			
 		}
 		
@@ -90,15 +92,15 @@ public class QuestLogic {
 						
 		}
 				
-		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && Game.getQuestManager().lostChrystal.isActive() && currentDialogue.getSentences().get(0).getText().equals("I found the chrystal.")) {
+		if(player.isYPressed() && currentDialogue != null && Game.getQuestManager().lostChrystal.isActive() && currentDialogue.getSentences().get(0).getText().equals("I found the chrystal.")) {
 			
-			MobManager.getPlayer().addExperience(Game.getQuestManager().lostChrystal.getExperienceReward());
-			MobManager.getPlayer().addGold(Game.getQuestManager().lostChrystal.getGoldReward());
+			player.addExperience(Game.getQuestManager().lostChrystal.getExperienceReward());
+			player.addGold(Game.getQuestManager().lostChrystal.getGoldReward());
 			Game.getQuestManager().lostChrystal.setFinished();
 			
 			Game.getQuestManager().lostChrystal.getNotes().add("I gave him the chrystal and I got 100 gold as a reward.");
 
-			MobManager.getPlayer().getInventoryWindow().removeItem(Game.getItemTypeManager().ogusChrystal);
+			player.getInventoryWindow().removeItem(Game.getItemTypeManager().ogusChrystal);
 			
 		}
 		
@@ -107,7 +109,7 @@ public class QuestLogic {
 	
 	private void updateWolfHunt(Dialogue currentDialogue) throws SlickException {
 		
-		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && currentDialogue.getQuestTitle() != null && currentDialogue.getQuestTitle().equals("Wolf Hunt") && !currentDialogue.isQuestStarted()) {
+		if(player.isYPressed() && currentDialogue != null && currentDialogue.getQuestTitle() != null && currentDialogue.getQuestTitle().equals("Wolf Hunt") && !currentDialogue.isQuestStarted()) {
 			
 			Game.getQuestManager().wolfHunt.setActive();
 			
@@ -116,7 +118,7 @@ public class QuestLogic {
 			currentDialogue.setQuestStarted(true);
 			
 			String text = "New quest log entry";
-			MobManager.getPlayer().getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+			player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 			
 		}
 		
@@ -135,13 +137,85 @@ public class QuestLogic {
 						
 		}
 				
-		if(MobManager.getPlayer().isYPressed() && currentDialogue != null && Game.getQuestManager().wolfHunt.isActive() && currentDialogue.getSentences().get(0).getText().equals("The wolfes are dead now.")) {
+		if(player.isYPressed() && currentDialogue != null && Game.getQuestManager().wolfHunt.isActive() && currentDialogue.getSentences().get(0).getText().equals("The wolfes are dead now.")) {
 			
-			MobManager.getPlayer().addExperience(Game.getQuestManager().wolfHunt.getExperienceReward());
-			MobManager.getPlayer().addGold(Game.getQuestManager().wolfHunt.getGoldReward());
+			player.addExperience(Game.getQuestManager().wolfHunt.getExperienceReward());
+			player.addGold(Game.getQuestManager().wolfHunt.getGoldReward());
 			Game.getQuestManager().wolfHunt.setFinished();
 			
 			Game.getQuestManager().wolfHunt.getNotes().add("He gave me 200 gold as a reward.");
+			
+		}
+		
+	}
+	
+	
+	
+	private void updatePlantsForAPotion(Dialogue currentDialogue) throws SlickException {
+		
+		if(player.isYPressed() && currentDialogue != null && currentDialogue.getQuestTitle() != null && currentDialogue.getQuestTitle().equals("Plants For A Potion") && !currentDialogue.isQuestStarted()) {
+			
+			Game.getQuestManager().plantsForAPotion.setActive();
+			
+			Game.getQuestManager().plantsForAPotion.getNotes().add("Rico needs 3 healroots to create a new potion.");
+			
+			currentDialogue.setQuestStarted(true);
+			
+			String text = "New quest log entry";
+			player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
+			
+		}
+		
+		if(Game.getQuestManager().plantsForAPotion.isActive()) {
+			
+			int healrootCount = 0;
+			
+			for(int i = 0; i < player.getInventoryList().size(); i++) {
+				if(player.getInventoryList().get(i).getItemType().getName().equals("Healroot")) {
+					healrootCount = player.getItemCountList().get(i);
+				}
+			}
+			
+			Dialogue dialogue = new Dialogue();
+			dialogue.addSentence("I have three healroots for you.", "Hero");
+			dialogue.addSentence("Good job. Wait I'll create the potion.", "Rico");
+			dialogue.addSentence("...", "Rico");
+			dialogue.addSentence("Im done. Try it. Here.", "Rico");
+			dialogue.addSentence("Thanks.", "Hero");
+			
+			boolean dialogueAlreadyAdded = false;
+			Dialogue alreadyAddedDialogue = null;
+			for(Dialogue startingDialogue : MobManager.rico.getStartingDialogues()) {
+				if(startingDialogue.isSame(dialogue)) {
+					dialogueAlreadyAdded = true;
+					alreadyAddedDialogue = startingDialogue;
+					break;
+				}
+			}
+			
+			if(healrootCount >= 3) {
+				if(!dialogueAlreadyAdded) {
+					MobManager.rico.getStartingDialogues().add(dialogue);
+				}
+			} else {
+				if(dialogueAlreadyAdded) {
+					MobManager.rico.getStartingDialogues().remove(alreadyAddedDialogue);
+				}
+			}
+		
+		}
+				
+		if(player.isYPressed() && currentDialogue != null && Game.getQuestManager().plantsForAPotion.isActive() && currentDialogue.getSentences().get(0).getText().equals("I have three healroots for you.")) {
+			
+			player.addExperience(Game.getQuestManager().plantsForAPotion.getExperienceReward());
+			player.addItem(Game.getQuestManager().plantsForAPotion.getItemReward());
+			Game.getQuestManager().plantsForAPotion.setFinished();
+			
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			
+			player.getInventoryWindow().removeItem(Game.getItemTypeManager().healroot);
+			player.getInventoryWindow().removeItem(Game.getItemTypeManager().healroot);
+			player.getInventoryWindow().removeItem(Game.getItemTypeManager().healroot);
 			
 		}
 		

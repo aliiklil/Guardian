@@ -218,6 +218,15 @@ public class DialogueManager {
 		jorgenDialogues.get(0).addSentence("I see what I can do.", "Hero");
 		jorgenDialogues.get(0).setQuestTitle("Wolf Hunt");
 		
+		
+		ricoDialogues.add(new Dialogue());
+		ricoDialogues.get(0).addSentence("Who are you?", "Hero");
+		ricoDialogues.get(0).addSentence("I'm an alchemist. I'm trying to brew a new potion. But I need 3 healroots and a goldtruffle to create it.", "Rico");
+		ricoDialogues.get(0).addSentence("I can bring it.", "Hero");
+		ricoDialogues.get(0).addSentence("Nice, you can try out my new potion as a reward. It will make you stronger.", "Rico");	
+		ricoDialogues.get(0).addSentence("Sounds good.", "Hero");
+		ricoDialogues.get(0).setQuestTitle("Plants For A Potion");
+		
 	}
 	
 }

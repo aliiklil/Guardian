@@ -61,6 +61,9 @@ public class MobManager {
 		ogus.addItem(new Item(0, 0, itemTypeManager.goldenspear));
 		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHpPotion));
 		
+		ogus.addItem(new Item(0, 0, itemTypeManager.healroot));
+		ogus.addItem(new Item(0, 0, itemTypeManager.healroot));
+		
 		ogus.setEquippedMelee(new Item(0, 0, itemTypeManager.goldenspear).getItemType());
 		
 		
@@ -71,7 +74,7 @@ public class MobManager {
 		jorgen = new NPC(512, 64, 300, 300, "resources/Jorgen.png", false, null, DialogueManager.jorgenDialogues, 400, 20, 0.3, true);
 		jorgen.setEquippedMelee(new Item(0, 0, itemTypeManager.rapier).getItemType());
 		
-		rico = new NPC(640, 32, 300, 300, "resources/Rico.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
+		rico = new NPC(640, 32, 300, 300, "resources/Rico.png", false, null, DialogueManager.ricoDialogues, 400, 20, 0.3, true);
 		rico.setEquippedMelee(new Item(0, 0, itemTypeManager.ironsword).getItemType());
 		
 		
