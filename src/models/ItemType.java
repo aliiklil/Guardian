@@ -596,5 +596,5 @@ public class ItemType {
 	public void consumePickUpEvent() {
 		this.pickedUpEvent = false;
 	}
-		
+	
 }

@@ -91,33 +91,42 @@ public class TradingWindow {
 				
 				if(!selectedItem.getItemType().getItemCategory().equals("gold")) {
 				
-					if(selectedItem.isEquipped()) {
-						selectedItem.setEquipped(false);
+					if(!selectedItem.getItemType().getItemCategory().equals("quest_item")) {
+					
+						if(selectedItem.isEquipped()) {
+							selectedItem.setEquipped(false);
+							
+							if(selectedItem.getItemType().getItemCategory().equals("melee_slay") || selectedItem.getItemType().getItemCategory().equals("melee_thrust")) {
+								player.setEquippedMelee(null);
+								player.setCurrentMeleeAnimation(null);
+							} else if(selectedItem.getItemType().getItemCategory().equals("bow")) {
+								player.setEquippedBow(null);
+								player.setCurrentBowAnimation(null);
+							} else if(selectedItem.getItemType().getItemCategory().equals("spell")) {
+								player.setEquippedSpell(null);
+								player.setCurrentSpellAnimation(null);
+							} else if(selectedItem.getItemType().getItemCategory().equals("armor")) {
+								player.setEquippedArmor(null);
+								player.setCurrentArmorAnimation(null);
+							} 
+							
+						}
 						
-						if(selectedItem.getItemType().getItemCategory().equals("melee_slay") || selectedItem.getItemType().getItemCategory().equals("melee_thrust")) {
-							player.setEquippedMelee(null);
-							player.setCurrentMeleeAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("bow")) {
-							player.setEquippedBow(null);
-							player.setCurrentBowAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("spell")) {
-							player.setEquippedSpell(null);
-							player.setCurrentSpellAnimation(null);
-						} else if(selectedItem.getItemType().getItemCategory().equals("armor")) {
-							player.setEquippedArmor(null);
-							player.setCurrentArmorAnimation(null);
-						} 
+						removeSelectedPlayerItem();
+						
+						for(int i = 0; i < selectedItem.getItemType().getValue(); i++) {
+							player.getInventoryWindow().addItem(new Item(0, 0, Game.getItemTypeManager().gold));
+							player.getInventoryWindow().incrementGoldCounter();
+						}
+						
+						npc.addItem(selectedItem);
+					
+					} else {
+						
+						String text = "I need this item for a quest";
+						player.getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 						
 					}
-					
-					removeSelectedPlayerItem();
-					
-					for(int i = 0; i < selectedItem.getItemType().getValue(); i++) {
-						player.getInventoryWindow().addItem(new Item(0, 0, Game.getItemTypeManager().gold));
-						player.getInventoryWindow().incrementGoldCounter();
-					}
-					
-					npc.addItem(selectedItem);
 				
 				}
 				
@@ -665,7 +674,7 @@ public class TradingWindow {
 	public void removeSelectedPlayerItem() {
 
 		int index = playerSelectedCellX + (playerSelectedCellY + playerScrollOffset) * amountColumns;
-		
+				
 		if(playerItemCountList.get(index) > 1) {
 			playerItemCountList.set(index, playerItemCountList.get(index) - 1);
 		} else {
@@ -691,6 +700,8 @@ public class TradingWindow {
 	public void removeSelectedNPCItem() {
 		
 		int index = npcSelectedCellX + (npcSelectedCellY + npcScrollOffset) * amountColumns;
+		
+		playerInventoryList.get(index).getItemType().firePickedUpEvent();
 		
 		if(npc.getItemCountList().get(index) > 1) {
 			npc.getItemCountList().set(index, npc.getItemCountList().get(index) - 1);

@@ -76,7 +76,6 @@ public class QuestLogic {
 			
 		}
 		
-			
 		if(Game.getQuestManager().lostChrystal.isActive() && Game.getItemTypeManager().ogusChrystal.isPickedUpEvent()) {
 
 			Game.getItemTypeManager().ogusChrystal.consumePickUpEvent();
@@ -89,7 +88,7 @@ public class QuestLogic {
 			MobManager.ogus.getStartingDialogues().add(dialogue);
 						
 		}
-		
+				
 		if(MobManager.getPlayer().isYPressed() && Game.getQuestManager().lostChrystal.isActive() && currentDialogue.getSentences().get(0).getText().equals("I found the chrystal.")) {
 			
 			MobManager.getPlayer().addExperience(Game.getQuestManager().lostChrystal.getExperienceReward());
@@ -98,6 +97,8 @@ public class QuestLogic {
 			
 			Game.getQuestManager().lostChrystal.getNotes().add("I gave him the chrystal and I got 100 gold as a reward.");
 
+			MobManager.getPlayer().getInventoryWindow().removeItem(Game.getItemTypeManager().ogusChrystal);
+			
 		}
 		
 	}
