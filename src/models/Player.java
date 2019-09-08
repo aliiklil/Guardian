@@ -2607,6 +2607,8 @@ public class Player extends Character {
 				if(item.getItemType().getName().equals("Gold")) {
 					inventoryWindow.incrementGoldCounter();
 				}
+				
+				item.getItemType().firePickedUpEvent();
 
 			}
 
@@ -2811,7 +2813,7 @@ public class Player extends Character {
 			inventoryWindow.incrementGoldCounter();
 		}
 	}
-
+	
 	public void setAnimationsToLookUp() {
 
 		super.setCurrentAnimation(super.getLookUpAnimation());

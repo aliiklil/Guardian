@@ -154,7 +154,12 @@ public class ItemTypeManager {
 	
 	public ItemType emptyRune;
 	
+	public ItemType ogusChrystal;
+	
 	public ItemType gold;
+	
+	
+
 
 
 	public ItemTypeManager() throws SlickException {
@@ -566,7 +571,9 @@ public class ItemTypeManager {
 		
 		emptyRune = new ItemType(1, "resources/items/23misc/emptyRune.png", "Empty Rune", 300, 23, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		
-		gold = new ItemType(100, "resources/items/24gold/goldcoin.png", "Gold", 1, 24, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
+		ogusChrystal = new ItemType(1, "resources/items/24quest_items/ogusChrystal.png", "Ogus Chrystal", 1, 24, false, "quest_item", "resources/player_sprites/empty_sprite_sheet.png");
+		
+		gold = new ItemType(100, "resources/items/25gold/goldcoin.png", "Gold", 1, 25, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
 		
 		
 		

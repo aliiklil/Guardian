@@ -23,7 +23,8 @@ public class QuestManager {
 		halroksRatProblem = new Quest("Halrok's Rat Problem", 300);
 		halroksRatProblem.setGoldReward(50);
 		
-		lostChrystal = new Quest("Lost Chrystal", 300);
+		lostChrystal = new Quest("Lost Chrystal", 400);
+		lostChrystal.setGoldReward(100);
 		
 		questList.add(halroksRatProblem);
 		questList.add(lostChrystal);

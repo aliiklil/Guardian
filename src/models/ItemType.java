@@ -123,7 +123,9 @@ public class ItemType {
 
 	private int effectDuration; //Needed to display player, how long speed potions or transformation magic lasts
 	
-	
+	//Relevant if this item is needed for a quest
+	private boolean pickedUpEvent;
+		
 	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath) throws SlickException {
 		
 		mapAnimation = new Animation(new SpriteSheet(itemImagePath, spriteWidth, spriteHeight), duration);
@@ -583,4 +585,16 @@ public class ItemType {
 		this.effectDuration = effectDuration;
 	}
 	
+	public boolean isPickedUpEvent() {
+		return pickedUpEvent;
+	}
+
+	public void firePickedUpEvent() {
+		this.pickedUpEvent = true;
+	}
+	
+	public void consumePickUpEvent() {
+		this.pickedUpEvent = false;
+	}
+		
 }

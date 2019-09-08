@@ -1,3 +1,7 @@
+.)Quests in the questlog should have the order of when they were accepted
+
+.)Player maybe should be able to drop items
+
 .)Implement quest system
 
 .)Fix dialogue bug (When there is a dialogue starting option at the bottom which isnt for learning or trading the game crashes)

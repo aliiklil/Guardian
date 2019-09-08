@@ -5,6 +5,7 @@ import org.newdawn.slick.SlickException;
 import dialogue.Dialogue;
 import main.Game;
 import main.Main;
+import manager.ItemManager;
 import manager.MobManager;
 import manager.QuestManager;
 import models.Item;
@@ -43,7 +44,6 @@ public class QuestLogic {
 			dialogue.addSentence("Nice, good job. Here you have 50 gold.", "Halrok");
 			dialogue.addSentence("Thanks.", "Hero");
 			
-			
 			MobManager.halrok.getStartingDialogues().add(dialogue);
 						
 		}
@@ -52,9 +52,10 @@ public class QuestLogic {
 			
 			MobManager.getPlayer().addExperience(Game.getQuestManager().halroksRatProblem.getExperienceReward());
 			MobManager.getPlayer().addGold(Game.getQuestManager().halroksRatProblem.getGoldReward());
-			System.out.println("KSSA");
 			Game.getQuestManager().halroksRatProblem.setFinished();
 			
+			Game.getQuestManager().halroksRatProblem.getNotes().add("The rat is dead and I got 50 gold as a reward.");
+
 		}
 		
 	}
@@ -67,13 +68,36 @@ public class QuestLogic {
 			
 			Game.getQuestManager().lostChrystal.getNotes().add("Ogus lost his chrystal.");
 			Game.getQuestManager().lostChrystal.getNotes().add("It should be east from here.");
-			Game.getQuestManager().lostChrystal.getNotes().add("I will try to find it.");
 			
 			currentDialogue.setQuestStarted(true);
 			
 			String text = "New quest log entry";
 			MobManager.getPlayer().getCenteredText().showText(text, Main.WIDTH/2 - (text.length() * 9)/2, Main.HEIGHT/2);
 			
+		}
+		
+			
+		if(Game.getQuestManager().lostChrystal.isActive() && Game.getItemTypeManager().ogusChrystal.isPickedUpEvent()) {
+
+			Game.getItemTypeManager().ogusChrystal.consumePickUpEvent();
+			
+			Dialogue dialogue = new Dialogue();
+			dialogue.addSentence("I found the chrystal.", "Hero");
+			dialogue.addSentence("Finally I have it again. My master needs it. Here you have 100 gold.", "Ogus");
+			dialogue.addSentence("Thanks.", "Hero");
+			
+			MobManager.ogus.getStartingDialogues().add(dialogue);
+						
+		}
+		
+		if(MobManager.getPlayer().isYPressed() && Game.getQuestManager().lostChrystal.isActive() && currentDialogue.getSentences().get(0).getText().equals("I found the chrystal.")) {
+			
+			MobManager.getPlayer().addExperience(Game.getQuestManager().lostChrystal.getExperienceReward());
+			MobManager.getPlayer().addGold(Game.getQuestManager().lostChrystal.getGoldReward());
+			Game.getQuestManager().lostChrystal.setFinished();
+			
+			Game.getQuestManager().lostChrystal.getNotes().add("I gave him the chrystal and I got 100 gold as a reward.");
+
 		}
 		
 	}

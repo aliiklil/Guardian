@@ -222,6 +222,9 @@ public class ItemManager {
 		itemList.add(new Item(1408, 32, itemTypeManager.orcTooth));
 		itemList.add(new Item(1408, 32, itemTypeManager.heart));
 		
+		
+		itemList.add(new Item(1408, 192, itemTypeManager.ogusChrystal));
+		
 	}
 	
 	public void update() {
