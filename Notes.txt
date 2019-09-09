@@ -1,5 +1,3 @@
-.)Implement quest system
-
 .)Implement reading of notes and books in the game
 
 .)Make the viewport smaller (by scaling by 2)
@@ -11,8 +9,6 @@
 --)The attacked NPC and nearby NPCs attack the player back
 --)Friendly NPCs are very strong so they're very hard to kill
 
-Halrok's Rat Problem 1567965522206
-Lost Chrystal 1567965512262
 
 
 

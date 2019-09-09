@@ -223,6 +223,12 @@ public class ItemManager {
 		itemList.add(new Item(1408, 32, itemTypeManager.heart));
 		
 		
+		itemList.add(new Item(1408, 192, itemTypeManager.letter));
+		itemList.add(new Item(1408, 192, itemTypeManager.note));
+		itemList.add(new Item(1408, 192, itemTypeManager.redbook));
+		itemList.add(new Item(1408, 192, itemTypeManager.bluebook));
+		itemList.add(new Item(1408, 192, itemTypeManager.blackbook));
+		
 		itemList.add(new Item(1408, 192, itemTypeManager.ogusChrystal));
 		
 	}

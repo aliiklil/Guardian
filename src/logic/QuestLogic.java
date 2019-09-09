@@ -123,7 +123,7 @@ public class QuestLogic {
 		}
 		
 		if(Game.getQuestManager().wolfHunt.isActive() && MobManager.aggressiveWolf1.isKillEvent() && MobManager.aggressiveWolf2.isKillEvent() && MobManager.aggressiveWolf3.isKillEvent()) {
-			System.out.println("XXXXXXXXXXXXXX");
+
 			MobManager.aggressiveWolf1.consumeKillEvent();
 			MobManager.aggressiveWolf2.consumeKillEvent();
 			MobManager.aggressiveWolf3.consumeKillEvent();

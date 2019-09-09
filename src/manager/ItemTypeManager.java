@@ -154,6 +154,12 @@ public class ItemTypeManager {
 	
 	public ItemType emptyRune;
 	
+	public ItemType letter;
+	public ItemType note;
+	public ItemType redbook;
+	public ItemType blackbook;
+	public ItemType bluebook;
+	
 	public ItemType ogusChrystal;
 	
 	public ItemType gold;
@@ -571,9 +577,15 @@ public class ItemTypeManager {
 		
 		emptyRune = new ItemType(1, "resources/items/23misc/emptyRune.png", "Empty Rune", 300, 23, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		
-		ogusChrystal = new ItemType(1, "resources/items/24quest_items/ogusChrystal.png", "Ogus Chrystal", 1, 24, false, "quest_item", "resources/player_sprites/empty_sprite_sheet.png");
+		ogusChrystal = new ItemType(1, "resources/items/25quest_items/ogusChrystal.png", "Ogus Chrystal", 1, 25, false, "quest_item", "resources/player_sprites/empty_sprite_sheet.png");
+				
+		letter = new ItemType(1, "resources/items/24readable/letter.png", "Letter", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
+		note = new ItemType(1, "resources/items/24readable/note.png", "Note", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
+		redbook = new ItemType(1, "resources/items/24readable/redbook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
+		blackbook = new ItemType(1, "resources/items/24readable/blackbook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
+		bluebook = new ItemType(1, "resources/items/24readable/bluebook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
 		
-		gold = new ItemType(100, "resources/items/25gold/goldcoin.png", "Gold", 1, 25, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
+		gold = new ItemType(100, "resources/items/26gold/goldcoin.png", "Gold", 1, 26, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
 		
 		
 		
