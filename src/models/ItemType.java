@@ -125,6 +125,9 @@ public class ItemType {
 	
 	//Relevant if this item is needed for a quest
 	private boolean pickedUpEvent;
+	
+	//Relevant for readable items
+	private Image readableImage;
 		
 	public ItemType(int duration, String itemImagePath, String name, int value, int inventoryPriority, boolean equippable, String itemCategory, String spriteSheetPath) throws SlickException {
 		
@@ -595,6 +598,14 @@ public class ItemType {
 	
 	public void consumePickUpEvent() {
 		this.pickedUpEvent = false;
+	}
+
+	public Image getReadableImage() {
+		return readableImage;
+	}
+
+	public void setReadableImage(String readableImagePath) throws SlickException {
+		this.readableImage = new Image(readableImagePath);
 	}
 	
 }

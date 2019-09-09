@@ -1,5 +1,3 @@
-.)Implement reading of notes and books in the game
-
 .)Make the viewport smaller (by scaling by 2)
 
 .)NPCs which are friendly should not have a health bar displayed over them

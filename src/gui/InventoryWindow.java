@@ -72,7 +72,7 @@ public class InventoryWindow {
 		playerInventoryList = player.getInventoryList();
 		playerItemCountList = player.getItemCountList();
 		
-		if(player.isTabPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen() &&!player.getQuestLogWindow().isWindowOpen()) {
+		if(player.isTabPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen() &&!player.getQuestLogWindow().isWindowOpen() && !player.getReadingWindow().isWindowOpen()) {
 			if(!windowOpen) {
 				windowOpen = true;
 			} else {
@@ -291,6 +291,13 @@ public class InventoryWindow {
 				if(selectedItem.getItemType().getName().equals("Goldtruffle")) {
 
 					removeSelectedItem();
+										
+				}
+				
+				if(selectedItem.getItemType().getItemCategory().equals("readable")) {
+
+					windowOpen = false;
+					player.getReadingWindow().showWindow(selectedItem.getItemType().getReadableImage());
 										
 				}
 	
@@ -836,6 +843,10 @@ public class InventoryWindow {
 	
 	public boolean isWindowOpen() {
 		return windowOpen;
+	}
+	
+	public void showWindow() {
+		this.windowOpen = true;
 	}
 	
 	public void incrementGoldCounter() {

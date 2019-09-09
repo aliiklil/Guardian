@@ -15,6 +15,7 @@ import gui.CenteredText;
 import gui.InventoryWindow;
 import gui.NewItemWindow;
 import gui.QuestLogWindow;
+import gui.ReadingWindow;
 import gui.TradingWindow;
 import main.Game;
 import main.Main;
@@ -52,6 +53,7 @@ public class Player extends Character {
 	private InventoryWindow inventoryWindow = new InventoryWindow();
 	private TradingWindow tradingWindow = new TradingWindow();
 	private QuestLogWindow questLogWindow = new QuestLogWindow();
+	private ReadingWindow readingWindow = new ReadingWindow();
 	
 	private Bar prepareAttackBar;
 	private Bar prepareShotBar;
@@ -528,6 +530,7 @@ public class Player extends Character {
 				dialogueWindow.update();
 				tradingWindow.update();
 				questLogWindow.update();
+				readingWindow.update();
 			}
 			
 			newItemWindow.update();
@@ -691,7 +694,7 @@ public class Player extends Character {
 
 		if(!isAttacking && !isPreparingAttack && !isPreparingShot && !isPreparingSpell && !wolfIsAttacking) {
 
-			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+			if(input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(isUpCollision(super.getMovementSpeed())) {
 
@@ -714,7 +717,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 				if(isDownCollision(super.getMovementSpeed())) {
 
 					setAnimationsToLookDown();
@@ -736,7 +739,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(isLeftCollision(super.getMovementSpeed())) {
 
@@ -759,7 +762,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(isRightCollision(super.getMovementSpeed())) {
 
@@ -782,7 +785,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = true;
 
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
 
@@ -815,7 +818,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
 					if(screenRelativeY > 440) {
@@ -844,7 +847,7 @@ public class Player extends Character {
 				lookLeft = false;
 				lookRight = true;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
 					if(screenRelativeY < 576) {
@@ -873,7 +876,7 @@ public class Player extends Character {
 				lookLeft = true;
 				lookRight = false;
 
-			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
 					if(screenRelativeY < 576) {
@@ -935,7 +938,7 @@ public class Player extends Character {
 
 		if(!isTranformedToWolf) {
 		
-			if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventoryWindow.isWindowOpen() && equippedMelee != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+			if(input.isKeyDown(Input.KEY_X) && !isAttacking && !isPreparingShot && !isPreparingSpell && !inventoryWindow.isWindowOpen() && equippedMelee != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 	
 				if(super.getCurrentAnimation() == super.getLookUpAnimation() || super.getCurrentAnimation() == super.getGoUpAnimation() || input.isKeyDown(Input.KEY_UP)) {
 					setAnimationsToPrepareAttackUp();
@@ -1102,7 +1105,7 @@ public class Player extends Character {
 			}
 		}
 				
-		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventoryWindow.isWindowOpen() & equippedBow != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+		if(input.isKeyDown(Input.KEY_A) && !isAttacking && !isPreparingAttack && !isPreparingSpell && !inventoryWindow.isWindowOpen() & equippedBow != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 			if(!arrowExists) {
 				
@@ -1248,7 +1251,7 @@ public class Player extends Character {
 	
 	private void updateHealMagic() throws SlickException {
 
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 						
 			boolean enoughMana;
 			
@@ -1362,7 +1365,7 @@ public class Player extends Character {
 
 	private void updateBulletMagic() throws SlickException {
 
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 			
 			boolean enoughMana;
 			
@@ -1589,7 +1592,7 @@ public class Player extends Character {
 	
 	private void updateFirerain() throws SlickException {
 	
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !spellCreated) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen() && !spellCreated) {
 			
 			boolean enoughMana;
 			
@@ -1739,7 +1742,7 @@ public class Player extends Character {
 	
 	private void updateTransformIntoWolf() throws SlickException {
 		
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !spellCreated) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen() && !spellCreated) {
 			
 			boolean enoughMana;
 			
@@ -2055,7 +2058,7 @@ public class Player extends Character {
 	
 	private void updateTransformIntoSkeleton() throws SlickException {
 		
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()&& !questLogWindow.isWindowOpen() && !spellCreated) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()&& !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen() && !spellCreated) {
 			
 			boolean enoughMana;
 			
@@ -2254,7 +2257,7 @@ public class Player extends Character {
 	
 	private void updateTransformIntoOrcWarrior() throws SlickException {
 		
-		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()&& !questLogWindow.isWindowOpen() && !spellCreated) {
+		if(input.isKeyDown(Input.KEY_S) && !isAttacking && !isPreparingAttack && !isPreparingShot && !inventoryWindow.isWindowOpen() && equippedSpell != null && !tradingWindow.isWindowOpen()&& !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen() && !spellCreated) {
 			
 			boolean enoughMana;
 			
@@ -2649,7 +2652,7 @@ public class Player extends Character {
 
 	private void updateDialogueNPC() throws SlickException {
 
-		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen()) {
+		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 			ArrayList<NPC> npcList = MobManager.getNpcList();
 
@@ -2700,7 +2703,7 @@ public class Player extends Character {
 	
 	private void updateDialogueAnvil() throws SlickException {
 
-		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
+		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 			ArrayList<Anvil> anvilList = AnvilManager.getAnvilList();
 
@@ -2745,7 +2748,7 @@ public class Player extends Character {
 	
 	private void updateDialogueAlchemyDesk() throws SlickException {
 
-		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
+		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 			ArrayList<AlchemyDesk> alchemyDeskList = AlchemyDeskManager.getAlchemyDeskList();
 
@@ -2775,7 +2778,7 @@ public class Player extends Character {
 	
 	private void updateDialogueRuneTable() throws SlickException {
 
-		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen()) {
+		if(yPressed && !dialogueWindow.isWindowOpen() && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 			ArrayList<RuneTable> runeTableList = RuneTableManager.getRuneTableList();
 
@@ -3959,6 +3962,10 @@ public class Player extends Character {
 
 	public QuestLogWindow getQuestLogWindow() {
 		return questLogWindow;
+	}
+	
+	public ReadingWindow getReadingWindow() {
+		return readingWindow;
 	}
 
 	public void setKeyUpPressed(boolean keyUpPressed) {

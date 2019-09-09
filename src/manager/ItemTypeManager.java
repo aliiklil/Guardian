@@ -1,5 +1,6 @@
 package manager;
 
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import models.ItemType;
@@ -579,11 +580,24 @@ public class ItemTypeManager {
 		
 		ogusChrystal = new ItemType(1, "resources/items/25quest_items/ogusChrystal.png", "Ogus Chrystal", 1, 25, false, "quest_item", "resources/player_sprites/empty_sprite_sheet.png");
 				
+		
+		
 		letter = new ItemType(1, "resources/items/24readable/letter.png", "Letter", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
+		letter.setReadableImage("resources/testnote.png");
+		
 		note = new ItemType(1, "resources/items/24readable/note.png", "Note", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
+		note.setReadableImage("resources/testnote.png");
+		
 		redbook = new ItemType(1, "resources/items/24readable/redbook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
+		redbook.setReadableImage("resources/testbook.png");
+		
 		blackbook = new ItemType(1, "resources/items/24readable/blackbook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
+		blackbook.setReadableImage("resources/testbook.png");
+		
 		bluebook = new ItemType(1, "resources/items/24readable/bluebook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
+		bluebook.setReadableImage("resources/testbook.png");
+		
+		
 		
 		gold = new ItemType(100, "resources/items/26gold/goldcoin.png", "Gold", 1, 26, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
 		

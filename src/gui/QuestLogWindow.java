@@ -83,7 +83,7 @@ public class QuestLogWindow {
 		
 		countNumberOfQuests();
 		
-		if(player.isQPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen() && !player.getInventoryWindow().isWindowOpen() && leftSideSelected) {
+		if(player.isQPressed() && !player.getDialogueWindow().isWindowOpen() && !player.getTradingWindow().isWindowOpen() && !player.getInventoryWindow().isWindowOpen() && !player.getReadingWindow().isWindowOpen() &&leftSideSelected) {
 			if(!windowOpen) {
 				windowOpen = true;
 				rightSideScrollOffset = 0;
