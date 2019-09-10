@@ -63,10 +63,10 @@ public class QuestLogWindow {
 	private Quest selectedQuest;
 	
 	//Relevant for quest notes, so they can be wrapped do multiple lines if needed
-	private final int MAX_CHAR_AMOUNT_PER_LINE = 68;
+	private final int MAX_CHAR_AMOUNT_PER_LINE = 59;
 	
 	//Maximum of lines for notes
-	private final int MAX_LINES = 26;
+	private final int MAX_LINES = 23;
 		
 	private ArrayList<String> notesOfSelectedQuest;
 	
@@ -152,9 +152,9 @@ public class QuestLogWindow {
 				for(int i = 0; i < selectedQuest.getNotes().size(); i++) {
 						String restNote = selectedQuest.getNotes().get(i);
 						while(true) {
-							if(restNote.length() >= 68) {
-								notesOfSelectedQuest.add(restNote.substring(0, restNote.substring(0, 68).lastIndexOf(" ")));
-								restNote = restNote.substring(restNote.substring(0, 68).lastIndexOf(" ") + 1, restNote.length());
+							if(restNote.length() >= MAX_CHAR_AMOUNT_PER_LINE) {
+								notesOfSelectedQuest.add(restNote.substring(0, restNote.substring(0, MAX_CHAR_AMOUNT_PER_LINE).lastIndexOf(" ")));
+								restNote = restNote.substring(restNote.substring(0, MAX_CHAR_AMOUNT_PER_LINE).lastIndexOf(" ") + 1, restNote.length());
 							} else {
 								notesOfSelectedQuest.add(restNote);
 								break;
@@ -227,7 +227,7 @@ public class QuestLogWindow {
 					g.setColor(Color.gray);
 				}
 				
-				g.drawString(currentQuests, 783 - currentQuests.length() * 9, 303);
+				g.drawString(currentQuests, 500 - currentQuests.length() * 9, 151);
 				
 				if(selectedOptionLeftSide == 1 && leftSideSelected) {
 					g.setColor(Color.black);
@@ -235,14 +235,14 @@ public class QuestLogWindow {
 					g.setColor(Color.gray);
 				}
 				
-				g.drawString(finishedQuests, 787 - finishedQuests.length() * 9, 385);
+				g.drawString(finishedQuests, 505 - finishedQuests.length() * 9, 229);
 				
 				if(selectedOptionLeftSide == 2 && leftSideSelected) {
 					g.setColor(Color.black);
 				} else {
 					g.setColor(Color.gray);
 				}
-				g.drawString(failedQuests, 778 - failedQuests.length() * 9, 467);
+				g.drawString(failedQuests, 497 - failedQuests.length() * 9, 307);
 			
 				
 				ArrayList<Quest> questList = null;
@@ -265,7 +265,7 @@ public class QuestLogWindow {
 						g.setColor(Color.gray);
 					}
 					
-					g.drawString(questList.get(i).getQuestTitle(), 810, 280 + k * 20);
+					g.drawString(questList.get(i).getQuestTitle(), 526, 129 + k * 20);
 					k++;
 					
 					if(k >= MAX_LINES) {
@@ -283,7 +283,7 @@ public class QuestLogWindow {
 				
 					int k = 0;
 					for(int i = questNotesScrollOffset; i < notesOfSelectedQuest.size(); i++) {
-						g.drawString(notesOfSelectedQuest.get(i), 655, 285 + k * 20);
+						g.drawString(notesOfSelectedQuest.get(i), 373, 129 + k * 20);
 						k++;
 						
 						if(k >= MAX_LINES) {

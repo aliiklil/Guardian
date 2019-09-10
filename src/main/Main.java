@@ -7,8 +7,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Main {
 
-	public static final int WIDTH = 1920;
-	public static final int HEIGHT = 1080;
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
 	
 	public static final int TILE_SIZE = 32;
 	
@@ -44,7 +44,7 @@ public class Main {
 			appGameContainer.setTargetFrameRate(FRAME_RATE);
 			appGameContainer.setVSync(true);
 			appGameContainer.start();
-			
+
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

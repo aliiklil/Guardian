@@ -702,7 +702,7 @@ public class Player extends Character {
 
 				} else {
 
-					if(screenRelativeY > 440) {
+					if(screenRelativeY > 296) {
 						screenRelativeY = screenRelativeY - getMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() + getMovementSpeed());
@@ -724,7 +724,7 @@ public class Player extends Character {
 
 				} else {
 
-					if(screenRelativeY < 576) {
+					if(screenRelativeY < 360) {
 						screenRelativeY = screenRelativeY + getMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() - getMovementSpeed());
@@ -747,7 +747,7 @@ public class Player extends Character {
 
 				} else {
 
-					if(screenRelativeX > 860) {
+					if(screenRelativeX > 576) {
 						screenRelativeX = screenRelativeX - getMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() + getMovementSpeed());
@@ -770,7 +770,7 @@ public class Player extends Character {
 
 				} else {
 
-					if(screenRelativeX < 996) {
+					if(screenRelativeX < 640) {
 						screenRelativeX = screenRelativeX + getMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() - getMovementSpeed());
@@ -789,7 +789,7 @@ public class Player extends Character {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
 
-					if(screenRelativeY > 440) {
+					if(screenRelativeY > 296) {
 						screenRelativeY = screenRelativeY - getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() + getDiagonalMovementSpeed());
@@ -799,7 +799,7 @@ public class Player extends Character {
 
 				if(!isLeftCollision(super.getMovementSpeed())) {
 
-					if(screenRelativeX > 860) {
+					if(screenRelativeX > 576) {
 						screenRelativeX = screenRelativeX - getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() + getDiagonalMovementSpeed());
@@ -821,7 +821,7 @@ public class Player extends Character {
 			} else if(input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(!isUpCollision(super.getMovementSpeed())) {
-					if(screenRelativeY > 440) {
+					if(screenRelativeY > 296) {
 						screenRelativeY = screenRelativeY - getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() + getDiagonalMovementSpeed());
@@ -829,7 +829,7 @@ public class Player extends Character {
 				}
 
 				if(!isRightCollision(super.getMovementSpeed())) {
-					if(screenRelativeX < 996) {
+					if(screenRelativeX < 640) {
 						screenRelativeX = screenRelativeX + getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() - getDiagonalMovementSpeed());
@@ -850,7 +850,7 @@ public class Player extends Character {
 			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
-					if(screenRelativeY < 576) {
+					if(screenRelativeY < 360) {
 						screenRelativeY = screenRelativeY + getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() - getDiagonalMovementSpeed());
@@ -858,7 +858,7 @@ public class Player extends Character {
 				}
 
 				if(!isLeftCollision(super.getMovementSpeed())) {
-					if(screenRelativeX > 860) {
+					if(screenRelativeX > 576) {
 						screenRelativeX = screenRelativeX - getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() + getDiagonalMovementSpeed());
@@ -879,7 +879,7 @@ public class Player extends Character {
 			} else if(input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_LEFT) && !inventoryWindow.isWindowOpen() && !tradingWindow.isWindowOpen() && !questLogWindow.isWindowOpen() && !readingWindow.isWindowOpen()) {
 
 				if(!isDownCollision(super.getMovementSpeed())) {
-					if(screenRelativeY < 576) {
+					if(screenRelativeY < 360) {
 						screenRelativeY = screenRelativeY + getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() - getDiagonalMovementSpeed());
@@ -887,7 +887,7 @@ public class Player extends Character {
 				}
 
 				if(!isRightCollision(super.getMovementSpeed())) {
-					if(screenRelativeX < 996) {
+					if(screenRelativeX < 640) {
 						screenRelativeX = screenRelativeX + getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() - getDiagonalMovementSpeed());

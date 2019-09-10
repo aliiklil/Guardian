@@ -158,6 +158,24 @@ public class QuestLogic {
 			Game.getQuestManager().plantsForAPotion.setActive();
 			
 			Game.getQuestManager().plantsForAPotion.getNotes().add("Rico needs 3 healroots to create a new potion.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
 			
 			currentDialogue.setQuestStarted(true);
 			
@@ -211,6 +229,25 @@ public class QuestLogic {
 			player.addItem(Game.getQuestManager().plantsForAPotion.getItemReward());
 			Game.getQuestManager().plantsForAPotion.setFinished();
 			
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
+			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
 			Game.getQuestManager().plantsForAPotion.getNotes().add("He gave me the potion as a reward.");
 			
 			player.getInventoryWindow().removeItem(Game.getItemTypeManager().healroot);
