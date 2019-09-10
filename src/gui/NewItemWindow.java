@@ -42,11 +42,11 @@ public class NewItemWindow {
 	public void render(Graphics g) {
 		if(isWindowOpen) {
 			g.drawImage(image, 0, 0);
-			currentItem.getItemType().getInventoryAnimation().draw(773, 823);
+			currentItem.getItemType().getInventoryAnimation().draw(459, 559);
 			g.setColor(Color.black);
 			
 			String itemName = currentItem.getItemType().getName();
-			g.drawString(itemName, Main.WIDTH/2 - (itemName.length() * 9)/2 + 32, 844);
+			g.drawString(itemName, Main.WIDTH/2 - (itemName.length() * 9)/2 + 48, 581);
 		}
 	}
 }
