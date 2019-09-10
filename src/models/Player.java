@@ -341,9 +341,9 @@ public class Player extends Character {
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize() / 2 - 12, super.getSpriteSize() / 2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize() / 2, super.getSpriteSize() / 2));
 
-		super.setHealthBar(new Bar(20, Main.HEIGHT - 40, 350, 25, 5, healthPoints, healthPoints, Color.red));
+		super.setHealthBar(new Bar(15, Main.HEIGHT - 40, 300, 25, 5, healthPoints, healthPoints, Color.red));
 
-		manaBar = new Bar(Main.WIDTH - 20 - 350, Main.HEIGHT - 40, 350, 25, 5, mana, mana, Color.blue);
+		manaBar = new Bar(Main.WIDTH - 15 - 300, Main.HEIGHT - 40, 300, 25, 5, mana, mana, Color.blue);
 		
 		prepareAttackBar = new Bar(getRelativeToMapX() + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);
 		prepareShotBar = new Bar(getRelativeToMapX() + Game.getCurrentMap().getX() - 16, getRelativeToMapY() + Game.getCurrentMap().getY() - 32, 64, 5, 1, 0, 100, Color.cyan);

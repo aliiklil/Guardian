@@ -26,7 +26,7 @@ public class DialogueWindow {
 	private ArrayList<Dialogue> startingDialogues;
 	private ArrayList<Dialogue> currentDialogues;
 	
-	private Font font = new Font(Font.MONOSPACED, Font.BOLD, 25);
+	private Font font = new Font(Font.MONOSPACED, Font.BOLD, 18);
 	private TrueTypeFont ttf = new TrueTypeFont(font, true);
 	
 	private int selectedOption;
@@ -39,7 +39,7 @@ public class DialogueWindow {
 	private String currentSentence;
 	private String currentSpeaker;
 	
-	private final int MAX_CHAR_AMOUNT_PER_LINE = 62;
+	private final int MAX_CHAR_AMOUNT_PER_LINE = 56;
 	
 	private String currentlyDisplayedText;
 	private final int TIME_FOR_NEXT_CHARACTER = 20;
@@ -210,11 +210,11 @@ public class DialogueWindow {
 					}
 					
 					if(i == currentDialogues.size() && currentDialogues == startingDialogues) {
-						ttf.drawString(495, 763 + i * 30, "End", fontColor);
+						ttf.drawString(333, 480 + i * 25, "End", fontColor);
 					} 
 					
 					if(i < currentDialogues.size())  {
-						ttf.drawString(495, 763 + i * 30, currentDialogues.get(i).getSentences().get(0).getText(), fontColor);
+						ttf.drawString(333, 480 + i * 25, currentDialogues.get(i).getSentences().get(0).getText(), fontColor);
 					}
 					
 				}	
@@ -226,7 +226,7 @@ public class DialogueWindow {
 				} else {
 					fontColor = Color.black;
 				}
-				ttf.drawString(Main.WIDTH/2 - ttf.getWidth(currentSpeaker)/2, 763, currentSpeaker, fontColor);
+				ttf.drawString(Main.WIDTH/2 - ttf.getWidth(currentSpeaker)/2, 480, currentSpeaker, fontColor);
 								
 				
 				
@@ -244,9 +244,9 @@ public class DialogueWindow {
 				String restText = currentlyDisplayedText;
 				while(true) {
 					
-					if(restText.length() >= 62) {
-						lines.add(restText.substring(0, restText.substring(0, 62).lastIndexOf(" ")));
-						restText = restText.substring(restText.substring(0, 62).lastIndexOf(" ") + 1, restText.length());
+					if(restText.length() >= MAX_CHAR_AMOUNT_PER_LINE) {
+						lines.add(restText.substring(0, restText.substring(0, MAX_CHAR_AMOUNT_PER_LINE).lastIndexOf(" ")));
+						restText = restText.substring(restText.substring(0, MAX_CHAR_AMOUNT_PER_LINE).lastIndexOf(" ") + 1, restText.length());
 					
 					} else {
 						lines.add(restText);
@@ -256,7 +256,7 @@ public class DialogueWindow {
 				}
 			
 				for(int i = 0; i < lines.size(); i++) {
-					ttf.drawString(495, 808 + i * 30, lines.get(i), fontColor);
+					ttf.drawString(333, 505 + i * 25, lines.get(i), fontColor);
 				}
 					
 			}
