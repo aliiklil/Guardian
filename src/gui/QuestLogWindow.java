@@ -304,23 +304,21 @@ public class QuestLogWindow {
 		arrowDownAnimation.updateNoDraw();
 		
 		if(questNotesSelected && questNotesScrollOffset > 0) { 
-			arrowUpAnimation.draw(1279, 271);
+			arrowUpAnimation.draw(921, 118);
 		}
 		
 		if(questNotesSelected && questNotesScrollOffset + MAX_LINES < notesOfSelectedQuest.size()) {
-			arrowDownAnimation.draw(1279, 765);
+			arrowDownAnimation.draw(921, 580);
 		}
 		
 		
 		if(!questNotesSelected && rightSideScrollOffset > 0) { 
-			arrowUpAnimation.draw(1279, 271);
+			arrowUpAnimation.draw(921, 118);
 		}
 		
 		if(!questNotesSelected && rightSideScrollOffset + MAX_LINES < numberOfQuests) {
-			arrowDownAnimation.draw(1279, 765);
+			arrowDownAnimation.draw(921, 580);
 		}
-		
-		
 				
 	}
 	

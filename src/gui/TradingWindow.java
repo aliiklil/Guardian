@@ -154,10 +154,7 @@ public class TradingWindow {
 					}
 					
 				}
-				
 			}
-	
-
 		}
 		
 		//Player inventory controls
