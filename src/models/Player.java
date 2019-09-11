@@ -101,7 +101,7 @@ public class Player extends Character {
 	private int dexterity = 200;
 	
 	private int healthPoints = 200;
-	private int mana = 5000;
+	private int mana = 500;
 	
 	private int meleeSkill = 10;
 	private int bowSkill = 10;

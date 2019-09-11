@@ -410,7 +410,7 @@ public class InventoryWindow {
 			
 			g.setColor(Color.black);
 			
-			//drawPlayerStats(g);
+			drawPlayerStats(g);
 			
 			g.drawString("Gold: ", 722, 37);
 			g.drawString(String.valueOf(goldCounter), 834 - Integer.toString(goldCounter).length() * 9, 37);
@@ -447,15 +447,15 @@ public class InventoryWindow {
 			for(Item item : playerInventoryList) {
 				if(item.isEquipped()) {
 					if(item.getItemType().getItemCategory().equals("melee_slay") || item.getItemType().getItemCategory().equals("melee_thrust")) {
-						item.getItemType().getInventoryAnimation().draw(52, 313);
+						item.getItemType().getInventoryAnimation().draw(34, 34);
 					}
 					
 					if(item.getItemType().getItemCategory().equals("bow")) {
-						item.getItemType().getInventoryAnimation().draw(130, 313);
+						item.getItemType().getInventoryAnimation().draw(112, 34);
 					}
 					
 					if(item.getItemType().getItemCategory().equals("rune") || item.getItemType().getItemCategory().equals("spell")) {
-						item.getItemType().getInventoryAnimation().draw(208, 313);
+						item.getItemType().getInventoryAnimation().draw(190, 34);
 					}
 				}
 			}
@@ -600,117 +600,117 @@ public class InventoryWindow {
 	}
 	
 	private void drawPlayerStats(Graphics g) {
+			
+		g.drawString("Level: ", 32, 111);
+		g.drawString("Experience: ", 32, 131);
+		g.drawString("Next Level: ", 32, 151);
+		g.drawString("Learning Points: ", 32, 171);
 		
-		g.drawString("Level: ", 299, 317);
-		g.drawString("Experience: ", 299, 337);
-		g.drawString("Next Level: ", 299, 357);
-		g.drawString("Learning Points: ", 299, 377);
+		g.drawString("Strength: ", 32, 211);
+		g.drawString("Dexterity: ", 32, 231);
 		
-		g.drawString("Strength: ", 299, 417);
-		g.drawString("Dexterity: ", 299, 437);
+		g.drawString("Health Points: ", 32, 271);
+		g.drawString("Mana: ", 32, 291);
 		
-		g.drawString("Health Points: ", 299, 477);
-		g.drawString("Mana: ", 299, 497);
+		g.drawString("Melee Skill: ", 32, 331);
+		g.drawString("Bow Skill: ", 32, 351);
 		
-		g.drawString("Melee Skill: ", 299, 537);
-		g.drawString("Bow Skill: ", 299, 557);
+		g.drawString("Lockpicking: ", 32, 391);
+		g.drawString("Alchemy: ", 32, 411);
+		g.drawString("Blacksmithing: ", 32, 431);
+		g.drawString("Runeforging: ", 32, 451);
 		
-		g.drawString("Lockpicking: ", 299, 597);
-		g.drawString("Alchemy: ", 299, 617);
-		g.drawString("Blacksmithing: ", 299, 637);
-		g.drawString("Runeforging: ", 299, 657);
-		
-		g.drawString("Take Furs: ", 299, 697);
-		g.drawString("Take Trophies: ", 299, 717);
-		g.drawString("HP Regeneration: ", 299, 737);
-		g.drawString("Mana Regeneration: ", 299, 757);
-		
-		
-		g.drawString("Armor Protection: ", 299, 797);
+		g.drawString("Take Furs: ", 32, 491);
+		g.drawString("Take Trophies: ", 32, 511);
+		g.drawString("HP Regeneration: ", 32, 531);
+		g.drawString("Mana Regeneration: ", 32, 551);
 		
 		
-		g.drawString(String.valueOf(player.getLevel()), 471, 317);
-		g.drawString(String.valueOf(player.getExperience()), 471, 337);
-		g.drawString(String.valueOf(player.getNextLevelExperience()), 471, 357);
-		g.drawString(String.valueOf(player.getLearningPoints()), 471, 377);
+		g.drawString("Armor Protection: ", 32, 591);
 		
-		g.drawString(String.valueOf(player.getStrength()), 471, 417);
-		g.drawString(String.valueOf(player.getDexterity()), 471, 437);
 		
-		g.drawString(player.getHealthBar().getCurrentValue() + "/" + String.valueOf(player.getHealthPoints()), 471, 477);
-		g.drawString(player.getManaBar().getCurrentValue() + "/" + String.valueOf(player.getMana()), 471, 497);
+		g.drawString(String.valueOf(player.getLevel()), 195, 111);
+		g.drawString(String.valueOf(player.getExperience()), 195, 131);
+		g.drawString(String.valueOf(player.getNextLevelExperience()), 195, 151);
+		g.drawString(String.valueOf(player.getLearningPoints()), 195, 171);
 		
-		g.drawString(String.valueOf(player.getMeleeSkill()) + "%", 471, 537);
-		g.drawString(String.valueOf(player.getBowSkill()) + "%", 471, 557);
+		g.drawString(String.valueOf(player.getStrength()), 195, 211);
+		g.drawString(String.valueOf(player.getDexterity()), 195, 231);
+		
+		g.drawString(player.getHealthBar().getCurrentValue() + "/" + String.valueOf(player.getHealthPoints()), 195, 271);
+		g.drawString(player.getManaBar().getCurrentValue() + "/" + String.valueOf(player.getMana()), 195, 291);
+		
+		g.drawString(String.valueOf(player.getMeleeSkill()) + "%", 195, 331);
+		g.drawString(String.valueOf(player.getBowSkill()) + "%", 195, 351);
 	
 		
 		if(player.getLockPickingSkill() == 0) {
-			zeroOfThree.draw(471, 605);
+			zeroOfThree.draw(195, 391);
 		} else if(player.getLockPickingSkill() == 1) {
-			oneOfThree.draw(471, 605);
+			oneOfThree.draw(195, 391);
 		} else if(player.getLockPickingSkill() == 2) {
-			twoOfThree.draw(471, 605);
+			twoOfThree.draw(195, 391);
 		} else if(player.getLockPickingSkill() == 3) {
-			threeOfThree.draw(471, 605);
+			threeOfThree.draw(195, 391);
 		}
 		
 		if(player.getAlchemySkill() == 0) {
-			zeroOfThree.draw(471, 625);
+			zeroOfThree.draw(195, 411);
 		} else if(player.getAlchemySkill() == 1) {
-			oneOfThree.draw(471, 625);
+			oneOfThree.draw(195, 411);
 		} else if(player.getAlchemySkill() == 2) {
-			twoOfThree.draw(471, 625);
+			twoOfThree.draw(195, 411);
 		} else if(player.getAlchemySkill() == 3) {
-			threeOfThree.draw(471, 625);
+			threeOfThree.draw(195, 411);
 		}
 		
 		if(player.getBlacksmithingSkill() == 0) {
-			zeroOfThree.draw(471, 645);
+			zeroOfThree.draw(195, 431);
 		} else if(player.getBlacksmithingSkill() == 1) {
-			oneOfThree.draw(471, 645);
+			oneOfThree.draw(195, 431);
 		} else if(player.getBlacksmithingSkill() == 2) {
-			twoOfThree.draw(471, 645);
+			twoOfThree.draw(195, 431);
 		} else if(player.getBlacksmithingSkill() == 3) {
-			threeOfThree.draw(471, 645);
+			threeOfThree.draw(195, 431);
 		}
 		
 		if(player.getRuneForgingSkill() == 0) {
-			zeroOfThree.draw(471, 665);
+			zeroOfThree.draw(195, 451);
 		} else if(player.getRuneForgingSkill() == 1) {
-			oneOfThree.draw(471, 665);
+			oneOfThree.draw(195, 451);
 		} else if(player.getRuneForgingSkill() == 2) {
-			twoOfThree.draw(471, 665);
+			twoOfThree.draw(195, 451);
 		} else if(player.getRuneForgingSkill() == 3) {
-			threeOfThree.draw(471, 665);
+			threeOfThree.draw(195, 451);
 		}
 		
 		
 		
 		if(player.isTakeFurs()) {
-			g.drawString("Learned", 471, 697);
+			g.drawString("Learned", 195, 491);
 		} else {
-			g.drawString("-", 471, 697);
+			g.drawString("-", 195, 491);
 		}
 		
 		if(player.isTakeTrophies()) {
-			g.drawString("Learned", 471, 717);
+			g.drawString("Learned", 195, 511);
 		} else {
-			g.drawString("-", 471, 717);
+			g.drawString("-", 195, 511);
 		}
 		
 		if(player.isHpRegeneration()) {
-			g.drawString("Learned", 471, 737);
+			g.drawString("Learned", 195, 531);
 		} else {
-			g.drawString("-", 471, 737);
+			g.drawString("-", 195, 531);
 		}
 		
 		if(player.isManaRegeneration()) {
-			g.drawString("Learned", 471, 757);
+			g.drawString("Learned", 195, 551);
 		} else {
-			g.drawString("-", 471, 757);
+			g.drawString("-", 195, 551);
 		}
 		
-		g.drawString(String.valueOf(player.getArmorProtection() + "%"), 471, 797);
+		g.drawString(String.valueOf(player.getArmorProtection() + "%"), 195, 591);
 				
 	}
 	
