@@ -601,32 +601,32 @@ public class InventoryWindow {
 	
 	private void drawPlayerStats(Graphics g) {
 			
-		g.drawString("Level: ", 32, 111);
-		g.drawString("Experience: ", 32, 131);
-		g.drawString("Next Level: ", 32, 151);
-		g.drawString("Learning Points: ", 32, 171);
+		g.drawString("Level: ", 36, 111);
+		g.drawString("Experience: ", 36, 131);
+		g.drawString("Next Level: ", 36, 151);
+		g.drawString("Learning Points: ", 36, 171);
 		
-		g.drawString("Strength: ", 32, 211);
-		g.drawString("Dexterity: ", 32, 231);
+		g.drawString("Strength: ", 36, 211);
+		g.drawString("Dexterity: ", 36, 231);
 		
-		g.drawString("Health Points: ", 32, 271);
-		g.drawString("Mana: ", 32, 291);
+		g.drawString("Health Points: ", 36, 271);
+		g.drawString("Mana: ", 36, 291);
 		
-		g.drawString("Melee Skill: ", 32, 331);
-		g.drawString("Bow Skill: ", 32, 351);
+		g.drawString("Melee Skill: ", 36, 331);
+		g.drawString("Bow Skill: ", 36, 351);
 		
-		g.drawString("Lockpicking: ", 32, 391);
-		g.drawString("Alchemy: ", 32, 411);
-		g.drawString("Blacksmithing: ", 32, 431);
-		g.drawString("Runeforging: ", 32, 451);
+		g.drawString("Lockpicking: ", 36, 391);
+		g.drawString("Alchemy: ", 36, 411);
+		g.drawString("Blacksmithing: ", 36, 431);
+		g.drawString("Runeforging: ", 36, 451);
 		
-		g.drawString("Take Furs: ", 32, 491);
-		g.drawString("Take Trophies: ", 32, 511);
-		g.drawString("HP Regeneration: ", 32, 531);
-		g.drawString("Mana Regeneration: ", 32, 551);
+		g.drawString("Take Furs: ", 36, 491);
+		g.drawString("Take Trophies: ", 36, 511);
+		g.drawString("HP Regeneration: ", 36, 531);
+		g.drawString("Mana Regeneration: ", 36, 551);
 		
 		
-		g.drawString("Armor Protection: ", 32, 591);
+		g.drawString("Armor Protection: ", 36, 591);
 		
 		
 		g.drawString(String.valueOf(player.getLevel()), 195, 111);
@@ -740,6 +740,8 @@ public class InventoryWindow {
 		
 		playerItemCountList.add(1);
 		playerInventoryList.add(item);
+		
+		item.getItemType().firePickedUpEvent();
 		
 		sortInventory();
 			
