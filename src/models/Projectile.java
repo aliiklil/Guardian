@@ -106,7 +106,7 @@ public class Projectile {
 		
 		if(isFirerainProjectile && travelledDistance > travelledDistanceRemove - 256 && !spriteChanged) { //If a projectile from firerain is before it ends, it will become black
 			
-			SpriteSheet spriteSheet = new SpriteSheet("resources/firerain_end.png", 64, 64);
+			SpriteSheet spriteSheet = new SpriteSheet("resources/spell_effects/firerain_end.png", 64, 64);
 			animation = new Animation(spriteSheet, 0, 0, 4, 0, true, 100, true);
 			animation.setLooping(false);
 			spriteChanged = true;

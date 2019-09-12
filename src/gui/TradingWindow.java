@@ -21,9 +21,9 @@ import models.Player;
 public class TradingWindow {
 
 	private boolean windowOpen = false;
-	private Image inventoryImage = new Image("resources/trading_window.png");
-	private Image selectedCellImage = new Image("resources/inventory_selected_cell.png");
-	private Image equippedItemImage = new Image("resources/inventory_equipped_item.png");
+	private Image inventoryImage = new Image("resources/gui/trading_window.png");
+	private Image selectedCellImage = new Image("resources/gui/inventory_selected_cell.png");
+	private Image equippedItemImage = new Image("resources/gui/inventory_equipped_item.png");
 	
 	private int playerSelectedCellX = 0;
 	private int playerSelectedCellY = 0;
@@ -50,8 +50,8 @@ public class TradingWindow {
 	private boolean holdLeftKey = false;
 	private boolean holdRightKey = false;
 		
-	private SpriteSheet arrowUpSpriteSheet = new SpriteSheet("resources/arrowUpImage.png", 22, 22);
-	private SpriteSheet arrowDownSpriteSheet = new SpriteSheet("resources/arrowDownImage.png", 22, 22);
+	private SpriteSheet arrowUpSpriteSheet = new SpriteSheet("resources/gui/arrowUpImage.png", 22, 22);
+	private SpriteSheet arrowDownSpriteSheet = new SpriteSheet("resources/gui/arrowDownImage.png", 22, 22);
 	
 	private Animation arrowUpAnimation = new Animation(arrowUpSpriteSheet, 0, 0, 1, 0, true, 750, true);
 	private Animation arrowDownAnimation = new Animation(arrowDownSpriteSheet, 0, 0, 1, 0, true, 750, true);

@@ -43,7 +43,7 @@ public class Anvil {
 		
 		collisionBox = new CollisionBox(tileX * 32 + 32, tileY * 32, 32, 32);
 
-		spriteSheet = new SpriteSheet("resources/anvil.png", 64, 32);
+		spriteSheet = new SpriteSheet("resources/assets/anvil.png", 64, 32);
 
 		animation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
 		animation.stop();
@@ -57,7 +57,7 @@ public class Anvil {
 		relativeToScreenY = Game.getCurrentMap().getY() + tileY * 32;
 		
 		if(System.currentTimeMillis() > lastTimeAnvilUsed + hotAnvilDuration * 1000) {
-			spriteSheet = new SpriteSheet("resources/anvil.png", 64, 32);
+			spriteSheet = new SpriteSheet("resources/assets/anvil.png", 64, 32);
 			animation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
 		}
 		
@@ -81,7 +81,7 @@ public class Anvil {
 	
 	public void makeAnvilHot() throws SlickException {
 		
-		SpriteSheet spriteSheet = new SpriteSheet("resources/hotanvil.png", 64, 32);
+		SpriteSheet spriteSheet = new SpriteSheet("resources/assets/hotanvil.png", 64, 32);
 		animation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
 		lastTimeAnvilUsed = System.currentTimeMillis();
 	}

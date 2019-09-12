@@ -583,19 +583,19 @@ public class ItemTypeManager {
 		
 		
 		letter = new ItemType(1, "resources/items/24readable/letter.png", "Letter", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		letter.setReadableImage("resources/testnote.png");
+		letter.setReadableImage("resources/readables/testnote.png");
 		
 		note = new ItemType(1, "resources/items/24readable/note.png", "Note", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		note.setReadableImage("resources/testnote.png");
+		note.setReadableImage("resources/readables/testnote.png");
 		
 		redbook = new ItemType(1, "resources/items/24readable/redbook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		redbook.setReadableImage("resources/testbook.png");
+		redbook.setReadableImage("resources/readables/testbook.png");
 		
 		blackbook = new ItemType(1, "resources/items/24readable/blackbook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		blackbook.setReadableImage("resources/testbook.png");
+		blackbook.setReadableImage("resources/readables/testbook.png");
 		
 		bluebook = new ItemType(1, "resources/items/24readable/bluebook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		bluebook.setReadableImage("resources/testbook.png");
+		bluebook.setReadableImage("resources/readables/testbook.png");
 		
 		
 		

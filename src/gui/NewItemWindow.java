@@ -11,7 +11,7 @@ import models.Item;
 
 public class NewItemWindow {
 
-	private Image image = new Image("resources/new_item_picked_up.png");
+	private Image image = new Image("resources/gui/new_item_picked_up.png");
 	private boolean isWindowOpen = false;
 	
 	private long startTime;

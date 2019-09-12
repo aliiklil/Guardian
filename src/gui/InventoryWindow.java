@@ -21,9 +21,9 @@ import models.Character;
 public class InventoryWindow {
 
 	private boolean windowOpen = false;
-	private Image inventoryImage = new Image("resources/inventory.png");
-	private Image selectedCellImage = new Image("resources/inventory_selected_cell.png");
-	private Image equippedItemImage = new Image("resources/inventory_equipped_item.png");
+	private Image inventoryImage = new Image("resources/gui/inventory.png");
+	private Image selectedCellImage = new Image("resources/gui/inventory_selected_cell.png");
+	private Image equippedItemImage = new Image("resources/gui/inventory_equipped_item.png");
 	private int selectedCellX = 0;
 	private int selectedCellY = 0;
 	
@@ -44,8 +44,8 @@ public class InventoryWindow {
 	private boolean holdLeftKey = false;
 	private boolean holdRightKey = false;
 		
-	private SpriteSheet arrowUpSpriteSheet = new SpriteSheet("resources/arrowUpImage.png", 22, 22);
-	private SpriteSheet arrowDownSpriteSheet = new SpriteSheet("resources/arrowDownImage.png", 22, 22);
+	private SpriteSheet arrowUpSpriteSheet = new SpriteSheet("resources/gui/arrowUpImage.png", 22, 22);
+	private SpriteSheet arrowDownSpriteSheet = new SpriteSheet("resources/gui/arrowDownImage.png", 22, 22);
 	
 	private Animation arrowUpAnimation = new Animation(arrowUpSpriteSheet, 0, 0, 1, 0, true, 750, true);
 	private Animation arrowDownAnimation = new Animation(arrowDownSpriteSheet, 0, 0, 1, 0, true, 750, true);
@@ -56,10 +56,10 @@ public class InventoryWindow {
 	private ArrayList<Integer> playerItemCountList;
 	
 	
-	private Image zeroOfThree = new Image("resources/zero_of_three.png");
-	private Image oneOfThree = new Image("resources/one_of_three.png");
-	private Image twoOfThree = new Image("resources/two_of_three.png");
-	private Image threeOfThree = new Image("resources/three_of_three.png");
+	private Image zeroOfThree = new Image("resources/gui/zero_of_three.png");
+	private Image oneOfThree = new Image("resources/gui/one_of_three.png");
+	private Image twoOfThree = new Image("resources/gui/two_of_three.png");
+	private Image threeOfThree = new Image("resources/gui/three_of_three.png");
 	
 	public InventoryWindow() throws SlickException {
 		

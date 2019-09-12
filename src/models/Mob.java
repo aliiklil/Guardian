@@ -64,7 +64,7 @@ public abstract class Mob {
 		this.startCenterYTile = centerYTile;
 				
 		
-		iceblockAnimation = new Animation(new SpriteSheet("resources/iceblockSprite.png", 64, 64), 0, 0, 0, 0, true, 100, true);
+		iceblockAnimation = new Animation(new SpriteSheet("resources/spell_effects/iceblockSprite.png", 64, 64), 0, 0, 0, 0, true, 100, true);
 	}
 
 	public abstract void update() throws SlickException;

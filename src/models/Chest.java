@@ -44,13 +44,13 @@ public class Chest {
 		
 		
 		if(chestLevel == 0) {
-			spriteSheet = new SpriteSheet("resources/chest0.png", 32, 32);
+			spriteSheet = new SpriteSheet("resources/assets/chest0.png", 32, 32);
 		} else if(chestLevel == 1) {
-			spriteSheet = new SpriteSheet("resources/chest1.png", 32, 32);
+			spriteSheet = new SpriteSheet("resources/assets/chest1.png", 32, 32);
 		} if(chestLevel == 2) {
-			spriteSheet = new SpriteSheet("resources/chest2.png", 32, 32);
+			spriteSheet = new SpriteSheet("resources/assets/chest2.png", 32, 32);
 		} if(chestLevel == 3) {
-			spriteSheet = new SpriteSheet("resources/chest3.png", 32, 32);
+			spriteSheet = new SpriteSheet("resources/assets/chest3.png", 32, 32);
 		}
 		
 		animation = new Animation(spriteSheet, 0, 0, 4, 0, true, 100, true);

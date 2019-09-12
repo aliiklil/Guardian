@@ -39,7 +39,7 @@ public class AlchemyDesk {
 		
 		collisionBox = new CollisionBox(tileX * 32, tileY * 32, 64, 32);
 
-		spriteSheet = new SpriteSheet("resources/alchemyDesk.png", 64, 32);
+		spriteSheet = new SpriteSheet("resources/assets/alchemyDesk.png", 64, 32);
 
 		animation = new Animation(spriteSheet, 0, 0, 0, 0, true, 100, true);
 		animation.stop();

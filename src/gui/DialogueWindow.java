@@ -21,7 +21,7 @@ import models.Player;
 
 public class DialogueWindow {
 
-	private Image image = new Image("resources/dialogue_window.png");
+	private Image image = new Image("resources/gui/dialogue_window.png");
 	private boolean windowOpen = false;
 	private ArrayList<Dialogue> startingDialogues;
 	private ArrayList<Dialogue> currentDialogues;

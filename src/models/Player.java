@@ -181,7 +181,7 @@ public class Player extends Character {
 	
 	
 	
-	private SpriteSheet wolfSpriteSheet = new SpriteSheet("resources/WolfSpriteSheet.png", 64, 64);
+	private SpriteSheet wolfSpriteSheet = new SpriteSheet("resources/mob_sprites/monster/WolfSpriteSheet.png", 64, 64);
 	
 	private Animation wolfLookUpAnimation = new Animation(wolfSpriteSheet, 0, 0, 0, 0, true, 100, true);
 	private Animation wolfLookDownAnimation = new Animation(wolfSpriteSheet, 0, 2, 0, 2, true, 100, true);
@@ -1454,15 +1454,15 @@ public class Player extends Character {
 				SpriteSheet spriteSheet = null;
 				
 				if(equippedSpell.getName().equals("Icelance")) {
-					spriteSheet = new SpriteSheet("resources/icelance.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/icelance.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Fireball")) {
-					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/fireball.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Titanspear")) {
-					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/titanspear.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Iceblock")) {
-					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/iceblock.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Bloodtheft")) {
-					spriteSheet = new SpriteSheet("resources/bloodtheft.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/bloodtheft.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() - 16, new Animation(spriteSheet, 0, 1, 3, 1, true, 100, true), 0, damageToDeal, spellVelocity);
@@ -1488,15 +1488,15 @@ public class Player extends Character {
 				SpriteSheet spriteSheet = null;
 				
 				if(equippedSpell.getName().equals("Icelance")) {
-					spriteSheet = new SpriteSheet("resources/icelance.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/icelance.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Fireball")) {
-					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/fireball.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Titanspear")) {
-					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/titanspear.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Iceblock")) {
-					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/iceblock.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Bloodtheft")) {
-					spriteSheet = new SpriteSheet("resources/bloodtheft.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/bloodtheft.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16, super.getRelativeToMapY() + 16, new Animation(spriteSheet, 0, 3, 3, 3, true, 100, true), 1, damageToDeal, spellVelocity);
@@ -1521,15 +1521,15 @@ public class Player extends Character {
 				SpriteSheet spriteSheet = null;
 				
 				if(equippedSpell.getName().equals("Icelance")) {
-					spriteSheet = new SpriteSheet("resources/icelance.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/icelance.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Fireball")) {
-					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/fireball.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Titanspear")) {
-					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/titanspear.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Iceblock")) {
-					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/iceblock.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Bloodtheft")) {
-					spriteSheet = new SpriteSheet("resources/bloodtheft.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/bloodtheft.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 - 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 0, 3, 0, true, 100, true), 2, damageToDeal, spellVelocity);
@@ -1555,15 +1555,15 @@ public class Player extends Character {
 				SpriteSheet spriteSheet = null;
 
 				if(equippedSpell.getName().equals("Icelance")) {
-					spriteSheet = new SpriteSheet("resources/icelance.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/icelance.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Fireball")) {
-					spriteSheet = new SpriteSheet("resources/fireball.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/fireball.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Titanspear")) {
-					spriteSheet = new SpriteSheet("resources/titanspear.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/titanspear.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Iceblock")) {
-					spriteSheet = new SpriteSheet("resources/iceblock.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/iceblock.png", 64, 64);
 				} else if(equippedSpell.getName().equals("Bloodtheft")) {
-					spriteSheet = new SpriteSheet("resources/bloodtheft.png", 64, 64);
+					spriteSheet = new SpriteSheet("resources/spell_effects/bloodtheft.png", 64, 64);
 				}
 				
 				Projectile projectile = new Projectile(super.getRelativeToMapX() + 16 + 16, super.getRelativeToMapY(), new Animation(spriteSheet, 0, 2, 3, 2, true, 100, true), 3, damageToDeal, spellVelocity);
@@ -1707,7 +1707,7 @@ public class Player extends Character {
 			
 			int spellVelocity = 10;
 			
-			SpriteSheet spriteSheet = new SpriteSheet("resources/firerain.png", 64, 64);
+			SpriteSheet spriteSheet = new SpriteSheet("resources/spell_effects/firerain.png", 64, 64);
 			
 			Random r = new Random();
 			

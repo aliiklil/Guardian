@@ -40,8 +40,8 @@ public class RuneTable {
 		
 		collisionBox = new CollisionBox(tileX * 32, tileY * 32, 32, 32);
 
-		spriteSheet = new SpriteSheet("resources/runeTable.png", 32, 32);
-
+		spriteSheet = new SpriteSheet("resources/assets/runeTable.png", 32, 32);
+		
 		topAnimation = new Animation(spriteSheet, 0, 0, 9, 0, true, 100, true);
 		topAnimation.setLooping(true);
 		
