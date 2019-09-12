@@ -62,14 +62,14 @@ public class NPC extends Character {
 	
 	private ItemType equippedMelee;
 		
-	public NPC(float relativeToMapX, float relativeToMapY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer, int damageOutput, double critChance, boolean alive) throws SlickException {
+	public NPC(float tileX, float tileY, int currentHealth, int maxHealth, String spriteSheetPath, boolean hostileToPlayer, Item itemDrop, ArrayList<Dialogue> startingDialogues, int experienceForPlayer, int damageOutput, double critChance, boolean alive) throws SlickException {
 
-		super(relativeToMapX, relativeToMapY, spriteSheetPath, alive);
+		super(tileX * 32, tileY * 32, spriteSheetPath, alive);
 		
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize()/2 - 12, super.getSpriteSize()/2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize()/2, super.getSpriteSize()/2));
 		
-		super.setHealthBar(new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, currentHealth, maxHealth, Color.red));
+		super.setHealthBar(new Bar(Game.getCurrentMap().getX() + getRelativeToMapX() - 16, Game.getCurrentMap().getY() + getRelativeToMapY() - 32, 64, 5, 1, currentHealth, maxHealth, Color.red));
 
 		this.screenRelativeX = Game.getCurrentMap().getX() + super.getRelativeToMapX() - super.getSpriteSize() / 4;
 		this.screenRelativeY = Game.getCurrentMap().getY() + super.getRelativeToMapY()  - super.getSpriteSize() / 2;
@@ -180,7 +180,7 @@ public class NPC extends Character {
 			setGoingToPlayer(true);
 		}
 	
-		if(isGoingToPlayer()) {
+		if(isGoingToPlayer() && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
 			path = findPath();
 		}
 		
@@ -564,8 +564,8 @@ public class NPC extends Character {
 		Node initialNode = new Node(super.getCenterYTile(), super.getCenterXTile());
         Node finalNode = new Node(player.getCenterYTile(), player.getCenterXTile());
         
-        int rows = Game.getCurrentMap().getTiledMap().getHeight();
-        int cols = Game.getCurrentMap().getTiledMap().getWidth();
+        int rows = Game.getTiledMap().getHeight();
+        int cols = Game.getTiledMap().getWidth();
                 
         AStar aStar = new AStar(rows, cols, initialNode, finalNode);
         

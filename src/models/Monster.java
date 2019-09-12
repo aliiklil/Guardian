@@ -119,9 +119,9 @@ public class Monster extends Mob {
 	private long roamingTimestamp; //Timestamp when monster was roaming last time
 	private int durationBetweenRoaming = 7000;
 	
-	public Monster(float relativeToMapX, float relativeToMapY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive, boolean hostileToPlayer) throws SlickException {
+	public Monster(float tileX, float tileY, String spriteSheetPath, int maxHealth, Item itemDrop, int experienceForPlayer, int damageOutput, boolean alive, boolean hostileToPlayer) throws SlickException {
 		
-		super(relativeToMapX, relativeToMapY, alive);
+		super(tileX * 32, tileY * 32, alive);
 				
 		spriteSheet = new SpriteSheet(spriteSheetPath, 64, 64);
 		
@@ -172,13 +172,13 @@ public class Monster extends Mob {
 				
 		setCurrentAnimation(lookDownAnimation);
 		
-		screenRelativeX = (int) Game.getCurrentMap().getX() + relativeToMapX - spriteSize / 4;		
-		screenRelativeY = (int) Game.getCurrentMap().getY() + relativeToMapY  - spriteSize / 2;
+		screenRelativeX = (int) Game.getCurrentMap().getX() + getRelativeToMapX() - spriteSize / 4;		
+		screenRelativeY = (int) Game.getCurrentMap().getY() + getRelativeToMapY()  - spriteSize / 2;
 						
-		setCollisionBox(new CollisionBox(relativeToMapX + 6, relativeToMapY + 10, 20, 20));
-		setHitBox(new CollisionBox(relativeToMapX, relativeToMapY - 16, 32, 32));
+		setCollisionBox(new CollisionBox(getRelativeToMapX() + 6, getRelativeToMapY() + 10, 20, 20));
+		setHitBox(new CollisionBox(getRelativeToMapX(), getRelativeToMapY() - 16, 32, 32));
 			
-		healthBar = new Bar(Game.getCurrentMap().getX() + relativeToMapX - 16, Game.getCurrentMap().getY() + relativeToMapY - 32, 64, 5, 1, maxHealth, maxHealth, Color.red);
+		healthBar = new Bar(Game.getCurrentMap().getX() + getRelativeToMapX() - 16, Game.getCurrentMap().getY() + getRelativeToMapY() - 32, 64, 5, 1, maxHealth, maxHealth, Color.red);
 		
 		isAlive = true;
 		bloodSpriteSheet = new SpriteSheet("resources/blood.png", 64, 64);
@@ -204,8 +204,8 @@ public class Monster extends Mob {
 		
 		aggressionCircle = new Circle(getCenterX(), getCenterY(), aggressionCircleRadius);
 		
-		horizontalAttackBox = new CollisionBox(relativeToMapX - 16, relativeToMapY - 16, 64, 32);
-		verticalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 32, 32, 64);
+		horizontalAttackBox = new CollisionBox(getRelativeToMapX() - 16, getRelativeToMapY() - 16, 64, 32);
+		verticalAttackBox = new CollisionBox(getRelativeToMapX(), getRelativeToMapY() - 32, 32, 64);
 		
 		setHostileToPlayer(hostileToPlayer);
 		
@@ -385,7 +385,7 @@ public class Monster extends Mob {
 			diagonalMovementSpeed = diagonalRunMovementSpeed;
 		}
 		
-		if(isGoingToPlayer()) {
+		if(isGoingToPlayer() && (Math.round(getCenterX())+16) % 32 == 0 && (Math.round(getCenterY())+16) % 32 == 0) {
 			path = findPath(player.getCenterYTile(), player.getCenterXTile());
 		}
 		
@@ -800,8 +800,8 @@ public class Monster extends Mob {
 		Node initialNode = new Node(getCenterYTile(), getCenterXTile());
         Node finalNode = new Node(targetTileY, targetTileX);
         
-        int rows = Game.getCurrentMap().getTiledMap().getHeight();
-        int cols = Game.getCurrentMap().getTiledMap().getWidth();
+        int rows = Game.getTiledMap().getHeight();
+        int cols = Game.getTiledMap().getWidth();
                 
         AStar aStar = new AStar(rows, cols, initialNode, finalNode);
         

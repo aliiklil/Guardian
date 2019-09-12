@@ -334,9 +334,11 @@ public class Player extends Character {
 	private int orcTransformationDuration = 5000;
 	private int orcMaxHp = 600;
 	
-	public Player(float relativeToMapX, float relativeToMapY, boolean alive) throws SlickException {
+	public Player(float tileX, float tileY, boolean alive) throws SlickException {
 
-		super(relativeToMapX, relativeToMapY, "resources/player_sprites/human_base.png", alive);
+		
+		
+		super(tileX * 32, tileY * 32, "resources/player_sprites/human_base.png", alive);
 
 		super.setCollisionBox(new CollisionBox(super.getRelativeToMapX() + 6, super.getRelativeToMapY() + 10, super.getSpriteSize() / 2 - 12, super.getSpriteSize() / 2 - 12));
 		super.setHitBox(new CollisionBox(super.getRelativeToMapX(), super.getRelativeToMapY() - 10, super.getSpriteSize() / 2, super.getSpriteSize() / 2));
@@ -446,8 +448,8 @@ public class Player extends Character {
 		
 		orcDieAnimation.setLooping(false);
 		
-		wolfHorizontalAttackBox = new CollisionBox(relativeToMapX - 32, relativeToMapY - 16, 96, 32);
-		wolfVerticalAttackBox = new CollisionBox(relativeToMapX, relativeToMapY - 48, 32, 96);
+		wolfHorizontalAttackBox = new CollisionBox(getRelativeToMapX() - 32, getRelativeToMapY() - 16, 96, 32);
+		wolfVerticalAttackBox = new CollisionBox(getRelativeToMapX(), getRelativeToMapY() - 48, 32, 96);
 		
 	}
 
