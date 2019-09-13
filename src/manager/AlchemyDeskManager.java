@@ -16,7 +16,7 @@ public class AlchemyDeskManager {
 		
 		AlchemyDesk alchemyDesk1 = new AlchemyDesk(15, 6, DialogueManager.alchemyDeskDialogues);
 		
-		alchemyDeskList.add(alchemyDesk1);
+		//alchemyDeskList.add(alchemyDesk1);
 		
 	}
 	

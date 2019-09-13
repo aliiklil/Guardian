@@ -19,62 +19,62 @@ public class ItemManager {
 	public ItemManager() throws SlickException {
 			
 		
-		itemList.add(new Item(480, 416, itemTypeManager.stick));
-		itemList.add(new Item(480, 416, itemTypeManager.stick));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.stick));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.stick));
 						
-		itemList.add(new Item(480, 416, itemTypeManager.dagger));
-		itemList.add(new Item(480, 416, itemTypeManager.mace));
-		itemList.add(new Item(480, 416, itemTypeManager.ironsword));
-		itemList.add(new Item(480, 416, itemTypeManager.goldensword));
-		itemList.add(new Item(480, 416, itemTypeManager.mithrilsword));
-		itemList.add(new Item(480, 416, itemTypeManager.blacksword));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.dagger));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mace));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.ironsword));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldensword));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilsword));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.blacksword));
 		
-		itemList.add(new Item(480, 416, itemTypeManager.sabre));
-		itemList.add(new Item(480, 416, itemTypeManager.rapier));
-		itemList.add(new Item(480, 416, itemTypeManager.mithrilrapier));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.sabre));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.rapier));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilrapier));
 		
-		itemList.add(new Item(480, 416, itemTypeManager.shortspear));
-		itemList.add(new Item(480, 416, itemTypeManager.longspear));
-		itemList.add(new Item(480, 416, itemTypeManager.mithrilspear));
-		itemList.add(new Item(480, 416, itemTypeManager.goldenspear));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.shortspear));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.longspear));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilspear));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldenspear));
 		
-		itemList.add(new Item(480, 416, itemTypeManager.bow));
-		itemList.add(new Item(480, 416, itemTypeManager.longbow));
-		itemList.add(new Item(480, 416, itemTypeManager.recurvedbow));
-		
-		
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bow));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.longbow));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.recurvedbow));
 		
 		
-		itemList.add(new Item(480, 416, itemTypeManager.titanspearRune));
-		itemList.add(new Item(480, 416, itemTypeManager.iceblockRune));
-		itemList.add(new Item(480, 416, itemTypeManager.transformIntoWolfRune));
-		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsRune));	
 		
-		itemList.add(new Item(480, 416, itemTypeManager.icelanceRune));
-		itemList.add(new Item(480, 416, itemTypeManager.bloodtheftRune));
-		itemList.add(new Item(480, 416, itemTypeManager.transformIntoSkeletonRune));
-		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsRune));
+		
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.titanspearRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.iceblockRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.transformIntoWolfRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.healLightWoundsRune));	
+		
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.icelanceRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bloodtheftRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.transformIntoSkeletonRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.healMediumWoundsRune));
 				
-		itemList.add(new Item(480, 416, itemTypeManager.fireballRune));
-		itemList.add(new Item(480, 416, itemTypeManager.firerainRune));
-		itemList.add(new Item(480, 416, itemTypeManager.transformIntoOrcWarriorRune));
-		itemList.add(new Item(480, 416, itemTypeManager.healHeavyWoundsRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.fireballRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.firerainRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.transformIntoOrcWarriorRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.healHeavyWoundsRune));
 		
 		
-		itemList.add(new Item(480, 416, itemTypeManager.healLightWoundsSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.titanspearSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.iceblockSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.transformIntoWolfSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.healLightWoundsSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.titanspearSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.iceblockSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.transformIntoWolfSpell));
 			
-		itemList.add(new Item(480, 416, itemTypeManager.healMediumWoundsSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.icelanceSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.bloodtheftSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.transformIntoSkeletonSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.healMediumWoundsSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.icelanceSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bloodtheftSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.transformIntoSkeletonSpell));
 				
-		itemList.add(new Item(480, 416, itemTypeManager.healHeavyWoundsSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.fireballSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.firerainSpell));
-		itemList.add(new Item(480, 416, itemTypeManager.transformIntoOrcWarriorSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.healHeavyWoundsSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.fireballSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.firerainSpell));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.transformIntoOrcWarriorSpell));
 		
 		
 		
@@ -89,147 +89,147 @@ public class ItemManager {
 		
 		
 		
-		itemList.add(new Item(480, 416, itemTypeManager.lightImperialArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.mediumImperialArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.heavyImperialArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.lightImperialArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mediumImperialArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.heavyImperialArmor));
 		
-		itemList.add(new Item(480, 416, itemTypeManager.lightRebelArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.mediumRebelArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.heavyRebelArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.lightRebelArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mediumRebelArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.heavyRebelArmor));
 		
-		itemList.add(new Item(480, 416, itemTypeManager.noviceArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.mageArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.heavyMageArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.noviceArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mageArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.heavyMageArmor));
 		
-		itemList.add(new Item(480, 416, itemTypeManager.leatherArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.ironArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.blackknightArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.goldenArmor));
-		itemList.add(new Item(480, 416, itemTypeManager.mithrilArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.leatherArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.ironArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.blackknightArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldenArmor));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilArmor));
 		
 		
-		itemList.add(new Item(480, 416, itemTypeManager.gold));
-		itemList.add(new Item(704, 416, itemTypeManager.gold));
-		itemList.add(new Item(416, 480, itemTypeManager.gold));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.gold));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.gold));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.gold));
 
-		itemList.add(new Item(544, 544, itemTypeManager.apple));
-		itemList.add(new Item(672, 544, itemTypeManager.apple));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.apple));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.apple));
 
 
 
-		itemList.add(new Item(768, 480, itemTypeManager.arrow));
-		itemList.add(new Item(768, 544, itemTypeManager.arrow));
-		itemList.add(new Item(768, 608, itemTypeManager.arrow));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.arrow));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.arrow));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.arrow));
 	
-		itemList.add(new Item(800, 320, itemTypeManager.bone));
-		itemList.add(new Item(832, 320, itemTypeManager.bone));
-		itemList.add(new Item(864, 640, itemTypeManager.bone));
-		itemList.add(new Item(896, 384, itemTypeManager.bone));
-		itemList.add(new Item(256, 0, itemTypeManager.multipleSticks));
-		itemList.add(new Item(320, 32, itemTypeManager.wheat));
-		itemList.add(new Item(364, 32, itemTypeManager.trophy));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bone));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bone));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bone));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bone));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.multipleSticks));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.wheat));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.trophy));
 		
-		itemList.add(new Item(864, 320, itemTypeManager.bread));
-		itemList.add(new Item(736, 480, itemTypeManager.carrot));
-		itemList.add(new Item(64, 1024, itemTypeManager.rawChicken));
-		itemList.add(new Item(32, 1024, itemTypeManager.cookedChicken));
-		itemList.add(new Item(1024, 64, itemTypeManager.rawFish));
-		itemList.add(new Item(1024, 0, itemTypeManager.cookedFish));
-		itemList.add(new Item(1024, 64, itemTypeManager.rawMeat));
-		itemList.add(new Item(1024, 0, itemTypeManager.cookedMeat));
-		itemList.add(new Item(256, 704, itemTypeManager.rawPork));
-		itemList.add(new Item(128, 768, itemTypeManager.cookedPork));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bread));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.carrot));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.rawChicken));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.cookedChicken));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.rawFish));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.cookedFish));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.rawMeat));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.cookedMeat));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.rawPork));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.cookedPork));
 		
-		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
-		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
-		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
-		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
-		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
-		itemList.add(new Item(64, 128, itemTypeManager.ironBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.ironBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.ironBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.ironBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.ironBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.ironBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.ironBar));
 		
-		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
-		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
-		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
-		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
-		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
-		itemList.add(new Item(64, 192, itemTypeManager.goldenBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldenBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldenBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldenBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldenBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldenBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldenBar));
 		
-		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
-		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
-		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
-		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
-		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
-		itemList.add(new Item(64, 192, itemTypeManager.mithrilBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilBar));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mithrilBar));
 		
-		itemList.add(new Item(512, 0, itemTypeManager.feather));
-		itemList.add(new Item(576, 0, itemTypeManager.treasureChest));
-		itemList.add(new Item(512, 96, itemTypeManager.goldCrown));
-		itemList.add(new Item(576, 64, itemTypeManager.treasure));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.feather));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.treasureChest));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldCrown));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.treasure));
 		
-		itemList.add(new Item(512, 128, itemTypeManager.smallHpPotion));
-		itemList.add(new Item(0, 96, itemTypeManager.mediumHpPotion));
-		itemList.add(new Item(320, 32, itemTypeManager.bigHpPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.smallHpPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mediumHpPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bigHpPotion));
 		
-		itemList.add(new Item(128, 192, itemTypeManager.smallManaPotion));
-		itemList.add(new Item(128, 128, itemTypeManager.mediumManaPotion));
-		itemList.add(new Item(128, 96, itemTypeManager.bigManaPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.smallManaPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mediumManaPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bigManaPotion));
 		
-		itemList.add(new Item(128, 128, itemTypeManager.maxHpBonusPotion));
-		itemList.add(new Item(128, 128, itemTypeManager.maxManaBonusPotion));
-		itemList.add(new Item(128, 128, itemTypeManager.strengthPotion));
-		itemList.add(new Item(128, 128, itemTypeManager.dexterityPotion));
-		itemList.add(new Item(128, 128, itemTypeManager.speedPotion));
-		
-		
-		itemList.add(new Item(0, 0, itemTypeManager.dragonroot));
-		itemList.add(new Item(0, 32, itemTypeManager.goblinweed));
-		itemList.add(new Item(64, 96, itemTypeManager.goldtruffle));
-		itemList.add(new Item(96, 64, itemTypeManager.wolfnettel));
-		
-		itemList.add(new Item(32, 32, itemTypeManager.healberry));
-		itemList.add(new Item(32, 64, itemTypeManager.healplant));
-		itemList.add(new Item(32, 96, itemTypeManager.healroot));
-		
-		itemList.add(new Item(64, 0, itemTypeManager.manaberry));
-		itemList.add(new Item(96, 96, itemTypeManager.manaplant));
-		itemList.add(new Item(64, 64, itemTypeManager.manaroot));
-		
-		itemList.add(new Item(64, 0, itemTypeManager.smallBottle));
-		itemList.add(new Item(96, 96, itemTypeManager.mediumBottle));
-		itemList.add(new Item(64, 64, itemTypeManager.bigBottle));
-		
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
-		itemList.add(new Item(1024, 64, itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.maxHpBonusPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.maxManaBonusPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.strengthPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.dexterityPotion));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.speedPotion));
 		
 		
-		itemList.add(new Item(1088, 64, itemTypeManager.chrystal));
-		itemList.add(new Item(1024, 32, itemTypeManager.icecube));
-		itemList.add(new Item(1152, 64, itemTypeManager.wolfHide));
-		itemList.add(new Item(1216, 64, itemTypeManager.smaragd));
-		itemList.add(new Item(1280, 64, itemTypeManager.aquamarine));
-		itemList.add(new Item(1344, 64, itemTypeManager.pitch));
-		itemList.add(new Item(1408, 64, itemTypeManager.sulfur));
-		itemList.add(new Item(1408, 32, itemTypeManager.orcTooth));
-		itemList.add(new Item(1408, 32, itemTypeManager.heart));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.dragonroot));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goblinweed));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.goldtruffle));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.wolfnettel));
+		
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.healberry));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.healplant));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.healroot));
+		
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.manaberry));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.manaplant));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.manaroot));
+		
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.smallBottle));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.mediumBottle));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bigBottle));
+		
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.emptyRune));
 		
 		
-		itemList.add(new Item(1408, 192, itemTypeManager.letter));
-		itemList.add(new Item(1408, 192, itemTypeManager.note));
-		itemList.add(new Item(1408, 192, itemTypeManager.redbook));
-		itemList.add(new Item(1408, 192, itemTypeManager.bluebook));
-		itemList.add(new Item(1408, 192, itemTypeManager.blackbook));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.chrystal));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.icecube));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.wolfHide));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.smaragd));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.aquamarine));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.pitch));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.sulfur));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.orcTooth));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.heart));
 		
-		itemList.add(new Item(1408, 192, itemTypeManager.ogusChrystal));
+		
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.letter));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.note));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.redbook));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.bluebook));
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.blackbook));
+		
+		itemList.add(new Item(MobManager.getPlayer().getStartCenterXTile(), MobManager.getPlayer().getStartCenterYTile(), itemTypeManager.ogusChrystal));
 		
 	}
 	

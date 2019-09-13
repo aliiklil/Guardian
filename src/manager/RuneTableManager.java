@@ -15,7 +15,7 @@ public class RuneTableManager {
 		
 		RuneTable runeTable1 = new RuneTable(19, 10, DialogueManager.runeForgingDialogues);
 		
-		runeTableList.add(runeTable1);
+		//runeTableList.add(runeTable1);
 		
 	}
 	

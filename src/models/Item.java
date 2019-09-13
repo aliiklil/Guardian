@@ -20,12 +20,12 @@ public class Item {
 	
 	private boolean isEquipped;
 		
-	public Item(float x, float y, ItemType itemType) throws SlickException {
+	public Item(float tileX, float tileY, ItemType itemType) throws SlickException {
 		
 		this.itemType = itemType;
 		
-		relativeToMapX = x;
-		relativeToMapY = y;
+		relativeToMapX = tileX * 32;
+		relativeToMapY = tileY * 32;
 				
 		relativeToScreenX = Game.getCurrentMap().getX() + relativeToMapX;
 		relativeToScreenY = Game.getCurrentMap().getY() + relativeToMapY;

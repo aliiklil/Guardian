@@ -38,10 +38,10 @@ public class QuestManager {
 		plantsForAPotion.setItemReward(new Item(0, 0, Game.getItemTypeManager().maxHpBonusPotion));
 		
 		
-		questList.add(halroksRatProblem);
-		questList.add(lostChrystal);
-		questList.add(wolfHunt);
-		questList.add(plantsForAPotion);
+		//questList.add(halroksRatProblem);
+		//questList.add(lostChrystal);
+		//questList.add(wolfHunt);
+		//questList.add(plantsForAPotion);
 	}
 	
 	public static ArrayList<Quest> getQuestList() {

@@ -27,10 +27,10 @@ public class ChestManager {
 		Chest chest3 = new Chest(7, 8, rawFish, 2);
 		Chest chest4 = new Chest(9, 10, longspear, 3);
 		
-		chestList.add(chest1);
-		chestList.add(chest2);
-		chestList.add(chest3);
-		chestList.add(chest4);
+		//chestList.add(chest1);
+		//chestList.add(chest2);
+		//chestList.add(chest3);
+		//chestList.add(chest4);
 	}
 	
 	public void update() throws SlickException {

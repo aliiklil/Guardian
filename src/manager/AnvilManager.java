@@ -15,7 +15,7 @@ public class AnvilManager {
 		
 		Anvil anvil1 = new Anvil(10, 2, DialogueManager.anvilDialogues);
 		
-		anvilList.add(anvil1);
+		//anvilList.add(anvil1);
 		
 	}
 	
