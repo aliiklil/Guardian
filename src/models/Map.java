@@ -27,6 +27,7 @@ public class Map {
 		
 		tiledMap.render((int) x, (int) y, tiledMap.getLayerIndex("UpperLayer"));
 		tiledMap.render((int) x, (int) y, tiledMap.getLayerIndex("UpperLayer2"));
+		tiledMap.render((int) x, (int) y, tiledMap.getLayerIndex("UpperLayer3"));
 	}
 	
 	public TiledMap getTiledMap() {
