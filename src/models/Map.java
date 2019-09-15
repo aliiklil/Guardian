@@ -20,6 +20,10 @@ public class Map {
 	private float offsetX;
 	private float offsetY;
 	
+	//Between 0 and 32
+	private float tileOffsetX;
+	private float tileOffsetY;
+	
 	public Map(String path) throws SlickException {
 		
 		tiledMap = new TiledMap(path);
@@ -27,16 +31,27 @@ public class Map {
 	}
 	
 	public void render(Graphics g) {
+				
+		if(tileOffsetX <= 0) {
+			offsetX = offsetX + 32;
+			tileOffsetX = 32;
+		} else if(tileOffsetX >= 32) {
+			offsetX = offsetX - 32;
+			tileOffsetX = 0;
+		}
+		
+		if(tileOffsetY <= 0) {
+			offsetY = offsetY + 32;
+			tileOffsetY = 32;
+		} else if(tileOffsetY >= 32) {
+			offsetY = offsetY - 32;
+			tileOffsetY = 0;
+		}
 		
 		offsetXTile = (int) (offsetX / 32);
 		offsetYTile = (int) (offsetY / 32);
-
-		System.out.println(offsetXTile);
-		System.out.println(offsetYTile);
 		
-		tiledMap.render((int) (x + offsetX), (int) (y + offsetY), offsetXTile, offsetYTile, 41,  24);
-	
-		
+		tiledMap.render((int) (x + offsetX)-32, (int) (y + offsetY)-32, offsetXTile-1, offsetYTile-1, 42, 25);
 		
 	}
 	 
@@ -98,6 +113,22 @@ public class Map {
 
 	public void setOffsetYTile(int offsetYTile) {
 		this.offsetYTile = offsetYTile;
+	}
+
+	public float getTileOffsetX() {
+		return tileOffsetX;
+	}
+
+	public void setTileOffsetX(float tileOffsetX) {
+		this.tileOffsetX = tileOffsetX;
+	}
+
+	public float getTileOffsetY() {
+		return tileOffsetY;
+	}
+
+	public void setTileOffsetY(float tileOffsetY) {
+		this.tileOffsetY = tileOffsetY;
 	}
 	
 }

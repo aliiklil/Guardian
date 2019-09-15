@@ -708,6 +708,7 @@ public class Player extends Character {
 						screenRelativeY = screenRelativeY - getMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() + getMovementSpeed());
+						Game.getCurrentMap().setTileOffsetY(Game.getCurrentMap().getTileOffsetY() + getMovementSpeed());
 					}
 
 					setAnimationsToGoUp();
@@ -730,6 +731,7 @@ public class Player extends Character {
 						screenRelativeY = screenRelativeY + getMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() - getMovementSpeed());
+						Game.getCurrentMap().setTileOffsetY(Game.getCurrentMap().getTileOffsetY() - getMovementSpeed());
 					}
 
 					setAnimationsToGoDown();
@@ -753,6 +755,7 @@ public class Player extends Character {
 						screenRelativeX = screenRelativeX - getMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() + getMovementSpeed());
+						Game.getCurrentMap().setTileOffsetX(Game.getCurrentMap().getTileOffsetX() + getMovementSpeed());
 					}
 
 					setAnimationsToGoLeft();
@@ -776,6 +779,7 @@ public class Player extends Character {
 						screenRelativeX = screenRelativeX + getMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() - getMovementSpeed());
+						Game.getCurrentMap().setTileOffsetX(Game.getCurrentMap().getTileOffsetX() - getMovementSpeed());
 					}
 
 					setAnimationsToGoRight();
@@ -795,6 +799,7 @@ public class Player extends Character {
 						screenRelativeY = screenRelativeY - getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() + getDiagonalMovementSpeed());
+						Game.getCurrentMap().setTileOffsetY(Game.getCurrentMap().getTileOffsetY() + getDiagonalMovementSpeed());
 					}
 
 				}
@@ -805,6 +810,7 @@ public class Player extends Character {
 						screenRelativeX = screenRelativeX - getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() + getDiagonalMovementSpeed());
+						Game.getCurrentMap().setTileOffsetX(Game.getCurrentMap().getTileOffsetX() + getDiagonalMovementSpeed());
 					}
 
 				}
@@ -827,6 +833,8 @@ public class Player extends Character {
 						screenRelativeY = screenRelativeY - getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() + getDiagonalMovementSpeed());
+						Game.getCurrentMap().setTileOffsetY(Game.getCurrentMap().getTileOffsetY() + getDiagonalMovementSpeed());
+						
 					}
 				}
 
@@ -835,6 +843,7 @@ public class Player extends Character {
 						screenRelativeX = screenRelativeX + getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() - getDiagonalMovementSpeed());
+						Game.getCurrentMap().setTileOffsetX(Game.getCurrentMap().getTileOffsetX() - getDiagonalMovementSpeed());
 					}
 				}
 
@@ -856,6 +865,7 @@ public class Player extends Character {
 						screenRelativeY = screenRelativeY + getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() - getDiagonalMovementSpeed());
+						Game.getCurrentMap().setTileOffsetY(Game.getCurrentMap().getTileOffsetY() - getDiagonalMovementSpeed());
 					}
 				}
 
@@ -864,6 +874,7 @@ public class Player extends Character {
 						screenRelativeX = screenRelativeX - getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() + getDiagonalMovementSpeed());
+						Game.getCurrentMap().setTileOffsetX(Game.getCurrentMap().getTileOffsetX() + getDiagonalMovementSpeed());
 					}
 				}
 
@@ -885,6 +896,7 @@ public class Player extends Character {
 						screenRelativeY = screenRelativeY + getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setY(Game.getCurrentMap().getY() - getDiagonalMovementSpeed());
+						Game.getCurrentMap().setTileOffsetY(Game.getCurrentMap().getTileOffsetY() - getDiagonalMovementSpeed());
 					}
 				}
 
@@ -893,6 +905,7 @@ public class Player extends Character {
 						screenRelativeX = screenRelativeX + getDiagonalMovementSpeed();
 					} else {
 						Game.getCurrentMap().setX(Game.getCurrentMap().getX() - getDiagonalMovementSpeed());
+						Game.getCurrentMap().setTileOffsetX(Game.getCurrentMap().getTileOffsetX() - getDiagonalMovementSpeed());
 					}
 				}
 
