@@ -79,6 +79,9 @@ public class Game extends BasicGameState {
 		learning = new Learning();
 		questLogic = new QuestLogic();
 		
+		world.setOffsetX(MobManager.getPlayer().getCenterX() - 21 * 32 + 16);
+		world.setOffsetY(MobManager.getPlayer().getCenterY() - 13 * 32 + 16);
+		
 	}
 
 	@Override
