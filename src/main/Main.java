@@ -18,7 +18,7 @@ public class Main {
 	
 	private static final int FRAME_RATE = 60;
 	
-	private static final boolean FULL_SCREEN = true;
+	private static final boolean FULL_SCREEN = false;
 	
 	public static AppGameContainer appGameContainer;
 	

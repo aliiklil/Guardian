@@ -48,18 +48,18 @@ public class Map {
 			tileOffsetY = 0;
 		}
 		
-		offsetXTile = (int) (offsetX / 32);
-		offsetYTile = (int) (offsetY / 32);
+		offsetXTile = Math.round(offsetX / 32);
+		offsetYTile = Math.round(offsetY / 32);
 		
-		tiledMap.render((int) (x + offsetX)-32, (int) (y + offsetY)-32, offsetXTile-1, offsetYTile-1, 42, 25);
+		tiledMap.render(Math.round((x + offsetX - 32)), Math.round((y + offsetY - 32)), offsetXTile-1, offsetYTile-1, 42, 25);
 		
 	}
 	 
 	public void renderUpperLayer(Graphics g) {
 		
-		//tiledMap.render((int) x, (int) y, relativeToMapX - Main.WIDTH, relativeToMapY - Main.HEIGHT, 50, 50, tiledMap.getLayerIndex("UpperLayer"), false);
-		//tiledMap.render((int) x, (int) y, relativeToMapX - Main.WIDTH, relativeToMapY - Main.HEIGHT, 50, 50, tiledMap.getLayerIndex("UpperLayer2"), false);
-		//tiledMap.render((int) x, (int) y, relativeToMapX - Main.WIDTH, relativeToMapY - Main.HEIGHT, 50, 50, tiledMap.getLayerIndex("UpperLayer3"), false);
+		tiledMap.render(Math.round((x + offsetX - 32)), Math.round((y + offsetY - 32)), offsetXTile-1, offsetYTile-1, 42, 25, tiledMap.getLayerIndex("UpperLayer"), false);
+		tiledMap.render(Math.round((x + offsetX - 32)), Math.round((y + offsetY - 32)), offsetXTile-1, offsetYTile-1, 42, 25, tiledMap.getLayerIndex("UpperLayer2"), false);
+		tiledMap.render(Math.round((x + offsetX - 32)), Math.round((y + offsetY - 32)), offsetXTile-1, offsetYTile-1, 42, 25, tiledMap.getLayerIndex("UpperLayer3"), false);
 		
 	}
 	

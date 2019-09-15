@@ -106,8 +106,8 @@ public class NPC extends Character {
 		
 		super.update();
 			
-		screenRelativeX = (int) Game.getCurrentMap().getX() + getRelativeToMapX() - getSpriteSize() / 4;		
-		screenRelativeY = (int) Game.getCurrentMap().getY() + getRelativeToMapY()  - getSpriteSize() / 2;
+		screenRelativeX = Game.getCurrentMap().getX() + getRelativeToMapX() - getSpriteSize() / 4;		
+		screenRelativeY = Game.getCurrentMap().getY() + getRelativeToMapY()  - getSpriteSize() / 2;
 
 		screenRelativeOverSizeX = Game.getCurrentMap().getX() + getRelativeToMapX() - getOverSizeSpriteSize() / 2 + 16;
 		screenRelativeOverSizeY = Game.getCurrentMap().getY() + getRelativeToMapY()  - getOverSizeSpriteSize() / 2;
