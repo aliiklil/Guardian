@@ -81,7 +81,7 @@ public class MobManager {
 		
 		mobList.add(player);
 		
-		/*
+		
 		
 		mobList.add(ogus);
 		mobList.add(halrok);
@@ -100,7 +100,7 @@ public class MobManager {
 		
 		aggressiveWolf3 = new Monster(60, 60, "resources/mob_sprites/monster/WolfSpriteSheet.png", 500, null, 100, 5, true, true);		
 		mobList.add(aggressiveWolf3);
-		*/
+		
 		
 		
 	}

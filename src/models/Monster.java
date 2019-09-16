@@ -58,8 +58,8 @@ public class Monster extends Mob {
 	private float screenRelativeX;
 	private float screenRelativeY;
 	
-	private float runMovementSpeed = 3f;
-	private float diagonalRunMovementSpeed = 2f;
+	private float runMovementSpeed = 2f;
+	private float diagonalRunMovementSpeed = 1.6f;
 	
 	private float walkMovementSpeed = runMovementSpeed/2;
 	private float diagonalWalkMovementSpeed = diagonalRunMovementSpeed/2;
