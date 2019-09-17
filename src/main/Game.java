@@ -54,7 +54,7 @@ public class Game extends BasicGameState {
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-		world = new Map("resources/World.tmx");
+		world = new Map("resources/World2.tmx");
 		currentMap = world;
 
 		notWalkableLayerIndex = Game.getCurrentMap().getTiledMap().getLayerIndex("NotWalkable");

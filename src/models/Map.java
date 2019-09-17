@@ -1,5 +1,6 @@
 package models;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
@@ -32,6 +33,8 @@ public class Map {
 	
 	public void render(Graphics g) {
 				
+		g.setBackground(new Color(21, 120, 153));
+		
 		if(tileOffsetX <= 0) {
 			offsetX = offsetX + 32;
 			tileOffsetX = 32;
