@@ -38,7 +38,7 @@ public class MobManager {
 	
 	public MobManager() throws SlickException {
 		
-		player = new Player(67, 170, true);
+		player = new Player(212, 33, true);
 		
 		Item stick = new Item(0, 0, itemTypeManager.stick);
 
