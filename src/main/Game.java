@@ -22,6 +22,7 @@ import manager.MobManager;
 import manager.ProjectileManager;
 import manager.QuestManager;
 import manager.RuneTableManager;
+import manager.WeatherManager;
 import models.Map;
 
 public class Game extends BasicGameState {
@@ -50,6 +51,8 @@ public class Game extends BasicGameState {
 	public static RuneForging runeForging;
 	public static Learning learning;
 	public static QuestLogic questLogic;
+	
+	public static WeatherManager weatherManager;
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -79,6 +82,8 @@ public class Game extends BasicGameState {
 		learning = new Learning();
 		questLogic = new QuestLogic();
 		
+		weatherManager = new WeatherManager();
+		
 		world.setOffsetX(MobManager.getPlayer().getCenterX() - 21 * 32 + 16);
 		world.setOffsetY(MobManager.getPlayer().getCenterY() - 13 * 32 + 16);
 		
@@ -95,6 +100,8 @@ public class Game extends BasicGameState {
 		anvilManager.update();
 		alchemyDeskManager.update();
 		runeTableManager.update();
+		
+		weatherManager.update();
 		
 	}
 
@@ -116,6 +123,8 @@ public class Game extends BasicGameState {
 		
 		world.renderUpperLayer(g);
 		projectileManager.renderUpperLayer(g);
+		
+		weatherManager.render(g);
 
 		MobManager.getPlayer().getInventoryWindow().render(g);
 		MobManager.getPlayer().getHealthBar().render(g);
