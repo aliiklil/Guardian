@@ -14,6 +14,9 @@ import manager.MobManager;
 
 public class Weather {
 	
+	//Image which should be drawn over the game (for example dark blue for night or grey for rain)
+	private Image filter;
+	
 	//If this weather is currently active
 	private boolean active;
 	
@@ -36,10 +39,10 @@ public class Weather {
 	
 	private long timeLastLightningOccured;
 	
-	private Image lightning = new Image("resources/weather/lightning.png");
+	private Image lightning = new Image("resources/weather/effect/lightning.png");
 
-	public Weather(String weatherParticlePath) throws SlickException {
-		this.weatherParticlePath = weatherParticlePath;
+	public Weather() throws SlickException {
+
 	}
 	
 	public void update() throws SlickException {
@@ -70,6 +73,9 @@ public class Weather {
 	}
 	
 	public void render(Graphics g) {
+
+		filter.draw(0, 0);
+		
 		for(WeatherParticle wp : particleList) {
 			wp.render(g);
 		}
@@ -127,6 +133,22 @@ public class Weather {
 
 	public void setLightningProbablity(double lightningProbablity) {
 		this.lightningProbablity = lightningProbablity;
+	}
+
+	public Image getFilter() {
+		return filter;
+	}
+
+	public void setFilter(Image filter) {
+		this.filter = filter;
+	}
+
+	public String getWeatherParticlePath() {
+		return weatherParticlePath;
+	}
+
+	public void setWeatherParticlePath(String weatherParticlePath) {
+		this.weatherParticlePath = weatherParticlePath;
 	}
 	
 }

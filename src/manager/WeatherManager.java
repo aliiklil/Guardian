@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import dialogue.Sentence;
@@ -23,18 +24,29 @@ public class WeatherManager {
 	private ArrayList<Weather> weatherList = new ArrayList<>();
 	
 	private Weather rain;
+	private Weather night;
 	
 	public WeatherManager() throws SlickException {
 
-		rain = new Weather("resources/weather/rain.png");
-		rain.setActive(true);
+		rain = new Weather();
+		rain.setWeatherParticlePath("resources/weather/particle/rain.png");
 		rain.setAmountToSpawn(20);
 		rain.setTimeBetweenNewWeatherParticle(500);
 		rain.setLightningProbablity(0.002);
+		rain.setFilter(new Image("resources/weather/filter/rain.png"));
+		
+		night = new Weather();
+		night.setFilter(new Image ("resources/weather/filter/night.png"));
+		
+		
 		
 		weatherList.add(rain);
+		weatherList.add(night);
 		
 		
+		
+		rain.setActive(true);
+		//night.setActive(true);
 	}
 	
 	public void update() throws SlickException {
