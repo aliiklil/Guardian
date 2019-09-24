@@ -16,26 +16,42 @@ import models.Monster;
 import models.NPC;
 import models.Player;
 import models.Weather;
+import models.WeatherParticle;
 
 public class WeatherManager {
-
-	private Weather rain = new Weather("resources/weather/rain.png");
+	
+	private ArrayList<Weather> weatherList = new ArrayList<>();
+	
+	private Weather rain;
 	
 	public WeatherManager() throws SlickException {
 
-	}
-	
-	public void update() throws SlickException {
-		rain.update();
-	}
-
-	public void render(Graphics g) throws SlickException {
-	
-		rain.render(g);
+		rain = new Weather("resources/weather/rain.png");
+		rain.setActive(true);
+		rain.setAmountToSpawn(20);
+		rain.setTimeBetweenNewWeatherParticle(500);
+		rain.setLightningProbablity(0.002);
+		
+		weatherList.add(rain);
+		
 		
 	}
 	
+	public void update() throws SlickException {
+		for(Weather w : weatherList) {
+			if(w.isActive()) {
+				w.update();
+			}
+		}
+	}
 
-	
+	public void render(Graphics g) throws SlickException {
+		for(Weather w : weatherList) {
+			if(w.isActive()) {
+				w.render(g);
+			}
+		}
+	}
+
 }
 
