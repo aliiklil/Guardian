@@ -1,5 +1,3 @@
-.)Add sky box
-
 .)Test map
 
 .)Maybe add die animation where head falls off
