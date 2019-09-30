@@ -2,6 +2,7 @@ package main;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -53,10 +54,14 @@ public class Game extends BasicGameState {
 	public static QuestLogic questLogic;
 	
 	public static WeatherManager weatherManager;
+	
+	private Image background;
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
+		background = new Image("resources/background.png");
+		
 		world = new Map("resources/World2.tmx");
 		currentMap = world;
 
@@ -91,7 +96,7 @@ public class Game extends BasicGameState {
 
 	@Override
 	public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
-
+		
 		mobManager.update();
 		projectileManager.update();
 		itemManager.update();
@@ -107,7 +112,9 @@ public class Game extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
-
+		
+		background.draw(0, 0);
+		
 		world.render(g);
 		
 		chestManager.render(g);
@@ -126,6 +133,8 @@ public class Game extends BasicGameState {
 		
 		weatherManager.render(g);
 
+		
+		
 		MobManager.getPlayer().getInventoryWindow().render(g);
 		MobManager.getPlayer().getHealthBar().render(g);
 		MobManager.getPlayer().getManaBar().render(g);

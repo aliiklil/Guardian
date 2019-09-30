@@ -1,11 +1,9 @@
+.)Add sky box
+
 .)Test map
 
 .)Maybe add die animation where head falls off
 
-.)Add rain and night effect
-
-.)Add sky box
-
 .)Add fire animation for campfire
 
-.)Add water
+.)Add animated water (maybe)
