@@ -1,4 +1,4 @@
-.)Test map
+.)Test map (especially weapons should not stick through walls etc.)
 
 .)Maybe add die animation where head falls off
 

@@ -573,32 +573,9 @@ public class ItemTypeManager {
 		
 		
 		smallBottle = new ItemType(1, "resources/items/23misc/small_bottle.png", "Small Bottle", 10, 23, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		mediumBottle = new ItemType(1, "resources/items/23misc/medium_Bottle.png", "Medium Bottle", 20, 23, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		bigBottle = new ItemType(1, "resources/items/23misc/big_Bottle.png", "Big Bottle", 30, 23, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
 		
-		emptyRune = new ItemType(1, "resources/items/23misc/emptyRune.png", "Empty Rune", 300, 23, false, "misc", "resources/player_sprites/empty_sprite_sheet.png");
-		
-		ogusChrystal = new ItemType(1, "resources/items/25quest_items/ogusChrystal.png", "Ogus Chrystal", 1, 25, false, "quest_item", "resources/player_sprites/empty_sprite_sheet.png");
+		ogusChrystal = new ItemType(1, "resources/items/25quest_items/ogusChrystal.png", "Ogus Chrystal", 10, 25, false, "quest_item", "resources/player_sprites/empty_sprite_sheet.png");
 				
-		
-		
-		letter = new ItemType(1, "resources/items/24readable/letter.png", "Letter", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		letter.setReadableImage("resources/readables/testnote.png");
-		
-		note = new ItemType(1, "resources/items/24readable/note.png", "Note", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		note.setReadableImage("resources/readables/testnote.png");
-		
-		redbook = new ItemType(1, "resources/items/24readable/redbook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		redbook.setReadableImage("resources/readables/testbook.png");
-		
-		blackbook = new ItemType(1, "resources/items/24readable/blackbook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		blackbook.setReadableImage("resources/readables/testbook.png");
-		
-		bluebook = new ItemType(1, "resources/items/24readable/bluebook.png", "Book", 10, 25, false, "readable", "resources/player_sprites/empty_sprite_sheet.png");
-		bluebook.setReadableImage("resources/readables/testbook.png");
-		
-		
-		
 		gold = new ItemType(100, "resources/items/26gold/goldcoin.png", "Gold", 1, 26, false, "gold", "resources/player_sprites/empty_sprite_sheet.png");
 		
 		

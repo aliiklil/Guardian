@@ -40,12 +40,12 @@ public class WeatherManager {
 		
 		
 		
-		weatherList.add(rain);
-		weatherList.add(night);
+		//weatherList.add(rain);
+		//weatherList.add(night);
 		
 		
 		
-		rain.setActive(true);
+		//rain.setActive(true);
 		//night.setActive(true);
 	}
 	

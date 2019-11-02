@@ -54,7 +54,7 @@ public class Map {
 		offsetXTile = Math.round(offsetX / 32);
 		offsetYTile = Math.round(offsetY / 32);
 		
-		tiledMap.render(Math.round((x + offsetX - 32)), Math.round((y + offsetY - 32)), offsetXTile-1, offsetYTile-1, 42, 25);
+		tiledMap.render(Math.round((x + offsetX - 32)), Math.round((y + offsetY - 32)), offsetXTile-1, offsetYTile-1, 60, 40);
 		
 	}
 	 

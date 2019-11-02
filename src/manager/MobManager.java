@@ -26,83 +26,99 @@ public class MobManager {
 	public static NPC halrok;
 	
 	public static NPC jorgen;
-	public static NPC rico;
+		
+	public static Monster aggressiveWolf;
 	
-	public static Monster filthyRat;
-	
-	public static Monster aggressiveWolf1;
-	public static Monster aggressiveWolf2;
-	public static Monster aggressiveWolf3;
+	public static Monster wolf1;
+	public static Monster wolf2;
+	public static Monster wolf3;
 	
 	private ItemTypeManager itemTypeManager = Game.getItemTypeManager();	
 	
 	public MobManager() throws SlickException {
 		
-		player = new Player(140, 154, true);
+		player = new Player(89, 11, true);
 		
-		Item stick = new Item(0, 0, itemTypeManager.stick);
-
-		stick.setEquipped(true);
+		Item longspear = new Item(0, 0, itemTypeManager.longspear);
+		longspear.setEquipped(true);
+		player.addItem(longspear);
+		player.setEquippedMelee(longspear.getItemType());
+		player.setCurrentMeleeAnimation(longspear.getItemType().getLookDownAnimation());
 		
-		player.addItem(stick);
-		
-		player.setEquippedMelee(stick.getItemType());
-		
-		player.setCurrentMeleeAnimation(stick.getItemType().getLookDownAnimation());
+		Item ironArmor = new Item(0, 0, itemTypeManager.ironArmor);
+		ironArmor.setEquipped(true);
+		player.addItem(ironArmor);
+		player.setEquippedArmor(ironArmor.getItemType());
+		player.setCurrentArmorAnimation(ironArmor.getItemType().getLookDownAnimation());
 			
-		ogus = new NPC(48, 37, 2000, 2000, "resources/mob_sprites/npc/OrcSpriteSheet.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
-		ogus.addItem(new Item(0, 0, itemTypeManager.dagger));
-		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
-		ogus.addItem(new Item(0, 0, itemTypeManager.apple));
-		ogus.addItem(new Item(0, 0, itemTypeManager.arrow));
-		ogus.addItem(new Item(0, 0, itemTypeManager.shortspear));
-		ogus.addItem(new Item(0, 0, itemTypeManager.goldenspear));
-		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHpPotion));
-		ogus.addItem(new Item(0, 0, itemTypeManager.goldenspear));
-		ogus.addItem(new Item(0, 0, itemTypeManager.mediumHpPotion));
+		Item bow = new Item(0, 0, itemTypeManager.bow);
+		bow.setEquipped(true);
+		player.addItem(bow);
+		player.setEquippedBow(bow.getItemType());
+		player.setCurrentBowAnimation(bow.getItemType().getLookDownAnimation());
 		
-		ogus.addItem(new Item(0, 0, itemTypeManager.healroot));
-		ogus.addItem(new Item(0, 0, itemTypeManager.healroot));
+		Item fireballRune = new Item(0, 0, itemTypeManager.fireballRune);
+		player.addItem(fireballRune);
+		player.setEquippedSpell(fireballRune.getItemType());
 		
+		
+		Item arrow = new Item(0, 0, itemTypeManager.arrow);
+		player.addItem(arrow);
+		player.addItem(arrow);
+		player.addItem(arrow);
+		
+		
+		Item smallHpPotion = new Item(0, 0, itemTypeManager.smallHpPotion);
+		player.addItem(smallHpPotion);
+		
+		Item smallManaPotion = new Item(0, 0, itemTypeManager.smallManaPotion);
+		player.addItem(smallManaPotion);
+		
+		Item gold = new Item(0, 0, itemTypeManager.gold);
+		player.addItem(gold);
+		
+		
+		ogus = new NPC(91, 111, 2000, 2000, "resources/mob_sprites/npc/Ogus.png", false, null, DialogueManager.ogusDialogues, 300, 10, 0.1, true);
 		ogus.setEquippedMelee(new Item(0, 0, itemTypeManager.goldenspear).getItemType());
 		
-		
-		
-		halrok = new NPC(50, 37, 300, 300, "resources/mob_sprites/npc/SkeletonSpriteSheet.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
+
+		halrok = new NPC(112, 2, 300, 300, "resources/mob_sprites/npc/Halrok.png", false, null, DialogueManager.halrokDialogues, 400, 20, 0.3, true);
 		halrok.setEquippedMelee(new Item(0, 0, itemTypeManager.ironsword).getItemType());
 		
-		jorgen = new NPC(52, 39, 300, 300, "resources/mob_sprites/npc/Jorgen.png", false, null, DialogueManager.jorgenDialogues, 400, 20, 0.3, true);
+		
+		jorgen = new NPC(98, 24, 300, 300, "resources/mob_sprites/npc/Jorgen.png", false, null, DialogueManager.jorgenDialogues, 400, 20, 0.3, true);
 		jorgen.setEquippedMelee(new Item(0, 0, itemTypeManager.rapier).getItemType());
+		jorgen.addItem(new Item(0, 0, itemTypeManager.dagger));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.apple));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.arrow));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.arrow));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.arrow));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.arrow));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.shortspear));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.smallHpPotion));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.leatherArmor));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.healroot));
+		jorgen.addItem(new Item(0, 0, itemTypeManager.healroot));
+
 		
-		rico = new NPC(49, 36, 300, 300, "resources/mob_sprites/npc/Rico.png", false, null, DialogueManager.ricoDialogues, 400, 20, 0.3, true);
-		rico.setEquippedMelee(new Item(0, 0, itemTypeManager.ironsword).getItemType());
+		aggressiveWolf = new Monster(133, 5, "resources/mob_sprites/monster/WolfSpriteSheet.png", 500, null, 100, 2, true, true);		
 		
 		
+		wolf1 = new Monster(74, 126, "resources/mob_sprites/monster/WolfSpriteSheet.png", 500, null, 100, 2, true, true);		
+		wolf2 = new Monster(49, 116, "resources/mob_sprites/monster/WolfSpriteSheet.png", 500, null, 100, 2, true, true);		
+		wolf3 = new Monster(85, 142, "resources/mob_sprites/monster/WolfSpriteSheet.png", 500, null, 100, 2, true, true);		
 		
 		mobList.add(player);
-		
-		
-		/*
 		mobList.add(ogus);
 		mobList.add(halrok);
-		
 		mobList.add(jorgen);
-		mobList.add(rico);
+
+		mobList.add(aggressiveWolf);
 		
-		filthyRat = new Monster(90, 80, "resources/mob_sprites/monster/RatSpriteSheet.png", 1000, null, 100, 5, true, true);		
-		mobList.add(filthyRat);
-		
-		aggressiveWolf1 = new Monster(70, 75, "resources/mob_sprites/monster/WolfSpriteSheet.png", 500, null, 100, 5, true, true);		
-		mobList.add(aggressiveWolf1);
-		
-		aggressiveWolf2 = new Monster(49, 61, "resources/mob_sprites/monster/WolfSpriteSheet.png", 500, null, 100, 5, true, true);		
-		mobList.add(aggressiveWolf2);
-		
-		aggressiveWolf3 = new Monster(60, 60, "resources/mob_sprites/monster/WolfSpriteSheet.png", 500, null, 100, 5, true, true);		
-		mobList.add(aggressiveWolf3);
-		*/
-		
-		
+		mobList.add(wolf1);
+		mobList.add(wolf2);
+		mobList.add(wolf3);
+	
 	}
 	
 	public void update() throws SlickException {

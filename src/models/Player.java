@@ -95,18 +95,18 @@ public class Player extends Character {
 	private int level = 0;
 	private int experience = 0;
 	private int nextLevelExperience = levelBorders[level];
-	private int learningPoints = 100;
+	private int learningPoints = 0;
 	
-	private int strength = 200;
-	private int dexterity = 200;
+	private int strength = 30;
+	private int dexterity = 10;
 	
-	private int healthPoints = 200;
-	private int mana = 500;
+	private int healthPoints = 100;
+	private int mana = 100;
 	
 	private int meleeSkill = 10;
 	private int bowSkill = 10;
 
-	private int lockPickingSkill = 0;
+	private int lockPickingSkill = 1;
 	private int alchemySkill = 0;
 	private int blacksmithingSkill = 0;
 	private int runeForgingSkill = 0;
@@ -314,7 +314,7 @@ public class Player extends Character {
 	
 	private boolean isTranformedToWolf = false;
 	private long wolfTransformationTimestamp;
-	private int wolfTransformationDuration = 5000;
+	private int wolfTransformationDuration = 10000; //10 seconds
 	private int wolfMaxHp = 200;
 	private int wolfAttackDamage = 100;
 	
@@ -326,12 +326,12 @@ public class Player extends Character {
 	
 	private boolean isTranformedToSkeleton = false;
 	private long skeletonTransformationTimestamp;
-	private int skeletonTransformationDuration = 5000;
+	private int skeletonTransformationDuration = 10000; //10 seconds
 	private int skeletonMaxHp = 400;
 	
 	private boolean isTranformedToOrc = false;
 	private long orcTransformationTimestamp;
-	private int orcTransformationDuration = 5000;
+	private int orcTransformationDuration = 10000; //10 seconds
 	private int orcMaxHp = 600;
 	
 	public Player(float tileX, float tileY, boolean alive) throws SlickException {
@@ -1043,7 +1043,7 @@ public class Player extends Character {
 	
 				if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayUpAnimation() || super.getCurrentAnimation() == super.getThrustUpAnimation())) {
 					for (Mob mob : mobList) {
-						if(equippedMelee.getAttackUpCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() ) {
+						if(equippedMelee.getAttackUpCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() && mob.isHostileToPlayer()) {
 							mob.decreaseHealth(damageToDeal);
 							damageDealt = true;
 							if(!mob.isUpCollision(Main.TILE_SIZE * 3) && !mob.isUpCollision(Main.TILE_SIZE * 2) && !mob.isUpCollision(Main.TILE_SIZE * 1)) {
@@ -1059,7 +1059,7 @@ public class Player extends Character {
 	
 				if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayDownAnimation() || super.getCurrentAnimation() == super.getThrustDownAnimation())) {
 					for (Mob mob : mobList) {
-						if(equippedMelee.getAttackDownCollisionBox().intersects(mob.getHitBox()) && mob.isAlive()) {
+						if(equippedMelee.getAttackDownCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() && mob.isHostileToPlayer()) {
 							mob.decreaseHealth(damageToDeal);
 							damageDealt = true;
 							if(!mob.isDownCollision(Main.TILE_SIZE * 3) && !mob.isDownCollision(Main.TILE_SIZE * 2) && !mob.isDownCollision(Main.TILE_SIZE * 1)) {
@@ -1075,7 +1075,7 @@ public class Player extends Character {
 	
 				if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayLeftAnimation() || super.getCurrentAnimation() == super.getThrustLeftAnimation())) {
 					for (Mob mob : mobList) {
-						if(equippedMelee.getAttackLeftCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() ) {
+						if(equippedMelee.getAttackLeftCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() && mob.isHostileToPlayer()) {
 							mob.decreaseHealth(damageToDeal);
 							damageDealt = true;
 							if(!mob.isLeftCollision(Main.TILE_SIZE * 3) && !mob.isLeftCollision(Main.TILE_SIZE * 2) && !mob.isLeftCollision(Main.TILE_SIZE * 1)) {
@@ -1091,7 +1091,7 @@ public class Player extends Character {
 	
 				if(super.getCurrentAnimation().getFrame() == 3 && (super.getCurrentAnimation() == super.getSlayRightAnimation() || super.getCurrentAnimation() == super.getThrustRightAnimation())) {
 					for (Mob mob : mobList) {
-						if(equippedMelee.getAttackRightCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() ) {
+						if(equippedMelee.getAttackRightCollisionBox().intersects(mob.getHitBox()) && mob.isAlive() && mob.isHostileToPlayer()) {
 							mob.decreaseHealth(damageToDeal);
 							damageDealt = true;
 							if(!mob.isRightCollision(Main.TILE_SIZE * 3) && !mob.isRightCollision(Main.TILE_SIZE * 2) && !mob.isRightCollision(Main.TILE_SIZE * 1)) {

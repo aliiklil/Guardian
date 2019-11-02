@@ -741,7 +741,7 @@ public class TradingWindow {
 			}
 			
 			g.drawString("Value in Gold:", 330, 670);
-			String value = String.valueOf(selectedItem.getItemType().getValue());
+			String value = String.valueOf(selectedItem.getItemType().getBuyValue());
 			g.drawString(value, 780 - value.length() * 9, 670);
 			
 			selectedItem.getItemType().getDescriptionAnimation().draw(806, 541);

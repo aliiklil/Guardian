@@ -17,31 +17,15 @@ public class QuestManager {
 
 	private static ArrayList<Quest> questList = new ArrayList<Quest>();
 	
-	public Quest halroksRatProblem;
-	public Quest lostChrystal;
-	
 	public Quest wolfHunt;
-	public Quest plantsForAPotion;
 		
 	public QuestManager() throws SlickException {
 				
-		halroksRatProblem = new Quest("Halrok's Rat Problem", 300);
-		halroksRatProblem.setGoldReward(50);
-		
-		lostChrystal = new Quest("Lost Chrystal", 400);
-		lostChrystal.setGoldReward(100);
-		
-		wolfHunt = new Quest("Wolf Hunt", 500);
-		wolfHunt.setGoldReward(200);
-		
-		plantsForAPotion = new Quest("Plants For A Potion", 500);
-		plantsForAPotion.setItemReward(new Item(0, 0, Game.getItemTypeManager().maxHpBonusPotion));
-		
-		
-		//questList.add(halroksRatProblem);
-		//questList.add(lostChrystal);
-		//questList.add(wolfHunt);
-		//questList.add(plantsForAPotion);
+		wolfHunt = new Quest("Wolf Hunt", 400);
+		wolfHunt.setGoldReward(50);
+
+		questList.add(wolfHunt);
+
 	}
 	
 	public static ArrayList<Quest> getQuestList() {
