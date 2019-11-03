@@ -1,0 +1,457 @@
+Sources to used assets (Changes were made to some):
+
+
+http://lpc.opengameart.org/static/lpc-style-guide/assets.html
+
+https://opengameart.org/content/lpc-castle (Evert)
+https://opengameart.org/content/lpc-thatched-roof-cottage (bluecarrot16)
+https://opengameart.org/content/mage-city-arcanos (Hyptosis)
+https://opengameart.org/content/lpc-castle-mega-pack (bluecarrot16)
+https://opengameart.org/content/lpc-wooden-ship-tiles (Reemax)
+https://opengameart.org/content/camp-fire-animation-for-rpgs-finished (Zabin and Jetrel)
+https://opengameart.org/content/castle-tiles-for-rpgs (Hyptosis, Zabin, Daniel Cook)
+https://opengameart.org/content/classical-temple-tiles (surt)
+https://www.deviantart.com/schwarzenacht/art/MV-tent-647360831 (PandaMaru)
+http://tkool.kagati.com/en/archives/1795
+https://opengameart.org/content/siege-weapons (castelonia)
+https://opengameart.org/content/modified-32x32-treasure-chest (Blarumyrran)
+https://opengameart.org/content/rpg-tiles-cobble-stone-paths-town-objects (Zabin, Daneeklu, Jetrel, Hyptosis, Redshrike, Bertram)
+
+https://github.com/jrconway3/Universal-LPC-spritesheet (Licensed under GPL3 and CC-BY-SA3)
+Luke Mehl
+Johannes Sjölund
+Marcel van de Steeg
+Manuel Riecke
+Thane Brimhall
+Matthew Krohn
+Lori Angela Nagel
+Lanea Zimmerman (AKA Sharm)
+Stephen Challener (AKA Redshrike)
+Daniel Eddeland
+Shaun Williams
+Joe White
+Mark Weyer
+Barbara Rivera
+JRConway3
+JaidynReiman
+Nila122
+neo4cat6
+
+
+LPC Base Assets:
+
+Lanea Zimmerman (AKA Sharm)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Base tileset
+ - barrel.png
+ - brackish.png
+ - buckets.png
+ - bridges.png
+ - cabinets.png
+ - cement.png
+ - cementstair.png
+ - chests.png
+ - country.png
+ - cup.png
+ - dirt2.png
+ - dirt.png
+ - dungeon.png
+ - grassalt.png
+ - grass.png
+ - holek.png
+ - holemid.png
+ - hole.png
+ - house.png
+ - inside.png
+ - kitchen.png
+ - lava.png
+ - lavarock.png
+ - mountains.png
+ - rock.png
+ - shadow.png
+ - signs.png
+ - stairs.png
+ - treetop.png
+ - trunk.png
+ - waterfall.png
+ - watergrass.png
+ - water.png
+ - princess.png and princess.xcf
+
+Much style guide work
+
+co-author of LPC background cup image
+
+Stephen Challener (AKA Redshrike)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Character templates
+ - female_walkcycle.png
+ - female_hurt.png
+ - female_slash.png
+ - female_spellcast.png
+ - male_walkcycle.png
+ - male_hurt.png
+ - male_slash.png
+ - male_spellcast.png
+ - male_pants.png
+ - male_hurt_pants.png
+ - male_fall_down_pants.png
+ - male_slash_pants.png
+
+Much style guide work
+
+
+Charles Sanchez (AKA CharlesGabriel)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Monsters
+ - bat.png
+ - bee.png
+ - big_worm.png
+ - eyeball.png
+ - ghost.png
+ - man_eater_flower.png
+ - pumpking.png
+ - slime.png
+ - small_worm.png
+ - snake.png
+
+Manuel Riecke (AKA MrBeast)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - hairfemale.png and hairfemale.xcf
+ - hairmale.png and hairmale.xcf
+ - soldier.png
+ - soldier_altcolor.png
+
+The 60 degree perspective render in the style guide
+
+
+Daniel Armstrong (AKA HughSpectrum)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Castle work:
+
+ - castlewalls.png
+ - castlefloors.png
+ - castle_outside.png
+ - castlefloors_outside.png
+ - castle_lightsources.png
+ 
+https://opengameart.org/content/lpc-tile-atlas
+
+
+License
+-------
+
+CC-BY-SA 3.0:
+ - http://creativecommons.org/licenses/by-sa/3.0/
+ - See the file: cc-by-sa-3.0.txt
+GNU GPL 3.0:
+ - http://www.gnu.org/licenses/gpl-3.0.html
+ - See the file: gpl-3.0.txt
+
+Note the file is based on the LCP contest readme so don't expect the exact little pieces used like the base one.
+*Additional license information.
+
+Assets from:
+
+LPC participants:
+----------------
+
+Casper Nilsson
+	*GNU GPL 3.0 or later
+	email: casper.nilsson@gmail.com
+	Freenode: CasperN
+	OpenGameArt.org: C.Nilsson
+	
+ - LPC C.Nilsson (2D art)
+
+Daniel Eddeland 
+	*GNU GPL 3.0 or later
+ - Tilesets of plants, props, food and environments, suitable for farming / fishing sims and other games. 
+ - Includes wheat, grass, sand tilesets, fence tilesets and plants such as corn and tomato. 
+
+
+Johann CHARLOT 
+	*GNU LGPL Version 3. 
+	*Later versions are permitted.
+	Homepage  http://poufpoufproduction.fr
+	Email     johannc@poufpoufproduction.fr
+	
+ - Shoot'em up graphic kit
+
+Skyler Robert Colladay 
+
+ - FeralFantom's Entry (2D art)
+
+BASE assets:
+------------
+
+Lanea Zimmerman (AKA Sharm)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - barrel.png
+ - brackish.png
+ - buckets.png
+ - bridges.png
+ - cabinets.png
+ - cement.png
+ - cementstair.png
+ - chests.png
+ - country.png
+ - cup.png
+ - dirt2.png
+ - dirt.png
+ - dungeon.png
+ - grassalt.png
+ - grass.png
+ - holek.png
+ - holemid.png
+ - hole.png
+ - house.png
+ - inside.png
+ - kitchen.png
+ - lava.png
+ - lavarock.png
+ - mountains.png
+ - rock.png
+ - shadow.png
+ - signs.png
+ - stairs.png
+ - treetop.png
+ - trunk.png
+ - waterfall.png
+ - watergrass.png
+ - water.png
+ - princess.png and princess.xcf
+
+
+Stephen Challener (AKA Redshrike)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - female_walkcycle.png
+ - female_hurt.png
+ - female_slash.png
+ - female_spellcast.png
+ - male_walkcycle.png
+ - male_hurt.png
+ - male_slash.png
+ - male_spellcast.png
+ - male_pants.png
+ - male_hurt_pants.png
+ - male_fall_down_pants.png
+ - male_slash_pants.png
+
+
+Charles Sanchez (AKA CharlesGabriel)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - bat.png
+ - bee.png
+ - big_worm.png
+ - eyeball.png
+ - ghost.png
+ - man_eater_flower.png
+ - pumpking.png
+ - slime.png
+ - small_worm.png
+ - snake.png
+
+
+Manuel Riecke (AKA MrBeast)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - hairfemale.png and hairfemale.xcf
+ - hairmale.png and hairmale.xcf
+ - soldier.png
+ - soldier_altcolor.png
+
+
+Daniel Armstrong (AKA HughSpectrum)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Castle work:
+
+ - castlewalls.png
+ - castlefloors.png
+ - castle_outside.png
+ - castlefloors_outside.png
+ - castle_lightsources.png
+
+
+
+ 
+ https://opengameart.org/content/lpc-tile-atlas2
+ 
+ License
+-------
+
+CC-BY-SA 3.0:
+ - http://creativecommons.org/licenses/by-sa/3.0/
+ - See the file: cc-by-sa-3.0.txt
+GNU GPL 3.0:
+ - http://www.gnu.org/licenses/gpl-3.0.html
+ - See the file: gpl-3.0.txt
+
+Note only some files from the entries are selected.
+*Additional license information.
+
+Assets from:
+
+LPC participants:
+----------------
+
+Barbara Rivera
+ 
+ - tree,tombstone
+
+Casper Nilsson
+	*GNU GPL 3.0 or later
+	email: casper.nilsson@gmail.com
+	Freenode: CasperN
+	OpenGameArt.org: C.Nilsson
+	
+ - LPC C.Nilsson (2D art)
+ 
+Chris Phillips
+
+ - tree
+
+Daniel Eddeland 
+	*GNU GPL 3.0 or later
+	
+ - Tilesets of plants, props, food and environments, suitable for farming / fishing sims and other games. 
+ - Includes wheat, grass, sand tilesets, fence tilesets and plants such as corn and tomato. 
+ - Also includes village/marketplace objects like sacks, food, some smithing equipment, tables and stalls.
+
+
+Anamaris and Krusmira (aka? Emilio J Sanchez)
+
+ - Sierra__Steampun-a-fy (with concept art)
+ 
+Jonas Klinger 
+
+ - Skorpio's SciFi Sprite Pack
+ 
+Joshua Taylor
+
+ - Fruit and Veggie Inventory
+ 
+Leo Villeveygoux
+
+ - Limestone Wall
+
+Mark Weyer 
+
+ - signpost+shadow
+ 
+Matthew Nash
+
+ - Public Toilet Tileset
+ 
+Skyler Robert Colladay
+
+ - FeralFantom's Entry
+
+
+BASE assets:
+------------
+
+Lanea Zimmerman (AKA Sharm)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - barrel.png
+ - brackish.png
+ - buckets.png
+ - bridges.png
+ - cabinets.png
+ - cement.png
+ - cementstair.png
+ - chests.png
+ - country.png
+ - cup.png
+ - dirt2.png
+ - dirt.png
+ - dungeon.png
+ - grassalt.png
+ - grass.png
+ - holek.png
+ - holemid.png
+ - hole.png
+ - house.png
+ - inside.png
+ - kitchen.png
+ - lava.png
+ - lavarock.png
+ - mountains.png
+ - rock.png
+ - shadow.png
+ - signs.png
+ - stairs.png
+ - treetop.png
+ - trunk.png
+ - waterfall.png
+ - watergrass.png
+ - water.png
+ - princess.png and princess.xcf
+
+
+Stephen Challener (AKA Redshrike)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - female_walkcycle.png
+ - female_hurt.png
+ - female_slash.png
+ - female_spellcast.png
+ - male_walkcycle.png
+ - male_hurt.png
+ - male_slash.png
+ - male_spellcast.png
+ - male_pants.png
+ - male_hurt_pants.png
+ - male_fall_down_pants.png
+ - male_slash_pants.png
+
+
+Charles Sanchez (AKA CharlesGabriel)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - bat.png
+ - bee.png
+ - big_worm.png
+ - eyeball.png
+ - ghost.png
+ - man_eater_flower.png
+ - pumpking.png
+ - slime.png
+ - small_worm.png
+ - snake.png
+
+
+Manuel Riecke (AKA MrBeast)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - hairfemale.png and hairfemale.xcf
+ - hairmale.png and hairmale.xcf
+ - soldier.png
+ - soldier_altcolor.png
+
+
+Daniel Armstrong (AKA HughSpectrum)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Castle work:
+
+ - castlewalls.png
+ - castlefloors.png
+ - castle_outside.png
+ - castlefloors_outside.png
+ - castle_lightsources.png
+
+
+
+ 
+ 
