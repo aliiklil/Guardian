@@ -1,7 +1,0 @@
-.)Test map (especially weapons should not stick through walls etc.)
-
-.)Maybe add die animation where head falls off
-
-.)Add fire animation for campfire
-
-.)Add animated water (maybe)
