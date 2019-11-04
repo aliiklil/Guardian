@@ -16,6 +16,8 @@ http://tkool.kagati.com/en/archives/1795
 https://opengameart.org/content/siege-weapons (castelonia)
 https://opengameart.org/content/modified-32x32-treasure-chest (Blarumyrran)
 https://opengameart.org/content/rpg-tiles-cobble-stone-paths-town-objects (Zabin, Daneeklu, Jetrel, Hyptosis, Redshrike, Bertram)
+https://forums.rpgmakerweb.com/index.php?threads/parallax-backgrounds.27921/ (Andralexis)
+
 
 https://github.com/jrconway3/Universal-LPC-spritesheet (Licensed under GPL3 and CC-BY-SA3)
 Luke Mehl
