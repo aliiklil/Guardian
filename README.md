@@ -6,6 +6,15 @@ Guardian is a top-down 2D RPG made with Java and Slick2D.
 ## How to play it
 Just download Guardian.jar or Guardian.exe and run it.
 
+## Controls
+- Moving: Arrow Up, Down, Left, Right
+- Use (Talking to NPCs etc.): Y
+- Melee Attack: X
+- Shoot Bow: A
+- Use Spell: S
+- Open QuestLog: Q
+- Open Inventory: TAB
+
 ## Some implemented features:
 - Inventory and Leveling System is implemented
 - Multiple armor sets, melee weapons, bows and magic spells can be equipped and used
